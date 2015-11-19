@@ -1,17 +1,6 @@
-# Welcome to MkDocs
+# Government PaaS Team Manual
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+This is primarily for the benefit of team members, rather than users of the
+platform.
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Please see the index on the left-hand side.
