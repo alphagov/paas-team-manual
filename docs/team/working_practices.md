@@ -1,3 +1,14 @@
+# Pairing
+
+We pair on all stories to ensure that people don't get stuck on the same
+types of work and that there is a good distribution of knowledge across the
+team. We aim to rotate regularly, when starting new stories. However you can
+opt-out of a rotation if it would be detrimental to the progress of your
+current story. Please tick the [pair stair][] on our board when you rotate
+so that rotation are evenly distributed.
+
+[pair stair]: http://pairstair.com/
+
 # Story kick-off
 
 Kick-offs are an opportunity to clarify the scope of a story and raise any
