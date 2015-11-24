@@ -58,3 +58,30 @@ the story was a spike and doesn't result in any pull requests. Summarising
 the story will help other people in the team review it, either against the
 acceptance criteria or for future reference, which can otherwise be
 difficult if comments are sparse or inconsistent.
+
+# Creating and forking repos
+
+Nearly all of our code repos are public on GitHub.com because we are [coding
+in the open][]. There is an exception to this, where a public repo could
+risk leaking sensitive information. When creating or forking a new repo you
+will need to do the following. If you're a contractor then you'll need to
+ask a permanent member of the team to do this for you:
+
+[coding in the open]: https://gds.blog.gov.uk/2012/10/12/coding-in-the-open/
+
+1. Prefix the name with `paas-` so that it's easier to find. This includes
+forks of third-party repos which will need to be renamed after forking, e.g.
+`cf-release` would become `paas-cf-release`.
+1. Add the Pivotal Tracker service integration/hook. You will need to take
+the API key from the "Profile" page of your own account.
+1. Add the following teams:
+    1. `team-government-paas-readonly`: the dashboard user which has
+`org:read` privileges to find all of our repos.
+    1. `team-government-paas-contractors`: all members of the team that are
+contractors and aren't members of the `owners` team.
+
+We should never pull request against the `master` branch of a forked repo.
+Doing so makes it very hard to reconcile our changes against the upstream
+repo at a later date. We should aim to submit all changes upstream. It may
+be appropriate to run against a branch of our fork for a limited period of
+time.
