@@ -1,7 +1,6 @@
 # Government PaaS Team Manual
 
-This project uses [MkDocs][]. Please see their documentation for more
-information.
+This project uses [MkDocs][].
 
 [MkDocs]: http://www.mkdocs.org/
 
@@ -15,3 +14,13 @@ process locally.
 To install the dependencies:
 
     pip install -Ur requirements.txt
+
+## Preview
+
+To preview your changes locally run:
+
+    mkdocs serve
+
+Then visit:
+
+- http://127.0.0.1:8000
