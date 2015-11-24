@@ -1,3 +1,16 @@
+# URLs
+
+These are the tools/services we use. The list roughly translates to things
+that new starters will need to be added to and leavers will need to be
+removed from.
+
+- [Slack](https://govuk.slack.com/messages/the-government-paas/)
+- [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/1275640)
+- [Google Group](https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/the-multi-cloud-paas-team)
+- [Google Calendar](https://www.google.com/calendar/embed?src=digital.cabinet-office.gov.uk_4ga37koaoeoj4ah1kmi88oco9s%40group.calendar.google.com&ctz=Europe/London)
+- [GitHub.com](https://github.com/alphagov?utf8=%E2%9C%93&query=paas-)
+- [GitHub Enterprise](https://github.gds/government-paas)
+
 # Events
 
 These are key events that happen each fortnightly sprint. You'll get
