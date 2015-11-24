@@ -49,3 +49,12 @@ request. Pull requests should be reviewed by somebody that hasn't already
 worked on the story.
 
 [Fourth Wall]: https://github.com/alphagov/fourth-wall
+
+# Story summary
+
+When you've finished a story please take a few minutes to summarise your
+work in a comment on the Pivotal story. This is particularly important if
+the story was a spike and doesn't result in any pull requests. Summarising
+the story will help other people in the team review it, either against the
+acceptance criteria or for future reference, which can otherwise be
+difficult if comments are sparse or inconsistent.
