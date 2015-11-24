@@ -1,3 +1,13 @@
+# Repos
+
+These are the key repos that we use. There will be many others, which these
+depend on, but this list should be enough to get you started.
+
+- [alphagov/paas-cf](https://github.com/alphagov/paas-cf)
+- [alphagov/paas-team-manual](https://github.com/alphagov/paas-team-manual)
+- [government-paas/credentials](https://github.gds/government-paas/credentials)
+  (internal only)
+
 # URLs
 
 These are the tools/services we use. The list roughly translates to things
