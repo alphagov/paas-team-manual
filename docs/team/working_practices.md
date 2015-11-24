@@ -46,7 +46,8 @@ There is a dashboard near our desks that displays open pull requests using
 over picking up new work. As the author of a pull request you may still need
 to chase this and you need to watch your email for comments on your pull
 request. Pull requests should be reviewed by somebody that hasn't already
-worked on the story.
+worked on the story. When reviewing a pull request please "assign" yourself
+on GitHub, so that someone else doesn't duplicate effort.
 
 [Fourth Wall]: https://github.com/alphagov/fourth-wall
 
