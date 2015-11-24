@@ -1,3 +1,5 @@
+Some key information to help new starters to find their way.
+
 # Repos
 
 These are the key repos that we use. There will be many others, which these
