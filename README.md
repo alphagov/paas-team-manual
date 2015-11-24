@@ -1,8 +1,12 @@
 # Government PaaS Team Manual
 
-This project uses [MkDocs][].
+This project uses [MkDocs][]. It is automatically built and hosted by [Read
+the Docs][] at the following URL:
+
+- https://government-paas-team-manual.readthedocs.org/
 
 [MkDocs]: http://www.mkdocs.org/
+[Read the Docs]: https://readthedocs.org/
 
 ## Setup
 
