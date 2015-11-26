@@ -22,6 +22,7 @@ removed from.
 - [Google Calendar](https://www.google.com/calendar/embed?src=digital.cabinet-office.gov.uk_4ga37koaoeoj4ah1kmi88oco9s%40group.calendar.google.com&ctz=Europe/London)
 - [GitHub.com](https://github.com/alphagov?utf8=%E2%9C%93&query=paas-)
 - [GitHub Enterprise](https://github.gds/government-paas)
+- [Docker Hub](https://hub.docker.com/)
 
 # Events
 
