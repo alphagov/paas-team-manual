@@ -10,6 +10,21 @@ You need to install spruce >= 0.13.0. This version added support for operand exp
 $ go get github.com/geofffranks/spruce # Builds spruce, including dependencies and puts it in $GOPATH/bin
 ```
 
+To upgrade spruce:
+
+```
+$ go get -u github.com/geofffranks/spruce
+```
+
+Note: If you previously built spruce from a branch, following instructions in a
+previous version of this guide, you may need to find and remove old
+copies of the `spruce` binary that were copied into your $PATH:
+
+```
+$ spruce -v     # if version 0.12.0 is reported, you probably built from the branch
+$ which spruce  # shows files you may need to remove
+```
+
 ## Default merge with simple keys
 
 ```
