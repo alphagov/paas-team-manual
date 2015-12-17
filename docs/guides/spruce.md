@@ -4,14 +4,10 @@ For more information, see the spruce readme and [examples](https://github.com/ge
 
 ## Installation
 
-For the time being we depend on the code in [this pull request](https://github.com/geofffranks/spruce/pull/69). This section will be updated once it is merged to master.
+You need to install spruce >= 0.13.0. This version added support for operand expressions.
 
 ```
-$ git clone https://github.com/geofffranks/spruce.git
-$ git checkout expr
-$ go get github.com/geofffranks/spruce # Fetches all the dependencies required for build step and installs them in $GOPATH
-$ go build
-$ mv spruce /usr/bin # Or any other directory in $PATH
+$ go get github.com/geofffranks/spruce # Builds spruce, including dependencies and puts it in $GOPATH/bin
 ```
 
 ## Default merge with simple keys
@@ -370,8 +366,6 @@ critical_key: critical_value
 ```
 
 ## *OR* operator
-Introduced in PR https://github.com/geofffranks/spruce/pull/69
-Tested successfully, it should be in master soon.
 
 Alows to specify alternate values in the first key is null. Compatible with `grab` and `concat`.
 
