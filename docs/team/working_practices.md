@@ -60,6 +60,31 @@ the story will help other people in the team review it, either against the
 acceptance criteria or for future reference, which can otherwise be
 difficult if comments are sparse or inconsistent.
 
+# Story sign-off
+
+## What sign-off is
+
+When the work on a story is completed and any changes merged to master, we
+check that it met the original business need that motivated the story and that
+acceptance criteria have been met.
+
+We ensure that if the story changed scope, identified other problems that need
+to be solved, or incurred technical debt, that stories have been created to
+capture the remaining work.
+
+If the changes have already been tested to your satisfaction during review,
+then sign-off need not include testing.
+
+## Who signs off stories
+
+Who can sign off the story is agreed and recorded in the story at kick-off, but
+by default will be the Product Manager. The Product Manager can delegate
+signing off specific stories to civil servants within the team.
+
+When a story moves to awaiting sign-off column on the board, The Tech Lead and
+Tech Arch should confirm if they are happy with the story in a comment on
+Pivotal Tracker to provide guidance to the person signing off.
+
 # Creating and forking repos
 
 Nearly all of our code repos are public on GitHub.com because we are [coding
