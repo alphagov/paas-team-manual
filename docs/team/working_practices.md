@@ -30,7 +30,23 @@ explains this in more detail.
 We peer review all code to ensure that it works as expected and is clear for
 the team to understand. All work, no matter how small, should use git
 branches and GitHub pull requests. [Anna's blog post][] explains how to
-raise a good pull request.
+raise a good pull request. Please also use the following template as the
+pull request description to help the person reviewing it:
+
+```
+## What
+
+Describe what you have changed and why.
+
+## How to review
+
+Describe the steps required to test the changes.
+
+## Who can review
+
+Describe who can review the changes. Or more importantly, list the people
+that can't review, because they worked on it.
+```
 
 [Anna's blog post]: http://www.annashipman.co.uk/jfdi/good-pull-requests.html
 
