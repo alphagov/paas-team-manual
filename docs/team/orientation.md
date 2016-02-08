@@ -44,3 +44,21 @@ the team. We'll vote on stories from the last sprint that we want to hear
 more about and one person will present each, preferably with a demo.
 
 [this document]: https://docs.google.com/document/d/1u26sQTw1brR5KtnJ5M_zyhAw7wX8CCMB0lElvtHLVAI/edit
+
+# Learning
+
+We use a number of technologies and you may find it easier to learn about each
+one on its own, rather than in our environment, where they all interact with
+each other.
+
+Here are some recommended exercises and documentation that will help you become
+familiar with each one.
+
+ What | Get started | Learn the concepts 
+------|-------------|------------------------
+Cloud Foundry, as a user | [Our getting started guide](https://documentation.trial.cf.paas.alphagov.co.uk/) | [Considerations for application developers](http://docs.cloudfoundry.org/devguide/deploy-apps/prepare-to-deploy.html) 
+[Concourse](http://concourse.ci/), the CI server we use for deployment | [Concourse tutorials](https://github.com/starkandwayne/concourse-tutorial) | [Concepts](http://concourse.ci/concepts.html)
+[BOSH](http://bosh.io/). It deploys Cloud Foundry and other things. | [A guide to using BOSH](http://mariash.github.io/learn-bosh/)  | [What problems does BOSH solve?](http://bosh.io/docs/problems.html) 
+Cloud Foundry, for those managing it | | [Cloud Foundry presentation, written by the team](https://docs.google.com/presentation/d/1LkR4Y3jLBQ8uskKeLIyKtSKDoutnAvty-vSSGfVNXZU/view), an [older presentation from before the move to Diego archecture](https://docs.google.com/presentation/d/1sZH1Nn_GiYfpBtT6br_AnZn_dynLzvYizJ9aQ4Zc1Ww/view)
+Terraform | The terraform [intro](https://www.terraform.io/intro/index.html) | The intro also covers key concepts.
+
