@@ -1,5 +1,15 @@
 Some key information to help new starters to find their way.
 
+# Product
+
+The following blog posts and videos give an overview of why we're here and
+what we've been doing so far:
+
+- [A PaaS for Government - Anna at Velocity Europe (video)](https://www.youtube.com/watch?v=OLOaq-Xf5zU)
+- [Building a platform to host digital services - Anna & Carl on the GDS blog](https://gds.blog.gov.uk/2015/09/08/building-a-platform-to-host-digital-services/)
+- [Looking at open source PaaS technologies - Anna on the GDS Technology blog](https://gdstechnology.blog.gov.uk/2015/10/27/looking-at-open-source-paas-technologies/)
+- [Choosing Cloud Foundry - Anna on the GaaP blog](https://governmentasaplatform.blog.gov.uk/2015/12/17/choosing-cloudfoundry/)
+
 # Repos
 
 These are the key repos that we use. There will be many others, which these
