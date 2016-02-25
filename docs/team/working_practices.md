@@ -20,10 +20,19 @@ is a good way to let the team know.
 # Commit messages
 
 Commit messages are very useful as documentation, so please take time to
-detail what you are changing and why. The [GOV.UK git style guide][]
-explains this in more detail.
+detail what you are changing and more importantly why. The [GOV.UK git style
+guide][] explains this in more detail.
 
 [GOV.UK git style guide]: https://github.com/alphagov/styleguides/blob/master/git.md
+
+If something is worth detailing in a pull request description then it is
+also worth detailing in a commit message. Commit messages will live with the
+repository forever and can be discovered using [git pickaxe][], whereas over
+time a project may move from GitHub or Pivotal Tracker. You can often
+copy/paste well written commit messages to form the pull request
+description.
+
+[git pickaxe]: http://www.philandstuff.com/2014/02/09/git-pickaxe.html
 
 # Pull requests
 
