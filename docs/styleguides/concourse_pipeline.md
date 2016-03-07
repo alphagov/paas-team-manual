@@ -5,6 +5,17 @@ applies.
 [Concourse]: https://concourse.ci
 [YAML styleguide]: YAML
 
+## Triggering patterns
+
+Most of our pipelines follow the following pattern for triggering jobs. This
+should be used unless there's a good reason not to.
+
+Pipelines start with an `init` job that bumps a `pipeline-trigger` semver
+resource. This resource is then used to trigger everything else througout the
+pipeline. This ensures that all of a pipeline runs, even if some of the
+jobs/tasks are a no-op. It also means there is a consistent way to initiate a
+pipeline run (where they are triggered manually).
+
 ## Tasks
 
 ### Naming
