@@ -20,10 +20,10 @@ is a good way to let the team know.
 # Commit messages
 
 Commit messages are very useful as documentation, so please take time to
-detail what you are changing and more importantly why. The [GOV.UK git style
+detail what you are changing and more importantly why. The [GDS git style
 guide][] explains this in more detail.
 
-[GOV.UK git style guide]: https://github.com/alphagov/styleguides/blob/master/git.md
+[GDS git style guide]: https://github.com/alphagov/styleguides/blob/master/git.md
 
 If something is worth detailing in a pull request description then it is
 also worth detailing in a commit message. Commit messages will live with the
