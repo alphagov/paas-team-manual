@@ -30,32 +30,19 @@ explains this in more detail.
 We peer review all code to ensure that it works as expected and is clear for
 the team to understand. All work, no matter how small, should use git
 branches and GitHub pull requests. [Anna's blog post][] explains how to
-raise a good pull request. Please also use the following template as the
-pull request description to help the person reviewing it:
-
-```
-## What
-
-Describe what you have changed and why.
-
-## How to review
-
-Describe the steps required to test the changes.
-
-## Who can review
-
-Describe who can review the changes. Or more importantly, list the people
-that can't review, because they worked on it.
-```
+raise a good pull request.
 
 [Anna's blog post]: http://www.annashipman.co.uk/jfdi/good-pull-requests.html
+[this template]: https://github.com/alphagov/paas-cf/blob/master/.github/PULL_REQUEST_TEMPLATE.md
 
-We record merged pull requests in Pivotal Tracker using a GitHub service
-integration, so that we can later see all of the code changes for a given
-story. When you create a pull request you should put the ID of the story in
-the title (format: `[#12345678] My pull request`) which will later form the
-merge commit. Please do not add the story ID to individual commits, as this
-creates a lot of noise in Pivotal.
+When you create a pull request please:
+
+- use [this template][] for the description so that it is easier for
+  the reviewer to understand and test your changes
+
+- prefix the subject with the story ID from Pivotal Tracker (format:
+  `[#12345678] My pull request`) so that we have a record of all the changes
+  for a given story
 
 There is a dashboard near our desks that displays open pull requests using
 [Fourth Wall][]. Reviewing outstanding pull requests should be a priority
