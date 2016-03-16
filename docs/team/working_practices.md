@@ -44,6 +44,10 @@ When you create a pull request please:
   `[#12345678] My pull request`) so that we have a record of all the changes
   for a given story
 
+- put the pull request URL into the Pivotal Tracker story so that
+  people can find it and understand the progress of a story before it is
+  merged
+
 There is a dashboard near our desks that displays open pull requests using
 [Fourth Wall][]. Reviewing outstanding pull requests should be a priority
 over picking up new work. As the author of a pull request you may still need
