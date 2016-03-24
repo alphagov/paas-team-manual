@@ -10,6 +10,10 @@ the Docs][] at the following URL:
 
 ## Setup
 
+You need the following things installed:
+- pip
+- libjpeg  (libjpeg-dev on ubuntu/Debian)
+
 It is recommended that you use [virtualenv][] if you want to run the build
 process locally.
 
