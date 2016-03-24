@@ -1,0 +1,89 @@
+
+blockdiag {
+
+  backlog [ 
+    color = 'salmon',
+    height = '80',
+    label = 'Work added to\nbacklog by\nproduct manager'
+  ];
+
+  devwork [ 
+    color = 'salmon', 
+    height = '80',
+    label = 'Changes worked on\nby engineers in\nfeature branch.'
+  ];
+
+  pr [ 
+    color = 'salmon', 
+    height = '140',
+    width  = '160',
+    shape = 'diamond', 
+    label = 'Pull request\nreviewed\nby engineer\nSafe for prod?\nCode quality?'
+  ];
+
+  merge [
+    color = "salmon",
+    height = 80,
+    label = 'Changes merged into\ngit master branch\nby reviewer'
+  ];
+
+  ci [
+    height = '140',
+    width  = '160',
+    shape = 'diamond',
+    label = 'Automated\ntesting in\nCI environment\n- smoke\n- acceptance'
+  ];
+
+  staging [
+    height = '80',
+    label = 'Deployed to \nstaging \nenvironment'
+  ];
+
+  prod [
+    height = '80',
+    label = 'Deployed to \nproduction \nenvironment'
+  ];
+
+  signoff [
+    color = 'salmon', 
+    height = '80',
+    label = 'Work signed off\nas complete by \nProduct Manager'
+  ];
+
+  # happy path
+  backlog -> devwork -> pr -> merge -> ci -> staging -> prod -> signoff;
+
+  merge -> ci [ folded ];
+
+  # PR feedback
+  pr -> devwork [ label = 'feedback', fontsize = 9];
+
+  # fail in CI
+  ci -> devwork [ label = 'failures', fontsize = 9];
+
+  # Key
+  personstep -> persongate -> automatedgate -> automatedstep;
+
+  personstep [
+    color = 'salmon', 
+    label = 'Step carried out\nby a person' 
+  ];
+
+  persongate [
+    color = 'salmon', 
+    shape = 'diamond',
+    height = '80',
+    label = 'Decision\nby a person' 
+  ];
+
+  automatedgate [
+    shape = 'diamond',
+    height = '80',
+    label = 'Automated\ndecision' 
+  ];
+
+  automatedstep [
+    label = 'Automated step' 
+  ];
+
+}
