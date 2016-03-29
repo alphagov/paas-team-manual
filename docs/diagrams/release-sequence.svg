@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg viewBox="0 0 1984 1018" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg viewBox="0 0 1408 836" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs id="defs_block">
     <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
       <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
@@ -18,24 +18,18 @@ seqdiag {
 
   reviewer -&gt; master [ label = "merge" ];
 
-  master -&gt; cideployer [ label = "new commit triggers\ngit resource" ]; 
+  master -&gt; cienv [ label = "new commit triggers\ngit resource\nto deploy from master" ]; 
 
-  cideployer -&gt; cienv [ label = "deploys commit from master" ];
+  cienv -&gt; cienv [ label = "deploy or\ntests fail\n do nothing" ];
 
-  cideployer -&gt; cideployer [ label = "deploy or\ntests fail\n do nothing" ];
+  cienv -&gt; master [ label = "on success\ntags commit for release\nto staging", return = "return"  ];
 
-  cideployer -&gt; master [ label = "on success\ntag for release\nto staging", return = "return"  ];
+  master -&gt; stageenv [ label = "git resource is triggered by and deploys new staging tag" ];
 
-  master -&gt; stagedeployer [ label = "new staging tag triggers git resource" ];
+  stageenv -&gt; master [ label = "tag for release\nto prod", return = "return"  ];
 
-  stagedeployer -&gt; stageenv [ label = "deploys from tag" ];
-
-  stagedeployer -&gt; master [ label = "tag for release\nto prod", return = "return"  ];
-
-  master -&gt; proddeployer [ label = "new prod tag triggers git resource" ];
+  master -&gt; prodenv [ label = "git resource is triggered by and deploys new prod tag" ];
   
-  proddeployer -&gt; prodenv [ label = "deploys from tag" ];
-
   # entities
 
   developer [ color = "salmon" ];
@@ -46,15 +40,9 @@ seqdiag {
 
   master [ label = "git master branch" ];
 
-  cideployer [ label = "CI\ndeployer" ];
-
   cienv [ label = "CI\nenvironment" ];
 
-  stagedeployer [ label = "staging\ndeployer" ];
-
   stageenv [ label = "staging\nenvironment" ];
-
-  proddeployer [ label = "production\ndeployer" ];
 
   prodenv [ label = "production\nenvironment" ];
 
@@ -67,19 +55,13 @@ seqdiag {
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="835" y="46" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="1027" y="46" />
   <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="1219" y="46" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="1411" y="46" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="1603" y="46" />
-  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="1795" y="46" />
-  <path d="M 128 80 L 128 1006" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
-  <path d="M 320 80 L 320 1006" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
-  <path d="M 512 80 L 512 1006" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
-  <path d="M 704 80 L 704 1006" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
-  <path d="M 896 80 L 896 1006" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
-  <path d="M 1088 80 L 1088 1006" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
-  <path d="M 1280 80 L 1280 1006" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
-  <path d="M 1472 80 L 1472 1006" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
-  <path d="M 1664 80 L 1664 1006" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
-  <path d="M 1856 80 L 1856 1006" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <path d="M 128 80 L 128 824" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <path d="M 320 80 L 320 824" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <path d="M 512 80 L 512 824" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <path d="M 704 80 L 704 824" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <path d="M 896 80 L 896 824" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <path d="M 1088 80 L 1088 824" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <path d="M 1280 80 L 1280 824" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
   <rect fill="rgb(250,128,114)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="40" />
   <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="55" x="128" y="66">developer</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="40" />
@@ -91,64 +73,47 @@ seqdiag {
   <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="103" x="704" y="66">git master branch</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="832" y="40" />
   <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="13" x="896" y="59">CI</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="49" x="896" y="72">deployer</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="896" y="72">environment</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="1024" y="40" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="13" x="1088" y="59">CI</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="43" x="1088" y="59">staging</text>
   <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="1088" y="72">environment</text>
   <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="1216" y="40" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="43" x="1280" y="59">staging</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="49" x="1280" y="72">deployer</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="1408" y="40" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="43" x="1472" y="59">staging</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="1472" y="72">environment</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="1600" y="40" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="1664" y="59">production</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="49" x="1664" y="72">deployer</text>
-  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="1792" y="40" />
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="1856" y="59">production</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="1856" y="72">environment</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="1280" y="59">production</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="1280" y="72">environment</text>
   <path d="M 136 135 L 312 135" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="304,131 312,135 304,139" stroke="rgb(0,0,0)" />
   <path d="M 328 200 L 504 200" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="496,196 504,200 496,204" stroke="rgb(0,0,0)" />
   <path d="M 520 265 L 696 265" fill="none" stroke="rgb(0,0,0)" />
   <polygon fill="rgb(0,0,0)" points="688,261 696,265 688,269" stroke="rgb(0,0,0)" />
-  <path d="M 712 343 L 888 343" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="880,339 888,343 880,347" stroke="rgb(0,0,0)" />
-  <path d="M 904 408 L 1080 408" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="1072,404 1080,408 1072,412" stroke="rgb(0,0,0)" />
-  <path d="M 904 499 L 992 499" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 992 499 L 992 515" fill="none" stroke="rgb(0,0,0)" />
-  <path d="M 992 515 L 904 515" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="912,511 904,515 912,519" stroke="rgb(0,0,0)" />
-  <path d="M 712 606 L 888 606" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="720,602 712,606 720,610" stroke="rgb(0,0,0)" />
-  <path d="M 712 671 L 1272 671" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="1264,667 1272,671 1264,675" stroke="rgb(0,0,0)" />
-  <path d="M 1288 736 L 1464 736" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="1456,732 1464,736 1456,740" stroke="rgb(0,0,0)" />
-  <path d="M 712 814 L 1272 814" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="720,810 712,814 720,818" stroke="rgb(0,0,0)" />
-  <path d="M 712 879 L 1656 879" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="1648,875 1656,879 1648,883" stroke="rgb(0,0,0)" />
-  <path d="M 1672 944 L 1848 944" fill="none" stroke="rgb(0,0,0)" />
-  <polygon fill="rgb(0,0,0)" points="1840,940 1848,944 1840,948" stroke="rgb(0,0,0)" />
+  <path d="M 712 356 L 888 356" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="880,352 888,356 880,360" stroke="rgb(0,0,0)" />
+  <path d="M 904 447 L 992 447" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 992 447 L 992 463" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 992 463 L 904 463" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="912,459 904,463 912,467" stroke="rgb(0,0,0)" />
+  <path d="M 712 554 L 888 554" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="720,550 712,554 720,558" stroke="rgb(0,0,0)" />
+  <path d="M 712 619 L 1080 619" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1072,615 1080,619 1072,623" stroke="rgb(0,0,0)" />
+  <path d="M 712 697 L 1080 697" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="720,693 712,697 720,701" stroke="rgb(0,0,0)" />
+  <path d="M 712 762 L 1272 762" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="1264,758 1272,762 1264,766" stroke="rgb(0,0,0)" />
   <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="173" y="133">commit code</text>
   <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="73" x="368" y="198">pull request</text>
   <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="31" x="539" y="263">merge</text>
   <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="115" x="773" y="328">new commit triggers</text>
   <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="73" x="752" y="341">git resource</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="158" x="987" y="406">deploys commit from master</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="55" x="931" y="471">deploy or</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="934" y="484">tests fail</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="934" y="497">do nothing</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="857" y="578">on success</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="91" x="842" y="591">tag for release</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="857" y="604">to staging</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="224" x="828" y="669">new staging tag triggers git resource</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="97" x="1340" y="734">deploys from tag</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="91" x="1226" y="799">tag for release</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="43" x="1250" y="812">to prod</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="206" x="819" y="877">new prod tag triggers git resource</text>
-  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="97" x="1724" y="942">deploys from tag</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="128" x="780" y="354">to deploy from master</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="55" x="931" y="419">deploy or</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="934" y="432">tests fail</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="934" y="445">do nothing</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="857" y="526">on success</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="140" x="818" y="539">tags commit for release</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="857" y="552">to staging</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="339" x="885" y="617">git resource is triggered by and deploys new staging tag</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="91" x="1034" y="682">tag for release</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="43" x="1058" y="695">to prod</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="321" x="876" y="760">git resource is triggered by and deploys new prod tag</text>
 </svg>

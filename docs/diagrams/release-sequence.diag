@@ -9,24 +9,18 @@ seqdiag {
 
   reviewer -> master [ label = "merge" ];
 
-  master -> cideployer [ label = "new commit triggers\ngit resource" ]; 
+  master -> cienv [ label = "new commit triggers\ngit resource\nto deploy from master" ]; 
 
-  cideployer -> cienv [ label = "deploys commit from master" ];
+  cienv -> cienv [ label = "deploy or\ntests fail\n do nothing" ];
 
-  cideployer -> cideployer [ label = "deploy or\ntests fail\n do nothing" ];
+  cienv -> master [ label = "on success\ntags commit for release\nto staging", return = "return"  ];
 
-  cideployer -> master [ label = "on success\ntag for release\nto staging", return = "return"  ];
+  master -> stageenv [ label = "git resource is triggered by and deploys new staging tag" ];
 
-  master -> stagedeployer [ label = "new staging tag triggers git resource" ];
+  stageenv -> master [ label = "tag for release\nto prod", return = "return"  ];
 
-  stagedeployer -> stageenv [ label = "deploys from tag" ];
-
-  stagedeployer -> master [ label = "tag for release\nto prod", return = "return"  ];
-
-  master -> proddeployer [ label = "new prod tag triggers git resource" ];
+  master -> prodenv [ label = "git resource is triggered by and deploys new prod tag" ];
   
-  proddeployer -> prodenv [ label = "deploys from tag" ];
-
   # entities
 
   developer [ color = "salmon" ];
@@ -37,15 +31,9 @@ seqdiag {
 
   master [ label = "git master branch" ];
 
-  cideployer [ label = "CI\ndeployer" ];
-
   cienv [ label = "CI\nenvironment" ];
 
-  stagedeployer [ label = "staging\ndeployer" ];
-
   stageenv [ label = "staging\nenvironment" ];
-
-  proddeployer [ label = "production\ndeployer" ];
 
   prodenv [ label = "production\nenvironment" ];
 
