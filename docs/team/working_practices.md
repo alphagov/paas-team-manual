@@ -13,6 +13,14 @@
   work.
 - The changes are deployed to the staging and production environments.
 
+The diagram below shows how this process is implemented using git tags. It does
+not show some planned improvements, such as using git commit signatures to
+ensure that commits have been reviewed before deploying them.
+
+![Sequence of events promoting a release](../diagrams/release-sequence.svg)
+
+[Full size version](../diagrams/release-sequence.svg)
+
 # Pairing
 
 We pair on all stories to ensure that people don't get stuck on the same
