@@ -1,3 +1,26 @@
+# Development process
+
+![Illustration of changes being promoted to prod](../diagrams/development-process.svg)
+
+- The Product Manager makes decisions on what work (features, bugs) is
+  prioritised
+- The team make the necessary changes in their own development environments and
+  branches
+- The changes are [reviewed](#pull-requests) by an engineer
+- The reviewer merges the changes into the master branch of the respository
+- The latest revision of the code is automatically tested using the Cloud
+  Foundry smoke and acceptance tests to ensure that basic user functions still
+  work.
+- The changes are deployed to the staging and production environments.
+
+The diagram below shows how this process is implemented using git tags. It does
+not show some planned improvements, such as using git commit signatures to
+ensure that commits have been reviewed before deploying them.
+
+![Sequence of events promoting a release](../diagrams/release-sequence.svg)
+
+[Full size version](../diagrams/release-sequence.svg)
+
 # Pairing
 
 We pair on all stories to ensure that people don't get stuck on the same

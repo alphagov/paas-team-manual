@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg viewBox="0 0 896 520" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc>
+blockdiag {
+
+  backlog [ 
+    color = 'salmon',
+    height = '80',
+    label = 'Work added to\nbacklog by\nproduct manager'
+  ];
+
+  devwork [ 
+    color = 'salmon', 
+    height = '80',
+    label = 'Changes worked on\nby engineers in\nfeature branch.'
+  ];
+
+  pr [ 
+    color = 'salmon', 
+    height = '140',
+    width  = '160',
+    shape = 'diamond', 
+    label = 'Pull request\nreviewed\nby engineer\nSafe for prod?\nCode quality?'
+  ];
+
+  merge [
+    color = "salmon",
+    height = 80,
+    label = 'Changes merged into\ngit master branch\nby reviewer'
+  ];
+
+  ci [
+    height = '140',
+    width  = '160',
+    shape = 'diamond',
+    label = 'Automated\ntesting in\nCI environment\n- smoke\n- acceptance'
+  ];
+
+  staging [
+    height = '80',
+    label = 'Deployed to \nstaging \nenvironment'
+  ];
+
+  prod [
+    height = '80',
+    label = 'Deployed to \nproduction \nenvironment'
+  ];
+
+  signoff [
+    color = 'salmon', 
+    height = '80',
+    label = 'Work signed off\nas complete by \nProduct Manager'
+  ];
+
+  # happy path
+  backlog -&gt; devwork -&gt; pr -&gt; merge -&gt; ci -&gt; staging -&gt; prod -&gt; signoff;
+
+  merge -&gt; ci [ folded ];
+
+  # PR feedback
+  pr -&gt; devwork [ label = 'feedback', fontsize = 9];
+
+  # fail in CI
+  ci -&gt; devwork [ label = 'failures', fontsize = 9];
+
+  # Key
+  personstep -&gt; persongate -&gt; automatedgate -&gt; automatedstep;
+
+  personstep [
+    color = 'salmon', 
+    label = 'Step carried out\nby a person' 
+  ];
+
+  persongate [
+    color = 'salmon', 
+    shape = 'diamond',
+    height = '80',
+    label = 'Decision\nby a person' 
+  ];
+
+  automatedgate [
+    shape = 'diamond',
+    height = '80',
+    label = 'Automated\ndecision' 
+  ];
+
+  automatedstep [
+    label = 'Automated step' 
+  ];
+
+}
+</desc>
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="83" y="76" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="291" y="76" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="291" y="256" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="707" y="76" />
+  <polygon fill="rgb(0,0,0)" points="563,38 651,116 563,194 475,116 563,38" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <polygon fill="rgb(0,0,0)" points="147,218 235,296 147,374 59,296 147,218" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="499" y="256" />
+  <rect fill="rgb(0,0,0)" height="80" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="707" y="256" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="83" y="426" />
+  <polygon fill="rgb(0,0,0)" points="355,398 427,446 355,494 283,446 355,398" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <polygon fill="rgb(0,0,0)" points="563,398 635,446 563,494 491,446 563,398" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="707" y="426" />
+  <rect fill="rgb(250,128,114)" height="80" stroke="rgb(0,0,0)" width="128" x="80" y="70" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="79" x="144" y="103">Work added to</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="144" y="116">backlog by</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="91" x="144" y="129">product manager</text>
+  <rect fill="rgb(250,128,114)" height="80" stroke="rgb(0,0,0)" width="128" x="288" y="70" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="103" x="352" y="103">Changes worked on</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="91" x="352" y="116">by engineers in</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="91" x="352" y="129">feature branch.</text>
+  <rect fill="rgb(255,255,255)" height="80" stroke="rgb(0,0,0)" width="128" x="288" y="250" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="352" y="283">Deployed to</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="43" x="352" y="296">staging</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="352" y="309">environment</text>
+  <rect fill="rgb(250,128,114)" height="80" stroke="rgb(0,0,0)" width="128" x="704" y="70" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="115" x="768" y="103">Changes merged into</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="103" x="768" y="116">git master branch</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="768" y="129">by reviewer</text>
+  <polygon fill="rgb(250,128,114)" points="560,32 648,110 560,188 472,110 560,32" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="73" x="560" y="90">Pull request</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="49" x="560" y="103">reviewed</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="560" y="116">by engineer</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="85" x="560" y="129">Safe for prod?</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="79" x="560" y="142">Code quality?</text>
+  <polygon fill="rgb(255,255,255)" points="144,212 232,290 144,368 56,290 144,212" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="55" x="144" y="270">Automated</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="144" y="283">testing in</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="85" x="144" y="296">CI environment</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="43" x="144" y="309">- smoke</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="73" x="144" y="322">- acceptance</text>
+  <rect fill="rgb(255,255,255)" height="80" stroke="rgb(0,0,0)" width="128" x="496" y="250" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="560" y="283">Deployed to</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="61" x="560" y="296">production</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="560" y="309">environment</text>
+  <rect fill="rgb(250,128,114)" height="80" stroke="rgb(0,0,0)" width="128" x="704" y="250" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="91" x="768" y="283">Work signed off</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="85" x="768" y="296">as complete by</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="91" x="768" y="309">Product Manager</text>
+  <rect fill="rgb(250,128,114)" height="40" stroke="rgb(0,0,0)" width="128" x="80" y="420" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="97" x="144" y="439">Step carried out</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="144" y="452">by a person</text>
+  <polygon fill="rgb(250,128,114)" points="352,392 424,440 352,488 280,440 352,392" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="49" x="352" y="439">Decision</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="67" x="352" y="452">by a person</text>
+  <polygon fill="rgb(255,255,255)" points="560,392 632,440 560,488 488,440 560,392" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="55" x="560" y="439">Automated</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="49" x="560" y="452">decision</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="704" y="420" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="85" x="768" y="446">Automated step</text>
+  <path d="M 208 110 L 280 110" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="287,110 280,106 280,114 287,110" stroke="rgb(0,0,0)" />
+  <path d="M 416 110 L 464 110" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="471,110 464,106 464,114 471,110" stroke="rgb(0,0,0)" />
+  <path d="M 648 110 L 656 110" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 656 110 L 656 25" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 352 25 L 656 25" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 352 25 L 352 62" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="352,69 348,62 356,62 352,69" stroke="rgb(0,0,0)" />
+  <path d="M 648 110 L 696 110" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="703,110 696,106 696,114 703,110" stroke="rgb(0,0,0)" />
+  <path d="M 768 150 L 768 200" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 144 200 L 268 200" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 268.0 200.0 A4,4 0 0 1 276.0 200.0" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 276 200 L 768 200" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 144 200 L 144 204" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,211 140,204 148,204 144,211" stroke="rgb(0,0,0)" />
+  <path d="M 232 290 L 272 290" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 272 290 L 272 110" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 272 110 L 280 110" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="287,110 280,106 280,114 287,110" stroke="rgb(0,0,0)" />
+  <path d="M 232 290 L 280 290" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="287,290 280,286 280,294 287,290" stroke="rgb(0,0,0)" />
+  <path d="M 416 290 L 488 290" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="495,290 488,286 488,294 495,290" stroke="rgb(0,0,0)" />
+  <path d="M 624 290 L 696 290" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="703,290 696,286 696,294 703,290" stroke="rgb(0,0,0)" />
+  <path d="M 208 440 L 272 440" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="279,440 272,436 272,444 279,440" stroke="rgb(0,0,0)" />
+  <path d="M 424 440 L 480 440" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="487,440 480,436 480,444 487,440" stroke="rgb(0,0,0)" />
+  <path d="M 632 440 L 696 440" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="703,440 696,436 696,444 703,440" stroke="rgb(0,0,0)" />
+  <rect fill="white" height="13" stroke="rgb(0,0,0)" width="56" x="588" y="4" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" text-anchor="middle" textLength="40" x="616" y="15">feedback</text>
+  <rect fill="white" height="13" stroke="rgb(0,0,0)" width="56" x="228" y="204" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="9" font-style="normal" font-weight="normal" text-anchor="middle" textLength="40" x="256" y="215">failures</text>
+</svg>
