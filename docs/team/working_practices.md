@@ -35,9 +35,11 @@ so that rotation are evenly distributed.
 # Story kick-off
 
 Kick-offs are an opportunity to clarify the scope of a story and raise any
-technical suggestions or concerns before work starts. When a pair starts a
-new story they should arrange a kick-off with the Business Analyst, Tech
-Arch or Tech Lead, and anyone else from the team that is interested. Slack
+technical suggestions or concerns before work starts. They should include a
+check if the story being kicked off will likely conflict with any of the
+stories already in progress and therefore liklely cause conflicts. When a pair
+starts a new story they should arrange a kick-off with the Business Analyst,
+Tech Arch or Tech Lead, and anyone else from the team that is interested. Slack
 is a good way to let the team know.
 
 # Commit messages
