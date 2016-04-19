@@ -145,7 +145,8 @@ the API key from the "Profile" page of your own account.
     1. `team-government-paas-readonly`: the dashboard user which has
 `org:read` privileges to find all of our repos.
     1. `team-government-paas-contractors`: all members of the team that are
-contractors and aren't members of the `owners` team.
+contractors and aren't members of the `owners` team. These should be given write
+access.
 
 We should never pull request against the `master` branch of a forked repo.
 Doing so makes it very hard to reconcile our changes against the upstream
