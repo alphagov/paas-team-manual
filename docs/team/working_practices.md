@@ -37,10 +37,16 @@ so that rotation are evenly distributed.
 Kick-offs are an opportunity to clarify the scope of a story and raise any
 technical suggestions or concerns before work starts. They should include a
 check if the story being kicked off will likely conflict with any of the
-stories already in progress and therefore liklely cause conflicts. When a pair
-starts a new story they should arrange a kick-off with the Business Analyst,
-Tech Arch or Tech Lead, and anyone else from the team that is interested. Slack
-is a good way to let the team know.
+stories already in progress and therefore liklely cause conflicts. 
+
+If the story is a spike, it should be made clear what the questions we want to answer
+are, and what specific outputs we need to cover in the summary at the end of the spike. Spikes *must* be 
+reviewed after 2 days.
+
+When a pair starts a new story they should arrange a kick-off with the Product 
+Owner or Business Analyst, Tech Arch or Tech Lead, and anyone else from the team 
+that is interested. Slack is a good way to let the team know.
+
 
 # Commit messages
 
@@ -95,11 +101,17 @@ on GitHub, so that someone else doesn't duplicate effort.
 # Story summary
 
 When you've finished a story please take a few minutes to summarise your
-work in a comment on the Pivotal story. This is particularly important if
-the story was a spike and doesn't result in any pull requests. Summarising
+work in a comment on the Pivotal story. Summarising
 the story will help other people in the team review it, either against the
 acceptance criteria or for future reference, which can otherwise be
 difficult if comments are sparse or inconsistent.
+
+## Spike summary
+
+The summary is particularly important if the story was a spike. If applicable 
+it must indicate follow up work that is required. Listing options uncovered during 
+the spike is good. Indicate which option is preferable. Where possible follow up stories 
+should be noted. Doing this allows the Product Manager prioritise the follow up work.
 
 # Story sign-off
 
