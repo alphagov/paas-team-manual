@@ -98,6 +98,57 @@ on GitHub, so that someone else doesn't duplicate effort.
 
 [Fourth Wall]: https://github.com/alphagov/fourth-wall
 
+# Merging Pull requests
+
+Pull requests must be merged using a GPG signed commit. This means that merges
+can't be done in the Github UI, and have to be done locally.
+
+## Initial setup for signing commits
+
+Ensure you have gpg setup on your machine (see [guides/GPG](../guides/GPG) for
+details).
+
+By default, git will look for a secret key in your local keyring that exactly
+matches your configured committer name and email address (eg
+`Testy McTest <test@example.com>`). If this is not sufficient, you can
+configure the signing key that git will use:
+
+```sh
+# To apply to all git repos:
+git config --global user.signingkey <key_id>
+
+# ... or to apply to the current repo only:
+git config user.signingkey <key_id>
+```
+
+Add your public key to your Github account
+([https://github.com/settings/keys](https://github.com/settings/keys)) so that
+Github can verify commits that you sign as described
+[here](https://github.com/blog/2144-gpg-signature-verification).
+
+## Merging a branch into master
+
+We have implemented a helper script to handle merging PR in some repos (eg
+paas-cf). For these repos PRs can be merged and signed by doing:
+
+```sh
+make merge_pr PR=<n>
+```
+
+### Manually merging and signing a PR
+
+For other repos PRs will need to be manually merged and signed once review is
+complete, and all status checks have passed (Travis etc).
+
+First check that your working directory is clean, then do the following:
+
+```sh
+git checkout master
+git pull --ff-only origin master
+git merge --no-ff -S -m "Merge pull request #<n> from alphagov/repo-name\n\n<pr_title>" origin/<branch_name>
+git push origin master
+```
+
 # Story summary
 
 When you've finished a story please take a few minutes to summarise your
