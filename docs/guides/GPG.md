@@ -72,6 +72,9 @@ Write the following to your shell initialisation (e.g. `~/.bashrc` or
       fi
     fi
 
+Configure gpg to use the agent automatically by uncommenting the `use-agent`
+line in your `~/.gnupg/gpg.conf`.
+
 # Aborting pinentry
 
 If you abort out of the `pinentry` password prompt by using `^C` then it can
