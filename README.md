@@ -3,7 +3,7 @@
 This project uses [MkDocs][]. It is automatically built and hosted by [Read
 the Docs][] at the following URL:
 
-- https://government-paas-team-manual.readthedocs.org/
+- https://government-paas-team-manual.readthedocs.io/
 
 [MkDocs]: http://www.mkdocs.org/
 [Read the Docs]: https://readthedocs.org/
