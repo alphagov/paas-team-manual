@@ -191,6 +191,35 @@ When a story moves to awaiting sign-off column on the board, The Tech Lead and
 Tech Arch should confirm if they are happy with the story in a comment on
 Pivotal Tracker to provide guidance to the person signing off.
 
+# Work In Progress Limits
+
+We use [Kanban](https://en.wikipedia.org/wiki/Kanban_(development)) to track work, and follow work in progress limits for the different stages of the story. We have a physical board, and use pivotal tracker for online tracking.
+
+### Backlog
+_Work In Progress Limit : NA_
+
+These stories are ready to be played. They require a kickoff before moving to the next stage.
+
+### Doing / Started
+_Work In Progress Limit : 6_
+
+These stories have been started by a pair and kickoff has been completed.
+
+### Reviewing / Finished
+_Work In Progress Limit : 3_
+
+These stories have been finished and are awaiting review by another team member. The lower work in progress limit is to ensure work is reviewed promptly and completed.
+
+### Approving / Delivered
+_Work In Progress Limit : 5_
+
+These stories have been reviewed, and code merged to master. The work in progress limit here is to allow for the limited availability of the Product Manager, and reflects the fact that work at this stage is already merged and deployed.
+
+### Done / Delivered
+_Work In Progress Limit : ∞_
+
+These stories have been accepted by an appropriate Approver. No limit on the ammount of stories that are done.
+
 # Creating and forking repos
 
 Nearly all of our code repos are public on GitHub.com because we are [coding
