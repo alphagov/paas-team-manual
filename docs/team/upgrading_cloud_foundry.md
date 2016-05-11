@@ -2,10 +2,11 @@
 * Establish the correct version to upgrade to. This will usually be the latest stable release minus two, subject to review of the version in question. The main driver for the current-minus-two strategy is to avoid the bad releases which CF produce from time to time. An alternative strategy may be to pick a release at least two weeks old, thereby giving Pivotal time to flag and pull and bad releases before we plough ahead with them. Kick-off is an appropriate place for this review. 
 * Check [cf-release releases documentation](https://github.com/cloudfoundry/cf-release/releases) before upgrading to a particular version. There have been versions, such as [v232](https://github.com/cloudfoundry/cf-release/releases/tag/v232), where the release is not appropriate for production usage.
 * Refer to cf-release documentation for recommended versions of all related releases (for example, Diego and related components). Read the documentation for every release of all of these components. It will save you time and pain in the long run.
-* Check the [diego release documentation](https://github.com/cloudfoundry-incubator/diego-release)
+* Check the [diego release documentation](https://github.com/cloudfoundry-incubator/diego-release/releases)
 * Check the [etcd release documentation](https://github.com/cloudfoundry-incubator/etcd-release/releases)
+* Check the [consul release documentation](https://github.com/cloudfoundry-incubator/consul-release/releases)
 * Check the [garden linux release documentation](https://github.com/cloudfoundry-incubator/garden-linux-release/releases)
-* Check the [bosh release documentation](https://bosh.io/releases/github.com/cloudfoundry/bosh?all=1)
+* Check the [bosh release documentation](https://github.com/cloudfoundry/bosh/releases)
 * Check the [stemcell release documentation](http://bosh.cloudfoundry.org/stemcells/)
 * Use `git diff` in the `cf-release` repo to see example changes to the manifest templates. For example, to see differences between v228 and v233:
 ```
