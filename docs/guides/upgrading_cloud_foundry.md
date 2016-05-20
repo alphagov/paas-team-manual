@@ -15,6 +15,16 @@
 git diff --exit-code -U5 --patience v228...v233 templates
 ```
 
+## Doing the upgrade
+
+You should test the upgrade changeset:
+
+* From a fully deployed master, equivalent to the change that will happen in
+  in production.
+* Deploying a fresh CF, which is something we frequently do in our
+  development environments after the autodelete-cloufoundry pipeline
+  runs overnight.
+
 ## Problems encountered previously
 
 ### DNS name resolution. 
