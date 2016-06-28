@@ -25,10 +25,15 @@ ensure that commits have been reviewed before deploying them.
 
 We pair on all stories to ensure that people don't get stuck on the same
 types of work and that there is a good distribution of knowledge across the
-team. We aim to rotate regularly, when starting new stories. However you can
-opt-out of a rotation if it would be detrimental to the progress of your
-current story. Please tick the [pair stair][] on our board when you rotate
-so that rotation are evenly distributed.
+team. We aim to rotate pairs regularly by:
+
+- changing pairs when you've been on a story for more than 2 days
+
+- joining someone on an existing story that doesn't have a pair instead of
+  picking up new work
+
+Please tick the [pair stair][] on our board when you rotate so that rotation
+are evenly distributed.
 
 [pair stair]: http://pairstair.com/
 
