@@ -100,3 +100,6 @@ Consequences
 
  * Another moving part to monitor and take into account.
 
+### See Also
+
+[ADR012](ADR012-haproxy-healthcheck/)
