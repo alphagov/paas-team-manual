@@ -70,6 +70,12 @@ operations include:
 - Creation of Bootstrap Concourse instance
 - Running of `aws-account-wide-terraform`
 
+Using IAM profiles has the drawback that any process running on the VM can
+get the same credentials. This model does not play well when it is required
+to assign the credentials to specific processes running in different containers
+(e.g. concourse, CF apps, etc), as all the containers will have access to
+the AWS IAM profile.
+
 We'll need to maintain our own forks of some standard Concourse resources to
 add support for IAM roles and instance profiles because the maintainers
 don't wish to support this feature ([concourse/s3-resource/pull/22][]).
