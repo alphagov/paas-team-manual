@@ -10,6 +10,7 @@
 * Check the [garden linux release documentation](https://github.com/cloudfoundry-incubator/garden-linux-release/releases)
 * Check the [bosh release documentation](https://github.com/cloudfoundry/bosh/releases)
 * Check the [stemcell release documentation](http://bosh.cloudfoundry.org/stemcells/)
+* Check the job ordering in the [Diego manifest](https://github.com/cloudfoundry/diego-release/blob/develop/manifest-generation/diego.yml) to see if our job ordering needs to change as well.
 * Use `git diff` in the `cf-release` repo to see example changes to the manifest templates. For example, to see differences between v228 and v233:
 ```
 git diff --exit-code -U5 --patience v228...v233 templates
