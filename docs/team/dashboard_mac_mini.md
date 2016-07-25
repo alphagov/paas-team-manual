@@ -3,10 +3,10 @@
 There's a Mac Mini attached to big screens in our team area. It shows the
 following:
 
-* Jenkins build status
 * Outstanding pull requests
 * Grafana dashboard
 * Concourse pipelines
+* Pingdom public status page
 
 
 ## Concourse pipelines
@@ -23,3 +23,9 @@ The combined dashboard is
 We're using a custom Chrome plugin to hide some of the Concourse page furniture
 on the Dashboard. It can be found
 [here](https://github.com/alphagov/paas-cf/tree/master/concourse/chrome_plugin).
+
+## Pingdom
+
+We use the [Pingdom public status page](http://stats.pingdom.com/ejtodj13fqqx) ([documented here](https://help.pingdom.com/hc/en-us/articles/205386171-Public-Status-Page)) to display the uptime and current status of our healthcheck application. The Pingdom account is shared with other Government-as-a-Platform services, such as Notify, and there is only one shared dashboard for the entire account.
+
+We use the [Super Auto Refresh](https://chrome.google.com/webstore/detail/super-auto-refresh/kkhjakkgopekjlempoplnjclgedabddk?hl=en) Chrome extension to refresh the page.
