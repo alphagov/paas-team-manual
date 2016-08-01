@@ -7,13 +7,13 @@ For more information, see the spruce readme and [examples](https://github.com/ge
 You need to install spruce >= 0.13.0. This version added support for operand expressions.
 
 ```
-$ go get github.com/geofffranks/spruce # Builds spruce, including dependencies and puts it in $GOPATH/bin
+$ go get github.com/geofffranks/spruce/cmd/spruce # Builds spruce, including dependencies and puts it in $GOPATH/bin
 ```
 
 To upgrade spruce:
 
 ```
-$ go get -u github.com/geofffranks/spruce
+$ go get -u github.com/geofffranks/spruce/cmd/spruce
 ```
 
 Note: If you previously built spruce from a branch, following instructions in a
