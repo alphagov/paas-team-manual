@@ -241,9 +241,9 @@ forks of third-party repos which will need to be renamed after forking, e.g.
 1. Add the Pivotal Tracker service integration/hook. You will need to take
 the API key from the "Profile" page of your own account.
 1. Add the following teams:
-    1. `team-government-paas-readonly`: the dashboard user which has
+    1. `[team] Government PaaS readonly`: the dashboard user which has
 `org:read` privileges to find all of our repos.
-    1. `team-government-paas-contractors`: all members of the team that are
+    1. `[team] Government PaaS - People`: all members of the team that are
 contractors and aren't members of the `owners` team. These should be given write
 access.
 
