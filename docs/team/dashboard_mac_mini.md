@@ -8,6 +8,33 @@ following:
 * Concourse pipelines
 * Pingdom public status page
 
+If you need access, you can walk up and use the mouse and keyboard, or connect via the OSX Screen Sharing app.
+
+The credentials for this are in the `paas-pass` password store.
+
+To connect, you need to be on the `CDN02_test` wifi network. This network is not configured by default on newly provisioned laptops, so talk to someone else on the team if you need the wifi password. You may need to try to connect several times since the network may not be very reliable.
+
+## Outstanding pull requests
+
+These are shown by [Fourth Wall](https://github.com/alphagov/fourth-wall).
+
+The URL for our dashboard is
+```
+https://alphagov.github.io/fourth-wall/?token=<your github access token>&team=alphagov/team-government-paas-readonly&github.gds_token=<your github.gds access token>&github.gds_team=government-paas/read-only
+```
+
+Replace the placeholders with read-only [access tokens](https://github.com/blog/1509-personal-api-tokens) from github and github.gds.
+
+## Grafana Dashboard
+
+AKA User Impact Dashboard.
+
+Found at
+```
+https://metrics.cloud.service.gov.uk/dashboard/file/user-impact.json
+```
+
+Credentials are in the password store.
 
 ## Concourse pipelines
 
