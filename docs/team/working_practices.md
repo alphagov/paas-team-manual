@@ -105,8 +105,19 @@ on GitHub, so that someone else doesn't duplicate effort.
 
 # Merging Pull requests
 
-Pull requests must be merged using a GPG signed commit. This means that merges
-can't be done in the Github UI, and have to be done locally.
+Once review is complete, and all status checks have passed (Travis etc),
+a pull request can be merged.
+
+PRs to the [paas-cf][] repository should be merged using a GPG signed commit.
+This means that merges can't be done in the Github UI - they have to be done locally,
+using the `merge_pr` make task.
+
+We only use signed revisions of [paas-cf][] from our concourse pipelines. This is enforced
+by the gpg functionality in [paas-git-resource][]. We may require signing merges in other
+repositories in future.
+
+[paas-cf]: https://github.com/alphagov/paas-cf
+[paas-git-resource]: https://github.com/alphagov/paas-git-resource
 
 ## Initial setup for signing commits
 
@@ -133,8 +144,8 @@ Github can verify commits that you sign as described
 
 ## Merging a branch into master
 
-We have implemented a helper script to handle merging PR in some repos (eg
-paas-cf). For these repos PRs can be merged and signed by doing:
+We have implemented a helper script to handle merging and signing PRs for you.
+In repos where this is available (eg paas-cf) PRs can be merged and signed by running:
 
 ```sh
 make merge_pr PR=<n>
@@ -144,8 +155,7 @@ Where `n` is the PR number.
 
 ### Manually merging and signing a PR
 
-For other repos PRs will need to be manually merged and signed once review is
-complete, and all status checks have passed (Travis etc).
+PRs can also be be manually merged and signed.
 
 First check that your working directory is clean, then do the following:
 
@@ -236,7 +246,7 @@ ask a permanent member of the team to do this for you:
 [coding in the open]: https://gds.blog.gov.uk/2012/10/12/coding-in-the-open/
 
 1. Prefix the name with `paas-` so that it's easier to find. This includes
-forks of third-party repos which will need to be renamed after forking, e.g.
+forks of third-party repos which will need to be renamed after forking, eg
 `cf-release` would become `paas-cf-release`.
 1. Add the Pivotal Tracker service integration/hook. You will need to take
 the API key from the "Profile" page of your own account.
@@ -251,4 +261,6 @@ We should never pull request against the `master` branch of a forked repo.
 Doing so makes it very hard to reconcile our changes against the upstream
 repo at a later date. We should aim to submit all changes upstream. It may
 be appropriate to run against a branch of our fork for a limited period of
-time.
+time. We have decided to use a branch called `gds_master` for this, although
+some older reporitories may use something else. Feel free to change these as
+you encounter them, to improve consistency.
