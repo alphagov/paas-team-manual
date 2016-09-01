@@ -393,7 +393,7 @@ key1:
 key2: (( grab absent_key || "default value" ))
 # Other key
 key3: (( grab absent_key || key1.subkey1 ))
-# null (can enter nil, null, Null, etc)
+# null (can enter nil, null, Null, and so on)
 key4: (( grab absent_key || Null ))
 # Boolean
 key5: (( grab absent_key || false ))

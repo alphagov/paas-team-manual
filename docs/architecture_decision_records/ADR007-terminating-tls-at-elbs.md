@@ -42,7 +42,7 @@ In attempting to solve the second problem, we explored some options:
 
 - ELB has support for the [Proxy
   Protocol](http://www.haproxy.org/download/1.5/doc/proxy-protocol.txt), but
-  unfortunately none of the downstream services eg. gorouter support it. It
+  unfortunately none of the downstream services, such as gorouter, support it. It
   seemed simple to add support to gorouter.
 - We could introduce another intermediary proxy such as HAProxy, which
   understands the proxy protocol and adds or appends to an `X-Forwarded-For`

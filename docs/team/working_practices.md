@@ -125,7 +125,7 @@ Ensure you have gpg setup on your machine (see [guides/GPG](../guides/GPG) for
 details).
 
 By default, git will look for a secret key in your local keyring that exactly
-matches your configured committer name and email address (eg
+matches your configured committer name and email address (such as
 `Testy McTest <test@example.com>`). If this is not sufficient, you can
 configure the signing key that git will use:
 
@@ -145,7 +145,7 @@ Github can verify commits that you sign as described
 ## Merging a branch into master
 
 We have implemented a helper script to handle merging and signing PRs for you.
-In repos where this is available (eg paas-cf) PRs can be merged and signed by running:
+In repos where this is available (for example, paas-cf) PRs can be merged and signed by running:
 
 ```sh
 make merge_pr PR=<n>
@@ -246,8 +246,8 @@ ask a permanent member of the team to do this for you:
 [coding in the open]: https://gds.blog.gov.uk/2012/10/12/coding-in-the-open/
 
 1. Prefix the name with `paas-` so that it's easier to find. This includes
-forks of third-party repos which will need to be renamed after forking, eg
-`cf-release` would become `paas-cf-release`.
+forks of third-party repos which will need to be renamed after forking,
+for example `cf-release` would become `paas-cf-release`.
 1. Add the Pivotal Tracker service integration/hook. You will need to take
 the API key from the "Profile" page of your own account.
 1. Add the following teams:

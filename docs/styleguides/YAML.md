@@ -9,7 +9,7 @@ In general, follow the same formatting style as examples in the [YAML spec]().
 
 ## Lists
 
-Lists should be indented 2 spaces beyond the parent key. eg:
+Lists should be indented 2 spaces beyond the parent key. For example:
 
 ```
 foo:

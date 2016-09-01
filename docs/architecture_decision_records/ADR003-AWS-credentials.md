@@ -73,7 +73,7 @@ operations include:
 Using IAM profiles has the drawback that any process running on the VM can
 get the same credentials. This model does not play well when it is required
 to assign the credentials to specific processes running in different containers
-(e.g. concourse, CF apps, etc), as all the containers will have access to
+(for example concourse, CF apps), as all the containers will have access to
 the AWS IAM profile.
 
 We'll need to maintain our own forks of some standard Concourse resources to

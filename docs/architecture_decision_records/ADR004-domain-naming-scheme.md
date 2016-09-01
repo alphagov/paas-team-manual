@@ -6,15 +6,15 @@ As part of our deployment we have a pipeline, where changes that are made can mo
 
 There are a number of externally available endpoints that are accessed to manage and view information about the platform, as well as issue commands via the Cloud Foundry API. In addition to this, a URL also needs to be available to access Apps hosted on the platform. These need to be accessed via some sort of sensible URL.
 
-The reason for splitting system domains from app domains was to prevent applications from stealing traffic to CF components (e.g. api.<domain>) or masquerading as official things of the platform (e.g. signup.<domain>).
+The reason for splitting system domains from app domains was to prevent applications from stealing traffic to CF components (for example, api.<domain>) or masquerading as official things of the platform (for example, signup.<domain>).
 
 ### Naming considerations
 A number of aspects were considered as part of the naming process.
 
 * Clear sense of purpose
 * Clear distinction between Production and other Environments
-* No overly technical names (e.g. hosting/paas/scalable-elastic-public-government-hosting)
-* Prevent possibility of domains suggesting 'live' service e.g. if we allowed [app name].paas.gov.uk it could appear as thought they were live services.
+* No overly technical names (for example, hosting/paas/scalable-elastic-public-government-hosting)
+* Prevent possibility of domains suggesting 'live' service, for example if we allowed [app name].paas.gov.uk it could appear as thought they were live services.
 
 
 Decision

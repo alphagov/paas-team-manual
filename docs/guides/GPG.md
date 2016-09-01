@@ -58,7 +58,7 @@ frustrating to be prompted for your password multiple times. You can
 configure `gpg-agent`, which is similar in concept to `ssh-agent`, to cache
 your password for a short period of time.
 
-Write the following to your shell initialisation (e.g. `~/.bashrc` or
+Write the following to your shell initialisation (such as `~/.bashrc` or
 `~/.zshrc`) to load `gpg-agent` each time you start a new shell:
 
     if which gpg-agent >/dev/null; then
