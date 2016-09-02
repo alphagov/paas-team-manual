@@ -239,7 +239,7 @@ ask a permanent member of the team to do this for you:
 forks of third-party repos which will need to be renamed after forking, e.g.
 `cf-release` would become `paas-cf-release`.
 1. Add the Pivotal Tracker service integration/hook. You will need to take
-the API key from the "Profile" page of your own account.
+the API key from the ["Profile" page](https://www.pivotaltracker.com/profile) of your own account.
 1. Add the following teams:
     1. `[team] Government PaaS readonly`: the dashboard user which has
 `org:read` privileges to find all of our repos.
