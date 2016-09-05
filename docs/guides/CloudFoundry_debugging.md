@@ -18,7 +18,7 @@ $ tar -zxf image.tar.gz
 
 **Note:** Tar will exit complaining about invalid gzip blocks - this is because the droplet has other data (such as a signature) appended to the end of the image. This isn't a problem, all the files for the image will be unpacked anyway.
 
-You should now have everything used to run the app and all the build logs. ````app```` contains everything the user ````cf push````-ed plus any change from the staging phase (e.g. compiled binaries):
+You should now have everything used to run the app and all the build logs. ````app```` contains everything the user ````cf push````-ed plus any change from the staging phase (for example, compiled binaries):
 ````
 $ ls -lah
 total 41M

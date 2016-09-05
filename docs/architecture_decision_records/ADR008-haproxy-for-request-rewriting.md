@@ -24,7 +24,7 @@ There are several possible implementations:
    But [current `gorouter` implementation](https://github.com/cloudfoundry/gorouter/commit/0d475e57b1742c42ba6d98d1ed853edc9f709893)
    does not support any of these features, which require being added.
 
- 2. Add some intermediate proxy (e.g. nginx, haproxy, etc.) in front of
+ 2. Add some intermediate proxy (for example nginx, haproxy) in front of
    the go-routers and after the ELB.
 
  3. Implement it in a external CDN in front of PaaS origin (PaaS LB entry point):
