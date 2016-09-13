@@ -49,7 +49,7 @@ The combined dashboard is
 
 We're using a custom Chrome plugin to hide some of the Concourse page furniture
 on the Dashboard. It can be found
-[here](https://github.com/alphagov/paas-cf/tree/master/concourse/chrome_plugin).
+[here](https://github.com/alphagov/paas-cf/tree/master/misc/chrome_plugins/clean_concourse_pipeline).
 
 ## Pingdom
 
