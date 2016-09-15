@@ -9,7 +9,8 @@ When a user inputs a website name without specifying the
 protocol in the URL, most browsers will try first the HTTP protocol by default.
 Even if the server always redirect HTTP to HTTPS, an initial
 unprotected request including user information will be transferred
-in clear: full URL with domain, parameter, cookies or browser meta-information.
+in clear: full URL with domain, parameter, [cookies without secure flag](https://en.wikipedia.org/wiki/HTTP_cookie#Secure_and_HttpOnly)
+or browser meta-information.
 
 [HTTP Strict Transport Security](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security)
 mitigates this issue by instructing modern browsers that support it to
