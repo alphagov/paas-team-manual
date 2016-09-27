@@ -10,10 +10,12 @@ To add our domains to [HSTS preload lists](https://hstspreload.appspot.com/), th
  3. Serve all subdomains over HTTPS (actually checks for `www.domain.com`)
  4. Serve an HSTS header on the base domain for HTTPS requests:
 
-We cannot use the Cloud Foundry app endpoint, which already [serves the
-right HSTS Security header with HAProxy](ADR008-haproxy-for-request-rewriting.md)
-because we keep port 80 (HTTP) closed.
+We need an endpoint to provide these requirements.
 
+Our Cloud Foundry app endpoint already [serves the
+right HSTS Security header with HAProxy](ADR008-haproxy-for-request-rewriting.md)
+and could be configured to serve the additional `preload` and `includeSubDomains` flags,
+but we cannot use it because we keep port 80 (HTTP) closed for this endpoint.
 We can implement a second ELB to listening on HTTP and HTTPS and use
 HAProxy to do the HTTP to HTTPS redirect and serve the right header.
 But this increases our dependency on the HAProxy service.
@@ -34,7 +36,7 @@ Decision
    will provide public access to this API.
 
  * We will use [AWS Route 53 `ALIAS` resource record](http://docs.aws.amazon.com/Route53/latest/APIReference/CreateAliasRRSAPI.html)
-  to [serve the IPs of the AWS Cloud Front distribution as A records](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html).
+   to [serve the IPs of the AWS Cloud Front distribution as A records](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html).
 
 
 Status
