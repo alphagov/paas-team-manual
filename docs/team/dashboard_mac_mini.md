@@ -18,12 +18,18 @@ To connect, you need to be on the `CDN02_test` wifi network. This network is not
 
 These are shown by [Fourth Wall](https://github.com/alphagov/fourth-wall).
 
-The URL for our dashboard is
+To get the URL for our dashboard, you can use these commands:
+
 ```
-https://alphagov.github.io/fourth-wall/?token=<your github access token>&team=alphagov/team-government-paas-readonly&github.gds_token=<your github.gds access token>&github.gds_team=government-paas/read-only
+export GITHUB_API_TOKEN=<your github access token>
+export GITHUB_GDS_API_TOKEN=<your github.gds access token>
+
+echo "https://alphagov.github.io/fourth-wall/?token=${GITHUB_API_TOKEN}&team=alphagov/team-government-paas-readonly&github.gds_token=${GITHUB_GDS_API_TOKEN}&github.gds_team=government-paas/read-only"
 ```
 
 Replace the placeholders with read-only [access tokens](https://github.com/blog/1509-personal-api-tokens) from github and github.gds.
+
+You can store those variables in a [password manager like `paas`](https://www.passwordstore.org/) and load then as needed.
 
 ## Grafana Dashboard
 
