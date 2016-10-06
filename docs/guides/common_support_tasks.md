@@ -8,3 +8,7 @@ This guide contains instructions for common support tasks.
 4. Run `./paas-cf/scripts/rotate-user-password.sh -e prod -u user@example.com`
 
 The script will generate a new password for the user, change it, and then email them the password.
+
+## Subscribe and check the AWS notifications
+
+AWS [sends notifications to our maillists](../team/responding_to_aws_alert/). You should subscribe to these groups to get any notification.
