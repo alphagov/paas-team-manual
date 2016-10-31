@@ -1,5 +1,7 @@
 # Development process
 
+[TOC]
+
 ![Illustration of changes being promoted to prod](../diagrams/development-process.svg)
 
 - The Product Manager makes decisions on what work (features, bugs) is
