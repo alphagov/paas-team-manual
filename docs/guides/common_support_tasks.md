@@ -1,5 +1,7 @@
 This guide contains instructions for common support tasks.
 
+The [PaaS Support Manual](https://docs.google.com/document/d/1Ui0MQtZbZnRCIj4RUdqCPU6PdWvfqY9FNf7Ou3OE99w) lives elsewehere, but should be moved into the team manual sometime soon.
+
 ## Changing a user's password
 
 1. Set your AWS environment variables to the production environment (assuming this is a production user)
