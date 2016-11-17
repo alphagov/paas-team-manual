@@ -187,7 +187,8 @@ should be noted. Doing this allows the Product Manager prioritise the follow up 
 
 ## What sign-off is
 
-When the work on a story is completed and any changes merged to master, we
+When the work on a story is completed, any changes merged to master, and the
+work is deployed to production we
 check that it met the original business need that motivated the story and that
 acceptance criteria have been met.
 
@@ -198,15 +199,17 @@ capture the remaining work.
 If the changes have already been tested to your satisfaction during review,
 then sign-off need not include testing.
 
+It is important to make sure the work is deployed to production, if this is
+relevant to the story. For example a story which changed the development tooling
+might not need this check, but a new service broker for a tenant to use would
+need to be in production for signoff to be successful
+
 ## Who signs off stories
 
 Who can sign off the story is agreed and recorded in the story at kick-off, but
 by default will be the Product Manager. The Product Manager can delegate
-signing off specific stories to civil servants within the team.
-
-When a story moves to awaiting sign-off column on the board, The Tech Lead and
-Tech Arch should confirm if they are happy with the story in a comment on
-Pivotal Tracker to provide guidance to the person signing off.
+signing off specific stories to anyone within the team. This delegation may also
+be done at standup if the board is blocked with stories in approval
 
 # Work In Progress Limits
 
