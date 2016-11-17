@@ -1,6 +1,6 @@
 # Dashboard Mac Mini
 
-There's a Mac Mini attached to big screens in our team area. It can show the
+There are two Mac Minis attached to big screens in our team area. They can show the
 following:
 
 * Outstanding pull requests
@@ -11,14 +11,17 @@ following:
 
 Some combination of the above might be shown according to the whims of the team.
 If we want to display multiple different views on a single screen, we use
-[frame-splits](https://github.com/dsingleton/frame-splits), downloaded locally to the mac-mini to
-avoid worrying about sending sensitive urls to the outside world.
+[frame-splits](https://github.com/dsingleton/frame-splits).
 
 If you need access, you can walk up and use the mouse and keyboard, or connect via the OSX Screen Sharing app.
 
 The credentials for this are in the `paas-pass` password store.
 
-To connect, you need to be on the `CDN02_test` wifi network. This network is not configured by default on newly provisioned laptops, so talk to someone else on the team if you need the wifi password. You may need to try to connect several times since the network may not be very reliable.
+To connect to the first machine, you need to be on the `CDN02_test` wifi network.
+This network is not configured by default on newly provisioned laptops, so talk to someone else on the team if you need the wifi password.
+The second machine is on `Bardeen`.
+You can find the machines in the Network section of an OSX Finder window, but only if you are on the right network.
+If you open a machine, the finder should show you a `Share screen` button.
 
 ## Outstanding pull requests
 
