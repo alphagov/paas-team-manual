@@ -10,7 +10,7 @@ function fixSearch() {
     observer.disconnect();
     var form = $('#rtd-search-form');
     form.empty();
-    form.attr('action', 'https://' + window.location.hostname + '/en/' + determineSelectedBranch() + '/search.html');
+    form.attr('action', 'https://' + window.location.hostname + '/en/latest/search.html');
     $('<input>').attr({
       type: "text",
       name: "q",
