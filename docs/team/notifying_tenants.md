@@ -45,6 +45,8 @@ done | grep '@' | sort | uniq
 
 We send the email from any team member's `gov.uk` GMail account.
 
+We use support email address as a non-alias to send from. To configure that for your account, follow these instructions:
+
 [Setting up an alternative 'Send from' address](https://support.google.com/mail/answer/22370?hl=en)
 
 [Difference between alias and non-alias](https://support.google.com/a/answer/1710338?ctx=gmail&hl=en-GB&authuser=0&rd=1)
