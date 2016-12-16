@@ -38,19 +38,15 @@ for org in `cf orgs | tail -n+4`; do
   for space in `cf spaces 2>&1 | tail -n+4`; do
     cf space-users $org $space;
   done;
-done | grep '@' | sort | uniq
+done | grep '@' | grep -v 'Getting users in org' | sort | uniq | sed 's/^  //'
 ```
 
 ## Send the email
 
 **IMPORTANT: Remember to put the recipient list in `bcc:`!**
 
-We send the email from any team member's `gov.uk` GMail account.
-
-We use support email address as a non-alias to send from. To configure that for your account, follow these instructions:
+We send the email from any team member's `gov.uk` GMail account, but with support email address as a non-alias to send from. To configure that for your account, follow these instructions:
 
 [Setting up an alternative 'Send from' address](https://support.google.com/mail/answer/22370?hl=en)
 
 [Difference between alias and non-alias](https://support.google.com/a/answer/1710338?ctx=gmail&hl=en-GB&authuser=0&rd=1)
-
-*This bears repeating: use `bcc:`. No, not that one, that's `to:`. That's `cc:`. You got it, `bcc:`!*
