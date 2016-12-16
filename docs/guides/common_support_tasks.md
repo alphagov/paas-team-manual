@@ -26,3 +26,9 @@ If Holly needs anything extra (for example, a Jenkins box provisioned) she will 
 You need admin access to `cf` in prod to do the reset.
 
 The script lives in `paas-cf`.
+
+## Notifying all users
+
+Occasionally you may need to notify all users of an event on the platform, perhaps during an incident in progress or to send an incident report.
+
+To do this, follow the instructions on [notifying tenants](../team/notifying_tenants/).
