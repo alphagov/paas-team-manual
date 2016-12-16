@@ -43,6 +43,8 @@ done | grep '@' | sort | uniq
 
 ## Send the email
 
+**IMPORTANT: Remember to put the recipient list in `bcc:`!**
+
 We send the email from any team member's `gov.uk` GMail account.
 
 We use support email address as a non-alias to send from. To configure that for your account, follow these instructions:
@@ -51,4 +53,4 @@ We use support email address as a non-alias to send from. To configure that for 
 
 [Difference between alias and non-alias](https://support.google.com/a/answer/1710338?ctx=gmail&hl=en-GB&authuser=0&rd=1)
 
-**IMPORTANT: Remember to put the recipient list in `bcc:`!**
+*This bears repeating: use `bcc:`. No, not that one, that's `to:`. That's `cc:`. You got it, `bcc:`!*
