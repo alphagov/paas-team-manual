@@ -42,7 +42,7 @@ You can store those variables in a [password manager like `paas`](https://www.pa
 
 ## Grafana Dashboard
 
-AKA User Impact Dashboard.
+Also known as the User Impact Dashboard.
 
 Found at
 ```
@@ -68,7 +68,7 @@ on the Dashboard. It can be found
 
 ## Pingdom
 
-We use the [Pingdom public status page](http://stats.pingdom.com/ejtodj13fqqx) ([documented here](https://help.pingdom.com/hc/en-us/articles/205386171-Public-Status-Page)) to display the uptime and current status of our healthcheck application. The Pingdom account is shared with other Government-as-a-Platform services, such as Notify, and there is only one shared dashboard for the entire account.
+You can use the [Pingdom public status page](http://stats.pingdom.com/ejtodj13fqqx) ([documented here](https://help.pingdom.com/hc/en-us/articles/205386171-Public-Status-Page)) to display the uptime and current status of our healthcheck application. It is not currently presented on the monitors, as we did not find it useful enough. The Pingdom account is shared with other Government-as-a-Platform services, such as Notify, and there is only one shared dashboard for the entire account.
 
 We use the [Super Auto Refresh](https://chrome.google.com/webstore/detail/super-auto-refresh/kkhjakkgopekjlempoplnjclgedabddk?hl=en) Chrome extension to refresh the page.
 
@@ -76,3 +76,10 @@ We use the [Super Auto Refresh](https://chrome.google.com/webstore/detail/super-
 
 We use [Smashing](https://github.com/Dashing-io/smashing) to build a dashboard
 summarising the state of environments in datadog. The dashboard code is in `paas-cf`.
+
+## Automator
+
+Automator applications are used to automatically open a Chrome browser and visit the pages listed above. You can find the applications in `$HOME/Documents/automator`. To edit them you can 'right click' on the Automator icon in the dock and a list of custom applications installed are at the top of the menu.
+
+The actual script is just a simple use of the `open` command. It has not been committed to any repository due to the use of tokens in URLs.
+
