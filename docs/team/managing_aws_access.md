@@ -39,7 +39,7 @@ For example, you might add a function`:
 export PAAS_CF_DIR="path/to/paas-cf"
 
 sts() {
-  "${PAAS_CF_DIR}/scripts/create_sts_token.sh" && source "${HOME}/.aws_sts_tokens/${AWS_ACCOUNT}_${DEPLOY_ENV}.sh"
+  "${PAAS_CF_DIR}/scripts/create_sts_token.sh" && source "${HOME}/.aws_sts_tokens/${AWS_ACCOUNT}.sh"
 }
 ```
 
