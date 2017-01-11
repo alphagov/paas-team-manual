@@ -60,9 +60,15 @@ More information on the script, can be found in the FreeBSD manual over at: http
 
 You may find a desire, to monitor the traffic between the VMs. You can do so, by running the following command:
 
-``
+```
 tcpdump -n -i eth0 net 10.0.48.0/22
-``
+```
+
+If you want to restrict tcpdump to capture IPSEC traffic only you can use:
+
+```
+tcpdump -i eth0 -n -s 0 -vv \(port 500 or port 4500 or proto 50\)
+```
 
 **Note:** The IP address, may differ from the one set on the node you're debugging.
 
