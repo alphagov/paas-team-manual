@@ -54,7 +54,7 @@ In order to check the validity, you may want to run these commands:
 /var/vcap/packages/racoon/sbin/setkey -D
 ``
 
-More information on the script, can be found in the FreeBSD manual over at: https://www.freebsd.org/cgi/man.cgi?query=setkey&sektion=8
+More information on the script, can be found in the [FreeBSD manual](https://www.freebsd.org/cgi/man.cgi?query=setkey&sektion=8).
 
 ### Monitoring the traffic
 
