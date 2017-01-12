@@ -4,17 +4,18 @@ Periodically we will learn of a security issue affecting CloudFoundry or our sup
 
 ## How we learn of issues
 
-* Automated datadog CVE notifications from our [Pivotal CVE notifier](https://github.com/alphagov/paas-cve-notifier)
+* Automated datadog CVE notifications from the [CloudFoundry security RSS feed](cf_security_rss)
 * Notifications from [cf-dev](https://lists.cloudfoundry.org/archives/list/cf-dev@lists.cloudfoundry.org/)
 * Notifications in slack from a team member, the #security channel, or others
 
 ## How we deal with issues
 
 1. The person on support should immediately create a Pivotal story with all the currently known information
-2. The person on support should post a link to the story in #paas-incident and notify the main #the-government-paas channel that a security incident is in progress
-3. The person on support should either immediately triage the issue themselves, or request support from team members with appropriate domain knowledge (See: "How to triage an issue" below)
-4. If the triage outcome is that we must take action the story should be prioritised according to severity by the product manager and played if necessary
-5. All PR's related to the security issue are prioritised for review until the issue is fully resolved
+1. If a Deskpro ticket was raised, add the story link to the ticket and close the ticket
+1. The person on support should post a link to the story in #paas-incident and notify the main #the-government-paas channel that a security incident is in progress
+1. The person on support should either immediately triage the issue themselves, or request support from team members with appropriate domain knowledge (See: "How to triage an issue" below)
+1. If the triage outcome is that we must take action the story should be prioritised according to severity by the product manager and played if necessary
+1. All PR's related to the security issue are prioritised for review until the issue is fully resolved
 
 ## How to triage an issue
 
