@@ -194,7 +194,9 @@ acceptance criteria have been met.
 
 We ensure that if the story changed scope, identified other problems that need
 to be solved, or incurred technical debt, that stories have been created to
-capture the remaining work.
+capture the remaining work and that at least one of the product manager, tech
+arch or tech leads has been asked to prioritise any remaining work that needs
+to be started soon.
 
 If the changes have already been tested to your satisfaction during review,
 then sign-off need not include testing.
