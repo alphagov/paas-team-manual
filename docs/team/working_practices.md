@@ -185,12 +185,22 @@ should be noted. Doing this allows the Product Manager prioritise the follow up 
 
 # Story sign-off
 
+## Our definition of done
+
+- the work on a story is completed
+- it met the need that motivated the story
+- any changes merged to master
+- the work is deployed to production
+- any acceptance criteria have been met
+
+If it changes behaviour or makes new features available to users:
+
+- we have updated the developer documentation
+- we have notified our users (before we make the change if necessary)
+
 ## What sign-off is
 
-When the work on a story is completed, any changes merged to master, and the
-work is deployed to production we
-check that it met the original business need that motivated the story and that
-acceptance criteria have been met.
+We check that the story is done.
 
 We ensure that if the story changed scope, identified other problems that need
 to be solved, or incurred technical debt, that stories have been created to
