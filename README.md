@@ -1,4 +1,4 @@
-# Government PaaS Team Manual
+# GOV.UK PaaS Team Manual
 
 This project uses [MkDocs][]. It is automatically built and hosted by [Read
 the Docs][] at the following URL:

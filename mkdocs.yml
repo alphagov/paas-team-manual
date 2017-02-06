@@ -1,4 +1,4 @@
-site_name: Government PaaS Team Manual
+site_name: GOV.UK PaaS Team Manual
 theme: readthedocs
 extra_javascript:
   - js/fix_search.js
