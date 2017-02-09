@@ -8,12 +8,6 @@ For example:
 * upgrades of CF, stemcells, buildpacks
 * incident reports
 
-At some point in the future, we will create an automated way of doing this, probably using [Notify](https://www.notifications.service.gov.uk/).
-
-We will probably also introduce better channels of communication - perhaps a status page, user forum, or explicit mailing list.
-
-Until then, our manual process is documented here.
-
 ## Email draft
 
 Write the email you want to send.
