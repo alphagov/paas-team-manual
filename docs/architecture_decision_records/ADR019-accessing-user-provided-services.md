@@ -40,8 +40,11 @@ Risks/costs:
   of failure and additional running costs to tenants.
 - Traffic is in plaintext over the Internet for some services.
 - PaaS team need to do work every time a tenant adds/changes service IP addresses.
-- If they forget to request this, other PaaS tenants have access to their service IPs.
-- PaaS team need to do work in every occasion a space needs access to the peered VPC.
+- If they forget to request this, other PaaS tenants have access to their
+  service IPs.
+- PaaS team need to do work (assigning application security groups) in every
+  occasion a space needs to gain or lose
+  access to the list of service IPs.
 
 
 Using private address space (VPC peering)
@@ -63,7 +66,9 @@ Risks/costs:
 - Introduces a new network security boundary between VPCs; a risk of
   accidentally introducing security group rules that allow more access from the
   peered VPC than intended.
-- PaaS team need to do work in every occasion a space needs access to the peered VPC.
+- PaaS team need to do work (assigning application security groups) on every
+  occasion a space needs to gain or lose
+  access to the peered VPC.
 
 Although this specific example uses VPC peering because the tenant in question
 uses AWS, we could use the same principle (us assigning IP address space and
