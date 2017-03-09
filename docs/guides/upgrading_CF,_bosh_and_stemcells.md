@@ -27,6 +27,8 @@ You should test the upgrade changeset:
 * Deploying a fresh CF, which is something we frequently do in our
   development environments after the autodelete-cloufoundry pipeline
   runs overnight.
+* Confirm that [rotating credentials](../team/rotating_credentials.md) still
+  works and doesn't cause additional downtime during deployments.
 
 ## Problems encountered previously
 
