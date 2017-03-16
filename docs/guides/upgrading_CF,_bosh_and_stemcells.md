@@ -30,6 +30,20 @@ You should test the upgrade changeset:
 * Confirm that [rotating credentials](../team/rotating_credentials.md) still
   works and doesn't cause additional downtime during deployments.
 
+## Notify the tenants
+
+After the upgrade we should notify the tenants by sending an email with these details:
+
+ - From: Government PaaS Support <gov-uk-paas-support@digital.cabinet-office.gov.uk>
+ - To: "GOV.UK PaaS Announce" <gov-uk-paas-announce@digital.cabinet-office.gov.uk>
+ - Subject: GOV.UK PaaS - Cloud Foundry changes - 17th March 2017
+
+The body should contain:
+
+ - Changes and bugfixes to highlight and new features enabled.
+ - Downtime or service impact if any
+ - Summary of buildpack changes. In order to retrieve the buildpack notes, you can use the script [`paas-cf/scripts/generate_buildpack_release_notes.sh`]
+
 ## Problems encountered previously
 
 ### DNS name resolution.
