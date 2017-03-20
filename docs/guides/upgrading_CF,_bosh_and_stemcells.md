@@ -32,17 +32,7 @@ You should test the upgrade changeset:
 
 ## Notify the tenants
 
-After the upgrade we should notify the tenants by sending an email with these details:
-
- - From: Government PaaS Support <gov-uk-paas-support@digital.cabinet-office.gov.uk>
- - To: "GOV.UK PaaS Announce" <gov-uk-paas-announce@digital.cabinet-office.gov.uk>
- - Subject: GOV.UK PaaS - Cloud Foundry changes - 17th March 2017
-
-The body should contain:
-
- - Changes and bugfixes to highlight and new features enabled.
- - Downtime or service impact if any
- - Summary of buildpack changes. In order to retrieve the buildpack notes, you can use the script [`paas-cf/scripts/generate_buildpack_release_notes.sh`]
+Send an email to users following [the upgrade template](../team/notifying_tenants.md#cf-upgrade).
 
 ## Problems encountered previously
 
