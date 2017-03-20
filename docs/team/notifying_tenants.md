@@ -106,3 +106,14 @@ Apologies for the inconvenience.
 Regards,
 GOV.UK PaaS
 ```
+
+### CF upgrade
+
+Subject (ex): GOV.UK PaaS - Cloud Foundry changes - 17th March 2017
+
+The body should contain:
+
+ - Changes and bugfixes to highlight and new features enabled.
+ - Downtime or service impact if any
+ - Summary of buildpack changes. In order to retrieve the buildpack notes, you can use the script:
+`paas-cf/scripts/generate_buildpack_release_notes.sh`
