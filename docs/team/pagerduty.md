@@ -36,7 +36,11 @@ The team email notification is added at the end as well to cover any potential g
 ## Services
 
 We integrate with Pingdom and Datadog. For each integration we create one *in hours* service that uses the in hours only escalation policy, and one *24x7* service that uses the 24x7 escalation policy.
-Incidents are not auto resolved. Only high-urgency notification rules are used.
+
+A special service called *Emergency email* is dedicated to urgent platform issues impacting tenants. It is triggered by tenants sending an email via Deskpro. The incoming emails are filtered by checking the sender via regular expression.
+It is attached to the *24x7* escalation policy.
+
+For all services, incidents are not auto resolved and only high-urgency notification rules are used.
 
 ## Manage rota
 
