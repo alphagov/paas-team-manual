@@ -56,10 +56,11 @@ How we would set it up:
 - PaaS team responds with a unique IP allocation eg. 172.16.0.0/24 for tenant to use
 - Tenant creates VPC using that address space
 - Tenant creates AWS security group(s) restricting access from PaaS VPC to expected services
-- Tenant sends VPC peering request
+- Tenant provides PaaS team with their AWS account id and the VPC id.
+- PaaS team sends VPC peering request
 - PaaS team creates new application security group allowing access to the VPC IP allocation
 - PaaS team binds application security group to space(s) belonging to tenants
-- PaaS team accepts VPC peering request
+- Tenant accepts VPC peering request
 
 Risks/costs:
 
