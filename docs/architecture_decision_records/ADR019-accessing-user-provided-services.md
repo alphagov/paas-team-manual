@@ -79,9 +79,12 @@ technology to allow us to connect to things other than VPCs.
 Decision
 ========
 
-TBC
+We will offer VPC peering to tenants in specific cases where it is appropriate.
 
 Consequences
 ============
 
-TBC
+Where we don't presently offer a specific backing-service, tenants have an
+option to provision their own service and access it without having to expose it
+to the Internet. The process for doing this is documented
+[here](https://github.com/alphagov/paas-cf/blob/master/doc/vpc_peering.md).
