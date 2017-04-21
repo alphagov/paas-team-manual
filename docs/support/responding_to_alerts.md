@@ -16,3 +16,12 @@ All other logs are sent to [logsearch](https://logsearch.cloud.service.gov.uk):
 * `UserAuthenticationSuccess` will give you the successful attempts
   * Google authentication origin will show `sessionId=XXX`
   * non Google authentication origin will show `clientId=cf`
+
+## CPU credits
+
+These alerts tell us when an AWS instance that has burstable CPU performance
+has exhausted its credits and is performing badly. This is an informational
+alert that should help you understand why other alerts may be triggered at
+the same time. For more information about CPU credits see:
+
+- <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html#t2-instances-cpu-credits>
