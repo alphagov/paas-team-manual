@@ -20,9 +20,9 @@ Periodically we will learn of a security issue affecting CloudFoundry or our sup
 ## How to triage an issue
 
 1. If possible locate the original CVE report
-2. Identify each component of CF and our supporting systems that is affected by the issue
-3. Confirm we are vulnerable by reproducing the security issue on a suitable environment
-4. Identify if there are practical ways for us to mitigate the situation, such as disabling features or altering configurations
-5. Identify if the issue is fixed in a newer release of the software we are using
-6. Briefly investigate how difficult the upgrade would be, if needed
-7. Record all this information on the story associated with the issue
+1. Identify each component of CF and our supporting systems that is affected by the issue
+1. Confirm we are vulnerable by reproducing the security issue on a suitable environment
+1. Identify if there are practical ways for us to mitigate the situation, such as disabling features or altering configurations
+1. Identify if the issue is fixed in a newer release of the software we are using
+1. Briefly investigate how difficult the upgrade would be, if needed
+1. Record all this information on the story associated with the issue
