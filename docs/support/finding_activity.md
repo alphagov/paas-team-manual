@@ -94,3 +94,38 @@ Here's a sample JSON of the above:
 
 It would imply that a new app has been created and staged.
 
+# Finding the access logs
+
+There may be times, where we'd need to be troubleshooting or reviewing an API Access logs. Here is a list, of more relevant and interesting points to be concerned about:
+
+## Router HAProxy
+
+In Kibana, you can look for the following phrases, to filter the access logs.
+
+- `haproxy.http_status_code: 200`
+- `NOT haproxy.http_status_code: 200`
+- `haproxy.http_request_verb: POST`
+- `haproxy.time_backend_response: >7`
+
+## NGINX
+
+It's probably worth to mention, that there is a `@source.component` which could help you investigate more specific access logs. For instance:
+
+- `vcap_nginx_access` - Logs obtained from Cloud Controller's nginx setup.
+- `uaa_nginx_access` - Logs obtained from the UAA traffic.
+
+### UAA audit log in detail
+
+You may find it necessary, to go deeper into the audit logs:
+
+- Token issued for a user: `uaa.audit.origin: "test@example.com"`
+- All user created events: `uaa.audit.type: UserCreatedEvent`
+- All token issued events: `uaa.audit.type: TokenIssuedEvent`
+- All token issued events (case doesn't matter):`uaa.audit.type: tokenissuedevent`
+- All successful authentication events: `uaa.audit.type: UserAuthenticationSuccess`
+- Authentication of a user: `uaa.audit.data: "test@example.com"`
+- All successful authentication events via SSO: `uaa.audit.type: UserAuthenticationSuccess AND uaa.audit.origin: sessionId`
+- All successful authentication events via non SSO: `uaa.audit.type: UserAuthenticationSuccess AND uaa.audit.origin: clientId`
+- Authentication failures: `uaa.audit.type: PrincipalAuthenticationFailure`
+- Authentication failure for a user: `uaa.audit.type: PrincipalAuthenticationFailure AND uaa.audit.principal: admin`
+- SSO authentication failure doesn't show specific logs, only `uaa.audit.type: ClientAuthenticationSuccess` from the cf client.
