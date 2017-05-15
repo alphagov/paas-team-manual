@@ -17,7 +17,7 @@ depend on, but this list should be enough to get you started.
 
 - [alphagov/paas-cf](https://github.com/alphagov/paas-cf)
 - [alphagov/paas-team-manual](https://github.com/alphagov/paas-team-manual)
-- [government-paas/credentials](https://github.gds/government-paas/credentials)
+- [government-paas/credentials](https://github.digital.cabinet-office.gov.uk/government-paas/credentials)
   (internal only)
 
 # Accounts

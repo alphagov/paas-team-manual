@@ -53,7 +53,7 @@ addresses.
 The IAM roles, profiles, and policies will be managed by our
 [aws-account-wide-terraform][] repo.
 
-[aws-account-wide-terraform]: https://github.gds/government-paas/aws-account-wide-terraform
+[aws-account-wide-terraform]: https://github.digital.cabinet-office.gov.uk/government-paas/aws-account-wide-terraform
 
 Status
 ======
