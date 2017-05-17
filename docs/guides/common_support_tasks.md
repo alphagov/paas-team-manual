@@ -4,12 +4,14 @@ The [PaaS Support Manual](https://docs.google.com/document/d/1Ui0MQtZbZnRCIj4RUd
 
 ## Changing a user's password
 
-1. Set your AWS environment variables to the production environment (assuming this is a production user)
-2. Set your `DEPLOY_ENV` environment variable to `prod`
-3. Ensure you have the [uaac client](https://github.com/cloudfoundry/cf-uaac) installed
-4. Run `./paas-cf/scripts/rotate-user-password.sh -e prod -u user@example.com`
+1. Set your AWS environment variables to the production environment
+   (assuming this is a production user)
+2. Log into the cf client with an "admin" user.
+3. Set your `DEPLOY_ENV` environment variable to `prod`
+4. Run `./paas-cf/scripts/create-user.sh -r -e user@example.com`
 
-The script will generate a new password for the user, change it, and then email them the password.
+The script will mark the user as "unverified" and send a new invite
+link, which essentially will be a new password.
 
 ## Subscribe and check the AWS notifications
 
