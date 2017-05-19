@@ -5,20 +5,14 @@ obtain some information about the API use.
 
 ## Finding user GUID
 
-You may need to obtain this, to move the investigation forward. It's
-usually useful, to have a starting point in the form of organisation.
-Possessing that name, use this command, to obtain users from the
-organisation:
+We have our home made script, to find users in the CF DB.
 
 ```
-$ cf curl "/v2/users?q=organization_guid:$(cf org ORG_NAME --guid)"
+./paas-cf/scripts/find-user.sh -e EMAIL [-o ORG]
 ```
 
-**Note:** It may be a big chunk of JSON, which you may want to export
-into a file.
-
-Each user as an entity, will have metadata enclosed. This metadata will
-have users GUID.
+User as an entity, will have metadata enclosed. This metadata will
+contain user's GUID.
 
 ### Finding deleted user GUID
 
