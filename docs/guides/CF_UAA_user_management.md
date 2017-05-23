@@ -5,13 +5,13 @@ Sometimes it might be necessary to lock certain users. For example when we find 
 In UAA terms, 'locking' the user/user account means the account is blocked by UAA after a number of unsuccessful attempts to authenticate. There is only a way to 'unlock' the account, but not lock. However, you can _disable_ the user, which means they can't log in:
 
 1. Get `uaac` command line via `gem install cf-uaac`
-2. Login with the admin _client_: `uaac token client get admin`. You will have to provide admin client secret as password.
-3. Get the user: `uaac user get <name@digital.cabinet-office.gov.uk>`. Note the user ID.
-4. Get properties of user in json form: `uaac curl /Users/<user_id> >u.json`
-5. Clean up the `u.json` file and keep only json properties of user.
-5. Edit user properties json - change `active` to `false`
-6. Update user:  `uaac curl /Users/<user_id> -H 'content-type: application/json' -X PUT -H 'If-Match: *' -d "$(<u.json)"`
-7. Verify changes applied by checking state: `uaac user get <name@digital.cabinet-office.gov.uk>`
+1. Login with the admin _client_: `uaac token client get admin`. You will have to provide admin client secret as password.
+1. Get the user: `uaac user get <name@digital.cabinet-office.gov.uk>`. Note the user ID.
+1. Get properties of user in json form: `uaac curl /Users/<user_id> >u.json`
+1. Clean up the `u.json` file and keep only json properties of user.
+1. Edit user properties json - change `active` to `false`
+1. Update user:  `uaac curl /Users/<user_id> -H 'content-type: application/json' -X PUT -H 'If-Match: *' -d "$(<u.json)"`
+1. Verify changes applied by checking state: `uaac user get <name@digital.cabinet-office.gov.uk>`
 
 ## Finding out org membership
 
