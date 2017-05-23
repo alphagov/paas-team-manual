@@ -1,20 +1,6 @@
+## Locking a user account
+
 Sometimes it might be necessary to lock certain users. For example when we find out they have left GDS or don't have any more project to work on PaaS. CF has a facility to prevent users from logging in, while still preserving the user account with all their access rights and org membership. We do this as a first step in removing the user account. We then ask for confirmation from org managers (or managers of org managers in case we are removing an org manager) and only after confirmation finally remove the account completely (`cf delete-user`).
-
-### UAA API
-
-Currently the `uaac` command line tool only supports updating these user options:
-```
-  user update [name]               Update a user account with specified options
-                                   --given_name <name>
-                                   --family_name <name>
-                                   --emails <addresses>
-                                   --phones <phone_numbers>
-                                   --del_attrs <attr_names>, list of attributes to delete
-```
-
-If you want to change anything else, you need to use the API directly, for example via `uaac curl`. The UAA API is described in detail [here](https://docs.cloudfoundry.org/api/uaa/).
-
-### Disabling the user account
 
 In UAA terms, 'locking' the user/user account means the account is blocked by UAA after a number of unsuccessful attempts to authenticate. There is only a way to 'unlock' the account, but not lock. However, you can _disable_ the user, which means they can't log in:
 
@@ -27,13 +13,13 @@ In UAA terms, 'locking' the user/user account means the account is blocked by UA
 6. Update user:  `uaac curl /Users/<user_id> -H 'content-type: application/json' -X PUT -H 'If-Match: *' -d "$(<u.json)"`
 7. Verify changes applied by checking state: `uaac user get <name@digital.cabinet-office.gov.uk>`
 
-### Finding out org membership
+## Finding out org membership
 
 In order to notify the org manager of a given user, we need to find out who that would be. UAA does not know which org/space user belongs to. This information is only available to cloud controller: `cf curl /v2/users/<uaa_user_id>/summary`
 
 The user summary contains all orgs and spaces they are member of. It also contains the UAA ID of managers of these. To get user name from UAA id, simply: `uaac curl /Users/<uaa_user_id> | grep userName`
 
-### Notifying the org manager
+## Notifying the org manager
 
 Send an email from support email address: `gov-uk-paas-support@digital.cabinet-office.gov.uk`. Example email:
 
