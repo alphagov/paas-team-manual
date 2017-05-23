@@ -53,13 +53,23 @@ There is a command to refresh your access token when it expires, but it is
 worth re-authenticating instead to ensure that you are still targeting the
 environment that you expect.
 
+## Finding a user account
+
+If you know the exact username of the account:
+
+    bundle exec uaac user get <EMAIL>
+
+If you only know part of the username:
+
+    bundle exec uaac users 'username co "<NAME>"'
+
 ## Locking a user account
 
 Sometimes it might be necessary to lock certain users. For example when we find out they have left GDS or don't have any more project to work on PaaS. CF has a facility to prevent users from logging in, while still preserving the user account with all their access rights and org membership. We do this as a first step in removing the user account. We then ask for confirmation from org managers (or managers of org managers in case we are removing an org manager) and only after confirmation finally remove the account completely (`cf delete-user`).
 
 In UAA terms, 'locking' the user/user account means the account is blocked by UAA after a number of unsuccessful attempts to authenticate. There is only a way to 'unlock' the account, but not lock. However, you can _disable_ the user, which means they can't log in:
 
-1. Get the user: `uaac user get <name@digital.cabinet-office.gov.uk>`. Note the user ID.
+1. Get the user ID from [finding a user account](#finding-a-user-account).
 1. Get properties of user in json form: `uaac curl /Users/<user_id> >u.json`
 1. Clean up the `u.json` file and keep only json properties of user.
 1. Edit user properties json - change `active` to `false`
