@@ -33,7 +33,7 @@ UAA Command Line Interface
 
 To target an environment:
 
-    bundle exec uaac target https://uaa.<SYSTEM_DOMAIN>
+    bundle exec uaac target https://login.<SYSTEM_DOMAIN>
 
 You can log in with a normal CF account. You should use either:
 
