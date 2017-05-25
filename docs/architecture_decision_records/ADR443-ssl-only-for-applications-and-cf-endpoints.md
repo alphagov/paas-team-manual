@@ -1,6 +1,8 @@
 Context
 =======
 
+**Note: This has been superceeded. See [Status](#status) below.**
+
 It is expected for the government websites to be secure and keep the user
 interactions private. Because that we want to enforce all communications to
 any application and to the platform endpoints to use only and always HTTPS,
@@ -42,7 +44,7 @@ We will implement and maintain HSTS preload lists for our production domains.
 Status
 ======
 
-Accepted
+Superceeded by [ADR444](ADR444-redirect-http-for-applications)
 
 Consequences
 ============
