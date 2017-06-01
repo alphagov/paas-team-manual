@@ -56,12 +56,12 @@ The exceptions to this are for some categories of security breach or vulnerabili
 
 *(Note this table is copied from overview doc - keep in sync. More detail may be needed later)*
 
-| Classification | AKA | Example | In-hours| OOH waking hours TBD - suggest (Not used) | OOH overnight TBD - suggest |
-| --- | --- | --- | --- | --- | --- |
-| P1 | Critical Incident | Apps no longer being served due to an issue with our platform; serious security issue with the platform; your live production app has a P1 issue which cannot be resolved without us | Start work & respond: 20 min; Update time: 1 hr | 40 mins | 40 mins |
-| P2 | Major Incident |Can’t update/push apps due to platform issue; Upstream vulnerabilities; elevated error rates; Complete component failure; substantial degradation of service | Start work & respond: 30 min; Update time: 2 hr | 1 hour | n/a |
-| P3 | Significant | Users (tenants or end users) experiencing intermittent or degraded service due to platform issue.| Start work & respond: 2 hr; Update time: 4 hr | n/a | n/a |
-| P4 | Minor | Component failure that is not immediately service impacting | Start work & respond: 1 business day; Update time: 2 business days | n/a | n/a |
+| Classification | AKA | Example | In-hours| OOH overnight TBD (suggest) |
+| --- | --- | --- | --- | --- |
+| P1 | Critical Incident | <ul><li>Apps no longer being served due to an issue with our platform</li><li>serious security issue with the platform</li><li>your live production app has a P1 issue which cannot be resolved without us</li></ul> | Start work & respond: 20 min<br/><br/> Update time: 1 hr | 40 mins |
+| P2 | Major Incident |<ul><li>Can’t update/push apps due to platform issue</li><li>Upstream vulnerabilities</li><li>elevated error rates</li><li>Complete component failure</li><li>substantial degradation of service</li></ul>| Start work & respond: 30 min<br/><br/>Update time: 2 hr  | n/a |
+| P3 | Significant | Users (tenants or end users) experiencing intermittent or degraded service due to platform issue.| Start work & respond: 2 hr<br/><br/> Update time: 4 hr  n/a |
+| P4 | Minor | Component failure that is not immediately service impacting | Start work & respond: 1 business day <br/><br/> Update time: 2 business days | n/a |
 
 ## Support tickets
 You can access our [support ticketing tool Deskpro here](https://gaap.deskpro.com/agent/)
@@ -159,10 +159,9 @@ If an incident needs to be escalated beyond the PaaS team, the incident comms pe
 The person contacted above will decide if they need to alert a member of the GDS executive group. If none of the above are available then they will try the people below in the following order:
 
 * David Lewis - Director for GDS Portfolio Group
-* Alex Holmes - GDS Chief Operating Officer
 
-*The contact details above information as well as useful contacts:*
-[PaaS Emergency contacts and escalations](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing) **Restricted access**
+The contact details above information as well as useful contacts can be found in
+[PaaS Emergency contacts and escalations (restricted access)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing)
 
 ## Useful links
 
