@@ -70,17 +70,17 @@ Sometimes it might be necessary to lock certain users. For example when we find 
 In UAA terms, 'locking' the user/user account means the account is blocked by UAA after a number of unsuccessful attempts to authenticate. There is only a way to 'unlock' the account, but not lock. However, you can _disable_ the user, which means they can't log in:
 
 1. Get the user ID from [finding a user account](#finding-a-user-account).
-1. Get properties of user in json form: `uaac curl /Users/<user_id> >u.json`
+1. Get properties of user in json form: `bundle exec uaac curl /Users/<user_id> >u.json`
 1. Clean up the `u.json` file and keep only json properties of user.
 1. Edit user properties json - change `active` to `false`
-1. Update user:  `uaac curl /Users/<user_id> -H 'content-type: application/json' -X PUT -H 'If-Match: *' -d "$(<u.json)"`
-1. Verify changes applied by checking state: `uaac user get <name@digital.cabinet-office.gov.uk>`
+1. Update user:  `bundle exec uaac curl /Users/<user_id> -H 'content-type: application/json' -X PUT -H 'If-Match: *' -d "$(<u.json)"`
+1. Verify changes applied by checking state: `bundle exec uaac user get <name@digital.cabinet-office.gov.uk>`
 
 ## Finding out org membership
 
 In order to notify the org manager of a given user, we need to find out who that would be. UAA does not know which org/space user belongs to. This information is only available to cloud controller: `cf curl /v2/users/<uaa_user_id>/summary`
 
-The user summary contains all orgs and spaces they are member of. It also contains the UAA ID of managers of these. To get user name from UAA id, simply: `uaac curl /Users/<uaa_user_id> | grep userName`
+The user summary contains all orgs and spaces they are member of. It also contains the UAA ID of managers of these. To get user name from UAA id, simply: `bundle exec uaac curl /Users/<uaa_user_id> | grep userName`
 
 ## Notifying the org manager
 
