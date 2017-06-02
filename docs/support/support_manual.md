@@ -17,7 +17,7 @@ We’re supporting live services, teams who are using PaaS for prototyping and i
 
 TO BE COMPLETED (e.g. Concourse build status, User impact dashboard + datadog dashboard, New support cases in deskpro/your mail).
 
-### Alerting out of hours
+### Alerting out of hours.
 
 These are the things we support out of hours:
 
@@ -28,7 +28,7 @@ These are the things we support out of hours:
 
 We expect to hear about the first two via the alerts on Smoke Test Fails and Pingdom which are sent to Pagerduty.
 
-The second two, at the moment, are the things that a tenant may contact us about as we don’t cover all situations in which these could occur with our own alerting. They would contact us via email: gov-uk-paas-emergency@gaap.deskpro.com. This creates a P1 ticket in Deskpro and triggers Pagerduty.
+The second two, at the moment, are the things that a tenant may contact us about as we don’t cover all situations in which these could occur with our own alerting. They would contact us via our emergency email. This creates a P1 ticket in Deskpro and triggers Pagerduty.
 
 ## Triaging issues
 
@@ -56,9 +56,9 @@ The exceptions to this are for some categories of security breach or vulnerabili
 
 *(Note this table is copied from overview doc - keep in sync. More detail may be needed later)*
 
-| Classification | AKA | Example | In-hours| OOH overnight TBD (suggest) |
+| Classification | AKA | Example | In hours| Out of hours |
 | --- | --- | --- | --- | --- |
-| P1 | Critical Incident | <ul><li>Apps no longer being served due to an issue with our platform</li><li>serious security issue with the platform</li><li>your live production app has a P1 issue which cannot be resolved without us</li></ul> | Start work & respond: 20 min<br/><br/> Update time: 1 hr | 40 mins |
+| P1 | Critical Incident | <ul><li>Apps no longer being served due to an issue with our platform</li><li>serious security breach on the platform</li><li>You are unable to push an emergency fix to an app due to the PaaS API not being available</li><li>your live production app has a P1 issue which cannot be resolved without us</li></ul> | Start work & respond: 20 min<br/><br/> Update time: 1 hr | 40 mins |
 | P2 | Major Incident |<ul><li>Can’t update/push apps due to platform issue</li><li>Upstream vulnerabilities</li><li>elevated error rates</li><li>Complete component failure</li><li>substantial degradation of service</li></ul>| Start work & respond: 30 min<br/><br/>Update time: 2 hr  | n/a |
 | P3 | Significant | Users (tenants or end users) experiencing intermittent or degraded service due to platform issue.| Start work & respond: 2 hr<br/><br/> Update time: 4 hr  n/a |
 | P4 | Minor | Component failure that is not immediately service impacting | Start work & respond: 1 business day <br/><br/> Update time: 2 business days | n/a |
@@ -68,7 +68,7 @@ You can access our [support ticketing tool Deskpro here](https://gaap.deskpro.co
 
 If you don’t have an account ask Urmi to add you. You can adjust your notifications yourself.
 
-### Tips and good practice
+### Tips and good practice.
 
 * Try to keep a descriptive name in the deskpro cards. If the user added a not very descriptive name (e.g failure pushing app), change it to something that uniquely identifies the story (e.g failure pushing app: invalid mode 0444).
 Always notify the tenant about this change and why it is done.
@@ -116,14 +116,16 @@ Ensure that we schedule the post mortem and publish our incident report Draft th
 
 [PaaS Emergency contacts and escalations document](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing) *(restricted access)* provides useful contact information for escalations for out of hours support.
 
-## When the incident is over
+
+## When the incident is over.
 
 ### Incident Report
 The [incident report template](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/155yrsyhHM9Feh-ucxLzyj7toIb2sMK8KiGVdEFLcyfQ/edit?usp=sharing) gives some guidance about how to complete it.
 
 The incident lead and incident comms should ensure that the report is completed and that all relevant details are in the timeline.
 
-### Incident Review meeting
+
+### Incident Review meeting.
 
 This is a no-blame retro of the incident. See [blameless postmortems](https://codeascraft.com/2012/05/22/blameless-postmortems/) for some background.
 
@@ -148,7 +150,9 @@ Create a copy of our factual incident report which can be edited for publication
 The GaaP comms team will edit to ensure it is suitable for the audience. This will include our users who are often developers, and will also include non-tech people. The comms team will want to pair with a member of the PaaS team on this rewrite, and have it fact checked. This could be PM/DM/TA/TL or someone that they suggest.
 The comms team will agree publication with the cabinet office press office.
 
-## Escalations
+
+## Escalations.
+
 If there is a P1 incident, the GaaP team will have been informed via the GaaP incidents email list, and will be kept updated via the PaaS Announce email list.
 
 If an incident needs to be escalated beyond the PaaS team, the incident comms person will contact people in the following order:
