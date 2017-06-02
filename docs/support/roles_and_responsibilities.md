@@ -10,8 +10,6 @@ If you are on in-hours support, add your shift onto the #the-government-paas sla
 ## Expectations
 The broad response times and action that our users expect from us are documented in the [PaaS Support Overview (Gdoc)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1FLiKPmM61ikO1MJNo96YpxGaYPUMb8CdAcWPnzBBa0U/edit?usp=sharing), and [Product pages](https://www.cloud.service.gov.uk/support.html). Please read it so you know what they expect. These expectations are different for in-hours and out of hours support.
 
-*Out of hours expectations are different for waking hours and overnight.*
-
 ## In-hours
 For in-hours support, if you need to take a break for lunch or essential meetings etc, make sure you tell people ahead of time, and arrange for a colleague to cover for you. All other members of the team are responsible for providing assistance to the support person as needed. If you don’t feel comfortable asking your colleagues, talk to the delivery manager or team lead who can help.
 
@@ -43,8 +41,8 @@ The Out of hours Support Lead is responsible for
 * Doing what is needed to ensure the platform is available, not necessarily fixing or diagnosing the root cause.
 * Telling the escalation person if we need to put out tenant comms before morning.
 * Involve other people if needed NO HEROICS, do not deploy if unsure. Some things are not a one person decision
-noting what has been done in a [support week document (Gdoc)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1tC5G48uHnlu-qK9oGGx85QrArZSJRuFNKV2kKtFsVck/edit?usp=sharing)
-* having a support handover meeting at the beginning and end of the support week
+* Noting what has been done in a [support week document (Gdoc)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1tC5G48uHnlu-qK9oGGx85QrArZSJRuFNKV2kKtFsVck/edit?usp=sharing)
+* Having a support handover meeting at the beginning and end of the support week
 
 ## Escalations responsibitilities
 The Escalations Out of hours person is responsible for
