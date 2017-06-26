@@ -110,15 +110,16 @@ on GitHub, so that someone else doesn't duplicate effort.
 Once review is complete, and all status checks have passed (Travis etc),
 a pull request can be merged.
 
-PRs to the [paas-cf][] repository should be merged using a GPG signed commit.
+PRs to the [paas-cf][] and [paas-bootstrap][] repositories should be merged using a GPG signed commit.
 This means that merges can't be done in the Github UI - they have to be done locally,
-using the `merge_pr` make task.
+using the `merge_pr` make task in each repository.
 
-We only use signed revisions of [paas-cf][] from our concourse pipelines. This is enforced
-by the gpg functionality in [paas-git-resource][]. We may require signing merges in other
+We only use signed revisions of [paas-cf][] and [paas-bootstrap][] from our concourse pipelines.
+This is enforced by the gpg functionality in Concourse Git resource. We may require signing merges in other
 repositories in future.
 
 [paas-cf]: https://github.com/alphagov/paas-cf
+[paas-bootstrap]: https://github.com/alphagov/paas-bootstrap
 [paas-git-resource]: https://github.com/alphagov/paas-git-resource
 
 ## Initial setup for signing commits
