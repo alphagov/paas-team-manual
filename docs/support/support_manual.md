@@ -77,7 +77,7 @@ Always notify the tenant about this change and why it is done.
 * Let the user know that they can always reopen the ticket if required.
 
 ## Incident Process
-This section covers incidents and outages where the priority is to ensure HA service, it gives an overview of what you should be aware of before you are faced with an incident.
+This section covers incidents and outages where the priority is to ensure HA service, it gives an overview of what you should be aware of before you are faced with an incident. It also outlines how to manage incident comms.
 
 *Triaging and responding to security vulnerabilities is below [TODO]*
 
@@ -109,11 +109,10 @@ Ensure that we schedule the post mortem and publish our incident report Draft th
 ### If you’re incident comms:
 
 1. Let the PaaS team know about the incident on #the-government-paas Slack channel
-2. Send a summary of the incident as soon as possible to the [GaaP incidents email list](gaap-incidents@digital.cabinet-office.gov.uk) (this tells the GaaP team and a few others - internal to GDS - including IA team members). See the instructions below for what to include.
-3. Log in to our [Statuspage account](https://www.statuspage.io/). This is where you will send the incident alert email from, using the [saved templates](https://manage.statuspage.io/pages/h4wt7brwsqr0)
-4. Follow the [Notifying Tenants]((https://government-paas-team-manual.readthedocs.io/en/latest/team/notifying_tenants/)) guidelines for writing and sending the incident alert to tenants
-5. Update tenants hourly using the templates saved in our account.
-6. Ensure that all decisions/comms are in the timeline of the incident report.
+2. Send a summary of the incident as soon as possible to the [GaaP incidents email list](gaap-incidents@digital.cabinet-office.gov.uk) (this tells the GaaP team and a few others - internal to GDS - including IA team members).
+3. Log in to our [Statuspage account](https://www.statuspage.io/). This is where you will send the incident alert email from, using the [saved templates](https://manage.statuspage.io/pages/h4wt7brwsqr0).
+5. Update tenants hourly using the templates saved in our statuspage account.
+6. Ensure that all decisions/comms are entered into the timeline section of the incident report.
 
 [PaaS Emergency contacts and escalations document](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing) *(restricted access)* provides useful contact information for senior GaaP management escalations for out of hours support.
 
