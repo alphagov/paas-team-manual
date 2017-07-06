@@ -16,7 +16,7 @@ We’re supporting live services, teams who are using PaaS for prototyping and i
 
 TO BE COMPLETED (e.g. Concourse build status, User impact dashboard + datadog dashboard, New support cases in deskpro/your mail).
 
-### Alerting out of hours.
+### Alerting out of hours
 
 These are the things we support out of hours:
 
@@ -45,7 +45,7 @@ The following questions should be answered when triaging/prioritising:
 * In the event that none of the above people are available, you should use the triage questions to make a decision based on the information you have at the time.
 
 ## Severity Levels
-We classify issues by their impact to users (tenants and their users, PaaS team) and react accordingly. This allows us to set expectations about how we will work, and what other teams should expect.
+We classify issues by their impact to users (tenants and their users, and the PaaS team) and react accordingly. This allows us to set expectations about how we will work, and what other teams should expect.
 
 For most types of issue, our priority is to ensure high availability of the service.
 
@@ -67,9 +67,9 @@ You can access our [support ticketing tool Deskpro here](https://gaap.deskpro.co
 
 If you don’t have an account ask Urmi to add you. You can adjust your notifications yourself.
 
-### Tips and good practice.
+### Tips and good practice
 
-* Try to keep a descriptive name in the deskpro cards. If the user added a not very descriptive name (e.g failure pushing app), change it to something that uniquely identifies the story (e.g failure pushing app: invalid mode 0444).
+* Try to keep a descriptive name in the Deskpro cards. If the user added a not very descriptive name (e.g failure pushing app), change it to something that uniquely identifies the story (e.g failure pushing app: invalid mode 0444).
 Always notify the tenant about this change and why it is done.
 * Try to close the tickets if there is no action required from us.
 * If we are waiting for a card in the backlog, add add note in the card to saying that we need to inform the user once is done and accepted.
@@ -77,28 +77,30 @@ Always notify the tenant about this change and why it is done.
 * Let the user know that they can always reopen the ticket if required.
 
 ## Incident Process
-This section covers incidents and outages where the priority is to ensure HA service, it gives an overview of what you should be aware of before you are faced with an incident.
+This section covers incidents and outages where the priority is to ensure HA service, it gives an overview of what you should be aware of before you are faced with an incident. It also outlines how to manage incident comms.
 
 *Triaging and responding to security vulnerabilities is below [TODO]*
 
-### If we’re having an incident.
+### If we’re having an incident
 
-1. Nominate an incident lead (this may be you)
-2. Nominate an incident comms person (during OOH this can be the person on the PaaS escalation rota)
-3. Join #paas-incident on Slack
-4. Get on with understanding and fixing the issue
+If you are on support when an incident happens, you should:
 
-The incident lead, comms and anyone else needed to work on the incident will form the incident team.
+1. nominate an incident lead (this may be you)
+2. nominate an incident comms person (during OOH this can be the person on the PaaS escalation rota)
+3. join #paas-incident on Slack
+4. get on with understanding and fixing the issue
+
+The incident lead, comms person and anyone else needed to work on the incident will form the incident team.
 
 The incident team can request support from any other members of the PaaS team and fixing the incident is usually more important than routine meetings (1 to 1s, retrospectives, planning, etc).
 
 ### If you’re the incident lead:
 
-Start making notes of what you’re doing - the #paas-incident Slack channel is the best place for this - so that the incident comms can start putting them in the incident report. Note, slack messages can start to disappear after a few days.
+Start making notes of what you’re doing - the #paas-incident Slack channel is the best place for this - so that the incident comms can start putting them in the incident report. It's worth bearing in mind that Tenants may know there's a problem and may join this channel. Also note, slack messages can start to disappear after a few days.
 
 Decide if you need people to help, and ask for them to come over and sit with you. Many people can investigate at the same time, but only the incident lead should be making changes to production.
 
-Consult the product manager and delivery manager to decide when the matter is not longer impacting the service, and is therefore resolved, or can be downgraded
+Consult the product manager and delivery manager to decide when the matter is not longer impacting the service, and is therefore resolved, or can be downgraded.
 
 Create a pivotal story to track our response to the incident. This should be used to keep a record of what we do to resolve the problem.
 
@@ -106,25 +108,25 @@ Ensure that we schedule the post mortem and publish our incident report Draft th
 
 ### If you’re incident comms:
 
-1. Let the PaaS team know on #the-government-paas Slack channel
-2. Send a summary of the incident as soon as possible to the [GaaP incidents email list](gaap-incidents@digital.cabinet-office.gov.uk) (this tells the GaaP team and a few others - internal to GDS - includes IA team members). See the instructions below for what to include.
-3. Send a summary of the incident to our tenants. For guidelines follow instructions under [Notifying tenants](https://government-paas-team-manual.readthedocs.io/en/latest/team/notifying_tenants/)
-4. Update tenants hourly using the instructions above.
-5. Update the [PaaS status page](https://status.cloud.service.gov.uk/) by logging into [Statuspage.io](https://manage.statuspage.io/pages/h4wt7brwsqr0)
-6. Ensure that all decisions/comms are in the timeline of the incident report.
+1. Let the PaaS team know about the incident on #the-government-paas Slack channel
+2. Send a summary of the incident as soon as possible to the [GaaP incidents email list](gaap-incidents@digital.cabinet-office.gov.uk) (this tells the GaaP team and a few others - internal to GDS - including IA team members).
+3. Log in to our [Statuspage account](https://www.statuspage.io/). This is where you will send the incident alert email from, using the [saved templates](https://manage.statuspage.io/pages/h4wt7brwsqr0).
+5. Update tenants hourly using the templates saved in our statuspage account.
+6. Ensure that all decisions/comms are entered into the timeline section of the incident report.
 
-[PaaS Emergency contacts and escalations document](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing) *(restricted access)* provides useful contact information for escalations for out of hours support.
+[PaaS Emergency contacts and escalations document](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing) *(restricted access)* provides useful contact information for senior GaaP management escalations for out of hours support.
 
 
-## When the incident is over.
+## When the incident is over
+
+When the problem has been fixed, check that our [status page](https://status.cloud.service.gov.uk/) is showing that the PaaS is operational.
 
 ### Incident Report
 The [incident report template](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/155yrsyhHM9Feh-ucxLzyj7toIb2sMK8KiGVdEFLcyfQ/edit?usp=sharing) gives some guidance about how to complete it.
 
 The incident lead and incident comms should ensure that the report is completed and that all relevant details are in the timeline.
 
-
-### Incident Review meeting.
+### Incident Review meeting
 
 This is a no-blame retro of the incident. See [blameless postmortems](https://codeascraft.com/2012/05/22/blameless-postmortems/) for some background.
 
@@ -142,6 +144,7 @@ This decision should be made by two of DM/PM/TL/TA.
 By default we publish Incident Reports on the [GaaP Blog](https://governmentasaplatform.blog.gov.uk/) unless there is a good reason not to. This approach is consistent across Data Group - it is similar to how GOV.UK publishes its reports. It sets a good example and demonstrates openness, which is a good thing. We just need to make sure we consider any negative ramifications.
 
 The only incidents for which this is not automatically true are for security incidents which need to be carefully considered in order to ensure that no further harm could be caused by publishing these.
+
 ### Editing for publication
 
 Create a copy of our factual incident report which can be edited for publication and send it to Nettie in the GaaP comms team.
@@ -150,9 +153,9 @@ The GaaP comms team will edit to ensure it is suitable for the audience. This wi
 The comms team will agree publication with the cabinet office press office.
 
 
-## Escalations.
+## Escalations
 
-If there is a P1 incident, the GaaP team will have been informed via the GaaP incidents email list, and will be kept updated via the PaaS Announce email list.
+If there is a P1 incident, the GaaP programme team will have been informed via the GaaP incidents email list, and will be kept updated via the PaaS Announce email list.
 
 If an incident needs to be escalated beyond the PaaS team, the incident comms person will contact people in the following order:
 
@@ -163,7 +166,7 @@ The person contacted above will decide if they need to alert a member of the GDS
 
 * David Lewis - Director for GDS Portfolio Group
 
-The contact details above information as well as useful contacts can be found in
+The contact details for the above people, as well as useful contacts, can be found in
 [PaaS Emergency contacts and escalations (restricted access)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing)
 
 ## Useful links

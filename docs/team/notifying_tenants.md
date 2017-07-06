@@ -1,19 +1,31 @@
 # Notifying tenants
 
-Every now and then, we need to let our tenants know something has happened or will happen on the platform. For example:
+Every now and then, we need to let our tenants know that something has happened or will happen on the platform. For example, letting teams know about security fixes, CF/stemcell/buildpack upgrades, new features and incidents.
 
-* security problems and fixes
-* upgrades of CF, stemcells, buildpacks
-* incident reports
-* ongoing incidents
+Depending on what it is we want to tell users, we have two different channels for sending these notifications:
 
-## Email draft
+* incident alerts and reports are sent using [our Statuspage account](https://manage.statuspage.io/pages/h4wt7brwsqr0)
+* changes, fixes and upgrades are sent using the [GOV.UK PaaS Announce Google group](https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce)
+* new feature announcements are sent using the [GOV.UK PaaS Announce Google group](https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce)
 
-Write a draft email using a [template](#templates) as required and share it for example in [Google Docs](https://drive.google.com/drive/folders/0Bw4pWpR0IbJfWGFEMVBBZlFsSDQ).
+## Sending incident alerts and updates
 
-Then get someone else on the team to proofread it.
+Follow the guidance in [this section](https://government-paas-team-manual.readthedocs.io/en/latest/support/support_manual/#if-youre-incident-comms) of the team manual if you're managing incident comms and you need to send alerts and updates to tenants. 
 
-## Send the email
+## Sending platform change and new feature announcements
+
+### Changes, upgrades and fixes
+
+Write a draft email and share it [here.](https://drive.google.com/drive/folders/0Bw4pWpR0IbJfWGFEMVBBZlFsSDQ)
+
+Get Tom or Jess to proof-read and add any 'product-y' elements - we want to make sure our notifications are consistent and meet the GDS style guidelines. If the email is time-sensitive and Tom/Jess are not around, get another member of the team to proof-read the email before it's sent.
+
+### Announcing new features
+
+These announcements are our chance to showcase how we're developing GOV.UK PaaS and will be written and sent by the product managers. Tom/Jess may ask the team member who worked on the story to provide some technical details that can be inclued in the email. 
+
+
+## Sending notification emails to tenants
 
 Use the [google group interface](https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce) to send the email.
 
@@ -25,171 +37,8 @@ Ex: "Incident with..."
 one way communication
 * Body: paste the content of the reviewed draft. You may have to adjust formatting.
 
-## Templates
 
-In general you can follow this basic format:
-
-* What we are doing
-* Why we are doing it
-* How it affects/benefits the Tenant and their users 
-* Action the user needs to take
-
-The equivalent for incidents would be:
-
-* What is happening (that we know)
-* What we are doing
-* Any action the user should take (or things we know they *shouldn't* do)
-
-
-### We're having an incident email template
-
-####   Email subject
-
-This should start with ‘IMPORTANT:’
- 
-_[If possible, be specific about what the problem is or the problem that the end user might be experiencing, ie:]_ 
- 
-* IMPORTANT: problem accessing the GOV.UK PaaS API
-* IMPORTANT: problem affecting GOV.UK PaaS applications
-* IMPORTANT: GOV.UK PaaS outage
- 
-_[If it’s not possible to be specific or we don’t know what the cause/effect is, use:]_
- 
-* IMPORTANT: problem with GOV.UK PaaS
-
-####   Email body
-
-We are aware of and investigating a problem with GOV.UK PaaS.
- 
-_[Where known, explain what we know about what the issue is and how it affects Tenants and their users. For the latter, you could use:]_
-
-* Your users can’t access your service
-* Your website/service is down and unavailable to your users
-* Some user requests may fail
-* Your users can only access your service intermittently
-* [API down] ...which means you can’t update/access your service
-* You won’t be able to access your applications
-* You’re not receiving any metrics for your service
-* You’re receiving a high number of error messages
-* You’re experience high error rates
-
- 
-_[If applicable, summarise any action Tenants should or shouldn’t take.]_
- 
-We’re looking into this as a matter of urgency and will update you as soon as we know more. 
- 
-Regards,
- 
-_[Name and role of person handling incident comms]_ 
-
-GOV.UK PaaS team
-
-
-
-### Update during an incident email template
-
-####   Email subject
-
-UPDATE: _[This should duplicate the content of the first incident notification email subject - unless this wasn’t specific, in which case we should amend it to say what the problem is, ie:]_
-
-* UPDATE: problem accessing the GOV.UK PaaS API
-* UPDATE: problem affecting GOV.UK production applications
-
-####   Email body
-
-We are actively working on the issue of _[summarise problem that was established in the first notification email.]_
-
-We have _[explain **what we’ve done** to investigate and **what steps we’ve taken** so far to resolve the issue.]_
-
-_[If relevant, describe any:_
- 
-* _action users should take_ 
-* _action users shouldn’t take_
-* _workarounds that would help users]_
-
-Fixing this issue is our priority - we know that this has impacted on the service you provide and we’re doing everything we can to resolve it as quickly as possible. 
- 
-We’ll continue to update you as we know more, and we’ll let you know as soon as the problem has been resolved.
- 
-We’re sorry for the inconvenience that this has caused to your users and your team. 
- 
-If you need to contact us for help or anything else, please email us via gov-uk-paas-support@digital.cabinet-office.gov.uk 
-
-Regards,
-
-_[Name and role of person handling incident comms]_
-
-GOV.UK PaaS team
-
-
-### Further updates during an incident email template
-
-####   Email subject
-
-UPDATE: _[This should duplicate the content of the first update email subject]_.
-
-####   Email body
-
-Hello,
-
-We are still working to resolve the issue of _[summarise problem that was established in the first notification email.]_
-
-
-Since our last update, we have _[explain what we’ve done to a) investigate and b) resolve the issue since the last update email.]_
- 
-_[If relevant, describe any:_
- 
-* _new action users should take_ 
-* _new action users shouldn’t take_
-* _workarounds that would help users]_
- 
-We’ll continue to update you as we know more, and we’ll let you know as soon as the problem has been resolved.
- 
-Once again, we’re sorry for the inconvenience that this has caused to you and your users. 
- 
-If you need to contact us for help or anything else, please email us via gov-uk-paas-support@digital.cabinet-office.gov.uk
-
-Regards,
-
-_[Name and role of person handling incident comms]_
-
-GOV.UK PaaS team
-
-
-
-### We've resolved the incident email template
-
-####   Email subject
-
-RESOLVED: _[This should duplicate the content of the previous update email subject]_
- 
-####   Email body 
- 
-Hello,
- 
-We’ve resolved the issue that affected GOV.UK PaaS today, and full service has been restored to development and production applications running on the platform.
- 
-_[Describe what the issue was and how it affected Tenants and their users.]_
- 
-_[Describe the actions we took to fix the problem - there’s no need to include everything we tried or investigated, just the actions that led to us resolving the incident.]_
- 
-We’ll now start looking into why and how this happened. In the coming days, we’ll publish an incident report describing the timelines of the event, root cause of the problem, lessons we’ve learned and actions we’ll take to ensure it doesn’t happen again.  
- 
-I’m sorry for the impact that this has had on your users and the service you provide, and the problems this has caused for your team. 
- 
-_[If there’s an outage, add the following to the sentence above:]_
- 
-Making sure GOV.UK PaaS is constantly available and robust is our priority and we’ll be doing everything we can to minimise the possibility of outage in the future.
- 
-The quickest way to get help using the platform is to email us via gov-uk-paas-support@digital.cabinet-office.gov.uk.	To let us know how this incident has affected you, please contact the GOV.UK PaaS product managers: tom.dolan@digital.cabinet-office.gov.uk and jessica.o’leary@digital.cabinet-office.gov.uk. 
-
-Regards,
-	
-_[Name and role of person handling incident comms]_
-
-GOV.UK PaaS team
-
-### CF upgrade
+### CF upgrade email template
 
 Subject (ex): GOV.UK PaaS - Cloud Foundry changes - 17th March 2017
 
@@ -199,3 +48,6 @@ The body should contain:
  - Downtime or service impact if any
  - Summary of buildpack changes. In order to retrieve the buildpack notes, you can use the script:
 `paas-cf/scripts/generate_buildpack_release_notes.sh`
+
+
+**NB Incident comms email templates are saved in Statuspage.** 
