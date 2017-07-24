@@ -109,8 +109,8 @@ Ensure that we schedule the post mortem and publish our incident report Draft th
 ### If you’re incident comms:
 
 1. Let the PaaS team know about the incident on #the-government-paas Slack channel
-2. Send a summary of the incident as soon as possible to the [GaaP incidents email list](gaap-incidents@digital.cabinet-office.gov.uk) (this tells the GaaP team and a few others - internal to GDS - including IA team members).
-3. Log in to our [Statuspage account](https://www.statuspage.io/). This is where you will send the incident alert email from, using the [saved templates](https://manage.statuspage.io/pages/h4wt7brwsqr0).
+2. Tell internal stakeholders: send a summary of the incident as soon as possible to the [GaaP incidents email list](gaap-incidents@digital.cabinet-office.gov.uk) (this tells the GaaP team and a few others - internal to GDS - including IA team members).
+3. Tell tenants: log in to our [Statuspage account](https://www.statuspage.io/). This is where you will send the incident alert email from, using the [saved templates](https://manage.statuspage.io/pages/h4wt7brwsqr0).
 5. Update tenants hourly using the templates saved in our statuspage account.
 6. Ensure that all decisions/comms are entered into the timeline section of the incident report.
 
