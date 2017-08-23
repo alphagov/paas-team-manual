@@ -45,12 +45,12 @@ sts() {
 
 along with an alias per account:
 ```
-alias aws_ci='
+alias aws_staging='
 export AWS_DEFAULT_REGION=eu-west-1
-export DEPLOY_ENV="master"
-export AWS_ACCOUNT="ci"
-export AWS_ACCESS_KEY_ID=$(pass aws/ci/id)
-export AWS_SECRET_ACCESS_KEY=$(pass aws/ci/secret)
+export DEPLOY_ENV="staging"
+export AWS_ACCOUNT="staging"
+export AWS_ACCESS_KEY_ID=$(pass aws/staging/id)
+export AWS_SECRET_ACCESS_KEY=$(pass aws/staging/secret)
 sts
 '
 ```
