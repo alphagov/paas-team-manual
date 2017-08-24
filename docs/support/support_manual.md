@@ -179,6 +179,6 @@ The contact details for the above people, as well as useful contacts, can be fou
 * [Prod pipeline](https://deployer.cloud.service.gov.uk)
 * [Prod metrics](https://metrics.cloud.service.gov.uk/dashboard/file/user-impact.json)
 * [Prod logs](https://logsearch.cloud.service.gov.uk)
-* [All pipelines dashboard](http://dsingleton.github.io/frame-splits/index.html?title=&layout=3row&url%5B%5D=https%3A%2F%2Fdeployer.master.ci.cloudpipeline.digital%2F&url%5B%5D=https%3A%2F%2Fdeployer.staging.cloudpipeline.digital%2F&url%5B%5D=https%3A%2F%2Fdeployer.cloud.service.gov.uk%2F&url%5B%5D=)
+* [All pipelines dashboard](http://dsingleton.github.io/frame-splits/index.html?title=&layout=2row&url%5B%5D=https%3A%2F%2Fdeployer.staging.cloudpipeline.digital%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&url%5B%5D=https%3A%2F%2Fdeployer.cloud.service.gov.uk%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&url%5B%5D=https%3A%2F%2Fdeployer.cloud.service.gov.uk%2F&url%5B%5D=)
 * [Monitor summary](https://paas-dashboard.cloudapps.digital/paas-overview)
 * Fourth wall (PR dashboard): https://alphagov.github.io/fourth-wall/?token=${GITHUB_API_TOKEN}&team=alphagov/team-government-paas-readonly&github.gds_token=${GITHUB_GDS_API_TOKEN}&github.gds_team=government-paas/read-only (insert github readonly account tokens)
