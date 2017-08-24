@@ -27,16 +27,11 @@ blockdiag {
     label = 'Changes merged into\ngit master branch\nby reviewer'
   ];
 
-  ci [
-    height = '140',
-    width  = '160',
-    shape = 'diamond',
-    label = 'Automated\ntesting in\nCI environment\n- smoke\n- acceptance'
-  ];
-
   staging [
-    height = '80',
-    label = 'Deployed to \nstaging \nenvironment'
+    height = '140',
+    width  = '180',
+    shape = 'diamond',
+    label = 'Automated testing\nin staging\nenvironment\n- smoke\n- acceptance'
   ];
 
   prod [
@@ -51,15 +46,15 @@ blockdiag {
   ];
 
   # happy path
-  backlog -> devwork -> pr -> merge -> ci -> staging -> prod -> signoff;
+  backlog -> devwork -> pr -> merge -> staging -> prod -> signoff;
 
-  merge -> ci [ folded ];
+  merge -> staging [ folded ];
 
   # PR feedback
   pr -> devwork [ label = 'feedback', fontsize = 9];
 
   # fail in CI
-  ci -> devwork [ label = 'failures', fontsize = 9];
+  staging -> devwork [ label = 'failures', fontsize = 9];
 
   # Key
   personstep -> persongate -> automatedgate -> automatedstep;
