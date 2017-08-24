@@ -9,15 +9,11 @@ seqdiag {
 
   reviewer -> master [ label = "merge" ];
 
-  master -> cienv [ label = "new commit triggers\ngit resource\nto deploy from master" ]; 
+  master -> stageenv [ label = "new commit triggers\ngit resource\nto deploy from master" ]; 
 
-  cienv -> cienv [ label = "deploy or\ntests fail\n do nothing" ];
+  stageenv -> stageenv [ label = "deploy or\ntests fail\n do nothing" ];
 
-  cienv -> master [ label = "on success\ntags commit for release\nto staging", return = "return"  ];
-
-  master -> stageenv [ label = "git resource is triggered by and deploys new staging tag" ];
-
-  stageenv -> master [ label = "tag for release\nto prod", return = "return"  ];
+  stageenv -> master [ label = "on success\ntags commit for release\nto prod", return = "return"  ];
 
   master -> prodenv [ label = "git resource is triggered by and deploys new prod tag" ];
   
@@ -30,8 +26,6 @@ seqdiag {
   reviewer [ color = "salmon"];
 
   master [ label = "git master branch" ];
-
-  cienv [ label = "CI\nenvironment" ];
 
   stageenv [ label = "staging\nenvironment" ];
 

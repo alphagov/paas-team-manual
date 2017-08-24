@@ -10,10 +10,10 @@
   branches
 - The changes are [reviewed](#pull-requests) by an engineer
 - The reviewer merges the changes into the master branch of the repository
-- The latest revision of the code is automatically tested using the Cloud
-  Foundry smoke and acceptance tests to ensure that basic user functions still
-  work.
-- The changes are deployed to the staging and production environments.
+- The latest revision of the code is automatically tested on staging using the
+  Cloud Foundry smoke and acceptance tests to ensure that basic user functions
+  still work.
+- The changes are deployed to the production environment.
 
 The diagram below shows how this process is implemented using git tags. It does
 not show some planned improvements, such as using git commit signatures to
