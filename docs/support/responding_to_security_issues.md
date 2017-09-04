@@ -20,6 +20,17 @@ Periodically we will learn of a security issue affecting CloudFoundry or our sup
 
 ## How to triage an issue
 
+### Stemcell upgrades
+
+If the mitigation to the security issue is to upgrade the stemcell, you should
+apply the upgraded stemcell to a dev environment as a first step. While you are
+waiting for the upgraded stemcell to be applied, the issue can be triaged. If
+the upgrade applies successfully, a PR can be raised to upgrade the stemcell. If
+it does not apply successfully, we should prioritise the upgrade based on the
+severity of the CVE
+
+### Other issues
+
 1. If possible locate the original CVE report
 1. Identify each component of CF and our supporting systems that is affected by the issue
 1. Confirm we are vulnerable by reproducing the security issue on a suitable environment
