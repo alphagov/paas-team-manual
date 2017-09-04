@@ -31,12 +31,11 @@ To get the URL for our dashboard, you can use these commands:
 
 ```
 export GITHUB_API_TOKEN=<your github access token>
-export GITHUB_GDS_API_TOKEN=<your github.digital.cabinet-office.gov.uk access token>
 
-echo "https://alphagov.github.io/fourth-wall/?token=${GITHUB_API_TOKEN}&team=alphagov/team-government-paas-readonly&github.digital.cabinet-office.gov.uk_token=${GITHUB_GDS_API_TOKEN}&github.digital.cabinet-office.gov.uk_team=government-paas/read-only"
+echo "https://alphagov.github.io/fourth-wall/?token=${GITHUB_API_TOKEN}&team=alphagov/team-government-paas-readonly"
 ```
 
-Replace the placeholders with read-only [access tokens](https://github.com/blog/1509-personal-api-tokens) from github and github.digital.cabinet-office.gov.uk.
+Replace the placeholders with read-only [access tokens](https://github.com/blog/1509-personal-api-tokens) from GitHub.
 
 You can store those variables in a [password manager like `paas`](https://www.passwordstore.org/) and load then as needed.
 
