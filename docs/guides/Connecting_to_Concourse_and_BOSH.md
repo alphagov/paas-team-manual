@@ -12,21 +12,50 @@ make ssh_concourse
 
 ### Primary solution: use a Concourse task
 
-A Makefile task in `paas-cf` connects you to a one-off task in concourse that's already logged into bosh and has the deployment set using the CF manifest:
+A Makefile task in `paas-cf` connects you to a one-off task in Concourse that's already logged into BOSH and has the deployment set using the CF manifest:
 
 ```
 make dev bosh-cli
 ```
 
-### Backup solution: tunnel BOSH commands through SSH
+### Backup solution: tunnel BOSH commands through the Concourse VM
 
-If you can't use the task on Concourse, you can tunnel local `bosh` commands to the deployment's BOSH. 
+If the Concourse VM is running but you can't use a Concourse task, you can still use the Concourse VM as a gateway to access the BOSH.
 
-1. First install `bosh` with `gem install bosh_cli`.
-2. Second [establish an SSH connection to the BOSH VM](#ssh-into-the-bosh-vm).
-3. Third run the `scripts/bosh_cli_tunnel.sh` script in `paas-cf`. This forwards the BOSH port, logs you into BOSH and and drops you into a `bash` session to run `bosh` commands:
+`cd` into the `paas-cf` directory, save the below as a script and run it. This tunnels through the Concourse VM, SSH forwards the BOSH port to the BOSH VM, logs you into BOSH and and drops you into a `bash` session to run `bosh` commands:
 
-Alternatively you can append `-L 25555:localhost:25555` to the SSH commands in order to establish the tunnel, and login to BOSH manually.
+```bash
+#!/bin/bash
+
+set -eu
+
+trap 'make dev stop-tunnel; rm -f /tmp/manifest.yml' EXIT
+
+echo "Making SSH tunnel to Bosh..."
+make dev tunnel TUNNEL=25555:10.0.0.6:25555
+
+echo
+BOSH_PASSWORD=$(aws s3 cp "s3://gds-paas-${DEPLOY_ENV}-state/bosh-secrets.yml" - | awk '/bosh_admin_password/ {print $2}')
+bundle exec bosh -t localhost login admin -- "${BOSH_PASSWORD}"
+bundle exec bosh target localhost
+
+echo
+echo "Downloading CloudFoundry manifest..."
+aws s3 cp "s3://gds-paas-${DEPLOY_ENV}-state/cf-manifest.yml" /tmp/manifest.yml
+bundle exec bosh deployment /tmp/manifest.yml
+
+echo
+echo "INSTRUCTIONS"
+echo "You are now in a local shell"
+echo "The bosh CLI is logged into the remote BOSH"
+echo "Use 'bundle exec bosh' as your BOSH CLI commands"
+echo "e.g., bundle exec bosh vms"
+bash
+```
+
+### Backup solution: forward BOSH commands directly to the BOSH VM
+
+If the Concourse VM is down, you can achieve port forwarding by appending `-L 25555:localhost:25555` to SSH commands. See [the emergency instructions for SSHing into BOSH](#backup-method-connecting-directly-to-bosh).
 
 ---
 
@@ -40,26 +69,36 @@ In ordinary circumstances we use the Concourse VM as a gateway to access the BOS
 make ssh_bosh
 ```
 
-### Backup method: tunneling through a new VM
-
-Should the Concourse VM be overloaded or missing, we can create a new EC2 instance and use it as a gateway to the BOSH VM.
-
-Go into EC2 and create a new VM:
-
-* It must be on the VPC network of your deployment.
-* It may need to be on an `infra` subnet.
-* It must be assigned a public IP.
-* It must have both the `office-access-ssh` and `bosh-ssh-client` security groups. This gives SSH access from the GDS Office and SSH access to the BOSH VM.
-* It must use the `${DEPLOY_ENV}_key_pair` key pair for the script below to work.
-
-Use the `scripts/ssh_bosh_temporary_gateway.sh` script in `paas-cf` to SSH into the BOSH VM using this new VM as a gateway. You must first define the new VM's public IPv4 address as a `VM_IP` environment variable, for instance `VM_IP=53.33.78.122`.
-
-You should terminate the new VM once you're done.
-
-### Emergency method: connecting directly to BOSH
+### Backup method: connecting directly to BOSH
 
 If the Concourse VM is unavailable and creating new VMs is impossible or would take too long, you can make the BOSH VM accessible to our IP addresses. This should be a last-resort and temporary measure.
 
-Go into EC2 and add the `bosh/0` VM to the `office-access-ssh` security group. You should now be able to SSH to its public IP address using the `scripts/ssh_bosh_expose_vm.sh` script in `paas-cf`.
+Go into the AWS Web Console. Go into EC2 and add the `office-access-ssh` Security Group to the `bosh/0` VM. See the below screenshot for where to find Security Group settings.
+
+![Screenshot of where to find Security Group settings in the AWS Web Console for EC2](../img/where-to-change-security-groups-on-an-ec2-instance.png)
+
+This change allows you to SSH into the BOSH VM from the Office or VPN. To do that, save the below as a script and run it.
+
+```bash
+#!/bin/bash
+
+BOSH_KEY=/tmp/bosh_id_rsa.$RANDOM
+trap 'rm -f ${BOSH_KEY}' EXIT
+aws s3 cp "s3://gds-paas-${DEPLOY_ENV}-state/bosh_id_rsa" ${BOSH_KEY} && chmod 400 ${BOSH_KEY}
+
+BOSH_IP=$(aws ec2 describe-instances \
+              --filters 'Name=tag:Name,Values=*' "Name=key-name,Values=${DEPLOY_ENV}_bosh_ssh_key_pair" \
+              --query 'Reservations[].Instances[].PublicIpAddress' --output text)
+echo
+aws s3 cp "s3://gds-paas-${DEPLOY_ENV}-state/bosh-secrets.yml" - | \
+  ruby -ryaml -e 'puts "Sudo password is " + YAML.load(STDIN)["secrets"]["bosh_vcap_password_orig"]'
+echo
+
+SSH_OPTIONS='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ServerAliveInterval=60'
+# shellcheck disable=SC2086
+ssh ${SSH_OPTIONS} -i "${BOSH_KEY}" vcap@"${BOSH_IP}"
+```
 
 **Important: remove the `office-access-ssh` security group from `bosh/0` once you're done.**
+
+If you want to use the BOSH CLI, append `-L 25555:localhost:25555` to the final SSH command and then target the CLI at `localhost`.
