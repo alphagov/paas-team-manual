@@ -91,4 +91,4 @@ This is now in its [own section](incident_process).
 * [Prod logs](https://logsearch.cloud.service.gov.uk)
 * [All pipelines dashboard](https://dsingleton.github.io/frame-splits/index.html?title=&layout=2row&url%5B%5D=https%3A%2F%2Fdeployer.staging.cloudpipeline.digital%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&url%5B%5D=https%3A%2F%2Fdeployer.cloud.service.gov.uk%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&url%5B%5D=&url%5B%5D=)
 * [Monitor summary](https://paas-dashboard.cloudapps.digital/paas-overview)
-* Fourth wall (PR dashboard): https://alphagov.github.io/fourth-wall/?token=${GITHUB_API_TOKEN}&team=alphagov/team-government-paas-readonly&github.gds_token=${GITHUB_GDS_API_TOKEN}&github.gds_team=government-paas/read-only (insert github readonly account tokens)
+* Fourth wall (PR dashboard): `https://alphagov.github.io/fourth-wall/?token=${GITHUB_API_TOKEN}&team=alphagov/team-government-paas-readonly` (insert github readonly account token)
