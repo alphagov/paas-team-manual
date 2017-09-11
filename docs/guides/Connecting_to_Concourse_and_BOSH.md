@@ -57,6 +57,22 @@ bash
 
 If the Concourse VM is down, you can achieve port forwarding by appending `-L 25555:localhost:25555` to SSH commands. See [the emergency instructions for SSHing into BOSH](#backup-method-connecting-directly-to-bosh).
 
+### Using `bosh ssh`
+
+If using the backup solutions above, you have to specify a gateway when using `bosh ssh` commands. 
+
+If you're SSHed through Concourse:
+
+1. Set its public IP as `CONCOURSE_IP`.
+2. Download the Concourse SSH key with: `aws s3 cp "s3://gds-paas-${DEPLOY_ENV}-state/concourse_id_rsa" /tmp/concourse_id_rsa && chmod 400 /tmp/concourse_id_rsa`
+3. Append `--gateway_host "${CONCOURSE_IP}" --gateway_user vcap --gateway_identity_file /tmp/concourse_id_rsa` to `bosh ssh` commands.
+
+If you're SSHed directly into BOSH:
+
+1. Set its public IP as `BOSH_IP`.
+2. Download the BOSH SSH key with: `aws s3 cp "s3://gds-paas-${DEPLOY_ENV}-state/bosh_id_rsa" /tmp/bosh_id_rsa && chmod 400 /tmp/bosh_id_rsa`
+3. Append `--gateway_host "${BOSH_IP}" --gateway_user vcap --gateway_identity_file /tmp/bosh_id_rsa`to `bosh ssh` commands.
+
 ---
 
 ## SSH into the BOSH VM
