@@ -251,7 +251,7 @@ These stories have been reviewed, and code merged to master. The work in progres
 ### Done / Delivered
 _Work In Progress Limit : ∞_
 
-These stories have been accepted by an appropriate Approver. No limit on the ammount of stories that are done.
+These stories have been accepted by an appropriate Approver. No limit on the amount of stories that are done.
 
 # Creating and forking repos
 
