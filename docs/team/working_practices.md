@@ -34,11 +34,6 @@ team. We aim to rotate pairs regularly by:
 - joining someone on an existing story that doesn't have a pair instead of
   picking up new work
 
-Please tick the [pair stair][] on our board when you rotate so that rotation
-are evenly distributed.
-
-[pair stair]: http://pairstair.com/
-
 # Story kick-off
 
 Kick-offs are an opportunity to clarify the scope of a story and raise any
