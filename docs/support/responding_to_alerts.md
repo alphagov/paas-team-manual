@@ -26,12 +26,6 @@ the same time. For more information about CPU credits see:
 
 - <http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/t2-instances.html#t2-instances-cpu-credits>
 
-## BTRFS processes
-
-Sporadically concourse will fail due to an undiagnosed problem. When this occurs hundreds of `btrfs qgroup show` processes will continuously spawn and cause the system load to spike until concourse grinds to a halt. At this point the only thing that can be done is to shut down concourse and clear out the volumes from both the disk and the concourse database.
-
-We have automated this process, all you need to do is run `make $AWS_ACCOUNT shake_concourse_volumes` and the instance should recover. This is also known as "shaking concourse".
-
 ## CDN broker healthy
 
 The CDN broker has a healthcheck endpoint which confirms whether all of its
