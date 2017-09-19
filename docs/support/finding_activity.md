@@ -85,6 +85,13 @@ It would imply that a new app has been created and staged.
 
 There may be times, where we'd need to be troubleshooting or reviewing an API Access logs. Here is a list, of more relevant and interesting points to be concerned about:
 
+## Gorouter
+
+In kibana, filtering the `@source.component` to `gorouter` will show the access logs. Request details are also parsed to allow searches like:
+
+- `NOT gorouter.status: 200`
+- `gorouter.method: POST`
+
 ## Router HAProxy
 
 In Kibana, you can look for the following phrases, to filter the access logs.
