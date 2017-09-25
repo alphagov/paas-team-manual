@@ -38,13 +38,15 @@ is time for more detailed conversations immediately afterwards.
 - Planning is at the beginning of a sprint. Most of the stories
 will already be prioritised in the backlog and we don't do sizing. We'll
 talk about what's coming up and anything that we've missed.
-- Retrospective is at the end of a sprint. It's an opportunity
-to talk about what went well and what we can improve as a team. We review
-and record actions in [this document][].
-- Show & tell is at the end of a sprint. This is technical and
-for the purpose of knowledge sharing in the team, rather than people outside
-the team. We'll vote on stories from the last sprint that we want to hear
-more about and one person will present each, preferably with a demo.
+- Retrospective is at the end of a sprint. It's an opportunity to talk about
+  what went well and what we can improve as a team. We use this [trello
+board](https://trello.com/b/OlZbgdD9/paas-team-retro) to suggest things to talk
+about and record actions.
+- Knowledge share is at the end of a sprint. It is to share what we've learned
+  during the sprint, including technical detail. During the sprint, try to
+record things you want to hear more about or talk about in this [trello
+board](https://trello.com/b/dxThHq4T/team-knowledge-share) and one or two
+people present each, preferably with a demo.
 
 [this document]: https://docs.google.com/document/d/1u26sQTw1brR5KtnJ5M_zyhAw7wX8CCMB0lElvtHLVAI/edit
 
