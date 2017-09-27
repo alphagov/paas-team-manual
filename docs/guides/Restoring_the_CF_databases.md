@@ -32,8 +32,12 @@ AWS cannot restore a point-in-time backup or a snapshot to an existing RDS insta
 
 To create an instance using a point-in-time backup:
 
-1. Follow the AWS documentation on [restoring from a point in time](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html) to create a new RDS instance. This is best done in the AWS Console. You cannot restore the backup directly over the top of the currently running instance, despite the use of the word restore.
+1. Follow the AWS documentation on [restoring from a point in time](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html) to create a new RDS instance. This is best done in the AWS Console. You cannot restore the backup directly over the top of the currently running instance, despite the use of the word restore. Make a note of the database endpoint (hostname) while you are in the console, you will need that later to set up an SSH tunnel.
 2. The new instance will be created with the default security group. Use the console to [modify the instance](henry-cf-pivotal-149929492) to use the `${DEPLOY_ENV}-cf-rds` security group. This will allow you to access the instance by tunneling via Concourse.
+
+### Dev environments
+
+If you want to practice in a dev environment you can enable point-in-time recovery by increasing the [backup retention period in our terraform configuration](https://github.com/alphagov/paas-cf/blob/d83c3384f57fdf6b29cdaad2117dc47dc0da669d/terraform/dev.tfvars#L5). You will have to wait for snapshots to be generated though, so if it is time-sensitive the quickest method is triggering a snapshot manually in the AWS console and [restoring from the snapshot](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html).
 
 ## Restoring an individual table or database
 
@@ -47,11 +51,11 @@ Below are some generic instructions on restoring the CF RDS instance databases o
 # CHANGEME to your paas-cf directory
 cd /path/to/paas-cf
 
-# CHANGEME to the hostname of the RDS instance you
+# CHANGEME to the endpoint (hostname) of the RDS instance you
 # are restoring from. This can be found in the AWS console.
-db_hostname='some-db-instance-name.colgoy4debsd.eu-west-1.rds.amazonaws.com'
+db_endpoint='some-db-instance-name.colgoy4debsd.eu-west-1.rds.amazonaws.com'
 
-make tunnel TUNNEL=5432:${db_hostname}:5432
+make tunnel TUNNEL=5432:${db_endpoint}:5432
 ```
 
 **3.** The password for the instance created from a snapshot will be the same as the original:
@@ -81,13 +85,13 @@ docker run --rm -ti \
 **5.** Close the tunnel and create a new one to your CloudFoundry RDS instance:
 
 ```
-make stop-tunnel TUNNEL=5432:${db_hostname}:5432
+make stop-tunnel TUNNEL=5432:${db_endpoint}:5432
 
-db_hostname=$(
+db_endpoint=$(
   aws s3 cp s3://gds-paas-${DEPLOY_ENV}-state/cf.tfstate - \
   | jq -r '.modules[].outputs["cf_db_address"].value' \
 )
-make tunnel TUNNEL=5432:${db_hostname}:5432
+make tunnel TUNNEL=5432:${db_endpoint}:5432
 ```
 
 **6.** To restore into the CloudFoundry database you can use Docker, as per the instructions above, but swapping your `pg_dump` command for `pg_restore` with the necessary options:
