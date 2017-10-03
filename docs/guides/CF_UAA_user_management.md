@@ -67,14 +67,14 @@ If you only know part of the username:
 
 Sometimes it might be necessary to lock certain users. For example when we find out they have left GDS or don't have any more project to work on PaaS. CF has a facility to prevent users from logging in, while still preserving the user account with all their access rights and org membership. We do this as a first step in removing the user account. We then ask for confirmation from org managers (or managers of org managers in case we are removing an org manager) and only after confirmation finally remove the account completely (`cf delete-user`).
 
-In UAA terms, 'locking' the user/user account means the account is blocked by UAA after a number of unsuccessful attempts to authenticate. There is only a way to 'unlock' the account, but not lock. However, you can _disable_ the user, which means they can't log in:
-
-1. Get the user ID from [finding a user account](#finding-a-user-account).
-1. Get properties of user in json form: `bundle exec uaac curl /Users/<user_id> >u.json`
-1. Clean up the `u.json` file and keep only json properties of user.
-1. Edit user properties json - change `active` to `false`
-1. Update user:  `bundle exec uaac curl /Users/<user_id> -H 'content-type: application/json' -X PUT -H 'If-Match: *' -d "$(<u.json)"`
-1. Verify changes applied by checking state: `bundle exec uaac user get <name@digital.cabinet-office.gov.uk>`
+From [alphagov/paas-cf](https://github.com/alphagov/paas-cf):
+```
+cd scripts
+bundle install
+TARGET=$(cf curl /v2/info | jq -r .token_endpoint) \
+  TOKEN=$(cf oauth-token) \
+  bundle exec ./uaa_lock_user.rb <USERNAME>
+```
 
 ## Finding out org membership
 
