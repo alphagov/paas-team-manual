@@ -48,6 +48,17 @@ record things you want to hear more about or talk about in this [trello
 board](https://trello.com/b/dxThHq4T/team-knowledge-share) and one or two
 people present each, preferably with a demo.
 
+## Late for Standup
+
+Scary. Turning up late for the standup? How could such a thing happen.
+
+Missing standup, or being late, means you will miss out on updates on:
+
+* Team News (who is where today)
+* Product News (any significant developments worth knowing about)
+* Context on Work in Progress
+
+The last one is especially important, as the standup is a valuable way to crowdsource ideas on problems that people may be having with a story, and if you are not there, you can't help.
 
 # Hand Signals
 
@@ -74,3 +85,53 @@ Cloud Foundry, as a user | [Our getting started guide](https://docs.cloud.servic
 Cloud Foundry, for those managing it | | [Cloud Foundry presentation, written by the team](https://docs.google.com/presentation/d/1LkR4Y3jLBQ8uskKeLIyKtSKDoutnAvty-vSSGfVNXZU/view), an [older presentation from before the move to Diego archecture](https://docs.google.com/presentation/d/1sZH1Nn_GiYfpBtT6br_AnZn_dynLzvYizJ9aQ4Zc1Ww/view)
 Terraform | The terraform [intro](https://www.terraform.io/intro/index.html) | The intro also covers key concepts.
 
+# Inclusive language
+
+Diversity is important to us, as is inclusivity. To help create such an
+atmosphere we avoid the use of certain words.
+
+## Gender Specific Words
+
+| Gender Specific Words |
+|---	|---	|---	|---	|
+| guys | gents | chap | man |
+| he | girls | &nbsp; | &nbsp; |
+
+There is a great write up on the word [guys by Jessica
+Evans](http://jvns.ca/blog/2013/12/27/guys-guys-guys/) that helps explain why
+it isn't quite gender neutral.
+
+Another great reference article [the first rule of devops club by Bridget Kromhout](http://bridgetkromhout.com/blog/2014/11/03/the-first-rule-of-devops-club/)
+
+## Assumed expertise
+
+| Assumed expertise |
+|---	|---	|---	|---  |
+| just | obviously | trivial | &nbsp; |
+
+Whilst obviously these words are just trivial throwaway adjectives on the face
+of it, the reality is they assume expertise and can act to belittle
+contributions to a discussion. For example, using the word obviously can be a
+form of [Hindsight Bias](https://en.wikipedia.org/wiki/Hindsight_bias), some
+people reading this may know it, but others may not. Not so obvious right?
+
+If this language is used widely it can stop people contributing to discussions.
+It can make asking questions scary. This is bad.
+
+Another problem with these set of words is that it can lead to underestimation
+of effort by the team when effort is played down.
+
+### Anti People
+
+| Anti People |
+|---	|---	|---	|---	|
+| Resource(s) | &nbsp; | &nbsp; | &nbsp; |
+
+Classic Management 1.0 speak, reducing people to Resources. We should not be
+doing this.
+
+> Our thoughts shape our language, but our language also shapes our thoughts.
+> The zeroth step in creating humane workplaces is to start talking about the
+> people not resources.
+>
+> [Esther Derby](http://www.estherderby.com/2010/12/resources-dont-write-software-people-do.html)
