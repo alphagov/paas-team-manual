@@ -50,6 +50,14 @@ people present each, preferably with a demo.
 
 [this document]: https://docs.google.com/document/d/1u26sQTw1brR5KtnJ5M_zyhAw7wX8CCMB0lElvtHLVAI/edit
 
+# Hand Signals
+
+We use hand signals at our meetings to help make them more productive and
+accessible for every person on the team. You can find out more about how this
+works in practice by reading [our blog post][].
+
+[our blog post]: https://gds.blog.gov.uk/2016/10/07/platform-as-a-service-team-takes-even-handed-approach-to-meetings/
+
 # Learning
 
 We use a number of technologies and you may find it easier to learn about each
