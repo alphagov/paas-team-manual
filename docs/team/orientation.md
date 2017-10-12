@@ -48,7 +48,6 @@ record things you want to hear more about or talk about in this [trello
 board](https://trello.com/b/dxThHq4T/team-knowledge-share) and one or two
 people present each, preferably with a demo.
 
-[this document]: https://docs.google.com/document/d/1u26sQTw1brR5KtnJ5M_zyhAw7wX8CCMB0lElvtHLVAI/edit
 
 # Hand Signals
 
