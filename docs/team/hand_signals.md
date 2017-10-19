@@ -1,1 +1,0 @@
-We use hand signals at our meetings to help make them more productive and accessible for every person on the team. You can find out more about how this works in practice by reading [our blog post](https://gds.blog.gov.uk/2016/10/07/platform-as-a-service-team-takes-even-handed-approach-to-meetings/).
