@@ -50,3 +50,33 @@ Connection: keep-alive
 
 cloudfoundry error: Could not get api /v2/info: EOF
 ```
+
+## RDS Failures
+
+On rare occasion, we may get an RDS Failure event coming through to our Datadog
+via the RDS Integration. Unfortunately, many types of `failure` event are not
+resolvable without getting in touch with AWS. In some circumstances you may be
+able to restore an instance using [our point-in-time-restore
+instructions](../guides/Restoring_the_CF_databases.md).
+
+For more information on the 8 types of `failure` event, see the [Amazon RDS
+Event Categories and Event
+Messages](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html#USER_Events.Messages).
+
+## RDS Disk utilisation
+
+Our tenants are likely to run low on storage on their RDS instances over time.
+This is no reason to panic, but we would like to notify our users when this
+happens.
+
+Ideally, you should retrieve a GUID of an instance from the tags associated
+with the metrics on the alert. Having that will help you establish the users to
+contact, as they may wish to scale up their instance in response.
+
+The following command, should give you list of users assigned as managers to
+the space the instance is created in.
+
+```sh
+RDS_INSTANCE_ID=qwerty123456
+cf curl "$(cf curl /v2/service_instances/${RDS_INSTANCE_ID} | jq -r '.entity.space_url')/managers" | jq -r '.resources[].entity.username'
+```
