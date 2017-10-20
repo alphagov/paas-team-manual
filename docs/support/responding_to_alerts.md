@@ -59,6 +59,11 @@ resolvable without getting in touch with AWS. In some circumstances you may be
 able to restore an instance using [our point-in-time-restore
 instructions](../guides/Restoring_the_CF_databases.md).
 
+When `failure` monitor triggers, before starting any further investigation and
+work, we would like to notify our users of odd behaviour and let them know
+we're working to solve this issue. Please see the [How to obtain organisation
+managers](#how-to-obtain-organisation-managers) to learn who to contact.
+
 For more information on the 8 types of `failure` event, see the [Amazon RDS
 Event Categories and Event
 Messages](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html#USER_Events.Messages).
@@ -71,7 +76,11 @@ happens.
 
 Ideally, you should retrieve a GUID of an instance from the tags associated
 with the metrics on the alert. Having that will help you establish the users to
-contact, as they may wish to scale up their instance in response.
+contact, as they may wish to scale up their instance in response. Please see
+the [How to obtain organisation managers](#how-to-obtain-organisation-managers)
+to learn who to contact.
+
+### How to obtain organisation managers
 
 The following command, should give you list of users assigned as managers to
 the space the instance is created in.
