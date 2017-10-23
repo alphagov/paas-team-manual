@@ -82,10 +82,11 @@ to learn who to contact.
 
 ### How to obtain organisation managers
 
-The following command, should give you list of users assigned as managers to
-the space the instance is created in.
+We've prepared a script to obtain organisation, space, instance name and the
+list of managers connected to the instance you're after.
+
+From `paas-cf` repository, run the following command:
 
 ```sh
-RDS_INSTANCE_ID=qwerty123456
-cf curl "$(cf curl /v2/service_instances/${RDS_INSTANCE_ID} | jq -r '.entity.space_url')/managers" | jq -r '.resources[].entity.username'
+./scripts/get-instance-details.sh "${RDS_INSTANCE_ID}"
 ```
