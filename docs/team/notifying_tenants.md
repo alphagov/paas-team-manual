@@ -46,8 +46,6 @@ The body should contain:
 
  - Changes and bugfixes to highlight and new features enabled.
  - Downtime or service impact if any
- - Summary of buildpack changes. In order to retrieve the buildpack notes, you can use the script:
-`paas-cf/scripts/generate_buildpack_release_notes.sh`
+ - Summary of buildpack changes.
 
-
-**NB Incident comms email templates are saved in Statuspage.** 
+**NB Incident comms email templates are saved in Statuspage.**
