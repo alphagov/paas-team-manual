@@ -30,6 +30,14 @@ You should test the upgrade changeset:
 * Confirm that [rotating credentials](../team/rotating_credentials.md) still
   works and doesn't cause additional downtime during deployments.
 
+
+### Buildpacks
+
+You should upgrade the buildpacks to at least the versions included in the new cf-release version.
+
+**Note**: We use separate releases for the buildpacks to make it easier to
+upgrade them in future without upgrading the whole of CF.
+
 ## Notify the tenants
 
 Send an email to users following [the upgrade template](../team/notifying_tenants.md#cf-upgrade).
