@@ -90,3 +90,34 @@ From `paas-cf` repository, run the following command:
 ```sh
 ./scripts/get-instance-details.sh "${RDS_INSTANCE_ID}"
 ```
+
+## API Latency
+
+Last time we received an alert for API latency, it was a UAA bug that caused
+instances to leak memory. It also resulted in high CPU usage and the quickest
+solution to restoring the platform was to restart both instances one after the
+other.
+
+```sh
+cd ${PAAS_CF_DIR}
+make prod bosh-cli
+bosh restart uaa # You may want/need to target an instance instead uaa/0, uaa/1
+```
+
+There may be different reasons for the latency to drop down on any of the VMs.
+We found out the issue by logging into the VM itself and dig through the logs.
+
+```sh
+cd ${PAAS_CF_DIR}
+make prod bosh-cli
+bosh ssh uaa
+tail -1000 /var/vcap/sys/log/uaa/uaa.log
+```
+
+In the case of the UAA latency incident, it turned out that the CF Upgrade we
+did previously, contained a UAA release introducing the memory leak. The
+solution was to upgrade UAA release on its own.
+
+Read more in the
+[UAA Downtime investigation](https://www.pivotaltracker.com/n/projects/1275640/stories/151808174)
+story.
