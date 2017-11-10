@@ -39,7 +39,7 @@ get this information you will need to SSH to any Cloud Foundry VM and query
 the endpoint yourself:
 
 ```
-/tmp/build/04dcec6b # bosh ssh api/0
+bash# bosh-ssh api/0
 …
 api/00673a4a-b11f-410d-a037-34d56a3e2e71:~$ curl -i https://cdn-broker.<SYSTEM_DOMAIN>/healthcheck
 HTTP/1.1 500 Internal Server Error
@@ -99,8 +99,10 @@ solution to restoring the platform was to restart both instances one after the
 other.
 
 ```sh
-cd ${PAAS_CF_DIR}
-make prod bosh-cli
+cd ${PAAS_BOOTSTRAP_DIR}
+DEPLOY_ENV=prod make bosh-cli
+bosh download manifest prod manifest.yml
+bosh deployment manifest.yml
 bosh restart uaa # You may want/need to target an instance instead uaa/0, uaa/1
 ```
 
@@ -108,9 +110,9 @@ There may be different reasons for the latency to drop down on any of the VMs.
 We found out the issue by logging into the VM itself and dig through the logs.
 
 ```sh
-cd ${PAAS_CF_DIR}
-make prod bosh-cli
-bosh ssh uaa
+cd ${PAAS_BOOTSTRAP_DIR}
+DEPLOY_ENV=prod make bosh-cli
+bosh-ssh uaa/0
 tail -1000 /var/vcap/sys/log/uaa/uaa.log
 ```
 
