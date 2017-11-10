@@ -48,8 +48,8 @@ Below are some generic instructions on restoring the CF RDS instance databases o
 **2.** Create a tunnel to the backup via Concourse:
 
 ```
-# CHANGEME to your paas-cf directory
-cd /path/to/paas-cf
+# CHANGEME to your paas-bootstrap directory
+cd /path/to/paas-bootstrap
 
 # CHANGEME to the endpoint (hostname) of the RDS instance you
 # are restoring from. This can be found in the AWS console.
