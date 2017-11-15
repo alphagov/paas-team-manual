@@ -101,12 +101,11 @@ In Kibana, you can look for the following phrases, to filter the access logs.
 - `haproxy.http_request_verb: POST`
 - `haproxy.time_backend_response: >7`
 
-## NGINX
+## Cloud Controller
 
-It's probably worth to mention, that there is a `@source.component` which could help you investigate more specific access logs. For instance:
+Nginx runs on the same VM as Cloud Controller, so you can filter with:
 
-- `vcap_nginx_access` - Logs obtained from Cloud Controller's nginx setup.
-- `uaa_nginx_access` - Logs obtained from the UAA traffic.
+- `@source.component:vcap_nginx_access`
 
 ### UAA audit log in detail
 
