@@ -1,6 +1,6 @@
 Currently the Cloud Controller database (api), UAA, BBS, and Locket are all colocated on a single RDS Postgres instance. Below is guidance on how the backups work and how you can restore from them.
 
-Before embarking on any restoration make sure to follow the [Notifying tenants guidance](https://government-paas-team-manual.readthedocs.io/en/latest/team/notifying_tenants/) to communicate any downtime or disruption. Also, make sure to pause any Concourse pipelines.
+Before embarking on any restoration make sure to follow the [Notifying tenants guidance](../team/notifying_tenants/) to communicate any downtime or disruption. Also, make sure to pause any Concourse pipelines.
 
 ## How backups are taken
 
