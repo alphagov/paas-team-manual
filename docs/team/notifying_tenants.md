@@ -10,7 +10,7 @@ Depending on what it is we want to tell users, we have two different channels fo
 
 ## Sending incident alerts and updates
 
-Follow the guidance in [this section](../support/support_manual/#if-youre-incident-comms) of the team manual if you're managing incident comms and you need to send alerts and updates to tenants.
+Follow the guidance in [this section](../support/incident_process/#if-youre-incident-comms) of the team manual if you're managing incident comms and you need to send alerts and updates to tenants.
 
 ## Sending platform change and new feature announcements
 
