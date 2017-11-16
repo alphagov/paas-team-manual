@@ -33,7 +33,7 @@ AWS cannot restore a point-in-time backup or a snapshot to an existing RDS insta
 To create an instance using a point-in-time backup:
 
 1. Follow the AWS documentation on [restoring from a point in time](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html) to create a new RDS instance. This is best done in the AWS Console. You cannot restore the backup directly over the top of the currently running instance, despite the use of the word restore. Make a note of the database endpoint (hostname) while you are in the console, you will need that later to set up an SSH tunnel.
-2. The new instance will be created with the default security group. Use the console to [modify the instance](henry-cf-pivotal-149929492) to use the `${DEPLOY_ENV}-cf-rds` security group. This will allow you to access the instance by tunneling via Concourse.
+2. The new instance will be created with the default security group. Use the console to modify the instance to use the `${DEPLOY_ENV}-cf-rds` security group. This will allow you to access the instance by tunneling via Concourse.
 
 ### Dev environments
 
