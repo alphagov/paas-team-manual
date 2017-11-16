@@ -18,3 +18,7 @@ six==1.10.0
 tornado==4.3
 webcolors==1.5
 wsgiref==0.1.2
+
+linkchecker==9.3
+# https://github.com/wummel/linkchecker/issues/649
+requests==2.9.2
