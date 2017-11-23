@@ -84,7 +84,7 @@ This is now in its [own section](incident_process).
 
 * [Deskpro](https://gaap.deskpro.com/agent/)
 * [Pagerduty](https://gds-paas.pagerduty.com/)
-* [Developer docs](https://government-paas-developer-docs.readthedocs.io/en/latest/)
+* [Developer docs](https://docs.cloud.service.gov.uk/)
 * [Staging pipeline](https://deployer.staging.cloudpipeline.digital/)
 * [Prod pipeline](https://deployer.cloud.service.gov.uk)
 * [Prod metrics](https://metrics.cloud.service.gov.uk/dashboard/file/user-impact.json)
