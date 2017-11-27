@@ -6,9 +6,9 @@ things consistent we want to pick a single programming language and framework
 to write these in.
 
 We've previously used [Sinatra](http://sinatrarb.com/) for this, but ran into
-issues with it's default configuration which isn't secure, leading to an XSS
+issues with its default configuration which isn't secure, leading to an XSS
 vulnerability. We therefore want to choose something that comes with secure
-defaults, and makes it easier to avoid these sort of issues.
+defaults, and makes it easier to avoid this sort of issue.
 
 Requirements:
 
