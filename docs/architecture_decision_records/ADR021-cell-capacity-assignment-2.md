@@ -50,11 +50,15 @@ occupied by processes on cells, rather than the sum of all quotas given to
 users. We will define alerts for capacity planning purposes, the in-hours
 support person is expected to respond by adjusting the number of cells.
 
-We want to ensure that cells have at least 40% usable memory, above a smoothed
+We want to ensure that cells have some headroom above a smoothed
 average:
+- to allow some headroom for increases in the memory consumed by apps.
 - to allow buffering and caching to occur and not adversely impact application
-  performance
-- to allow some headroom for increases in the memory consumed by apps
+  performance.
+
+From our data analysis (see context) the amount of memory consumed by apps
+can reach about 36% over a week-ago's smoothed average. We round up to 40% to
+include buffering/caching.
 
 We want to ensure that if an AZ fails, we have enough capacity remaining to
 host all our apps, with that 40% headroom.  This means that we'll want 1.4 x
