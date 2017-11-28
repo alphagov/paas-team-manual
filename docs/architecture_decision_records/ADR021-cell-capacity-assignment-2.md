@@ -77,7 +77,7 @@ which means alerting when all the reps have a cumulative remaining capacity of
 
 We also need enough container capacity to allow tenants to scale apps up and
 down and deploy new apps. We should alert when we're using > 80% of the sum of
-our rep's container capacity. Again, this should be smoothed to ensure that
+our reps' container capacity. Again, this should be smoothed to ensure that
 short lived fluctuations in usage don't cause unnecessary alerts.
 
 It is likely that patterns such as the fluctuation in memory use over a week
