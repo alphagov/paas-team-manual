@@ -57,10 +57,12 @@ From our data analysis (see context) the amount of memory consumed by apps
 can reach about 36% over a week-ago's smoothed average. We round up to 40% to
 include buffering/caching.
 
-We want to ensure that if an AZ fails, we have enough capacity remaining to
-host all our apps, with that 40% headroom.  This means that we'll want 1.4 x
-1.5 current usage. Which is about 2x actual memory consumed by processes on
-cells.
+If an AZ fails, we need enough capacity remaining to host all our apps. The
+failed AZ's apps are evenly divided amongst the surviving AZs. Because we have
+two remaining AZs, each surviving AZ will have 1.5x as many apps running.
+
+Because we want 40% headroom, we'll want 1.4 (headroom) x 1.5 (evacuated apps)
+current usage. This is about 2x actual memory consumed by processes on cells.
 
 Therefore we need to start alerting when the memory occupied by processes on
 cells is above 50%, when suitably smoothed to avoid noise / small spikes
