@@ -1,7 +1,16 @@
+
+Superceded
+==========
+
+This has been superceded by [ADR021](/architecture_decision_records/ADR021-cell-capacity-assignment-2/) since November 2017. It has been retained for historical purposes.
+
+------------------------
+
+
 Context
 =======
 
-We want to ensure our platform remains available when a single AZ fails. This means that we need to have enough spare memory capacity left on cells to cover deploying apps from the failed zone. In case of 3 zones, that means each zone should be able to host 50% more apps (memory capacity wise). We can calculate maximum memory usable by all orgs by doing sum of their quotas. However, in practice much less memory is consumed. This is because
+-We want to ensure our platform remains available when a single AZ fails. This means that we need to have enough spare memory capacity left on cells to cover deploying apps from the failed zone. In case of 3 zones, that means each zone should be able to host 50% more apps (memory capacity wise). We can calculate maximum memory usable by all orgs by doing sum of their quotas. However, in practice much less memory is consumed. This is because-
 
 1. Org quotas come in T-shirt sizes and have considerable size jumps (e.g. 2, 10, 60 100G). You need to reserve next quota if previous one is too small for your needs, yet it doesn't mean you will be using all the capacity of the larger quota.
 1. App instance memory limits are set as upper memory consumption limit. Because of that, they tend to be set larger for safety. Actual app memory consumption is always lower, many times considerably.
@@ -24,7 +33,7 @@ We will maintain at least 50% of total org reserved capacity available when a zo
 Status
 ======
 
-Accepted
+Superceded by [ADR021](/architecture_decision_records/ADR021-cell-capacity-assignment-2/).
 
 Consequences
 ============
