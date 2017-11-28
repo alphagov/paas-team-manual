@@ -96,7 +96,7 @@ Consequences
 We will alert on the following datadog metrics:
 
 - exponentially weighted moving average of `system.mem.pct_usable` averaged over cells < 50%
-- smoothed system.cpu.idle averaged across cells < 50%
+- smoothed `system.cpu.idle` averaged across cells < 50%
 - smoothed `cf.rep.ContainerCount / cf.rep.CapacityTotalContainers` cells of > 80%
 - smoothed `cf.rep.CapacityRemainingMemory / cf.rep.CapacityTotalMemory` of < 33%
 
