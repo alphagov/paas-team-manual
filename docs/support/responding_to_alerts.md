@@ -142,5 +142,25 @@ We have been advised by AWS that if we believe we are experiencing an issue
 with one or more ELB nodes that we should raise a "high priority" support
 ticket with them.
 
+To obtain the IP address of the failing node(s), you should inspect the logs of
+the paas-metrics app. This is deployed to the 'monitoring' space of the 'admin'
+org. You should see logs such as:
+
+```
+2017-12-01T14:14:09.68+0000 [APP/PROC/WEB/0] OUT
+{
+    "timestamp":"1512137649.686135292",
+    "source":"metrics",
+    "message":"metrics.elb-node-failure",
+    "log_level":1,
+    "data":{
+        "addr":"52.31.169.122:443",        <-- this is the ELB node IP
+        "err":"bad error happened!",
+        "start":"2017-12-01T14:14:09.679602987Z",
+        "stop":"2017-12-01T14:14:09.679602987Z"
+    }
+}
+```
+
 Read more in the
 [Incident Report](https://docs.google.com/document/d/1XUH42lgt86q2XGZY1uosb0M44vtnpeyREDJlyfxs72w/edit#heading=h.bac2cwm6xa89).
