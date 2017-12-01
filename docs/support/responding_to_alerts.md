@@ -123,3 +123,24 @@ solution was to upgrade UAA release on its own.
 Read more in the
 [UAA Downtime investigation](https://www.pivotaltracker.com/n/projects/1275640/stories/151808174)
 story.
+
+## Intermittent ELB failures
+
+Users have previously experienced intermittent request timeouts and errors when
+accessing their apps. During a particular incident, we believe that requests
+timed out due to ELB node failures.
+
+We publish two metrics:
+
+1. `aws.elb.unhealthy_node_count` - number of IPs that failed to respond to an HTTP request
+1. `aws.elb.healthy_node_count`   - number of IPs that responded as expected
+
+Details of the monitoring approach can be found in
+[the README for our monitoring application](https://github.com/alphagov/paas-cf/blob/master/tools/metrics/README.md).
+
+We have been advised by AWS that if we believe we are experiencing an issue
+with one or more ELB nodes that we should raise a "high priority" support
+ticket with them.
+
+Read more in the
+[Incident Report](https://docs.google.com/document/d/1XUH42lgt86q2XGZY1uosb0M44vtnpeyREDJlyfxs72w/edit#heading=h.bac2cwm6xa89).
