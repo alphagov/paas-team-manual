@@ -277,3 +277,47 @@ be appropriate to run against a branch of our fork for a limited period of
 time. We have decided to use a branch called `gds_master` for this, although
 some older reporitories may use something else. Feel free to change these as
 you encounter them, to improve consistency.
+
+# Technical Documentation Changes
+
+Technical Documentation changes follow the same overall process as code changes, but with several documentation-specific amends. This section summarises the tech docs change process.
+
+## Pre kick-off
+
+- Required: technical writer
+
+Before the formal story kick-off, the technical writer reviews the story and drafts changes if possible.
+
+## Kick-off
+
+- Required: technical writer, technical lead
+- Optional: product representative, developer
+
+At this step, decide on what changes to the tech docs are required to complete this story. You must also agree on who needs to review and approve this story. Make sure that you decide whether the story needs product as well as technical review. If no specific technical reviewers are named, any developer can serve as the technical reviewer. You should also analyse if any other further changes or stories will result from this story.
+
+## Doing
+
+- Required: technical writer, developer
+
+Draft the content changes in markdown, ensuring that it is technically correct and in line with the GDS style guide. You must preview changes in tech doc format so that the new or amended content is smoothly integrated into the exsting documentation structure. Evaluate if story needs to change, and if so, whether this can be included in the scope of the original story or should be part of a new story. Once you have agreed that the content is ready for further review, raise a pull request to the paas-tech-docs repo.
+
+Note that if the change requires product review, you must push the tech doc changes to Cloud Foundry for review. Refer to the [Deploy a static site](https://docs.cloud.service.gov.uk/#deploy-a-static-site) for instructions on how to do this.
+
+## Reviewing
+
+- Required: technical writer, developer, technical writer 2i
+- Optional: product representative, tech lead
+
+Three reviews should happen at the same time:
+
+- The developer reviews the content in both GitHub and in the tech doc preview, checking if it addresses the issues in the story.
+- The tech writer conducting the 2i review checks the style and content.
+- The product rep or tech lead reviews content if required; the product rep will look at the temporary Cloud Foundry version of the tech docs.
+
+Implement any changes as required, and then get sign-off from reviewers. The reviewers then merge the changes once they have been signed off.
+
+## Approving
+
+- Required: tech writer, approver
+
+The approver checks if the change deployed correctly, and whether it addresses the story. If it does so, they approve the story.
