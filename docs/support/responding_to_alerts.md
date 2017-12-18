@@ -164,3 +164,22 @@ org. You should see logs such as:
 
 Read more in the
 [Incident Report](https://docs.google.com/document/d/1XUH42lgt86q2XGZY1uosb0M44vtnpeyREDJlyfxs72w/edit#heading=h.bac2cwm6xa89).
+
+## Invalid Certificates
+
+[paas-metrics](https://github.com/alphagov/paas-cf/blob/master/tools/metrics/README.md)
+exposes the `tls.certificates.validity` metric, which reports the number of
+days remaining before expiry.
+
+If the endpoint is misconfigured or the certificate is considered invalid for
+some other reason the value will fall to `0` and alert as expired/invalid.
+
+If the certificate has expired, follow the instructions for [obtaining new SSL
+certificates](https://github.com/alphagov/paas-cf/blob/master/doc/ssl_certs.md).
+
+If you are seeing NO_DATA errors for this monitor then there may be a more
+fundimental connectivity issue to the reported endpoint.
+
+The `cf logs` output of the paas-metrics app may contain additional
+information. This is deployed to the 'monitoring' space of the 'admin' org.
+
