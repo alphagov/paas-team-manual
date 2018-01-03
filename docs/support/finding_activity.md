@@ -92,6 +92,11 @@ In kibana, filtering the `@source.component` to `gorouter` will show the access 
 - `NOT gorouter.status: 200`
 - `gorouter.method: POST`
 
+You can find additional context searching for:
+
+ - `@source.component:gorouter.stdout`: logs written to stdout, including route registration events
+ - `@source.component:gorouter.stderr`: logs written to stderr, including application connection errors
+
 ## Router HAProxy
 
 In Kibana, you can look for the following phrases, to filter the access logs.
