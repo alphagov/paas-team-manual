@@ -275,7 +275,7 @@ Doing so makes it very hard to reconcile our changes against the upstream
 repo at a later date. We should aim to submit all changes upstream. It may
 be appropriate to run against a branch of our fork for a limited period of
 time. We have decided to use a branch called `gds_master` for this, although
-some older reporitories may use something else. Feel free to change these as
+some older repositories may use something else. Feel free to change these as
 you encounter them, to improve consistency.
 
 # Technical Documentation Changes
