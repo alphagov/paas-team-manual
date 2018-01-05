@@ -4,8 +4,9 @@ Context
 With the implementation of ADR021 we have reduced the number of cells in
 production in order to make more efficent use of our budget. This in turn means
 that we have increased the load on the individual cells. Originally the idle CPU
-monitor was set in line with the free memory monitor, however these resources
-are not used in a linear fashion. 
+monitor was set in line with the free memory on cells monitor (for alerting on
+a need to scale the cell pool), however CPU usage does not appear to grow
+linearly with allocated memory for tenant applications. 
 
 
 Decision
@@ -26,10 +27,10 @@ Consequences
 
 We will alert on the following datadog metrics:
 
-- smoothed `system.cpu.idle` of cells < 33%
+- averaged across 1 day `system.cpu.idle` of cells < 33%
 
 We will warn on the following datadog metrics:
 
-- smoothed `system.cpu.idle` of cells < 37%
+- averaged across 1 day `system.cpu.idle` of cells < 37%
 
 We will not be annoyed by false positive alerts.
