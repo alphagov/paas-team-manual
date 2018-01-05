@@ -70,14 +70,8 @@ You can use the [Pingdom public status page](http://stats.pingdom.com/ejtodj13fq
 
 We use the [Super Auto Refresh](https://chrome.google.com/webstore/detail/super-auto-refresh/kkhjakkgopekjlempoplnjclgedabddk?hl=en) Chrome extension to refresh the page.
 
-## PaaS Overview Dashboard
+## Datadog Triggered Monitors
 
-We use [Smashing](https://github.com/Dashing-io/smashing) to build a dashboard
-summarising the state of environments in datadog. The dashboard code is in `paas-cf`.
+We have created a [dashboard in Datadog, called 'User Impact'](https://app.datadoghq.com/screen/222842/user-impact-for-our-monitor-do-not-edit), which displays a count of monitors by trigger status (healthy, warning, critical, or unknown). It also recreates most of the Grafana dashboard of the same name.
 
-## Automator
-
-Automator applications are used to automatically open a Chrome browser and visit the pages listed above. You can find the applications in `$HOME/Documents/automator`. To edit them you can 'right click' on the Automator icon in the dock and a list of custom applications installed are at the top of the menu.
-
-The actual script is just a simple use of the `open` command. It has not been committed to any repository due to the use of tokens in URLs.
-
+The credentials for the Datadog user are in the `paas-pass` password store.
