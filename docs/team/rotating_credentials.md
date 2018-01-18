@@ -6,6 +6,9 @@ Rotating passwords consists of two phases. First, you delete credentials using o
 
 Second phase consists of running the main pipeline (on deployer for CF, on bootstrap for BOSH and Concourse) to generate new credentials and apply them. Ensure that there is nothing else triggering this 2nd phase run, as that would mean you would be rotating passwords _and_ trying to apply some changes at the same time, which might not work and you could end up with broken deployment. Pipeline run should complete successfully and all tests should pass. There should be no interruptions to deployed apps.
 
+### SES SMTP Credentials
+
+The deployer Concourse has a job for triggering the rotation of the SMTP credentials used by UAA for sending account management emails. It works by removing the AWS key used to derive the SMTP password from the Terraform state file (without touching the key itself). This causes a new access key to be generated on the next pipeline run. Unused keys are deleted after every pipeline run unconditionally. This operation is safe to do at any time, so it triggers automatically every 30 days.
 
 ## Limited functionality during rotation
 
