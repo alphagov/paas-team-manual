@@ -168,16 +168,18 @@ Read more in the
 ## Invalid Certificates
 
 [paas-metrics](https://github.com/alphagov/paas-cf/blob/master/tools/metrics/README.md)
-exposes the `tls.certificates.validity` metric, which reports the number of
-days remaining before expiry.
+exposes two metrics relating to certificate validity:
 
-If the endpoint is misconfigured or the certificate is considered invalid for
+* `tls.certificates.validity` - number of days before expiry of the platform's public-facing certificates
+* `cdn.tls.certificates.validity` - number of days before expiry of certificates for CloudFront aliases (tenant's custom domain names). This is for all CDNs, not just those created by the broker.
+
+If the endpoints are misconfigured or the certificate is considered invalid for
 some other reason the value will fall to `0` and alert as expired/invalid.
 
 If the certificate has expired, follow the instructions for [obtaining new SSL
-certificates](https://github.com/alphagov/paas-cf/blob/master/doc/ssl_certs.md).
+certificates](https://github.com/alphagov/paas-cf/blob/master/doc/ssl_certs.md) for the public-facing platform certificates. For CDN certificates start with the CDN Broker's logs to investigate why they failed to renew via Let's Encrypt.
 
-If you are seeing NO_DATA errors for this monitor then there may be a more
+If you are seeing `NO_DATA` errors for this monitor then there may be a more
 fundimental connectivity issue to the reported endpoint.
 
 The `cf logs` output of the paas-metrics app may contain additional
