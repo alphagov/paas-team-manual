@@ -183,3 +183,19 @@ fundimental connectivity issue to the reported endpoint.
 The `cf logs` output of the paas-metrics app may contain additional
 information. This is deployed to the 'monitoring' space of the 'admin' org.
 
+## Trusted Advisor Warnings
+
+If you see a warning from Trusted Advisor it should be addressed.
+
+* IAM: Access keys should be rotated every 90 days, you should chase the owner
+  of the offending key, delete the key or you can use [this script](https://github.com/keymon/aws_key_management/blob/master/rotate_access_keys.sh)
+  to help with rotating keys.
+
+The following Trusted Advisor checks cause expected warnings:
+
+* S3 Bucket Permission's for `gds-paas-*-cdn-broker-challenge` are required to be publicly accesible so it is safe to mark these as excluded.
+* S3 Bucket Permission's for `gds-paas-*-ci-releases` are required to be publicly accesible so it is safe to mark these as excluded.
+* S3 Bucket Permission's for `gds-paas-*-ci-releases-blobs` are required to be publicly accesible so it is safe to mark these as excluded.
+* ELB Listener Security for `*-ssh-proxy`: This ELB is in TCP mode and so this warning is expected
+* Security Group - Specified Ports Unrestricted for `*-sshproxy`: We intentionally allow port 2222 for `cf ssh` access so it is safe to mark this as excluded.
+
