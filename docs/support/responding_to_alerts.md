@@ -171,7 +171,7 @@ Read more in the
 exposes two metrics relating to certificate validity:
 
 * `tls.certificates.validity` - number of days before expiry of the platform's public-facing certificates
-* `cdn.tls.certificates.validity` - number of days before expiry of certificates for CloudFront aliases (tenant's custom domain names). This is for all CDNs, not just those created by the broker.
+* `cdn.tls.certificates.validity` - number of days before expiry of certificates for CloudFront aliases (tenants' custom domain names). This is for all CDNs, not just those created by the broker.
 
 If the endpoints are misconfigured or the certificate is considered invalid for
 some other reason the value will fall to `0` and alert as expired/invalid.
