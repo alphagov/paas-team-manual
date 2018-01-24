@@ -20,17 +20,17 @@ In consequence:
 We have 3 options to proceed:
 
  1. Enable Encryption in the Medium and Large plans, and document the restrictions.
-  * Less effort to implement.
-  * We might end having unencrypted database in a plan that is meant to be encrypted, which is confusing for the users and operators.
-  * Existing Instances will remain unencrypted.
+    * Less effort to implement.
+    * We might end having unencrypted database in a plan that is meant to be encrypted, which is confusing for the users and operators.
+    * Existing Instances will remain unencrypted.
  2. Change the instance type for the Small plan to `db.m3.medium`.
-  * Would allow migrate from Small to Medium or Large.
-  * We will still have the problem for the Free plan.
-  * Increases the costs for the Small plan (double).
+    * Would allow migrate from Small to Medium or Large.
+    * We will still have the problem for the Free plan.
+    * Increases the costs for the Small plan (double).
  3. Provide additional explicit plans with Encryption enabled, and keep the old ones. Add logic to prevent updates between plans with or without encryption.
-  * It would be more explicit and clear, and the plan would match the state of the existing database.
-  * Existing instances would still match with the plan description.
-  * We will add more plans, which makes it more confusing for the tenants.
+    * It would be more explicit and clear, and the plan would match the state of the existing database.
+    * Existing instances would still match with the plan description.
+    * We will add more plans, which makes it more confusing for the tenants.
 
 
 Decision
