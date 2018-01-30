@@ -47,8 +47,8 @@ individual to go further.
 Once you found something interesting above, you could use it to refine
 your search to get deeper. For instance, one of the logs above, would have:
 
-- `@source.name` - Defining the VM we'd need to access. For example:
-  `api/0`
+- `@source.id` - Defining the VM we'd need to access. For example:
+  `4556706c-0e04-401e-bbc5-d0933e98f892`
 - `@message` consisting of `vcap-request-id`
 
 If you search for `"{VCAP_REQUEST_ID}"` in Kibana, you should get
