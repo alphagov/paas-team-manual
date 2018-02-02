@@ -215,13 +215,15 @@ need to be in production for signoff to be successful
 ## Who signs off stories
 
 Who can sign off the story is agreed and recorded in the story at kick-off, but
-by default will be the Product Manager. The Product Manager can delegate
-signing off specific stories to anyone within the team. This delegation may also
-be done at standup if the board is blocked with stories in approval
+could be any team member.
 
 # Work In Progress Limits
 
-We use [Kanban](https://en.wikipedia.org/wiki/Kanban_(development)) to track work, and follow work in progress limits for the different stages of the story. We have a physical board, and use pivotal tracker for online tracking.
+We use [Kanban](https://en.wikipedia.org/wiki/Kanban_(development)) to track
+work, and follow work in progress limits for the different stages of the story.
+We use Pivotal Tracker for online tracking, and have a view of the Pivotal
+Tracker data called [Rubbernecker](https://rubbernecker.cloudapps.digital/)
+that mimics the team's previous, physical board.
 
 ### Backlog
 _Work In Progress Limit : NA_
@@ -234,14 +236,17 @@ _Work In Progress Limit : 6_
 These stories have been started by a pair and kickoff has been completed.
 
 ### Reviewing / Finished
-_Work In Progress Limit : 3_
+_Work In Progress Limit : 4_
 
 These stories have been finished and are awaiting review by another team member. The lower work in progress limit is to ensure work is reviewed promptly and completed.
 
 ### Approving / Delivered
 _Work In Progress Limit : 5_
 
-These stories have been reviewed, and code merged to master. The work in progress limit here is to allow for the limited availability of the Product Manager, and reflects the fact that work at this stage is already merged and deployed.
+These stories have been reviewed, and code merged to master. The work in
+progress limit here allows for the limited availability of people with
+different levels of data access rights, and reflects the fact that work at this
+stage is already merged and deployed.
 
 ### Done / Delivered
 _Work In Progress Limit : ∞_
