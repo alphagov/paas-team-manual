@@ -16,6 +16,8 @@
 ```
 git diff v1.0.0...v1.14.0 cf-deployment.yml
 ```
+* Update the cf-smoke-tests resource in the pipeline to use a new branch of our fork that has the latest changes from upstream master.
+* Update the cf-acceptance-tests resource in the pipeline to use an upstream `cfX.Y` branch matching the cf-deployment version.
 
 ## Doing the upgrade
 
