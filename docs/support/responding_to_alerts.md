@@ -186,6 +186,30 @@ fundimental connectivity issue to the reported endpoint.
 The `cf logs` output of the paas-metrics app may contain additional
 information. This is deployed to the 'monitoring' space of the 'admin' org.
 
+## Logsearch/ELK queue threshold limits
+
+We use [Logsearch (ELK
+Stack)](https://github.com/logsearch/logsearch-boshrelease) to process the CF
+logs.  Logsearch would accept messages from *ingestors* that store the raw
+messages in a *Redis queue*, from where they be processed by *parsers* to then
+store them in *Elasticsearch*.
+The ingestors are configured to stop sending logs (dropping any incoming
+message) when the queue size reaches a [given threshold](https://github.com/cloudfoundry-community/logsearch-boshrelease/blob/v203.0.0/jobs/ingestor_syslog/spec#L61-L63).
+
+The queue can start filling when the parsers are not able to process the jobs fast enough. Common cases:
+
+ - The Elasticsearch cluster is having problems and slow accepting new writes from the parser.
+ - If the `parser` jobs/VMs have problems or are at capacity and cannot process messages fast enough.
+
+The size of the Logsearch redis queue [is exposed as a metric using the Datadog agent](https://github.com/alphagov/paas-datadog-for-cloudfoundry-boshrelease/pull/21),
+and consumed by a Datadog monitor that warns if we reach 100k messages, which
+gives some hours of leverage for the average of 200-300k messages in
+production.
+
+If the metric reaches [the value defined as threshold](https://github.com/cloudfoundry-community/logsearch-boshrelease/blob/v203.0.0/jobs/ingestor_syslog/spec#L61-L63),
+the logsearch stack is dropping messages, which jeopardises our capacity to
+troubleshoot the platform.
+
 ## Trusted Advisor Warnings
 
 If you see a warning from Trusted Advisor it should be addressed.
