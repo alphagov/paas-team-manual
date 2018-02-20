@@ -196,11 +196,6 @@ store them in *Elasticsearch*.
 The ingestors are configured to stop sending logs (dropping any incoming
 message) when the queue size reaches a [given threshold](https://github.com/cloudfoundry-community/logsearch-boshrelease/blob/v203.0.0/jobs/ingestor_syslog/spec#L61-L63).
 
-The queue can start filling when the parsers are not able to process the jobs fast enough. Common cases:
-
- - The Elasticsearch cluster is having problems and slow accepting new writes from the parser.
- - If the `parser` jobs/VMs have problems or are at capacity and cannot process messages fast enough.
-
 The size of the Logsearch redis queue [is exposed as a metric using the Datadog agent](https://github.com/alphagov/paas-datadog-for-cloudfoundry-boshrelease/pull/21),
 and consumed by a Datadog monitor that warns if we reach 100k messages, which
 gives some hours of leverage for the average of 200-300k messages in
@@ -209,6 +204,58 @@ production.
 If the metric reaches [the value defined as threshold](https://github.com/cloudfoundry-community/logsearch-boshrelease/blob/v203.0.0/jobs/ingestor_syslog/spec#L61-L63),
 the logsearch stack is dropping messages, which jeopardises our capacity to
 troubleshoot the platform.
+
+The queue can start filling when the parsers are not able to process the jobs fast enough. Common cases:
+
+ - The Elasticsearch cluster is having problems and slow accepting new writes from the parser.
+ - If the `parser` jobs/VMs have problems or are at capacity and cannot process messages fast enough.
+
+To perform some basic troubleshooting:
+
+ - Check the [health of the Elastisearch cluster in this Datadog notebook](https://app.datadoghq.com/notebook/27407/Elasticsearch%20master%20CPU%20(copy))
+ - Connect Elasticsearch cluster as described below to troubleshoot the cluster.
+ - If Kibana is accessible, try to identify any noisy logs. High logs volume might be a symptom
+   of problems in other parts of the platform
+ - Restarting parser, queue or ingesters is in general safe.
+ - To restart the Elasticsearch nodes, follow the instructions below to disable shard reallocation.
+
+### Connecting to the Elasticsearch cluster
+
+In order to connect to the Elasticsearch cluster, you can use a SSH tunnel using
+the [paas-bootstrap](https://github.com/alphagov/paas-bootstrap) tooling:
+
+```
+make prod DEPLOY_ENV=prod tunnel TUNNEL=9200:10.0.16.10:9200
+```
+
+The Elasticsearch cluster uses the IPs `10.0.16.10`, `10.0.17.10` and `10.0.18.10`.
+
+You can use the [Elasticsearch Head Chrome extension](https://chrome.google.com/webstore/detail/elasticsearch-head/ffmkiejjmecolpfloofpjologoblkegm) to interact with the cluster.
+
+
+### Disabling Elasticsearch cluster shard reallocation
+
+When [restarting the Elasticsearch cluster we must disable the shard reallocation](https://www.elastic.co/guide/en/elasticsearch/guide/current/_rolling_restarts.html) to
+avoid triggering a shard failover, which would seriously impact the cluster performance.
+
+To do so, you can configure the tunnel in each node as mention before and execute:
+
+```
+curl -XPUT 'http://localhost:9200/_cluster/settings' -d '{
+"transient" : {
+    "cluster.routing.allocation.enable" : "none"
+}}'
+```
+
+To enable it again:
+
+```
+curl -XPUT 'http://localhost:9200/_cluster/settings' -d '{
+"transient" : {
+    "cluster.routing.allocation.enable" : "all"
+}}'
+```
+
 
 ## Trusted Advisor Warnings
 
