@@ -100,10 +100,8 @@ other.
 
 ```sh
 cd ${PAAS_BOOTSTRAP_DIR}
-DEPLOY_ENV=prod make bosh-cli
-bosh download manifest prod manifest.yml
-bosh deployment manifest.yml
-bosh restart uaa # You may want/need to target an instance instead uaa/0, uaa/1
+DEPLOY_ENV=prod make prod bosh-cli
+bosh restart uaa # You may want/need to target an instance, e.g. uaa/23888ebf-2dd3-4afe-b370-51705403d423
 ```
 
 There may be different reasons for the latency to drop down on any of the VMs.
@@ -111,8 +109,8 @@ We found out the issue by logging into the VM itself and dig through the logs.
 
 ```sh
 cd ${PAAS_BOOTSTRAP_DIR}
-DEPLOY_ENV=prod make bosh-cli
-bosh-ssh uaa/0
+DEPLOY_ENV=prod make prod bosh-cli
+bosh ssh uaa/23888ebf-2dd3-4afe-b370-51705403d423
 tail -1000 /var/vcap/sys/log/uaa/uaa.log
 ```
 
@@ -272,4 +270,3 @@ The following Trusted Advisor checks cause expected warnings:
 * S3 Bucket Permission's for `gds-paas-*-ci-releases-blobs` are required to be publicly accesible so it is safe to mark these as excluded.
 * ELB Listener Security for `*-ssh-proxy`: This ELB is in TCP mode and so this warning is expected
 * Security Group - Specified Ports Unrestricted for `*-sshproxy`: We intentionally allow port 2222 for `cf ssh` access so it is safe to mark this as excluded.
-
