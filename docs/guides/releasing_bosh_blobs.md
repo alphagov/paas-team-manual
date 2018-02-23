@@ -26,7 +26,7 @@ curl -L https://redirector.gvt1.com/edgedl/go/go1.9.linux-amd64.tar.gz -O
 **2.** Add the new blob to the BOSH release
 
 ```
-bosh add blob [PATH TO]/go1.9.linux-amd64.tar.gz golang/go1.9.linux-amd64.tar.gz
+bosh add-blob [PATH TO]/go1.9.linux-amd64.tar.gz golang/go1.9.linux-amd64.tar.gz
 ```
 
 **3.** As we are using environment variables for AWS access you have to create the file **config/private.yml** with the following content:
@@ -49,7 +49,7 @@ It should list the added blob as new.
 **5.** Upload the new blob to the blobstore
 
 ```
-bosh upload blobs
+bosh upload-blobs
 ```
 
 **6.** The **config/blobs.yml** should be updated now and you can commit the new or updated blob definiton.
