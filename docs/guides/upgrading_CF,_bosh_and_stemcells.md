@@ -34,10 +34,9 @@ You should test the upgrade changeset:
 
 ### Buildpacks
 
-You should upgrade the buildpacks to at least the versions included in the new cf-deployment version.
+**Note**: We have to a give at least a week's notice to tenants about the buildpack upgrades, so prepare the version changes separately from the CF component upgrades.
 
-**Note**: We use separate releases for the buildpacks to make it easier to
-upgrade them in future without upgrading the whole of CF.
+You should upgrade the buildpacks to at least the versions included in the new cf-deployment version.
 
 ## Notify the tenants
 
