@@ -270,3 +270,13 @@ The following Trusted Advisor checks cause expected warnings:
 * S3 Bucket Permission's for `gds-paas-*-ci-releases-blobs` are required to be publicly accesible so it is safe to mark these as excluded.
 * ELB Listener Security for `*-ssh-proxy`: This ELB is in TCP mode and so this warning is expected
 * Security Group - Specified Ports Unrestricted for `*-sshproxy`: We intentionally allow port 2222 for `cf ssh` access so it is safe to mark this as excluded.
+
+## Gorouter high latency alerts
+
+If you see an alert for gorouter latency being high;
+
+* Check with the team if we have any known load testing occuring either by the team or by a tenant
+* Visit [kibana](https://logsearch.cloud.service.gov.uk/) and filter by `@source.component: gorouter` then add in `gorouter.host` to the table, this will show you which hosts are being most used currently
+* Contact the team who own the service to see if they are aware of anything happening
+
+As this is the first monitor of this type please investigate the gorouters to discover the issue they are encountering. We have previously seen high resource usage (CPU and Memory) these should be checked in the first case.
