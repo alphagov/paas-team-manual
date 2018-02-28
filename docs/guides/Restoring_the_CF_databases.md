@@ -63,7 +63,7 @@ make tunnel TUNNEL=5432:${db_endpoint}:5432
 ```
 db_password=$(
   concourse/scripts/val_from_yaml.rb \
-  secrets.cf_db_master_password \
+  secrets_cf_db_master_password \
   <(aws s3 cp s3://gds-paas-${DEPLOY_ENV}-state/cf-secrets.yml -) \
 )
 ```
