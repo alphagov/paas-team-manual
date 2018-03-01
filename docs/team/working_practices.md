@@ -23,6 +23,13 @@ ensure that commits have been reviewed before deploying them.
 
 [Full size version](../diagrams/release-sequence.svg)
 
+# These are guidelines, not rules
+
+We've found these working practices highly effective, but they're a living document
+open to discussion and change. They won't necessarily work for everyone without
+some adjustment. If something doesn't work for you then point that out and keep
+discussing it.
+
 # Pairing
 
 We pair on all stories to ensure that people don't get stuck on the same
