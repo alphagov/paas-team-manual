@@ -34,6 +34,12 @@ team. We aim to rotate pairs regularly by:
 - joining someone on an existing story that doesn't have a pair instead of
   picking up new work
 
+We don't insist on a particular method of pairing. We're keen to have two people
+making decisions and aware of the story, but there are lots of ways those two
+people can work together. Sometimes a pair shares one computer; other times a pair
+splits stories into pieces they can work on individually. Discuss what works for
+both of you.
+
 # Story kick-off
 
 Kick-offs are an opportunity to clarify the scope of a story and raise any
