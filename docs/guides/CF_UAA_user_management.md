@@ -6,24 +6,23 @@ Cloud Foundry's account management is mostly controlled by [UAA][]
 
 ### Install
 
-You can access the [uaac][] command line utility from the [scripts directory
-of alphagov/paas-cf][scripts]. Using [Bundler][] will ensure that you have
-the appropriate version.
+You can access the [uaac][] command line utility from
+[alphagov/paas-cf][paas-cf]. Using [Bundler][] will ensure that you have the
+appropriate version.
 
 [uaac]: https://github.com/cloudfoundry/cf-uaac
-[scripts]: https://github.com/alphagov/paas-cf/tree/master/scripts
+[paas-cf]: https://github.com/alphagov/paas-cf
 [Bundler]: http://bundler.io/
 
 To install:
 ```
-➜  paas-cf git:(master) ✗ cd scripts
-➜  scripts git:(master) ✗ bundle install
+➜  paas-cf git:(master) ✗ bundle install
 …
 ```
 
 To confirm that it works:
 ```
-➜  scripts git:(master) ✗ bundle exec uaac help
+➜  paas-cf git:(master) ✗ bundle exec uaac help
 
 UAA Command Line Interface
 …
@@ -69,8 +68,8 @@ Sometimes it might be necessary to lock certain users. For example when we find 
 
 From [alphagov/paas-cf](https://github.com/alphagov/paas-cf):
 ```
-cd scripts
 bundle install
+cd scripts
 TARGET=$(cf curl /v2/info | jq -r .token_endpoint) \
   TOKEN=$(cf oauth-token) \
   bundle exec ./uaa_lock_user.rb <USERNAME>
