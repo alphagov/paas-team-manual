@@ -23,3 +23,5 @@ after_build do |builder|
 end
 
 GovukTechDocs.configure(self)
+
+set :layout, 'custom'
