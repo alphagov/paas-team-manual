@@ -98,3 +98,28 @@ PaaS for Government
 ```
 
 When they respond support can follow up with user deletion, or instead enable the user account again if it is to be actively used.
+
+## Global Auditor role
+
+We use the [Global Auditor role][] for team members of our team that need to
+query or report on usage but don't have production access.
+
+[Global Auditor role]: https://docs.cloudfoundry.org/concepts/roles.html#roles-and-permissions
+
+To add someone:
+```
+bundle exec uaac member add cloud_controller.global_auditor <EMAIL>
+```
+
+To remove someone:
+```
+bundle exec uaac member delete cloud_controller.global_auditor <EMAIL>
+```
+
+To see the current members:
+```
+(set -o pipefail \
+  && bundle exec uaac group get cloud_controller.global_auditor \
+  | awk '$1 == "value:" {print $2}' \
+  | xargs -n1 -I{} bundle exec uaac users "id eq \"{}\"" -a username)
+```
