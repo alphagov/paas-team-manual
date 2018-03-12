@@ -2,7 +2,7 @@ This documents some of the agreed styles we have to writing [Concourse][]
 pipelines. Because these are written in YAML, the [YAML styleguide][] also
 applies.
 
-[Concourse]: https://concourse.ci
+[Concourse]: https://concourse-ci.org
 [YAML styleguide]: YAML
 
 ## Triggering patterns

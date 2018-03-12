@@ -4,7 +4,7 @@ We use [Bosh](https://bosh.io/) to create and manage our cloudfoundry deployment
 To deploy software, Bosh needs certain binary dependencies available.
 These are known as bosh [releases](https://bosh.io/docs/release.html).
 
-Before this decision, we usually built and uploaded releases to Bosh as part of our [concourse](https://concourse.ci/) pipeline.
+Before this decision, we usually built and uploaded releases to Bosh as part of our [concourse](https://concourse-ci.org/) pipeline.
 Occasionally, we would manually build a release, store it on GitHub, and point Bosh to it there. 
 
 ### Building Bosh Releases
