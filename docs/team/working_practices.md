@@ -23,6 +23,17 @@ ensure that commits have been reviewed before deploying them.
 
 [Full size version](../diagrams/release-sequence.svg)
 
+# These are guidelines, not rules
+
+We've found these working practices highly effective, but they're a living document
+open to discussion and change. They won't necessarily work for everyone without
+some adjustment. If something doesn't seem to be working for you, it's OK to challenge
+that and ask for things to improve.
+
+For our wider cultural practices, see the GDS
+[It's OK](https://gds.blog.gov.uk/2016/05/25/its-ok-to-say-whats-ok/) poster. For
+instance it's okay to ask for help, it's okay to have quiet days, and many other things.
+
 # Pairing
 
 We pair on all stories to ensure that people don't get stuck on the same
