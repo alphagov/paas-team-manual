@@ -1,0 +1,5 @@
+language: ruby
+
+script:
+  - bundle
+  - bundle exec middleman build
