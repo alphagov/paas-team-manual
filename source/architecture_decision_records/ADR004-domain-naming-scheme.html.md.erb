@@ -1,5 +1,7 @@
-Context
-=======
+# ADR004: Domain naming scheme
+
+## Context
+
 As part of our deployment we have a pipeline, where changes that are made can move from a development environment through to production illustrated thusly:
 
 ![pipeline image](../images/pipeline.jpg)
@@ -17,8 +19,8 @@ A number of aspects were considered as part of the naming process.
 * Prevent possibility of domains suggesting 'live' service, for example if we allowed [app name].paas.gov.uk it could appear as thought they were live services.
 
 
-Decision
-========
+## Decision
+
 For _non_ production environments we will be using the following domains:
 
 * [environment name].cloudpipeline.digital
@@ -31,8 +33,7 @@ For our production environment we will be using the following domains:
 
 It is important to note that live services will 'Bring Your Own' domain, apps available at cloudapps.digital are not live 'production' applications.
 
-Domain Overview
-===============
+## Domain Overview
 
 ### Development Domains
 Purpose | URL |
@@ -66,11 +67,10 @@ Cloud Foundry API | api.cloud.service.gov.uk
 Cloud Foundry User Account and Authentication | uaa.cloud.service.gov.uk
 Applications | bar.cloudapps.digital
 
-Status
-======
+## Status
 
 Accepted
 
-Consequences
-============
+## Consequences
+
 Certificates etc. had to be purchased, domains registered, and our automated deployments configured to allow us to specify the domains for each stage of the pipeline.

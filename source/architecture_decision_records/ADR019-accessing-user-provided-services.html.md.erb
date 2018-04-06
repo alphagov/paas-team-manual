@@ -1,6 +1,6 @@
+# ADR019: Accessing user provided services
 
-Context
-=======
+## Context
 
 A service that's onboarding at the moment depends on MySQL, memcached and
 elasticsearch that we don't yet offer, but are likely to in future, and has
@@ -76,13 +76,11 @@ uses AWS, we could use the same principle (us assigning IP address space and
 changing application security groups) to a VPN or some other network overlay
 technology to allow us to connect to things other than VPCs.
 
-Decision
-========
+## Decision
 
 We will offer VPC peering to tenants in specific cases where it is appropriate.
 
-Consequences
-============
+## Consequences
 
 Where we don't presently offer a specific backing-service, tenants have an
 option to provision their own service and access it without having to expose it

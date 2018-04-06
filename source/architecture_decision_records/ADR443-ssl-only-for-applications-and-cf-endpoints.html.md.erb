@@ -1,5 +1,6 @@
-Context
-=======
+# ADR443: SSL-only for applications and cf endpoints
+
+## Context
 
 **Note: This has been superceeded. See [Status](#status) below.**
 
@@ -33,21 +34,18 @@ Although not all application deployed on the PaaS will be "services"
 as in the service manual meaning, we must not allow HTTP to make
 it easier to service owners to comply with this requirements.
 
-Decision
-========
+## Decision
 
 We will only open port 443 (HTTPS) and drop/reject any TCP connection to TCP port 80 (HTTP).
 
 We will implement and maintain HSTS preload lists for our production domains.
 
 
-Status
-======
+## Status
 
 Superceeded by [ADR444](../ADR444-redirect-http-for-applications)
 
-Consequences
-============
+## Consequences
 
 We must configure and maintain our domain in the HSTS preload lists.
 

@@ -1,5 +1,6 @@
-Context
-=======
+# ADR021: Cell capacity assignment 2
+
+## Context
 
 We've been running with the cell provisioning policy in ADR017 since February.
 We haven't ever run out of cell capacity, but we've observed that there's
@@ -29,16 +30,15 @@ Over the 3 month period from 1st August - 1st November
 - the largest amount that rep's allocated memory increased week on week was 55%
 
 
-Decision
-========
+## Decision
 
 Our objectives are:
 
 State | Expected behaviour
 ------|-------------------
-All cells operational | Enough capacity to allow some but not all tenants to scale up to their full quota. The amount of excess capacity required should be enough to accommodate the fluctuations we can expect over a 3 day period (weekend + reaction time) 
-While CF being deployed | As above: enough capacity to allow some tenants to scale up to their full quota 
-One availability zone failed/degraded | Enough capacity to maintain steady state app usage. Not guaranteed to be able to scale apps up.  
+All cells operational | Enough capacity to allow some but not all tenants to scale up to their full quota. The amount of excess capacity required should be enough to accommodate the fluctuations we can expect over a 3 day period (weekend + reaction time)
+While CF being deployed | As above: enough capacity to allow some tenants to scale up to their full quota
+One availability zone failed/degraded | Enough capacity to maintain steady state app usage. Not guaranteed to be able to scale apps up.
 More than one AZ failed | The system is not expected to have sufficient capacity to host all running apps.
 
 To achieve this we need to start basing our capacity planning on current memory
@@ -85,13 +85,11 @@ short lived fluctuations in usage don't cause unnecessary alerts.
 It is likely that patterns such as the fluctuation in memory use over a week
 may change over time. We should review this decision after 6 months.
 
-Status
-========
+## Status
 
 Proposed
 
-Consequences
-============
+## Consequences
 
 We will alert on the following datadog metrics:
 

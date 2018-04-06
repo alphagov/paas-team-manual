@@ -1,5 +1,6 @@
-Context
-=======
+# ADR014: HSTS preload using api gateway
+
+## Context
 
 We will only [serve HTTPS traffic, keeping TCP port 80 (HTTP) closed and use HSTS preload lists](../ADR443-ssl-only-for-applications-and-cf-endpoints).
 
@@ -24,8 +25,7 @@ We must serve from the root domain (or apex domain), but it is not allowed to
 serve [CNAME records in the root/apex domain](http://serverfault.com/questions/613829/why-cant-a-cname-record-be-used-at-the-apex-aka-root-of-a-domain). We must configure A records in this domain. This can be
 an issue when serving the service using ELB or CloudFront.
 
-Decision
-========
+## Decision
 
  * We will implement a basic [AWS API Gateway](https://aws.amazon.com/api-gateway/)
    with a default [MOCK response](https://aws.amazon.com/about-aws/whats-new/2015/09/introducing-mock-integration-generate-api-responses-from-api-gateway-directly/)
@@ -39,12 +39,11 @@ Decision
    to [serve the IPs of the AWS Cloud Front distribution as A records](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html).
 
 
-Status
-======
+## Status
+
 Accepted
 
-Consequences
-============
+## Consequences
 
 To setup AWS API Gateway Domain Names, it is required access to the SSL certificates. There is the option of uploading the certificates in a different step and create the AWS Cloud Front distribution manually.
 

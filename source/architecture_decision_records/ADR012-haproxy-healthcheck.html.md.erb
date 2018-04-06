@@ -1,6 +1,6 @@
+# ADR012: Haproxy healthcheck
 
-Context
-=======
+## Context
 
 Stories: [#123490171](https://www.pivotaltracker.com/story/show/123490171) & [#121933113](https://www.pivotaltracker.com/story/show/121933113)
 
@@ -27,8 +27,7 @@ Two things prevented us from using drain mode:
 The result was a very small amount of downtime for deployed apps that received
 requests during a short window of < 1 second.
 
-Decision
-========
+## Decision
 
 We decided to:
 
@@ -39,13 +38,11 @@ We decided to:
 - enable HTTP healthchecks on the ELB
 
 
-Status
-======
+## Status
 
 Accepted
 
-Consequences
-============
+## Consequences
 
 - There was less downtime for deployed applications during a deploy.
 - We have an additional reason to keep the intermediate HAProxy we introduced as a temporary measure.

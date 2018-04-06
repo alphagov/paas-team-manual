@@ -1,5 +1,6 @@
-Context
-=======
+# ADR018: RDS broker restore last operation
+
+## Context
 
 We use a completely stateless implementation for the RDS broker, as described in [ADR006](../ADR006-rds-broker).
 So all the asynchronous operations on RDS instances were relying on executing a unique operation on AWS API, and querying the RDS instance status reported the AWS API.
@@ -23,8 +24,7 @@ To implement this kind logic, some kind of state must be kept to track the chang
  * Store the state in some database or k/v store.
 
 
-Decision
-========
+## Decision
 
 
 We decided:
@@ -37,12 +37,10 @@ We decided:
     * that update the tags is atomic and synchronous.
 
 
-Status
-======
+## Status
 
 Accepted
 
-Consequences
-============
+## Consequences
 
 The `LastOperation` endpoint will be doing actual logic and updates in the Database.

@@ -1,7 +1,8 @@
-Context
-=======
+# ADR005: Pingdom healthchecks
 
-We wanted to open up access to tenant applications in our production environment. 
+## Context
+
+We wanted to open up access to tenant applications in our production environment.
 
 As part of an earlier story, Pingdom checks were set up for a healthcheck application in CI, Staging, and Production. At this stage applications were not accessible from non-office IP addresses.
 
@@ -12,20 +13,17 @@ If we use Pingdom to assert an application is accessible from the outside world 
 * [#116104189 - set up Pingdom](https://www.pivotaltracker.com/story/show/116104189)
 * [#115347323 - allow public access to tenant applications](https://www.pivotaltracker.com/story/show/115347323)
 
-Decision
-========
+## Decision
 
 It was decided we would make the staging environment accessible to the outside world as well as production, and define future work for removing the CI Pingdom check and security groups allowing Pingdom probes, and setting up tests from the pipeline which use the Pingdom API.
 
 Given that the advantages relate to the availability of our production environment, they outweigh not having an automated healthcheck on an application in our CI environment. However, we remain open to hearing solutions to providing healthchecks for CI in future.
 
-Status
-======
+## Status
 
 Proposed
 
-Consequences
-============
+## Consequences
 
 A story is now required to remove the Pingdom health check for our CI environment, and the security groups allowing Pingdom probes.
 

@@ -1,6 +1,6 @@
+# ADR007: Terminating TLS at ELBs
 
-Context
-=======
+## Context
 
 We needed to decide where to terminate TLS connections for public and tenant
 facing endpoints and how to manage the corresponding private keys.
@@ -21,7 +21,7 @@ rest. Only a small number of engineers within the team can access; the same
 ones that can make IAM changes using our account-wide terraform config.
 
 Placing ELBs in front of public-facing services is an architectural pattern
-advised by Amazon [in order to reduce attack 
+advised by Amazon [in order to reduce attack
 surface](https://d0.awsstatic.com/whitepapers/DDoS_White_Paper_June2015.pdf).
 Specifically they advise that it helps withstand volumetric Denial of Service
 attacks; the ELB handles TCP connections and therefore the responsibility for
@@ -48,8 +48,7 @@ In attempting to solve the second problem, we explored some options:
   understands the proxy protocol and adds or appends to an `X-Forwarded-For`
   header with the client IP address as provided via the proxy protocol.
 
-Decision
-========
+## Decision
 
 We decided to:
 
@@ -59,13 +58,11 @@ We decided to:
 - use S3 logging to ensure we have the IP addresses of clients using the CF
   endpoint
 
-Status
-======
+## Status
 
 Accepted
 
-Consequences
-============
+## Consequences
 
 - We played a [spike to investigate setting X-Forwarded-For
   correctly](https://www.pivotaltracker.com/projects/1275640/stories/116619465)
@@ -75,4 +72,4 @@ Consequences
 - As an interim measure until gorouter gained support, [we added an
   intermediate HAProxy to introduce `X-Forwarded-For` and `X-Forwarded-Proto`
   headers](https://www.pivotaltracker.com/story/show/116309951).
-  
+

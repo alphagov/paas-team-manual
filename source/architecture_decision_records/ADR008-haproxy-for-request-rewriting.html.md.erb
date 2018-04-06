@@ -1,5 +1,6 @@
-Context
-=======
+# ADR008: Haproxy for request rewriting
+
+## Context
 
 We want to serve [HSTS
 headers](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security) for all
@@ -34,9 +35,7 @@ There are several possible implementations:
  4. AWS ELB: They do not support this logic and will not in the short term.
    In consequence they cannot be used to solve this problem.
 
-
-Decision
-========
+## Decision
 
 We do not want to add any additional logic in the CDN, as they will
 be an optional part of the platform and we will try to keep as simple
@@ -71,13 +70,11 @@ Future work:
    define additional headers.
 
 
-Status
-======
+## Status
 
 Accepted
 
-Consequences
-============
+## Consequences
 
 ### Positive
 

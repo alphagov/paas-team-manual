@@ -1,6 +1,6 @@
-# Redirect HTTP for applications
+# ADR444: Redirect HTTP for applications
 
-# Context
+## Context
 
 In [ADR443](../ADR443-ssl-only-for-applications-and-cf-endpoints) we decided that
 we would only support https for applications on the PaaS, and that we would
@@ -19,7 +19,7 @@ from ADR443.
 
 There are a number of things that could be done to address this:
 
-## Update the CF CLI to include the scheme
+### Update the CF CLI to include the scheme
 
 Currently, the CF CLI outputs the fully-qualified hostname of the app after
 pushing, but doesn't include the scheme. This has caused confusion for users
@@ -38,7 +38,7 @@ upgrade their CLI.
 Additionally, there is some debate about how effective this change would be. It
 will probably fix some cases, but won't cover everything.
 
-## Redirect http to https
+### Redirect http to https
 
 Add an endpoint that listens to all http requests on cloudapps.digital and
 redirects them to the corresponding https URL.
@@ -52,17 +52,17 @@ There's another risk that a misconfiguration could allow non-encrypted traffic
 through to applications. This would need to be mitigated by having acceptance
 tests to cover this.
 
-# Decision
+## Decision
 
 We will redirect http traffic to the corresponding root https endpoint.
 
 We will continue to maintain HSTS preload lists for our production domains.
 
-# Status
+## Status
 
 Accepted
 
-# Consequences
+## Consequences
 
 We must configure and maintain an endpoint on the routers that accepts http
 connections and redirects to the corresponding base https endpoint.

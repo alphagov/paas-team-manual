@@ -1,14 +1,13 @@
+# ADR017: cell capacity assignment
 
-Superceded
-==========
+## Superceded
 
 This has been superceded by [ADR021](/architecture_decision_records/ADR021-cell-capacity-assignment-2/) since November 2017. It has been retained for historical purposes.
 
 ------------------------
 
 
-Context
-=======
+## Context
 
 We want to ensure our platform remains available when a single AZ fails. This means that we need to have enough spare memory capacity left on cells to cover deploying apps from the failed zone. In case of 3 zones, that means each zone should be able to host 50% more apps (memory capacity wise). We can calculate maximum memory usable by all orgs by doing sum of their quotas. However, in practice much less memory is consumed. This is because
 
@@ -25,18 +24,15 @@ Memory actually used by apps: 32868 (32 GB)
 
 This is not unusual and CF v1 had default overprovisioning factor of 2 (that is, it advertised 2 times more capacity than actual).
 
-Decision
-========
+## Decision
 
 We will maintain at least 50% of total org reserved capacity available when a zone fails. That is, remaining zones will have to be able to cover 50% of total reserved capacity.
 
-Status
-======
+## Status
 
 Superceded by [ADR021](/architecture_decision_records/ADR021-cell-capacity-assignment-2/).
 
-Consequences
-============
+## Consequences
 
-* We will check if we have enough capacity available whenever we add a new organisation or increase quota of existing one. We will deploy more cells if we need more capacity. 
+* We will check if we have enough capacity available whenever we add a new organisation or increase quota of existing one. We will deploy more cells if we need more capacity.
 * We have implemented `show-cf-memory-usage` makefile target to help us get current org and app reservation and real usage totals.

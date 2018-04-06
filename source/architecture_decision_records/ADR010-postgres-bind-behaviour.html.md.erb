@@ -1,5 +1,6 @@
-Context
-=======
+# ADR010: Postgres bind behaviour
+
+## Context
 
 We use RDS for tenant databases. Tenants can bind more than one application to a database instance created via the services console. Database migrations were broken when a binding was removed and re-added, or when another bound application other than the one that created the database tables attempted to modify them.
 
@@ -15,8 +16,7 @@ We attempted to work around the PostgreSQL permissions system in the following w
 
 * Creating a "parent" group that is given ownership of all tables, sequences, and functions. New users are granted rights on this group and thus can carry out all owner actions on group-owned items. A [DDL event trigger](https://www.postgresql.org/docs/9.5/static/event-trigger-definition.html) using the built-in `REASSIGN OWNED BY` command handed over ownership of all resources owned by the current user to the parent `$DBNAME_owner` group. This worked perfectly on all the PostgreSQL databases we tested with, however RDS does not allow use of event triggers so it was unworkable in production.
 
-Decision
-========
+## Decision
 
 We decided the simplest solution was to issue the same credentials to all applications bound to the database. This means that the same user will be used by each application, and they will not suffer ownership problems when issuing `DROP` or `ALTER` commands.
 
@@ -24,12 +24,10 @@ Rather than deterministically deriving the credentials we decided to store them 
 
 We accepted that in the future we may wish to extend this by allowing the broker to issue read-only credentials, or credentials that are suitable for `SELECT`, `INSERT`, and `DELETE` operations, but not schema modifications.
 
-Status
-======
+## Status
 
 Accepted
 
-Consequences
-============
+## Consequences
 
 We return the same credentials to all apps bound to the same PostgreSQL database (RDS) instance.

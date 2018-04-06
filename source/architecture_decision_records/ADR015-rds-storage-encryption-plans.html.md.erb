@@ -1,5 +1,6 @@
-Context
-=======
+# ADR015: RDS storage encryption plans
+
+## Context
 
 We want to enable, or provide the option to enable,
 [storage encryption (AKA encryption at rest) for the RDS instances](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html)
@@ -34,8 +35,7 @@ We have 3 options to proceed:
     * We will add more plans, which makes it more confusing for the tenants.
 
 
-Decision
-========
+## Decision
 
 We decided to provide additional explicit plans with Encryption enabled, and keep the old ones.
 
@@ -43,13 +43,11 @@ We will add logic in the broker to prevent updates between plans with or without
 
 We have decided only add the option of encryption to the HA plans to minimise the number of new plans added. In most of the cases the tenants would choose HA together with encryption and, although adding more plans is easy, removing them is painful once they are being used.
 
-Status
-======
+## Status
 
 Accepted.
 
-Consequences
-============
+## Consequences
 
  * More plans will be added to the offer, which is more confusing the tenants. Better documentation would be required to help the tenants to pick the right plan.
  * It is not possible to migrate from a Non-Encrypted plan to an Encrypted plan, and vice versa.

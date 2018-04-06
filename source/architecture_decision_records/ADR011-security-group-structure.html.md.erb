@@ -1,4 +1,6 @@
-# Context
+# ADR011: Security group structure
+
+## Context
 
 In https://www.pivotaltracker.com/story/show/115252309 we described a pattern
 for defining security groups between services and the VMs that connect to
@@ -10,7 +12,7 @@ This has the problem that in some cases we would need to add several client
 security groups to a given VM, and we are at risk of running into the AWS
 limits (by default it's a max of 5 groups per interface).
 
-# Decision
+## Decision
 
 We will use an alternative approach where a security group is defined for each
 component (or component group) in the system. Services then define rules
@@ -30,11 +32,11 @@ This approach has a number of advantages:
 * When moving a component between VMs it's much clearer which security groups
   need to move with it.
 
-# Status
+## Status
 
 Accepted
 
-# Consequences
+## Consequences
 
 * This will enable us to avoid hitting the AWS limits for the number of
   security groups applied to a given interface.
