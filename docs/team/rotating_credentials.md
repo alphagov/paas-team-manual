@@ -6,6 +6,18 @@ Rotating passwords consists of two phases. First, you delete credentials using o
 
 Second phase consists of running the main pipeline (on deployer for CF, on bootstrap for BOSH and Concourse) to generate new credentials and apply them. Ensure that there is nothing else triggering this 2nd phase run, as that would mean you would be rotating passwords _and_ trying to apply some changes at the same time, which might not work and you could end up with broken deployment. Pipeline run should complete successfully and all tests should pass. There should be no interruptions to deployed apps.
 
+## Rotating certificates
+
+Rotating the certificates that Cloud Foundry using internally for mutual TLS
+between components is a much longer process. You need to:
+
+1. Run `rotate-cf-certs-cas` to copy existing CAs into `_old` suffixes
+1. Run `create-cloudfoundry` to generate new CAs and deploy them alongside the old CAs
+1. Run `rotate-cf-certs-leafs` to delete existing non-CA certs
+1. Run `create-cloudfoundry` to generate new non-CA certs against the new CAs and deploy them
+1. Run `delete-old-cf-certs` to delete old CAs
+1. Run `create-cloudfoundry` to remove the old CAs
+
 ### AWS keys generated in the pipeline
 
 The deployer Concourse has a job for triggering the rotation of AWS keys generated in the pipeline. These keys currently include:
