@@ -87,15 +87,16 @@ There may be times, where we'd need to be troubleshooting or reviewing an API Ac
 
 ## Gorouter
 
-In kibana, filtering the `@source.component` to `gorouter` will show the access logs. Request details are also parsed to allow searches like:
+In kibana, filtering the `@source.component` to `gorouter` will show the access logs, error logs, and route registration events.
+
+You can filter access logs only with:
+
+- `tags:gorouter_access_log`
+
+Request details are also parsed to allow searches like:
 
 - `NOT gorouter.status: 200`
 - `gorouter.method: POST`
-
-You can find additional context searching for:
-
- - `@source.component:gorouter.stdout`: logs written to stdout, including route registration events
- - `@source.component:gorouter.stderr`: logs written to stderr, including application connection errors
 
 ## Router HAProxy
 
