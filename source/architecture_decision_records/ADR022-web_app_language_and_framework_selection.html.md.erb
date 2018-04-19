@@ -1,5 +1,11 @@
 # ADR022: web app language and framework selection
 
+## Superceded
+
+This has been superceded by [ADR024][] since February 2018. It has been retained for historical purposes.
+
+------------------------
+
 ## Context
 
 We are starting to develop a number of user-facing applications with web
@@ -7,7 +13,7 @@ interfaces that need to be styled to look like GOV.UK etc. In order to keep
 things consistent we want to pick a single programming language and framework
 to write these in.
 
-We've previously used [Sinatra](http://sinatrarb.com/) for this, but ran into
+We've previously used [Sinatra][] for this, but ran into
 issues with its default configuration which isn't secure, leading to an XSS
 vulnerability. We therefore want to choose something that comes with secure
 defaults, and makes it easier to avoid this sort of issue.
@@ -37,12 +43,14 @@ We will use Ruby and Rails to create new user-facing applications with web front
 
 ## Status
 
-Accepted.
+Superceded by [ADR024][].
 
 ## Consequences
 
 We should consider porting some of our existing applications over to Ruby and Rails.
 
+[ADR024]: /architecture_decision_records/ADR024-web-app-language-and-framework-selection-2
+[Sinatra]: http://sinatrarb.com/
 [govuk_template]: https://github.com/alphagov/govuk_template
 [govuk_frontend_toolkit]: https://github.com/alphagov/govuk_frontend_toolkit
 [govuk-frontend]: https://github.com/alphagov/govuk-frontend
