@@ -8,6 +8,7 @@ after_build do |builder|
         :assume_extension => true,
         :allow_hash_href => true,
         :disable_external => true,
+        :url_swap => { config[:tech_docs]['host'] => '' },
     }).run
   rescue RuntimeError => e
     puts e
