@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/guides/CloudFoundry_debugging/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#cloud-foundry-debugging">Cloud Foundry debugging</a>
+    <ul>
+      <li>
+        <a href="#finding-which-cell-an-app-instance-is-running-on">Finding which cell an app instance is running on</a>
+      </li>
+      <li>
+        <a href="#downloading-an-app-container">Downloading an app container</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="cloud-foundry-debugging">Cloud Foundry debugging</h1>
+<p>This is a set of useful things that may help you debug CloudFoundry problems.</p>
+<h2 id="finding-which-cell-an-app-instance-is-running-on">Finding which cell an app instance is running on</h2>
+<p>First, get the GUID of the app you want to investigate:
+<code>
+$ cf app APPNAME --guid
+c6d1259c-8057-489e-9ac2-beaa896c2bf3
+</code></p>
+
+<p>Then use <code>cf curl</code> and <code>jq</code> to extract the information from the stats endpoint:
+<code>
+$ cf curl /v2/apps/c6d1259c-8057-489e-9ac2-beaa896c2bf3/stats | jq &#39;with_entries(.value = .value.stats.host)&#39;
+{
+  &quot;0&quot;: &quot;10.0.33.4&quot;,
+  &quot;1&quot;: &quot;10.0.34.4&quot;
+}
+</code></p>
+
+<p>You can use <code>bosh vms</code> to correlate the IPs to BOSH job indexes or VM UUIDs.</p>
+<h2 id="downloading-an-app-container">Downloading an app container</h2>
+<p>If there are problems running an app then <code>cf files</code> will not function as the container must be running. An alternative is to grab the droplet image directly from CloudFoundry and unpack it locally. This can also be useful when you need to obtain a copy of a deployed app if you don&rsquo;t have the source.</p>
+
+<p>First, get the GUID of the app you want to investigate:
+<code>
+$ cf app APPNAME --guid
+5ffab66f-0be2-4a65-b9ff-40a902a05b50
+</code></p>
+
+<p>Then use the <code>cf curl</code> wrapper to make an API call that retrieves the droplet and unpack it:
+<code>
+$ mkdir droplet &amp;&amp; cd droplet
+$ cf curl /v2/apps/5ffab66f-0be2-4a65-b9ff-40a902a05b50/droplet/download &gt; image.tar.gz
+$ tar -zxf image.tar.gz
+</code></p>
+
+<p><strong>Note:</strong> Tar will exit complaining about invalid gzip blocks - this is because the droplet has other data (such as a signature) appended to the end of the image. This isn&rsquo;t a problem, all the files for the image will be unpacked anyway.</p>
+
+<p>You should now have everything used to run the app and all the build logs. <code>app</code> contains everything the user <code>cf push</code>-ed plus any change from the staging phase (for example, compiled binaries):
+<code>
+$ ls -lah
+total 41M
+drwxr-xr-x  5 ubuntu ubuntu 4.0K Dec  9 11:55 .
+drwxr-xr-x 23 ubuntu ubuntu 4.0K Dec  8 19:43 ..
+drwxr--r-- 10 ubuntu ubuntu 4.0K Dec  8 16:04 app
+-rw-rw-r--  1 ubuntu ubuntu  41M Dec  8 13:41 image.tar.gz
+drwxr-xr-x  2 ubuntu ubuntu 4.0K Dec  8 13:53 logs
+-rw-r--r--  1 ubuntu ubuntu  298 Dec  8 13:27 staging_info.yml
+drwxr-xr-x  2 ubuntu ubuntu 4.0K Dec  8 13:27 tmp
+</code></p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

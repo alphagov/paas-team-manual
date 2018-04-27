@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR018-rds-broker-restore-last-operation/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr018-rds-broker-restore-last-operation">ADR018: RDS broker restore last operation</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="adr018-rds-broker-restore-last-operation">ADR018: RDS broker restore last operation</h1><h2 id="context">Context</h2>
+<p>We use a completely stateless implementation for the RDS broker, as described in <a href="../ADR006-rds-broker">ADR006</a>.
+So all the asynchronous operations on RDS instances were relying on executing a unique operation on AWS API, and querying the RDS instance status reported the AWS API.</p>
+
+<p>But to implement the feature of restore from snapshot, we must execute several operations sequentially.</p>
+
+<p>The broker must:
+ 1. Start the restore from snapshot, which can take minutes.
+ 2. Once finish, update several parameters of the instance (security groups, parameters, etc).
+ 3. Once that is finish, reset the master password of the RDS instance.
+ 4. Finally reset the passwords of the users previously bind in the original DB.</p>
+
+<p>As the create operation is a asynchronous operation, the Cloud Controller API will periodically request the <code>LastOperation</code> endpoint to query the state of the restored instance.
+The rds-broker must respond accordingly.</p>
+
+<p>The Cloud Controller API includes logic to ensure the resiliance of a service creation, maintaining the workers that will poll the <code>LastOperation</code> until the service is created or there is timeout.</p>
+
+<p>To implement this kind logic, some kind of state must be kept to track the changes on the instance.  Options are:
+ * run a background house-keeping routine. This house-keeping should be resilient to rds-broker restarts and able to work with multiple rds-broker instances..
+ * Use SNS and SQS, by subscribing to the <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Events.html">AWS events from RDS</a>. This requires a lot of additional work and integration effort.
+ * Store the state in some database or k/v store.</p>
+<h2 id="decision">Decision</h2>
+<p>We decided:</p>
+
+<ul>
+<li>Implement a state machine using the <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">AWS tags</a> of the instance.
+We will add a list of tags for each pending operations to execute.</li>
+<li>We make use of <code>LastOperation</code> to check the pending operations and perform them, to finally delete the corresponding tag to mark it as done.
+We assume that:
+
+<ul>
+<li>all the required operations are either asynchronous in the AWS API (eg. update instance) or quick to execute (e.g. reset bind user passwords)</li>
+<li>that update the tags is atomic and synchronous.</li>
+</ul></li>
+</ul>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>The <code>LastOperation</code> endpoint will be doing actual logic and updates in the Database.</p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

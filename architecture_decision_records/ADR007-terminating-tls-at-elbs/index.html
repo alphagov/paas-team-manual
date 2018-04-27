@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR007-terminating-tls-at-elbs/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr007-terminating-tls-at-elbs">ADR007: Terminating TLS at ELBs</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="adr007-terminating-tls-at-elbs">ADR007: Terminating TLS at ELBs</h1><h2 id="context">Context</h2>
+<p>We needed to decide where to terminate TLS connections for public and tenant
+facing endpoints and how to manage the corresponding private keys.</p>
+
+<p>We had previously decided to only support HTTPS to both deployed applications
+and Cloud Foundry endpoints.</p>
+
+<p>At the time of writing there were 4 endpoints to consider:</p>
+
+<ul>
+<li>Deployed applications (gorouter). Accessed by the public.</li>
+<li>CF API. Accessed by tenants.</li>
+<li>UAA. Accessed by tenants.</li>
+<li>Loggregator. Accessed by tenants.</li>
+<li>SSH proxy. In theory accessed by tenants, but not working in our environment.</li>
+</ul>
+
+<p>We had an existing credentials store suitable for storing the private keys at
+rest. Only a small number of engineers within the team can access; the same
+ones that can make IAM changes using our account-wide terraform config.</p>
+
+<p>Placing ELBs in front of public-facing services is an architectural pattern
+advised by Amazon <a href="https://d0.awsstatic.com/whitepapers/DDoS_White_Paper_June2015.pdf">in order to reduce attack
+surface</a>.
+Specifically they advise that it helps withstand volumetric Denial of Service
+attacks; the ELB handles TCP connections and therefore the responsibility for
+handling DDOS at Layer 4 and below resides with the ELB team.</p>
+
+<p>We did a spike, where we attempted to place everything public-facing or
+tenant-facing behind ELBs. We found that:</p>
+
+<ul>
+<li>In HTTP mode the ELBs do not support web sockets. This is known to break
+loggregator, which relies on them for log streaming. It would also prevent
+tenants from using web sockets within their applications.</li>
+<li>When the ELB is in TCP mode, we have no way of communicating the client IP
+address to the downstream service. Practical consequences of this would be
+that tenants would be unable to see in their logs who is using their service or
+do any access control based on client IP address.</li>
+</ul>
+
+<p>In attempting to solve the second problem, we explored some options:</p>
+
+<ul>
+<li>ELB has support for the <a href="http://www.haproxy.org/download/1.5/doc/proxy-protocol.txt">Proxy
+Protocol</a>, but
+unfortunately none of the downstream services, such as gorouter, support it. It
+seemed simple to add support to gorouter.</li>
+<li>We could introduce another intermediary proxy such as HAProxy, which
+understands the proxy protocol and adds or appends to an <code>X-Forwarded-For</code>
+header with the client IP address as provided via the proxy protocol.</li>
+</ul>
+<h2 id="decision">Decision</h2>
+<p>We decided to:</p>
+
+<ul>
+<li>use the ELB to terminate TLS</li>
+<li>use the ELB in TCP mode</li>
+<li>submit proxy protocol support to gorouter</li>
+<li>use S3 logging to ensure we have the IP addresses of clients using the CF
+endpoint</li>
+</ul>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<ul>
+<li>We played a <a href="https://www.pivotaltracker.com/projects/1275640/stories/116619465">spike to investigate setting X-Forwarded-For
+correctly</a>
+which produced an <a href="https://github.com/cloudfoundry/gorouter/pull/126">upstream PR to add proxy protocol support to
+gorouter</a> and <a href="https://github.com/cloudfoundry/gorouter/pull/127">another to introduce
+X-Forwarded-Proto headers</a></li>
+<li>As an interim measure until gorouter gained support, <a href="https://www.pivotaltracker.com/story/show/116309951">we added an
+intermediate HAProxy to introduce <code>X-Forwarded-For</code> and <code>X-Forwarded-Proto</code>
+headers</a>.</li>
+</ul>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR019-accessing-user-provided-services/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr019-accessing-user-provided-services">ADR019: Accessing user provided services</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#via-internet-using-network-access-controls">Via Internet, using network access controls</a>
+      </li>
+      <li>
+        <a href="#using-private-address-space-vpc-peering">Using private address space (VPC peering)</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="adr019-accessing-user-provided-services">ADR019: Accessing user provided services</h1><h2 id="context">Context</h2>
+<p>A service that&rsquo;s onboarding at the moment depends on MySQL, memcached and
+elasticsearch that we don&rsquo;t yet offer, but are likely to in future, and has
+chosen to host them on AWS using RDS MySQL, Elasticache memcached and hosted
+Elasticache.</p>
+
+<p>We wanted to ensure that only the app instances belonging to that service could
+connect to those services in order to avoid other services being able to access or modify their data.</p>
+
+<ul>
+<li>MySQL requires authentication and allows TLS</li>
+<li>Elasticache memcached does not provide authentication or TLS</li>
+<li>AWS Hosted elasticsearch <a href="https://aws.amazon.com/blogs/security/how-to-control-access-to-your-amazon-elasticsearch-service-domain/">appears to provide the ability to sign
+elasticsearch requests using an AWS access
+key</a>.
+Requiring a custom elasticsearch client.</li>
+</ul>
+
+<p>The options for authentication are:</p>
+<h2 id="via-internet-using-network-access-controls">Via Internet, using network access controls</h2>
+<p>This is described for
+<a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Access.Outside.html">elasticache</a></p>
+
+<p>How we would set it up:</p>
+
+<ul>
+<li>Tenant binds services to public IP addresses, restricts access to PaaS egress IPs.</li>
+<li>PaaS team changes default <a href="https://docs.cloudfoundry.org/adminguide/app-sec-groups.html">application security
+group</a> set to
+forbid access to those IP addresses.</li>
+<li>PaaS team creates new application security group allowing access to those IP addresses.</li>
+<li>PaaS team binds application security group to space(s) belonging to tenants</li>
+</ul>
+
+<p>Risks/costs:</p>
+
+<ul>
+<li>Access via Internet IP is via NAT instance, introducing a likely single point
+of failure and additional running costs to tenants.</li>
+<li>Traffic is in plaintext over the Internet for some services.</li>
+<li>PaaS team need to do work every time a tenant adds/changes service IP addresses.</li>
+<li>If they forget to request this, other PaaS tenants have access to their
+service IPs.</li>
+<li>PaaS team need to do work (assigning application security groups) in every
+occasion a space needs to gain or lose
+access to the list of service IPs.</li>
+</ul>
+<h2 id="using-private-address-space-vpc-peering">Using private address space (VPC peering)</h2>
+<p>How we would set it up:</p>
+
+<ul>
+<li>Tenant raises support request to begin setup process</li>
+<li>PaaS team responds with a unique IP allocation eg. 172.16.0.0/24 for tenant to use</li>
+<li>Tenant creates VPC using that address space</li>
+<li>Tenant creates AWS security group(s) restricting access from PaaS VPC to expected services</li>
+<li>Tenant provides PaaS team with their AWS account id and the VPC id.</li>
+<li>PaaS team sends VPC peering request</li>
+<li>PaaS team creates new application security group allowing access to the VPC IP allocation</li>
+<li>PaaS team binds application security group to space(s) belonging to tenants</li>
+<li>Tenant accepts VPC peering request</li>
+</ul>
+
+<p>Risks/costs:</p>
+
+<ul>
+<li>Introduces a new network security boundary between VPCs; a risk of
+accidentally introducing security group rules that allow more access from the
+peered VPC than intended.</li>
+<li>PaaS team need to do work (assigning application security groups) on every
+occasion a space needs to gain or lose
+access to the peered VPC.</li>
+</ul>
+
+<p>Although this specific example uses VPC peering because the tenant in question
+uses AWS, we could use the same principle (us assigning IP address space and
+changing application security groups) to a VPN or some other network overlay
+technology to allow us to connect to things other than VPCs.</p>
+<h2 id="decision">Decision</h2>
+<p>We will offer VPC peering to tenants in specific cases where it is appropriate.</p>
+<h2 id="consequences">Consequences</h2>
+<p>Where we don&rsquo;t presently offer a specific backing-service, tenants have an
+option to provision their own service and access it without having to expose it
+to the Internet. The process for doing this is documented
+<a href="https://github.com/alphagov/paas-cf/blob/master/doc/vpc_peering.md">here</a>.</p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

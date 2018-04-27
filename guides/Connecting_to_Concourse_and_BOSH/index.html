@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/guides/Connecting_to_Concourse_and_BOSH/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#connecting-to-concourse-and-bosh">Connecting to Concourse and BOSH</a>
+    <ul>
+      <li>
+        <a href="#ssh-into-the-concourse-vm">SSH into the Concourse VM</a>
+      </li>
+      <li>
+        <a href="#connecting-bosh-cli-to-bosh">Connecting bosh_cli to BOSH</a>
+        <ul>
+          <li>
+            <a href="#bosh-ssh">Bosh SSH</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#ssh-into-the-bosh-vm">SSH into the BOSH VM</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="connecting-to-concourse-and-bosh">Connecting to Concourse and BOSH</h1><h2 id="ssh-into-the-concourse-vm">SSH into the Concourse VM</h2>
+<p>We can SSH directly into the Concourse VM using a Makefile target in <code>paas-bootstrap</code>. This copies the Concourse VM&rsquo;s SSH key from a state bucket on S3, prints the VM&rsquo;s sudo password, and makes the SSH connection.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>make ssh_concourse
+</code></pre></div><h2 id="connecting-bosh-cli-to-bosh">Connecting bosh_cli to BOSH</h2>
+<p><a id="connecting-bosh_cli-to-bosh"></a></p>
+
+<p>A Makefile task in <code>paas-bootstrap</code> pulls a Docker image and runs a container loaded with the secrets required to interact with Bosh using the CLI:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>DEPLOY_ENV=foo make dev bosh-cli
+</code></pre></div>
+<p>The container will automatically login and target the CF deployment.</p>
+
+<p>If you want to target the <code>concourse</code> deployment you have to define it for your commands specifically, e.g.:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>bosh -d concourse vms
+</code></pre></div><h3 id="bosh-ssh">Bosh SSH</h3>
+<p>To SSH to Bosh-managed VMs you need to go via a gateway, as they aren&rsquo;t exposed publicly. We use the Bosh VM as the gateway - this is set up automatically. From inside the container you can run:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>bosh ssh router/bd695524-353e-43ef-84a6-4e256537bd95
+</code></pre></div><h2 id="ssh-into-the-bosh-vm">SSH into the BOSH VM</h2>
+<p>There is a Makefile task in <code>paas-bootstrap</code> to establish this SSH connection.  This copies SSH keys for the BOSH VM from a state bucket on S3, prints the BOSH VM&rsquo;s sudo password, and makes the SSH connection.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>make ssh_bosh
+</code></pre></div>
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

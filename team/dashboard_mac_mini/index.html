@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/team/dashboard_mac_mini/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#dashboard-mac-mini">Dashboard Mac Mini</a>
+    <ul>
+      <li>
+        <a href="#outstanding-pull-requests">Outstanding pull requests</a>
+      </li>
+      <li>
+        <a href="#grafana-dashboard">Grafana Dashboard</a>
+      </li>
+      <li>
+        <a href="#concourse-pipelines">Concourse pipelines</a>
+      </li>
+      <li>
+        <a href="#pingdom">Pingdom</a>
+      </li>
+      <li>
+        <a href="#datadog-triggered-monitors">Datadog Triggered Monitors</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="dashboard-mac-mini">Dashboard Mac Mini</h1>
+<p>There are two Mac Minis attached to big screens in our team area. They can show the
+following:</p>
+
+<ul>
+<li>Outstanding pull requests</li>
+<li>Grafana dashboard</li>
+<li>Concourse pipelines</li>
+<li>Pingdom public status page</li>
+<li>Overview of Datadog triggered monitors</li>
+</ul>
+
+<p>Some combination of the above might be shown according to the whims of the team.
+If we want to display multiple different views on a single screen, we use
+<a href="https://github.com/dsingleton/frame-splits">frame-splits</a>.</p>
+
+<p>If you need access, you can walk up and use the mouse and keyboard, or connect via the OSX Screen Sharing app.</p>
+
+<p>The credentials for this are in the <code>paas-pass</code> password store.</p>
+
+<p>To connect to the first machine, you need to be on the <code>CDN02_test</code> wifi network.
+This network is not configured by default on newly provisioned laptops, so talk to someone else on the team if you need the wifi password.
+The second machine is on <code>Bardeen</code>.
+You can find the machines in the Network section of an OSX Finder window, but only if you are on the right network.
+If you open a machine, the finder should show you a <code>Share screen</code> button.</p>
+<h2 id="outstanding-pull-requests">Outstanding pull requests</h2>
+<p>These are shown by <a href="https://github.com/alphagov/fourth-wall">Fourth Wall</a>.</p>
+
+<p>To get the URL for our dashboard, you can use these commands:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>export GITHUB_API_TOKEN=&lt;your github access token&gt;
+
+echo "https://alphagov.github.io/fourth-wall/?token=${GITHUB_API_TOKEN}&amp;team=alphagov/team-government-paas-readonly"
+</code></pre></div>
+<p>Replace the placeholders with read-only <a href="https://github.com/blog/1509-personal-api-tokens">access tokens</a> from GitHub.</p>
+
+<p>You can store those variables in a <a href="https://www.passwordstore.org/">password manager like <code>paas</code></a> and load then as needed.</p>
+<h2 id="grafana-dashboard">Grafana Dashboard</h2>
+<p>Also known as the User Impact Dashboard.</p>
+
+<p>Found at
+<code>
+https://metrics.cloud.service.gov.uk/dashboard/file/user-impact.json
+</code></p>
+
+<p>Credentials are in the password store.</p>
+<h2 id="concourse-pipelines">Concourse pipelines</h2>
+<p>This shows the pipelines for staging and production on a single screen. The URLs for the pipelines are:</p>
+
+<ul>
+<li><code>https://deployer.staging.cloudpipeline.digital/teams/main/pipelines/create-cloudfoundry</code></li>
+<li><code>https://deployer.cloud.service.gov.uk/teams/main/pipelines/create-cloudfoundry</code></li>
+</ul>
+
+<p>The combined dashboard is
+<a href="https://dsingleton.github.io/frame-splits/index.html?title=&amp;layout=2row&amp;url%5B%5D=https%3A%2F%2Fdeployer.staging.cloudpipeline.digital%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&amp;url%5B%5D=https%3A%2F%2Fdeployer.cloud.service.gov.uk%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&amp;url%5B%5D=&amp;url%5B%5D=">here</a>.</p>
+
+<p>We&rsquo;re using a custom Chrome plugin to hide some of the Concourse page furniture
+on the Dashboard. It can be found
+<a href="https://github.com/alphagov/paas-cf/tree/master/misc/chrome_plugins/clean_concourse_pipeline">here</a>.</p>
+<h2 id="pingdom">Pingdom</h2>
+<p>You can use the <a href="http://stats.pingdom.com/ejtodj13fqqx">Pingdom public status page</a> (<a href="https://help.pingdom.com/hc/en-us/articles/205386171-Public-Status-Page">documented here</a>) to display the uptime and current status of our healthcheck application. It is not currently presented on the monitors, as we did not find it useful enough. The Pingdom account is shared with other Government-as-a-Platform services, such as Notify, and there is only one shared dashboard for the entire account.</p>
+
+<p>We use the <a href="https://chrome.google.com/webstore/detail/super-auto-refresh/kkhjakkgopekjlempoplnjclgedabddk?hl=en">Super Auto Refresh</a> Chrome extension to refresh the page.</p>
+<h2 id="datadog-triggered-monitors">Datadog Triggered Monitors</h2>
+<p>We have created a <a href="https://app.datadoghq.com/screen/222842/user-impact-for-our-monitor-do-not-edit">dashboard in Datadog, called &lsquo;User Impact&rsquo;</a>, which displays a count of monitors by trigger status (healthy, warning, critical, or unknown). It also recreates most of the Grafana dashboard of the same name.</p>
+
+<p>The credentials for the Datadog user are in the <code>paas-pass</code> password store.</p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

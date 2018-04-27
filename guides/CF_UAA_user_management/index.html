@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/guides/CF_UAA_user_management/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#user-management-with-cloud-foundry-39-s-uaa">User management with Cloud Foundry’s UAA</a>
+    <ul>
+      <li>
+        <a href="#interacting-with-uaa">Interacting with UAA</a>
+        <ul>
+          <li>
+            <a href="#install">Install</a>
+          </li>
+          <li>
+            <a href="#log-in">Log in</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#finding-a-user-account">Finding a user account</a>
+      </li>
+      <li>
+        <a href="#locking-a-user-account">Locking a user account</a>
+      </li>
+      <li>
+        <a href="#finding-out-org-membership">Finding out org membership</a>
+      </li>
+      <li>
+        <a href="#notifying-the-org-manager">Notifying the org manager</a>
+      </li>
+      <li>
+        <a href="#global-auditor-role">Global Auditor role</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="user-management-with-cloud-foundry-39-s-uaa">User management with Cloud Foundry&rsquo;s UAA</h1>
+<p>Cloud Foundry&rsquo;s account management is mostly controlled by <a href="https://github.com/cloudfoundry/uaa">UAA</a></p>
+<h2 id="interacting-with-uaa">Interacting with UAA</h2><h3 id="install">Install</h3>
+<p>You can access the <a href="https://github.com/cloudfoundry/cf-uaac">uaac</a> command line utility from
+<a href="https://github.com/alphagov/paas-cf">alphagov/paas-cf</a>. Using <a href="http://bundler.io/">Bundler</a> will ensure that you have the
+appropriate version.</p>
+
+<p>To install:
+<code>
+➜  paas-cf git:(master) ✗ bundle install
+…
+</code></p>
+
+<p>To confirm that it works:
+&ldquo;`
+➜  paas-cf git:(master) ✗ bundle exec uaac help</p>
+
+<p>UAA Command Line Interface
+…
+&rdquo;`</p>
+<h3 id="log-in">Log in</h3>
+<p>To target an environment:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac target https://login.&lt;SYSTEM_DOMAIN&gt;
+</code></pre></div>
+<p>You can log in with a normal CF account. You should use either:</p>
+
+<ul>
+<li><p>for persistent environments where we have SSO admin users:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac token sso get cf -s ""
+</code></pre></div></li>
+<li><p>for development environments where we have a single CF admin account:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac token owner get cf admin -s ""
+</code></pre></div></li>
+</ul>
+
+<p>Please avoid using <code>uaa_admin_client_secret</code> and <code>uaa_admin_password</code>
+because it gives you more permissions than necessary and means that we can&rsquo;t
+track activity in persistent environments.</p>
+
+<p>There is a command to refresh your access token when it expires, but it is
+worth re-authenticating instead to ensure that you are still targeting the
+environment that you expect.</p>
+<h2 id="finding-a-user-account">Finding a user account</h2>
+<p>If you know the exact username of the account:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac user get &lt;EMAIL&gt;
+</code></pre></div>
+<p>If you only know part of the username:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac users 'username co "&lt;NAME&gt;"'
+</code></pre></div><h2 id="locking-a-user-account">Locking a user account</h2>
+<p>Sometimes it might be necessary to lock certain users. For example when we find out they have left GDS or don&rsquo;t have any more project to work on PaaS. CF has a facility to prevent users from logging in, while still preserving the user account with all their access rights and org membership. We do this as a first step in removing the user account. We then ask for confirmation from org managers (or managers of org managers in case we are removing an org manager) and only after confirmation finally remove the account completely (<code>cf delete-user</code>).</p>
+
+<p>From <a href="https://github.com/alphagov/paas-cf">alphagov/paas-cf</a>:
+<code>
+bundle install
+cd scripts
+TARGET=$(cf curl /v2/info | jq -r .token_endpoint) \
+  TOKEN=$(cf oauth-token) \
+  bundle exec ./uaa_lock_user.rb &lt;USERNAME&gt;
+</code></p>
+<h2 id="finding-out-org-membership">Finding out org membership</h2>
+<p>In order to notify the org manager of a given user, we need to find out who that would be. UAA does not know which org/space user belongs to. This information is only available to cloud controller: <code>cf curl /v2/users/&lt;uaa_user_id&gt;/summary</code></p>
+
+<p>The user summary contains all orgs and spaces they are member of. It also contains the UAA ID of managers of these. To get user name from UAA id, simply: <code>bundle exec uaac curl /Users/&lt;uaa_user_id&gt; | grep userName</code></p>
+<h2 id="notifying-the-org-manager">Notifying the org manager</h2>
+<p>Send an email from support email address: <code>gov-uk-paas-support@digital.cabinet-office.gov.uk</code>. Example email:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Hi &lt;org manager 1st name&gt;,
+
+We have noticed that &lt;user name of disabled account&gt; was inactive &lt;describe how we found out, e.g. when we tried to send him email and it got bounced&gt;. We wondered if perhaps this person has left GDS. We have noticed this user still has an account in `&lt;org name&gt;` organization and `&lt;space name(s)&gt;` space. We have disabled this user for now.
+
+Can you please confirm if we can remove the user entirely, or instead if the user is still expected to have access to the PaaS?
+
+
+Thanks,
+PaaS for Government
+</code></pre></div>
+<p>When they respond support can follow up with user deletion, or instead enable the user account again if it is to be actively used.</p>
+<h2 id="global-auditor-role">Global Auditor role</h2>
+<p>We use the <a href="https://docs.cloudfoundry.org/concepts/roles.html#roles-and-permissions">Global Auditor role</a> for team members of our team that need to
+query or report on usage but don&rsquo;t have production access.</p>
+
+<p>To add someone:
+<code>
+bundle exec uaac member add cloud_controller.global_auditor &lt;EMAIL&gt;
+</code></p>
+
+<p>To remove someone:
+<code>
+bundle exec uaac member delete cloud_controller.global_auditor &lt;EMAIL&gt;
+</code></p>
+
+<p>To see the current members:
+<code>
+(set -o pipefail \
+  &amp;&amp; bundle exec uaac group get cloud_controller.global_auditor \
+  | awk &#39;$1 == &quot;value:&quot; {print $2}&#39; \
+  | xargs -n1 -I{} bundle exec uaac users &quot;id eq \&quot;{}\&quot;&quot; -a username)
+</code></p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

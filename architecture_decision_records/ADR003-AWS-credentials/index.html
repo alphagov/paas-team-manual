@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR003-AWS-credentials/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr003-aws-credentials">ADR003: AWS credentials</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="adr003-aws-credentials">ADR003: AWS credentials</h1><h2 id="context">Context</h2>
+<p>Amazon Web Services (AWS) are our current Infrastructure as a Service (IaaS)
+provider. Our deployment tooling (Concourse, Terraform, BOSH, etc.) and
+Cloud Foundry components (Cloud Controller, RDS broker, blobstore clients,
+etc.) use the APIs to manage or access IaaS resources.</p>
+
+<p>The most common mechanism for authenticating the API calls is to create an
+Identify and Access Management (IAM) user with the appropriate permissions,
+generate an Access Key ID and Secret Access Key for that user, and export
+those as environment variables. <code>AWS_ACCESS_KEY_ID</code> and
+<code>AWS_SECRET_ACCESS_KEY</code> are the standard environment variable names used by
+most utilities and libraries.</p>
+
+<p>The problem with this approach is that it&rsquo;s very easy to accidentally leak
+the plain text keys. They can appear in output from your shell, which you
+might copy+paste into a gist or email when debugging a problem. You might
+add them to your shell configuration or include them in a script, which can
+be pushed to a public code repository.</p>
+
+<p>Our team have leaked keys like this on more than one occasion. It&rsquo;s worth
+noting that even if you realise that you&rsquo;ve done this, delete the commit and
+revoke the keys, they may have already been used maliciously because
+automated bots monitor sites like GitHub using the <a href="https://developer.github.com/v3/activity/events/">events firehose</a> to
+detect any credentials.</p>
+
+<p>As an alternative to using pre-generated keys, AWS recommends that you use
+<a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#use-roles-with-ec2">IAM roles and instance profiles</a> when accessing the API from EC2
+instances. You delegate permissions to the EC2 instance and temporary
+credentials are made available from the instance metadata service. Most
+tools and libraries automatically support this. The credentials are
+regularly rotated and never need to be stored in configuration files.</p>
+<h2 id="decision">Decision</h2>
+<p>To reduce the likelihood of us leaking AWS keys we will use IAM roles and
+instance profiles for all operations that run from EC2 instances. This
+includes everything that happens within Concourse and Cloud Foundry.</p>
+
+<p>To reduce the impact of us leaking AWS keys we will use an IAM policy with
+an <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_examples.html#iam-policy-example-deny-source-ip-address"><code>aws:SourceIp</code> condition</a> to
+enforce that IAM accounts for team members are only used from the office IP
+addresses.</p>
+
+<p>The IAM roles, profiles, and policies will be managed by our
+<a href="https://github.digital.cabinet-office.gov.uk/government-paas/aws-account-wide-terraform">aws-account-wide-terraform</a> repo.</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>We&rsquo;ll still need to use AWS keys for operations that run outside of EC2.
+Care must be taken when storing and handling these credentials. These
+operations include:</p>
+
+<ul>
+<li>Creation of Bootstrap Concourse instance</li>
+<li>Running of <code>aws-account-wide-terraform</code></li>
+</ul>
+
+<p>Using IAM profiles has the drawback that any process running on the VM can
+get the same credentials. This model does not play well when it is required
+to assign the credentials to specific processes running in different containers
+(for example concourse, CF apps), as all the containers will have access to
+the AWS IAM profile.</p>
+
+<p>We&rsquo;ll need to maintain our own forks of some standard Concourse resources to
+add support for IAM roles and instance profiles because the maintainers
+don&rsquo;t wish to support this feature (<a href="https://github.com/concourse/s3-resource/pull/22">concourse/s3-resource/pull/22</a>).
+These resources include:</p>
+
+<ul>
+<li><a href="https://github.com/alphagov/paas-s3-resource">alphagov/paas-s3-resource</a></li>
+<li><a href="https://github.com/alphagov/paas-semver-resource">alphagov/paas-semver-resource</a></li>
+</ul>
+
+<p>We&rsquo;ll need to use the office VPN to administer AWS when outside of the
+office. This matches what we have to do to administer Concourse or Cloud
+Foundry from outside the office. There are disaster recovery provisions for
+the VPN if the office has connectivity problems.</p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

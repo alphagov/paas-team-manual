@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/team/working_practices/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#working-practices">Working practices</a>
+    <ul>
+      <li>
+        <a href="#these-are-guidelines-not-rules">These are guidelines, not rules</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#development-process">Development process</a>
+    <ul>
+      <li>
+        <a href="#pairing">Pairing</a>
+      </li>
+      <li>
+        <a href="#commit-messages">Commit messages</a>
+      </li>
+      <li>
+        <a href="#creating-and-forking-repos">Creating and forking repos</a>
+      </li>
+      <li>
+        <a href="#pull-requests">Pull requests</a>
+      </li>
+      <li>
+        <a href="#merging-pull-requests">Merging Pull requests</a>
+        <ul>
+          <li>
+            <a href="#initial-setup-for-signing-commits">Initial setup for signing commits</a>
+          </li>
+          <li>
+            <a href="#merging-a-branch-into-master">Merging a branch into master</a>
+            <ul>
+              <li>
+                <a href="#manually-merging-and-signing-a-pr">Manually merging and signing a PR</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#stories">Stories</a>
+    <ul>
+      <li>
+        <a href="#story-kick-off">Story kick-off</a>
+      </li>
+      <li>
+        <a href="#story-summary">Story summary</a>
+        <ul>
+          <li>
+            <a href="#spike-summary">Spike summary</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#story-sign-off">Story sign-off</a>
+        <ul>
+          <li>
+            <a href="#our-definition-of-done">Our definition of done</a>
+          </li>
+          <li>
+            <a href="#what-sign-off-is">What sign-off is</a>
+          </li>
+          <li>
+            <a href="#who-signs-off-stories">Who signs off stories</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#work-in-progress-limits">Work In Progress Limits</a>
+        <ul>
+          <li>
+            <a href="#backlog">Backlog</a>
+          </li>
+          <li>
+            <a href="#doing-started">Doing / Started</a>
+          </li>
+          <li>
+            <a href="#reviewing-finished">Reviewing / Finished</a>
+          </li>
+          <li>
+            <a href="#approving-delivered">Approving / Delivered</a>
+          </li>
+          <li>
+            <a href="#done-delivered">Done / Delivered</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#technical-documentation-changes">Technical Documentation Changes</a>
+        <ul>
+          <li>
+            <a href="#pre-kick-off">Pre kick-off</a>
+          </li>
+          <li>
+            <a href="#kick-off">Kick-off</a>
+          </li>
+          <li>
+            <a href="#doing">Doing</a>
+          </li>
+          <li>
+            <a href="#reviewing">Reviewing</a>
+          </li>
+          <li>
+            <a href="#approving">Approving</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="working-practices">Working practices</h1><h2 id="these-are-guidelines-not-rules">These are guidelines, not rules</h2>
+<p>We&rsquo;ve found these working practices highly effective, but they&rsquo;re a living document
+open to discussion and change. They won&rsquo;t necessarily work for everyone without
+some adjustment. If something doesn&rsquo;t seem to be working for you, it&rsquo;s OK to challenge
+that and ask for things to improve.</p>
+
+<p>For our wider cultural practices, see the GDS
+<a href="https://gds.blog.gov.uk/2016/05/25/its-ok-to-say-whats-ok/">It&rsquo;s OK</a> poster. For
+instance it&rsquo;s okay to ask for help, it&rsquo;s okay to have quiet days, and many other things.</p>
+<h1 id="development-process">Development process</h1>
+<p>[TOC]</p>
+
+<p><a href="/diagrams/development-process.svg" target="_blank" rel="noopener noreferrer"><img src="/diagrams/development-process.svg" alt="Illustration of changes being promoted to prod" /></a></p>
+
+<ul>
+<li>The Product Manager makes decisions on what work (features, bugs) is
+prioritised</li>
+<li>The team make the necessary changes in their own development environments and
+branches</li>
+<li>The changes are <a href="#pull-requests">reviewed</a> by an engineer</li>
+<li>The reviewer merges the changes into the master branch of the repository</li>
+<li>The latest revision of the code is automatically tested on staging using the
+Cloud Foundry smoke and acceptance tests to ensure that basic user functions
+still work.</li>
+<li>The changes are deployed to the production environment.</li>
+</ul>
+
+<p>The diagram below shows how this process is implemented using git tags. It does
+not show some planned improvements, such as using git commit signatures to
+ensure that commits have been reviewed before deploying them.</p>
+
+<p><a href="/diagrams/release-sequence.svg" target="_blank" rel="noopener noreferrer"><img src="/diagrams/release-sequence.svg" alt="Sequence of events promoting a release" /></a></p>
+
+<p><a href="/diagrams/release-sequence.svg">Full size version</a></p>
+<h2 id="pairing">Pairing</h2>
+<p>We pair on all stories to ensure that people don&rsquo;t get stuck on the same
+types of work and that there is a good distribution of knowledge across the
+team. We aim to rotate pairs regularly by:</p>
+
+<ul>
+<li><p>changing pairs when you&rsquo;ve been on a story for more than 2 days</p></li>
+<li><p>joining someone on an existing story that doesn&rsquo;t have a pair instead of
+picking up new work</p></li>
+</ul>
+
+<p>We don&rsquo;t insist on a particular method of pairing. We&rsquo;re keen to have two people
+making decisions and aware of the story, but there are lots of ways those two
+people can work together. Sometimes a pair shares one computer; other times a pair
+splits stories into pieces they can work on individually. Discuss what works for
+both of you.</p>
+<h2 id="commit-messages">Commit messages</h2>
+<p>Commit messages are very useful as documentation, so please take time to
+detail what you are changing and more importantly why. The <a href="https://github.com/alphagov/styleguides/blob/master/git.md">GDS git style
+guide</a> explains this in more detail.</p>
+
+<p>If something is worth detailing in a pull request description then it is
+also worth detailing in a commit message. Commit messages will live with the
+repository forever and can be discovered using <a href="http://www.philandstuff.com/2014/02/09/git-pickaxe.html">git pickaxe</a>, whereas over
+time a project may move from GitHub or Pivotal Tracker. You can often
+copy/paste well written commit messages to form the pull request
+description.</p>
+<h2 id="creating-and-forking-repos">Creating and forking repos</h2>
+<p>Nearly all of our code repos are public on GitHub.com because we are <a href="https://gds.blog.gov.uk/2012/10/12/coding-in-the-open/">coding
+in the open</a>. There is an exception to this, where a public repo could
+risk leaking sensitive information. When creating or forking a new repo you
+will need to do the following. If you&rsquo;re a contractor then you&rsquo;ll need to
+ask a permanent member of the team to do this for you:</p>
+
+<ol>
+<li>Prefix the name with <code>paas-</code> so that it&rsquo;s easier to find. This includes
+forks of third-party repos which will need to be renamed after forking,
+for example <code>cf-release</code> would become <code>paas-cf-release</code>.</li>
+<li>Add the Pivotal Tracker service integration/hook. You will need to take
+the API key from the <a href="https://www.pivotaltracker.com/profile">&ldquo;Profile&rdquo; page</a> of your own account.</li>
+<li>Add the following teams:
+
+<ol>
+<li><code>[team] Government PaaS readonly</code>: the dashboard user which has
+<code>org:read</code> privileges to find all of our repos.</li>
+<li><code>[team] Government PaaS - People</code>: all members of the team that are
+contractors and aren&rsquo;t members of the <code>owners</code> team. These should be given write
+access.</li>
+</ol></li>
+</ol>
+
+<p>We should never pull request against the <code>master</code> branch of a forked repo.
+Doing so makes it very hard to reconcile our changes against the upstream
+repo at a later date. We should aim to submit all changes upstream. It may
+be appropriate to run against a branch of our fork for a limited period of
+time. We have decided to use a branch called <code>gds_master</code> for this, although
+some older repositories may use something else. Feel free to change these as
+you encounter them, to improve consistency.</p>
+<h2 id="pull-requests">Pull requests</h2>
+<p>We peer review all code to ensure that it works as expected and is clear for
+the team to understand. All work, no matter how small, should use git
+branches and GitHub pull requests. <a href="http://www.annashipman.co.uk/jfdi/good-pull-requests.html">Anna&rsquo;s blog post</a> explains how to
+raise a good pull request.</p>
+
+<p>When you create a pull request please:</p>
+
+<ul>
+<li><p>use <a href="https://github.com/alphagov/paas-cf/blob/master/.github/PULL_REQUEST_TEMPLATE.md">this template</a> for the description so that it is easier for
+the reviewer to understand and test your changes</p></li>
+<li><p>prefix the subject with the story ID from Pivotal Tracker (format:
+<code>[#12345678] My pull request</code>) so that we have a record of all the changes
+for a given story</p></li>
+<li><p>put the pull request URL into the Pivotal Tracker story so that
+people can find it and understand the progress of a story before it is
+merged</p></li>
+</ul>
+
+<p>There is a dashboard near our desks that displays open pull requests using
+<a href="https://github.com/alphagov/fourth-wall">Fourth Wall</a>. Reviewing outstanding pull requests should be a priority
+over picking up new work. As the author of a pull request you may still need
+to chase this and you need to watch your email for comments on your pull
+request. Pull requests should be reviewed by somebody that hasn&rsquo;t already
+worked on the story. When reviewing a pull request please &ldquo;assign&rdquo; yourself
+on GitHub, so that someone else doesn&rsquo;t duplicate effort.</p>
+<h2 id="merging-pull-requests">Merging Pull requests</h2>
+<p>Once review is complete, and all status checks have passed (Travis etc),
+a pull request can be merged.</p>
+
+<p>PRs to the <a href="https://github.com/alphagov/paas-cf">paas-cf</a> and <a href="https://github.com/alphagov/paas-bootstrap">paas-bootstrap</a> repositories should be merged using a GPG signed commit.
+This means that merges can&rsquo;t be done in the Github UI - they have to be done locally,
+using the <code>merge_pr</code> make task in each repository.</p>
+
+<p>We only use signed revisions of <a href="https://github.com/alphagov/paas-cf">paas-cf</a> and <a href="https://github.com/alphagov/paas-bootstrap">paas-bootstrap</a> from our concourse pipelines.
+This is enforced by the gpg functionality in Concourse Git resource. We may require signing merges in other
+repositories in future.</p>
+<h3 id="initial-setup-for-signing-commits">Initial setup for signing commits</h3>
+<p>Ensure you have gpg setup on your machine (see our <a href="/guides/GPG/">GPG guide</a> for
+details).</p>
+
+<p>By default, git will look for a secret key in your local keyring that exactly
+matches your configured committer name and email address (such as
+<code>Testy McTest &lt;test@example.com&gt;</code>). If this is not sufficient, you can
+configure the signing key that git will use:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="c">## To apply to all git repos:</span>
+git config <span class="nt">--global</span> user.signingkey &lt;key_id&gt;
+
+<span class="c">## ... or to apply to the current repo only:</span>
+git config user.signingkey &lt;key_id&gt;
+</code></pre></div>
+<p>Add your public key to your Github account
+(<a href="https://github.com/settings/keys">https://github.com/settings/keys</a>) so that
+Github can verify commits that you sign as described
+<a href="https://github.com/blog/2144-gpg-signature-verification">here</a>.</p>
+<h3 id="merging-a-branch-into-master">Merging a branch into master</h3>
+<p>We have implemented a helper script to handle merging and signing PRs for you.
+In repos where this is available (for example, paas-cf) PRs can be merged and signed by running:</p>
+<div class="highlight"><pre class="highlight shell"><code>make merge_pr <span class="nv">PR</span><span class="o">=</span>&lt;n&gt;
+</code></pre></div>
+<p>Where <code>n</code> is the PR number.</p>
+<h4 id="manually-merging-and-signing-a-pr">Manually merging and signing a PR</h4>
+<p>PRs can also be be manually merged and signed.</p>
+
+<p>First check that your working directory is clean, then do the following:</p>
+<div class="highlight"><pre class="highlight shell"><code>git checkout master
+git pull <span class="nt">--ff-only</span> origin master
+git merge <span class="nt">--no-ff</span> <span class="nt">-S</span> <span class="nt">-m</span> <span class="s2">"Merge pull request #&lt;n&gt; from alphagov/repo-name</span><span class="se">\n\n</span><span class="s2">&lt;pr_title&gt;"</span> origin/&lt;branch_name&gt;
+git push origin master
+</code></pre></div><h1 id="stories">Stories</h1><h2 id="story-kick-off">Story kick-off</h2>
+<p>Kick-offs are an opportunity to clarify the scope of a story and raise any
+technical suggestions or concerns before work starts. They should include a
+check if the story being kicked off will likely conflict with any of the
+stories already in progress and therefore likely cause conflicts.</p>
+
+<p>If the story is a spike, it should be made clear what the questions we want to answer
+are, and what specific outputs we need to cover in the summary at the end of the spike. Spikes <em>must</em> be
+reviewed after 2 days.</p>
+
+<p>When a pair starts a new story they should arrange a kick-off with the Product
+Owner or Business Analyst, Tech Arch or Tech Lead, and anyone else from the team
+that is interested. Slack is a good way to let the team know.</p>
+<h2 id="story-summary">Story summary</h2>
+<p>When you&rsquo;ve finished a story please take a few minutes to summarise your
+work in a comment on the Pivotal story. Summarising
+the story will help other people in the team review it, either against the
+acceptance criteria or for future reference, which can otherwise be
+difficult if comments are sparse or inconsistent.</p>
+<h3 id="spike-summary">Spike summary</h3>
+<p>The summary is particularly important if the story was a spike. If applicable
+it must indicate follow up work that is required. Listing options uncovered during
+the spike is good. Indicate which option is preferable. Where possible follow up stories
+should be noted. Doing this allows the Product Manager prioritise the follow up work.</p>
+<h2 id="story-sign-off">Story sign-off</h2><h3 id="our-definition-of-done">Our definition of done</h3>
+<ul>
+<li>the work on a story is completed</li>
+<li>it met the need that motivated the story</li>
+<li>any changes merged to master</li>
+<li>the work is deployed to production</li>
+<li>any acceptance criteria have been met</li>
+</ul>
+
+<p>If it changes behaviour or makes new features available to users:</p>
+
+<ul>
+<li>we have updated the developer documentation</li>
+<li>we have notified our users (before we make the change if necessary)</li>
+</ul>
+<h3 id="what-sign-off-is">What sign-off is</h3>
+<p>We check that the story is done.</p>
+
+<p>We ensure that if the story changed scope, identified other problems that need
+to be solved, or incurred technical debt, that stories have been created to
+capture the remaining work and that at least one of the product manager, tech
+arch or tech leads has been asked to prioritise any remaining work that needs
+to be started soon.</p>
+
+<p>If the changes have already been tested to your satisfaction during review,
+then sign-off need not include testing.</p>
+
+<p>It is important to make sure the work is deployed to production, if this is
+relevant to the story. For example a story which changed the development tooling
+might not need this check, but a new service broker for a tenant to use would
+need to be in production for signoff to be successful</p>
+<h3 id="who-signs-off-stories">Who signs off stories</h3>
+<p>Who can sign off the story is agreed and recorded in the story at kick-off, but
+could be any team member.</p>
+<h2 id="work-in-progress-limits">Work In Progress Limits</h2>
+<p>We use <a href="https://en.wikipedia.org/wiki/Kanban_(development)">Kanban</a> to track
+work, and follow work in progress limits for the different stages of the story.
+We use Pivotal Tracker for online tracking, and have a view of the Pivotal
+Tracker data called <a href="https://rubbernecker.cloudapps.digital/">Rubbernecker</a>
+that mimics the team&rsquo;s previous, physical board.</p>
+<h3 id="backlog">Backlog</h3>
+<p><em>Work In Progress Limit : NA</em></p>
+
+<p>These stories are ready to be played. They require a kickoff before moving to the next stage.</p>
+<h3 id="doing-started">Doing / Started</h3>
+<p><em>Work In Progress Limit : 6</em></p>
+
+<p>These stories have been started by a pair and kickoff has been completed.</p>
+<h3 id="reviewing-finished">Reviewing / Finished</h3>
+<p><em>Work In Progress Limit : 4</em></p>
+
+<p>These stories have been finished and are awaiting review by another team member. The lower work in progress limit is to ensure work is reviewed promptly and completed.</p>
+<h3 id="approving-delivered">Approving / Delivered</h3>
+<p><em>Work In Progress Limit : 5</em></p>
+
+<p>These stories have been reviewed, and code merged to master. The work in
+progress limit here allows for the limited availability of people with
+different levels of data access rights, and reflects the fact that work at this
+stage is already merged and deployed.</p>
+<h3 id="done-delivered">Done / Delivered</h3>
+<p><em>Work In Progress Limit : ∞</em></p>
+
+<p>These stories have been accepted by an appropriate Approver. No limit on the amount of stories that are done.</p>
+<h2 id="technical-documentation-changes">Technical Documentation Changes</h2>
+<p>Technical Documentation changes follow the same overall process as code changes, but with several documentation-specific amends. This section summarises the tech docs change process.</p>
+<h3 id="pre-kick-off">Pre kick-off</h3>
+<ul>
+<li>Required: technical writer</li>
+</ul>
+
+<p>Before the formal story kick-off, the technical writer reviews the story and drafts changes if possible.</p>
+<h3 id="kick-off">Kick-off</h3>
+<ul>
+<li>Required: technical writer, technical lead</li>
+<li>Optional: product representative, developer</li>
+</ul>
+
+<p>At this step, decide on what changes to the tech docs are required to complete this story. You must also agree on who needs to review and approve this story. Make sure that you decide whether the story needs product as well as technical review. If no specific technical reviewers are named, any developer can serve as the technical reviewer. You should also analyse if any other further changes or stories will result from this story.</p>
+<h3 id="doing">Doing</h3>
+<ul>
+<li>Required: technical writer, developer</li>
+</ul>
+
+<p>Draft the content changes in markdown, ensuring that it is technically correct and in line with the GDS style guide. You must preview changes in tech doc format so that the new or amended content is smoothly integrated into the exsting documentation structure. Evaluate if story needs to change, and if so, whether this can be included in the scope of the original story or should be part of a new story. Once you have agreed that the content is ready for further review, raise a pull request to the paas-tech-docs repo.</p>
+
+<p>Note that if the change requires product review, you must push the tech doc changes to Cloud Foundry for review. Refer to the <a href="https://docs.cloud.service.gov.uk/#deploy-a-static-site">Deploy a static site</a> for instructions on how to do this.</p>
+<h3 id="reviewing">Reviewing</h3>
+<ul>
+<li>Required: technical writer, developer, technical writer 2i</li>
+<li>Optional: product representative, tech lead</li>
+</ul>
+
+<p>Three reviews should happen at the same time:</p>
+
+<ul>
+<li>The developer reviews the content in both GitHub and in the tech doc preview, checking if it addresses the issues in the story.</li>
+<li>The tech writer conducting the 2i review checks the style and content.</li>
+<li>The product rep or tech lead reviews content if required; the product rep will look at the temporary Cloud Foundry version of the tech docs.</li>
+</ul>
+
+<p>Implement any changes as required, and then get sign-off from reviewers. The reviewers then merge the changes once they have been signed off.</p>
+<h3 id="approving">Approving</h3>
+<ul>
+<li>Required: tech writer, approver</li>
+</ul>
+
+<p>The approver checks if the change deployed correctly, and whether it addresses the story. If it does so, they approve the story.</p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

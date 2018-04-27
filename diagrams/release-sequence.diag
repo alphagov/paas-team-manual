@@ -1,0 +1,34 @@
+
+seqdiag {
+
+  activation = none;
+  
+  developer -> developmentbranch [ label = "commit code" ];
+
+  developmentbranch -> reviewer [ label = "pull request" ];
+
+  reviewer -> master [ label = "merge" ];
+
+  master -> stageenv [ label = "new commit triggers\ngit resource\nto deploy from master" ]; 
+
+  stageenv -> stageenv [ label = "deploy or\ntests fail\n do nothing" ];
+
+  stageenv -> master [ label = "on success\ntags commit for release\nto prod", return = "return"  ];
+
+  master -> prodenv [ label = "git resource is triggered by and deploys new prod tag" ];
+  
+  # entities
+
+  developer [ color = "salmon" ];
+
+  developmentbranch [ label = "git development\nbranch" ];
+
+  reviewer [ color = "salmon"];
+
+  master [ label = "git master branch" ];
+
+  stageenv [ label = "staging\nenvironment" ];
+
+  prodenv [ label = "production\nenvironment" ];
+
+}

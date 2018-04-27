@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR010-postgres-bind-behaviour/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr010-postgres-bind-behaviour">ADR010: Postgres bind behaviour</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="adr010-postgres-bind-behaviour">ADR010: Postgres bind behaviour</h1><h2 id="context">Context</h2>
+<p>We use RDS for tenant databases. Tenants can bind more than one application to a database instance created via the services console. Database migrations were broken when a binding was removed and re-added, or when another bound application other than the one that created the database tables attempted to modify them.</p>
+
+<p>Previously the RDS broker PostgreSQL engine copied the MySQL engine and granted all rights on the database to the newly created user. In PostgreSQL this will give the user rights to create tables, but because it has a more finely-grained permission model than MySQL this does not give the user rights on existing tables, or tables newly created by other users.</p>
+
+<p>Only the owner of a table can alter/drop it, and you cannot grant this permission to other users. Users who are the owners of tables cannot be removed until the table ownership is changed.</p>
+
+<p>We attempted to work around the PostgreSQL permissions system in the following ways:</p>
+
+<ul>
+<li><p>Using <a href="https://www.postgresql.org/docs/9.5/static/sql-alterdefaultprivileges.html"><code>ALTER DEFAULT PRIVILEGES</code></a> on every newly created user to <code>GRANT ALL ON PUBLIC</code> - this means that every user can <code>SELECT</code>, <code>INSERT</code>, and <code>DELETE</code>, but because only the table owner can <code>ALTER</code> or <code>DROP</code> this will not allow other bound users to run migrations. This is also limited to the <code>PUBLIC</code> (default) schema, so would fail to work for any applications that have custom schemas.</p></li>
+<li><p>Making the group the owner of the <code>PUBLIC</code> schema. This allowed members of the group to <code>DROP</code> tables within the schema, but still did not allow them to <code>ALTER</code> these tables.</p></li>
+<li><p>Creating a &ldquo;parent&rdquo; group that is given ownership of all tables, sequences, and functions. New users are granted rights on this group and thus can carry out all owner actions on group-owned items. A <a href="https://www.postgresql.org/docs/9.5/static/event-trigger-definition.html">DDL event trigger</a> using the built-in <code>REASSIGN OWNED BY</code> command handed over ownership of all resources owned by the current user to the parent <code>$DBNAME_owner</code> group. This worked perfectly on all the PostgreSQL databases we tested with, however RDS does not allow use of event triggers so it was unworkable in production.</p></li>
+</ul>
+<h2 id="decision">Decision</h2>
+<p>We decided the simplest solution was to issue the same credentials to all applications bound to the database. This means that the same user will be used by each application, and they will not suffer ownership problems when issuing <code>DROP</code> or <code>ALTER</code> commands.</p>
+
+<p>Rather than deterministically deriving the credentials we decided to store them in the backing database itself meaning they can be changed at any time in case of a breach. To protect against database breaches that may leak stored credentials we also decided to encrypt the credentials using a symmetric key held by the broker.</p>
+
+<p>We accepted that in the future we may wish to extend this by allowing the broker to issue read-only credentials, or credentials that are suitable for <code>SELECT</code>, <code>INSERT</code>, and <code>DELETE</code> operations, but not schema modifications.</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>We return the same credentials to all apps bound to the same PostgreSQL database (RDS) instance.</p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

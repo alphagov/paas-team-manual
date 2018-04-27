@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/guides/enhancing_kibana/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#enhancing-kibana">Enhancing Kibana</a>
+    <ul>
+      <li>
+        <a href="#how-it-works">How it works</a>
+      </li>
+      <li>
+        <a href="#running-logstash">Running Logstash</a>
+        <ul>
+          <li>
+            <a href="#patience">Patience</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#working-example">Working example</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="enhancing-kibana">Enhancing Kibana</h1>
+<p>We may find the need, to parse some more logs into Kibana for later use at convinient times.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>The logstash config file is being generated:</p>
+
+<ol>
+<li>The <a href="https://github.com/alphagov/paas-logsearch-for-cloudfoundry/blob/master/packages/logsearch-for-cloudfoundry-filters/packaging">logsearch-4cf packaging</a> runs <a href="https://github.com/alphagov/paas-logsearch-for-cloudfoundry/blob/master/src/logsearch-config/bin/build">the build script</a> which executes <code>rake build</code>.</li>
+<li>The <a href="https://github.com/alphagov/paas-logsearch-for-cloudfoundry/blob/master/src/logsearch-config/Rakefile">logsearch-4cf rake build</a> renders the <a href="https://github.com/alphagov/paas-logsearch-for-cloudfoundry/blob/master/src/logsearch-config/src/logstash-filters/default.conf.erb">main template file</a> and creates <code>logstash-filters-default.conf</code>. It follows the <a href="https://github.com/cloudfoundry-community/logsearch-for-cloudfoundry/blob/develop/docs/logs-parsing.md#parsing-rules"><code>parsing-rules</code> order</a> to acomplish it&rsquo;s task.</li>
+<li>Logsearch functionality <code>logstash_parser.filters</code>, takes a list of files that must be present on disk. These contain logstash filters.</li>
+<li>Standard logsearch-4cf <code>logstash-filters-default.conf</code> <a href="https://github.com/cloudfoundry-community/logsearch-for-cloudfoundry/blob/develop/docs/customization.md#parsing-rules">is added to logstash_parser.filters</a>.</li>
+<li>We add the path of our own <code>custom-filters</code> file to <code>logstash_parser.filters</code>.</li>
+<li>With help of <a href="https://github.com/alphagov/paas-logsearch-for-cloudfoundry/pull/1">our PR</a> we can add content to the <code>custom-filters</code> file by filling in property<code>logstash_parser.custom_filters</code></li>
+<li>The <a href="https://github.com/logsearch/logsearch-boshrelease/blob/develop/jobs/parser/templates/bin/parser_ctl"><code>logsearch parser_ctl</code></a> gathers all the files, including the ones from <code>logstash_parser.filters</code> to create <code>/var/vcap/jobs/parser/config/logstash.conf</code> which then is used by Logstash on each run.</li>
+</ol>
+<h2 id="running-logstash">Running Logstash</h2>
+<ol>
+<li>Download <code>logstash@5.0.0</code> - you will need Java 8.</li>
+<li>Install the translate plugin: <code>logstash-plugin install logstash-filter-translate</code></li>
+<li>Copy <code>/var/vcap/jobs/parser/config/logstash.conf</code> locally or use the <a href="https://gist.github.com/saliceti/1f290c5ac98633e364ab56c549ab7b76">minimal config logsearch_logstash.conf</a></li>
+<li>Edit the config file and point to the log input file</li>
+<li>Run logstash: <code>logstash -f ../../logstash/logsearch_logstash.conf</code></li>
+<li>You may find <a href="http://grokdebug.herokuapp.com/">Grok debugger</a> useful
+
+<ul>
+<li><a href="https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html">Grok filter plugin documentation</a></li>
+<li><a href="https://github.com/kkos/oniguruma/blob/master/doc/RE">Regex syntax</a></li>
+<li><a href="https://github.com/logstash-plugins/logstash-patterns-core/tree/master/patterns">List of patterns</a></li>
+</ul></li>
+</ol>
+<h3 id="patience">Patience</h3>
+<p>Working with the above, may be a very unappealing process&hellip; If you combine it with <a href="https://www.elastic.co/guide/en/logstash/current/reloading-config.html"></a> you can save a lot of time</p>
+
+<ol>
+<li>To restart reading from the beginning of file: <code>rm data/plugins/inputs/file/.sincedb_*</code> and restart logstash</li>
+<li><p>To start reading the log file from beginning everytime you restart logstash:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>file {
+    path =&gt; "/Users/colin/Documents/Boulot/gds/logstash/nginx_access.log"
+    start_position =&gt; "beginning"
+    sincedb_path =&gt; "/dev/null"
+}
+</code></pre></div></li>
+<li><p>If you combine it with https://www.elastic.co/guide/en/logstash/current/reloading-config.html you can save a lot of time</p></li>
+</ol>
+<h2 id="working-example">Working example</h2>
+<p>Now, let&rsquo;s say we&rsquo;ve got a log like:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>May 11 13:24:09 57n27d4b-60p0-42ly-a00a-f913j7b8841f custom_nginx_access: 10.0.1.217 - - [11/May/2017:13:24:09 +0000] "GET /healthz HTTP/1.1" 200 3 "-" "ELB-HealthChecker/1.0"
+</code></pre></div>
+<p>By adding few extra lines to our logstash configuration file, we can specify, what these actually are:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>if [@source][component] == "custom_nginx_access" {
+  grok {
+    match =&gt; {
+      "@message" =&gt;
+      '%{IPORHOST:[nginx][clientip]} - - \[%{HTTPDATE:[nginx][timestamp]}\] "%{WORD:[nginx][verb]} %{URIPATHPARAM:[nginx][request]} HTTP/%{NUMBER:[nginx][httpversion]}" %{NUMBER:[nginx][response]} (?:%{NUMBER:[nginx][bytes]}|-) (?:"(?:%{URI:[nginx][referrer]}|-)"|%{QS:[nginx][referrer]}) %{QS:[nginx][agent]}'
+    }
+  }
+}
+</code></pre></div>
+<p>After a restart and successful entry in Kibana, it will look like that:</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+<tr>
+<td>nginx.agent</td>
+<td>&ldquo;ELB-HealthChecker/1.0&rdquo;</td>
+</tr>
+<tr>
+<td>nginx.bytes</td>
+<td>566</td>
+</tr>
+<tr>
+<td>nginx.clientip</td>
+<td>10.0.16.6</td>
+</tr>
+<tr>
+<td>nginx.httpversion</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td>nginx.request</td>
+<td>/info</td>
+</tr>
+<tr>
+<td>nginx.response</td>
+<td>200</td>
+</tr>
+<tr>
+<td>nginx.response_time</td>
+<td>0.029</td>
+</tr>
+<tr>
+<td>nginx.timestamp</td>
+<td>11/May/2017:14:59:04 +0000</td>
+</tr>
+<tr>
+<td>nginx.vcap_request_id</td>
+<td>9ed66476-764d-486e-b52c-05280929f726</td>
+</tr>
+<tr>
+<td>nginx.verb</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>nginx.x_forwarded_for</td>
+<td>10.0.0.116</td>
+</tr>
+
+        </table>
+      </div>
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

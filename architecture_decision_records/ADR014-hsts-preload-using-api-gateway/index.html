@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR014-hsts-preload-using-api-gateway/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr014-hsts-preload-using-api-gateway">ADR014: HSTS preload using api gateway</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="adr014-hsts-preload-using-api-gateway">ADR014: HSTS preload using api gateway</h1><h2 id="context">Context</h2>
+<p>We will only <a href="../ADR443-ssl-only-for-applications-and-cf-endpoints">serve HTTPS traffic, keeping TCP port 80 (HTTP) closed and use HSTS preload lists</a>.</p>
+
+<p>To add our domains to <a href="https://hstspreload.appspot.com/">HSTS preload lists</a>, there are these requirements:</p>
+
+<ol>
+<li>Serve a valid certificate.</li>
+<li>Redirect from HTTP to HTTPS on the same host.</li>
+<li>Serve all subdomains over HTTPS (actually checks for <code>www.domain.com</code>)</li>
+<li>Serve an HSTS header on the base domain for HTTPS requests:</li>
+</ol>
+
+<p>We need an endpoint to provide these requirements.</p>
+
+<p>Our Cloud Foundry app endpoint already <a href="../ADR008-haproxy-for-request-rewriting">serves the
+right HSTS Security header with HAProxy</a>
+and could be configured to serve the additional <code>preload</code> and <code>includeSubDomains</code> flags,
+but we cannot use it because we keep port 80 (HTTP) closed for this endpoint.
+We can implement a second ELB to listening on HTTP and HTTPS and use
+HAProxy to do the HTTP to HTTPS redirect and serve the right header.
+But this increases our dependency on the HAProxy service.</p>
+
+<p>We must serve from the root domain (or apex domain), but it is not allowed to
+serve <a href="http://serverfault.com/questions/613829/why-cant-a-cname-record-be-used-at-the-apex-aka-root-of-a-domain">CNAME records in the root/apex domain</a>. We must configure A records in this domain. This can be
+an issue when serving the service using ELB or CloudFront.</p>
+<h2 id="decision">Decision</h2>
+<ul>
+<li><p>We will implement a basic <a href="https://aws.amazon.com/api-gateway/">AWS API Gateway</a>
+with a default <a href="https://aws.amazon.com/about-aws/whats-new/2015/09/introducing-mock-integration-generate-api-responses-from-api-gateway-directly/">MOCK response</a>
+that returns the right HTTP header <code>Strict-Transport-Security</code>. The actual
+content of the response is irrelevant, it can be a 302.
+A <a href="http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html">Custom Domain Name</a>,
+which creates a <a href="http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-overview.html">AWS Cloud Front distribution</a>,
+will provide public access to this API.</p></li>
+<li><p>We will use <a href="http://docs.aws.amazon.com/Route53/latest/APIReference/CreateAliasRRSAPI.html">AWS Route 53 <code>ALIAS</code> resource record</a>
+to <a href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html">serve the IPs of the AWS Cloud Front distribution as A records</a>.</p></li>
+</ul>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>To setup AWS API Gateway Domain Names, it is required access to the SSL certificates. There is the option of uploading the certificates in a different step and create the AWS Cloud Front distribution manually.</p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

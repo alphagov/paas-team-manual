@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/guides/GPG/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#how-to-use-gpg">How to use GPG</a>
+    <ul>
+      <li>
+        <a href="#install">Install</a>
+      </li>
+      <li>
+        <a href="#generate-keypair">Generate keypair</a>
+      </li>
+      <li>
+        <a href="#publish-key">Publish key</a>
+      </li>
+      <li>
+        <a href="#setup-agent">Setup agent</a>
+      </li>
+      <li>
+        <a href="#aborting-pinentry">Aborting pinentry</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="how-to-use-gpg">How to use GPG</h1>
+<p>Some of our projects use <a href="https://www.gnupg.org/">GPG</a> to encrypt secrets so that they can only be
+decrypted by members of the team. These instructions may be useful if you
+haven&rsquo;t used GPG recently or ever at all.</p>
+<h2 id="install">Install</h2>
+<p>On Mac OS X:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>brew install gpg gpg-agent
+</code></pre></div>
+<p>On Ubuntu:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>sudo apt-get update
+sudo apt-get install gnupg2 gnupg-agent pinentry-curses
+</code></pre></div><h2 id="generate-keypair">Generate keypair</h2>
+<p>To generate a new public and private keypair:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>gpg --gen-key
+</code></pre></div>
+<p>You should choose a key size of 4096 bits. The other defaults are OK to
+accept.</p>
+<h2 id="publish-key">Publish key</h2>
+<p>Public keyservers are a simple way of distributing your public key so that
+other people can download it and encrypt content for you.</p>
+
+<p>Note: the following commands use the full fingerprint ID because there is a
+risk of clashes when using the shortened last 8 digits (which is the
+default).</p>
+
+<p>To list your keys:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>gpg -K --fingerprint
+</code></pre></div>
+<p>The output will look something like the following:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>sec   4096R/22652456 2013-02-06
+      Key fingerprint = 9562 E7AD 3A95 E7BC 708D  036F F894 D400 2265 2456
+uid                  Dan Carley (Government Digital Service) &lt;dan.carley@digital.cabinet-office.gov.uk&gt;
+ssb   4096R/233AD793 2013-02-06
+</code></pre></div>
+<p>Take the long ID listed after <code>Key fingerprint =</code> and run:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>gpg --keyserver pgp.mit.edu --send-keys 'YOUR ID HERE …'
+</code></pre></div>
+<p>You will need to provide the same ID to an existing member of the team so
+that they can add you to any secret stores that you need access to.</p>
+<h2 id="setup-agent">Setup agent</h2>
+<p>If you&rsquo;re accessing several secrets in quick succession then it can be
+frustrating to be prompted for your password multiple times. You can
+configure <code>gpg-agent</code>, which is similar in concept to <code>ssh-agent</code>, to cache
+your password for a short period of time.</p>
+
+<p>Write the following to your shell initialisation (such as <code>~/.bashrc</code> or
+<code>~/.zshrc</code>) to load <code>gpg-agent</code> each time you start a new shell:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>if which gpg-agent &gt;/dev/null; then
+  GPG_ENV_FILE="${HOME}/.gnupg/gpg-agent.env"
+  if ! pgrep gpg-agent &gt;/dev/null; then
+    gpg-agent --daemon --write-env-file "${GPG_ENV_FILE}" &gt;/dev/null
+  fi
+  if [ -f "${GPG_ENV_FILE}" ]; then
+    source "${GPG_ENV_FILE}"
+    export GPG_AGENT_INFO
+  fi
+fi
+</code></pre></div>
+<p>Configure gpg to use the agent automatically by uncommenting the <code>use-agent</code>
+line in your <code>~/.gnupg/gpg.conf</code>.</p>
+<h2 id="aborting-pinentry">Aborting pinentry</h2>
+<p>If you abort out of the <code>pinentry</code> password prompt by using <code>^C</code> then it can
+leave your shell and GPG in an unusable state. Symptoms include:</p>
+
+<ul>
+<li>any characters you type appear as <code>*</code></li>
+<li>output from commands is incorrectly line breaked</li>
+<li>subsequent calls to <code>gpg</code> hang</li>
+</ul>
+
+<p>You can fix this by killing any outstanding <code>pinentry</code> processes:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>pkill -9 pinentry
+</code></pre></div>
+<p>And resetting your terminal with:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>reset
+</code></pre></div>
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

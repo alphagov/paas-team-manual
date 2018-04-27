@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR015-rds-storage-encryption-plans/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr015-rds-storage-encryption-plans">ADR015: RDS storage encryption plans</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="adr015-rds-storage-encryption-plans">ADR015: RDS storage encryption plans</h1><h2 id="context">Context</h2>
+<p>We want to enable, or provide the option to enable,
+<a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html">storage encryption (AKA encryption at rest) for the RDS instances</a>
+of the tenants databases created by our <a href="https://github.com/alphagov/paas-rds-broker">RDS broker</a>. The broker has logic to enable this option on creation.</p>
+
+<p>But there are <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#Overview.Encryption.Limitations">some limitations</a>:</p>
+
+<ul>
+<li>Storage Encryption can only be enabled on creation of the DB. There is no way to update an instance to enable or disable encryption. The only way is by creating a encrypted (or unencrypted) copy of a snapshot, to then restore it to a DB instance.</li>
+<li><s>Storage Encryption is only supported <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#d0e47573">for some instance types</a>. Specifically it is not supported for <code>db.t2.small</code> and <code>db.t2.micro.</code>, used in our Small and Free plans</s></li>
+<li><strong>Update 2018-01-24:</strong> Amazon have now <a href="https://aws.amazon.com/about-aws/whats-new/2017/06/amazon-rds-enables-encryption-at-rest-for-additional-t2-instance-types/">enabled support for encryption of <code>t2</code> instances</a>.</li>
+</ul>
+
+<p>In consequence:</p>
+
+<ul>
+<li>Users <strong>can not</strong> migrate from a plan with encryption (Medium or Large) to a plan without encryption (Small or Free). But this use case is less common.</li>
+<li>Users <strong>can</strong> migrate from Free/Small to a plan with encryption (Medium or Large), but the instance will not have encryption enabled.</li>
+<li>If we enable encryption in the existing plans, the existing databases will remain without encryption.</li>
+<li>Due the API broker limitations, it is not possible to query the attributes of an existing instance.</li>
+</ul>
+
+<p>We have 3 options to proceed:</p>
+
+<ol>
+<li>Enable Encryption in the Medium and Large plans, and document the restrictions.
+
+<ul>
+<li>Less effort to implement.</li>
+<li>We might end having unencrypted database in a plan that is meant to be encrypted, which is confusing for the users and operators.</li>
+<li>Existing Instances will remain unencrypted.</li>
+</ul></li>
+<li>Change the instance type for the Small plan to <code>db.m3.medium</code>.
+
+<ul>
+<li>Would allow migrate from Small to Medium or Large.</li>
+<li>We will still have the problem for the Free plan.</li>
+<li>Increases the costs for the Small plan (double).</li>
+</ul></li>
+<li>Provide additional explicit plans with Encryption enabled, and keep the old ones. Add logic to prevent updates between plans with or without encryption.
+
+<ul>
+<li>It would be more explicit and clear, and the plan would match the state of the existing database.</li>
+<li>Existing instances would still match with the plan description.</li>
+<li>We will add more plans, which makes it more confusing for the tenants.</li>
+</ul></li>
+</ol>
+<h2 id="decision">Decision</h2>
+<p>We decided to provide additional explicit plans with Encryption enabled, and keep the old ones.</p>
+
+<p>We will add logic in the broker to prevent updates between plans with or without encryption.</p>
+
+<p>We have decided only add the option of encryption to the HA plans to minimise the number of new plans added. In most of the cases the tenants would choose HA together with encryption and, although adding more plans is easy, removing them is painful once they are being used.</p>
+<h2 id="status">Status</h2>
+<p>Accepted.</p>
+<h2 id="consequences">Consequences</h2>
+<ul>
+<li>More plans will be added to the offer, which is more confusing the tenants. Better documentation would be required to help the tenants to pick the right plan.</li>
+<li>It is not possible to migrate from a Non-Encrypted plan to an Encrypted plan, and vice versa.</li>
+</ul>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

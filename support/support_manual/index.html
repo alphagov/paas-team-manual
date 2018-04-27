@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/support/support_manual/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#support-manual">Support manual</a>
+    <ul>
+      <li>
+        <a href="#what-are-we-supporting">What are we supporting</a>
+      </li>
+      <li>
+        <a href="#support-hours">Support hours</a>
+      </li>
+      <li>
+        <a href="#how-we-know-what-is-going-on">How we know what is going on</a>
+        <ul>
+          <li>
+            <a href="#what-we-monitor-in-hours">What we monitor in hours</a>
+          </li>
+          <li>
+            <a href="#alerting-out-of-hours">Alerting out of hours</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#triaging-issues">Triaging issues</a>
+      </li>
+      <li>
+        <a href="#severity-levels">Severity Levels</a>
+      </li>
+      <li>
+        <a href="#support-tickets">Support tickets</a>
+        <ul>
+          <li>
+            <a href="#tips-and-good-practice">Tips and good practice</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#incident-process">Incident Process</a>
+      </li>
+      <li>
+        <a href="#useful-links">Useful links</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="support-manual">Support manual</h1><h2 id="what-are-we-supporting">What are we supporting</h2>
+<p>We are supporting the GOV.UK PaaS platform; we’re not providing user support for users of the apps hosted on it.
+However, in some cases service teams can’t self diagnose or fix problems (yet) so we need to be flexible about what we support.</p>
+
+<p>We’re supporting live services, teams who are using PaaS for prototyping and individuals within teams who are just trying it out.</p>
+<h2 id="support-hours">Support hours</h2>
+<ul>
+<li><strong>In hours</strong>: Monday to Friday 9am to 5pm</li>
+<li><strong>Out of hours - waking hours</strong>   : 9am to 5pm each non-working day including weekends and bank holidays</li>
+<li><strong>Out of hours - overnight</strong>: 5pm to 9am each day</li>
+</ul>
+<h2 id="how-we-know-what-is-going-on">How we know what is going on</h2><h3 id="what-we-monitor-in-hours">What we monitor in hours</h3>
+<p>TO BE COMPLETED (e.g. Concourse build status, User impact dashboard + datadog dashboard, New support cases in deskpro/your mail).</p>
+<h3 id="alerting-out-of-hours">Alerting out of hours</h3>
+<p>These are the things we support out of hours:</p>
+
+<ul>
+<li>Apps no longer being served due to an issue with our platform</li>
+<li>Serious security breach on the platform</li>
+<li>Tenants are unable to push an emergency fix to an app due to the PaaS API not being available</li>
+<li>A Tenant’s live production app has a P1 issue which cannot be resolved without us</li>
+</ul>
+
+<p>We expect to hear about the first two via the alerts on Smoke Test Fails and Pingdom which are sent to Pagerduty.</p>
+
+<p>The second two, at the moment, are the things that a tenant may contact us about as we don’t cover all situations in which these could occur with our own alerting. They would contact us via our emergency email. This creates a P1 ticket in Deskpro and triggers Pagerduty.</p>
+<h2 id="triaging-issues">Triaging issues</h2>
+<p>An issue could be something which is raised through our monitoring, alerting, Deskpro or slack.</p>
+
+<p>Triaging an issue is higher priority than other work. Once the issue has been triaged, it will be categorised (P1, P2 etc) and prioritised.</p>
+
+<p>The following questions should be answered when triaging/prioritising:</p>
+
+<ul>
+<li>What’s the urgency and why?</li>
+<li>What’s the impact to our users, systems and reputation?</li>
+<li>What’s the extent of the issue, how many systems and users are affected?</li>
+<li>Is it a known issue - is there a workaround?</li>
+<li>If there is uncertainty about which classification an issue should be given, the PaaS Product manager, PaaS Technical Architect or Tech Lead will be responsible for making a final call.</li>
+<li>In the event that none of the above people are available, you should use the triage questions to make a decision based on the information you have at the time.</li>
+</ul>
+<h2 id="severity-levels">Severity Levels</h2>
+<p>We classify issues by their impact to users (tenants and their users, and the PaaS team) and react accordingly. This allows us to set expectations about how we will work, and what other teams should expect.</p>
+
+<p>For most types of issue, our priority is to ensure high availability of the service.</p>
+
+<p>An incident is any issue which causes significant problems for many platform users. This will include all P1 issues, and some P2 issues.</p>
+
+<p>The exceptions to this are for some categories of security breach or vulnerability, and for some incidents where there is a risk of data corruption.</p>
+
+<p><em>(Note this table is copied from overview doc - keep in sync. More detail may be needed later)</em></p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Classification</th>
+<th>AKA</th>
+<th>Example</th>
+<th>In hours</th>
+<th>Out of hours</th>
+</tr>
+<tr>
+<td>P1</td>
+<td>Critical Incident</td>
+<td><ul><li>Apps no longer being served due to an issue with our platform</li><li>serious security breach on the platform</li><li>You are unable to push an emergency fix to an app due to the PaaS API not being available</li><li>your live production app has a P1 issue which cannot be resolved without us</li></ul></td>
+<td>Start work &amp; respond: 20 min<br/><br/> Update time: 1 hr</td>
+<td>40 mins</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Major Incident</td>
+<td><ul><li>Can’t update/push apps due to platform issue</li><li>Upstream vulnerabilities</li><li>elevated error rates</li><li>Complete component failure</li><li>substantial degradation of service</li></ul></td>
+<td>Start work &amp; respond: 30 min<br/><br/>Update time: 2 hr</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>Significant</td>
+<td>Users (tenants or end users) experiencing intermittent or degraded service due to platform issue.</td>
+<td>Start work &amp; respond: 2 hr<br/><br/> Update time: 4 hr  n/a</td>
+<td></td>
+</tr>
+<tr>
+<td>P4</td>
+<td>Minor</td>
+<td>Component failure that is not immediately service impacting</td>
+<td>Start work &amp; respond: 1 business day <br/><br/> Update time: 2 business days</td>
+<td>n/a</td>
+</tr>
+
+        </table>
+      </div><h2 id="support-tickets">Support tickets</h2>
+<p>You can access our <a href="https://gaap.deskpro.com/agent/">support ticketing tool Deskpro here</a></p>
+
+<p>If you don’t have an account ask Urmi to add you. You can adjust your notifications yourself.</p>
+<h3 id="tips-and-good-practice">Tips and good practice</h3>
+<ul>
+<li>Try to keep a descriptive name in the Deskpro cards. If the user added a not very descriptive name (e.g failure pushing app), change it to something that uniquely identifies the story (e.g failure pushing app: invalid mode 0444).
+Always notify the tenant about this change and why it is done.</li>
+<li>Try to close the tickets if there is no action required from us.</li>
+<li>If we are waiting for a card in the backlog, add add note in the card to saying that we need to inform the user once is done and accepted.</li>
+<li>Always notify the user that we are closing it, why we are closing it and why the issue is resolved or it does not require more work from us.</li>
+<li>Let the user know that they can always reopen the ticket if required.</li>
+</ul>
+<h2 id="incident-process">Incident Process</h2>
+<p>This is now in its <a href="/support/incident_process/">own section</a>.</p>
+<h2 id="useful-links">Useful links</h2>
+<ul>
+<li><a href="https://gaap.deskpro.com/agent/">Deskpro</a></li>
+<li><a href="https://gds-paas.pagerduty.com/">Pagerduty</a></li>
+<li><a href="https://docs.cloud.service.gov.uk/">Developer docs</a></li>
+<li><a href="https://deployer.staging.cloudpipeline.digital/">Staging pipeline</a></li>
+<li><a href="https://deployer.cloud.service.gov.uk">Prod pipeline</a></li>
+<li><a href="https://metrics.cloud.service.gov.uk/dashboard/file/user-impact.json">Prod metrics</a></li>
+<li><a href="https://logsearch.cloud.service.gov.uk">Prod logs</a></li>
+<li><a href="https://dsingleton.github.io/frame-splits/index.html?title=&amp;layout=2row&amp;url%5B%5D=https%3A%2F%2Fdeployer.staging.cloudpipeline.digital%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&amp;url%5B%5D=https%3A%2F%2Fdeployer.cloud.service.gov.uk%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&amp;url%5B%5D=&amp;url%5B%5D=">All pipelines dashboard</a></li>
+<li><a href="https://paas-dashboard.cloudapps.digital/paas-overview">Monitor summary</a></li>
+<li>Fourth wall (PR dashboard): <code>https://alphagov.github.io/fourth-wall/?token=${GITHUB_API_TOKEN}&amp;team=alphagov/team-government-paas-readonly</code> (insert github readonly account token)</li>
+</ul>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

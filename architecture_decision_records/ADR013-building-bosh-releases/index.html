@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR013-building-bosh-releases/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr013-building-bosh-releases">ADR013: Building BOSH releases</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+        <ul>
+          <li>
+            <a href="#building-bosh-releases">Building Bosh Releases</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="adr013-building-bosh-releases">ADR013: Building BOSH releases</h1><h2 id="context">Context</h2>
+<p>We use <a href="https://bosh.io/">Bosh</a> to create and manage our cloudfoundry deployment on AWS.
+To deploy software, Bosh needs certain binary dependencies available.
+These are known as bosh <a href="https://bosh.io/docs/release.html">releases</a>.</p>
+
+<p>Before this decision, we usually built and uploaded releases to Bosh as part of our <a href="https://concourse-ci.org/">concourse</a> pipeline.
+Occasionally, we would manually build a release, store it on GitHub, and point Bosh to it there.</p>
+<h3 id="building-bosh-releases">Building Bosh Releases</h3>
+<p>We investigated different approaches to creating bosh releases, in particular</p>
+
+<ul>
+<li>Multiple pipelines created dynamically using <a href="https://github.com/alphagov/paas-concourse-branch-manager">branch manager</a></li>
+<li>A single pipeline using <a href="https://github.com/jtarchie/pullrequest-resource">pullrequest-resource</a></li>
+</ul>
+
+<p>The work on these spikes was recorded in
+https://www.pivotaltracker.com/n/projects/1275640/stories/115142265
+https://www.pivotaltracker.com/n/projects/1275640/stories/128937731</p>
+<h2 id="decision">Decision</h2>
+<p>We will use the <a href="https://github.com/jtarchie/pullrequest-resource">pullrequest-resource</a> approach to build all our Bosh releases in a consistent way.</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>We must gradually migrate all our Bosh release builds to their own build pipelines.
+We will need separate jobs to build from master - this already has a proof of concept in the spike.
+We may have to add additional config in projects we fork to allow us to create final builds.</p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

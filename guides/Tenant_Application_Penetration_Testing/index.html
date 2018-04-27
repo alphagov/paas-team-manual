@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/guides/Tenant_Application_Penetration_Testing/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#tenant-application-penetration-testing">Tenant Application Penetration Testing</a>
+    <ul>
+      <li>
+        <a href="#find-penetration-testable-ec2-instance-ids">Find penetration testable EC2 instance IDs</a>
+      </li>
+      <li>
+        <a href="#find-elbs">Find ELBs</a>
+      </li>
+      <li>
+        <a href="#find-cloudfront-distributions">Find CloudFront distributions</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="tenant-application-penetration-testing">Tenant Application Penetration Testing</h1>
+<p>Before allowing a penetration test against applications running on PaaS we may have to notify AWS. Currently we are not sure on the scenarios when we do not have to notify AWS. We are erring on the side of caution and notifying for all penetration tests.</p>
+
+<p>There are two methods to notify AWS: <a href="https://aws.amazon.com/forms/penetration-testing-request">a form which requires root account access</a>, or, by emailing <code>aws-security-cust-pen-test@amazon.com</code>. Both require providing the following information:</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+<tr>
+<td>AWS AccountId</td>
+<td>Production account ID</td>
+</tr>
+<tr>
+<td>SubmitterName</td>
+<td>Your name</td>
+</tr>
+<tr>
+<td>CompanyName</td>
+<td><code>Government Digital Service</code></td>
+</tr>
+<tr>
+<td>EmailAddress</td>
+<td>Team email address</td>
+</tr>
+<tr>
+<td>AdditionalEmail1</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>AdditionalEmail2</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>AdditionalEmail3</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>Customer_NDA</td>
+<td><code>yes</code></td>
+</tr>
+<tr>
+<td>ec2_resources</td>
+<td><a href="#find-penetration-testable-ec2-instance-ids">EC2 resource IDs to be tested</a>.</td>
+</tr>
+<tr>
+<td>cloudfront_ID</td>
+<td><a href="#find-cloudfront-distributions">CloudFront distribution IDs to be tested</a>.</td>
+</tr>
+<tr>
+<td>api_gateway</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>rds_resources</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>elb_resources</td>
+<td><a href="#find-elbs">ELB hostnames to be tested</a>.</td>
+</tr>
+<tr>
+<td>external_IPs</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>nameserver_info</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>dns_owner_notified</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TLD_scanned</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>source_IP</td>
+<td>Provided by penetration tester. The IPs that the test will originate from.</td>
+</tr>
+<tr>
+<td>on_prem</td>
+<td>Provided by penetration tester. Will the requests originate from the office of the testers?</td>
+</tr>
+<tr>
+<td>third_party</td>
+<td>Provided by tenant. Are the testers a third-party company?</td>
+</tr>
+<tr>
+<td>phone_for_testing_team</td>
+<td>Provided by penetration tester. Phone number of the testers.</td>
+</tr>
+<tr>
+<td>testing_company_NDA</td>
+<td>Provided by penetration tester. Has an NDA with AWS been signed by the penetration testers?</td>
+</tr>
+<tr>
+<td>peak_bandwidth</td>
+<td>Provided by penetration tester. The peak amount of bandwidth the tests will consume (Gbps).</td>
+</tr>
+<tr>
+<td>peak_rps</td>
+<td>Provided by penetration tester. The peak number of requests-per-second the tests will perform.</td>
+</tr>
+<tr>
+<td>dns_walking_qps</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>Provided by penetration tester. When will the test start?  (eg. <code>2017-09-26T09:00:00Z</code> )</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>Provided by penetration tester. When will the test end? (eg. <code>2017-09-26T18:00:00Z</code> )</td>
+</tr>
+<tr>
+<td>testing_details</td>
+<td>Provided by tenant. Why is the test being carried out? What is the test covering?</td>
+</tr>
+<tr>
+<td>metrics_of_test</td>
+<td>Provided by penetration tester. What metrics are being measured in order to decide the success or failure of the test?</td>
+</tr>
+<tr>
+<td>can_you_stop</td>
+<td>Provided by penetration tester. Once started, is it possible to stop the test immediately if there is an issue?</td>
+</tr>
+<tr>
+<td>emergency_contact</td>
+<td>Provided by penetration tester. Email and phone number in case issues arise.</td>
+</tr>
+
+        </table>
+      </div><h2 id="find-penetration-testable-ec2-instance-ids">Find penetration testable EC2 instance IDs</h2>
+<p>AWS only allows penetration tests on instances of certain sizes. You can find all valid instances with the following:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>aws ec2 describe-instances \
+| jq '.Reservations[].Instances[] | select(.InstanceType != "t2.nano" and .InstanceType != "t1.micro" and .InstanceType != "m1.small") | .InstanceId' --raw-output
+</code></pre></div><h2 id="find-elbs">Find ELBs</h2>
+<p>For tenant application penetration testing it should only be necessary to provide the router ELB:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>aws elb describe-load-balancers \
+| jq '.LoadBalancerDescriptions[] | select(.Scheme == "internet-facing") | select(.LoadBalancerName | endswith("-router")) | .DNSName' --raw-output
+</code></pre></div><h2 id="find-cloudfront-distributions">Find CloudFront distributions</h2>
+<p>The <code>cdn-route</code> service uses a CloudFront distribution. You can discover these distributions with the following:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>aws cloudfront list-distributions \
+| jq '.DistributionList.Items[] | select(.Comment == "cdn route service") | .Id' --raw-output
+</code></pre></div>
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

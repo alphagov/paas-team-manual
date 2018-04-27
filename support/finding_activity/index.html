@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/support/finding_activity/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#finding-the-activity-for-a-given-user">Finding the activity for a given user</a>
+    <ul>
+      <li>
+        <a href="#finding-user-guid">Finding user GUID</a>
+        <ul>
+          <li>
+            <a href="#finding-deleted-user-guid">Finding deleted user GUID</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#kibana-finding-api-usage">Kibana: Finding API usage</a>
+      </li>
+      <li>
+        <a href="#getting-further">Getting further</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#finding-the-access-logs">Finding the access logs</a>
+    <ul>
+      <li>
+        <a href="#gorouter">Gorouter</a>
+      </li>
+      <li>
+        <a href="#router-haproxy">Router HAProxy</a>
+      </li>
+      <li>
+        <a href="#cloud-controller">Cloud Controller</a>
+        <ul>
+          <li>
+            <a href="#uaa-audit-log-in-detail">UAA audit log in detail</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="finding-the-activity-for-a-given-user">Finding the activity for a given user</h1>
+<p>In case of suspicion of compromised CF details, we can use Kibana to
+obtain some information about the API use.</p>
+<h2 id="finding-user-guid">Finding user GUID</h2>
+<p>To find the user ID of a particular user see <a href="/guides/CF_UAA_user_management/#finding-a-user-account">finding a user account</a></p>
+<h3 id="finding-deleted-user-guid">Finding deleted user GUID</h3>
+<p>There may be a need to find a GUID for already deleted user. There is a
+way to do that, but it&rsquo;s a little inconvenient&hellip;</p>
+
+<p>If you go to Kibana, you can use the <code>&quot;DELETE \&quot;/v2/users&quot;</code> phrase in
+your search. This will print out the logs that were taken on user
+removal. This does not however, give you an indication of who the user
+was.</p>
+<h2 id="kibana-finding-api-usage">Kibana: Finding API usage</h2>
+<p>We can make the investigation easier for ourselves by considering the
+following criteria:</p>
+
+<ul>
+<li>Filter by user by typing <code>&quot;for user: {GUID}&quot;</code> in a search box</li>
+<li><em>Optionally:</em> Scope to job: <code>api</code> - From the sidebar on the left,
+select <code>@source.job</code> and add <code>api</code> by pressing little magnifying glass
+with a plus sign.</li>
+<li><code>@message</code> should consist of:
+
+<ul>
+<li>Detailed endpoint - You may filter by adding <code>&quot;/v2/apps/{APP_GUID}&quot;</code>, <code>&quot;GET \&quot;/v2/jobs&quot;</code></li>
+<li>IP address - You may filter by adding <code>&quot;ip: {IP_ADDRESS}&quot;</code></li>
+<li>vcap_request_id - You may filter by adding <code>&quot;vcap-request-id:
+{REQUEST_GUID}&quot;</code></li>
+</ul></li>
+</ul>
+
+<p>You can combine many quoted attributes into one, by joining the quotes
+with <code>&amp;&amp;</code>, like so:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>"for user: {GUID}" &amp;&amp; "ip: {IP_ADDRESS}" &amp;&amp; "GET \"/v2/jobs"
+</code></pre></div>
+<p>It probably won&rsquo;t end here, but it should provide a start for an
+individual to go further.</p>
+<h2 id="getting-further">Getting further</h2>
+<p>Once you found something interesting above, you could use it to refine
+your search to get deeper. For instance, one of the logs above, would have:</p>
+
+<ul>
+<li><code>@source.id</code> - Defining the VM we&rsquo;d need to access. For example:
+<code>4556706c-0e04-401e-bbc5-d0933e98f892</code></li>
+<li><code>@message</code> consisting of <code>vcap-request-id</code></li>
+</ul>
+
+<p>If you search for <code>&quot;{VCAP_REQUEST_ID}&quot;</code> in Kibana, you should get
+more actions performed on an API call.</p>
+
+<p>Each of the results will be different, but it could consist of more
+data. For example, with a <code>PUT</code> request, you could find a
+<code>cloud_controller_ng.body</code>, <code>cloud_controller_ng.method</code> and
+<code>cloud_controller_ng.message</code>.</p>
+
+<p>Here&rsquo;s a sample JSON of the above:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>{
+    "timestamp": 1492615195.9275572,
+    "message": "droplet created: XXXXX-XXXX-XXXX-XXXXX",
+    "log_level": "info",
+    "source": "cc.package_stage_action",
+    "data": {
+        "request_guid": "XXXXX-XXXX-XXXX-XXXXX"
+    },
+    "thread_id": XXXXXXXXXX,
+    "fiber_id": XXXXXXXXXX,
+    "process_id": XXXX,
+    "file": "/var/vcap/packages/cloud_controller_ng/cloud_controller_ng/app/actions/droplet_create.rb",
+    "lineno": 52,
+    "method": "create_and_stage"
+}
+</code></pre></div>
+<p>It would imply that a new app has been created and staged.</p>
+<h1 id="finding-the-access-logs">Finding the access logs</h1>
+<p>There may be times, where we&rsquo;d need to be troubleshooting or reviewing an API Access logs. Here is a list, of more relevant and interesting points to be concerned about:</p>
+<h2 id="gorouter">Gorouter</h2>
+<p>In kibana, filtering the <code>@source.component</code> to <code>gorouter</code> will show the access logs, error logs, and route registration events.</p>
+
+<p>You can filter access logs only with:</p>
+
+<ul>
+<li><code>tags:gorouter_access_log</code></li>
+</ul>
+
+<p>Request details are also parsed to allow searches like:</p>
+
+<ul>
+<li><code>NOT gorouter.status: 200</code></li>
+<li><code>gorouter.method: POST</code></li>
+</ul>
+<h2 id="router-haproxy">Router HAProxy</h2>
+<p>In Kibana, you can look for the following phrases, to filter the access logs.</p>
+
+<ul>
+<li><code>haproxy.http_status_code: 200</code></li>
+<li><code>NOT haproxy.http_status_code: 200</code></li>
+<li><code>haproxy.http_request_verb: POST</code></li>
+<li><code>haproxy.time_backend_response: &gt;7</code></li>
+</ul>
+<h2 id="cloud-controller">Cloud Controller</h2>
+<p>Nginx runs on the same VM as Cloud Controller, so you can filter with:</p>
+
+<ul>
+<li><code>@source.component:vcap_nginx_access</code></li>
+</ul>
+<h3 id="uaa-audit-log-in-detail">UAA audit log in detail</h3>
+<p>You may find it necessary, to go deeper into the audit logs:</p>
+
+<ul>
+<li>Token issued for a user: <code>uaa.audit.origin: &quot;test@example.com&quot;</code></li>
+<li>All user created events: <code>uaa.audit.type: UserCreatedEvent</code></li>
+<li>All token issued events: <code>uaa.audit.type: TokenIssuedEvent</code></li>
+<li>All token issued events (case doesn&rsquo;t matter):<code>uaa.audit.type: tokenissuedevent</code></li>
+<li>All successful authentication events: <code>uaa.audit.type: UserAuthenticationSuccess</code></li>
+<li>Authentication of a user: <code>uaa.audit.data: &quot;test@example.com&quot;</code></li>
+<li>All successful authentication events via SSO: <code>uaa.audit.type: UserAuthenticationSuccess AND uaa.audit.origin: sessionId</code></li>
+<li>All successful authentication events via non SSO: <code>uaa.audit.type: UserAuthenticationSuccess AND uaa.audit.origin: clientId</code></li>
+<li>Authentication failures: <code>uaa.audit.type: PrincipalAuthenticationFailure</code></li>
+<li>Authentication failure for a user: <code>uaa.audit.type: PrincipalAuthenticationFailure AND uaa.audit.principal: admin</code></li>
+<li>SSO authentication failure doesn&rsquo;t show specific logs, only <code>uaa.audit.type: ClientAuthenticationSuccess</code> from the cf client.</li>
+</ul>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

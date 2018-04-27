@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR011-security-group-structure/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr011-security-group-structure">ADR011: Security group structure</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="adr011-security-group-structure">ADR011: Security group structure</h1><h2 id="context">Context</h2>
+<p>In https://www.pivotaltracker.com/story/show/115252309 we described a pattern
+for defining security groups between services and the VMs that connect to
+them. This involved creating a client security group for each service that
+the service allowed connections from. This client security group was then
+applied to the VMs that needed to be able to connect.</p>
+
+<p>This has the problem that in some cases we would need to add several client
+security groups to a given VM, and we are at risk of running into the AWS
+limits (by default it&rsquo;s a max of 5 groups per interface).</p>
+<h2 id="decision">Decision</h2>
+<p>We will use an alternative approach where a security group is defined for each
+component (or component group) in the system. Services then define rules
+allowing connections from the components that need access. There are some
+instances where a component will be both a client of other services and a
+provider of a service. We will use the same security group for both of these
+roles.</p>
+
+<p>This approach has a number of advantages:</p>
+
+<ul>
+<li>The number of security groups applied to a VM is driven by the number of
+components on that VM, not the number of things that they need to connect to.
+The number of components is likely to be small, and we&rsquo;re better able to
+control this that we can control the number of things a  component talks to.</li>
+<li>It&rsquo;s easier to see what components connect to a given service by looking at
+the rules for that service&rsquo;s security group.</li>
+<li>When moving a component between VMs it&rsquo;s much clearer which security groups
+need to move with it.</li>
+</ul>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<ul>
+<li>This will enable us to avoid hitting the AWS limits for the number of
+security groups applied to a given interface.</li>
+<li>It will make it clearer which components are allowed to connect to a given
+service.</li>
+<li>There will be some work to update our existing groups to use this pattern.</li>
+</ul>
+
+<p>There are some potential issues:</p>
+
+<ul>
+<li><p>There&rsquo;s the possibility for cycles in the Terraform dependency graph when we
+have 2 components that both initiate connections to each other. This can be
+avoided by using the <code>aws_security_group_rule</code> Terraform resource instead of
+defining the rules inline in the <code>aws_security_group</code>.</p></li>
+<li><p>When looking at a given VM, it&rsquo;s harder to see what services it connects to.
+This is not seen as a major problem because it should be possible to create
+tooling to visualise this without much effort.</p></li>
+</ul>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

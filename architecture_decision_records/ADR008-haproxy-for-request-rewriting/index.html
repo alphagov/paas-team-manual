@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR008-haproxy-for-request-rewriting/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr008-haproxy-for-request-rewriting">ADR008: Haproxy for request rewriting</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+        <ul>
+          <li>
+            <a href="#positive">Positive</a>
+          </li>
+          <li>
+            <a href="#negative">Negative</a>
+          </li>
+          <li>
+            <a href="#see-also">See Also</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="adr008-haproxy-for-request-rewriting">ADR008: Haproxy for request rewriting</h1><h2 id="context">Context</h2>
+<p>We want to serve <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HSTS
+headers</a> for all
+HTTPS requests to the apps domains, but it will safeguard existing users from
+being MITMed over insecure connections and it will improve the user experience
+when they click on a hostname that doesn&rsquo;t have a protocol.
+(Note that without pre-loading in browsers this won&rsquo;t help first time users,
+but that is out of context)</p>
+
+<p>We want to leave open the option of able to override these headers from
+the tenant application if they wish.</p>
+
+<p>This feature requires conditionally process and modify the request headers.
+There are several possible implementations:</p>
+
+<ol>
+<li>Implement the logic in the <code>gorouter</code> itself: <code>gorouter</code> shall process
+and add the header if required, by:
+
+<ul>
+<li>Supporting the specific HSTS headers, and allowing configure some
+sort of behaviour and default value.</li>
+<li>Allow inject any additional header if they are missing.</li>
+</ul></li>
+</ol>
+
+<p>But <a href="https://github.com/cloudfoundry/gorouter/commit/0d475e57b1742c42ba6d98d1ed853edc9f709893">current <code>gorouter</code> implementation</a>
+   does not support any of these features, which require being added.</p>
+
+<ol>
+<li><p>Add some intermediate proxy (for example nginx, haproxy) in front of
+the go-routers and after the ELB.</p></li>
+<li><p>Implement it in a external CDN in front of PaaS origin (PaaS LB entry point):
+All the commercial CDN have the capacity to add additionally headers
+conditionally.</p></li>
+<li><p>AWS ELB: They do not support this logic and will not in the short term.
+In consequence they cannot be used to solve this problem.</p></li>
+</ol>
+<h2 id="decision">Decision</h2>
+<p>We do not want to add any additional logic in the CDN, as they will
+be an optional part of the platform and we will try to keep as simple
+as possible.</p>
+
+<p>We consider that the optional solution would be implement this logic in
+the <code>gorouter</code>, but that requires some development effort and a PR being merged
+upstream.</p>
+
+<p>Because that we will implement, in the short term, the second option: a proxy
+in front of the <code>gorouter</code>.</p>
+
+<ul>
+<li><p>We will implement <a href="http://www.haproxy.org/">HAproxy</a> in front of the go router.</p>
+
+<ul>
+<li>Ha-proxy is the default LB solution for the official CF distribution.</li>
+<li>It is really powerful and has good support.</li>
+<li>Enough features to cover our needs.</li>
+</ul></li>
+<li><p>It will be setup colocated with the <code>gorouter</code>, proxying directly to
+localhost.</p></li>
+<li><p>We will do SSL termination in HAProxy, and plain text to <code>gorouter</code>. This
+is OK as the two services are colocated in the same VM.</p></li>
+<li><p>We will reuse the code from <a href="https://github.com/cloudfoundry/cf-release/tree/master/jobs/haproxy">official haproxy job from cf-release</a>,
+although we will have to fork it to add additional settings in the
+haproxy configuration.</p></li>
+</ul>
+
+<p>Future work:</p>
+
+<ul>
+<li>We will implement and propose a PR to add logic in go-router to allow
+define additional headers.</li>
+</ul>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2><h3 id="positive">Positive</h3>
+<ul>
+<li><p>We will be able to easily add more logic to rewrite the HTTP communication
+to the applications using HAProxy.</p></li>
+<li><p>HAProxy SSL termination has better performance than <code>gorouter</code>, although
+this has a low impact because ELB is terminating the end user connections
+and using keep alive connections to the gorouter/haproxy.</p></li>
+<li><p>HAProxy supports web-sockets and does HTTP multiplexing.</p></li>
+<li><p>We can implement HTTP =&gt; HTTPS redirect in HAProxy.</p></li>
+</ul>
+<h3 id="negative">Negative</h3>
+<ul>
+<li><p>Adds some additional latency to every request.</p></li>
+<li><p>We have to maintain our custom haproxy release.</p></li>
+<li><p>Another moving part to monitor and take into account.</p></li>
+</ul>
+<h3 id="see-also">See Also</h3>
+<p><a href="../ADR012-haproxy-healthcheck">ADR012</a></p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

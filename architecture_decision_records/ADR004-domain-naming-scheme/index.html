@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR004-domain-naming-scheme/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr004-domain-naming-scheme">ADR004: Domain naming scheme</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+        <ul>
+          <li>
+            <a href="#naming-considerations">Naming considerations</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#domain-overview">Domain Overview</a>
+        <ul>
+          <li>
+            <a href="#development-domains">Development Domains</a>
+          </li>
+          <li>
+            <a href="#continuous-integration-ci-domains">Continuous Integration (CI) Domains</a>
+          </li>
+          <li>
+            <a href="#staging-domains">Staging Domains</a>
+          </li>
+          <li>
+            <a href="#production-domains">Production Domains</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="adr004-domain-naming-scheme">ADR004: Domain naming scheme</h1><h2 id="context">Context</h2>
+<p>As part of our deployment we have a pipeline, where changes that are made can move from a development environment through to production illustrated thusly:</p>
+
+<p><a href="../images/pipeline.jpg" target="_blank" rel="noopener noreferrer"><img src="/architecture_decision_records/images/pipeline.jpg" alt="pipeline image" /></a></p>
+
+<p>There are a number of externally available endpoints that are accessed to manage and view information about the platform, as well as issue commands via the Cloud Foundry API. In addition to this, a URL also needs to be available to access Apps hosted on the platform. These need to be accessed via some sort of sensible URL.</p>
+
+<p>The reason for splitting system domains from app domains was to prevent applications from stealing traffic to CF components (for example, api.<domain>) or masquerading as official things of the platform (for example, signup.<domain>).</p>
+<h3 id="naming-considerations">Naming considerations</h3>
+<p>A number of aspects were considered as part of the naming process.</p>
+
+<ul>
+<li>Clear sense of purpose</li>
+<li>Clear distinction between Production and other Environments</li>
+<li>No overly technical names (for example, hosting/paas/scalable-elastic-public-government-hosting)</li>
+<li>Prevent possibility of domains suggesting &lsquo;live&rsquo; service, for example if we allowed [app name].paas.gov.uk it could appear as thought they were live services.</li>
+</ul>
+<h2 id="decision">Decision</h2>
+<p>For <em>non</em> production environments we will be using the following domains:</p>
+
+<ul>
+<li>[environment name].cloudpipeline.digital</li>
+<li>[app name].[environment name].cloudpipelineapps.digital</li>
+</ul>
+
+<p>For our production environment we will be using the following domains:</p>
+
+<ul>
+<li>cloud.service.gov.uk</li>
+<li>[app name].cloudapps.digital</li>
+</ul>
+
+<p>It is important to note that live services will &#39;Bring Your Own&rsquo; domain, apps available at cloudapps.digital are not live &#39;production&rsquo; applications.</p>
+<h2 id="domain-overview">Domain Overview</h2><h3 id="development-domains">Development Domains</h3><div class="table-container">
+        <table>
+          <tr>
+<th>Purpose</th>
+<th>URL</th>
+</tr>
+<tr>
+<td>Deployer Concourse</td>
+<td>deployer.foo.dev.cloudpipeline.digital</td>
+</tr>
+<tr>
+<td>Cloud Foundry API</td>
+<td>api.foo.dev.cloudpipeline.digital</td>
+</tr>
+<tr>
+<td>Cloud Foundry User Account and Authentication</td>
+<td>uaa.foo.dev.cloudpipeline.digital</td>
+</tr>
+<tr>
+<td>Applications</td>
+<td>bar.foo.dev.cloudpipelineapps.digital</td>
+</tr>
+
+        </table>
+      </div><h3 id="continuous-integration-ci-domains">Continuous Integration (CI) Domains</h3><div class="table-container">
+        <table>
+          <tr>
+<th>Purpose</th>
+<th>URL</th>
+</tr>
+<tr>
+<td>Deployer Concourse</td>
+<td>deployer.master.ci.cloudpipeline.digital</td>
+</tr>
+<tr>
+<td>Cloud Foundry API</td>
+<td>api.master.ci.cloudpipeline.digital</td>
+</tr>
+<tr>
+<td>Cloud Foundry User Account and Authentication</td>
+<td>uaa.master.ci.cloudpipeline.digital</td>
+</tr>
+<tr>
+<td>Applications</td>
+<td>bar.master.ci.cloudpipelineapps.digital</td>
+</tr>
+
+        </table>
+      </div><h3 id="staging-domains">Staging Domains</h3><div class="table-container">
+        <table>
+          <tr>
+<th>Purpose</th>
+<th>URL</th>
+</tr>
+<tr>
+<td>Deployer Concourse</td>
+<td>deployer.staging.cloudpipeline.digital</td>
+</tr>
+<tr>
+<td>Cloud Foundry API</td>
+<td>api.staging.cloudpipeline.digital</td>
+</tr>
+<tr>
+<td>Cloud Foundry User Account and Authentication</td>
+<td>uaa.staging.cloudpipeline.digital</td>
+</tr>
+<tr>
+<td>Applications</td>
+<td>bar.staging.cloudpipelineapps.digital</td>
+</tr>
+
+        </table>
+      </div><h3 id="production-domains">Production Domains</h3><div class="table-container">
+        <table>
+          <tr>
+<th>Purpose</th>
+<th>URL</th>
+</tr>
+<tr>
+<td>Deployer Concourse</td>
+<td>deployer.cloud.service.gov.uk</td>
+</tr>
+<tr>
+<td>Cloud Foundry API</td>
+<td>api.cloud.service.gov.uk</td>
+</tr>
+<tr>
+<td>Cloud Foundry User Account and Authentication</td>
+<td>uaa.cloud.service.gov.uk</td>
+</tr>
+<tr>
+<td>Applications</td>
+<td>bar.cloudapps.digital</td>
+</tr>
+
+        </table>
+      </div><h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>Certificates etc. had to be purchased, domains registered, and our automated deployments configured to allow us to specify the domains for each stage of the pipeline.</p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

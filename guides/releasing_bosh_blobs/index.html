@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/guides/releasing_bosh_blobs/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#releasing-bosh-blobs">Releasing BOSH blobs</a>
+    <ul>
+      <li>
+        <a href="#requirements">Requirements</a>
+      </li>
+      <li>
+        <a href="#steps">Steps</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="releasing-bosh-blobs">Releasing BOSH blobs</h1>
+<p>This is a guide to upload new BOSH blobs to our common blob store.</p>
+
+<p>Our blobs are stored in the <strong>gds-paas-build-releases-blobs</strong> S3 bucket which belongs to the CI AWS account.</p>
+
+<p>You can read about adding and uploading blobs <a href="https://bosh.io/docs/release-blobs.html">here</a>.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>You&rsquo;ll need access to the CI AWS account (write access to the blob store S3 bucket)</li>
+<li>BOSH cli</li>
+</ul>
+<h2 id="steps">Steps</h2>
+<p>In this example we&rsquo;re going to upload Go 1.9 to the blob store.</p>
+
+<p>You have to run the following commands from a BOSH release.</p>
+
+<p><strong>1.</strong> First download the blob:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>curl -L https://redirector.gvt1.com/edgedl/go/go1.9.linux-amd64.tar.gz -O
+</code></pre></div>
+<p><strong>2.</strong> Add the new blob to the BOSH release</p>
+<div class="highlight"><pre class="highlight plaintext"><code>bosh add-blob [PATH TO]/go1.9.linux-amd64.tar.gz golang/go1.9.linux-amd64.tar.gz
+</code></pre></div>
+<p><strong>3.</strong> As we are using environment variables for AWS access you have to create the file <strong>config/private.yml</strong> with the following content:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>blobstore:
+  s3:
+    access_key_id: ''
+    secret_access_key: ''
+</code></pre></div>
+<p><strong>4.</strong> Check if adding the blob was successful:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>bosh blobs
+</code></pre></div>
+<p>It should list the added blob as new.</p>
+
+<p><strong>5.</strong> Upload the new blob to the blobstore</p>
+<div class="highlight"><pre class="highlight plaintext"><code>bosh upload-blobs
+</code></pre></div>
+<p><strong>6.</strong> The <strong>config/blobs.yml</strong> should be updated now and you can commit the new or updated blob definiton.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>golang/go1.9.linux-amd64.tar.gz:
+  object_id: e414cd61-f037-4d47-a671-c7909b39182c
+  sha: 6a00c39435edc1e102f1fb75cc1137fba4c9e4e2
+  size: 102601309
+</code></pre></div>
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

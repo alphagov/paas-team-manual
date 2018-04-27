@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/team/managing_aws_access/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#iam">IAM</a>
+    <ul>
+      <li>
+        <a href="#iam-roles">IAM Roles</a>
+      </li>
+      <li>
+        <a href="#iam-groups">IAM Groups</a>
+      </li>
+      <li>
+        <a href="#iam-users">IAM Users</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#temporary-credentials">Temporary Credentials</a>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="iam">IAM</h1>
+<p>Each AWS account has <a href="http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html">root account</a> credentials, which we don&rsquo;t use.</p>
+
+<p>Instead we access AWS resources using <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">IAM</a>.</p>
+<h2 id="iam-roles">IAM Roles</h2>
+<p>We use <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</a> via <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">intance profiles</a> on our EC2 instances to delegate particular restricted permissions to processes running on those instances.</p>
+<h2 id="iam-groups">IAM Groups</h2>
+<p>We use <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups.html">IAM groups</a> to specify permissions for categories of user.</p>
+
+<p>For example, contractors and civil servants are different groups.</p>
+<h2 id="iam-users">IAM Users</h2>
+<p>We create an <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html">IAM user</a> for each team member, in each of our AWS accounts.</p>
+
+<p>Each user has separate <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">access keys</a> which need to be present in the environment for the AWS commandline tools to work.</p>
+
+<p>We have turned on <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html">MFA</a> for all team members.</p>
+<h1 id="temporary-credentials">Temporary Credentials</h1>
+<p>We use <a href="http://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html">STS</a> to provide <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html">temporary credentials</a> for command line access to AWS.</p>
+
+<p>The long-lived access keys cannot be associated with MFA.</p>
+
+<p>Since we require MFA to perform most AWS operations, we must use STS tokens generated using MFA instead.</p>
+
+<p>We have a script <a href="https://github.com/alphagov/paas-cf/blob/master/scripts/create_sts_token.sh"><code>create_sts_token.sh</code> in paas-cf</a> which manages token creation and storage for you.</p>
+
+<p>Because you will have a user for each AWS account, but only one terminal session, it is up to you to integrate the generated keys into your session.</p>
+
+<p>For example, you might add a function<code>:
+</code>&ldquo;
+export PAAS_CF_DIR=&quot;path/to/paas-cf&rdquo;</p>
+
+<p>sts() {
+  &ldquo;${PAAS_CF_DIR}/scripts/create_sts_token.sh&rdquo; &amp;&amp; source &ldquo;${HOME}/.aws_sts_tokens/${AWS_ACCOUNT}.sh&rdquo;
+}
+&ldquo;`</p>
+
+<p>along with an alias per account:
+<code>
+alias aws_staging=&#39;
+export AWS_DEFAULT_REGION=eu-west-1
+export DEPLOY_ENV=&quot;staging&quot;
+export AWS_ACCOUNT=&quot;staging&quot;
+export AWS_ACCESS_KEY_ID=$(pass aws/staging/id)
+export AWS_SECRET_ACCESS_KEY=$(pass aws/staging/secret)
+sts
+&#39;
+</code></p>
+
+<p>This approach would require you to store your long-lived credentials in a personal <code>pass</code> store. You may prefer an alternative approach, but this should give you an idea of what to do.</p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

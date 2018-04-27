@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/guides/upgrading_CF,_bosh_and_stemcells/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#upgrading-cf-bosh-and-stemcells">Upgrading CF, BOSH and stemcells</a>
+    <ul>
+      <li>
+        <a href="#before-upgrading"> Before Upgrading</a>
+      </li>
+      <li>
+        <a href="#doing-the-upgrade">Doing the upgrade</a>
+        <ul>
+          <li>
+            <a href="#buildpacks">Buildpacks</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#notify-the-tenants">Notify the tenants</a>
+      </li>
+      <li>
+        <a href="#problems-encountered-previously">Problems encountered previously</a>
+        <ul>
+          <li>
+            <a href="#datadog">Datadog</a>
+          </li>
+          <li>
+            <a href="#dns-name-resolution">DNS name resolution.</a>
+          </li>
+          <li>
+            <a href="#cf-cli">CF CLI</a>
+          </li>
+          <li>
+            <a href="#acceptance-test-failures">Acceptance Test Failures</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="upgrading-cf-bosh-and-stemcells">Upgrading CF, BOSH and stemcells</h1><h2 id="before-upgrading"> Before Upgrading</h2>
+<ul>
+<li>Separate the upgrade of Cloud Foundry and stemcells from the upgrade of Bosh. Upgrades can cause problems and our experience is that it is difficult to be certain about the cause of those problems if multiple things have changed.</li>
+<li>Establish the correct version to upgrade to. This will usually be the latest stable release, or the one before it, subject to review. The main driver for not always picking the latest release is to avoid the bad releases which CF produce from time to time. An alternative strategy may be to pick a release at least one week old, thereby giving Pivotal time to flag and pull bad releases before we plough ahead with them. Kick-off is an appropriate place for this review.</li>
+<li>Check <a href="https://github.com/cloudfoundry/cf-deployment/releases">cf-deployment releases documentation</a> before upgrading to a particular version. There have been releases that became inappropriate for production usage.</li>
+<li>Refer to cf-deployment documentation for recommended versions of all related releases (for example, Diego and related components). Read the documentation for every release of all of these components. It will save you time and pain in the long run.</li>
+<li>Check the <a href="https://github.com/cloudfoundry-incubator/diego-release/releases">diego release documentation</a></li>
+<li>Check the <a href="https://github.com/cloudfoundry-incubator/etcd-release/releases">etcd release documentation</a></li>
+<li>Check the <a href="https://github.com/cloudfoundry-incubator/consul-release/releases">consul release documentation</a></li>
+<li>Check the <a href="https://github.com/cloudfoundry/garden-runc-release/releases">garden runc release documentation</a></li>
+<li>Check the <a href="https://github.com/cloudfoundry/bosh/releases">bosh release documentation</a></li>
+<li>Check the <a href="http://bosh.cloudfoundry.org/stemcells/">stemcell release documentation</a></li>
+<li>Check the <a href="https://github.com/cloudfoundry/cflinuxfs2-release/releases">stack release documentation</a></li>
+<li>Check the job ordering in the <a href="https://github.com/cloudfoundry/diego-release/blob/develop/manifest-generation/diego.yml">Diego manifest</a> to see if our job ordering needs to change as well.</li>
+<li>Use <code>git diff</code> or GitHub compare in the <code>cf-deployment</code> repo to see example changes to the manifest. For example, to see differences between v1.0.0 and v1.14.0:
+<code>
+git diff v1.0.0...v1.14.0 cf-deployment.yml
+</code></li>
+<li>Update the cf-smoke-tests resource in the pipeline to use a new branch of our fork that has the latest changes from upstream master.</li>
+<li>Update the cf-acceptance-tests resource in the pipeline to use an upstream <code>cfX.Y</code> branch matching the cf-deployment version.</li>
+</ul>
+<h2 id="doing-the-upgrade">Doing the upgrade</h2>
+<p>You should test the upgrade changeset:</p>
+
+<ul>
+<li>From a fully deployed master with Datadog enabled, equivalent to the change that will happen in
+in production.</li>
+<li>Deploying a fresh CF, which is something we frequently do in our
+development environments after the autodelete-cloudfoundry pipeline
+runs overnight.</li>
+<li>Confirm that <a href="/team/rotating_credentials/">rotating credentials</a> still
+works and doesn&rsquo;t cause additional downtime during deployments.</li>
+</ul>
+<h3 id="buildpacks">Buildpacks</h3>
+<p><strong>Note</strong>: We have to a give at least a week&rsquo;s notice to tenants about the buildpack upgrades, so prepare the version changes separately from the CF component upgrades.</p>
+
+<p>You should upgrade the buildpacks to at least the versions included in the new cf-deployment version.</p>
+<h2 id="notify-the-tenants">Notify the tenants</h2>
+<p>Send an email to users following <a href="/team/notifying_tenants/#cf-upgrade">the upgrade template</a>.</p>
+<h2 id="problems-encountered-previously">Problems encountered previously</h2><h3 id="datadog">Datadog</h3>
+<p>Our dev environments typically don&rsquo;t have Datadog enabled, so changes relating to our Datadog monitors tend to get missed. Real examples include: process checks failing because the search string used to check them is no longer valid; and manifest updates being missed because the manifest stubs for Datadog tend to be in a different location in the repository, as they are shared across all deployed jobs. The recommendation is to have Datadog enabled while working on an upgrade story and check for triggered monitors.</p>
+<h3 id="dns-name-resolution">DNS name resolution.</h3>
+<p>We encountered a wide variety of acceptance and smoke test failures which were intermittent. This was due to DNS health check failures. Consul uses these health checks to validate the consistency of the DNS records it serves, and will expire DNS records where the health check has failed.</p>
+
+<p>The root cause was failure to remove the <code>consul.agent.services</code> property for Diego components in the CloudFoundry manifest. <a href="https://github.com/cloudfoundry-incubator/diego-release/releases/tag/v0.1452.0">Diego release notes for version 1452</a> did state these had to be removed, as Diego components now use the Locket library to configure its DNS health checks.</p>
+
+<p>The solution is to read the documentation on every release you are passing, for every component you are upgrading. This is a lot of documentation, but worth it in the long run.</p>
+<h3 id="cf-cli">CF CLI</h3>
+<p>The upgrade to cf-release v233 led to acceptance test failure, as it requires CF CLI version 6.16+. We upgraded to this version in our cf-cli and cf-acceptance-tests Docker containers, which confounded the tests of other developers when merged. Upgrades to CF CLI versions can be tested using your own private containers while in development. Perhaps we should think about versioning our docker images so that we can pin particular versions in the pipeline to match the CF &amp; BOSH versions being deployed.</p>
+<h3 id="acceptance-test-failures">Acceptance Test Failures</h3>
+<p>The upgrade to v233 has introduced some new tests in the acceptance-test suite, which do not appear to be quite ready for the prime-time yet.</p>
+
+<p>We experienced failures in:</p>
+
+<ul>
+<li><p><code>routing</code> suite - The <code>multiple_app_ports</code> test fails if  <code>users_can_select_backend</code> is not set to <code>true</code> - The test receives a response of <code>CF-BackendSelectionNotAuthorized</code> which does not match the expected response of <code>CF-MultipleAppPortsMappedDiegoToDea</code> and causes the test to fail - This test should not be run unless the user is permitted to switch backends. We raised an issue with Pivotal for this test :
+https://www.pivotaltracker.com/story/show/117685687
+https://github.com/cloudfoundry/cf-acceptance-tests/issues/104</p></li>
+<li><p><code>v3</code> suite - The <code>task_test</code> is being run even though we have the <code>cf-feature-flag</code> for <code>task_creation</code> set to <code>false</code> - The suite attempts to create a task and receives a response saying <code>Feature Disabled: task_creation</code> which does not cause any kind of failure - it then goes on to attempt to delete the task which fails as it receives and empty response to it&rsquo;s delete attempt, when it is expecting to receive a response indicating that the task is in a <code>FAILED</code> state</p></li>
+</ul>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/support/responding_to_security_issues/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#responding-to-security-issues">Responding to security issues</a>
+    <ul>
+      <li>
+        <a href="#how-we-learn-of-issues">How we learn of issues</a>
+      </li>
+      <li>
+        <a href="#how-we-deal-with-issues">How we deal with issues</a>
+      </li>
+      <li>
+        <a href="#how-to-triage-an-issue">How to triage an issue</a>
+        <ul>
+          <li>
+            <a href="#stemcell-upgrades">Stemcell upgrades</a>
+          </li>
+          <li>
+            <a href="#other-issues">Other issues</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="responding-to-security-issues">Responding to security issues</h1>
+<p>Periodically we will learn of a security issue affecting CloudFoundry or our supporting systems we use, this is the process we follow in order to triage and mitigate the problem.</p>
+<h2 id="how-we-learn-of-issues">How we learn of issues</h2>
+<ul>
+<li>Automated datadog CVE notifications from the <a href="https://www.cloudfoundry.org/category/security/">CloudFoundry security RSS feed</a>. This is implemented with <a href="https://ifttt.com">IFTTT</a> - credentials are in <code>paas-pass</code></li>
+<li>Notifications from <a href="https://lists.cloudfoundry.org/archives/list/cf-dev@lists.cloudfoundry.org/">cf-dev</a></li>
+<li>Notifications in slack from a team member, the #security channel, or others</li>
+</ul>
+<h2 id="how-we-deal-with-issues">How we deal with issues</h2>
+<ol>
+<li>The person on support should immediately create a Pivotal story with all the currently known information</li>
+<li>If a Deskpro ticket was raised, add the story link to the ticket and close the ticket</li>
+<li>The person on support should notify the #the-government-paas channel that they are triaging the incident</li>
+<li>The person on support should either immediately triage the issue themselves, or request support from team members with appropriate domain knowledge (See: &ldquo;How to triage an issue&rdquo; below)</li>
+<li>If the triage outcome is that we must take action the story should be prioritised according to severity by the product manager and played if necessary</li>
+<li>If the triage outcome is that we do not need to take any action, the story should be updated with the reasons why and finished as a 0 point story</li>
+<li>All PR&rsquo;s related to the security issue are prioritised for review until the issue is fully resolved</li>
+</ol>
+<h2 id="how-to-triage-an-issue">How to triage an issue</h2><h3 id="stemcell-upgrades">Stemcell upgrades</h3>
+<p>If the mitigation to the security issue is to upgrade the stemcell, you should
+apply the upgraded stemcell to a dev environment as a first step. While you are
+waiting for the upgraded stemcell to be applied, the issue can be triaged. If
+the upgrade applies successfully, a PR can be raised to upgrade the stemcell. If
+it does not apply successfully, we should prioritise the upgrade based on the
+severity of the CVE</p>
+<h3 id="other-issues">Other issues</h3>
+<ol>
+<li>If possible locate the original CVE report</li>
+<li>Identify each component of CF and our supporting systems that is affected by the issue</li>
+<li>Confirm we are vulnerable by reproducing the security issue on a suitable environment</li>
+<li>Identify what the CVE report says needs to be done to mitigate the issue</li>
+<li>Identify if there are any other practical ways for us to mitigate the situation, such as disabling features or altering configurations</li>
+<li>Identify if the issue is fixed in a newer release of the software we are using</li>
+<li>Briefly investigate how difficult the upgrade would be, if needed</li>
+<li>Record all this information on the story associated with the issue</li>
+</ol>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/support/roles_and_responsibilities/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#support-roles-and-responsibilities">Support roles and responsibilities</a>
+    <ul>
+      <li>
+        <a href="#rota">Rota</a>
+      </li>
+      <li>
+        <a href="#expectations">Expectations</a>
+      </li>
+      <li>
+        <a href="#in-hours">In-hours</a>
+      </li>
+      <li>
+        <a href="#out-of-hours">Out of hours</a>
+      </li>
+      <li>
+        <a href="#in-hours-responsibilities">In-hours responsibilities</a>
+      </li>
+      <li>
+        <a href="#out-of-hours-responsibilities">Out-of-hours responsibilities</a>
+      </li>
+      <li>
+        <a href="#escalations-responsibilities">Escalations responsibilities</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="support-roles-and-responsibilities">Support roles and responsibilities</h1>
+<p>What each role does on support and when it&rsquo;s needed.</p>
+<h2 id="rota">Rota</h2>
+<p>The support rota is on <a href="https://gds-paas.pagerduty.com/schedules">Pagerduty</a>.</p>
+
+<p>For in-hours support, one person from the team will be the Support Lead on a weekly basis. For out of hours support, to begin with, we will have one person from the team on call as Support lead, again on a weekly basis. We will also have a second person on call for Escalations.</p>
+
+<p>If you are on in-hours support, add your shift onto the #the-government-paas slack channel description so your colleagues find it easier to see who is on support. If you need to swap shifts, ask your colleagues if they can swap or cover, update Pagerduty <a href="https://support.pagerduty.com/hc/en-us/articles/202830170-Creating-and-Deleting-Overrides">using an override</a>.</p>
+<h2 id="expectations">Expectations</h2>
+<p>The broad response times and action that our users expect from us are documented in the <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1FLiKPmM61ikO1MJNo96YpxGaYPUMb8CdAcWPnzBBa0U/edit?usp=sharing">PaaS Support Overview (Gdoc)</a>, and <a href="https://www.cloud.service.gov.uk/support.html">Product pages</a>. Please read it so you know what they expect. These expectations are different for in-hours and out of hours support.</p>
+<h2 id="in-hours">In-hours</h2>
+<p>For in-hours support, if you need to take a break for lunch or essential meetings etc, make sure you tell people ahead of time, and arrange for a colleague to cover for you. All other members of the team are responsible for providing assistance to the support person as needed. If you don’t feel comfortable asking your colleagues, talk to the delivery manager or team lead who can help.</p>
+<h2 id="out-of-hours">Out of hours</h2>
+<p>For out of hours similar guidelines apply, if you need cover for an hour or two or an evening (e.g. for an appointment, or a family dinner), you need to agree this in advance with a colleague who can cover for you, and <a href="https://support.pagerduty.com/hc/en-us/articles/202830170-Creating-and-Deleting-Overrides">update Pagerduty using an override</a>.</p>
+
+<p>When we first start out of hours support we’ll be in private beta and have few live services which need OOH. These services know that we are learning about OOH, and will not be as polished as we will be later.</p>
+<h2 id="in-hours-responsibilities">In-hours responsibilities</h2>
+<p>The In hours Support Lead is responsible for</p>
+
+<ul>
+<li>monitoring system alerts and system health, and recording any issues in DeskPro</li>
+<li>recording the number and nature of build fails on pivotal (label: fixing the build) so we can identify higher impact/frequent ones</li>
+<li>ensuring that each ticket in <a href="https://gaap.deskpro.com/agent/login?o=1_">Deskpro</a> is picked up and responded to appropriately</li>
+<li>assigning /starting work on tickets and telling the initiator that you are doing so</li>
+<li>initial triage - providing or confirming the initial assessment of priority  - there may be some discussion with the initiator (tenant) required here to clarify impact.</li>
+<li>involving other people as needed - supported by the delivery or product manager</li>
+<li>assigning an incident lead if the item is an incident.</li>
+<li>working on <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/167ymOJmv1zXCPK8UUoW4P_zUKvv9qr96oBioXXnNK5o/edit?usp=sharing">other items (Gdoc)</a> while not responding to alerts (NOTE items should be kicked off and have tickets/cards the same as any other work)</li>
+<li>noting what they have done in a <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1tC5G48uHnlu-qK9oGGx85QrArZSJRuFNKV2kKtFsVck/edit?usp=sharing">support week document (Gdoc)</a> which lives in the <a href="https://drive.google.com/drive/folders/0B3dxtmub3df5WmMtWnZJSi1VcXc?usp=sharing_">weeknotes folder</a></li>
+<li>having a support handover meeting at the beginning and end of the support week</li>
+</ul>
+<h2 id="out-of-hours-responsibilities">Out-of-hours responsibilities</h2>
+<p>The Out of hours Support Lead is responsible for</p>
+
+<ul>
+<li>Responding to system alerts which will be sent to you via pagerduty. These will be things which seriously impact the availability of live services due to a problem with our platform</li>
+<li>Responding to notification from tenant teams of P1 issues they are having which are caused by problems with the PaaS. This will also be via Pagerduty.</li>
+<li>Looking at the issue and telling the initiator that you are doing so (if initiated by a human)</li>
+<li>Doing what is needed to ensure the platform is available, not necessarily fixing or diagnosing the root cause.</li>
+<li>Telling the escalation person if we need to put out tenant comms before morning.</li>
+<li>Involve other people if needed NO HEROICS, do not deploy if unsure. Some things are not a one person decision</li>
+<li>Noting what has been done in a <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1tC5G48uHnlu-qK9oGGx85QrArZSJRuFNKV2kKtFsVck/edit?usp=sharing">support week document (Gdoc)</a></li>
+<li>Having a support handover meeting at the beginning and end of the support week</li>
+</ul>
+<h2 id="escalations-responsibilities">Escalations responsibilities</h2>
+<p>The Escalations Out of hours person is responsible for</p>
+
+<ul>
+<li>Responding to system alerts which will be sent to you via pagerduty if the OOH support lead is unable to deal with them. These will be things which seriously impact the availability of live services due to a problem with our platform.</li>
+<li>Making decisions about and sending any tenant comms during OOH.</li>
+<li>Escalating outside the team (through GDS) if required. More on this in the <a href="/support/incident_process/#if-youre-incident-comms">Incident Process</a></li>
+<li>noting what has been done in a <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1tC5G48uHnlu-qK9oGGx85QrArZSJRuFNKV2kKtFsVck/edit?usp=sharing_">support week document</a></li>
+<li>having a support handover meeting at the beginning and end of the support week</li>
+</ul>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/team/notifying_tenants/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#notifying-tenants">Notifying tenants</a>
+    <ul>
+      <li>
+        <a href="#sending-incident-alerts-and-updates">Sending incident alerts and updates</a>
+      </li>
+      <li>
+        <a href="#sending-platform-change-and-new-feature-announcements">Sending platform change and new feature announcements</a>
+        <ul>
+          <li>
+            <a href="#changes-upgrades-and-fixes">Changes, upgrades and fixes</a>
+          </li>
+          <li>
+            <a href="#announcing-new-features">Announcing new features</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#sending-notification-emails-to-tenants">Sending notification emails to tenants</a>
+        <ul>
+          <li>
+            <a href="#cf-upgrade-email-template">CF upgrade email template</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="notifying-tenants">Notifying tenants</h1>
+<p>Every now and then, we need to let our tenants know that something has happened or will happen on the platform. For example, letting teams know about security fixes, CF/stemcell/buildpack upgrades, new features and incidents.</p>
+
+<p>Depending on what it is we want to tell users, we have two different channels for sending these notifications:</p>
+
+<ul>
+<li>incident alerts and reports are sent using <a href="https://manage.statuspage.io/pages/h4wt7brwsqr0">our Statuspage account</a></li>
+<li>changes, fixes and upgrades are sent using the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce">GOV.UK PaaS Announce Google group</a></li>
+<li>new feature announcements are sent using the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce">GOV.UK PaaS Announce Google group</a></li>
+</ul>
+<h2 id="sending-incident-alerts-and-updates">Sending incident alerts and updates</h2>
+<p>Follow the guidance in <a href="/support/incident_process/#if-youre-incident-comms">this section</a> of the team manual if you&rsquo;re managing incident comms and you need to send alerts and updates to tenants.</p>
+<h2 id="sending-platform-change-and-new-feature-announcements">Sending platform change and new feature announcements</h2><h3 id="changes-upgrades-and-fixes">Changes, upgrades and fixes</h3>
+<p>Write a draft email and share it <a href="https://drive.google.com/drive/folders/0Bw4pWpR0IbJfWGFEMVBBZlFsSDQ">here.</a></p>
+
+<p>Get Tom or Jess to proof-read and add any &lsquo;product-y&rsquo; elements - we want to make sure our notifications are consistent and meet the GDS style guidelines. If the email is time-sensitive and Tom/Jess are not around, get another member of the team to proof-read the email before it&rsquo;s sent.</p>
+<h3 id="announcing-new-features">Announcing new features</h3>
+<p>These announcements are our chance to showcase how we&rsquo;re developing GOV.UK PaaS and will be written and sent by the product managers. Tom/Jess may ask the team member who worked on the story to provide some technical details that can be inclued in the email.</p>
+<h2 id="sending-notification-emails-to-tenants">Sending notification emails to tenants</h2>
+<p>Use the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce">google group interface</a> to send the email.</p>
+
+<ul>
+<li>Click on <code>New topic</code></li>
+<li>In <code>By</code> select: Post on behalf of GOV.UK PaaS announce</li>
+<li>The <code>Subject</code> should help identify immediately the purpose of the email.
+Ex: &ldquo;Incident with&hellip;&rdquo;</li>
+<li>In <code>Type of post</code> select: &ldquo;Make an announcement&rdquo; to emphasize this is
+one way communication</li>
+<li>Body: paste the content of the reviewed draft. You may have to adjust formatting.</li>
+</ul>
+<h3 id="cf-upgrade-email-template">CF upgrade email template</h3>
+<p><a id="cf-upgrade"></a></p>
+
+<p>Subject (ex): GOV.UK PaaS - Cloud Foundry changes - 17th March 2017</p>
+
+<p>The body should contain:</p>
+
+<ul>
+<li>Changes and bugfixes to highlight and new features enabled.</li>
+<li>Downtime or service impact if any</li>
+<li>Summary of buildpack changes.</li>
+</ul>
+
+<p><strong>NB Incident comms email templates are saved in Statuspage.</strong></p>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>

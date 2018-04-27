@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+      <meta name="robots" content="noindex">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>GOV.UK Documentation</title>
+
+    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR017-cell-capacity-assignment/">
+
+
+    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="/javascripts/application.js"></script>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr017-cell-capacity-assignment">ADR017: cell capacity assignment</a>
+    <ul>
+      <li>
+        <a href="#superceded">Superceded</a>
+      </li>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="adr017-cell-capacity-assignment">ADR017: cell capacity assignment</h1><h2 id="superceded">Superceded</h2>
+<p>This has been superceded by <a href="/architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR021</a> since November 2017. It has been retained for historical purposes.</p>
+
+<hr>
+<h2 id="context">Context</h2>
+<p>We want to ensure our platform remains available when a single AZ fails. This means that we need to have enough spare memory capacity left on cells to cover deploying apps from the failed zone. In case of 3 zones, that means each zone should be able to host 50% more apps (memory capacity wise). We can calculate maximum memory usable by all orgs by doing sum of their quotas. However, in practice much less memory is consumed. This is because</p>
+
+<ol>
+<li>Org quotas come in T-shirt sizes and have considerable size jumps (e.g. 2, 10, 60 100G). You need to reserve next quota if previous one is too small for your needs, yet it doesn&rsquo;t mean you will be using all the capacity of the larger quota.</li>
+<li>App instance memory limits are set as upper memory consumption limit. Because of that, they tend to be set larger for safety. Actual app memory consumption is always lower, many times considerably.</li>
+</ol>
+
+<p>Practical example - this is a snapsot of our prod deployment in Feb 2017:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Memory reserved by orgs: 368640 MB (360 GB)
+Memory reserved by apps: 107108 MB (104 GB)
+Memory actually used by apps: 32868 (32 GB)
+</code></pre></div>
+<p>This is not unusual and CF v1 had default overprovisioning factor of 2 (that is, it advertised 2 times more capacity than actual).</p>
+<h2 id="decision">Decision</h2>
+<p>We will maintain at least 50% of total org reserved capacity available when a zone fails. That is, remaining zones will have to be able to cover 50% of total reserved capacity.</p>
+<h2 id="status">Status</h2>
+<p>Superceded by <a href="/architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR021</a>.</p>
+<h2 id="consequences">Consequences</h2>
+<ul>
+<li>We will check if we have enough capacity available whenever we add a new organisation or increase quota of existing one. We will deploy more cells if we need more capacity.</li>
+<li>We have implemented <code>show-cf-memory-usage</code> makefile target to help us get current org and app reservation and real usage totals.</li>
+</ul>
+
+          </main>
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
