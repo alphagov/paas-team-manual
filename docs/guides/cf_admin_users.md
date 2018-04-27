@@ -1,8 +1,3 @@
 
-Everyone in the team who is authorised for prod access gets their own admin
-account in CI, staging and prod to avoid needing to share credentials and to be
-able to attribute actions to individuals.
-
-In order to ensure two factor authentication is used, we use our google apps accounts to authenticate:
-
-`cf login -a api.SYSTEM_DOMAIN --sso`
+# The documentation for PaaS Team Manual has moved!
+This page can now be found at [https://alphagov.github.io/paas-team-manual/guides/cf_admin_users/](https://alphagov.github.io/paas-team-manual/guides/cf_admin_users/).

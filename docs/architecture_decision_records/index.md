@@ -1,3 +1,3 @@
-This section contains Architecture Decision Records (ADR) as described in this blog post:
 
-- <http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions>
+# The documentation for PaaS Team Manual has moved!
+This page can now be found at [https://alphagov.github.io/paas-team-manual/architecture_decision_records/index/](https://alphagov.github.io/paas-team-manual/architecture_decision_records/index/).

@@ -1,4 +1,3 @@
-This section contains some team-specific styleguides. These should be used in
-addition to the [GDS styleguides]().
 
-[GDS styleguides]: https://github.com/alphagov/styleguides/
+# The documentation for PaaS Team Manual has moved!
+This page can now be found at [https://alphagov.github.io/paas-team-manual/styleguides/index/](https://alphagov.github.io/paas-team-manual/styleguides/index/).

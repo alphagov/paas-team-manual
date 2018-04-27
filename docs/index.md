@@ -1,6 +1,3 @@
-# GOV.UK PaaS Team Manual
 
-This is primarily for the benefit of team members, rather than users of the
-platform.
-
-Please see the index on the left-hand side.
+# The documentation for PaaS Team Manual has moved!
+This page can now be found at [https://alphagov.github.io/paas-team-manual/](https://alphagov.github.io/paas-team-manual/).
