@@ -9,14 +9,14 @@
     <!-- Use title if it's in the page YAML frontmatter -->
     <title>GOV.UK Documentation</title>
 
-    <!--[if gt IE 8]><!--><link href="/stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
-    <!--[if lte IE 8]><link href="/stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
 
-    <link rel="canonical" href="team-manual.cloud.service.gov.uk/architecture_decision_records/ADR004-domain-naming-scheme/">
+    <link rel="canonical" href="https://bandesz.github.io/paas-team-manual/architecture_decision_records/ADR004-domain-naming-scheme/">
 
 
-    <link href="/stylesheets/print.css" rel="stylesheet" media="print" />
-    <script src="/javascripts/application.js"></script>
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
   </head>
 
   <body>
@@ -27,7 +27,7 @@
         <header class="header header--full-width">
   <div class="header__container">
     <div class="header__brand">
-        <a href="https://cloud.service.gov.uk">
+        <a href="https://bandesz.github.io/paas-team-manual">
         <span class="header__title">
           PaaS Team Manual
             <span class="phase-banner">Internal</span>
@@ -102,7 +102,7 @@
             <h1 id="adr004-domain-naming-scheme">ADR004: Domain naming scheme</h1><h2 id="context">Context</h2>
 <p>As part of our deployment we have a pipeline, where changes that are made can move from a development environment through to production illustrated thusly:</p>
 
-<p><a href="../images/pipeline.jpg" target="_blank" rel="noopener noreferrer"><img src="/architecture_decision_records/images/pipeline.jpg" alt="pipeline image" /></a></p>
+<p><a href="../images/pipeline.jpg" target="_blank" rel="noopener noreferrer"><img src="../images/pipeline.jpg" alt="pipeline image" /></a></p>
 
 <p>There are a number of externally available endpoints that are accessed to manage and view information about the platform, as well as issue commands via the Cloud Foundry API. In addition to this, a URL also needs to be available to access Apps hosted on the platform. These need to be accessed via some sort of sensible URL.</p>
 
