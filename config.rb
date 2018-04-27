@@ -14,7 +14,9 @@ after_build do |builder|
         :url_swap => { config[:tech_docs]['host'] => '' },
     }).run
   rescue RuntimeError => e
+    raise e unless e.to_s =~ /HTML-Proofer found .* failure/
     puts e
+    exit 1
   end
 end
 
