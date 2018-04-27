@@ -70,6 +70,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.7.0)
     kramdown (1.16.2)
+    libv8 (6.3.292.48.1)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -127,6 +128,8 @@ GEM
       middleman-core (>= 3.2)
       rouge (~> 2.0)
     mini_portile2 (2.3.0)
+    mini_racer (0.1.15)
+      libv8 (~> 6.3)
     minitest (5.11.3)
     multi_json (1.13.1)
     nokogiri (1.8.2)
@@ -172,6 +175,7 @@ DEPENDENCIES
   govuk_tech_docs
   html-proofer
   middleman-gh-pages
+  mini_racer (~> 0.1.15)
   tzinfo-data
   wdm (~> 0.1.0)
 
