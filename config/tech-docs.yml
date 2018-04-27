@@ -1,10 +1,10 @@
 # Host to use for canonical URL generation (without trailing slash)
-host: team-manual.cloud.service.gov.uk
+host: https://alphagov.github.io/paas-team-manual
 
 # Header-related options
 show_govuk_logo: false
 service_name: PaaS Team Manual
-service_link: https://cloud.service.gov.uk
+service_link: https://alphagov.github.io/paas-team-manual
 phase: Internal
 
 # Links to show on right-hand-side of header
