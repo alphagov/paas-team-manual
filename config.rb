@@ -2,6 +2,9 @@ require 'govuk_tech_docs'
 require 'html-proofer'
 
 activate :directory_indexes
+activate :relative_assets
+set :relative_links, true
+
 after_build do |builder|
   begin
     HTMLProofer.check_directory(config[:build_dir], {
