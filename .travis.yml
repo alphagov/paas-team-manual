@@ -1,7 +1,5 @@
-language: python
-python:
-  - 2.7
+language: ruby
 
 script:
-  - mkdocs build
-  - linkchecker ./site/
+  - bundle
+  - bundle exec middleman build
