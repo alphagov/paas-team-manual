@@ -2,6 +2,8 @@ require 'govuk_tech_docs'
 require 'html-proofer'
 
 activate :directory_indexes
+page '/google*.html', directory_index: false
+
 activate :relative_assets
 set :relative_links, true
 
