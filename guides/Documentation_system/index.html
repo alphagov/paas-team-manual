@@ -62,7 +62,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="documentation-for-tenants-paas-tech-docs">Documentation for tenants (<code>paas-tech-docs</code>)</h1>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="documentation-for-tenants-paas-tech-docs">Documentation for tenants (<code>paas-tech-docs</code>)</h1>
 <p>The PaaS tech docs content lives in <a href="https://github.com/alphagov/paas-tech-docs">https://github.com/alphagov/paas-tech-docs</a> and is hosted on the PaaS as the <code>paas-tech-docs</code> app (org <code>govuk-paas</code>/space <code>docs</code>).</p>
 
 <p>A CDN has been used to serve the content of this site at https://docs.cloud.service.gov.uk which is the URL you should use.</p>
@@ -72,6 +76,7 @@
 <p>Updates to the git master branch should be deployed automatically by <a href="https://concourse.build.ci.cloudpipeline.digital/teams/main/pipelines/paas-tech-docs">this concourse pipeline</a>.</p>
 
 <p>Note that the CDN has a TTL of 30 seconds, so after an update has been deployed, you won&rsquo;t see your changes for 30 seconds or so.</p>
+
 
           </main>
 

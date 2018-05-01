@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr006-rds-broker">ADR006: RDS broker</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr006-rds-broker">ADR006: RDS broker</h1><h2 id="context">Context</h2>
 <p>We need to provide tenants with the ability to provision databases for use in
 their applications. Our first iteration of this will be using RDS.
 We investigated some implementations of a service broker which supported RDS</p>
@@ -94,6 +98,7 @@ this and implement new features ourselves.</p>
 <h2 id="consequences">Consequences</h2>
 <p>We will be maintaining a new service broker, but have a head start on creating
 it by basing it on an existing service broker.</p>
+
 
           </main>
 

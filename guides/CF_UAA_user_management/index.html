@@ -90,7 +90,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="user-management-with-cloud-foundry-39-s-uaa">User management with Cloud Foundry&rsquo;s UAA</h1>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="user-management-with-cloud-foundry-39-s-uaa">User management with Cloud Foundry&rsquo;s UAA</h1>
 <p>Cloud Foundry&rsquo;s account management is mostly controlled by <a href="https://github.com/cloudfoundry/uaa">UAA</a></p>
 <h2 id="interacting-with-uaa">Interacting with UAA</h2><h3 id="install">Install</h3>
 <p>You can access the <a href="https://github.com/cloudfoundry/cf-uaac">uaac</a> command line utility from
@@ -187,6 +191,7 @@ bundle exec uaac member delete cloud_controller.global_auditor &lt;EMAIL&gt;
   | awk &#39;$1 == &quot;value:&quot; {print $2}&#39; \
   | xargs -n1 -I{} bundle exec uaac users &quot;id eq \&quot;{}\&quot;&quot; -a username)
 </code></p>
+
 
           </main>
 

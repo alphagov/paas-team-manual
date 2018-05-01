@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr443-ssl-only-for-applications-and-cf-endpoints">ADR443: SSL-only for applications and cf endpoints</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr443-ssl-only-for-applications-and-cf-endpoints">ADR443: SSL-only for applications and cf endpoints</h1><h2 id="context">Context</h2>
 <p><strong>Note: This has been superceeded. See <a href="#status">Status</a> below.</strong></p>
 
 <p>It is expected for the government websites to be secure and keep the user
@@ -121,6 +125,7 @@ it easier to service owners to comply with this requirements.</p>
 be able to connect to the sites without specify the protocol <code>https://</code> in
 the URL. This only happens when the user manually inputs the URL in the
 browser.</p>
+
 
           </main>
 

@@ -84,7 +84,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr005-pingdom-healthchecks">ADR005: Pingdom healthchecks</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr005-pingdom-healthchecks">ADR005: Pingdom healthchecks</h1><h2 id="context">Context</h2>
 <p>We wanted to open up access to tenant applications in our production environment.</p>
 
 <p>As part of an earlier story, Pingdom checks were set up for a healthcheck application in CI, Staging, and Production. At this stage applications were not accessible from non-office IP addresses.</p>
@@ -116,6 +120,7 @@
 <li>Any applications in our staging environment need to be considered for whether they are suitable to be public.</li>
 <li>We would no longer have healthchecks via Pingdom for our CI environment.</li>
 </ul>
+
 
           </main>
 

@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr011-security-group-structure">ADR011: Security group structure</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr011-security-group-structure">ADR011: Security group structure</h1><h2 id="context">Context</h2>
 <p>In https://www.pivotaltracker.com/story/show/115252309 we described a pattern
 for defining security groups between services and the VMs that connect to
 them. This involved creating a client security group for each service that
@@ -128,6 +132,7 @@ defining the rules inline in the <code>aws_security_group</code>.</p></li>
 This is not seen as a major problem because it should be possible to create
 tooling to visualise this without much effort.</p></li>
 </ul>
+
 
           </main>
 

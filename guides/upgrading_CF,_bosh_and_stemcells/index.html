@@ -95,7 +95,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="upgrading-cf-bosh-and-stemcells">Upgrading CF, BOSH and stemcells</h1><h2 id="before-upgrading"> Before Upgrading</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="upgrading-cf-bosh-and-stemcells">Upgrading CF, BOSH and stemcells</h1><h2 id="before-upgrading"> Before Upgrading</h2>
 <ul>
 <li>Separate the upgrade of Cloud Foundry and stemcells from the upgrade of Bosh. Upgrades can cause problems and our experience is that it is difficult to be certain about the cause of those problems if multiple things have changed.</li>
 <li>Establish the correct version to upgrade to. This will usually be the latest stable release, or the one before it, subject to review. The main driver for not always picking the latest release is to avoid the bad releases which CF produce from time to time. An alternative strategy may be to pick a release at least one week old, thereby giving Pivotal time to flag and pull bad releases before we plough ahead with them. Kick-off is an appropriate place for this review.</li>
@@ -155,6 +159,7 @@ https://www.pivotaltracker.com/story/show/117685687
 https://github.com/cloudfoundry/cf-acceptance-tests/issues/104</p></li>
 <li><p><code>v3</code> suite - The <code>task_test</code> is being run even though we have the <code>cf-feature-flag</code> for <code>task_creation</code> set to <code>false</code> - The suite attempts to create a task and receives a response saying <code>Feature Disabled: task_creation</code> which does not cause any kind of failure - it then goes on to attempt to delete the task which fails as it receives and empty response to it&rsquo;s delete attempt, when it is expecting to receive a response indicating that the task is in a <code>FAILED</code> state</p></li>
 </ul>
+
 
           </main>
 

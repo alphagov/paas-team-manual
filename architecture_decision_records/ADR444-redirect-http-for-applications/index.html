@@ -84,7 +84,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr444-redirect-http-for-applications">ADR444: Redirect HTTP for applications</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr444-redirect-http-for-applications">ADR444: Redirect HTTP for applications</h1><h2 id="context">Context</h2>
 <p>In <a href="../ADR443-ssl-only-for-applications-and-cf-endpoints">ADR443</a> we decided that
 we would only support https for applications on the PaaS, and that we would
 drop plain http connections (port 80).</p>
@@ -138,6 +142,7 @@ tests to cover this.</p>
 <h2 id="consequences">Consequences</h2>
 <p>We must configure and maintain an endpoint on the routers that accepts http
 connections and redirects to the corresponding base https endpoint.</p>
+
 
           </main>
 

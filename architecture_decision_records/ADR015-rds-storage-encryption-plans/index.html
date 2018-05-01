@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr015-rds-storage-encryption-plans">ADR015: RDS storage encryption plans</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr015-rds-storage-encryption-plans">ADR015: RDS storage encryption plans</h1><h2 id="context">Context</h2>
 <p>We want to enable, or provide the option to enable,
 <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html">storage encryption (AKA encryption at rest) for the RDS instances</a>
 of the tenants databases created by our <a href="https://github.com/alphagov/paas-rds-broker">RDS broker</a>. The broker has logic to enable this option on creation.</p>
@@ -136,6 +140,7 @@ of the tenants databases created by our <a href="https://github.com/alphagov/paa
 <li>More plans will be added to the offer, which is more confusing the tenants. Better documentation would be required to help the tenants to pick the right plan.</li>
 <li>It is not possible to migrate from a Non-Encrypted plan to an Encrypted plan, and vice versa.</li>
 </ul>
+
 
           </main>
 

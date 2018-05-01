@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr016-end-to-end-encryption">ADR016: End-to-end encryption</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr016-end-to-end-encryption">ADR016: End-to-end encryption</h1><h2 id="context">Context</h2>
 <p>In order to ensure the confidentiality of private tenant data processed on the platform we need to ensure that requests and responses for traffic between the user and application instances are encrypted so that it is not possible for a network eavesdropper to access private tenant data.</p>
 
 <p>There are 3 main network sections between the user and the application:</p>
@@ -96,6 +100,7 @@
 <p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
 <p>The traffic is encrypted end-to-end between the user and the applications.</p>
+
 
           </main>
 

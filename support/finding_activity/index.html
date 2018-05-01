@@ -97,7 +97,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="finding-the-activity-for-a-given-user">Finding the activity for a given user</h1>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="finding-the-activity-for-a-given-user">Finding the activity for a given user</h1>
 <p>In case of suspicion of compromised CF details, we can use Kibana to
 obtain some information about the API use.</p>
 <h2 id="finding-user-guid">Finding user GUID</h2>
@@ -219,6 +223,7 @@ data. For example, with a <code>PUT</code> request, you could find a
 <li>Authentication failure for a user: <code>uaa.audit.type: PrincipalAuthenticationFailure AND uaa.audit.principal: admin</code></li>
 <li>SSO authentication failure doesn&rsquo;t show specific logs, only <code>uaa.audit.type: ClientAuthenticationSuccess</code> from the cf client.</li>
 </ul>
+
 
           </main>
 

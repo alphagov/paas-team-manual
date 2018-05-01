@@ -98,7 +98,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="networking">Networking</h1>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="networking">Networking</h1>
 <p>This page describes the network layout in a single PaaS deployment on AWS.</p>
 <h2 id="vpc">VPC</h2>
 <p>We use a single <a href="https://aws.amazon.com/documentation/vpc/">virtual private cloud</a> (VPC), with IP range <code>10.0.0.0/16</code>.</p>
@@ -198,6 +202,7 @@ The route table of the subnet determines where it goes from there.</p>
 <p>Security Groups are able to track connections, allowing traffic that would otherwise be blocked to flow so long as it is for a connection that was permitted in the first place.</p>
 
 <p>Network ACLs are not able to deny incoming traffic while allowing responses to outgoing connections, which makes them awkward to use.</p>
+
 
           </main>
 

@@ -78,7 +78,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="connecting-to-concourse-and-bosh">Connecting to Concourse and BOSH</h1><h2 id="ssh-into-the-concourse-vm">SSH into the Concourse VM</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="connecting-to-concourse-and-bosh">Connecting to Concourse and BOSH</h1><h2 id="ssh-into-the-concourse-vm">SSH into the Concourse VM</h2>
 <p>We can SSH directly into the Concourse VM using a Makefile target in <code>paas-bootstrap</code>. This copies the Concourse VM&rsquo;s SSH key from a state bucket on S3, prints the VM&rsquo;s sudo password, and makes the SSH connection.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>make ssh_concourse
 </code></pre></div><h2 id="connecting-bosh-cli-to-bosh">Connecting bosh_cli to BOSH</h2>
@@ -98,6 +102,7 @@
 <p>There is a Makefile task in <code>paas-bootstrap</code> to establish this SSH connection.  This copies SSH keys for the BOSH VM from a state bucket on S3, prints the BOSH VM&rsquo;s sudo password, and makes the SSH connection.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>make ssh_bosh
 </code></pre></div>
+
           </main>
 
           <footer class="footer">

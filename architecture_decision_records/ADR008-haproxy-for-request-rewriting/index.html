@@ -87,7 +87,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr008-haproxy-for-request-rewriting">ADR008: Haproxy for request rewriting</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr008-haproxy-for-request-rewriting">ADR008: Haproxy for request rewriting</h1><h2 id="context">Context</h2>
 <p>We want to serve <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HSTS
 headers</a> for all
 HTTPS requests to the apps domains, but it will safeguard existing users from
@@ -180,6 +184,7 @@ and using keep alive connections to the gorouter/haproxy.</p></li>
 </ul>
 <h3 id="see-also">See Also</h3>
 <p><a href="../ADR012-haproxy-healthcheck">ADR012</a></p>
+
 
           </main>
 

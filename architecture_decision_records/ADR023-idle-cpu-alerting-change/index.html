@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr023-idle-cpu-alerting-change">ADR023: Idle CPU alerting change</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr023-idle-cpu-alerting-change">ADR023: Idle CPU alerting change</h1><h2 id="context">Context</h2>
 <p>With the implementation of ADR021 we have reduced the number of cells in
 production in order to make more efficent use of our budget. This in turn means
 that we have increased the load on the individual cells. Originally the idle CPU
@@ -104,6 +108,7 @@ thresholds to warn at 37% and become critical at 33%.</p>
 </ul>
 
 <p>We will not be annoyed by false positive alerts.</p>
+
 
           </main>
 

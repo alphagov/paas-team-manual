@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr003-aws-credentials">ADR003: AWS credentials</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr003-aws-credentials">ADR003: AWS credentials</h1><h2 id="context">Context</h2>
 <p>Amazon Web Services (AWS) are our current Infrastructure as a Service (IaaS)
 provider. Our deployment tooling (Concourse, Terraform, BOSH, etc.) and
 Cloud Foundry components (Cloud Controller, RDS broker, blobstore clients,
@@ -151,6 +155,7 @@ These resources include:</p>
 office. This matches what we have to do to administer Concourse or Cloud
 Foundry from outside the office. There are disaster recovery provisions for
 the VPN if the office has connectivity problems.</p>
+
 
           </main>
 

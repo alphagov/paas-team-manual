@@ -84,7 +84,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="rotating-credentials">Rotating Credentials</h1><h2 id="third-party-services">Third-party services</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="rotating-credentials">Rotating Credentials</h1><h2 id="third-party-services">Third-party services</h2>
 <p>We store credentials for third-party services in <a href="https://www.passwordstore.org/"><code>pass</code></a> stores which have some documentation about rotating the secrets held in them:</p>
 
 <ul>
@@ -122,6 +126,7 @@ between components is a much longer process. You need to:</p>
 <p>We have lot of functionality that requires credentials outside of the pipeline. These are mainly our scripts that are orchestrated via Makefile. Most of the tasks (like <code>bosh-cli</code> or any ssh tasks) will not work during rotation, as they need credentials (concourse password, ssh keys) that have been deleted and are either not available or not applied yet.</p>
 
 <p>In case you need to run any of these tasks in the middle of the rotation, but before the new credentials have been applied, we suggest that you pause the pipeline first. You can download previous versions of the keys and secret files to recover needed credentials and either use them locally, or re-upload these files as latest version to the bucket. Note that if your pipeline will get into credential applying stage after you unpause, it will apply the latest uploaded credentials. If these are previous version, this means no actual credential rotation will happen and pipeline should finish without needing to apply any changes. If you still want to rotate credentials afterwards, repeat the rotation procedure again.</p>
+
 
           </main>
 

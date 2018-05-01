@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr018-rds-broker-restore-last-operation">ADR018: RDS broker restore last operation</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr018-rds-broker-restore-last-operation">ADR018: RDS broker restore last operation</h1><h2 id="context">Context</h2>
 <p>We use a completely stateless implementation for the RDS broker, as described in <a href="../ADR006-rds-broker">ADR006</a>.
 So all the asynchronous operations on RDS instances were relying on executing a unique operation on AWS API, and querying the RDS instance status reported the AWS API.</p>
 
@@ -115,6 +119,7 @@ We assume that:
 <p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
 <p>The <code>LastOperation</code> endpoint will be doing actual logic and updates in the Database.</p>
+
 
           </main>
 

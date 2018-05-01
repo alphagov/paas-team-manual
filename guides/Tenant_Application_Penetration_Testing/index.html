@@ -73,7 +73,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="tenant-application-penetration-testing">Tenant Application Penetration Testing</h1>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="tenant-application-penetration-testing">Tenant Application Penetration Testing</h1>
 <p>Before allowing a penetration test against applications running on PaaS we may have to notify AWS. Currently we are not sure on the scenarios when we do not have to notify AWS. We are erring on the side of caution and notifying for all penetration tests.</p>
 
 <p>There are two methods to notify AWS: <a href="https://aws.amazon.com/forms/penetration-testing-request">a form which requires root account access</a>, or, by emailing <code>aws-security-cust-pen-test@amazon.com</code>. Both require providing the following information:</p>
@@ -222,6 +226,7 @@
 <div class="highlight"><pre class="highlight plaintext"><code>aws cloudfront list-distributions \
 | jq '.DistributionList.Items[] | select(.Comment == "cdn route service") | .Id' --raw-output
 </code></pre></div>
+
           </main>
 
           <footer class="footer">

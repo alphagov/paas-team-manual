@@ -79,7 +79,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr017-cell-capacity-assignment">ADR017: cell capacity assignment</h1><h2 id="superceded">Superceded</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr017-cell-capacity-assignment">ADR017: cell capacity assignment</h1><h2 id="superceded">Superceded</h2>
 <p>This has been superceded by <a href="/architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR021</a> since November 2017. It has been retained for historical purposes.</p>
 
 <hr>
@@ -106,6 +110,7 @@ Memory actually used by apps: 32868 (32 GB)
 <li>We will check if we have enough capacity available whenever we add a new organisation or increase quota of existing one. We will deploy more cells if we need more capacity.</li>
 <li>We have implemented <code>show-cf-memory-usage</code> makefile target to help us get current org and app reservation and real usage totals.</li>
 </ul>
+
 
           </main>
 

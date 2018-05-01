@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr007-terminating-tls-at-elbs">ADR007: Terminating TLS at ELBs</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr007-terminating-tls-at-elbs">ADR007: Terminating TLS at ELBs</h1><h2 id="context">Context</h2>
 <p>We needed to decide where to terminate TLS connections for public and tenant
 facing endpoints and how to manage the corresponding private keys.</p>
 
@@ -151,6 +155,7 @@ X-Forwarded-Proto headers</a></li>
 intermediate HAProxy to introduce <code>X-Forwarded-For</code> and <code>X-Forwarded-Proto</code>
 headers</a>.</li>
 </ul>
+
 
           </main>
 

@@ -62,7 +62,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="how-to-enable-github-oauth-for-your-dev-environments">How to enable Github oAuth for your dev environments</h1>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="how-to-enable-github-oauth-for-your-dev-environments">How to enable Github oAuth for your dev environments</h1>
 <p>This will enable anyone on the team to be able to log into your concourse</p>
 
 <ul>
@@ -78,6 +82,7 @@ BRANCH=$(git rev-parse --abbrev-ref HEAD) make dev deployer-concourse pipelines 
 <li>Run the <code>create-bosh-concourse</code> pipeline</li>
 <li>once it has completed, login to team main using the login with Github button.</li>
 </ul>
+
 
           </main>
 

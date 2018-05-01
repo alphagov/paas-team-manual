@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr009-x-forwarded-headers">ADR009: X-Forwarded- headers</h1>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr009-x-forwarded-headers">ADR009: X-Forwarded- headers</h1>
 <p><strong>This has been superceded: the first option is now used to encrypt traffic
 between the ELB and HAProxy (see <a href="../ADR016-end-to-end-encryption">ADR016</a>)</strong></p>
 <h2 id="context">Context</h2>
@@ -103,6 +107,7 @@ We don&rsquo;t think this has any significant increase in risk because:</p>
 <p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
 <p>The http traffic between ELB and HAProxy will not be encrypted.</p>
+
 
           </main>
 

@@ -98,7 +98,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr004-domain-naming-scheme">ADR004: Domain naming scheme</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr004-domain-naming-scheme">ADR004: Domain naming scheme</h1><h2 id="context">Context</h2>
 <p>As part of our deployment we have a pipeline, where changes that are made can move from a development environment through to production illustrated thusly:</p>
 
 <p><a href="../images/pipeline.jpg" target="_blank" rel="noopener noreferrer"><img src="../images/pipeline.jpg" alt="pipeline image" /></a></p>
@@ -231,6 +235,7 @@
 <p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
 <p>Certificates etc. had to be purchased, domains registered, and our automated deployments configured to allow us to specify the domains for each stage of the pipeline.</p>
+
 
           </main>
 

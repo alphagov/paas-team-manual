@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr010-postgres-bind-behaviour">ADR010: Postgres bind behaviour</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr010-postgres-bind-behaviour">ADR010: Postgres bind behaviour</h1><h2 id="context">Context</h2>
 <p>We use RDS for tenant databases. Tenants can bind more than one application to a database instance created via the services console. Database migrations were broken when a binding was removed and re-added, or when another bound application other than the one that created the database tables attempted to modify them.</p>
 
 <p>Previously the RDS broker PostgreSQL engine copied the MySQL engine and granted all rights on the database to the newly created user. In PostgreSQL this will give the user rights to create tables, but because it has a more finely-grained permission model than MySQL this does not give the user rights on existing tables, or tables newly created by other users.</p>
@@ -100,6 +104,7 @@
 <p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
 <p>We return the same credentials to all apps bound to the same PostgreSQL database (RDS) instance.</p>
+
 
           </main>
 

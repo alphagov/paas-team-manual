@@ -81,7 +81,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="restoring-the-cf-databases">Restoring the CF databases</h1>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="restoring-the-cf-databases">Restoring the CF databases</h1>
 <p>Currently the Cloud Controller database (api), UAA, BBS, and Locket are all colocated on a single RDS Postgres instance. Below is guidance on how the backups work and how you can restore from them.</p>
 
 <p>Before embarking on any restoration make sure to follow the <a href="/team/notifying_tenants/">Notifying tenants guidance</a> to communicate any downtime or disruption. Also, make sure to pause any Concourse pipelines.</p>
@@ -176,6 +180,7 @@ make tunnel TUNNEL=5432:${db_endpoint}:5432
   --username=dbadmin \
   --dbname=&lt;db_name&gt;
 </code></pre></div>
+
           </main>
 
           <footer class="footer">

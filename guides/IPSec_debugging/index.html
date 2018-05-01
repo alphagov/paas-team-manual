@@ -73,7 +73,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="ipsec-debugging">IPSec debugging</h1>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="ipsec-debugging">IPSec debugging</h1>
 <p>There may be a need, to debug the IPSec on our machines. In order to do that, you may want to log into the routers or cells. See <a href="/guides/Connecting_to_Concourse_and_BOSH/#connecting-bosh_cli-to-bosh">Connecting bosh_cli to Bosh</a> for instructions.</p>
 <h2 id="fiddle-with-the-logging-level">Fiddle with the logging level</h2>
 <p>Once logged into the VM, go ahead and edit the following file:</p>
@@ -140,6 +144,7 @@ monit restart racoon
 16:31:09.943974 IP 10.0.48.101.500 &gt; 10.0.32.4.500: isakmp: phase 2/others ? inf[E]
 16:31:09.944240 IP 10.0.32.4.500 &gt; 10.0.48.101.500: isakmp: phase 2/others ? inf[E]
 </code></pre></div>
+
           </main>
 
           <footer class="footer">

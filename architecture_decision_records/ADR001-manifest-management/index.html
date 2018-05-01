@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr001-manifest-management">ADR001: Manifest management</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr001-manifest-management">ADR001: Manifest management</h1><h2 id="context">Context</h2>
 <p>The alpha initially took the approach of starting with a vanilla set of cloud
 foundry manifests, and merging new values into it using spiff. This became
 difficult to reason about, and cf-release was forked because it was easier than
@@ -98,6 +102,7 @@ build-manifest script.</p>
 <h2 id="consequences">Consequences</h2>
 <p>We will need to define an upgrade path for our cloud foundry manifests - making
 sure we pull in the required values from the new release manifests into ours.</p>
+
 
           </main>
 

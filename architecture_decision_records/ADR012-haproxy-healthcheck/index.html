@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr012-haproxy-healthcheck">ADR012: Haproxy healthcheck</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr012-haproxy-healthcheck">ADR012: Haproxy healthcheck</h1><h2 id="context">Context</h2>
 <p>Stories: <a href="https://www.pivotaltracker.com/story/show/123490171">#123490171</a> &amp; <a href="https://www.pivotaltracker.com/story/show/121933113">#121933113</a></p>
 
 <p>We were investigating how to avoid downtime to deployed applications when we
@@ -120,6 +124,7 @@ which appends the <code>User-Agent: HTTP-Monitor/1.1</code> that gorouter expect
 <li>There was less downtime for deployed applications during a deploy.</li>
 <li>We have an additional reason to keep the intermediate HAProxy we introduced as a temporary measure.</li>
 </ul>
+
 
           </main>
 

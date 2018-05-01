@@ -76,7 +76,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr014-hsts-preload-using-api-gateway">ADR014: HSTS preload using api gateway</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr014-hsts-preload-using-api-gateway">ADR014: HSTS preload using api gateway</h1><h2 id="context">Context</h2>
 <p>We will only <a href="../ADR443-ssl-only-for-applications-and-cf-endpoints">serve HTTPS traffic, keeping TCP port 80 (HTTP) closed and use HSTS preload lists</a>.</p>
 
 <p>To add our domains to <a href="https://hstspreload.appspot.com/">HSTS preload lists</a>, there are these requirements:</p>
@@ -117,6 +121,7 @@ to <a href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-
 <p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
 <p>To setup AWS API Gateway Domain Names, it is required access to the SSL certificates. There is the option of uploading the certificates in a different step and create the AWS Cloud Front distribution manually.</p>
+
 
           </main>
 

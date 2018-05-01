@@ -81,7 +81,11 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            <h1 id="adr013-building-bosh-releases">ADR013: Building BOSH releases</h1><h2 id="context">Context</h2>
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr013-building-bosh-releases">ADR013: Building BOSH releases</h1><h2 id="context">Context</h2>
 <p>We use <a href="https://bosh.io/">Bosh</a> to create and manage our cloudfoundry deployment on AWS.
 To deploy software, Bosh needs certain binary dependencies available.
 These are known as bosh <a href="https://bosh.io/docs/release.html">releases</a>.</p>
@@ -107,6 +111,7 @@ https://www.pivotaltracker.com/n/projects/1275640/stories/128937731</p>
 <p>We must gradually migrate all our Bosh release builds to their own build pipelines.
 We will need separate jobs to build from master - this already has a proof of concept in the spike.
 We may have to add additional config in projects we fork to allow us to create final builds.</p>
+
 
           </main>
 
