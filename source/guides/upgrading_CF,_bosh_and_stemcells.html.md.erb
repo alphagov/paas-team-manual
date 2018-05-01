@@ -5,19 +5,15 @@
 * Separate the upgrade of Cloud Foundry and stemcells from the upgrade of Bosh. Upgrades can cause problems and our experience is that it is difficult to be certain about the cause of those problems if multiple things have changed.
 * Establish the correct version to upgrade to. This will usually be the latest stable release, or the one before it, subject to review. The main driver for not always picking the latest release is to avoid the bad releases which CF produce from time to time. An alternative strategy may be to pick a release at least one week old, thereby giving Pivotal time to flag and pull bad releases before we plough ahead with them. Kick-off is an appropriate place for this review.
 * Check [cf-deployment releases documentation](https://github.com/cloudfoundry/cf-deployment/releases) before upgrading to a particular version. There have been releases that became inappropriate for production usage.
-* Refer to cf-deployment documentation for recommended versions of all related releases (for example, Diego and related components). Read the documentation for every release of all of these components. It will save you time and pain in the long run.
-* Check the [diego release documentation](https://github.com/cloudfoundry-incubator/diego-release/releases)
-* Check the [etcd release documentation](https://github.com/cloudfoundry-incubator/etcd-release/releases)
-* Check the [consul release documentation](https://github.com/cloudfoundry-incubator/consul-release/releases)
-* Check the [garden runc release documentation](https://github.com/cloudfoundry/garden-runc-release/releases)
-* Check the [bosh release documentation](https://github.com/cloudfoundry/bosh/releases)
-* Check the [stemcell release documentation](http://bosh.cloudfoundry.org/stemcells/)
-* Check the [stack release documentation](https://github.com/cloudfoundry/cflinuxfs2-release/releases)
-* Check the job ordering in the [Diego manifest](https://github.com/cloudfoundry/diego-release/blob/develop/manifest-generation/diego.yml) to see if our job ordering needs to change as well.
 * Use `git diff` or GitHub compare in the `cf-deployment` repo to see example changes to the manifest. For example, to see differences between v1.0.0 and v1.14.0:
-```
-git diff v1.0.0...v1.14.0 cf-deployment.yml
-```
+
+  ```
+  git diff v1.0.0...v1.14.0 cf-deployment.yml
+  ```
+
+  We also use a number of upstream ops files, so you will want to `diff` them too. See the manifest generation script for which ones get used.
+
+* Read the documentation for every version of every release changed. It will save you time and pain in the long run.
 * Update the cf-smoke-tests resource in the pipeline to use a new branch of our fork that has the latest changes from upstream master.
 * Update the cf-acceptance-tests resource in the pipeline to use an upstream `cfX.Y` branch matching the cf-deployment version.
 
@@ -36,9 +32,9 @@ You should test the upgrade changeset:
 
 ### Buildpacks
 
-**Note**: We have to a give at least a week's notice to tenants about the buildpack upgrades, so prepare the version changes separately from the CF component upgrades.
+We have to a give at least a week's notice to tenants about the buildpack upgrades, so prepare the version changes separately from the CF component upgrades.
 
-You should upgrade the buildpacks to at least the versions included in the new cf-deployment version.
+Buildpack upgrades are typically done as a separate story. You should upgrade the buildpacks to at least the versions included in the cf-deployment version currently deployed.
 
 ## Notify the tenants
 
