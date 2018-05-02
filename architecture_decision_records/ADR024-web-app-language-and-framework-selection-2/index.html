@@ -11,7 +11,7 @@
     <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
     <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
 
-    <link rel="canonical" href="https://alphagov.github.io/paas-team-manual/architecture_decision_records/ADR022-web_app_language_and_framework_selection/">
+    <link rel="canonical" href="https://alphagov.github.io/paas-team-manual/architecture_decision_records/ADR024-web-app-language-and-framework-selection-2/">
 
 
     <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
@@ -52,11 +52,8 @@
             <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
               <ul>
   <li>
-    <a href="#adr022-web-app-language-and-framework-selection">ADR022: web app language and framework selection</a>
+    <a href="#adr024-web-app-language-and-framework-selection">ADR024: web app language and framework selection</a>
     <ul>
-      <li>
-        <a href="#superceded">Superceded</a>
-      </li>
       <li>
         <a href="#context">Context</a>
       </li>
@@ -83,49 +80,45 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr022-web-app-language-and-framework-selection">ADR022: web app language and framework selection</h1><h2 id="superceded">Superceded</h2>
-<p>This has been superceded by <a href="/architecture_decision_records/ADR024-web-app-language-and-framework-selection-2">ADR024</a> since February 2018. It has been retained for historical purposes.</p>
-
-<hr>
-<h2 id="context">Context</h2>
+  <h1 id="adr024-web-app-language-and-framework-selection">ADR024: web app language and framework selection</h1><h2 id="context">Context</h2>
 <p>We are starting to develop a number of user-facing applications with web
-interfaces that need to be styled to look like GOV.UK etc. In order to keep
-things consistent we want to pick a single programming language and framework
-to write these in.</p>
+interfaces that need to be GOV.UK branded. In order to keep things consistent
+we want to pick a single programming language to write these in.</p>
 
-<p>We&rsquo;ve previously used <a href="http://sinatrarb.com/">Sinatra</a> for this, but ran into
-issues with its default configuration which isn&rsquo;t secure, leading to an XSS
-vulnerability. We therefore want to choose something that comes with secure
-defaults, and makes it easier to avoid this sort of issue.</p>
+<p>We&rsquo;ve previously chosen Ruby on Rails as our desired framework in the previous
+<a href="/architecture_decision_records/ADR022-web_app_language_and_framework_selection/">ADR022</a>. And whether or not it was a right choice, we decided to revisit and
+reconsider that choice.</p>
 
-<p>Requirements:</p>
+<p>The reason for that, is simply the direction GDS is heading at. It would appear
+that old components will be soon deprecated and the Frontend Community has no
+desire to support gems in the future. Saying that, we could have remain with
+Rails and delegate the component management to NPM. This would however increase
+the amount of possible maintenance work we would need to undertake, due to the
+use of <a href="https://mozilla.github.io/nunjucks/">nunjucks</a> by the Design System team.</p>
+
+<p>We questioned the need of running Rails application for something that
+essentially is a templating system for existing data and API.</p>
+
+<p>After some more research, discussion with the head of the Frontend Community,
+members of the team and some others in GDS, the better choice would be Node for
+the following reasons:</p>
 
 <ul>
-<li>Must be well supported by <a href="https://github.com/alphagov/govuk_template">govuk_template</a> and <a href="https://github.com/alphagov/govuk_frontend_toolkit">govuk_frontend_toolkit</a> (as
-well as the future <a href="https://github.com/alphagov/govuk-frontend">govuk-frontend</a> project)</li>
-<li>Must be understood broadly by members of the team.</li>
-<li>Must be understood broadly by members of the frontend developer community within GDS.</li>
-</ul>
-
-<p>After dicsussion with the head of the frontend community and members of the
-team, the choice seems to be Rails for the following reasons:</p>
-
-<ul>
-<li>Most of www.gov.uk is written in Rails, as is the Verify frontend, and
-therefore is well known within the frontend developer community.</li>
-<li>It&rsquo;s well supported by the frontend toolkits (both projects are available as
-gems that provide a Rails engine). Given the wide use of Rails with GDS, the
-future <a href="https://github.com/alphagov/govuk-frontend">govuk-frontend</a> project is likely to support it.</li>
-<li>It&rsquo;s the framework that&rsquo;s most familiar to our team.</li>
-<li>It is opinionated, and comes with secure defaults making it much easier to
-create a secure web app.</li>
+<li>It&rsquo;s the way Frontend Community is heading at</li>
+<li>It will be easier to rotate/onboard Frontend Developers</li>
+<li>The initial applications are to be simple (thin layer between API calls and
+HTML parsing)</li>
+<li>It&rsquo;s light and essentially is JavaScript</li>
+<li>It supports <a href="https://mozilla.github.io/nunjucks/">nunjucks</a> which will help us in maintenance</li>
 </ul>
 <h2 id="decision">Decision</h2>
-<p>We will use Ruby and Rails to create new user-facing applications with web frontends.</p>
+<p>We will use Node to create new user-facing applications that render a web
+interface for our service but will not be used to implement any significant
+‘application logic’.</p>
 <h2 id="status">Status</h2>
-<p>Superceded by <a href="/architecture_decision_records/ADR024-web-app-language-and-framework-selection-2">ADR024</a>.</p>
+<p>Accepted.</p>
 <h2 id="consequences">Consequences</h2>
-<p>We should consider porting some of our existing applications over to Ruby and Rails.</p>
+<p>We should consider porting some of our existing applications over to Node.</p>
 
 
           </main>
