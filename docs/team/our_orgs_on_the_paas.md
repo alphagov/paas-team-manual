@@ -1,3 +1,3 @@
 
 # The documentation for PaaS Team Manual has moved!
-This page can now be found at [https://alphagov.github.io/paas-team-manual/team/our_orgs_on_the_paas/](https://alphagov.github.io/paas-team-manual/team/our_orgs_on_the_paas/).
+This page can now be found at [https://team-manual.cloud.service.gov.uk/team/our_orgs_on_the_paas/](https://team-manual.cloud.service.gov.uk/team/our_orgs_on_the_paas/).

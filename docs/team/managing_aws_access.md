@@ -1,3 +1,3 @@
 
 # The documentation for PaaS Team Manual has moved!
-This page can now be found at [https://alphagov.github.io/paas-team-manual/team/managing_aws_access/](https://alphagov.github.io/paas-team-manual/team/managing_aws_access/).
+This page can now be found at [https://team-manual.cloud.service.gov.uk/team/managing_aws_access/](https://team-manual.cloud.service.gov.uk/team/managing_aws_access/).
