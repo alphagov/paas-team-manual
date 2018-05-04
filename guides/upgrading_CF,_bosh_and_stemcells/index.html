@@ -104,19 +104,14 @@
 <li>Separate the upgrade of Cloud Foundry and stemcells from the upgrade of Bosh. Upgrades can cause problems and our experience is that it is difficult to be certain about the cause of those problems if multiple things have changed.</li>
 <li>Establish the correct version to upgrade to. This will usually be the latest stable release, or the one before it, subject to review. The main driver for not always picking the latest release is to avoid the bad releases which CF produce from time to time. An alternative strategy may be to pick a release at least one week old, thereby giving Pivotal time to flag and pull bad releases before we plough ahead with them. Kick-off is an appropriate place for this review.</li>
 <li>Check <a href="https://github.com/cloudfoundry/cf-deployment/releases">cf-deployment releases documentation</a> before upgrading to a particular version. There have been releases that became inappropriate for production usage.</li>
-<li>Refer to cf-deployment documentation for recommended versions of all related releases (for example, Diego and related components). Read the documentation for every release of all of these components. It will save you time and pain in the long run.</li>
-<li>Check the <a href="https://github.com/cloudfoundry-incubator/diego-release/releases">diego release documentation</a></li>
-<li>Check the <a href="https://github.com/cloudfoundry-incubator/etcd-release/releases">etcd release documentation</a></li>
-<li>Check the <a href="https://github.com/cloudfoundry-incubator/consul-release/releases">consul release documentation</a></li>
-<li>Check the <a href="https://github.com/cloudfoundry/garden-runc-release/releases">garden runc release documentation</a></li>
-<li>Check the <a href="https://github.com/cloudfoundry/bosh/releases">bosh release documentation</a></li>
-<li>Check the <a href="http://bosh.cloudfoundry.org/stemcells/">stemcell release documentation</a></li>
-<li>Check the <a href="https://github.com/cloudfoundry/cflinuxfs2-release/releases">stack release documentation</a></li>
-<li>Check the job ordering in the <a href="https://github.com/cloudfoundry/diego-release/blob/develop/manifest-generation/diego.yml">Diego manifest</a> to see if our job ordering needs to change as well.</li>
-<li>Use <code>git diff</code> or GitHub compare in the <code>cf-deployment</code> repo to see example changes to the manifest. For example, to see differences between v1.0.0 and v1.14.0:
-<code>
-git diff v1.0.0...v1.14.0 cf-deployment.yml
-</code></li>
+<li>Use <code>git diff</code> or GitHub compare in the <code>cf-deployment</code> repo to see example changes to the manifest. For example, to see differences between v1.0.0 and v1.14.0:</li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext"><code>  git diff v1.0.0...v1.14.0 cf-deployment.yml
+</code></pre></div>
+<p>We also use a number of upstream ops files, so you will want to <code>diff</code> them too. See the manifest generation script for which ones get used.</p>
+
+<ul>
+<li>Read the documentation for every version of every release changed. It will save you time and pain in the long run.</li>
 <li>Update the cf-smoke-tests resource in the pipeline to use a new branch of our fork that has the latest changes from upstream master.</li>
 <li>Update the cf-acceptance-tests resource in the pipeline to use an upstream <code>cfX.Y</code> branch matching the cf-deployment version.</li>
 </ul>
@@ -133,9 +128,9 @@ runs overnight.</li>
 works and doesn&rsquo;t cause additional downtime during deployments.</li>
 </ul>
 <h3 id="buildpacks">Buildpacks</h3>
-<p><strong>Note</strong>: We have to a give at least a week&rsquo;s notice to tenants about the buildpack upgrades, so prepare the version changes separately from the CF component upgrades.</p>
+<p>We have to a give at least a week&rsquo;s notice to tenants about the buildpack upgrades, so prepare the version changes separately from the CF component upgrades.</p>
 
-<p>You should upgrade the buildpacks to at least the versions included in the new cf-deployment version.</p>
+<p>Buildpack upgrades are typically done as a separate story. You should upgrade the buildpacks to at least the versions included in the cf-deployment version currently deployed.</p>
 <h2 id="notify-the-tenants">Notify the tenants</h2>
 <p>Send an email to users following <a href="/team/notifying_tenants/#cf-upgrade">the upgrade template</a>.</p>
 <h2 id="problems-encountered-previously">Problems encountered previously</h2><h3 id="datadog">Datadog</h3>
