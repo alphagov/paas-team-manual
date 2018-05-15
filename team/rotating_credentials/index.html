@@ -65,6 +65,11 @@
           </li>
           <li>
             <a href="#rotating-certificates">Rotating certificates</a>
+            <ul>
+              <li>
+                <a href="#rotating-ca-certificates">Rotating CA certificates</a>
+              </li>
+            </ul>
           </li>
           <li>
             <a href="#aws-keys-generated-in-the-pipeline">AWS keys generated in the pipeline</a>
@@ -102,7 +107,16 @@
 
 <p>Second phase consists of running the main pipeline (on deployer for CF, on bootstrap for BOSH and Concourse) to generate new credentials and apply them. Ensure that there is nothing else triggering this 2nd phase run, as that would mean you would be rotating passwords <em>and</em> trying to apply some changes at the same time, which might not work and you could end up with broken deployment. Pipeline run should complete successfully and all tests should pass. There should be no interruptions to deployed apps.</p>
 <h3 id="rotating-certificates">Rotating certificates</h3>
-<p>Rotating the certificates that Cloud Foundry using internally for mutual TLS
+<p>Rotating the internal certificates has 2 phases similar to rotating passwords. First we delete the existing certs, and then we run a deploy to generate and use new certificates.</p>
+
+<ol>
+<li>Run <code>rotate-cf-certs-leafs</code> to delete existing non-CA certs</li>
+<li>Run <code>create-cloudfoundry</code> to generate new certs and deploy them</li>
+</ol>
+<h4 id="rotating-ca-certificates">Rotating CA certificates</h4>
+<p><strong>Important:</strong> Rotating CA certs is known to cause downtime. See <a href="https://www.pivotaltracker.com/story/show/157032509">the story to fix it</a> for details.</p>
+
+<p>Rotating the CA certificates that Cloud Foundry is using internally for mutual TLS
 between components is a much longer process. You need to:</p>
 
 <ol>
