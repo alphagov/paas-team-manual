@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR025-service-plan-naming-conventions/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR025-service-plan-naming-conventions/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR025-service-plan-naming-conventions/" />
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr025-service-plan-naming-conventions">ADR025: Service plan naming conventions</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+        <ul>
+          <li>
+            <ul>
+              <li>
+                <a href="#for-example">For example:</a>
+              </li>
+              <li>
+                <a href="#example-migrations-of-some-existing-plans">Example migrations of some existing plans:</a>
+              </li>
+              <li>
+                <a href="#additionally">Additionally:</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr025-service-plan-naming-conventions">ADR025: Service plan naming conventions</h1><h2 id="context">Context</h2>
+<p>Our service plans have evolved incrementally over the last few years and are in
+need of some attention. Names are inconsistent, potentially confusing and
+in many cases contain irrelevant redundant information that is of no practical
+use to the platform operators or to tenants consuming the service.</p>
+
+<p>Adding additional versions of services has the potential to compound the
+problem by multiplying plans of different characteristics with different
+versions.</p>
+<h2 id="decision">Decision</h2>
+<p>We have decided to use the following naming convention for naming plans going forward:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>SIZE[-HA][-LABEL,-LABEL,...]-VERSION
+</code></pre></div>
+<p>Where:</p>
+
+<ul>
+<li><code>SIZE</code> is a string describing the scale one of the plan, it should be one of: <code>xlarge</code> <code>large</code> <code>medium</code> <code>small</code> <code>tiny</code>.</li>
+<li><code>HA</code> is the string <code>ha</code> to indicate highly available if relevent.</li>
+<li><code>LABEL</code> is a string describing some specific variant of the service if relvent.</li>
+<li><code>VERSION</code> is the version number of the service plan.</li>
+</ul>
+<h4 id="for-example">For example:</h4>
+<p>A large multi-az postgres plan for version 9.6 would be <code>large-ha-9.6</code>.</p>
+
+<p>A small not multi-az, unclustered, redis 3.2 plan would be <code>redis-unclustered-3.2</code>.</p>
+<h4 id="example-migrations-of-some-existing-plans">Example migrations of some existing plans:</h4><div class="highlight"><pre class="highlight plaintext"><code>L-HA-enc-dedicated-9.5 =&gt; large-ha-9.5
+M-HA-enc-dedicated-9.5 =&gt; medium-ha-9.5
+tiny-clustered =&gt; tiny-clustered-3.2
+tiny-unclustered =&gt; tiny-unclustered-3.2
+</code></pre></div><h4 id="additionally">Additionally:</h4>
+<ul>
+<li>We will avoid use of the word &ldquo;free&rdquo; in names.</li>
+<li>We will avoid using redundent words (like &lsquo;dedicated&rsquo;) in names to reduce noise.</li>
+<li>We will avoid use of uppercase characters in names.</li>
+<li>We will avoid abbriviations where possible (&ldquo;medium&rdquo; instead of &ldquo;M&rdquo;, &ldquo;large&rdquo; instead of &ldquo;L&rdquo;).</li>
+<li>We will avoid offering unencrypted plans where an encrypted version is available (legacy unencrypted plans will be explicitly labelled with <code>-unencrypted</code> and hidden from the marketplace).</li>
+</ul>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>Renaming exisiting plans to conform to this format may be disruptive to tenants who may rely on the old names in scripted deployements.</p>
+
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
