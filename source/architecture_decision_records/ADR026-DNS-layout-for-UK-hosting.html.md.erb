@@ -1,0 +1,53 @@
+# ADR026: DNS layout for UK hosting
+
+## Context
+
+We are moving AWS hosting from Ireland to London. This ADR contains the decisions of the DNS names we will use for apps and system components that will be hosted in London.   
+
+## Decision
+
+We have decided the pattern for London hosting as follow
+
+* `(system_component).london.(system_domain)`
+* `(app_name).london.(app_domain)`
+
+The reasons are:
+
+* We should re-use the (system_component) and (app_name) first part to minimise the upstream changes to app manifests.
+* We should re-use the (system_domain) and (app_domain) last part, because the _cloud.service.gov.uk_ system domain is assigned to GOV.UK PaaS as the public interface.  
+* We can re-use our existing domain names for the dev environments - we can set a flag to choose where to deployment. 
+* Domain part `london` is preferrable to `uk`, because AWS may provide multiple-region hosting within the UK in the future. 
+
+
+
+Where:
+
+* (system_component) -- api, uaa, doppler, ssh, and "bar".
+* (system_domain) -- _cloud.service.gov.uk_, _cloudpipeline.digital_
+* (app_domain) -- _cloudapps.digital_, _cloudpipelineapps.digital_
+
+#### For example:
+For Production
+
+|Ireland|London|
+|----|------|
+|_api.cloud.service.gov.uk_|_api.london.cloud.service.gov.uk_|
+|_sample-app.cloudapps.digital_|_sample-app.london.cloudapps.digital_|
+
+
+For Staging
+
+|Ireland|London|
+|----|------|
+|_api.staging.cloudpipeline.digital_|_api.london.staging.cloudpipeline.digital_|
+|_sample-app.cloudpipelineapps.digital_|_sample-app.london.cloudpipelineapps.digital_|
+
+A full list of DNS layout schema can be found [here](https://docs.google.com/spreadsheets/d/1tW-Xd0UHkGmNYg7QPQKtLMNqNybvUFYUIpk9MmWYfTo/edit#gid=0).
+
+## Status
+
+Accepted
+
+## Consequences
+
+New tenants will be encouraged to use London hosting. Plans need to be derived to notify exiting tenants to move their apps and services to London. 
