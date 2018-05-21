@@ -17,29 +17,16 @@ bundle install
 
 To make changes edit the source files in the `source` folder.
 
-### Single page output
+### Adding pages
 
-Although a single page of HTML is generated the markdown is spread across
-multiple files to make it easier to manage. They can be found in
-`source/documentation`.
+All the source files can be found in the
+`source` subdirectory.
 
-A new markdown file isn't automatically included in the generated output. If we
-add a new markdown file at the location `source/documentation/agile/scrum.md`,
-the following snippet in `source/index.html.md.erb`, includes it in the
-generated output.
-
-```
-<%= partial 'documentation/agile/scrum' %>
-```
-
-Including files manually like this lets us specify the position they appear in
-the page.
-
-### Multiple pages
-
-To add a completely new page, create a file with a `.html.md` extension in the `/source` directory.
+To add a new page, create a file with a `.html.md` extension in the `/source` directory.
 
 For example, `source/about.html.md` will be accessible on <http://localhost:4567/about.html>.
+
+A new markdown file isn't automatically included in the index. We also need to modify `source/index.html.md.erb` to include the addition.
 
 ## Preview
 
