@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR026-DNS-layout-for-UK-hosting/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR026-DNS-layout-for-UK-hosting/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR026-DNS-layout-for-UK-hosting/" />
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr026-dns-layout-for-uk-hosting">ADR026: DNS layout for UK hosting</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+        <ul>
+          <li>
+            <a href="#examples">Examples</a>
+            <ul>
+              <li>
+                <a href="#production">Production</a>
+              </li>
+              <li>
+                <a href="#staging">Staging</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr026-dns-layout-for-uk-hosting">ADR026: DNS layout for UK hosting</h1><h2 id="context">Context</h2>
+<p>We are moving AWS hosting from Ireland to London. This ADR contains the decisions of the DNS names we will use for apps and system components that will be hosted in London.</p>
+<h2 id="decision">Decision</h2>
+<p>We will use the following domain patterns for the London hosting:</p>
+
+<ul>
+<li><code>(system_component).london.(system_domain)</code></li>
+<li><code>(app_name).london.(app_domain)</code></li>
+</ul>
+
+<p>Where:</p>
+
+<ul>
+<li>(system_component) &ndash; api, uaa, doppler, ssh, etc.</li>
+<li>(system_domain) &ndash; <em>cloud.service.gov.uk</em>, <em>staging.cloudpipeline.digital</em></li>
+<li>(app_domain) &ndash; <em>cloudapps.digital</em>, <em>staging.cloudpipelineapps.digital</em></li>
+</ul>
+
+<p>The reasons are:</p>
+
+<ul>
+<li>We should re-use the (system_component) first part to minimise the changes to the Cloud Foundry manifests.</li>
+<li>We should re-use the (system_domain) and (app_domain) last part, because these domains are assigned to GOV.UK PaaS as the public interface.</li>
+<li>The domain part <code>london</code> is preferrable to <code>uk</code>, because AWS may provide multiple-region hosting within the UK in the future.</li>
+</ul>
+
+<p>The domain structure for the dev and CI environments won&rsquo;t change. For the dev environments we will create a flag to choose where to create the deployment.</p>
+<h3 id="examples">Examples</h3><h4 id="production">Production</h4><div class="table-container">
+        <table>
+          <tr>
+<th>Ireland</th>
+<th>London</th>
+</tr>
+<tr>
+<td><em>api.cloud.service.gov.uk</em></td>
+<td><em>api.london.cloud.service.gov.uk</em></td>
+</tr>
+<tr>
+<td><em>sample-app.cloudapps.digital</em></td>
+<td><em>sample-app.london.cloudapps.digital</em></td>
+</tr>
+
+        </table>
+      </div><h4 id="staging">Staging</h4><div class="table-container">
+        <table>
+          <tr>
+<th>Ireland</th>
+<th>London</th>
+</tr>
+<tr>
+<td><em>api.staging.cloudpipeline.digital</em></td>
+<td><em>api.london.staging.cloudpipeline.digital</em></td>
+</tr>
+<tr>
+<td><em>sample-app.staging.cloudpipelineapps.digital</em></td>
+<td><em>sample-app.london.staging.cloudpipelineapps.digital</em></td>
+</tr>
+
+        </table>
+      </div><h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>New tenants will be encouraged to use London hosting. Plans need to be derived to notify exiting tenants to move their apps and services to London.</p>
+
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
