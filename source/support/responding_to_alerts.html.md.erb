@@ -186,6 +186,14 @@ fundimental connectivity issue to the reported endpoint.
 The `cf logs` output of the paas-metrics app may contain additional
 information. This is deployed to the 'monitoring' space of the 'admin' org.
 
+## Cloud Foundry internal certificates
+
+We generate several certificates for Cloud Foundry which need to be rotated regularly (most of them have a 1 year expiry).
+
+We have a [Concourse job](https://deployer.cloud.service.gov.uk/teams/main/pipelines/create-cloudfoundry/jobs/check-certificates/builds/latest) which checks if we have certificates expiring in less than 30 days.
+
+If we need to rotate any of the certificates please follow the intructions [here](/team/rotating_credentials/#rotating-certificates).
+
 ## Logsearch/ELK queue threshold limits
 
 We use [Logsearch (ELK
