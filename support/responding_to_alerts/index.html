@@ -93,6 +93,9 @@
         <a href="#invalid-certificates">Invalid Certificates</a>
       </li>
       <li>
+        <a href="#cloud-foundry-internal-certificates">Cloud Foundry internal certificates</a>
+      </li>
+      <li>
         <a href="#logsearch-elk-queue-threshold-limits">Logsearch/ELK queue threshold limits</a>
         <ul>
           <li>
@@ -287,6 +290,12 @@ fundimental connectivity issue to the reported endpoint.</p>
 
 <p>The <code>cf logs</code> output of the paas-metrics app may contain additional
 information. This is deployed to the &#39;monitoring&rsquo; space of the &#39;admin&rsquo; org.</p>
+<h2 id="cloud-foundry-internal-certificates">Cloud Foundry internal certificates</h2>
+<p>We generate several certificates for Cloud Foundry which need to be rotated regularly (most of them have a 1 year expiry).</p>
+
+<p>We have a <a href="https://deployer.cloud.service.gov.uk/teams/main/pipelines/create-cloudfoundry/jobs/check-certificates/builds/latest">Concourse job</a> which checks if we have certificates expiring in less than 30 days.</p>
+
+<p>If we need to rotate any of the certificates please follow the intructions <a href="/team/rotating_credentials/#rotating-certificates">here</a>.</p>
 <h2 id="logsearch-elk-queue-threshold-limits">Logsearch/ELK queue threshold limits</h2>
 <p>We use <a href="https://github.com/logsearch/logsearch-boshrelease">Logsearch (ELK
 Stack)</a> to process the CF
