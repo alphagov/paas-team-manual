@@ -14,7 +14,7 @@
   We also use a number of upstream ops files, so you will want to `diff` them too. See the manifest generation script for which ones get used.
 
 * Read the documentation for every version of every release changed. It will save you time and pain in the long run.
-* Update the cf-smoke-tests resource in the pipeline to use a new branch of our fork that has the latest changes from upstream master.
+* Update the cf-smoke-tests-release resource in the pipeline to pin the version used in cf-deployment.
 * Update the cf-acceptance-tests resource in the pipeline to use an upstream `cfX.Y` branch matching the cf-deployment version.
 
 ## Doing the upgrade
