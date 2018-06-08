@@ -105,6 +105,9 @@
     <a href="#stories">Stories</a>
     <ul>
       <li>
+        <a href="#pivotal-tracker-and-rubbernecker">Pivotal Tracker and Rubbernecker</a>
+      </li>
+      <li>
         <a href="#story-kick-off">Story kick-off</a>
       </li>
       <li>
@@ -116,36 +119,10 @@
         </ul>
       </li>
       <li>
-        <a href="#story-sign-off">Story sign-off</a>
+        <a href="#review-and-approval">Review and approval</a>
         <ul>
           <li>
             <a href="#our-definition-of-done">Our definition of done</a>
-          </li>
-          <li>
-            <a href="#what-sign-off-is">What sign-off is</a>
-          </li>
-          <li>
-            <a href="#who-signs-off-stories">Who signs off stories</a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#work-in-progress-limits">Work In Progress Limits</a>
-        <ul>
-          <li>
-            <a href="#backlog">Backlog</a>
-          </li>
-          <li>
-            <a href="#doing-started">Doing / Started</a>
-          </li>
-          <li>
-            <a href="#reviewing-finished">Reviewing / Finished</a>
-          </li>
-          <li>
-            <a href="#approving-delivered">Approving / Delivered</a>
-          </li>
-          <li>
-            <a href="#done-delivered">Done / Delivered</a>
           </li>
         </ul>
       </li>
@@ -344,7 +321,9 @@ In repos where this is available (for example, paas-cf) PRs can be merged and si
 git pull <span class="nt">--ff-only</span> origin master
 git merge <span class="nt">--no-ff</span> <span class="nt">-S</span> <span class="nt">-m</span> <span class="s2">"Merge pull request #&lt;n&gt; from alphagov/repo-name</span><span class="se">\n\n</span><span class="s2">&lt;pr_title&gt;"</span> origin/&lt;branch_name&gt;
 git push origin master
-</code></pre></div><h1 id="stories">Stories</h1><h2 id="story-kick-off">Story kick-off</h2>
+</code></pre></div><h1 id="stories">Stories</h1><h2 id="pivotal-tracker-and-rubbernecker">Pivotal Tracker and Rubbernecker</h2>
+<p>We use <a href="https://www.pivotaltracker.com/n/projects/1275640">Pivotal Tracker</a> to track stories and <a href="https://rubbernecker.cloudapps.digital/">Rubbernecker</a> for an overview of stories currently being worked. Stories without a name assigned to them are available for you to work on. You should remove your name when moving a story to the next step (e.g. &ldquo;doing&rdquo; to &ldquo;review&rdquo;).</p>
+<h2 id="story-kick-off">Story kick-off</h2>
 <p>Kick-offs are an opportunity to clarify the scope of a story and raise any
 technical suggestions or concerns before work starts. They should include a
 check if the story being kicked off will likely conflict with any of the
@@ -354,9 +333,9 @@ stories already in progress and therefore likely cause conflicts.</p>
 are, and what specific outputs we need to cover in the summary at the end of the spike. Spikes <em>must</em> be
 reviewed after 2 days.</p>
 
-<p>When a pair starts a new story they should arrange a kick-off with the Product
-Owner or Business Analyst, Tech Arch or Tech Lead, and anyone else from the team
-that is interested. Slack is a good way to let the team know.</p>
+<p>When a pair starts a new story they should arrange a kick-off with the
+Feature Lead or Tech Lead and anyone else from the team that is interested.
+Slack is a good way to let people know.</p>
 <h2 id="story-summary">Story summary</h2>
 <p>When you&rsquo;ve finished a story please take a few minutes to summarise your
 work in a comment on the Pivotal story. Summarising
@@ -368,13 +347,16 @@ difficult if comments are sparse or inconsistent.</p>
 it must indicate follow up work that is required. Listing options uncovered during
 the spike is good. Indicate which option is preferable. Where possible follow up stories
 should be noted. Doing this allows the Product Manager prioritise the follow up work.</p>
-<h2 id="story-sign-off">Story sign-off</h2><h3 id="our-definition-of-done">Our definition of done</h3>
+<h2 id="review-and-approval">Review and approval</h2>
+<p>Pivotal Tracker and Rubbernecker treat deliver/review and accept/approval as separate steps in the story process. If you&rsquo;re happy that the story is &ldquo;done&rdquo; according to the criteria below then you can do both while reviewing a story. Or if you&rsquo;d like a second opinion, then you can leave approval for another person.</p>
+<h3 id="our-definition-of-done">Our definition of done</h3>
 <ul>
 <li>the work on a story is completed</li>
 <li>it met the need that motivated the story</li>
 <li>any changes merged to master</li>
 <li>the work is deployed to production</li>
 <li>any acceptance criteria have been met</li>
+<li>new stories are written for any follow-up work or technical debt</li>
 </ul>
 
 <p>If it changes behaviour or makes new features available to users:</p>
@@ -383,54 +365,6 @@ should be noted. Doing this allows the Product Manager prioritise the follow up 
 <li>we have updated the developer documentation</li>
 <li>we have notified our users (before we make the change if necessary)</li>
 </ul>
-<h3 id="what-sign-off-is">What sign-off is</h3>
-<p>We check that the story is done.</p>
-
-<p>We ensure that if the story changed scope, identified other problems that need
-to be solved, or incurred technical debt, that stories have been created to
-capture the remaining work and that at least one of the product manager, tech
-arch or tech leads has been asked to prioritise any remaining work that needs
-to be started soon.</p>
-
-<p>If the changes have already been tested to your satisfaction during review,
-then sign-off need not include testing.</p>
-
-<p>It is important to make sure the work is deployed to production, if this is
-relevant to the story. For example a story which changed the development tooling
-might not need this check, but a new service broker for a tenant to use would
-need to be in production for signoff to be successful</p>
-<h3 id="who-signs-off-stories">Who signs off stories</h3>
-<p>Who can sign off the story is agreed and recorded in the story at kick-off, but
-could be any team member.</p>
-<h2 id="work-in-progress-limits">Work In Progress Limits</h2>
-<p>We use <a href="https://en.wikipedia.org/wiki/Kanban_(development)">Kanban</a> to track
-work, and follow work in progress limits for the different stages of the story.
-We use Pivotal Tracker for online tracking, and have a view of the Pivotal
-Tracker data called <a href="https://rubbernecker.cloudapps.digital/">Rubbernecker</a>
-that mimics the team&rsquo;s previous, physical board.</p>
-<h3 id="backlog">Backlog</h3>
-<p><em>Work In Progress Limit : NA</em></p>
-
-<p>These stories are ready to be played. They require a kickoff before moving to the next stage.</p>
-<h3 id="doing-started">Doing / Started</h3>
-<p><em>Work In Progress Limit : 6</em></p>
-
-<p>These stories have been started by a pair and kickoff has been completed.</p>
-<h3 id="reviewing-finished">Reviewing / Finished</h3>
-<p><em>Work In Progress Limit : 4</em></p>
-
-<p>These stories have been finished and are awaiting review by another team member. The lower work in progress limit is to ensure work is reviewed promptly and completed.</p>
-<h3 id="approving-delivered">Approving / Delivered</h3>
-<p><em>Work In Progress Limit : 5</em></p>
-
-<p>These stories have been reviewed, and code merged to master. The work in
-progress limit here allows for the limited availability of people with
-different levels of data access rights, and reflects the fact that work at this
-stage is already merged and deployed.</p>
-<h3 id="done-delivered">Done / Delivered</h3>
-<p><em>Work In Progress Limit : ∞</em></p>
-
-<p>These stories have been accepted by an appropriate Approver. No limit on the amount of stories that are done.</p>
 <h2 id="technical-documentation-changes">Technical Documentation Changes</h2>
 <p>Technical Documentation changes follow the same overall process as code changes, but with several documentation-specific amends. This section summarises the tech docs change process.</p>
 <h3 id="pre-kick-off">Pre kick-off</h3>
