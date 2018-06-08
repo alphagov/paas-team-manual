@@ -199,6 +199,10 @@ git push origin master
 
 # Stories
 
+## Pivotal Tracker and Rubbernecker
+
+We use [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/1275640) to track stories and [Rubbernecker](https://rubbernecker.cloudapps.digital/) for an overview of stories currently being worked. Stories without a name assigned to them are available for you to work on. You should remove your name when moving a story to the next step (e.g. "doing" to "review").
+
 ## Story kick-off
 
 Kick-offs are an opportunity to clarify the scope of a story and raise any
@@ -210,9 +214,9 @@ If the story is a spike, it should be made clear what the questions we want to a
 are, and what specific outputs we need to cover in the summary at the end of the spike. Spikes *must* be
 reviewed after 2 days.
 
-When a pair starts a new story they should arrange a kick-off with the Product
-Owner or Business Analyst, Tech Arch or Tech Lead, and anyone else from the team
-that is interested. Slack is a good way to let the team know.
+When a pair starts a new story they should arrange a kick-off with the
+Feature Lead or Tech Lead and anyone else from the team that is interested.
+Slack is a good way to let people know.
 
 ## Story summary
 
@@ -229,7 +233,9 @@ it must indicate follow up work that is required. Listing options uncovered duri
 the spike is good. Indicate which option is preferable. Where possible follow up stories
 should be noted. Doing this allows the Product Manager prioritise the follow up work.
 
-## Story sign-off
+## Review and approval
+
+Pivotal Tracker and Rubbernecker treat deliver/review and accept/approval as separate steps in the story process. If you're happy that the story is "done" according to the criteria below then you can do both while reviewing a story. Or if you'd like a second opinion, then you can leave approval for another person.
 
 ### Our definition of done
 
@@ -238,70 +244,12 @@ should be noted. Doing this allows the Product Manager prioritise the follow up 
 - any changes merged to master
 - the work is deployed to production
 - any acceptance criteria have been met
+- new stories are written for any follow-up work or technical debt
 
 If it changes behaviour or makes new features available to users:
 
 - we have updated the developer documentation
 - we have notified our users (before we make the change if necessary)
-
-### What sign-off is
-
-We check that the story is done.
-
-We ensure that if the story changed scope, identified other problems that need
-to be solved, or incurred technical debt, that stories have been created to
-capture the remaining work and that at least one of the product manager, tech
-arch or tech leads has been asked to prioritise any remaining work that needs
-to be started soon.
-
-If the changes have already been tested to your satisfaction during review,
-then sign-off need not include testing.
-
-It is important to make sure the work is deployed to production, if this is
-relevant to the story. For example a story which changed the development tooling
-might not need this check, but a new service broker for a tenant to use would
-need to be in production for signoff to be successful
-
-### Who signs off stories
-
-Who can sign off the story is agreed and recorded in the story at kick-off, but
-could be any team member.
-
-## Work In Progress Limits
-
-We use [Kanban](https://en.wikipedia.org/wiki/Kanban_(development)) to track
-work, and follow work in progress limits for the different stages of the story.
-We use Pivotal Tracker for online tracking, and have a view of the Pivotal
-Tracker data called [Rubbernecker](https://rubbernecker.cloudapps.digital/)
-that mimics the team's previous, physical board.
-
-### Backlog
-_Work In Progress Limit : NA_
-
-These stories are ready to be played. They require a kickoff before moving to the next stage.
-
-### Doing / Started
-_Work In Progress Limit : 6_
-
-These stories have been started by a pair and kickoff has been completed.
-
-### Reviewing / Finished
-_Work In Progress Limit : 4_
-
-These stories have been finished and are awaiting review by another team member. The lower work in progress limit is to ensure work is reviewed promptly and completed.
-
-### Approving / Delivered
-_Work In Progress Limit : 5_
-
-These stories have been reviewed, and code merged to master. The work in
-progress limit here allows for the limited availability of people with
-different levels of data access rights, and reflects the fact that work at this
-stage is already merged and deployed.
-
-### Done / Delivered
-_Work In Progress Limit : ∞_
-
-These stories have been accepted by an appropriate Approver. No limit on the amount of stories that are done.
 
 ## Technical Documentation Changes
 
