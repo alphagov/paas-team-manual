@@ -23,11 +23,11 @@ These are the things we support out of hours:
 
 We expect to hear about the first two via the alerts on Smoke Test Fails and Pingdom which are sent to Pagerduty.
 
-The second two, at the moment, are the things that a tenant may contact us about as we don’t cover all situations in which these could occur with our own alerting. They would contact us via our emergency email. This creates a P1 ticket in Deskpro and triggers Pagerduty.
+The second two, at the moment, are the things that a tenant may contact us about as we don’t cover all situations in which these could occur with our own alerting. They would contact us via our emergency email. Our emergency email is a Google Group which is not published publicly. It has ZenDesk and PagerDuty as its members, and therefore tickets and incidents are triggered automatically when an email is sent to it.
 
 ## Triaging issues
 
-An issue could be something which is raised through our monitoring, alerting, Deskpro or slack.
+An issue could be something which is raised through our monitoring, alerting, ZenDesk or slack.
 
 Triaging an issue is higher priority than other work. Once the issue has been triaged, it will be categorised (P1, P2 etc) and prioritised.
 
@@ -60,13 +60,14 @@ The exceptions to this are for some categories of security breach or vulnerabili
 | P4 | Minor | Component failure that is not immediately service impacting | Start work & respond: 1 business day <br/><br/> Update time: 2 business days | n/a |
 
 ## Support tickets
-You can access our [support ticketing tool Deskpro here](https://gaap.deskpro.com/agent/)
+
+You can access our [support ticketing tool ZenDesk here](https://govuk.zendesk.com/agent/dashboard)
 
 If you don’t have an account ask Urmi to add you. You can adjust your notifications yourself.
 
 ### Tips and good practice
 
-* Try to keep a descriptive name in the Deskpro cards. If the user added a not very descriptive name (e.g failure pushing app), change it to something that uniquely identifies the story (e.g failure pushing app: invalid mode 0444).
+* Try to keep a descriptive name in the ZenDesk tickets. If the user added a not very descriptive name (e.g failure pushing app), change it to something that uniquely identifies the story (e.g failure pushing app: invalid mode 0444).
 Always notify the tenant about this change and why it is done.
 * Try to close the tickets if there is no action required from us.
 * If we are waiting for a card in the backlog, add add note in the card to saying that we need to inform the user once is done and accepted.
@@ -79,7 +80,7 @@ This is now in its [own section](/support/incident_process/).
 
 ## Useful links
 
-* [Deskpro](https://gaap.deskpro.com/agent/)
+* [ZenDesk](https://govuk.zendesk.com/agent/dashboard)
 * [Pagerduty](https://gds-paas.pagerduty.com/)
 * [Developer docs](https://docs.cloud.service.gov.uk/)
 * [Staging pipeline](https://deployer.staging.cloudpipeline.digital/)
