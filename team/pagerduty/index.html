@@ -144,8 +144,7 @@ The team email notification is added at the end as well to cover any potential g
 <h2 id="services">Services</h2>
 <p>We integrate with Pingdom and Datadog. For each integration we create one <em>in hours</em> service that uses the in hours only escalation policy, and one <em>24x7</em> service that uses the 24x7 escalation policy.</p>
 
-<p>A special service called <em>Emergency email</em> is dedicated to urgent platform issues impacting tenants. It is triggered by tenants sending an email via Deskpro. The incoming emails are filtered by checking the sender via regular expression.
-It is attached to the <em>24x7</em> escalation policy.</p>
+<p>A special service called <em>Emergency email</em> is dedicated to urgent platform issues impacting tenants. Sending an email to it triggers a ZenDesk ticket to be created and an incident in PagerDuty. The incident is attached to the <em>24x7</em> escalation policy.</p>
 
 <p>For all services, incidents are not auto resolved and only high-urgency notification rules are used.</p>
 <h2 id="manage-rota">Manage rota</h2><h3 id="add-remove-from-rota">Add/remove from rota</h3>

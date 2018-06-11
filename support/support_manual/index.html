@@ -70,15 +70,7 @@
         <a href="#support-hours">Support hours</a>
       </li>
       <li>
-        <a href="#how-we-know-what-is-going-on">How we know what is going on</a>
-        <ul>
-          <li>
-            <a href="#what-we-monitor-in-hours">What we monitor in hours</a>
-          </li>
-          <li>
-            <a href="#alerting-out-of-hours">Alerting out of hours</a>
-          </li>
-        </ul>
+        <a href="#alerting-out-of-hours">Alerting out of hours</a>
       </li>
       <li>
         <a href="#triaging-issues">Triaging issues</a>
@@ -125,9 +117,7 @@ However, in some cases service teams can’t self diagnose or fix problems (yet)
 <li><strong>Out of hours - waking hours</strong>   : 9am to 5pm each non-working day including weekends and bank holidays</li>
 <li><strong>Out of hours - overnight</strong>: 5pm to 9am each day</li>
 </ul>
-<h2 id="how-we-know-what-is-going-on">How we know what is going on</h2><h3 id="what-we-monitor-in-hours">What we monitor in hours</h3>
-<p>TO BE COMPLETED (e.g. Concourse build status, User impact dashboard + datadog dashboard, New support cases in deskpro/your mail).</p>
-<h3 id="alerting-out-of-hours">Alerting out of hours</h3>
+<h2 id="alerting-out-of-hours">Alerting out of hours</h2>
 <p>These are the things we support out of hours:</p>
 
 <ul>
@@ -139,9 +129,9 @@ However, in some cases service teams can’t self diagnose or fix problems (yet)
 
 <p>We expect to hear about the first two via the alerts on Smoke Test Fails and Pingdom which are sent to Pagerduty.</p>
 
-<p>The second two, at the moment, are the things that a tenant may contact us about as we don’t cover all situations in which these could occur with our own alerting. They would contact us via our emergency email. This creates a P1 ticket in Deskpro and triggers Pagerduty.</p>
+<p>The second two, at the moment, are the things that a tenant may contact us about as we don’t cover all situations in which these could occur with our own alerting. They would contact us via our emergency email. Our emergency email is a Google Group which is not published publicly. It has ZenDesk and PagerDuty as its members, and therefore tickets and incidents are triggered automatically when an email is sent to it.</p>
 <h2 id="triaging-issues">Triaging issues</h2>
-<p>An issue could be something which is raised through our monitoring, alerting, Deskpro or slack.</p>
+<p>An issue could be something which is raised through our monitoring, alerting, ZenDesk or slack.</p>
 
 <p>Triaging an issue is higher priority than other work. Once the issue has been triaged, it will be categorised (P1, P2 etc) and prioritised.</p>
 
@@ -205,12 +195,12 @@ However, in some cases service teams can’t self diagnose or fix problems (yet)
 
         </table>
       </div><h2 id="support-tickets">Support tickets</h2>
-<p>You can access our <a href="https://gaap.deskpro.com/agent/">support ticketing tool Deskpro here</a></p>
+<p>You can access our <a href="https://govuk.zendesk.com/agent/dashboard">support ticketing tool ZenDesk here</a></p>
 
 <p>If you don’t have an account ask Urmi to add you. You can adjust your notifications yourself.</p>
 <h3 id="tips-and-good-practice">Tips and good practice</h3>
 <ul>
-<li>Try to keep a descriptive name in the Deskpro cards. If the user added a not very descriptive name (e.g failure pushing app), change it to something that uniquely identifies the story (e.g failure pushing app: invalid mode 0444).
+<li>Try to keep a descriptive name in the ZenDesk tickets. If the user added a not very descriptive name (e.g failure pushing app), change it to something that uniquely identifies the story (e.g failure pushing app: invalid mode 0444).
 Always notify the tenant about this change and why it is done.</li>
 <li>Try to close the tickets if there is no action required from us.</li>
 <li>If we are waiting for a card in the backlog, add add note in the card to saying that we need to inform the user once is done and accepted.</li>
@@ -221,7 +211,7 @@ Always notify the tenant about this change and why it is done.</li>
 <p>This is now in its <a href="/support/incident_process/">own section</a>.</p>
 <h2 id="useful-links">Useful links</h2>
 <ul>
-<li><a href="https://gaap.deskpro.com/agent/">Deskpro</a></li>
+<li><a href="https://govuk.zendesk.com/agent/dashboard">ZenDesk</a></li>
 <li><a href="https://gds-paas.pagerduty.com/">Pagerduty</a></li>
 <li><a href="https://docs.cloud.service.gov.uk/">Developer docs</a></li>
 <li><a href="https://deployer.staging.cloudpipeline.digital/">Staging pipeline</a></li>
