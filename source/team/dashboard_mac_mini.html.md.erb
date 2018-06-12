@@ -4,7 +4,6 @@ There are two Mac Minis attached to big screens in our team area. They can show 
 following:
 
 * Outstanding pull requests
-* Grafana dashboard
 * Concourse pipelines
 * Pingdom public status page
 * Overview of Datadog triggered monitors
@@ -39,17 +38,6 @@ Replace the placeholders with read-only [access tokens](https://github.com/blog/
 
 You can store those variables in a [password manager like `paas`](https://www.passwordstore.org/) and load then as needed.
 
-## Grafana Dashboard
-
-Also known as the User Impact Dashboard.
-
-Found at
-```
-https://metrics.cloud.service.gov.uk/dashboard/file/user-impact.json
-```
-
-Credentials are in the password store.
-
 ## Concourse pipelines
 
 This shows the pipelines for staging and production on a single screen. The URLs for the pipelines are:
@@ -72,6 +60,6 @@ We use the [Super Auto Refresh](https://chrome.google.com/webstore/detail/super-
 
 ## Datadog Triggered Monitors
 
-We have created a [dashboard in Datadog, called 'User Impact'](https://app.datadoghq.com/screen/222842/user-impact-for-our-monitor-do-not-edit), which displays a count of monitors by trigger status (healthy, warning, critical, or unknown). It also recreates most of the Grafana dashboard of the same name.
+We have created a [dashboard in Datadog, called 'User Impact'](https://app.datadoghq.com/screen/222842/user-impact-for-our-monitor-do-not-edit), which displays a count of monitors by trigger status (healthy, warning, critical, or unknown).
 
 The credentials for the Datadog user are in the `paas-pass` password store.
