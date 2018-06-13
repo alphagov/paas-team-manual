@@ -67,9 +67,6 @@
         <a href="#outstanding-pull-requests">Outstanding pull requests</a>
       </li>
       <li>
-        <a href="#grafana-dashboard">Grafana Dashboard</a>
-      </li>
-      <li>
         <a href="#concourse-pipelines">Concourse pipelines</a>
       </li>
       <li>
@@ -98,7 +95,6 @@ following:</p>
 
 <ul>
 <li>Outstanding pull requests</li>
-<li>Grafana dashboard</li>
 <li>Concourse pipelines</li>
 <li>Pingdom public status page</li>
 <li>Overview of Datadog triggered monitors</li>
@@ -128,15 +124,6 @@ echo "https://alphagov.github.io/fourth-wall/?token=${GITHUB_API_TOKEN}&amp;team
 <p>Replace the placeholders with read-only <a href="https://github.com/blog/1509-personal-api-tokens">access tokens</a> from GitHub.</p>
 
 <p>You can store those variables in a <a href="https://www.passwordstore.org/">password manager like <code>paas</code></a> and load then as needed.</p>
-<h2 id="grafana-dashboard">Grafana Dashboard</h2>
-<p>Also known as the User Impact Dashboard.</p>
-
-<p>Found at
-<code>
-https://metrics.cloud.service.gov.uk/dashboard/file/user-impact.json
-</code></p>
-
-<p>Credentials are in the password store.</p>
 <h2 id="concourse-pipelines">Concourse pipelines</h2>
 <p>This shows the pipelines for staging and production on a single screen. The URLs for the pipelines are:</p>
 
@@ -156,7 +143,7 @@ on the Dashboard. It can be found
 
 <p>We use the <a href="https://chrome.google.com/webstore/detail/super-auto-refresh/kkhjakkgopekjlempoplnjclgedabddk?hl=en">Super Auto Refresh</a> Chrome extension to refresh the page.</p>
 <h2 id="datadog-triggered-monitors">Datadog Triggered Monitors</h2>
-<p>We have created a <a href="https://app.datadoghq.com/screen/222842/user-impact-for-our-monitor-do-not-edit">dashboard in Datadog, called &lsquo;User Impact&rsquo;</a>, which displays a count of monitors by trigger status (healthy, warning, critical, or unknown). It also recreates most of the Grafana dashboard of the same name.</p>
+<p>We have created a <a href="https://app.datadoghq.com/screen/222842/user-impact-for-our-monitor-do-not-edit">dashboard in Datadog, called &lsquo;User Impact&rsquo;</a>, which displays a count of monitors by trigger status (healthy, warning, critical, or unknown).</p>
 
 <p>The credentials for the Datadog user are in the <code>paas-pass</code> password store.</p>
 
