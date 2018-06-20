@@ -13,8 +13,6 @@ instance it's okay to ask for help, it's okay to have quiet days, and many other
 
 # Development process
 
-[TOC]
-
 ![Illustration of changes being promoted to prod](/diagrams/development-process.svg)
 
 - The Product Manager makes decisions on what work (features, bugs) is
@@ -233,9 +231,25 @@ it must indicate follow up work that is required. Listing options uncovered duri
 the spike is good. Indicate which option is preferable. Where possible follow up stories
 should be noted. Doing this allows the Product Manager prioritise the follow up work.
 
-## Review and approval
+## Review
 
-Pivotal Tracker and Rubbernecker treat deliver/review and accept/approval as separate steps in the story process. If you're happy that the story is "done" according to the criteria below then you can do both while reviewing a story. Or if you'd like a second opinion, then you can leave approval for another person.
+Review is the step in our process where the pull requests relating to a story
+are code-reviewed, and merged. This is typically done by somone who hasn't
+worked on the story, however if a story has been paired on throughout, the pair
+can merge their own PRs, and push the story straight through to approval.
+
+For a story that hasn't been paired on throughout, the review and merging must
+be done by someone who hasn't worked on it. This is to ensure that all code has
+been read by at least 2 people before being released to prod.
+
+## Approval
+
+The Approval step in the process is where we verify that the story is fully
+complete according to our definition of done (below).
+
+Approval must be done by someone who didn't work on the story. Approval can be
+done by the same person who did the review though (as long as they didn't work
+on the story).
 
 ### Our definition of done
 
