@@ -42,7 +42,7 @@ blockdiag {
   signoff [
     color = 'salmon', 
     height = '80',
-    label = 'Work signed off\nas complete by \nProduct Manager'
+    label = 'Work signed off\nas complete.'
   ];
 
   # happy path

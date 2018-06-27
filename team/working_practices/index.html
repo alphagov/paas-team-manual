@@ -119,7 +119,10 @@
         </ul>
       </li>
       <li>
-        <a href="#review-and-approval">Review and approval</a>
+        <a href="#review">Review</a>
+      </li>
+      <li>
+        <a href="#approval">Approval</a>
         <ul>
           <li>
             <a href="#our-definition-of-done">Our definition of done</a>
@@ -170,8 +173,6 @@ that and ask for things to improve.</p>
 <a href="https://gds.blog.gov.uk/2016/05/25/its-ok-to-say-whats-ok/">It&rsquo;s OK</a> poster. For
 instance it&rsquo;s okay to ask for help, it&rsquo;s okay to have quiet days, and many other things.</p>
 <h1 id="development-process">Development process</h1>
-<p>[TOC]</p>
-
 <p><a href="../../diagrams/development-process.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/development-process.svg" alt="Illustration of changes being promoted to prod" /></a></p>
 
 <ul>
@@ -347,8 +348,21 @@ difficult if comments are sparse or inconsistent.</p>
 it must indicate follow up work that is required. Listing options uncovered during
 the spike is good. Indicate which option is preferable. Where possible follow up stories
 should be noted. Doing this allows the Product Manager prioritise the follow up work.</p>
-<h2 id="review-and-approval">Review and approval</h2>
-<p>Pivotal Tracker and Rubbernecker treat deliver/review and accept/approval as separate steps in the story process. If you&rsquo;re happy that the story is &ldquo;done&rdquo; according to the criteria below then you can do both while reviewing a story. Or if you&rsquo;d like a second opinion, then you can leave approval for another person.</p>
+<h2 id="review">Review</h2>
+<p>Review is the step in our process where the pull requests relating to a story
+are code-reviewed, and merged. This is typically done by somone who hasn&rsquo;t
+worked on the story, however if a story has been paired on throughout, the pair
+can merge their own PRs, and push the story straight through to approval.</p>
+
+<p>For a story that hasn&rsquo;t been paired on throughout, the review and merging must
+be done by someone who hasn&rsquo;t worked on it. This is to ensure that all code has
+been read by at least 2 people before being released to prod.</p>
+<h2 id="approval">Approval</h2>
+<p>The Approval step in the process is where we verify that the story is fully
+complete according to our definition of done (below).</p>
+
+<p>Approval should be done by the Feature Lead or Tech Lead, as they have overall
+responsibility for the progress of the relevant epic.</p>
 <h3 id="our-definition-of-done">Our definition of done</h3>
 <ul>
 <li>the work on a story is completed</li>
