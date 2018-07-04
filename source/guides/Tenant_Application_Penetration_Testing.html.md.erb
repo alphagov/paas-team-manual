@@ -64,3 +64,20 @@ The `cdn-route` service uses a CloudFront distribution. You can discover these d
 aws cloudfront list-distributions \
 | jq '.DistributionList.Items[] | select(.Comment == "cdn route service") | .Id' --raw-output
 ```
+
+## Find external IPs (NAT)
+
+```
+aws ec2 describe-nat-gateways | jq -r '.NatGateways[].NatGatewayAddresses[].PublicIp
+```
+
+## Find RDS instances from a given org
+
+Assuming you are logged in the production CF and `AWS_DEFAULT_REGION` set to the right region
+
+```
+ORG=tenant-org
+cf curl /v2/organizations/$(cf org --guid $ORG)/services \
+| jq -r '.resources[].entity | select(.description | contains("RDS")) | "arn:aws:rds:${AWS_DEFAULT_REGION}:$(aws sts get-caller-identity --output text  --query Account):db:rdsbroker-\(.unique_id)"'
+
+```
