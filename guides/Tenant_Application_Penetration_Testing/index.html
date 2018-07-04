@@ -72,6 +72,12 @@
       <li>
         <a href="#find-cloudfront-distributions">Find CloudFront distributions</a>
       </li>
+      <li>
+        <a href="#find-external-ips-nat">Find external IPs (NAT)</a>
+      </li>
+      <li>
+        <a href="#find-rds-instances-from-a-given-org">Find RDS instances from a given org</a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -234,6 +240,13 @@
 <p>The <code>cdn-route</code> service uses a CloudFront distribution. You can discover these distributions with the following:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>aws cloudfront list-distributions \
 | jq '.DistributionList.Items[] | select(.Comment == "cdn route service") | .Id' --raw-output
+</code></pre></div><h2 id="find-external-ips-nat">Find external IPs (NAT)</h2><div class="highlight"><pre class="highlight plaintext"><code>aws ec2 describe-nat-gateways | jq -r '.NatGateways[].NatGatewayAddresses[].PublicIp
+</code></pre></div><h2 id="find-rds-instances-from-a-given-org">Find RDS instances from a given org</h2>
+<p>Assuming you are logged in the production CF and <code>AWS_DEFAULT_REGION</code> set to the right region</p>
+<div class="highlight"><pre class="highlight plaintext"><code>ORG=tenant-org
+cf curl /v2/organizations/$(cf org --guid $ORG)/services \
+| jq -r '.resources[].entity | select(.description | contains("RDS")) | "arn:aws:rds:${AWS_DEFAULT_REGION}:$(aws sts get-caller-identity --output text  --query Account):db:rdsbroker-\(.unique_id)"'
+
 </code></pre></div>
 
             
