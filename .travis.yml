@@ -1,7 +1,0 @@
-language: ruby
-rvm:
-  - 2.5
-
-script:
-  - bundle
-  - bundle exec middleman build
