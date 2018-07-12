@@ -111,18 +111,35 @@
   <h1 id="upgrading-cf-bosh-and-stemcells">Upgrading CF, BOSH and stemcells</h1><h2 id="before-upgrading"> Before Upgrading</h2>
 <ul>
 <li>Separate the upgrade of Cloud Foundry and stemcells from the upgrade of Bosh. Upgrades can cause problems and our experience is that it is difficult to be certain about the cause of those problems if multiple things have changed.</li>
-<li>Establish the correct version to upgrade to. This will usually be the latest stable release, or the one before it, subject to review. The main driver for not always picking the latest release is to avoid the bad releases which CF produce from time to time. An alternative strategy may be to pick a release at least one week old, thereby giving Pivotal time to flag and pull bad releases before we plough ahead with them. Kick-off is an appropriate place for this review.</li>
-<li>Check <a href="https://github.com/cloudfoundry/cf-deployment/releases">cf-deployment releases documentation</a> before upgrading to a particular version. There have been releases that became inappropriate for production usage.</li>
-<li>Use <code>git diff</code> or GitHub compare in the <code>cf-deployment</code> repo to see example changes to the manifest. For example, to see differences between v1.0.0 and v1.14.0:</li>
+<li>Establish the correct version to upgrade to:
+
+<ul>
+<li>This will usually be the latest stable release, or the one before it, subject to review.</li>
+<li>The main driver for not always picking the latest release:</li>
+<li>This is to avoid the bad releases which CF produce from time to time.</li>
+<li>An alternative strategy may be to pick a release at least one week old, thereby giving Pivotal time to flag and pull bad releases before we plough ahead with them.</li>
+<li>This is less of a requirement since <code>cf-deployment</code> as specific releases versions can be easily changed to fix bugs.</li>
+<li>Kick-off is an appropriate place for this review.</li>
+<li>Check <a href="https://github.com/cloudfoundry/cf-deployment/releases">cf-deployment releases documentation</a> before upgrading to a particular version.  There have been releases that became inappropriate for production usage.</li>
+</ul></li>
+<li><p>Update the submodule in <code>/manifests/cf-deployment</code> for <a href="https://github.com/alphagov/paas-cf/tree/master/manifests/cf-deployment">paas-cf</a> of cf-deployment to the picked version.</p></li>
+<li><p>Use <code>git diff</code> or GitHub compare in the <code>cf-deployment</code> submodule repo to see and review changes to the manifest. For example, to see differences between v1.0.0 and v1.14.0:</p></li>
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>  git diff v1.0.0...v1.14.0 cf-deployment.yml
 </code></pre></div>
-<p>We also use a number of upstream ops files, so you will want to <code>diff</code> them too. See the manifest generation script for which ones get used.</p>
+<p>We also use a number of upstream ops files, so you will want to <code>diff</code> them too. See the manifest generation script https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/scripts/generate-manifest.sh for which ones get used.</p>
+
+<p>Special differences to take into account:
+  * New secrets and certificates in <code>variables:</code>. Maybe there are new passwords that must be rotated ot blacklisted from rotation. New CA certs need to be adapted to support CA rotation.
+  * Release version changes.
+  * New <code>instance_groups</code> added</p>
 
 <ul>
 <li>Read the documentation for every version of every release changed. It will save you time and pain in the long run.</li>
-<li>Update the cf-smoke-tests-release resource in the pipeline to pin the version used in cf-deployment.</li>
-<li>Update the cf-acceptance-tests resource in the pipeline to use an upstream <code>cfX.Y</code> branch matching the cf-deployment version.</li>
+<li><p>Run the unit tests for the manifest with the new version of cf-deployment with <code>make test</code> or <code>(cd manifests/cf-manifest &amp;&amp; bundle exec rspec --fail-fast)</code>. Fix issues as you find them.</p></li>
+<li><p>Update the cf-smoke-tests-release resource in the pipeline to pin the version used in cf-deployment.</p></li>
+<li><p>Update the cf-acceptance-tests resource in the pipeline to use an upstream <code>cfX.Y</code> branch matching the cf-deployment version.</p></li>
+<li><p>Note: If we are using a forked version of the smoke-tests or cf-acceptance test, create a new branch and rebase our forked version accordingly.</p></li>
 </ul>
 <h2 id="doing-the-upgrade">Doing the upgrade</h2>
 <p>You should test the upgrade changeset:</p>
