@@ -3,19 +3,35 @@
 ## Before Upgrading
 
 * Separate the upgrade of Cloud Foundry and stemcells from the upgrade of Bosh. Upgrades can cause problems and our experience is that it is difficult to be certain about the cause of those problems if multiple things have changed.
-* Establish the correct version to upgrade to. This will usually be the latest stable release, or the one before it, subject to review. The main driver for not always picking the latest release is to avoid the bad releases which CF produce from time to time. An alternative strategy may be to pick a release at least one week old, thereby giving Pivotal time to flag and pull bad releases before we plough ahead with them. Kick-off is an appropriate place for this review.
-* Check [cf-deployment releases documentation](https://github.com/cloudfoundry/cf-deployment/releases) before upgrading to a particular version. There have been releases that became inappropriate for production usage.
-* Use `git diff` or GitHub compare in the `cf-deployment` repo to see example changes to the manifest. For example, to see differences between v1.0.0 and v1.14.0:
+* Establish the correct version to upgrade to:
+  * This will usually be the latest stable release, or the one before it, subject to review.
+  * The main driver for not always picking the latest release:
+    * This is to avoid the bad releases which CF produce from time to time.
+    * An alternative strategy may be to pick a release at least one week old, thereby giving Pivotal time to flag and pull bad releases before we plough ahead with them.
+    * This is less of a requirement since `cf-deployment` as specific releases versions can be easily changed to fix bugs.
+  * Kick-off is an appropriate place for this review.
+  * Check [cf-deployment releases documentation](https://github.com/cloudfoundry/cf-deployment/releases) before upgrading to a particular version.  There have been releases that became inappropriate for production usage.
+* Update the submodule in `/manifests/cf-deployment` for [paas-cf](https://github.com/alphagov/paas-cf/tree/master/manifests/cf-deployment) of cf-deployment to the picked version.
+
+* Use `git diff` or GitHub compare in the `cf-deployment` submodule repo to see and review changes to the manifest. For example, to see differences between v1.0.0 and v1.14.0:
 
   ```
   git diff v1.0.0...v1.14.0 cf-deployment.yml
   ```
 
-  We also use a number of upstream ops files, so you will want to `diff` them too. See the manifest generation script for which ones get used.
+  We also use a number of upstream ops files, so you will want to `diff` them too. See the manifest generation script https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/scripts/generate-manifest.sh for which ones get used.
+
+  Special differences to take into account:
+  * New secrets and certificates in `variables: `. Maybe there are new passwords that must be rotated ot blacklisted from rotation. New CA certs need to be adapted to support CA rotation.
+  * Release version changes.
+  * New `instance_groups` added
 
 * Read the documentation for every version of every release changed. It will save you time and pain in the long run.
+* Run the unit tests for the manifest with the new version of cf-deployment with `make test` or `(cd manifests/cf-manifest && bundle exec rspec --fail-fast)`. Fix issues as you find them.
+
 * Update the cf-smoke-tests-release resource in the pipeline to pin the version used in cf-deployment.
 * Update the cf-acceptance-tests resource in the pipeline to use an upstream `cfX.Y` branch matching the cf-deployment version.
+* Note: If we are using a forked version of the smoke-tests or cf-acceptance test, create a new branch and rebase our forked version accordingly.
 
 ## Doing the upgrade
 
