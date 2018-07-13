@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR028-move-logs-to-logit/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR028-move-logs-to-logit/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR028-move-logs-to-logit/" />
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#adr028-migrate-cf-platform-logs-to-logit">ADR028: Migrate CF platform logs to Logit</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr028-migrate-cf-platform-logs-to-logit">ADR028: Migrate CF platform logs to Logit</h1><h2 id="context">Context</h2>
+<p>The work to ship cloud foundry platform logs to Logit was started in 2018 Q1.
+It was paused because some IA issues with Logit were not resolved. At one point
+RE recommended that PaaS should host our own logstash as this part of the
+service was not widely available by market Elastic SaaS providers. The PaaS
+team was also considering to use Elasticsearch on AWS with our accounts.</p>
+<h2 id="decision">Decision</h2>
+<p>An updated conversation with the RE tool team has confirmed that the IA issues
+had been resolved, and that GDS can continue to use Logit for now.</p>
+
+<p>It is a GDS strategy to use a consistent logging solution. Hence, we should
+continue our migration of platform logs to logit, including our logstash
+filters.</p>
+
+<p>There is considerably less maintenance work for us if we use Logit&rsquo;s logstash
+filter rather than hosting the bosh release one. In the future if GDS choose to
+use another vendor that do not have a hosted logstash solution, they would need
+to provide a migration strategy for all the current logstash users.</p>
+<h2 id="status">Status</h2>
+<p>Approved</p>
+<h2 id="consequences">Consequences</h2>
+<p>We will continue the migration of platform logs to logit including logstash,
+and take a risk that we may need to spin up our logstash in the future if GDS
+choose a different platform logs provider.</p>
+
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
