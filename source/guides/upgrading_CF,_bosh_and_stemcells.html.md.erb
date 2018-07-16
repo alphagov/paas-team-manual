@@ -4,13 +4,12 @@
 
 * Separate the upgrade of Cloud Foundry and stemcells from the upgrade of Bosh. Upgrades can cause problems and our experience is that it is difficult to be certain about the cause of those problems if multiple things have changed.
 * Establish the correct version to upgrade to:
-  * This will usually be the latest stable release, or the one before it, subject to review.
-  * The main driver for not always picking the latest release:
-    * This is to avoid the bad releases which CF produce from time to time.
-    * An alternative strategy may be to pick a release at least one week old, thereby giving Pivotal time to flag and pull bad releases before we plough ahead with them.
-    * This is less of a requirement since `cf-deployment` as specific releases versions can be easily changed to fix bugs.
-  * Kick-off is an appropriate place for this review.
-  * Check [cf-deployment releases documentation](https://github.com/cloudfoundry/cf-deployment/releases) before upgrading to a particular version.  There have been releases that became inappropriate for production usage.
+  * Check [cf-deployment releases documentation](https://github.com/cloudfoundry/cf-deployment/releases).
+  * Prefer the latest stable release if the release notes look like they won't introduce bugs.
+  * Discuss the planned upgrade version in kick-off.
+
+* If you encounter issues in the releases of `cf-deployment` consider forking and patching them or overriding the release version with a opsfile.
+
 * Update the submodule in `/manifests/cf-deployment` for [paas-cf](https://github.com/alphagov/paas-cf/tree/master/manifests/cf-deployment) of cf-deployment to the picked version.
 
 * Use `git diff` or GitHub compare in the `cf-deployment` submodule repo to see and review changes to the manifest. For example, to see differences between v1.0.0 and v1.14.0:
@@ -19,9 +18,10 @@
   git diff v1.0.0...v1.14.0 cf-deployment.yml
   ```
 
-  We also use a number of upstream ops files, so you will want to `diff` them too. See the manifest generation script https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/scripts/generate-manifest.sh for which ones get used.
+  We also use a number of upstream ops files, so you will want to `diff` them too. See [the manifest generation script](https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/scripts/generate-manifest.sh) for which ones get used.
 
-  Special differences to take into account:
+Special differences to take into account:
+
   * New secrets and certificates in `variables: `. Maybe there are new passwords that must be rotated ot blacklisted from rotation. New CA certs need to be adapted to support CA rotation.
   * Release version changes.
   * New `instance_groups` added
@@ -80,7 +80,7 @@ The upgrade to v233 has introduced some new tests in the acceptance-test suite, 
 We experienced failures in:
 
 * `routing` suite - The `multiple_app_ports` test fails if  `users_can_select_backend` is not set to `true` - The test receives a response of `CF-BackendSelectionNotAuthorized` which does not match the expected response of `CF-MultipleAppPortsMappedDiegoToDea` and causes the test to fail - This test should not be run unless the user is permitted to switch backends. We raised an issue with Pivotal for this test :
-https://www.pivotaltracker.com/story/show/117685687
-https://github.com/cloudfoundry/cf-acceptance-tests/issues/104
+  * [Pivotal Tracker issue #117685687](https://www.pivotaltracker.com/story/show/117685687)
+  * [GitHub cloudfoundry/cf-acceptance-tests#104](https://github.com/cloudfoundry/cf-acceptance-tests/issues/104)
 
 * `v3` suite - The `task_test` is being run even though we have the `cf-feature-flag` for `task_creation` set to `false` - The suite attempts to create a task and receives a response saying `Feature Disabled: task_creation` which does not cause any kind of failure - it then goes on to attempt to delete the task which fails as it receives and empty response to it's delete attempt, when it is expecting to receive a response indicating that the task is in a `FAILED` state
