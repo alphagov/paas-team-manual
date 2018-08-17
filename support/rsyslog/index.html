@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/support/rsyslog/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/support/rsyslog/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/rsyslog/" />
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#investigating-rsyslog-issues">Investigating rsyslog issues</a>
+    <ul>
+      <li>
+        <a href="#suspected-memory-usage-issues">Suspected memory usage issues</a>
+        <ul>
+          <li>
+            <a href="#investigating-memory-usage-issues">Investigating memory usage issues</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="investigating-rsyslog-issues">Investigating <code>rsyslog</code> issues</h1>
+<p><code>rsyslog</code> is <a href="https://www.rsyslog.com/">&ldquo;the rocket-fast system for log
+processing&rdquo;</a>. It&rsquo;s an application that runs on all of
+our VMs that receives log messages, performs some processing, and forwards the
+messages to our logging system (currently logit).</p>
+
+<p>We have occasionally suspected rsyslog (or other parts of our logging pipeline)
+of causing reliability issues. This documentation is intended to help operators
+diagnose issues with rsyslog more quickly.</p>
+<h2 id="suspected-memory-usage-issues">Suspected memory usage issues</h2>
+<p>On 2018-07-31 the production <code>router</code> virtual machines exhausted their
+available memory and swap. Initial investigation suggested that the <code>rsyslogd</code>
+process on these machines was using far more than the expected amount of
+memory.</p>
+
+<p>We investigated rsyslog&rsquo;s behaviour in situations where it can&rsquo;t ship logs to
+its destination in <a href="https://www.pivotaltracker.com/story/show/159559834">#159559834</a>,
+but weren&rsquo;t able to reproduce the issue. There&rsquo;s extensive documentation of our
+investigation on that ticket.</p>
+<h3 id="investigating-memory-usage-issues">Investigating memory usage issues</h3>
+<p>If there are suspected issues with rsyslog&rsquo;s memory usage in future there are a
+few things you should look into:</p>
+
+<p>In Kibana, search for <code>@source.component: &quot;rsyslogd-pstats&quot;</code> - this should show
+if rsyslog has full queues / is dropping messages. (See <a href="https://www.pivotaltracker.com/story/show/159559834/comments/193170947">#159559834</a> for more details)</p>
+
+<p>Use the bosh-cli to <code>ssh</code> onto a router, then:</p>
+<div class="highlight"><pre class="highlight plaintext"><code># May show rsyslog-pstats messages that didn't make it to Kibana
+tail -20000 /var/log/syslog | grep rsyslog-pstats
+
+# How much CPU / memory are the rsyslog processes using?
+ps uax | awk '/rsyslo[g]/ || NR==1'
+
+# How much overall disk usage is there?
+df -h | grep ^/
+
+# How much overall memory usage is there?
+free -o -m
+</code></pre></div>
+<p>It may also be useful to capture the traffic that rsyslog is sending to logit to investigate possible packet loss etc.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>sudo tcpdump host "$(grep -o '[^@]*logit.io' /etc/rsyslog.d/35-syslog-release-forwarding-rules.conf)" -G 120 -W 1 -i eth0 -w logit-traffic.pcap
+</code></pre></div>
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
