@@ -51,6 +51,7 @@ addition to the [GDS styleguides]().
  - [Responding to alerts](support/responding_to_alerts/)
  - [Responding to security issues](support/responding_to_security_issues/)
  - [Support roles and responsibilities](support/roles_and_responsibilities/)
+ - [Investigating rsyslog issues](support/rsyslog/)
  - [Support manual](support/support_manual/)
  - [Zendesk](support/zendesk/)
 
