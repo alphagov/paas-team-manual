@@ -17,12 +17,14 @@ appropriate version.
 [Bundler]: http://bundler.io/
 
 To install:
+
 ```
 ➜  paas-cf git:(master) ✗ bundle install
 …
 ```
 
 To confirm that it works:
+
 ```
 ➜  paas-cf git:(master) ✗ bundle exec uaac help
 
@@ -69,6 +71,7 @@ If you only know part of the username:
 Sometimes it might be necessary to lock certain users. For example when we find out they have left GDS or don't have any more project to work on PaaS. CF has a facility to prevent users from logging in, while still preserving the user account with all their access rights and org membership. We do this as a first step in removing the user account. We then ask for confirmation from org managers (or managers of org managers in case we are removing an org manager) and only after confirmation finally remove the account completely (`cf delete-user`).
 
 From [alphagov/paas-cf](https://github.com/alphagov/paas-cf):
+
 ```
 bundle install
 cd scripts
@@ -109,16 +112,19 @@ query or report on usage but don't have production access.
 [Global Auditor role]: https://docs.cloudfoundry.org/concepts/roles.html#roles-and-permissions
 
 To add someone:
+
 ```
 bundle exec uaac member add cloud_controller.global_auditor <EMAIL>
 ```
 
 To remove someone:
+
 ```
 bundle exec uaac member delete cloud_controller.global_auditor <EMAIL>
 ```
 
 To see the current members:
+
 ```
 (set -o pipefail \
   && bundle exec uaac group get cloud_controller.global_auditor \
