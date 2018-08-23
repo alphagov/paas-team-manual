@@ -96,17 +96,6 @@
         <a href="#cloud-foundry-internal-certificates">Cloud Foundry internal certificates</a>
       </li>
       <li>
-        <a href="#logsearch-elk-queue-threshold-limits">Logsearch/ELK queue threshold limits</a>
-        <ul>
-          <li>
-            <a href="#connecting-to-the-elasticsearch-cluster">Connecting to the Elasticsearch cluster</a>
-          </li>
-          <li>
-            <a href="#disabling-elasticsearch-cluster-shard-reallocation">Disabling Elasticsearch cluster shard reallocation</a>
-          </li>
-        </ul>
-      </li>
-      <li>
         <a href="#trusted-advisor-warnings">Trusted Advisor Warnings</a>
       </li>
       <li>
@@ -296,65 +285,7 @@ information. This is deployed to the &#39;monitoring&rsquo; space of the &#39;ad
 <p>We have a <a href="https://deployer.cloud.service.gov.uk/teams/main/pipelines/create-cloudfoundry/jobs/check-certificates/builds/latest">Concourse job</a> which checks if we have certificates expiring in less than 30 days.</p>
 
 <p>If we need to rotate any of the certificates please follow the intructions <a href="/team/rotating_credentials/#rotating-certificates">here</a>.</p>
-<h2 id="logsearch-elk-queue-threshold-limits">Logsearch/ELK queue threshold limits</h2>
-<p>We use <a href="https://github.com/logsearch/logsearch-boshrelease">Logsearch (ELK
-Stack)</a> to process the CF
-logs.  Logsearch would accept messages from <em>ingestors</em> that store the raw
-messages in a <em>Redis queue</em>, from where they be processed by <em>parsers</em> to then
-store them in <em>Elasticsearch</em>.
-The ingestors are configured to stop sending logs (dropping any incoming
-message) when the queue size reaches a <a href="https://github.com/cloudfoundry-community/logsearch-boshrelease/blob/v203.0.0/jobs/ingestor_syslog/spec#L61-L63">given threshold</a>.</p>
-
-<p>The size of the Logsearch redis queue <a href="https://github.com/alphagov/paas-datadog-for-cloudfoundry-boshrelease/pull/21">is exposed as a metric using the Datadog agent</a>,
-and consumed by a Datadog monitor that warns if we reach 100k messages, which
-gives some hours of leverage for the average of 200-300k messages in
-production.</p>
-
-<p>If the metric reaches <a href="https://github.com/cloudfoundry-community/logsearch-boshrelease/blob/v203.0.0/jobs/ingestor_syslog/spec#L61-L63">the value defined as threshold</a>,
-the logsearch stack is dropping messages, which jeopardises our capacity to
-troubleshoot the platform.</p>
-
-<p>The queue can start filling when the parsers are not able to process the jobs fast enough. Common cases:</p>
-
-<ul>
-<li>The Elasticsearch cluster is having problems and slow accepting new writes from the parser.</li>
-<li>If the <code>parser</code> jobs/VMs have problems or are at capacity and cannot process messages fast enough.</li>
-</ul>
-
-<p>To perform some basic troubleshooting:</p>
-
-<ul>
-<li>Check the <a href="https://app.datadoghq.com/notebook/27407/Elasticsearch%20master%20CPU%20(copy)">health of the Elastisearch cluster in this Datadog notebook</a></li>
-<li>Connect Elasticsearch cluster as described below to troubleshoot the cluster.</li>
-<li>If Kibana is accessible, try to identify any noisy logs. High logs volume might be a symptom
-of problems in other parts of the platform</li>
-<li>Restarting parser, queue or ingesters is in general safe.</li>
-<li>To restart the Elasticsearch nodes, follow the instructions below to disable shard reallocation.</li>
-</ul>
-<h3 id="connecting-to-the-elasticsearch-cluster">Connecting to the Elasticsearch cluster</h3>
-<p>In order to connect to the Elasticsearch cluster, you can use a SSH tunnel using
-the <a href="https://github.com/alphagov/paas-bootstrap">paas-bootstrap</a> tooling:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>make prod DEPLOY_ENV=prod tunnel TUNNEL=9200:10.0.16.10:9200
-</code></pre></div>
-<p>The Elasticsearch cluster uses the IPs <code>10.0.16.10</code>, <code>10.0.17.10</code> and <code>10.0.18.10</code>.</p>
-
-<p>You can use the <a href="https://chrome.google.com/webstore/detail/elasticsearch-head/ffmkiejjmecolpfloofpjologoblkegm">Elasticsearch Head Chrome extension</a> to interact with the cluster.</p>
-<h3 id="disabling-elasticsearch-cluster-shard-reallocation">Disabling Elasticsearch cluster shard reallocation</h3>
-<p>When <a href="https://www.elastic.co/guide/en/elasticsearch/guide/current/_rolling_restarts.html">restarting the Elasticsearch cluster we must disable the shard reallocation</a> to
-avoid triggering a shard failover, which would seriously impact the cluster performance.</p>
-
-<p>To do so, you can configure the tunnel in each node as mention before and execute:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>curl -XPUT 'http://localhost:9200/_cluster/settings' -d '{
-"transient" : {
-    "cluster.routing.allocation.enable" : "none"
-}}'
-</code></pre></div>
-<p>To enable it again:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>curl -XPUT 'http://localhost:9200/_cluster/settings' -d '{
-"transient" : {
-    "cluster.routing.allocation.enable" : "all"
-}}'
-</code></pre></div><h2 id="trusted-advisor-warnings">Trusted Advisor Warnings</h2>
+<h2 id="trusted-advisor-warnings">Trusted Advisor Warnings</h2>
 <p>If you see a warning from Trusted Advisor it should be addressed.</p>
 
 <ul>
