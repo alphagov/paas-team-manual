@@ -37,7 +37,7 @@ Special differences to take into account:
 
 You should test the upgrade changeset:
 
-* From a fully deployed master with Datadog enabled, equivalent to the change that will happen in
+* From a fully deployed master with Datadog enabled and `SLIM_DEV_DEPLOYMENT=false` set, which is equivalent to the change that will happen in
   in production.
 * Deploying a fresh CF, which is something we frequently do in our
   development environments after the autodelete-cloudfoundry pipeline
