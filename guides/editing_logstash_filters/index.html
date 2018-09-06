@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/editing_logstash_filters/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/editing_logstash_filters/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/editing_logstash_filters/" />
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#updating-logstash-filters">Updating logstash filters</a>
+    <ul>
+      <li>
+        <a href="#for-new-logit-stacks">For new logit stacks…</a>
+      </li>
+      <li>
+        <a href="#process-for-generating-logstash-filters-for-logit">Process for generating logstash filters for Logit</a>
+      </li>
+      <li>
+        <a href="#updating-the-components-of-the-logstash-filters">Updating the components of the logstash filters</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="updating-logstash-filters">Updating logstash filters</h1>
+<p>Sadly, there is no programmatic access to Logit&rsquo;s logstash filters.</p>
+<h2 id="for-new-logit-stacks">For new logit stacks&hellip;</h2>
+<p>If the logit stack is not a v6.x logstash (e.g. it&rsquo;s a v5.6 like the current PaaS stacks are)
+the new filters need a plugin installed into logstash. You need to request this via logit support
+(either through the web-based &ldquo;chat&rdquo; logit have once you&rsquo;ve logged in or via their email address).
+The plugin is for a filter called <code>alter</code>. v6.x logstash logit stacks have this plugin
+installed by default. Such a request might look like:</p>
+
+<p>Please could you install the &ldquo;alter&rdquo; filter plugin into logstash for the stack with id e3352477-f40c-41c5-be46-5c52c0e3de38?</p>
+<h2 id="process-for-generating-logstash-filters-for-logit">Process for generating logstash filters for Logit</h2>
+<p>We have instead come up with the following method.</p>
+
+<ol>
+<li>Create your branch on PaaS-CF.</li>
+<li>Make your changes and commit them as usual.</li>
+<li>Two &ldquo;upstream&rdquo; repositories are used to generate the filter configuration. The required tags within each repository are specified in the Makefile (see the <code>logit-filters</code> target) - update them if required.</li>
+<li>Run <code>make logit-filters</code> from the paas-cf directory (requires docker). This updates the <code>config/logit/output/generated_logit_filters.conf</code> file with the latest filter configuraton.</li>
+<li>Check the diff for any potential gotchas.</li>
+<li><a href="https://reliability-engineering.cloudapps.digital/manuals/logit-io-joiners.html">Log into logit via Google</a>[external link].</li>
+<li>From the dashboard view click on the <strong>Settings</strong> button for the stack you wish to modify.</li>
+<li>Click on <strong>Logstash Filters</strong> and wait for the current page to load.</li>
+<li>Select all of the existing filters and delete them.</li>
+<li>Paste in your new filters and click <strong>Validate</strong>.</li>
+<li>If the validation passes an <strong>Apply</strong> button will appear, click this.</li>
+<li>Wait for application of the filters to finish.</li>
+</ol>
+<h2 id="updating-the-components-of-the-logstash-filters">Updating the components of the logstash filters</h2>
+<p>This information can be found in the <a href="https://github.com/alphagov/paas-cf/blob/master/config/logit/README.md">readme</a></p>
+
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
