@@ -123,10 +123,12 @@ it may help to look at UAA logs.</p>
 
 <p>The access logs is on the UAA VMs in <code>/var/vcap/sys/log/uaa/localhost_access.log</code>.</p>
 
-<p>All other logs are sent to <a href="https://logsearch.cloud.service.gov.uk">logsearch</a>:</p>
+<p>All other logs are sent to <a href="https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74">logit</a>.
+You must <a href="https://reliability-engineering.cloudapps.digital/manuals/logit-io-joiners.html">Log into logit via Google</a>[external link] before you can access kibana.</p>
 
 <ul>
 <li>Scope to component: UAA</li>
+<li>filter by <code>@source.deployment: &quot;prod&quot;</code> or <code>@source.deployment: &quot;prod-lon&quot;</code> (depending on which deployment you are looking for)</li>
 <li>Look for strings like <code>UserNotFound</code>, <code>PrincipalAuthenticationFailure</code> or <code>UserAuthenticationFailure</code></li>
 <li><code>principal=XXX</code> will give you the username</li>
 <li><code>origin=[1.2.3.4]</code> will give you the origin IP</li>
@@ -308,7 +310,8 @@ to help with rotating keys.</li>
 
 <ul>
 <li>Check with the team if we have any known load testing occuring either by the team or by a tenant</li>
-<li>Visit <a href="https://logsearch.cloud.service.gov.uk/">kibana</a> and filter by <code>@source.component: gorouter</code> then add in <code>gorouter.host</code> to the table, this will show you which hosts are being most used currently</li>
+<li><a href="https://reliability-engineering.cloudapps.digital/manuals/logit-io-joiners.html">Log into logit via Google</a>[external link]</li>
+<li>Visit <a href="https://kibana.logit.io/s/665ca355-efc3-46a2-96cf-21d31a5305bb/app/kibana#/">kibana</a> and filter by <code>@source.component: gorouter</code> and <code>@source.deployment: &quot;prod&quot;</code> or <code>@source.deployment: &quot;prod-lon&quot;</code> (depending on which deployment you are looking for) then add in <code>gorouter.host</code> to the table, this will show you which hosts are being most used currently</li>
 <li>Contact the team who own the service to see if they are aware of anything happening</li>
 </ul>
 
