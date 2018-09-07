@@ -9,9 +9,11 @@ it may help to look at UAA logs.
 
 The access logs is on the UAA VMs in `/var/vcap/sys/log/uaa/localhost_access.log`.
 
-All other logs are sent to [logsearch](https://logsearch.cloud.service.gov.uk):
+All other logs are sent to [logit](https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74).
+You must [Log into logit via Google](https://reliability-engineering.cloudapps.digital/manuals/logit-io-joiners.html)[external link] before you can access kibana.
 
 * Scope to component: UAA
+* filter by `@source.deployment: "prod"` or `@source.deployment: "prod-lon"` (depending on which deployment you are looking for)
 * Look for strings like `UserNotFound`, `PrincipalAuthenticationFailure` or `UserAuthenticationFailure`
 * `principal=XXX` will give you the username
 * `origin=[1.2.3.4]` will give you the origin IP
@@ -215,7 +217,8 @@ The following Trusted Advisor checks cause expected warnings:
 If you see an alert for gorouter latency being high;
 
 * Check with the team if we have any known load testing occuring either by the team or by a tenant
-* Visit [kibana](https://logsearch.cloud.service.gov.uk/) and filter by `@source.component: gorouter` then add in `gorouter.host` to the table, this will show you which hosts are being most used currently
+* [Log into logit via Google](https://reliability-engineering.cloudapps.digital/manuals/logit-io-joiners.html)[external link]
+* Visit [kibana](https://kibana.logit.io/s/665ca355-efc3-46a2-96cf-21d31a5305bb/app/kibana#/) and filter by `@source.component: gorouter` and `@source.deployment: "prod"` or `@source.deployment: "prod-lon"` (depending on which deployment you are looking for) then add in `gorouter.host` to the table, this will show you which hosts are being most used currently
 * Contact the team who own the service to see if they are aware of anything happening
 
 As this is the first monitor of this type please investigate the gorouters to discover the issue they are encountering. We have previously seen high resource usage (CPU and Memory) these should be checked in the first case.
