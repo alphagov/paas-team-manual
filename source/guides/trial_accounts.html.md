@@ -48,7 +48,10 @@ TO '/var/downloads/old_orgs.json';
 
 ### To contact the org managers
 
-We currently do not have an up-to-date Notify template for this notification. Once one is created you will be able to send the notification with something like:
+1. Install node on your machine
+1. Install the notify node client with `npm install --save notifications-node-client`
+
+We have an up-to-date Notify template for this notification. However, it requires some word smithing before being used in anger.
 
 ```bash
 NOTIFY_API_KEY="$(paas-pass notify/prod/api_key)" \
