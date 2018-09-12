@@ -49,6 +49,7 @@ addition to the [GDS styleguides]().
 
  - [Finding activity](support/finding_activity/)
  - [Incident process](support/incident_process/)
+ - [Restoring Elasticsearch Backups](support/restoring_elasticsearch_backups/)
  - [Responding to alerts](support/responding_to_alerts/)
  - [Responding to security issues](support/responding_to_security_issues/)
  - [Support roles and responsibilities](support/roles_and_responsibilities/)
