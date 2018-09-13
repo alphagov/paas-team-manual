@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/trial_accounts/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/trial_accounts/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/trial_accounts/" />
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#trial-accounts">Trial Accounts</a>
+    <ul>
+      <li>
+        <a href="#how-to-get-the-data">How to get the data</a>
+      </li>
+      <li>
+        <a href="#how-to-import-the-data">How to import the data</a>
+      </li>
+      <li>
+        <a href="#trial-orgs">Trial Orgs</a>
+        <ul>
+          <li>
+            <a href="#how-to-query-the-data">How to query the data</a>
+          </li>
+          <li>
+            <a href="#to-export-the-data-for-contacting-the-org-managers-run-the-following">To export the data for contacting the org managers run the following</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#abandoned-orgs">Abandoned orgs</a>
+        <ul>
+          <li>
+            <a href="#abandoned-orgs-how-to-query-the-data">How to query the data</a>
+          </li>
+          <li>
+            <a href="#abandoned-orgs-to-export-the-data-for-contacting-the-org-managers-run-the-following">To export the data for contacting the org managers run the following</a>
+          </li>
+          <li>
+            <a href="#to-contact-the-org-managers">To contact the org managers</a>
+          </li>
+          <li>
+            <a href="#tidy-up">Tidy up</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="trial-accounts">Trial Accounts</h1>
+<p>This guide is for the technical work involved in managing trial and abandoned orgs. We are now enforcing a 3 month trial policy in order to reduce costs. We look for orgs which are older than 75 days because we want to notify them just prior to expiry.</p>
+<h2 id="how-to-get-the-data">How to get the data</h2>
+<ol>
+<li>Log into Prod</li>
+<li>Run <code>./scripts/org-usage-report.sh &gt; org_usage.csv</code></li>
+</ol>
+
+<p>expect to see some errors containing</p>
+<div class="highlight"><pre class="highlight shell"><code>jq: error <span class="o">(</span>at &lt;stdin&gt;:1<span class="o">)</span>: Cannot iterate over null <span class="o">(</span>null<span class="o">)</span>
+jq: error <span class="o">(</span>at &lt;stdin&gt;:1<span class="o">)</span>: Cannot iterate over null <span class="o">(</span>null<span class="o">)</span>
+</code></pre></div>
+<p>These are from orgs that are created or removed during the data dump i.e. CATS and SMOKE test orgs.</p>
+<h2 id="how-to-import-the-data">How to import the data</h2>
+<ol>
+<li><code>docker run -d -p 5432:5432 --name postgres -e POSTGRES_PASSWORD= -v &quot;$PWD:/var/downloads&quot; postgres:9.5</code></li>
+<li><code>psql -Upostgres -hlocalhost</code></li>
+<li><code>create table orgdump (name text, guid text, created_at timestamptz, updated_at timestamptz, managers int, users int, running_apps int, stopped_apps int, services int, last_logon_time text, quota text, org_manager_emails text);</code></li>
+<li><code>COPY orgdump FROM &#39;/var/downloads/org_usage.csv&#39; DELIMITER &#39;,&#39; CSV HEADER;</code></li>
+</ol>
+<h2 id="trial-orgs">Trial Orgs</h2><h3 id="how-to-query-the-data">How to query the data</h3>
+<p>To find orgs that are over 75 days old and are on the default quota:</p>
+<div class="highlight"><pre class="highlight sql"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orgdump</span>
+<span class="k">WHERE</span> <span class="n">created_at</span> <span class="o">&lt;</span> <span class="n">NOW</span><span class="p">()</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'75 days'</span>
+<span class="k">AND</span> <span class="n">quota</span> <span class="k">like</span> <span class="s1">'default'</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">created_at</span><span class="p">;</span>
+</code></pre></div><h3 id="to-export-the-data-for-contacting-the-org-managers-run-the-following">To export the data for contacting the org managers run the following</h3><div class="highlight"><pre class="highlight sql"><code><span class="k">COPY</span> <span class="p">(</span><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">orgdump</span> <span class="k">where</span> <span class="n">created_at</span> <span class="o">&lt;</span> <span class="n">NOW</span><span class="p">()</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'75 days'</span> <span class="k">and</span> <span class="n">quota</span> <span class="k">like</span> <span class="s1">'default'</span> <span class="k">order</span> <span class="k">by</span> <span class="n">created_at</span><span class="p">)</span>
+<span class="k">TO</span> <span class="s1">'/var/downloads/old_orgs.csv'</span> <span class="k">WITH</span> <span class="n">HEADER</span> <span class="n">CSV</span> <span class="k">DELIMITER</span> <span class="s1">','</span><span class="p">;</span>
+</code></pre></div>
+<p>Our process is still being refined. This work should be carried out as part of a Pivotal story, so for now it should be fine to just attach the CSV output to a comment in the story.</p>
+<h2 id="abandoned-orgs">Abandoned orgs</h2><h3 id="abandoned-orgs-how-to-query-the-data">How to query the data</h3>
+<p>To find orgs with nothing running:</p>
+<div class="highlight"><pre class="highlight sql"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orgdump</span>
+<span class="k">WHERE</span> <span class="n">users</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">or</span> <span class="p">(</span><span class="n">running_apps</span> <span class="o">+</span> <span class="n">stopped_apps</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">AND</span> <span class="n">created_at</span> <span class="o">&lt;</span> <span class="n">NOW</span><span class="p">()</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'75 days'</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">created_at</span><span class="p">;</span>
+</code></pre></div>
+<p><strong>At this point the data should be checked with the PM team before proceeding</strong></p>
+<h3 id="abandoned-orgs-to-export-the-data-for-contacting-the-org-managers-run-the-following">To export the data for contacting the org managers run the following</h3><div class="highlight"><pre class="highlight sql"><code><span class="k">COPY</span> <span class="p">(</span>
+  <span class="k">WITH</span> <span class="n">unused_orgs</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">org_manager_emails</span>
+    <span class="k">FROM</span> <span class="n">orgdump</span>
+    <span class="k">WHERE</span> <span class="p">(</span><span class="n">users</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">OR</span> <span class="p">(</span><span class="n">running_apps</span> <span class="o">+</span> <span class="n">stopped_apps</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">AND</span> <span class="n">created_at</span> <span class="o">&lt;</span> <span class="n">NOW</span><span class="p">()</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'75 days'</span>
+    <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">created_at</span>
+  <span class="p">),</span>
+  <span class="n">filtered_empty_users</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">unused_orgs</span> <span class="k">WHERE</span> <span class="n">org_manager_emails</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span>
+  <span class="p">),</span>
+  <span class="n">emails_to_arrays</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">string_to_array</span><span class="p">(</span><span class="n">org_manager_emails</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span> <span class="k">AS</span> <span class="n">user_array</span> <span class="k">FROM</span> <span class="n">filtered_empty_users</span>
+  <span class="p">),</span>
+  <span class="n">unnested_emails</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="k">unnest</span><span class="p">(</span><span class="n">user_array</span><span class="p">)</span> <span class="k">AS</span> <span class="nv">"email address"</span><span class="p">,</span> <span class="n">name</span> <span class="k">AS</span> <span class="n">organisation</span> <span class="k">FROM</span> <span class="n">emails_to_arrays</span>
+  <span class="p">)</span>
+  <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">unnested_emails</span>
+<span class="p">)</span> <span class="k">TO</span> <span class="s1">'/var/downloads/abandoned_orgs.csv'</span> <span class="k">WITH</span> <span class="n">HEADER</span> <span class="n">CSV</span> <span class="k">DELIMITER</span> <span class="s1">','</span><span class="p">;</span>
+</code></pre></div>
+<p>You will then need to exit psql:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>\q
+</code></pre></div><h3 id="to-contact-the-org-managers">To contact the org managers</h3>
+<p>Login to <a href="https://www.notifications.service.gov.uk/sign-in">Notify</a>. If you do not have login details speak to a senior member of the team.</p>
+
+<ol>
+<li>Click on Templates -&gt; Unused organisation removal notice -&gt; Send -&gt; Upload list of email addresses -&gt; Choose a file.</li>
+<li>Navigate to where you stored the file (<code>/var/downloads/abandoned_orgs.csv</code>).</li>
+<li>Click on &lsquo;Send X emails&rsquo;, where X should be the number of people to contact.</li>
+</ol>
+
+<p>We should then mark the story as blocked until seven days have passed. Once this time has passed we can delete the orgs and notify them of deletion. For notification of deletion, follow the steps above but using the template called &#39;Unused organisation removed&rsquo;.</p>
+<h3 id="tidy-up">Tidy up</h3><div class="highlight"><pre class="highlight shell"><code>docker stop postgres <span class="o">&amp;&amp;</span> docker rm postgres
+rm org_usage.csv
+</code></pre></div>
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
