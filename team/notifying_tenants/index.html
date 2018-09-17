@@ -83,6 +83,9 @@
           <li>
             <a href="#cf-upgrade-email-template">CF upgrade email template</a>
           </li>
+          <li>
+            <a href="#cf-buildpack-emails"> CF buildpack emails</a>
+          </li>
         </ul>
       </li>
     </ul>
@@ -141,6 +144,16 @@ one way communication</li>
 <li>Downtime or service impact if any</li>
 <li>Summary of buildpack changes.</li>
 </ul>
+<h3 id="cf-buildpack-emails"> CF buildpack emails</h3>
+<p>Use the latest &ldquo;GOV.UK PaaS - Upcoming buildpack upgrades&rdquo; email in the
+gov-uk-paas-announce <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce">google group interface</a> as an example.</p>
+
+<p>You&rsquo;ll need to produce a summary of changes between the old and new buildpacks,
+which is a bit of a tedious manual process. See
+<a href="https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/operations.d/240-cf-set-buildpack-release.yml">operations.d/240-cf-set-buildpack-release.yml</a>
+for the pinned versions and the GitHub releases pages for the buildpacks (e.g.
+<a href="https://github.com/cloudfoundry/binary-buildpack/releases/v1.0.21">cloudfoundry/binary-buildpack/releases/v1.0.21</a>)
+to read about the changes.</p>
 
 <p><strong>NB Incident comms email templates are saved in Statuspage.</strong></p>
 
