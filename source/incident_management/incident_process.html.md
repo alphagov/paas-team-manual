@@ -42,6 +42,23 @@ Ensure that we schedule the post mortem and publish our incident report Draft th
 [PaaS Emergency contacts and escalations document](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing) *(restricted access)* provides useful contact information for senior GaaP management escalations for out of hours support.
 
 
+## Escalations
+
+If there is a P1 incident, the GaaP programme team will have been informed via the GaaP incidents email list, and will be kept updated via the PaaS Announce email list.
+
+If an incident needs to be escalated beyond the PaaS team, the incident comms person will contact people in the following order:
+
+* GaaP Programme Director
+* GaaP Programme Team
+
+The person contacted above will decide if they need to alert a member of the GDS executive group. If none of the above are available then they will try the people below in the following order:
+
+* David Lewis - Director for GDS Portfolio Group
+
+The contact details for the above people, as well as useful contacts, can be found in
+[PaaS Emergency contacts and escalations (restricted access)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing)
+
+
 ## When the incident is over
 
 When the problem has been fixed, check that our [status page](https://status.cloud.service.gov.uk/) is showing that the PaaS is operational.
@@ -76,20 +93,3 @@ Create a copy of our factual incident report which can be edited for publication
 
 The GaaP comms team will edit to ensure it is suitable for the audience. This will include our users who are often developers, and will also include non-tech people. The comms team will want to pair with a member of the PaaS team on this rewrite, and have it fact checked. This could be PM/DM/TA/TL or someone that they suggest.
 The comms team will agree publication with the cabinet office press office.
-
-
-## Escalations
-
-If there is a P1 incident, the GaaP programme team will have been informed via the GaaP incidents email list, and will be kept updated via the PaaS Announce email list.
-
-If an incident needs to be escalated beyond the PaaS team, the incident comms person will contact people in the following order:
-
-* GaaP Programme Director
-* GaaP Programme Team
-
-The person contacted above will decide if they need to alert a member of the GDS executive group. If none of the above are available then they will try the people below in the following order:
-
-* David Lewis - Director for GDS Portfolio Group
-
-The contact details for the above people, as well as useful contacts, can be found in
-[PaaS Emergency contacts and escalations (restricted access)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing)
