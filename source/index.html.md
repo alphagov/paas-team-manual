@@ -1,5 +1,20 @@
 # PaaS Team Manual
 
+## Incident management
+
+ - [Incident process](incident_management/incident_process/)
+ - [Responding to alerts](incident_management/responding_to_alerts/)
+
+## Support
+
+ - [Finding activity](support/finding_activity/)
+ - [Restoring Elasticsearch Backups](support/restoring_elasticsearch_backups/)
+ - [Responding to security issues](support/responding_to_security_issues/)
+ - [Support roles and responsibilities](support/roles_and_responsibilities/)
+ - [Investigating rsyslog issues](support/rsyslog/)
+ - [Support manual](support/support_manual/)
+ - [Zendesk](support/zendesk/)
+
 ## Team
 
  - [Orientation](team/orientation/)
@@ -45,18 +60,6 @@ addition to the [GDS styleguides]().
 
  - [YAML](styleguides/YAML/)
  - [Concourse pipelines](styleguides/concourse_pipeline/)
-
-## Support
-
- - [Finding activity](support/finding_activity/)
- - [Incident process](support/incident_process/)
- - [Restoring Elasticsearch Backups](support/restoring_elasticsearch_backups/)
- - [Responding to alerts](support/responding_to_alerts/)
- - [Responding to security issues](support/responding_to_security_issues/)
- - [Support roles and responsibilities](support/roles_and_responsibilities/)
- - [Investigating rsyslog issues](support/rsyslog/)
- - [Support manual](support/support_manual/)
- - [Zendesk](support/zendesk/)
 
 ## Architecture decision records
 

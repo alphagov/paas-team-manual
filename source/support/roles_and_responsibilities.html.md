@@ -55,6 +55,6 @@ The Escalations Out of hours person is responsible for
 
 * Responding to system alerts which will be sent to you via pagerduty if the OOH support lead is unable to deal with them. These will be things which seriously impact the availability of live services due to a problem with our platform.
 * Making decisions about and sending any tenant comms during OOH.
-* Escalating outside the team (through GDS) if required. More on this in the [Incident Process](/support/incident_process/#if-youre-incident-comms)
+* Escalating outside the team (through GDS) if required. More on this in the [Incident Process](/incident_management/incident_process/#if-youre-incident-comms)
 * noting what has been done in a [support week document](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1tC5G48uHnlu-qK9oGGx85QrArZSJRuFNKV2kKtFsVck/edit?usp=sharing_)
 * having a support handover meeting at the beginning and end of the support week

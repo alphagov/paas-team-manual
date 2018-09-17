@@ -76,7 +76,7 @@ Always notify the tenant about this change and why it is done.
 
 ## Incident Process
 
-This is now in its [own section](/support/incident_process/).
+This is now in its [own section](/incident_management/incident_process/).
 
 ## Useful links
 
