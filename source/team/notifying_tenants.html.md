@@ -27,7 +27,7 @@ These announcements are our chance to showcase how we're developing GOV.UK PaaS 
 
 ## Sending notification emails to tenants
 
-Use the [google group interface](https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce) to send the email.
+Use the [google group interface] to send the email.
 
 * Click on `New topic`
 * In `By` select: Post on behalf of GOV.UK PaaS announce
@@ -50,4 +50,18 @@ The body should contain:
  - Downtime or service impact if any
  - Summary of buildpack changes.
 
+### CF buildpack emails
+
+Use the latest "GOV.UK PaaS - Upcoming buildpack upgrades" email in the
+gov-uk-paas-announce [google group interface] as an example.
+
+You'll need to produce a summary of changes between the old and new buildpacks,
+which is a bit of a tedious manual process. See
+[operations.d/240-cf-set-buildpack-release.yml](https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/operations.d/240-cf-set-buildpack-release.yml)
+for the pinned versions and the GitHub releases pages for the buildpacks (e.g.
+[cloudfoundry/binary-buildpack/releases/v1.0.21](https://github.com/cloudfoundry/binary-buildpack/releases/v1.0.21))
+to read about the changes.
+
 **NB Incident comms email templates are saved in Statuspage.**
+
+[google group interface]: https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce
