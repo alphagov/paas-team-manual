@@ -44,16 +44,18 @@ Ensure that we schedule the post mortem and publish our incident report Draft th
 
 ## Escalations
 
-If there is a P1 incident, the GaaP programme team will have been informed via the GaaP incidents email list, and will be kept updated via the PaaS Announce email list.
+If you need to escalate, check in PagerDuty who is on escalation rota: Go to Configuration -> [Schedules](https://gds-paas.pagerduty.com/schedules).
 
-If an incident needs to be escalated beyond the PaaS team, the incident comms person will contact people in the following order:
+Then find that person's phone number: Go to Configuration -> [Users](https://gds-paas.pagerduty.com/users) and click on the relevant person.
 
-* GaaP Programme Director
-* GaaP Programme Team
+If an incident needs to be escalated beyond the PaaS team contact people in the following order:
 
-The person contacted above will decide if they need to alert a member of the GDS executive group. If none of the above are available then they will try the people below in the following order:
+* TechOps Programme Director
+* Head of Reliability Engineering
 
-* David Lewis - Director for GDS Portfolio Group
+The person contacted above will decide if they need to alert a member of the GDS executive group. If none of the above are available then they will try the person below:
+
+* Director for GDS Portfolio Group
 
 The contact details for the above people, as well as useful contacts, can be found in
 [PaaS Emergency contacts and escalations (restricted access)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing)
@@ -62,8 +64,7 @@ The contact details for the above people, as well as useful contacts, can be fou
 
 ### AWS
 
-We have a full support contract with AWS. Open a support case through the AWS console or at https://aws.amazon.com/support
-If the incident is 'critical' or 'urgent' severity use 'click to chat' or 'click to call' for immediate contact. They have encouraged us to do that so that they know it is important to us.
+We have a full support contract with AWS. Open a support case through the AWS console or at [https://aws.amazon.com/support](https://aws.amazon.com/support). If the incident is 'critical' or 'urgent' severity use 'click to chat' or 'click to call' for immediate contact. They have encouraged us to do that so that they know it is important to us.
 
 ### Aiven Elasticsearch
 
@@ -71,11 +72,11 @@ Aiven operates 24-hour monitoring 365 days a year on all Aiven services. Aiven p
 
 For regular subscriptions Aiven provides free email support regarding problems using and accessing the Aiven services. Responses are provided on a best-effort basis during the same or next business day.
 
-Email support@aiven.io for all support requests.
+Email [support@aiven.io](support@aiven.io) for all support requests.
 
 ### DataDog
 
-Unfortunately we don’t have a dedicated support for datadog. You can use Live chat which is available between 15:00 - 00:00 UTC or reach their Support Team via email at support@datadoghq.com. More details: https://www.datadoghq.com/support/
+Unfortunately we don’t have a dedicated support for datadog. You can use Live chat which is available between 15:00 - 00:00 UTC or reach their Support Team via email at [support@datadoghq.com](support@datadoghq.com). More details: [https://www.datadoghq.com/support/](https://www.datadoghq.com/support/).
 
 
 ## When the incident is over
