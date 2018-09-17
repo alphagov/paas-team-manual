@@ -58,6 +58,25 @@ The person contacted above will decide if they need to alert a member of the GDS
 The contact details for the above people, as well as useful contacts, can be found in
 [PaaS Emergency contacts and escalations (restricted access)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing)
 
+## Suppliers
+
+### AWS
+
+We have a full support contract with AWS. Open a support case through the AWS console or at https://aws.amazon.com/support
+If the incident is 'critical' or 'urgent' severity use 'click to chat' or 'click to call' for immediate contact. They have encouraged us to do that so that they know it is important to us.
+
+### Aiven Elasticsearch
+
+Aiven operates 24-hour monitoring 365 days a year on all Aiven services. Aiven personnel will be automatically alerted on any service anomalies. Aiven personnel will rapidly address any issues in system operations requiring manual intervention.
+
+For regular subscriptions Aiven provides free email support regarding problems using and accessing the Aiven services. Responses are provided on a best-effort basis during the same or next business day.
+
+Email support@aiven.io for all support requests.
+
+### DataDog
+
+Unfortunately we don’t have a dedicated support for datadog. You can use Live chat which is available between 15:00 - 00:00 UTC or reach their Support Team via email at support@datadoghq.com. More details: https://www.datadoghq.com/support/
+
 
 ## When the incident is over
 
