@@ -33,7 +33,7 @@ Your incident responsibilities depend on your role within the incident team.
 
 1. Discuss the incident with the PaaS product and delivery managers to decide when the incident is resolved, or can be downgraded as it is no longer impacting the service.
 
-As a lower priority, create a pivotal story to record all actions taken and changes made to resolve the incident
+As a lower priority, create a pivotal story to record all actions taken and identify any ongoing work.
 
 ### Incident comms
 
@@ -41,7 +41,7 @@ As a lower priority, create a pivotal story to record all actions taken and chan
 
 1. Notify the tenants about the investigation by creating a new incident in [Statuspage](https://team-manual.cloud.service.gov.uk/team/statuspage/) using the “Possible issue being investigated” template. 
 
-    When creating or updating an incident, you must tick the boxes to say which components are affected, otherwise notifications will not be sent.
+    > __Important__: When creating or updating an incident, you must tick the boxes to say which components are affected, otherwise notifications will not be sent.
 
 1. Update tenants hourly using the [saved templates](https://manage.statuspage.io/pages/h4wt7brwsqr0) in our Statuspage account.
 
@@ -51,11 +51,11 @@ You can escalate incidents within the GOV.UK PaaS team.
 
 1. Go to [PagerDuty](https://gds-paas.pagerduty.com/services).
 
-1. Go to __Configuration__ and select __Schedules__.
+1. Go to __Configuration__ and select [__Schedules__](https://gds-paas.pagerduty.com/schedules).
 
 1. Check who is currently on the escalation rota.
 
-1. Go back to __Configuration__ and select __Users__.
+1. Go back to __Configuration__ and select [__Users__](https://gds-paas.pagerduty.com/users).
 
 1. Select the relevant person to find their phone number.
 
