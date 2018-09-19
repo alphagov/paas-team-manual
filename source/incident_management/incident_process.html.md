@@ -1,115 +1,125 @@
 # Incident Process
 
-This section covers incidents and outages where the priority is to ensure HA service, it gives an overview of what you should be aware of before you are faced with an incident. It also outlines how to manage incident comms.
+This section summarises :
 
-**If you suspect a security breach [alert Information Assurance (IA) immediately](/support/responding_to_security_issues/#if-you-suspect-a-security-breach)**
+- how to manage incidents and outages to ensure a highly available service
+- how to manage incident comms
 
-## If we’re having an incident
+**If you suspect a security breach, [alert Information Assurance (IA) immediately](/support/responding_to_security_issues/#if-you-suspect-a-security-breach)**
 
-If you are on support when an incident happens, you should:
+## Set up the incident team
 
-1. nominate an incident lead (this may be you)
-2. nominate an incident comms person (during OOH this can be the person on the PaaS escalation rota)
-3. join #paas-incident on Slack
-4. get on with understanding and fixing the issue
+When an incident happens, the person on support must:
 
-The incident lead, comms person and anyone else needed to work on the incident will form the incident team.
+- nominate an incident lead; this person must have production access, and be the person on support
+- nominate an incident comms person; during out-of-hours this can be the person on the PaaS escalation rota
+- join #paas-incident on Slack if required
 
-The incident team can request support from any other members of the PaaS team and fixing the incident is usually more important than routine meetings (1 to 1s, retrospectives, planning, etc).
+The incident lead, incident comms person and anyone else needed to work on the incident will form the incident team.
 
-### If you’re the incident lead:
+Incident team leads can request support from any other members of the PaaS team. Incidents take priority over BAU, for example retrospectives or planning sessions.
 
-Start making notes of what you’re doing - the #paas-incident Slack channel is the best place for this - so that the incident comms can start putting them in the incident report. It's worth bearing in mind that Tenants may know there's a problem and may join this channel. Also note, slack messages can start to disappear after a few days.
+## Investigate and resolve the incident
 
-Decide if you need people to help, and ask for them to come over and sit with you. Many people can investigate at the same time, but only the incident lead should be making changes to production.
+Your incident responsibilities depend on your role within the incident team.
 
-Consult the product manager and delivery manager to decide when the matter is not longer impacting the service, and is therefore resolved, or can be downgraded.
+### Incident lead
 
-Create a pivotal story to track our response to the incident. This should be used to keep a record of what we do to resolve the problem.
+1. Investigate the incident, requesting help from PaaS team if required.
 
-Ensure that we schedule the post mortem and publish our incident report Draft the incident report using the information that has been noted on slack. There is a [template](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/155yrsyhHM9Feh-ucxLzyj7toIb2sMK8KiGVdEFLcyfQ/edit?usp=sharing) for this which also contains guidance, and there are examples [here](https://drive.google.com/drive/folders/0B5fiQJfQc7tRUVBTcjVfTFhVWUU?usp=sharing).
+1. Make necessary changes to the production environment (only the incident lead can do this).
 
-### If you’re incident comms:
+1. Record actions taken and changes made in the #paas-incident slack channel.
 
-<a id="if-youre-incident-comms"></a>
+1. Discuss the incident with the PaaS product and delivery managers to decide when the incident is resolved, or can be downgraded as it is no longer impacting the service.
 
-1. Let the PaaS team know about the incident on #paas Slack channel
-2. Notify the tenants about the investigation by creating a new incident in [Statuspage](/team/statuspage/) using the template "Possible issue being investigated". Important: when making or updating an incident make sure to tick the boxes to say which components are affected, otherwise notifications will not be sent.
-3. Tell internal stakeholders: send a summary of the incident as soon as possible to the [GaaP incidents email list](mailto:gaap-incidents@digital.cabinet-office.gov.uk) (this tells the GaaP team and a few others - internal to GDS - including IA team members).
-4. Update tenants hourly using the [saved templates](https://manage.statuspage.io/pages/h4wt7brwsqr0) in our Statuspage account.
-5. Ensure that all decisions/comms are entered into the timeline section of the incident report.
+As a lower priority, create a pivotal story to record all actions taken and changes made to resolve the incident
 
-[PaaS Emergency contacts and escalations document](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing) *(restricted access)* provides useful contact information for senior GaaP management escalations for out of hours support.
+### Incident comms
 
+1. Let the PaaS team know about the incident on the #paas Slack channel.
+
+1. Notify the tenants about the investigation by creating a new incident in [Statuspage](https://team-manual.cloud.service.gov.uk/team/statuspage/) using the “Possible issue being investigated” template. 
+
+    When creating or updating an incident, you must tick the boxes to say which components are affected, otherwise notifications will not be sent.
+
+1. Update tenants hourly using the [saved templates](https://manage.statuspage.io/pages/h4wt7brwsqr0) in our Statuspage account.
 
 ## Escalations
 
-If you need to escalate, check in PagerDuty who is on escalation rota: Go to Configuration -> [Schedules](https://gds-paas.pagerduty.com/schedules).
+You can escalate incidents within the GOV.UK PaaS team.
 
-Then find that person's phone number: Go to Configuration -> [Users](https://gds-paas.pagerduty.com/users) and click on the relevant person.
+1. Go to [PagerDuty](https://gds-paas.pagerduty.com/services).
 
-If an incident needs to be escalated beyond the PaaS team contact people in the following order:
+1. Go to __Configuration__ and select __Schedules__.
 
-* TechOps Programme Director
-* Head of Reliability Engineering
+1. Check who is currently on the escalation rota.
 
-The person contacted above will decide if they need to alert a member of the GDS executive group. If none of the above are available then they will try the person below:
+1. Go back to __Configuration__ and select __Users__.
 
-* Director for GDS Portfolio Group
+1. Select the relevant person to find their phone number.
 
-The contact details for the above people, as well as useful contacts, can be found in
-[PaaS Emergency contacts and escalations (restricted access)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing)
+If you need to escalate an incident beyond the GOV.UK PaaS team, contact these people in the following order:
+- TechOps Programme Director
+- Head of Reliability Engineering
 
-## Suppliers
+The person contacted will decide if they need to alert a member of the GDS executive group. 
 
-### AWS
+If neither the TechOps Programme Director nor the Head of Reliability Engineering are available, you must contact the Director for GDS Portfolio Group.
 
-We have a full support contract with AWS. Open a support case through the AWS console or at [https://aws.amazon.com/support](https://aws.amazon.com/support). If the incident is 'critical' or 'urgent' severity use 'click to chat' or 'click to call' for immediate contact. They have encouraged us to do that so that they know it is important to us.
-
-### Aiven Elasticsearch
-
-Aiven operates 24-hour monitoring 365 days a year on all Aiven services. Aiven personnel will be automatically alerted on any service anomalies. Aiven personnel will rapidly address any issues in system operations requiring manual intervention.
-
-For regular subscriptions Aiven provides free email support regarding problems using and accessing the Aiven services. Responses are provided on a best-effort basis during the same or next business day.
-
-Email [support@aiven.io](support@aiven.io) for all support requests.
-
-### DataDog
-
-Unfortunately we don’t have a dedicated support for datadog. You can use Live chat which is available between 15:00 - 00:00 UTC or reach their Support Team via email at [support@datadoghq.com](support@datadoghq.com). More details: [https://www.datadoghq.com/support/](https://www.datadoghq.com/support/).
-
+The contact details for the above people, as well as useful contacts, can be found in [PaaS Emergency contacts and escalations (restricted access)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing)
 
 ## When the incident is over
 
 When the problem has been fixed, check that our [status page](https://status.cloud.service.gov.uk/) is showing that the PaaS is operational.
 
-### Incident Report
-The [incident report template](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/155yrsyhHM9Feh-ucxLzyj7toIb2sMK8KiGVdEFLcyfQ/edit?usp=sharing) gives some guidance about how to complete it.
+### Write the incident report
 
-The incident lead and incident comms should ensure that the report is completed and that all relevant details are in the timeline.
+The incident lead and incident comms must write the incident report, ensuring that all relevant details, decisions and comms are in the timeline section of the report.
 
-### Incident Review meeting
+The [incident report template](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/155yrsyhHM9Feh-ucxLzyj7toIb2sMK8KiGVdEFLcyfQ/edit?usp=sharing) provides guidance about how to complete it.
 
-This is a no-blame retro of the incident. See [blameless postmortems](https://codeascraft.com/2012/05/22/blameless-postmortems/) for some background.
+### Hold an incident review meeting
 
-The purpose of the meeting is to agree on what happened, to ensure the record fully reflects this, and to agree all follow-up actions. It should be held within a few days of the incident being resolved.
+Conduct a [no-blame retro](https://codeascraft.com/2012/05/22/blameless-postmortems/) of the incident within one week of resolving the incident to:
 
-Invite the people from the team who were involved (Incident Lead/Comms/Team who worked on it) and if they are not on the list already, add the Delivery manager, Product Manager and Tech Arch.
+- agree on what happened
+- ensure the record fully reflects this 
+- agree all follow-up actions 
 
-### Publishing the Incident Report
-[Some background](https://www.pivotaltracker.com/n/projects/1275640/stories/121574573).
+Invite the following people:
 
-Tell the GaaP comms team (Nettie Williams) as soon as possible that there may be a report to publish.
+- Incident Lead
+- Incident Comms
+- Incident team
+- Delivery manager
+- Product Manager
+- Technical Architect
 
-### Deciding to publish
-This decision should be made by two of DM/PM/TL/TA.
-By default we publish Incident Reports on the [GaaP Blog](https://governmentasaplatform.blog.gov.uk/) unless there is a good reason not to. This approach is consistent across Data Group - it is similar to how GOV.UK publishes its reports. It sets a good example and demonstrates openness, which is a good thing. We just need to make sure we consider any negative ramifications.
+### Publish the incident report
 
-The only incidents for which this is not automatically true are for security incidents which need to be carefully considered in order to ensure that no further harm could be caused by publishing these.
+Incident comms creates a version of the incident report for publication. Refer to the [template](https://drive.google.com/open?id=1g2_KVXfZnBDVFFlxyModAi8YSbF0uun32Z1Pe5TYBc8) for guidance, and also see previous examples.
 
-### Editing for publication
+By default we publish Incident Reports on Statuspage unless there is a good reason not to. It sets a good example and demonstrates openness. 
 
-Create a copy of our factual incident report which can be edited for publication and send it to Nettie in the GaaP comms team.
+The only incidents for which this is not automatically true are for security incidents which need to be carefully considered  to ensure that no further harm could be caused by publishing these.
 
-The GaaP comms team will edit to ensure it is suitable for the audience. This will include our users who are often developers, and will also include non-tech people. The comms team will want to pair with a member of the PaaS team on this rewrite, and have it fact checked. This could be PM/DM/TA/TL or someone that they suggest.
-The comms team will agree publication with the cabinet office press office.
+## Suppliers
+
+### AWS
+
+We have a full support contract with AWS. Open a support case through the AWS console or at https://aws.amazon.com/support. If the incident is ‘critical’ or 'urgent’ severity, use __click to chat__ or __click to call__ for immediate contact. 
+
+### Aiven Elasticsearch
+
+Aiven monitors its services 24 hours a day 365 days a year, and provides free email support regarding problems using and accessing its services. Aiven personnel:
+
+- are automatically alerted on any service anomalies
+
+- rapidly address any issues in system operations requiring manual intervention
+
+Responses are provided on a best-effort basis during the same or next business day. Email [support@aiven.io](mailto:support@aiven.io) for all support requests.
+
+### DataDog
+
+We do not currently have dedicated support for datadog. You can use live chat to contact DataDog between 15:00 and 00:00 UTC, or email their Support Team at support@datadoghq.com. Refer to https://www.datadoghq.com/support/ for more information.
