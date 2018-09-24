@@ -60,8 +60,9 @@ You can escalate incidents within the GOV.UK PaaS team.
 1. Select the relevant person to find their phone number.
 
 If you need to escalate an incident beyond the GOV.UK PaaS team, contact these people in the following order:
-- TechOps Programme Director
-- Head of Reliability Engineering
+
+* Head of Reliability Engineering
+* TechOps Programme Director
 
 The person contacted will decide if they need to alert a member of the GDS executive group. 
 
@@ -84,8 +85,8 @@ The [incident report template](https://docs.google.com/a/digital.cabinet-office.
 Conduct a [no-blame retro](https://codeascraft.com/2012/05/22/blameless-postmortems/) of the incident within one week of resolving the incident to:
 
 - agree on what happened
-- ensure the record fully reflects this 
-- agree all follow-up actions 
+- ensure the record fully reflects this
+- agree all follow-up actions
 
 Invite the following people:
 
@@ -108,14 +109,13 @@ The only incidents for which this is not automatically true are for security inc
 
 ### AWS
 
-We have a full support contract with AWS. Open a support case through the AWS console or at https://aws.amazon.com/support. If the incident is ‘critical’ or 'urgent’ severity, use __click to chat__ or __click to call__ for immediate contact. 
+We have a full support contract with AWS. Open a support case through the AWS console or at https://aws.amazon.com/support. If the incident is ‘critical’ or 'urgent’ severity, use __click to chat__ or __click to call__ for immediate contact.
 
 ### Aiven Elasticsearch
 
 Aiven monitors its services 24 hours a day 365 days a year, and provides free email support regarding problems using and accessing its services. Aiven personnel:
 
 - are automatically alerted on any service anomalies
-
 - rapidly address any issues in system operations requiring manual intervention
 
 Responses are provided on a best-effort basis during the same or next business day. Email [support@aiven.io](mailto:support@aiven.io) for all support requests.
