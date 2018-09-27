@@ -7,11 +7,9 @@ We run a Cloud Foundry platform in London (AWS eu-west-2 region) to allow GOV.UK
 
 In addition we need to manage the use of Amazon Web Service resources to reduce our running costs. Having staging environments in both Ireland and the UK increases the total infrastructural costs, which is not justified by the benefit of the additional tested cases.
 
-The London region is newer than the Ireland and currently offers a subset of services compared to the Ireland region. Hence, having the staging environment in London should allow us to capture the cases that may cause failure due to the inavailability of services. 
+The London region is newer than the Ireland and currently offers a subset of services compared to the Ireland region. Hence, having the staging environment in London should allow us to capture the cases that may cause failure due to the unavailability of services.
 
 Therefore, the risks of running a single staging environment are offset by the cost savings and simplification of deployment pipelines.
-
-
 
 # Decision
 
