@@ -94,5 +94,6 @@ This section contains Architecture Decision Records (ADR) as described in this b
  - [ADR027 pipeline locking](architecture_decision_records/ADR027-pipeline-locking/)
  - [ADR028 Move platform logs to Logit](architecture_decision_records/ADR028-move-logs-to-logit/)
  - [ADR029 Aiven project structure](architecture_decision_records/ADR029-aiven-project-structure/)
+ - [ADR030 single staging environment in London](architecture_decision_records/ADR030-single-staging-london/)
  - [ADR443 ssl only for applications and cf endpoints](architecture_decision_records/ADR443-ssl-only-for-applications-and-cf-endpoints/)
  - [ADR444 redirect http for applications](architecture_decision_records/ADR444-redirect-http-for-applications/)
