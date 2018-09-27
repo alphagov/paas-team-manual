@@ -3,34 +3,27 @@
 
 # Context
 
-We run a Cloud Foundry platform in London (AWS eu-west-2 region) to satisfy GOV.UK PaaS tenant needs to host on UK soil. This is driven by regulatory compliance and the hosting needs of selected existing GOV.UK PaaS tenants who are making preparations for Brexit.
+We run a Cloud Foundry platform in London (AWS eu-west-2 region) to allow GOV.UK PaaS tenants to host their applications and services in the UK. This is driven by the hosting needs of some of the existing GOV.UK PaaS tenants.
 
-Longer term we will migrate tenants to the London region and demise the region in Ireland to further reduce our footprint.
+In addition we need to manage the use of Amazon Web Service resources to reduce our running costs. Having staging environments in both Ireland and the UK increases the total infrastructural costs, which is not justified by the benefit of the additional tested cases.
 
-In addition we need to responsibly manage our use of Amazon Web Service resources to reduce the ongoing running costs. Having duplicate staging environments doubles the amount of infrastructure and hence cost.
+The London region is newer than the Ireland and currently offers a subset of services compared to the Ireland region. Hence, having the staging environment in London should allow us to capture the cases that may cause failure due to the inavailability of services. 
 
-The London region is newer than the Ireland and offers a slightly reduced subset of services compared to the more mature Ireland region.
-
-We feel the risks of running a single staging environment are offset by the cost savings and the reduction in footprint.
+Therefore, the risks of running a single staging environment are offset by the cost savings and simplification of deployment pipelines.
 
 
 
 # Decision
 
-
-We will demise the Ireland (eu-west-1) staging environment resulting in a single staging environment in AWS London.
+We will remove the Ireland (eu-west-1) staging environment resulting in a single staging environment in AWS London (eu-west-2).
 
 
 # Status
 Accepted
 
+
 # Consequences
-- Fewer moving parts and reduced infrastructure footprint.
-- The change moves closer to our target of running our platform in London
-- Reduce the cost of operation.
-- Fewer environments and simplification of our pipelines.
-- We will check that we are able to run our pipelines to deploy to Ireland and London.
-- We will check the impact on our infrastructure usage.
+We will have one staging environment for testing both London and Ireland production environment. This ADR does not affect the setup of the dev or production environment. 
 
 
 
