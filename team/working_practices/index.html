@@ -87,6 +87,9 @@
         <a href="#merging-pull-requests">Merging Pull requests</a>
         <ul>
           <li>
+            <a href="#managing-allowed-signers">Managing allowed signers</a>
+          </li>
+          <li>
             <a href="#initial-setup-for-signing-commits">Initial setup for signing commits</a>
           </li>
           <li>
@@ -288,8 +291,13 @@ This means that merges can&rsquo;t be done in the Github UI - they have to be do
 using the <code>merge_pr</code> make task in each repository.</p>
 
 <p>We only use signed revisions of <a href="https://github.com/alphagov/paas-cf">paas-cf</a> and <a href="https://github.com/alphagov/paas-bootstrap">paas-bootstrap</a> from our concourse pipelines.
-This is enforced by the gpg functionality in Concourse Git resource. We may require signing merges in other
-repositories in future.</p>
+This is enforced by the gpg functionality in Concourse Git resource. We may require signing merges in other repositories in future.</p>
+<h3 id="managing-allowed-signers">Managing allowed signers</h3>
+<p>For every repository we are forcing commit signing on there will be a file called &rsquo;.gpg-id&rsquo; in the root directory. It should contain the public key IDs of every key which is allowed to sign commits. There will also be a helper script for generating the necessary vars file for Concourse. For example:</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd </span>paas-cf
+make update_merge_keys
+</code></pre></div>
+<p>Run the helper script and commit the changes every time you change the contents of &rsquo;.gpg-id&rsquo;.</p>
 <h3 id="initial-setup-for-signing-commits">Initial setup for signing commits</h3>
 <p>Ensure you have gpg setup on your machine (see our <a href="/guides/GPG/">GPG guide</a> for
 details).</p>
