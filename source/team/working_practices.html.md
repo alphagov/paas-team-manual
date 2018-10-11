@@ -141,12 +141,21 @@ This means that merges can't be done in the Github UI - they have to be done loc
 using the `merge_pr` make task in each repository.
 
 We only use signed revisions of [paas-cf][] and [paas-bootstrap][] from our concourse pipelines.
-This is enforced by the gpg functionality in Concourse Git resource. We may require signing merges in other
-repositories in future.
+This is enforced by the gpg functionality in Concourse Git resource. We may require signing merges in other repositories in future.
 
 [paas-cf]: https://github.com/alphagov/paas-cf
 [paas-bootstrap]: https://github.com/alphagov/paas-bootstrap
-[paas-git-resource]: https://github.com/alphagov/paas-git-resource
+
+### Managing allowed signers
+
+For every repository we are forcing commit signing on there will be a file called '.gpg-id' in the root directory. It should contain the public key IDs of every key which is allowed to sign commits. There will also be a helper script for generating the necessary vars file for Concourse. For example:
+
+```bash
+cd paas-cf
+make update_merge_keys
+```
+
+Run the helper script and commit the changes every time you change the contents of '.gpg-id'.
 
 ### Initial setup for signing commits
 
