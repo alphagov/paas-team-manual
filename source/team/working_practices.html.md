@@ -145,7 +145,6 @@ This is enforced by the gpg functionality in Concourse Git resource. We may requ
 
 [paas-cf]: https://github.com/alphagov/paas-cf
 [paas-bootstrap]: https://github.com/alphagov/paas-bootstrap
-[paas-git-resource]: https://github.com/alphagov/paas-git-resource
 
 ### Managing allowed signers
 
