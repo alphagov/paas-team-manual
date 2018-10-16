@@ -49,13 +49,13 @@ As a lower priority, create a pivotal story to record all actions taken and iden
 
 You can escalate incidents within the GOV.UK PaaS team.
 
-1. Go to [PagerDuty](https://gds-paas.pagerduty.com/services).
+1. Go to [PagerDuty](https://governmentdigitalservice.pagerduty.com/services).
 
-1. Go to __Configuration__ and select [__Schedules__](https://gds-paas.pagerduty.com/schedules).
+1. Go to __Configuration__ and select [__Schedules__](https://governmentdigitalservice.pagerduty.com/schedules).
 
 1. Check who is currently on the escalation rota.
 
-1. Go back to __Configuration__ and select [__Users__](https://gds-paas.pagerduty.com/users).
+1. Go back to __Configuration__ and select [__Users__](https://governmentdigitalservice.pagerduty.com/users).
 
 1. Select the relevant person to find their phone number.
 

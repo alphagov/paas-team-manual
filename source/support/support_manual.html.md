@@ -81,7 +81,7 @@ This is now in its [own section](/incident_management/incident_process/).
 ## Useful links
 
 * [ZenDesk](https://govuk.zendesk.com/agent/dashboard)
-* [Pagerduty](https://gds-paas.pagerduty.com/)
+* [Pagerduty](https://governmentdigitalservice.pagerduty.com/)
 * [Developer docs](https://docs.cloud.service.gov.uk/)
 * [Staging pipeline](https://deployer.staging.cloudpipeline.digital/)
 * [Prod pipeline](https://deployer.cloud.service.gov.uk)

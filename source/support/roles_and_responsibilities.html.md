@@ -3,7 +3,7 @@
 What each role does on support and when it's needed.
 
 ## Rota
-The support rota is on [Pagerduty](https://gds-paas.pagerduty.com/schedules).
+The support rota is on [Pagerduty](https://governmentdigitalservice.pagerduty.com/schedules).
 
 For in-hours support, one person from the team will be the Support Lead on a weekly basis. For out of hours support, to begin with, we will have one person from the team on call as Support lead, again on a weekly basis. We will also have a second person on call for Escalations.
 
