@@ -63,7 +63,7 @@ The exceptions to this are for some categories of security breach or vulnerabili
 
 You can access our [support ticketing tool ZenDesk here](https://govuk.zendesk.com/agent/dashboard)
 
-If you don’t have an account ask Urmi to add you. You can adjust your notifications yourself.
+If you don’t have an account ask the PaaS delivery manager to add you. You can adjust your notifications yourself.
 
 ### Tips and good practice
 
