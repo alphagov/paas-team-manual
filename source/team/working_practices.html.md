@@ -155,7 +155,7 @@ cd paas-cf
 make update_merge_keys
 ```
 
-Run the helper script and commit the changes every time you change the contents of '.gpg-id'.
+Run the helper script and commit the changes every time you change the contents of '.gpg-id'. Note: we don't yet have a way of producing a canonical output via GPG, so when you run this script you may see changes to everybody's public keys. These differences are okay to commit - what matters is they are derived from the correct public key IDs.
 
 ### Initial setup for signing commits
 
