@@ -54,10 +54,10 @@ Applications | bar.master.ci.cloudpipelineapps.digital
 ### Staging Domains
 Purpose | URL |
 ------------ | -------------
-Deployer Concourse | deployer.staging.cloudpipeline.digital
-Cloud Foundry API | api.staging.cloudpipeline.digital
-Cloud Foundry User Account and Authentication | uaa.staging.cloudpipeline.digital
-Applications | bar.staging.cloudpipelineapps.digital
+Deployer Concourse | deployer.london.staging.cloudpipeline.digital
+Cloud Foundry API | api.london.staging.cloudpipeline.digital
+Cloud Foundry User Account and Authentication | uaa.london.staging.cloudpipeline.digital
+Applications | bar.london.staging.cloudpipelineapps.digital
 
 ### Production Domains
 Purpose | URL |

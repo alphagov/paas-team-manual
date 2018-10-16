@@ -42,11 +42,12 @@ You can store those variables in a [password manager like `paas`](https://www.pa
 
 This shows the pipelines for staging and production on a single screen. The URLs for the pipelines are:
 
-* `https://deployer.staging.cloudpipeline.digital/teams/main/pipelines/create-cloudfoundry`
+* `https://deployer.london.staging.cloudpipeline.digital/teams/main/pipelines/create-cloudfoundry`
 * `https://deployer.cloud.service.gov.uk/teams/main/pipelines/create-cloudfoundry`
+* `https://deployer.london.cloud.service.gov.uk/teams/main/pipelines/create-cloudfoundry`
 
 The combined dashboard is
-[here](https://dsingleton.github.io/frame-splits/index.html?title=&layout=2row&url%5B%5D=https%3A%2F%2Fdeployer.staging.cloudpipeline.digital%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&url%5B%5D=https%3A%2F%2Fdeployer.cloud.service.gov.uk%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&url%5B%5D=&url%5B%5D=).
+[here](https://dsingleton.github.io/frame-splits/index.html?title=&layout=3row&url%5B%5D=https%3A%2F%2Fdeployer.london.staging.cloudpipeline.digital%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&url%5B%5D=https%3A%2F%2Fdeployer.cloud.service.gov.uk%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&url%5B%5D=https%3A%2F%2Fdeployer.london.cloud.service.gov.uk%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry).
 
 We're using a custom Chrome plugin to hide some of the Concourse page furniture
 on the Dashboard. It can be found
