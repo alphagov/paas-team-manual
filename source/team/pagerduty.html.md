@@ -4,7 +4,7 @@ The team uses [PagerDuty](https://www.pagerduty.com/) to be notified of platform
 
 ## Account
 
-Our team account is called [gds-paas](https://gds-paas.pagerduty.com/).
+Our team account is called [gds-paas](https://governmentdigitalservice.pagerduty.com/).
 
 The account owner sets up individual users who authenticate via username (email) / password. All users are administrators.
 
