@@ -15,6 +15,11 @@ The [PaaS Support Manual](https://docs.google.com/document/d/1Ui0MQtZbZnRCIj4RUd
 The script will mark the user as "unverified" and send a new invite
 link, which essentially will be a new password.
 
+## Creating a new user / organisation
+
+1. If the organisation is new, check with the PaaS product manager that it's ok to create it
+2. Use the script in `.../paas-cf/scripts/create-user.sh` to add the user (and org if necessary) (see the usage instructions in the script for details)
+
 ## Subscribe and check the AWS notifications
 
 AWS [sends notifications to our maillists](/team/responding_to_aws_alert/). You should subscribe to these groups to get any notification.
