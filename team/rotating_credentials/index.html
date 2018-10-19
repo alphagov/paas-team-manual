@@ -112,7 +112,20 @@
 <h2 id="platform">Platform</h2>
 <p>From time to time, it might be necessary to rotate our platform credentials. We have created helper tasks in the deployer and bootstrap pipelines, credentials tab, to clean passwords that we know are safe to re-set.</p>
 <h3 id="rotating-passwords">Rotating passwords</h3>
-<p>Rotating passwords consists of two phases. First, you delete credentials using one of the helper tasks. There&rsquo;s one for CF (in the deployer pipeline), one for BOSH and one for Concourse (in the bootstrap pipeline). These tasks exclude passwords that are difficult or not safe to rotate and clean all other passwords. We do also delete generated ssh keys in these tasks.</p>
+<p>Rotating passwords consists of two phases. First, you delete credentials using
+one of the CI helper jobs.</p>
+
+<p>There are two for CF (in the deployer pipeline), one for BOSH and one for
+Concourse (in the bootstrap pipeline). These tasks exclude passwords that are
+difficult or not safe to rotate and clean all other passwords. We do also
+delete generated ssh keys in these tasks.</p>
+
+<p>There are two CF cred rotation jobs (<code>rotate-cf-admin-password</code> and
+<code>rotate-cloudfoundry-credentials</code>, under
+<code>/teams/main/pipelines/create-cloudfoundry?groups=credentials</code>) so that you
+have the choice of rotating the admin password or not. Rotating the admin
+password automatically leads to the rest of the credentials being rotated, but
+not vice versa.</p>
 
 <p>Second phase consists of running the main pipeline (on deployer for CF, on bootstrap for BOSH and Concourse) to generate new credentials and apply them. Ensure that there is nothing else triggering this 2nd phase run, as that would mean you would be rotating passwords <em>and</em> trying to apply some changes at the same time, which might not work and you could end up with broken deployment. Pipeline run should complete successfully and all tests should pass. There should be no interruptions to deployed apps.</p>
 <h3 id="rotating-certificates">Rotating certificates</h3>
