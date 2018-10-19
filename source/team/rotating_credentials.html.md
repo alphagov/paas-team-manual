@@ -13,7 +13,20 @@ From time to time, it might be necessary to rotate our platform credentials. We 
 
 ### Rotating passwords
 
-Rotating passwords consists of two phases. First, you delete credentials using one of the helper tasks. There's one for CF (in the deployer pipeline), one for BOSH and one for Concourse (in the bootstrap pipeline). These tasks exclude passwords that are difficult or not safe to rotate and clean all other passwords. We do also delete generated ssh keys in these tasks.
+Rotating passwords consists of two phases. First, you delete credentials using
+one of the CI helper jobs.
+
+There are two for CF (in the deployer pipeline), one for BOSH and one for
+Concourse (in the bootstrap pipeline). These tasks exclude passwords that are
+difficult or not safe to rotate and clean all other passwords. We do also
+delete generated ssh keys in these tasks.
+
+There are two CF cred rotation jobs (`rotate-cf-admin-password` and
+`rotate-cloudfoundry-credentials`, under
+`/teams/main/pipelines/create-cloudfoundry?groups=credentials`) so that you
+have the choice of rotating the admin password or not. Rotating the admin
+password automatically leads to the rest of the credentials being rotated, but
+not vice versa.
 
 Second phase consists of running the main pipeline (on deployer for CF, on bootstrap for BOSH and Concourse) to generate new credentials and apply them. Ensure that there is nothing else triggering this 2nd phase run, as that would mean you would be rotating passwords _and_ trying to apply some changes at the same time, which might not work and you could end up with broken deployment. Pipeline run should complete successfully and all tests should pass. There should be no interruptions to deployed apps.
 
