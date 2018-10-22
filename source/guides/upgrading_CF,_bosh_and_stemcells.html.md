@@ -33,6 +33,30 @@ Special differences to take into account:
 * Update the cf-acceptance-tests resource in the pipeline to use an upstream `cfX.Y` branch matching the cf-deployment version.
 * Note: If we are using a forked version of the smoke-tests or cf-acceptance test, create a new branch and rebase our forked version accordingly.
 
+#### Credhub
+
+_(section added October 2018)_
+
+Our upgrade to cf-deployment v4.5.0 caused us to diverge from upstream, as
+documented in this [story
+comment](https://www.pivotaltracker.com/story/show/160506139/comments/195512325),
+by not including their suggested `credhub` instance group.
+
+This divergence isn't set in stone, but until a _CF_-level credhub is
+introduced, you should take care to check that no BOSH releases are relying on
+a _CF_-level credhub instance or service. It's possible that a stronger
+dependency on credhub will be introduced in the future, in which case we'll
+need to do the work to re-align with upstream before upgrading. It's worth
+checking for this early in the upgrade story, so that any requisite work can be
+flagged as a blocker ASAP.
+
+NBNB Here, we're talking about a _CF_-level credhub - **not** a _BOSH_-level
+credhub. We anticipate that we'll have one at the BOSH layer, to replace
+vars-store files, Sometime Soon
+([spike](https://www.pivotaltracker.com/story/show/158978139)). Be clear about
+the different consumers of any credhubs in our environments, and which one is
+being excluded at the time of writing.
+
 ## Doing the upgrade
 
 You should test the upgrade changeset:
