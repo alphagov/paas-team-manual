@@ -22,7 +22,7 @@
 
 Special differences to take into account:
 
-  * New secrets and certificates in `variables: `. Maybe there are new passwords that must be rotated ot blacklisted from rotation. New CA certs need to be adapted to support CA rotation.
+  * New secrets and certificates in `variables: `. Maybe there are new passwords that must be rotated or blacklisted from rotation. New CA certs need to be adapted to support CA rotation.
   * Release version changes.
   * New `instance_groups` added
 
