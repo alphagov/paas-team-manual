@@ -78,6 +78,9 @@
           <li>
             <a href="#to-export-the-data-for-contacting-the-org-managers-run-the-following">To export the data for contacting the org managers run the following</a>
           </li>
+          <li>
+            <a href="#to-contact-the-org-managers">To contact the org managers</a>
+          </li>
         </ul>
       </li>
       <li>
@@ -90,7 +93,7 @@
             <a href="#abandoned-orgs-to-export-the-data-for-contacting-the-org-managers-run-the-following">To export the data for contacting the org managers run the following</a>
           </li>
           <li>
-            <a href="#to-contact-the-org-managers">To contact the org managers</a>
+            <a href="#abandoned-orgs-to-contact-the-org-managers">To contact the org managers</a>
           </li>
           <li>
             <a href="#tidy-up">Tidy up</a>
@@ -137,10 +140,36 @@ jq: error <span class="o">(</span>at &lt;stdin&gt;:1<span class="o">)</span>: Ca
 <span class="k">WHERE</span> <span class="n">created_at</span> <span class="o">&lt;</span> <span class="n">NOW</span><span class="p">()</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'75 days'</span>
 <span class="k">AND</span> <span class="n">quota</span> <span class="k">like</span> <span class="s1">'default'</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">created_at</span><span class="p">;</span>
-</code></pre></div><h3 id="to-export-the-data-for-contacting-the-org-managers-run-the-following">To export the data for contacting the org managers run the following</h3><div class="highlight"><pre class="highlight sql"><code><span class="k">COPY</span> <span class="p">(</span><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">orgdump</span> <span class="k">where</span> <span class="n">created_at</span> <span class="o">&lt;</span> <span class="n">NOW</span><span class="p">()</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'75 days'</span> <span class="k">and</span> <span class="n">quota</span> <span class="k">like</span> <span class="s1">'default'</span> <span class="k">order</span> <span class="k">by</span> <span class="n">created_at</span><span class="p">)</span>
-<span class="k">TO</span> <span class="s1">'/var/downloads/old_orgs.csv'</span> <span class="k">WITH</span> <span class="n">HEADER</span> <span class="n">CSV</span> <span class="k">DELIMITER</span> <span class="s1">','</span><span class="p">;</span>
+</code></pre></div><h3 id="to-export-the-data-for-contacting-the-org-managers-run-the-following">To export the data for contacting the org managers run the following</h3><div class="highlight"><pre class="highlight sql"><code><span class="k">COPY</span> <span class="p">(</span>
+  <span class="k">WITH</span> <span class="n">expiring_trials</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orgdump</span> <span class="k">WHERE</span> <span class="n">created_at</span> <span class="o">&lt;</span> <span class="n">NOW</span><span class="p">()</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'75 days'</span> <span class="k">AND</span> <span class="n">quota</span> <span class="k">LIKE</span> <span class="s1">'default'</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">created_at</span>
+  <span class="p">),</span>
+
+  <span class="n">filtered_empty_users</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">expiring_trials</span> <span class="k">WHERE</span> <span class="n">managers</span> <span class="o">&gt;</span> <span class="mi">0</span>
+  <span class="p">),</span>
+
+  <span class="n">emails_to_arrays</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">string_to_array</span><span class="p">(</span><span class="k">trim</span><span class="p">(</span><span class="n">org_manager_emails</span><span class="p">),</span> <span class="s1">' '</span><span class="p">)</span> <span class="k">AS</span> <span class="n">user_array</span> <span class="k">FROM</span> <span class="n">filtered_empty_users</span>
+  <span class="p">),</span>
+
+  <span class="n">unnested_emails</span> <span class="k">AS</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="k">unnest</span><span class="p">(</span><span class="n">user_array</span><span class="p">)</span> <span class="k">AS</span> <span class="nv">"email address"</span><span class="p">,</span> <span class="n">name</span> <span class="k">AS</span> <span class="n">organisation</span> <span class="k">FROM</span> <span class="n">emails_to_arrays</span>
+  <span class="p">)</span>
+    <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">unnested_emails</span>
+<span class="p">)</span> <span class="k">TO</span> <span class="s1">'/var/downloads/expiring_trial_orgs.csv'</span> <span class="k">WITH</span> <span class="n">HEADER</span> <span class="n">CSV</span> <span class="k">DELIMITER</span> <span class="s1">','</span><span class="p">;</span>
 </code></pre></div>
 <p>Our process is still being refined. This work should be carried out as part of a Pivotal story, so for now it should be fine to just attach the CSV output to a comment in the story.</p>
+<h3 id="to-contact-the-org-managers">To contact the org managers</h3>
+<p>Login to <a href="https://www.notifications.service.gov.uk/sign-in">Notify</a>. If you do not have login details speak to a senior member of the team.</p>
+
+<ol>
+<li>Click on Templates -&gt; Convert trial period to paid org -&gt; Send -&gt; Upload list of email addresses -&gt; Choose a file.</li>
+<li>Navigate to where you stored the file (<code>/var/downloads/expiring_trial_orgs.csv</code>).</li>
+<li>Click on &lsquo;Send X emails&rsquo;, where X should be the number of people to contact.</li>
+</ol>
+
+<p>We should then mark the story as blocked until seven days have passed. Once this time has passed we can upgrade the quota of the orgs to the next highest non-trial quota.</p>
 <h2 id="abandoned-orgs">Abandoned orgs</h2><h3 id="abandoned-orgs-how-to-query-the-data">How to query the data</h3>
 <p>To find orgs with nothing running:</p>
 <div class="highlight"><pre class="highlight sql"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orgdump</span>
@@ -151,17 +180,16 @@ jq: error <span class="o">(</span>at &lt;stdin&gt;:1<span class="o">)</span>: Ca
 <p><strong>At this point the data should be checked with the PM team before proceeding</strong></p>
 <h3 id="abandoned-orgs-to-export-the-data-for-contacting-the-org-managers-run-the-following">To export the data for contacting the org managers run the following</h3><div class="highlight"><pre class="highlight sql"><code><span class="k">COPY</span> <span class="p">(</span>
   <span class="k">WITH</span> <span class="n">unused_orgs</span> <span class="k">AS</span> <span class="p">(</span>
-    <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">org_manager_emails</span>
-    <span class="k">FROM</span> <span class="n">orgdump</span>
+    <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orgdump</span>
     <span class="k">WHERE</span> <span class="p">(</span><span class="n">users</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">OR</span> <span class="p">(</span><span class="n">running_apps</span> <span class="o">+</span> <span class="n">stopped_apps</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">AND</span> <span class="n">created_at</span> <span class="o">&lt;</span> <span class="n">NOW</span><span class="p">()</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'75 days'</span>
     <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">created_at</span>
   <span class="p">),</span>
   <span class="n">filtered_empty_users</span> <span class="k">AS</span> <span class="p">(</span>
-    <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">unused_orgs</span> <span class="k">WHERE</span> <span class="n">org_manager_emails</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span>
+    <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">unused_orgs</span> <span class="k">WHERE</span> <span class="n">managers</span> <span class="o">&gt;</span> <span class="mi">0</span>
   <span class="p">),</span>
   <span class="n">emails_to_arrays</span> <span class="k">AS</span> <span class="p">(</span>
-    <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">string_to_array</span><span class="p">(</span><span class="n">org_manager_emails</span><span class="p">,</span> <span class="s1">' '</span><span class="p">)</span> <span class="k">AS</span> <span class="n">user_array</span> <span class="k">FROM</span> <span class="n">filtered_empty_users</span>
+    <span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="n">string_to_array</span><span class="p">(</span><span class="k">trim</span><span class="p">(</span><span class="n">org_manager_emails</span><span class="p">),</span> <span class="s1">' '</span><span class="p">)</span> <span class="k">AS</span> <span class="n">user_array</span> <span class="k">FROM</span> <span class="n">filtered_empty_users</span>
   <span class="p">),</span>
   <span class="n">unnested_emails</span> <span class="k">AS</span> <span class="p">(</span>
     <span class="k">SELECT</span> <span class="k">unnest</span><span class="p">(</span><span class="n">user_array</span><span class="p">)</span> <span class="k">AS</span> <span class="nv">"email address"</span><span class="p">,</span> <span class="n">name</span> <span class="k">AS</span> <span class="n">organisation</span> <span class="k">FROM</span> <span class="n">emails_to_arrays</span>
@@ -171,13 +199,13 @@ jq: error <span class="o">(</span>at &lt;stdin&gt;:1<span class="o">)</span>: Ca
 </code></pre></div>
 <p>You will then need to exit psql:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>\q
-</code></pre></div><h3 id="to-contact-the-org-managers">To contact the org managers</h3>
+</code></pre></div><h3 id="abandoned-orgs-to-contact-the-org-managers">To contact the org managers</h3>
 <p>Login to <a href="https://www.notifications.service.gov.uk/sign-in">Notify</a>. If you do not have login details speak to a senior member of the team.</p>
 
 <ol>
 <li>Click on Templates -&gt; Unused organisation removal notice -&gt; Send -&gt; Upload list of email addresses -&gt; Choose a file.</li>
 <li>Navigate to where you stored the file (<code>/var/downloads/abandoned_orgs.csv</code>).</li>
-<li>Click on &lsquo;Send X emails&rsquo;, where X should be the number of people to contact.</li>
+<li>Click on &#39;Send X emails&rsquo;, where X should be the number of people to contact.</li>
 </ol>
 
 <p>We should then mark the story as blocked until seven days have passed. Once this time has passed we can delete the orgs and notify them of deletion. For notification of deletion, follow the steps above but using the template called &#39;Unused organisation removed&rsquo;.</p>
