@@ -65,6 +65,15 @@
     <ul>
       <li>
         <a href="#before-upgrading"> Before Upgrading</a>
+        <ul>
+          <li>
+            <ul>
+              <li>
+                <a href="#credhub">Credhub</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#doing-the-upgrade">Doing the upgrade</a>
@@ -129,7 +138,7 @@
 <p>Special differences to take into account:</p>
 
 <ul>
-<li>New secrets and certificates in <code>variables:</code>. Maybe there are new passwords that must be rotated ot blacklisted from rotation. New CA certs need to be adapted to support CA rotation.</li>
+<li>New secrets and certificates in <code>variables:</code>. Maybe there are new passwords that must be rotated or blacklisted from rotation. New CA certs need to be adapted to support CA rotation.</li>
 <li>Release version changes.</li>
 <li><p>New <code>instance_groups</code> added</p>
 
@@ -141,6 +150,28 @@
 <li>Note: If we are using a forked version of the smoke-tests or cf-acceptance test, create a new branch and rebase our forked version accordingly.</li>
 </ul></li>
 </ul>
+<h4 id="credhub">Credhub</h4>
+<p><em>(section added October 2018)</em></p>
+
+<p>Our upgrade to cf-deployment v4.5.0 caused us to diverge from upstream, as
+documented in this <a href="https://www.pivotaltracker.com/story/show/160506139/comments/195512325">story
+comment</a>,
+by not including their suggested <code>credhub</code> instance group.</p>
+
+<p>This divergence isn&rsquo;t set in stone, but until a <em>CF</em>-level credhub is
+introduced, you should take care to check that no BOSH releases are relying on
+a <em>CF</em>-level credhub instance or service. It&rsquo;s possible that a stronger
+dependency on credhub will be introduced in the future, in which case we&rsquo;ll
+need to do the work to re-align with upstream before upgrading. It&rsquo;s worth
+checking for this early in the upgrade story, so that any requisite work can be
+flagged as a blocker ASAP.</p>
+
+<p>NBNB Here, we&rsquo;re talking about a <em>CF</em>-level credhub - <strong>not</strong> a <em>BOSH</em>-level
+credhub. We anticipate that we&rsquo;ll have one at the BOSH layer, to replace
+vars-store files, Sometime Soon
+(<a href="https://www.pivotaltracker.com/story/show/158978139">spike</a>). Be clear about
+the different consumers of any credhubs in our environments, and which one is
+being excluded at the time of writing.</p>
 <h2 id="doing-the-upgrade">Doing the upgrade</h2>
 <p>You should test the upgrade changeset:</p>
 
