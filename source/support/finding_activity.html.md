@@ -5,7 +5,7 @@ obtain some information about the API use.
 
 ## Finding user GUID
 
-To find the user ID of a particular user see [finding a user account](/guides/CF_UAA_user_management/#finding-a-user-account)
+To find the user ID of a particular user see [finding a user account](/support/CF_UAA_user_management/#finding-a-user-account)
 
 ### Finding deleted user GUID
 
