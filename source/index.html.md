@@ -7,6 +7,7 @@
 
 ## Support
 
+ - [User management](support/CF_UAA_user_management/)
  - [Finding activity](support/finding_activity/)
  - [Restoring Elasticsearch Backups](support/restoring_elasticsearch_backups/)
  - [Responding to security issues](support/responding_to_security_issues/)
@@ -33,7 +34,6 @@
 
 ## Guides
 
- - [User management with Cloud Foundry's UAA](guides/CF_UAA_user_management/)
  - [Cloud Foundry debugging tips](guides/CloudFoundry_debugging/)
  - [Connecting to Concourse and BOSH](guides/Connecting_to_Concourse_and_BOSH/)
  - [Documentation for tenants (`paas-tech-docs`)](guides/Documentation_system/)

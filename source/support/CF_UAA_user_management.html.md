@@ -1,10 +1,16 @@
-# User management with Cloud Foundry's UAA
+# User management
+
+## Creating new orgs and users
+
+We encourage tenants to invite and manage their own users via the paas-admin interface.
+
+If you need to create a new org and invite the initial org manager(s) you can do so using the script in paas-cf, found at `./paas-cf/scripts/create-org.sh`. You should be creating new orgs in the London region by default.
+
+## Interacting with UAA
 
 Cloud Foundry's account management is mostly controlled by [UAA][]
 
 [UAA]: https://github.com/cloudfoundry/uaa
-
-## Interacting with UAA
 
 ### Install
 
