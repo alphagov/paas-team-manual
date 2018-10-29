@@ -7,7 +7,7 @@
 
 ## Support
 
- - [User management with Cloud Foundry's UAA](support/CF_UAA_user_management/)
+ - [User management](support/CF_UAA_user_management/)
  - [Finding activity](support/finding_activity/)
  - [Restoring Elasticsearch Backups](support/restoring_elasticsearch_backups/)
  - [Responding to security issues](support/responding_to_security_issues/)
