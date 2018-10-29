@@ -10,7 +10,7 @@
     <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
     <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/CF_UAA_user_management/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/support/CF_UAA_user_management/">
 
 
     <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
@@ -19,12 +19,12 @@
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/CF_UAA_user_management/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/support/CF_UAA_user_management/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/CF_UAA_user_management/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/CF_UAA_user_management/" />
   </head>
 
   <body>
@@ -61,8 +61,11 @@
             <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
               <ul>
   <li>
-    <a href="#user-management-with-cloud-foundry-39-s-uaa">User management with Cloud Foundry’s UAA</a>
+    <a href="#user-management">User management</a>
     <ul>
+      <li>
+        <a href="#creating-new-orgs-and-users">Creating new orgs and users</a>
+      </li>
       <li>
         <a href="#interacting-with-uaa">Interacting with UAA</a>
         <ul>
@@ -103,9 +106,13 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="user-management-with-cloud-foundry-39-s-uaa">User management with Cloud Foundry&rsquo;s UAA</h1>
+  <h1 id="user-management">User management</h1><h2 id="creating-new-orgs-and-users">Creating new orgs and users</h2>
+<p>We encourage tenants to invite and manage their own users via the paas-admin interface.</p>
+
+<p>If you need to create a new org and invite the initial org manager(s) you can do so using the script in paas-cf, found at <code>./paas-cf/scripts/create-org.sh</code>. You should be creating new orgs in the London region by default.</p>
+<h2 id="interacting-with-uaa">Interacting with UAA</h2>
 <p>Cloud Foundry&rsquo;s account management is mostly controlled by <a href="https://github.com/cloudfoundry/uaa">UAA</a></p>
-<h2 id="interacting-with-uaa">Interacting with UAA</h2><h3 id="install">Install</h3>
+<h3 id="install">Install</h3>
 <p>You can access the <a href="https://github.com/cloudfoundry/cf-uaac">uaac</a> command line utility from
 <a href="https://github.com/alphagov/paas-cf">alphagov/paas-cf</a>. Using <a href="http://bundler.io/">Bundler</a> will ensure that you have the
 appropriate version.</p>
