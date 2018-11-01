@@ -16,7 +16,7 @@ Follow the guidance in [this section](/incident_management/incident_process/#inc
 
 ### Changes, upgrades and fixes
 
-Write a draft email and share it [here.](https://drive.google.com/drive/folders/0Bw4pWpR0IbJfWGFEMVBBZlFsSDQ)
+Write a draft email and share it [here.](https://drive.google.com/drive/folders/1M5G-joG3tORfJ5kXj368Ib8rEKau2vFq)
 
 Get a Product Manager to proof-read and add any 'product-y' elements - we want to make sure our notifications are consistent and meet the GDS style guidelines. If the email is time-sensitive and there are no Product Managers around, get another member of the team to proof-read the email before it's sent.
 
