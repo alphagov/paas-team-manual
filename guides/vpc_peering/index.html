@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/vpc_peering/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/vpc_peering/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/vpc_peering/" />
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#vpc-peering">VPC Peering</a>
+    <ul>
+      <li>
+        <a href="#how-to-set-it-up">How to set it up</a>
+      </li>
+      <li>
+        <a href="#things-to-note">Things to note</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="vpc-peering">VPC Peering</h1>
+<p>We use VPC peering to allow tenants to access resources they manage in another VPC somewhere on AWS. We grant access to the VPC on a per-space basis, although there is a shortcut to grant access to all existing spaces in an org.</p>
+<h2 id="how-to-set-it-up">How to set it up</h2>
+<ol>
+<li>Choose a subnet CIDR that we&rsquo;ll ask the tenant to use. Look in <code>paas-cf/terraform/prod{-lon}.vpc_peering.json</code> for a list of current peerings, then choose the next highest subnet. The size should be <code>/22</code>. For example, if the highest subnet is <code>172.16.4.0/22</code>, ask the tenant to use <code>172.16.8.0/22</code>.</li>
+<li>Tell the tenant to create a new VPC with the subnet you have given them, and ask them to give you both the VPC ID, and the AWS account ID the VPC resides in.</li>
+<li>Create a new entry in <code>paas-cf/terraform/prod{-lon}.vpc_peering.json</code>. Deploy this to production.</li>
+<li>A CF security group will have been automatically created that gives access to the peered VPC, the name of the group will be <code>vpc_peer_$PEER_NAME</code>. <code>cf bind-security-group</code> this to the spaces that the tenant needs access from.</li>
+<li>Tell the tenant to accept the VPC peering request they have received, and add a VPC route for <code>10.0.0.0/16</code> pointing at the peering connection.</li>
+<li>Make sure the tenant knows that they need to whitelist <code>10.0.0.0/16</code> in any security groups attached to resources in their VPC, and that they need to raise a support request to have VPC access granted to any new spaces they create.</li>
+<li>🎉</li>
+</ol>
+<h2 id="things-to-note">Things to note</h2>
+<ul>
+<li>There is a hard limit of 125 VPC peerings per VPC, and the default limit is 50.</li>
+<li>There is a performance penalty to having many VPC peerings due to the performance of large route tables.</li>
+</ul>
+
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
