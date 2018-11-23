@@ -16,6 +16,12 @@
  - [Support manual](support/support_manual/)
  - [Zendesk](support/zendesk/)
 
+## Accounts and Billing
+
+ - [Trial Accounts](accounts/trial_accounts/)
+ - [Moving from trial to paid](accounts/moving_from_trial_to_paid)
+ - [Tenant personal data](accounts/tenant_personal_data/)
+
 ## Team
 
  - [Orientation](team/orientation/)
@@ -30,7 +36,6 @@
  - [Responding to aws alert](team/responding_to_aws_alert/)
  - [Rotating credentials](team/rotating_credentials/)
  - [Statuspage](team/statuspage/)
- - [Tenant personal data](team/tenant_personal_data/)
 
 ## Guides
 
@@ -49,7 +54,6 @@
  - [Spruce (for merging YAML)](guides/spruce/)
  - [upgrading CF, bosh and stemcells](guides/upgrading_CF,_bosh_and_stemcells/)
  - [Updating Logstash filters in Logit](guides/editing_logstash_filters/)
- - [Trial Accounts](guides/trial_accounts/)
  - [VPC Peering](guides/vpc_peering/)
 
 ### Styleguides
