@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/accounts/moving_from_trial_to_paid/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/accounts/moving_from_trial_to_paid/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/accounts/moving_from_trial_to_paid/" />
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#gov-uk-process-to-move-from-trial-to-paid-organisation">GOV.UK Process to move from trial to paid organisation</a>
+    <ul>
+      <li>
+        <a href="#definition-of-trial-organisation">Definition of trial organisation</a>
+      </li>
+      <li>
+        <a href="#requests-to-upgrade">Requests to upgrade</a>
+      </li>
+      <li>
+        <a href="#upgrade-approval-within-gov-uk-paas-team">Upgrade approval within GOV.UK PaaS team</a>
+      </li>
+      <li>
+        <a href="#perform-upgrade">Perform upgrade</a>
+      </li>
+      <li>
+        <a href="#notify-engagement-team">Notify engagement team</a>
+      </li>
+      <li>
+        <a href="#annex">Annex</a>
+        <ul>
+          <li>
+            <a href="#how-to-identify-trial-accounts">How to identify trial accounts</a>
+          </li>
+          <li>
+            <a href="#upgrade-notification-email">Upgrade notification email</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="gov-uk-process-to-move-from-trial-to-paid-organisation">GOV.UK Process to move from trial to paid organisation</h1><h2 id="definition-of-trial-organisation">Definition of trial organisation</h2>
+<p>When a team starts using GOV.UK PaaS, they get to try out the platform for 3 months using a trial organisation. With this account, the team can:</p>
+
+<ul>
+<li>manage users</li>
+<li>create and manage spaces</li>
+<li>deploy and run apps</li>
+<li>use trial-sized editions of our backing services</li>
+</ul>
+
+<p>The trial period is free of charge, but users are only allowed a capped quota of resources, cannot set up custom domains and cannot run production apps on the platform.</p>
+<h2 id="requests-to-upgrade">Requests to upgrade</h2>
+<p>Requests to upgrade from a trial to a paid organisation can come from multiple sources: e.g. Zendesk, email, the engagement team. Regardless of the source, the same process applies:
+Zendesk ticket and tenant confirmation</p>
+
+<p>To keep track in Zendesk and get the tenant to confirm the pricing:</p>
+
+<ol>
+<li>A Zendesk ticket must be raised by either the tenant, engagement team or the GOV.UK PaaS team.</li>
+<li>GOV.UK PaaS support picks up this ticket and tags it as ‘govuk_paas_trial_upgrade’ in Zendesk to track it.</li>
+<li>In the Zendesk ticket, cc in the organisation managers and billing managers in the organisation. (see PaaS Admin interface)<br>
+Send a reminder, including:
+
+<ul>
+<li>that the GOV.UK PaaS is a paid service </li>
+<li>a link to the <a href="https://admin.cloud.service.gov.uk/calculator">billing calculator</a>.</li>
+<li>a list of available quotas and suggest one</li>
+<li>a reminder that approval from the billing manager is required </li>
+</ul></li>
+<li>Ticket is kept in <em>Pending</em> state until the tenant responds. </li>
+<li>If the tenant still wants to proceed with the upgrade, continue the upgrade process. Otherwise close the ticket.</li>
+</ol>
+<h2 id="upgrade-approval-within-gov-uk-paas-team">Upgrade approval within GOV.UK PaaS team</h2>
+<p>GOV.UK PaaS Support can approve the upgrade if: </p>
+
+<ul>
+<li>GOV.UK PaaS has a signed copy of the <a href="https://docs.google.com/spreadsheets/d/1HSYj4EEW-Fr6WPaKvYYM_I45Xgay1-707k1Elajgdh8/edit?ts=5b8801d5#gid=939993178">Memorandum of Understanding</a> (MOU) for the corresponding department; you can check this on the Engagement team’s <a href="https://docs.google.com/spreadsheets/d/1HSYj4EEW-Fr6WPaKvYYM_I45Xgay1-707k1Elajgdh8/edit?ts=5b8801d5#gid=939993178">CRM document</a>.</li>
+<li>The org has a confirmed billing manager as the billing contact in the PaaS Admin interface. </li>
+</ul>
+
+<p>If Support is not confident that these prerequisites are true, Support should request approval from the GOV.UK PaaS Product Manager (PM) via a private response in Zendesk explaining why in the ticket.</p>
+<h2 id="perform-upgrade">Perform upgrade</h2>
+<p>Once previous prerequisites are satisfied and/or the PM has approved the upgrade Support will: </p>
+
+<ol>
+<li>Agree the new quota with the tenant.</li>
+<li>Ask the tenant for billing manager approval, and wait for it.</li>
+<li>Change the team quota in the GOV.UK PaaS</li>
+<li>Notify the Product Manager, who finishes the process.</li>
+</ol>
+<h2 id="notify-engagement-team">Notify engagement team</h2>
+<p>The PM must:</p>
+
+<ol>
+<li>Email the Engagement team at common-platforms@digital.cabinet-office.gov.uk about the account upgrade.</li>
+<li>Send an email from gov-uk-paas-tenant-billing@digital.cabinet-office.gov.uk to the org manager and billing manager, copying in the Engagement team (common-platforms@digital.cabinet-office.gov.uk). See annex.</li>
+<li>Check with the tenant the expected date their service goes live. </li>
+<li>Update the GOV.UK PaaS <a href="https://docs.google.com/spreadsheets/d/1iI39lXMaLEVskv5hFI7C0TMAWvGCE_msAITbcEZb1V8/edit#gid=267936930">list of live services</a>, including the date of upgrade so the GOV.UK PaaS team can start issuing bills at the right time.</li>
+<li>Close the Zendesk ticket</li>
+</ol>
+<h2 id="annex">Annex</h2><h3 id="how-to-identify-trial-accounts">How to identify trial accounts</h3>
+<p>To check whether an organisation is in trial, the Product Manager (PM) can either:</p>
+
+<ul>
+<li>go to the <a href="https://admin.cloud.service.gov.uk/reports/cost/2018-07">Billables page</a> for the relevant org and check if the quota is default.</li>
+<li>run the following in the command line:</li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext"><code>cf org org_name
+</code></pre></div><h3 id="upgrade-notification-email">Upgrade notification email</h3>
+<p>Note: We should move this to http://notifications.service.gov.uk/</p>
+
+<p>Congratulations on upgrading to the GOV.UK PaaS paid service! You can now make full use of the platform. We already have a Memorandum of Understanding with [dept - ]. We will send you a single bill for all of [dept]; the frequency of billing depends on usage across all the orgs in your Department. </p>
+
+<p>Please tell us when you expect your service to go live so that we can provide you with escalation contact information. Please also send us your emergency contact details.</p>
+
+<p>Please ensure you are familiar with our Terms of Use (TOU) [1]
+https://docs.google.com/document/d/1HgEMoLw0JlnvzLTAsj67Ib4Ia2aG3wjf8riCAi1BUJk/edit?usp=sharing</p>
+
+<p>You can see your usage and billing information at any time by logging in to the GOV.UK PaaS Admin tool for London or Ireland. [2]</p>
+
+<p>Feel free to contact me at any time if you need any further information.</p>
+
+<p>[name]
+Sr Product Manager
+GOV.UK PaaS Team</p>
+
+<p>[1] We need to publish the TOU to the product page. For now, attach the linked page as a PDF
+[2] London: https://admin.london.cloud.service.gov.uk/ Ireland: https://admin.cloud.service.gov.uk</p>
+
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
