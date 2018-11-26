@@ -1,4 +1,4 @@
-# GOV.UK Process to move from trial to paid organisation
+# Account lifecycle
 
 ## Definition of trial organisation
 
