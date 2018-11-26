@@ -1,4 +1,4 @@
-# Trial Accounts
+# Getting data about trial accounts
 
 This guide is for the technical work involved in managing trial and abandoned orgs. We are now enforcing a 3 month trial policy in order to reduce costs. We look for orgs which are older than 75 days because we want to notify them just prior to expiry.
 

@@ -18,8 +18,8 @@
 
 ## Accounts and Billing
 
- - [Trial Accounts](accounts/trial_accounts/)
  - [Moving from trial to paid](accounts/moving_from_trial_to_paid)
+ - [Getting data about trial accounts](accounts/getting_data_about_trial_accounts/)
  - [Tenant personal data](accounts/tenant_personal_data/)
 
 ## Team
