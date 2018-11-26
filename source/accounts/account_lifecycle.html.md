@@ -23,9 +23,10 @@ receiving the request should raise a Zendesk ticket by sending an email to
 [gov-uk-paas-support@digital.cabinet-office.gov.uk][support email].
 
 We need to know the following information before setting up a trial account:
-Name of the Government Department or Public body The name of an individual who
-will act as the Organisation Manager Some information about the proposed
-service.
+
+- Name of the Government Department or Public body
+- The name of an individual who will act as the Organisation Manager
+- Some information about the proposed service.
 
 If this information is not provided or is unclear, PaaS Support should clarify
 with the requester.
