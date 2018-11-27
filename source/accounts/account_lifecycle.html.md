@@ -1,4 +1,4 @@
-# GOV.UK Process to move from trial to paid organisation
+# Account lifecycle
 
 ## Definition of trial organisation
 
@@ -11,7 +11,62 @@ When a team starts using GOV.UK PaaS, they get to try out the platform for 3 mon
 
 The trial period is free of charge, but users are only allowed a capped quota of resources, cannot set up custom domains and cannot run production apps on the platform.
 
-## Requests to upgrade
+## Creating new trial organisations
+
+An existing tenant or someone new to the platform can request a trial
+organisation at [https://www.cloud.service.gov.uk/signup][signup]. This
+triggers an automated Zendesk ticket to support. The applicant will need an
+official (gov.uk) email address to use this form.
+
+If a request comes in outside Zendesk (for example via email), the person
+receiving the request should raise a Zendesk ticket by sending an email to
+[gov-uk-paas-support@digital.cabinet-office.gov.uk][support email].
+
+We need to know the following information before setting up a trial account:
+
+- Name of the Government Department or Public body
+- The name of an individual who will act as the Organisation Manager
+- Some information about the proposed service.
+
+If this information is not provided or is unclear, PaaS Support should clarify
+with the requester.
+
+PaaS Support should then check whether an organisation is Crown or non-Crown
+(see the Engagement Team’s [CRM][engagement team's CRM]).
+
+If the organisation is Crown and the requester has a gov.uk email address, PaaS
+Support must set up the trial organisation on a default quota, confirm this to
+the organisation via Zendesk, and cc a PaaS Product Manager.
+
+If the organisation is Crown and the requester does not have a gov.uk email
+address, PaaS Support must ask the requester to supply an individual with a
+gov.uk address to act as the organisation manager.
+
+If the organisation is non-Crown, a trial organisation is available at the
+discretion of the PaaS Product Manager, who should be contacted via an internal
+note on Zendesk. As of November 2018 we can offer non-Crown bodies a trial
+organisation, but when setting it up we must include the following note:
+
+> Currently, non-Crown bodies are able to trial the GOV.UK PaaS but cannot
+provide live services on it. We expect to be able to fully service non-Crown
+bodies by January 2019.
+
+GOV.UK PaaS Support must define the name of the organisation in a way that
+identifies the department and the service, for example defra-cleanair.
+
+Once GOV.UK PaaS Support has set up the trial organisation on a default quota,
+GOV.UK PaaS Support must confirm this to the organisation via Zendesk, and cc a
+Product Manager. It is then the responsibility of the Product Manager to liaise
+with the [Engagement team][engagement team email] to ensure they are aware of
+the new organisation. If the Department does not have a Memorandum of
+Understanding (see the Engagement Team’s [CRM][engagement team's CRM]), then
+the Product Manager must check with the Engagement Team whether they are in the
+process of getting one signed. Getting an MOU signed is the remit of the
+Engagement Team, not the PaaS team.
+
+## Upgrading trial organisations to paid organisations
+
+### Requests to upgrade
 
 Requests to upgrade from a trial to a paid organisation can come from multiple sources: e.g. Zendesk, email, the engagement team. Regardless of the source, the same process applies:
 Zendesk ticket and tenant confirmation
@@ -29,7 +84,7 @@ Send a reminder, including:
 4. Ticket is kept in _Pending_ state until the tenant responds. 
 5. If the tenant still wants to proceed with the upgrade, continue the upgrade process. Otherwise close the ticket.
 
-## Upgrade approval within GOV.UK PaaS team
+### Upgrade approval within GOV.UK PaaS team
 
 GOV.UK PaaS Support can approve the upgrade if: 
 
@@ -38,7 +93,7 @@ GOV.UK PaaS Support can approve the upgrade if:
 
 If Support is not confident that these prerequisites are true, Support should request approval from the GOV.UK PaaS Product Manager (PM) via a private response in Zendesk explaining why in the ticket.
 
-## Perform upgrade
+### Perform upgrade
 
 Once previous prerequisites are satisfied and/or the PM has approved the upgrade Support will: 
 
@@ -47,7 +102,7 @@ Once previous prerequisites are satisfied and/or the PM has approved the upgrade
 3. Change the team quota in the GOV.UK PaaS
 4. Notify the Product Manager, who finishes the process.
 
-## Notify engagement team
+### Notify engagement team
 
 The PM must:
 
@@ -93,3 +148,9 @@ GOV.UK PaaS Team
 
 [1] We need to publish the TOU to the product page. For now, attach the linked page as a PDF
 [2] London: https://admin.london.cloud.service.gov.uk/ Ireland: https://admin.cloud.service.gov.uk
+
+[signup]: https://www.cloud.service.gov.uk/signup
+[support email]: mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk
+[engagement team's CRM]: https://docs.google.com/spreadsheets/d/1HSYj4EEW-Fr6WPaKvYYM_I45Xgay1-707k1Elajgdh8/edit?ts=5b8801d5#gid=939993178
+[engagement team email]: mailto:common-platforms@digital.cabinet-office.gov.uk
+
