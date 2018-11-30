@@ -21,6 +21,7 @@
  - [Account lifecycle](accounts/account_lifecycle)
  - [Getting data about trial accounts](accounts/getting_data_about_trial_accounts/)
  - [Tenant personal data](accounts/tenant_personal_data/)
+ - [Billing process for GOV.UK PaaS paid accounts](accounts/billing_info)
 
 ## Team
 
