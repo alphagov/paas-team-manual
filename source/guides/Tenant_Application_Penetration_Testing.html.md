@@ -76,8 +76,21 @@ aws ec2 describe-nat-gateways | jq -r '.NatGateways[].NatGatewayAddresses[].Publ
 Assuming you are logged in the production CF and `AWS_DEFAULT_REGION` set to the right region
 
 ```
-ORG=tenant-org
-cf curl /v2/organizations/$(cf org --guid $ORG)/services \
-| jq -r '.resources[].entity | select(.description | contains("RDS")) | "arn:aws:rds:${AWS_DEFAULT_REGION}:$(aws sts get-caller-identity --output text  --query Account):db:rdsbroker-\(.unique_id)"'
+# AWS_DEFAULT_REGION=eu-west-1
 
+ORG=tenant-org
+
+account_id="$(aws sts get-caller-identity --output text  --query Account)"
+rds_services="$(cf curl /v2/services | jq '[ .resources[] | select(.entity.service_broker_name == "rds-broker") | .metadata.guid ]')"
+
+cf curl /v2/service_instances?q=organization_guid:$(cf org --guid $ORG) | \
+    jq -r \
+        --argjson rds_services "${rds_services}" \
+        --arg aws_default_region "${AWS_DEFAULT_REGION}" \
+        --arg account_id "${account_id}" \
+        '
+        .resources[] |
+            select([.entity.service_guid] | inside($rds_services)) |
+            "arn:aws:rds:\($aws_default_region):\($account_id):db:rdsbroker-\(.metadata.guid)"
+        '
 ```
