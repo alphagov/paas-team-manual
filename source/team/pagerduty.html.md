@@ -37,7 +37,7 @@ The team email notification is added at the end as well to cover any potential g
 
 ## Services
 
-We integrate with Pingdom and Datadog. For each integration we create one *in hours* service that uses the in hours only escalation policy, and one *24x7* service that uses the 24x7 escalation policy.
+We integrate with Pingdom and Prometheus. For each integration we create one *in hours* service that uses the in hours only escalation policy, and one *24x7* service that uses the 24x7 escalation policy.
 
 A special service called *Emergency email* is dedicated to urgent platform issues impacting tenants. Sending an email to it triggers a ZenDesk ticket to be created and an incident in PagerDuty. The incident is attached to the *24x7* escalation policy.
 

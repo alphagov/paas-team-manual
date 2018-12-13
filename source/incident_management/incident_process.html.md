@@ -119,7 +119,3 @@ Aiven monitors its services 24 hours a day 365 days a year, and provides free em
 - rapidly address any issues in system operations requiring manual intervention
 
 Responses are provided on a best-effort basis during the same or next business day. Email [support@aiven.io](mailto:support@aiven.io) for all support requests.
-
-### DataDog
-
-We do not currently have dedicated support for datadog. You can use live chat to contact DataDog between 15:00 and 00:00 UTC, or email their Support Team at support@datadoghq.com. Refer to https://www.datadoghq.com/support/ for more information.

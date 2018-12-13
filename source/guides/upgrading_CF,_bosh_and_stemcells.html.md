@@ -61,7 +61,7 @@ being excluded at the time of writing.
 
 You should test the upgrade changeset:
 
-* From a fully deployed master with Datadog enabled and `SLIM_DEV_DEPLOYMENT=false` set, which is equivalent to the change that will happen in
+* From a fully deployed master with `SLIM_DEV_DEPLOYMENT=false` set, which is equivalent to the change that will happen
   in production.
 * Deploying a fresh CF, which is something we frequently do in our
   development environments after the autodelete-cloudfoundry pipeline
@@ -81,10 +81,6 @@ Buildpack upgrades are typically done as a separate story. You should upgrade th
 Send an email to users following [the upgrade template](/team/notifying_tenants/#cf-upgrade).
 
 ## Problems encountered previously
-
-### Datadog
-
-Our dev environments typically don't have Datadog enabled, so changes relating to our Datadog monitors tend to get missed. Real examples include: process checks failing because the search string used to check them is no longer valid; and manifest updates being missed because the manifest stubs for Datadog tend to be in a different location in the repository, as they are shared across all deployed jobs. The recommendation is to have Datadog enabled while working on an upgrade story and check for triggered monitors.
 
 ### DNS name resolution.
 We encountered a wide variety of acceptance and smoke test failures which were intermittent. This was due to DNS health check failures. Consul uses these health checks to validate the consistency of the DNS records it serves, and will expire DNS records where the health check has failed.
