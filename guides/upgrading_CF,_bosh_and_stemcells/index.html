@@ -90,9 +90,6 @@
         <a href="#problems-encountered-previously">Problems encountered previously</a>
         <ul>
           <li>
-            <a href="#datadog">Datadog</a>
-          </li>
-          <li>
             <a href="#dns-name-resolution">DNS name resolution.</a>
           </li>
           <li>
@@ -176,7 +173,7 @@ being excluded at the time of writing.</p>
 <p>You should test the upgrade changeset:</p>
 
 <ul>
-<li>From a fully deployed master with Datadog enabled and <code>SLIM_DEV_DEPLOYMENT=false</code> set, which is equivalent to the change that will happen in
+<li>From a fully deployed master with <code>SLIM_DEV_DEPLOYMENT=false</code> set, which is equivalent to the change that will happen
 in production.</li>
 <li>Deploying a fresh CF, which is something we frequently do in our
 development environments after the autodelete-cloudfoundry pipeline
@@ -190,9 +187,7 @@ works and doesn&rsquo;t cause additional downtime during deployments.</li>
 <p>Buildpack upgrades are typically done as a separate story. You should upgrade the buildpacks to at least the versions included in the cf-deployment version currently deployed.</p>
 <h2 id="notify-the-tenants">Notify the tenants</h2>
 <p>Send an email to users following <a href="/team/notifying_tenants/#cf-upgrade">the upgrade template</a>.</p>
-<h2 id="problems-encountered-previously">Problems encountered previously</h2><h3 id="datadog">Datadog</h3>
-<p>Our dev environments typically don&rsquo;t have Datadog enabled, so changes relating to our Datadog monitors tend to get missed. Real examples include: process checks failing because the search string used to check them is no longer valid; and manifest updates being missed because the manifest stubs for Datadog tend to be in a different location in the repository, as they are shared across all deployed jobs. The recommendation is to have Datadog enabled while working on an upgrade story and check for triggered monitors.</p>
-<h3 id="dns-name-resolution">DNS name resolution.</h3>
+<h2 id="problems-encountered-previously">Problems encountered previously</h2><h3 id="dns-name-resolution">DNS name resolution.</h3>
 <p>We encountered a wide variety of acceptance and smoke test failures which were intermittent. This was due to DNS health check failures. Consul uses these health checks to validate the consistency of the DNS records it serves, and will expire DNS records where the health check has failed.</p>
 
 <p>The root cause was failure to remove the <code>consul.agent.services</code> property for Diego components in the CloudFoundry manifest. <a href="https://github.com/cloudfoundry-incubator/diego-release/releases/tag/v0.1452.0">Diego release notes for version 1452</a> did state these had to be removed, as Diego components now use the Locket library to configure its DNS health checks.</p>

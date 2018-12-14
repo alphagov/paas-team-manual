@@ -142,7 +142,7 @@
 <p>This policy uses the in hours schedule first. When out of hours, the alert falls through immediately to the out of hours schedule. Failing that, the escalation schedule is used.
 The team email notification is added at the end as well to cover any potential gap in the schedules.</p>
 <h2 id="services">Services</h2>
-<p>We integrate with Pingdom and Datadog. For each integration we create one <em>in hours</em> service that uses the in hours only escalation policy, and one <em>24x7</em> service that uses the 24x7 escalation policy.</p>
+<p>We integrate with Pingdom and Prometheus. For each integration we create one <em>in hours</em> service that uses the in hours only escalation policy, and one <em>24x7</em> service that uses the 24x7 escalation policy.</p>
 
 <p>A special service called <em>Emergency email</em> is dedicated to urgent platform issues impacting tenants. Sending an email to it triggers a ZenDesk ticket to be created and an incident in PagerDuty. The incident is attached to the <em>24x7</em> escalation policy.</p>
 

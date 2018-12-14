@@ -118,7 +118,7 @@
   <h1 id="responding-to-alerts">Responding to alerts</h1>
 <p>Tips for responding to alerts when you are on support.</p>
 <h2 id="failed-logins">Failed logins</h2>
-<p>In case of security incident, for example when alerted of a brute-force attack by datadog monitors,
+<p>In case of security incident, for example when alerted of a brute-force attack by Prometheus monitors,
 it may help to look at UAA logs.</p>
 
 <p>The access logs is on the UAA VMs in <code>/var/vcap/sys/log/uaa/localhost_access.log</code>.</p>
@@ -154,8 +154,7 @@ dependencies are working. If any are not working then the healthcheck
 endpoint returns a 500 response code and response body containing the
 errors.</p>
 
-<p>The version of the DataDog agent that we currently use doesn&rsquo;t report the
-response body, which can make it hard to determine the actual problem. To
+<p>Prometheus doesn&rsquo;t report the response body, which can make it hard to determine the actual problem. To
 get this information you will need to SSH to any Cloud Foundry VM and query
 the endpoint yourself:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>bash# bosh-ssh api/0
@@ -169,9 +168,7 @@ Connection: keep-alive
 
 cloudfoundry error: Could not get api /v2/info: EOF
 </code></pre></div><h2 id="rds-failures">RDS Failures</h2>
-<p>On rare occasion, we may get an RDS Failure event coming through to our Datadog
-via the RDS Integration. Unfortunately, many types of <code>failure</code> event are not
-resolvable without getting in touch with AWS. In some circumstances you may be
+<p>Unfortunately, many types of <code>failure</code> event are not resolvable without getting in touch with AWS. In some circumstances you may be
 able to restore an instance using <a href="/guides/Restoring_the_CF_databases/">our point-in-time-restore
 instructions</a>.</p>
 
