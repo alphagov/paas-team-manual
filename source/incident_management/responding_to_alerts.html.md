@@ -4,7 +4,7 @@ Tips for responding to alerts when you are on support.
 
 ## Failed logins
 
-In case of security incident, for example when alerted of a brute-force attack by datadog monitors,
+In case of security incident, for example when alerted of a brute-force attack by Prometheus monitors,
 it may help to look at UAA logs.
 
 The access logs is on the UAA VMs in `/var/vcap/sys/log/uaa/localhost_access.log`.
@@ -37,8 +37,7 @@ dependencies are working. If any are not working then the healthcheck
 endpoint returns a 500 response code and response body containing the
 errors.
 
-The version of the DataDog agent that we currently use doesn't report the
-response body, which can make it hard to determine the actual problem. To
+Prometheus doesn't report the response body, which can make it hard to determine the actual problem. To
 get this information you will need to SSH to any Cloud Foundry VM and query
 the endpoint yourself:
 
@@ -57,9 +56,7 @@ cloudfoundry error: Could not get api /v2/info: EOF
 
 ## RDS Failures
 
-On rare occasion, we may get an RDS Failure event coming through to our Datadog
-via the RDS Integration. Unfortunately, many types of `failure` event are not
-resolvable without getting in touch with AWS. In some circumstances you may be
+Unfortunately, many types of `failure` event are not resolvable without getting in touch with AWS. In some circumstances you may be
 able to restore an instance using [our point-in-time-restore
 instructions](/guides/Restoring_the_CF_databases/).
 

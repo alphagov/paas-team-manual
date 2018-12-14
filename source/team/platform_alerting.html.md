@@ -1,6 +1,6 @@
 # Responding to Platform Alerting
 
-Datadog is now being configured to send alerts to teams mailing lists.
+Prometheus is configured to send alerts to teams mailing lists.
 
 You can check and subscribe to these alerts in each corresponding mailing list page (Google Groups):
 

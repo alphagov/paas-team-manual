@@ -62,7 +62,7 @@ Documentation is available at http://help.statuspage.io/knowledge_base/topics/ov
 
 ## How it was setup
 
-It was set up manually as we didn't have an API endpoint to hit until it had been created. This was a process of signing up using the details in the credentials repo. And then linking both Pingdom and DataDog to Statuspage.io using API keys from each service.
+It was set up manually as we didn't have an API endpoint to hit until it had been created. This was a process of signing up using the details in the credentials repo.
 
 Terraform manages the CNAME in Route53 in order for us to use a custom domain to host the page on.
 

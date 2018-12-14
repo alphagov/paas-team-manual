@@ -1,26 +1,20 @@
-# Dashboard Mac Mini
+# Dashboard Mac Mini & Chromebox
 
-There are two Mac Minis attached to big screens in our team area. They can show the
+There are two Mac Minis and a Chromebox attached to big screens in our team area. They can show the
 following:
 
 * Outstanding pull requests
 * Concourse pipelines
 * Pingdom public status page
-* Overview of Datadog triggered monitors
+* Overview of Prometheus triggered monitors
 
 Some combination of the above might be shown according to the whims of the team.
 If we want to display multiple different views on a single screen, we use
 [frame-splits](https://github.com/dsingleton/frame-splits).
 
-If you need access, you can walk up and use the mouse and keyboard, or connect via the OSX Screen Sharing app.
+If you need access, you can walk up and use the mouse and keyboard.
 
-The credentials for this are in the `paas-pass` password store.
-
-To connect to the first machine, you need to be on the `CDN02_test` wifi network.
-This network is not configured by default on newly provisioned laptops, so talk to someone else on the team if you need the wifi password.
-The second machine is on `Bardeen`.
-You can find the machines in the Network section of an OSX Finder window, but only if you are on the right network.
-If you open a machine, the finder should show you a `Share screen` button.
+The credentials for these machines and for the chromebox are in the `paas-pass` password store.
 
 ## Outstanding pull requests
 
@@ -59,8 +53,8 @@ You can use the [Pingdom public status page](http://stats.pingdom.com/ejtodj13fq
 
 We use the [Super Auto Refresh](https://chrome.google.com/webstore/detail/super-auto-refresh/kkhjakkgopekjlempoplnjclgedabddk?hl=en) Chrome extension to refresh the page.
 
-## Datadog Triggered Monitors
+## Prometheus Triggered Monitors
 
-We have created a [dashboard in Datadog, called 'User Impact'](https://app.datadoghq.com/screen/222842/user-impact-for-our-monitor-do-not-edit), which displays a count of monitors by trigger status (healthy, warning, critical, or unknown).
+We have created a [dashboard in Grafana, called 'User Impact - prod'](https://grafana.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod?refresh=5s&orgId=1) and [dashboard in Grafana, called 'User Impact - prod-lon'](https://grafana.london.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod-lon?refresh=5s&orgId=1), which displays a count of monitors by trigger status (healthy, warning, critical, or unknown) for each production environment.
 
-The credentials for the Datadog user are in the `paas-pass` password store.
+The credentials for the Grafana mon users can be found by running `make <env> showenv` from paas-cf.
