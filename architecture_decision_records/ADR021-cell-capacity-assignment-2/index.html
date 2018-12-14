@@ -193,13 +193,13 @@ may change over time. We should review this decision after 6 months.</p>
 <h2 id="status">Status</h2>
 <p>Proposed</p>
 <h2 id="consequences">Consequences</h2>
-<p>We will alert on the following datadog metrics:</p>
+<p>We will alert on the following metrics:</p>
 
 <ul>
-<li>exponentially weighted moving average of <code>system.mem.pct_usable</code> averaged over cells &lt; 50%</li>
-<li>smoothed <code>system.cpu.idle</code> averaged across cells &lt; 50%</li>
-<li>smoothed <code>cf.rep.ContainerCount / cf.rep.CapacityTotalContainers</code> cells of &gt; 80%</li>
-<li>smoothed <code>cf.rep.CapacityRemainingMemory / cf.rep.CapacityTotalMemory</code> of &lt; 33%</li>
+<li>exponentially weighted moving average of used memory (not including cache) averaged over cells &gt; 50%</li>
+<li>smoothed idle CPU averaged across cells &lt; 50% (Note: This metric superceeded by <a href="/architecture_decision_records/ADR023-idle-cpu-alerting-change/">ADR23</a>)</li>
+<li>smoothed container count (as reported by rep) of &gt; 80% of capacity</li>
+<li>smoothed available memory capacity (as reported by rep) of &lt; 33%</li>
 </ul>
 
 <p>We will remove half the cells, but not all in one go. We should start by removing &frac14; of cells.</p>
