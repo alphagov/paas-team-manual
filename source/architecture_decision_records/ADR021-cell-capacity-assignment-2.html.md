@@ -91,12 +91,12 @@ Proposed
 
 ## Consequences
 
-We will alert on the following datadog metrics:
+We will alert on the following metrics:
 
-- exponentially weighted moving average of `system.mem.pct_usable` averaged over cells < 50%
-- smoothed `system.cpu.idle` averaged across cells < 50%
-- smoothed `cf.rep.ContainerCount / cf.rep.CapacityTotalContainers` cells of > 80%
-- smoothed `cf.rep.CapacityRemainingMemory / cf.rep.CapacityTotalMemory` of < 33%
+- exponentially weighted moving average of used memory (not including cache) averaged over cells > 50%
+- smoothed idle CPU averaged across cells < 50% (Note: This metric superceeded by [ADR23](/architecture_decision_records/ADR023-idle-cpu-alerting-change/))
+- smoothed container count (as reported by rep) of > 80% of capacity
+- smoothed available memory capacity (as reported by rep) of < 33%
 
 We will remove half the cells, but not all in one go. We should start by removing 1/4 of cells.
 

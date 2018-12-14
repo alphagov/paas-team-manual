@@ -22,12 +22,12 @@ Accepted
 
 ## Consequences
 
-We will alert on the following datadog metrics:
+We will alert on the following metrics:
 
-- averaged across 1 day `system.cpu.idle` of cells < 33%
+- idle CPU averaged across 1 day of cells < 33%
 
 We will warn on the following datadog metrics:
 
-- averaged across 1 day `system.cpu.idle` of cells < 37%
+- idle CPU averaged across 1 day of cells < 37%
 
 We will not be annoyed by false positive alerts.
