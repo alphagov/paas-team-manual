@@ -128,3 +128,37 @@ You may find it necessary, to go deeper into the audit logs:
 - Authentication failures: `uaa.audit.type: PrincipalAuthenticationFailure`
 - Authentication failure for a user: `uaa.audit.type: PrincipalAuthenticationFailure AND uaa.audit.principal: admin`
 - SSO authentication failure doesn't show specific logs, only `uaa.audit.type: ClientAuthenticationSuccess` from the cf client.
+
+# Finding PaaS internal application logs
+
+For certain applications we forward the logs to Logit using a syslog drain. In Kibana you can use the following filters to search for such logs:
+
+To list all application logs:
+
+```
+tags: logmessage
+```
+
+To list all application routing logs:
+
+```
+tags: "logmessage-rtr"
+```
+
+To list all logs written by the application:
+
+```
+tags: "logmessage-app"
+```
+
+To filter by application name:
+
+```
+@source.host:"<org>.<space>.<app name>", e.g. @source.host:"admin.public.paas-admin"
+```
+
+To filter by guid:
+
+```
+@source.component:"<GUID>", e.g. @source.component:"6e70d438-d9ac-4576-816f-9d5511eb3e43"
+```
