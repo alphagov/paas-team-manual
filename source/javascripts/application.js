@@ -13,7 +13,7 @@ $(document).ready(function() {
     gcseSearchboxElement.innerHTML = '<gcse:search></gcse:search>';
     gcseSearchboxElement.appendBefore(document.getElementById('toc'));
 
-    var cx = '017564251452351296425:wtwqadlvyxa';
+    var cx = '016732226562729984830:itmwnemplk4';
         var gcse = document.createElement('script');
         gcse.type = 'text/javascript';
         gcse.async = true;
