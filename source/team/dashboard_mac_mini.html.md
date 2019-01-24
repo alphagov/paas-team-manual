@@ -16,6 +16,8 @@ If you need access, you can walk up and use the mouse and keyboard.
 
 The credentials for these machines and for the chromebox are in the `paas-pass` password store.
 
+In case of an AZ failure you can switch to a Grafana instance in a different AZ by replacing the number in the URL. The available URLs are listed [here](/monitoring_alerting/prometheus/#urls).
+
 ## Outstanding pull requests
 
 These are shown by [Fourth Wall](https://github.com/alphagov/fourth-wall).
