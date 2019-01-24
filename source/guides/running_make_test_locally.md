@@ -3,10 +3,10 @@
 A number of packages need to be installed in order to run `make test` in `paas-cf` locally.
 
 ## Pre-requisites
-`paas-cf` needs to be checked out in the correct location?
+`paas-cf` needs to be checked out in the correct location in your Go path.
 `$GOPATH/src/github.com/alphagov/paas-cf`
 
-## Packages
+## Install required packages
 
 * [Homebrew](https://brew.sh/)
 * Golang >=1.11.4
@@ -90,7 +90,7 @@ A number of packages need to be installed in order to run `make test` in `paas-c
   brew install jq
   ```
 
-## Useful but not necessary
+## Install optional packages
 
 * CloudFoundry cf-uaac
 
