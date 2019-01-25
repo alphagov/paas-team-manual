@@ -5,6 +5,10 @@
  - [Incident process](incident_management/incident_process/)
  - [Responding to alerts](incident_management/responding_to_alerts/)
 
+## Monitoring and alerting
+
+- [Prometheus](monitoring_alerting/prometheus)
+
 ## Support
 
  - [User management](support/CF_UAA_user_management/)
