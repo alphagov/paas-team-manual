@@ -1,8 +1,13 @@
-# Running `make test` locally
+# Running tests on `paas-cf` locally
 
-A number of packages need to be installed in order to run `make test` in `paas-cf` locally.
+A number of packages need to be installed in order to run the tests of `paas-cf` locally. To run them, install the packages below then run 
+
+```sh
+make test
+```
 
 ## Pre-requisites
+
 `paas-cf` needs to be checked out in the correct location in your Go path: `$GOPATH/src/github.com/alphagov/paas-cf`
 
 ## Install required packages

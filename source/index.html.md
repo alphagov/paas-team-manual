@@ -61,7 +61,7 @@
  - [upgrading CF, bosh and stemcells](guides/upgrading_CF,_bosh_and_stemcells/)
  - [Updating Logstash filters in Logit](guides/editing_logstash_filters/)
  - [VPC Peering](guides/vpc_peering/)
- - [Running `make test` locally on `paas-cf`](guides/running_make_test_locally/)
+ - [Running tests on `paas-cf` locally](guides/running_paas-cf_tests_locally/)
 
 ### Styleguides
 
