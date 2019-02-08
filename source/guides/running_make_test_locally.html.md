@@ -3,8 +3,7 @@
 A number of packages need to be installed in order to run `make test` in `paas-cf` locally.
 
 ## Pre-requisites
-`paas-cf` needs to be checked out in the correct location in your Go path.
-`$GOPATH/src/github.com/alphagov/paas-cf`
+`paas-cf` needs to be checked out in the correct location in your Go path: `$GOPATH/src/github.com/alphagov/paas-cf`
 
 ## Install required packages
 
@@ -21,6 +20,7 @@ A number of packages need to be installed in order to run `make test` in `paas-c
     ```sh
     brew install rbenv
     ```
+
     then in `~/.bashrc` somewhere, add `eval “$(rbenv init -)”`
 
   ```sh
@@ -28,10 +28,10 @@ A number of packages need to be installed in order to run `make test` in `paas-c
   ```
 
 * Shellcheck
-  We use shellcheck 0.4.6 on Travis, which is not available directly from homebrew - it needs to be installed from a prior commit to [homebrew-core](https://github.com/Homebrew/homebrew-core)
-
+  
   ```sh
-  brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/7712a699c3e01bc8c9b01777d3a89383bd42241e/Formula/shellcheck.rb
+  curl -L -o /usr/local/bin/shellcheck https://github.com/alphagov/paas-cf/releases/download/shellcheck_binary_0.4.6/shellcheck_darwin_amd64
+  chmod +x /usr/local/bin/shellcheck
   ```
 
 * Terraform (0.11.1)
@@ -61,7 +61,10 @@ A number of packages need to be installed in order to run `make test` in `paas-c
   ```
 
 * YAML Lint
-  `brew install yamllint`
+  
+  ```
+  brew install yamllint
+  ```
 
 * Bundler
 
