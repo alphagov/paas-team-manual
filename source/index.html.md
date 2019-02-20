@@ -31,6 +31,7 @@
 
  - [Orientation](team/orientation/)
  - [Working practices](team/working_practices/)
+ - [Service Targets](team/service_targets/)
  - [Dashboard mac mini](team/dashboard_mac_mini/)
  - [Managing AWS access](team/managing_aws_access/)
  - [Our networking in AWS](team/networking_in_aws/)
