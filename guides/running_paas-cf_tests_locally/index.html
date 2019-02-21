@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/running_paas-cf_tests_locally/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/running_paas-cf_tests_locally/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/running_paas-cf_tests_locally/" />
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#running-tests-on-paas-cf-locally">Running tests on paas-cf locally</a>
+    <ul>
+      <li>
+        <a href="#pre-requisites">Pre-requisites</a>
+      </li>
+      <li>
+        <a href="#install-required-packages">Install required packages</a>
+      </li>
+      <li>
+        <a href="#install-optional-packages">Install optional packages</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="running-tests-on-paas-cf-locally">Running tests on <code>paas-cf</code> locally</h1>
+<p>A number of packages need to be installed in order to run the tests of <code>paas-cf</code> locally. To run them, install the packages below then run </p>
+<div class="highlight"><pre class="highlight shell"><code>make <span class="nb">test</span>
+</code></pre></div><h2 id="pre-requisites">Pre-requisites</h2>
+<p><code>paas-cf</code> needs to be checked out in the correct location in your Go path: <code>$GOPATH/src/github.com/alphagov/paas-cf</code></p>
+<h2 id="install-required-packages">Install required packages</h2>
+<ul>
+<li><a href="https://brew.sh/">Homebrew</a></li>
+<li>Golang &gt;=1.11.4</li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>  brew install golang
+</code></pre></div>
+<ul>
+<li><p>Ruby 2.5.1</p>
+
+<ul>
+<li>Installed via rbenv</li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>brew install rbenv
+</code></pre></div>
+<p>then in <code>~/.bashrc</code> somewhere, add <code>eval “$(rbenv init -)”</code></p></li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>  rbenv install 2.5.1
+</code></pre></div>
+<ul>
+<li>Shellcheck</li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>  curl <span class="nt">-L</span> <span class="nt">-o</span> /usr/local/bin/shellcheck https://github.com/alphagov/paas-cf/releases/download/shellcheck_binary_0.4.6/shellcheck_darwin_amd64
+  chmod +x /usr/local/bin/shellcheck
+</code></pre></div>
+<ul>
+<li>Terraform (0.11.1)</li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>  wget https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_darwin_amd64.zip
+  unzip <span class="nt">-o</span> terraform_0.11.1_darwin_amd64.zip <span class="nt">-d</span> /usr/local/bin
+  rm terraform_0.11.1_darwin_amd64.zip
+</code></pre></div>
+<ul>
+<li>BOSH cli v2 (2.0.48)</li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>  brew install cloudfoundry/tap/bosh-cli
+</code></pre></div>
+<ul>
+<li>Prometheus &amp; Promtool</li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>  brew install prometheus
+</code></pre></div>
+<ul>
+<li>CF CLI</li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>  brew install cloudfoundry/tap/cf-cli<span class="sb">`</span>
+</code></pre></div>
+<ul>
+<li>YAML Lint</li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext"><code>  brew install yamllint
+</code></pre></div>
+<ul>
+<li>Bundler</li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>  gem install bundler
+</code></pre></div>
+<ul>
+<li><p>Gems via bundler</p>
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd </span>path/to/paas-cf/
+bundle install
+</code></pre></div>
+<ul>
+<li>Ginkgo and gomega (prereq: golang)</li>
+</ul></li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>  <span class="nb">cd </span>path/to/paas-cf/
+  go get github.com/onsi/ginkgo/ginkgo
+  go get github.com/onsi/gomega/...
+</code></pre></div>
+<ul>
+<li>jq</li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>  brew install jq
+</code></pre></div><h2 id="install-optional-packages">Install optional packages</h2>
+<ul>
+<li>CloudFoundry cf-uaac</li>
+</ul>
+<div class="highlight"><pre class="highlight shell"><code>  gem install cf-uaac
+</code></pre></div>
+<ul>
+<li><a href="https://github.com/cloudfoundry-incubator/uaa-cli">CloudFoundry UAA CLI</a></li>
+</ul>
+
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
