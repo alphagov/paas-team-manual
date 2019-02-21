@@ -12,6 +12,10 @@ We’re supporting live services, teams who are using PaaS for prototyping and i
 * **Out of hours - waking hours**	: 9am to 5pm each non-working day including weekends and bank holidays
 * **Out of hours - overnight**: 5pm to 9am each day
 
+## Service Targets
+
+* **First Response**: Within 2 working days
+
 ## Alerting out of hours
 
 These are the things we support out of hours:
