@@ -13,6 +13,7 @@
 
  - [User management](support/CF_UAA_user_management/)
  - [Finding activity](support/finding_activity/)
+ - [Finding route owners](support/finding_route_owners)
  - [Restoring Elasticsearch Backups](support/restoring_elasticsearch_backups/)
  - [Responding to security issues](support/responding_to_security_issues/)
  - [Support roles and responsibilities](support/roles_and_responsibilities/)
