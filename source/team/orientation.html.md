@@ -29,6 +29,12 @@ list and their respective URLs in the following spreadsheet:
 
 - [PaaS Team Checks](https://docs.google.com/spreadsheets/d/14gEh9jILg2p9aVIS78WTKEYMsz-ltetxnbugIw4TrWA/edit#gid=228343062)
 
+## Buddys for new engineers
+
+If you're a new developer or SRE you'll be paired with a buddy for the first
+few days. They'll help you get set up, explain the GOV.UK PaaS product in more
+detail and help you get started implementing your first stories.
+
 ## Events
 
 These are key events that happen each fortnightly sprint. You'll get
