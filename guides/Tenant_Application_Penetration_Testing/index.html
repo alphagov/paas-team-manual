@@ -61,8 +61,18 @@
             <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
               <ul>
   <li>
-    <a href="#tenant-application-penetration-testing">Tenant Application Penetration Testing</a>
+    <a href="#tenant-application-penetration-and-load-testing">Tenant Application Penetration and Load Testing</a>
     <ul>
+      <li>
+        <ul>
+          <li>
+            <a href="#penetration-testing">Penetration testing</a>
+          </li>
+          <li>
+            <a href="#load-testing">Load Testing</a>
+          </li>
+        </ul>
+      </li>
       <li>
         <a href="#find-penetration-testable-ec2-instance-ids">Find penetration testable EC2 instance IDs</a>
       </li>
@@ -92,8 +102,50 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="tenant-application-penetration-testing">Tenant Application Penetration Testing</h1>
-<p>Before allowing a penetration test against applications running on PaaS we may have to notify AWS. Currently we are not sure on the scenarios when we do not have to notify AWS. We are erring on the side of caution and notifying for all penetration tests.</p>
+  <h1 id="tenant-application-penetration-and-load-testing">Tenant Application Penetration and Load Testing</h1><h3 id="penetration-testing">Penetration testing</h3>
+<p>We no longer have to notify AWS of penetration testing, however it is useful for the team to know that this is taking place and that we have contact details of the testers if issues arise during the testing window.</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+<tr>
+<td>source_IP</td>
+<td>Provided by penetration tester. The IPs that the test will originate from.</td>
+</tr>
+<tr>
+<td>phone_for_testing_team</td>
+<td>Provided by penetration tester. Phone number of the testers.</td>
+</tr>
+<tr>
+<td>peak_bandwidth</td>
+<td>Provided by penetration tester. The peak amount of bandwidth the tests will consume (Gbps).</td>
+</tr>
+<tr>
+<td>peak_rps</td>
+<td>Provided by penetration tester. The peak number of requests-per-second the tests will perform.</td>
+</tr>
+<tr>
+<td>StartDate</td>
+<td>Provided by penetration tester. When will the test start?  (eg. <code>2017-09-26T09:00:00Z</code> )</td>
+</tr>
+<tr>
+<td>EndDate</td>
+<td>Provided by penetration tester. When will the test end? (eg. <code>2017-09-26T18:00:00Z</code> )</td>
+</tr>
+<tr>
+<td>can_you_stop</td>
+<td>Provided by penetration tester. Once started, is it possible to stop the test immediately if there is an issue?</td>
+</tr>
+<tr>
+<td>emergency_contact</td>
+<td>Provided by penetration tester. Email and phone number in case issues arise.</td>
+</tr>
+
+        </table>
+      </div><h3 id="load-testing">Load Testing</h3>
+<p>Before allowing a load test against applications running on PaaS we may have to notify AWS. Currently we are not sure on the scenarios when we do not have to notify AWS. We are erring on the side of caution and notifying for all load tests.</p>
 
 <p>There are two methods to notify AWS: <a href="https://aws.amazon.com/forms/penetration-testing-request">a form which requires root account access</a>, or, by emailing <code>aws-security-cust-pen-test@amazon.com</code>. Both require providing the following information:</p>
 <div class="table-container">
@@ -172,11 +224,11 @@
 </tr>
 <tr>
 <td>source_IP</td>
-<td>Provided by penetration tester. The IPs that the test will originate from.</td>
+<td>Provided by tester. The IPs that the test will originate from.</td>
 </tr>
 <tr>
 <td>on_prem</td>
-<td>Provided by penetration tester. Will the requests originate from the office of the testers?</td>
+<td>Provided by tester. Will the requests originate from the office of the testers?</td>
 </tr>
 <tr>
 <td>third_party</td>
@@ -184,19 +236,19 @@
 </tr>
 <tr>
 <td>phone_for_testing_team</td>
-<td>Provided by penetration tester. Phone number of the testers.</td>
+<td>Provided by tester. Phone number of the testers.</td>
 </tr>
 <tr>
 <td>testing_company_NDA</td>
-<td>Provided by penetration tester. Has an NDA with AWS been signed by the penetration testers?</td>
+<td>Provided by tester. Has an NDA with AWS been signed by the penetration testers?</td>
 </tr>
 <tr>
 <td>peak_bandwidth</td>
-<td>Provided by penetration tester. The peak amount of bandwidth the tests will consume (Gbps).</td>
+<td>Provided by tester. The peak amount of bandwidth the tests will consume (Gbps).</td>
 </tr>
 <tr>
 <td>peak_rps</td>
-<td>Provided by penetration tester. The peak number of requests-per-second the tests will perform.</td>
+<td>Provided by tester. The peak number of requests-per-second the tests will perform.</td>
 </tr>
 <tr>
 <td>dns_walking_qps</td>
@@ -204,11 +256,11 @@
 </tr>
 <tr>
 <td>StartDate</td>
-<td>Provided by penetration tester. When will the test start?  (eg. <code>2017-09-26T09:00:00Z</code> )</td>
+<td>Provided by tester. When will the test start?  (eg. <code>2017-09-26T09:00:00Z</code> )</td>
 </tr>
 <tr>
 <td>EndDate</td>
-<td>Provided by penetration tester. When will the test end? (eg. <code>2017-09-26T18:00:00Z</code> )</td>
+<td>Provided by tester. When will the test end? (eg. <code>2017-09-26T18:00:00Z</code> )</td>
 </tr>
 <tr>
 <td>testing_details</td>
@@ -216,15 +268,15 @@
 </tr>
 <tr>
 <td>metrics_of_test</td>
-<td>Provided by penetration tester. What metrics are being measured in order to decide the success or failure of the test?</td>
+<td>Provided by tester. What metrics are being measured in order to decide the success or failure of the test?</td>
 </tr>
 <tr>
 <td>can_you_stop</td>
-<td>Provided by penetration tester. Once started, is it possible to stop the test immediately if there is an issue?</td>
+<td>Provided by tester. Once started, is it possible to stop the test immediately if there is an issue?</td>
 </tr>
 <tr>
 <td>emergency_contact</td>
-<td>Provided by penetration tester. Email and phone number in case issues arise.</td>
+<td>Provided by tester. Email and phone number in case issues arise.</td>
 </tr>
 
         </table>
