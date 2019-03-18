@@ -18,7 +18,9 @@
   git diff v1.0.0...v1.14.0 cf-deployment.yml
   ```
 
-  We also use a number of upstream ops files, so you will want to `diff` them too. See [the manifest generation script](https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/scripts/generate-manifest.sh) for which ones get used.
+* Check your environment isn't resource starved, because this can cause unexpected test failures. Typically, resource starvation in dev happens when there are a number of organisations left over from smoke and acceptance tests. These are prefixed with `SMOKE-` and `CATS-` respectively. Provided tests aren't running at the time, they can be safely deleted with `cf delete-org`.
+
+We also use a number of upstream ops files, so you will want to `diff` them too. See [the manifest generation script](https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/scripts/generate-manifest.sh) for which ones get used.
 
 Special differences to take into account:
 
