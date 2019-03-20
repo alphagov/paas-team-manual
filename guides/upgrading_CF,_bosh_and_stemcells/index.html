@@ -116,6 +116,7 @@
 
   <h1 id="upgrading-cf-bosh-and-stemcells">Upgrading CF, BOSH and stemcells</h1><h2 id="before-upgrading"> Before Upgrading</h2>
 <ul>
+<li>Check your environment isn&rsquo;t resource starved, because this can cause unexpected test failures. Typically, resource starvation in dev happens when there are a number of organisations left over from smoke and acceptance tests. These are prefixed with <code>SMOKE-</code> and <code>CATS-</code> respectively. Provided tests aren&rsquo;t running at the time, they can be safely deleted with <code>cf delete-org</code>.</li>
 <li>Separate the upgrade of Cloud Foundry and stemcells from the upgrade of Bosh. Upgrades can cause problems and our experience is that it is difficult to be certain about the cause of those problems if multiple things have changed.</li>
 <li><p>Establish the correct version to upgrade to:</p>
 
