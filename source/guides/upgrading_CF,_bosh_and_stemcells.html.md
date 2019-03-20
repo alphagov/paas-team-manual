@@ -1,7 +1,7 @@
 # Upgrading CF, BOSH and stemcells
 
 ## Before Upgrading
-
+* Check your environment isn't resource starved, because this can cause unexpected test failures. Typically, resource starvation in dev happens when there are a number of organisations left over from smoke and acceptance tests. These are prefixed with `SMOKE-` and `CATS-` respectively. Provided tests aren't running at the time, they can be safely deleted with `cf delete-org`.
 * Separate the upgrade of Cloud Foundry and stemcells from the upgrade of Bosh. Upgrades can cause problems and our experience is that it is difficult to be certain about the cause of those problems if multiple things have changed.
 * Establish the correct version to upgrade to:
   * Check [cf-deployment releases documentation](https://github.com/cloudfoundry/cf-deployment/releases).
@@ -18,7 +18,7 @@
   git diff v1.0.0...v1.14.0 cf-deployment.yml
   ```
 
-  We also use a number of upstream ops files, so you will want to `diff` them too. See [the manifest generation script](https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/scripts/generate-manifest.sh) for which ones get used.
+We also use a number of upstream ops files, so you will want to `diff` them too. See [the manifest generation script](https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/scripts/generate-manifest.sh) for which ones get used.
 
 Special differences to take into account:
 
