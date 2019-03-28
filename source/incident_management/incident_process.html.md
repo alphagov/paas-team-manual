@@ -11,7 +11,7 @@ This section summarises :
 
 When an incident happens, the person on support must:
 
-- nominate an incident lead; this person must have production access, and be the person on support
+- nominate an incident lead; this person must have production access, and may be the person on support
 - nominate an incident comms person; during out-of-hours this can be the person on the PaaS escalation rota
 - join #paas-incident on Slack if required
 
