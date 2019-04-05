@@ -64,6 +64,7 @@
  - [Updating Logstash filters in Logit](guides/editing_logstash_filters/)
  - [VPC Peering](guides/vpc_peering/)
  - [Running tests on `paas-cf` locally](guides/running_paas-cf_tests_locally/)
+ - [Restoring the bosh director](guides/restoring_bosh_director/)
 
 ### Styleguides
 
