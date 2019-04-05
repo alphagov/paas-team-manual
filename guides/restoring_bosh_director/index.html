@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/restoring_bosh_director/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/restoring_bosh_director/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/restoring_bosh_director/" />
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#restoring-the-bosh-director">Restoring the Bosh Director</a>
+    <ul>
+      <li>
+        <a href="#contents">Contents</a>
+      </li>
+      <li>
+        <a href="#bootstrapping-the-director-in-another-az">Bootstrapping the director in another AZ</a>
+      </li>
+      <li>
+        <a href="#the-director-39-s-database-is-gone">The director’s database is gone</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="restoring-the-bosh-director">Restoring the Bosh Director</h1>
+<p>This guide will show you how to restore the bosh director and cells, in the event that it becomes unreachable or unresponsive.</p>
+<h2 id="contents">Contents</h2>
+<ol>
+<li><a href="#bootstrapping-the-director-in-another-az">Bootstrapping the director in another AZ</a></li>
+<li><a href="#the-director-39-s-database-is-gone">The director&rsquo;s database is gone</a></li>
+</ol>
+<h2 id="bootstrapping-the-director-in-another-az">Bootstrapping the director in another AZ</h2>
+<ol>
+<li>Using <code>paas-bootstrap</code>, bootstrap a new deployer-concourse instance using the <code>BOSH_AZ</code> env var to specify the target AZ. <code>$ENV</code> is the environment you&rsquo;re targetting (e.g. dev or prod-lon).</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext"><code>BOSH_AZ=eu-west-2b make $ENV deployer-concourse bootstrap
+</code></pre></div>
+<ol>
+<li>Wait for the bootstrapper VM to come online, and access it at <code>localhost:8080</code></li>
+<li>Run the <code>create-bosh-concourse</code> pipeline from the left-hand edge</li>
+</ol>
+<h2 id="the-director-39-s-database-is-gone">The director&rsquo;s database is gone</h2>
+<p>In the event that the director&rsquo;s database is gone, it can be restored from the latest snapshot to get to back to a state from which the rest of the deployment can be fixed.</p>
+
+<ol>
+<li>Find the latest snapshot of the director&rsquo;s database in the RDS console</li>
+<li>Create a new database from this snapshot, using <strong>exactly</strong> the same name as set by Terraform in <code>paas-bootstrap/terraform/bosh/rds.tf</code></li>
+<li>Bootstrap a new deployer-concourse using <code>paas-bootstrap</code> in the same region.</li>
+<li>Wait for the new database to be available.</li>
+<li>Run the <code>create-bosh-concourse</code> pipeline from the left-hand edge. During the <code>bosh-terraform</code> step, Terraform will find the same-named database and configure its parameter group, security group etc correctly.</li>
+<li>The director will be deployed with access to the correct database.</li>
+</ol>
+
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
