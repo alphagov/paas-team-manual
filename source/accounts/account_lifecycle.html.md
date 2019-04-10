@@ -36,7 +36,8 @@ PaaS Support should then check whether an organisation is Crown or non-Crown
 
 If the organisation is Crown and the requester has a gov.uk email address, PaaS
 Support must set up the trial organisation on a default quota, confirm this to
-the organisation via Zendesk, and cc a PaaS Product Manager.
+the organisation via Zendesk, and cc a PaaS Product Manager and the relevant
+engagement lead from [this document](https://docs.google.com/document/d/13qGTlbQfqhH-Gx46e2w2XJKG4JyBnnFWLWJgM2XxUAc/edit).
 
 If the organisation is Crown and the requester does not have a gov.uk email
 address, PaaS Support must ask the requester to supply an individual with a
