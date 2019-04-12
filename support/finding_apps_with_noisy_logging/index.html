@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/support/finding_apps_with_noisy_logging/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/support/finding_apps_with_noisy_logging/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/finding_apps_with_noisy_logging/" />
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+      <div id="toc-heading" class="toc-show fixedsticky">
+        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          Table of contents <span class="toc-show__icon"></span>
+        </a>
+      </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+        <div class="app-pane__toc">
+          <div class="toc" data-module="table-of-contents">
+            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+              <ul>
+  <li>
+    <a href="#finding-apps-with-noisy-logging">Finding apps with noisy logging</a>
+  </li>
+</ul>
+
+            </nav>
+          </div>
+        </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="finding-apps-with-noisy-logging">Finding apps with noisy logging</h1>
+<p>You can use the <code>cf top</code> plugin to get a feel for which applications are
+logging more than they should be.</p>
+
+<p><a href="https://github.com/ECSTeam/cloudfoundry-top-plugin">ECSTeam/cloudfoundry-top-plugin</a></p>
+
+<p>Install the plugin with <code>cf install-plugin -r CF-Community &quot;top&quot;</code>, then (while
+logged in as a global admin) run <code>cf top</code>.</p>
+
+<p>You should see something like:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│Events: 4,768 (337/sec)             Warm-up: 40s           04-12-2019 09:08:00                      │
+│Target: [admin]api.towers.dev.cloudpipeline.digital                                                   │
+│Stack: cflinuxfs3    Cells: 2                                                                       │
+│   CPU:   4.2% Used,   800% Max,     Mem:   1GB Used,    -- Max,  17GB Rsrvd                        │
+│   Apps:   29 Total, Cntrs:  210     Dsk:   4GB Used,    -- Max,  63GB Rsrvd                        │
+└────────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌─App List───────────────────────────────────────────────────────────────────────────────────────────┐
+│APPLICATION                                        SPACE      ORG        DCR RCR  CPU%↓  CRH        │
+│nn-nozzle                                          monitoring admin        2   2   2.55    0        │
+│paas-billing-collector                             billing    admin        1   1   1.15    0        │
+│simulated-load                                     healthche… admin      180 180   0.23    0        │
+│(CATS-1-BRKR-58881b81fd9e42f2)                     CATS-1-SP… CATS-1-OR…   1   1   0.12    0        │
+│CATS-2-BRKR-e1563843e6357d85                       CATS-2-SP… CATS-2-OR…   1   1   0.03    0        │
+│ACC-6-APP-c304bb41ab6eba37                         ACC-6-SPA… ACC-6-ORG…   1   1   0.02    0        │
+│healthcheck                                        healthche… admin        2   2   0.02    0        │
+│aiven-broker                                       service-b… admin        2   2   0.02    0        │
+│SMOKES-1-APP-3a52f50420f47735                      SMOKE-1-S… SMOKE-1-O…   1   1   0.01    0        │
+│CATS-3-BRKR-a7fb013d8e659878                       CATS-3-SP… CATS-3-OR…   1   1   0.01    0        │
+└────────────────────────────────────────────────────────────────────────────────────────────────────┘
+ d:display  o:order  f:filter  q:quit  h:help  UP/DOWN arrow to highlight row
+ ENTER to select highlighted row,  LEFT/RIGHT arrow to scroll columns
+</code></pre></div>
+<p>To order apps by the amount of logging they&rsquo;re doing:</p>
+
+<ul>
+<li>Press <code>o</code> to bring up the order settings</li>
+<li>Press <code>delete</code> to delete all the current entries</li>
+<li>Use the arrow keys to choose the <code>LOG_OUT</code> column</li>
+<li>Press <code>space</code> to order by this column</li>
+<li>Press <code>enter</code> to dismiss the dialog</li>
+</ul>
+
+<p>Leave the plugin running for a while to gather a representative data sample.</p>
+
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
