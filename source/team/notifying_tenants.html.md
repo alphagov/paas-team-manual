@@ -2,11 +2,11 @@
 
 Every now and then, we need to let our tenants know that something has happened or will happen on the platform. For example, letting teams know about security fixes, CF/stemcell/buildpack upgrades, new features and incidents.
 
-Depending on what it is we want to tell users, we have two different channels for sending these notifications:
+Depending on what it is we want to tell users, we have three different channels for sending these notifications:
 
 * incident alerts and reports are sent using [our Statuspage account](https://manage.statuspage.io/pages/h4wt7brwsqr0)
-* changes, fixes and upgrades are sent using the [GOV.UK PaaS Announce Google group](https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce)
-* new feature announcements are sent using the [GOV.UK PaaS Announce Google group](https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce)
+* changes and fixes are sent via the [technical emails channel](#sending-critical-technical-emails)
+* upgrades and new feature announcements are sent using the [GOV.UK PaaS Announce Google group](https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce)
 
 ## Sending incident alerts and updates
 
@@ -25,7 +25,7 @@ Get a Product Manager to proof-read and add any 'product-y' elements - we want t
 These announcements are our chance to showcase how we're developing GOV.UK PaaS and will be written and sent by the product managers. Product Managers may ask the team member who worked on the story to provide some technical details that can be inclued in the email.
 
 
-## Sending notification emails to tenants
+### Sending marketing emails to tenants
 
 Use the [google group interface] to send the email.
 
@@ -37,6 +37,62 @@ Ex: "Incident with..."
 one way communication
 * Body: paste the content of the reviewed draft. You may have to adjust formatting.
 
+## Sending (critical) technical emails
+Essential information and actions tenants need to carry out in order to ensure their service remains live.
+
+1. Write email body copy to tenants to pupulate the email
+
+1. Your email **must** contain the following header
+
+    ```
+    Dear GOV.UK PaaS tenant,
+	  
+    We (GOV.UK Platform as a Service - PaaS) are contacting you to inform you of 
+    [BODY COPY].
+    ```
+
+1. Your email **must** contain the following footer
+	  
+    ```
+    This communication complies with out data protection policy.
+	  
+    As we outline in our Privacy Notice: 
+	  
+    In order to make GOV.UK PaaS secure and available we need to collect, process and store personal data from tenants. We store the data you provide to:
+    get in contact to reply to your queries
+    make your user account function correctly
+    manage your user account
+    send you updates and notices
+    If you have any questions, please contact [...@digital.cabinet-office.gov.uk]
+	  
+    Kind regards,
+    The GOV.UK PaaS Team
+    ```
+	
+1. Get tenant email addresses
+	* Tenant email addresses can be pulled from Cloud Foundry. There is a Make target for this, which produces a CSV that can be uploaded to GOV.UK Notify
+
+		```
+		make prod show-tenant-comms-addresses > addresses_prod.csv
+		make prod-lon show-tenant-comms-addresses > addresses_prod-lon.csv
+		```
+		
+	 	If the information being sent is critical, and not carrying out the required action will result in service downtime
+		the `CRITICAL=true` flag can be passed. This will include org managers, org auditors and space 
+		managers and auditors in the output.
+		
+		By default, only space developers are included.
+		
+1. Create template to GOV.UK Notify
+	1. Login to [GOV.UK Notify](https://www.notifications.service.gov.uk/sign-in). If you do not have login details speak to a senior member of the team.
+    
+	1. Create a new template in GOV.UK Notify, with the body of the email.
+    
+1. Navigate to where you stored the CSV files, and import it.
+    
+1. Click on 'Send X emails’, where X should be the number of people to contact.
+	
+1. Send emails to the contents of both CSV files
 
 ### CF upgrade email template
 
