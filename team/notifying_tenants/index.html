@@ -75,10 +75,13 @@
           <li>
             <a href="#announcing-new-features">Announcing new features</a>
           </li>
+          <li>
+            <a href="#sending-marketing-emails-to-tenants">Sending marketing emails to tenants</a>
+          </li>
         </ul>
       </li>
       <li>
-        <a href="#sending-notification-emails-to-tenants">Sending notification emails to tenants</a>
+        <a href="#sending-critical-technical-emails">Sending (critical) technical emails</a>
         <ul>
           <li>
             <a href="#cf-upgrade-email-template">CF upgrade email template</a>
@@ -105,12 +108,12 @@
   <h1 id="notifying-tenants">Notifying tenants</h1>
 <p>Every now and then, we need to let our tenants know that something has happened or will happen on the platform. For example, letting teams know about security fixes, CF/stemcell/buildpack upgrades, new features and incidents.</p>
 
-<p>Depending on what it is we want to tell users, we have two different channels for sending these notifications:</p>
+<p>Depending on what it is we want to tell users, we have three different channels for sending these notifications:</p>
 
 <ul>
 <li>incident alerts and reports are sent using <a href="https://manage.statuspage.io/pages/h4wt7brwsqr0">our Statuspage account</a></li>
-<li>changes, fixes and upgrades are sent using the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce">GOV.UK PaaS Announce Google group</a></li>
-<li>new feature announcements are sent using the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce">GOV.UK PaaS Announce Google group</a></li>
+<li>changes and fixes are sent via the <a href="#sending-critical-technical-emails">technical emails channel</a></li>
+<li>upgrades and new feature announcements are sent using the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce">GOV.UK PaaS Announce Google group</a></li>
 </ul>
 <h2 id="sending-incident-alerts-and-updates">Sending incident alerts and updates</h2>
 <p>Follow the guidance in <a href="/incident_management/incident_process/#incident-comms">this section</a> of the team manual if you&rsquo;re managing incident comms and you need to send alerts and updates to tenants.</p>
@@ -120,7 +123,7 @@
 <p>Get a Product Manager to proof-read and add any &lsquo;product-y&rsquo; elements - we want to make sure our notifications are consistent and meet the GDS style guidelines. If the email is time-sensitive and there are no Product Managers around, get another member of the team to proof-read the email before it&rsquo;s sent.</p>
 <h3 id="announcing-new-features">Announcing new features</h3>
 <p>These announcements are our chance to showcase how we&rsquo;re developing GOV.UK PaaS and will be written and sent by the product managers. Product Managers may ask the team member who worked on the story to provide some technical details that can be inclued in the email.</p>
-<h2 id="sending-notification-emails-to-tenants">Sending notification emails to tenants</h2>
+<h3 id="sending-marketing-emails-to-tenants">Sending marketing emails to tenants</h3>
 <p>Use the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce">google group interface</a> to send the email.</p>
 
 <ul>
@@ -132,6 +135,55 @@ Ex: &ldquo;Incident with&hellip;&rdquo;</li>
 one way communication</li>
 <li>Body: paste the content of the reviewed draft. You may have to adjust formatting.</li>
 </ul>
+<h2 id="sending-critical-technical-emails">Sending (critical) technical emails</h2>
+<p>Essential information and actions tenants need to carry out in order to ensure their service remains live.</p>
+
+<ol>
+<li><p>Write email body copy to tenants to pupulate the email</p></li>
+<li><p>Your email <strong>must</strong> contain the following header</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Dear GOV.UK PaaS tenant,
+
+We (GOV.UK Platform as a Service - PaaS) are contacting you to inform you of 
+[BODY COPY].
+</code></pre></div></li>
+<li><p>Your email <strong>must</strong> contain the following footer</p>
+<div class="highlight"><pre class="highlight plaintext"><code>This communication complies with out data protection policy.
+
+As we outline in our Privacy Notice: 
+
+In order to make GOV.UK PaaS secure and available we need to collect, process and store personal data from tenants. We store the data you provide to:
+get in contact to reply to your queries
+make your user account function correctly
+manage your user account
+send you updates and notices
+If you have any questions, please contact [...@digital.cabinet-office.gov.uk]
+
+Kind regards,
+The GOV.UK PaaS Team
+</code></pre></div></li>
+<li><p>Get tenant email addresses</p>
+
+<ul>
+<li><p>Tenant email addresses can be pulled from Cloud Foundry. There is a Make target for this, which produces a CSV that can be uploaded to GOV.UK Notify</p>
+<div class="highlight"><pre class="highlight plaintext"><code>make prod show-tenant-comms-addresses &gt; addresses_prod.csv
+make prod-lon show-tenant-comms-addresses &gt; addresses_prod-lon.csv
+</code></pre></div>
+<p>If the information being sent is critical, and not carrying out the required action will result in service downtime
+the <code>CRITICAL=true</code> flag can be passed. This will include org managers, org auditors and space 
+managers and auditors in the output.</p>
+
+<p>By default, only space developers are included.</p></li>
+</ul></li>
+<li><p>Create template to GOV.UK Notify</p>
+
+<ol>
+<li>Login to <a href="https://www.notifications.service.gov.uk/sign-in">GOV.UK Notify</a>. If you do not have login details speak to a senior member of the team.</li>
+<li>Create a new template in GOV.UK Notify, with the body of the email.</li>
+</ol></li>
+<li><p>Navigate to where you stored the CSV files, and import it.</p></li>
+<li><p>Click on &#39;Send X emails’, where X should be the number of people to contact.</p></li>
+<li><p>Send emails to the contents of both CSV files</p></li>
+</ol>
 <h3 id="cf-upgrade-email-template">CF upgrade email template</h3>
 <p><a id="cf-upgrade"></a></p>
 
