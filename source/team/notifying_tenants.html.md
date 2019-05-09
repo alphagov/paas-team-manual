@@ -63,7 +63,7 @@ Essential information and actions tenants need to carry out in order to ensure t
     make your user account function correctly
     manage your user account
     send you updates and notices
-    If you have any questions, please contact [...@digital.cabinet-office.gov.uk]
+    If you have any questions, please contact gov-uk-paas-support@digital.cabinet-office.gov.uk
 	  
     Kind regards,
     The GOV.UK PaaS Team
