@@ -137,7 +137,7 @@ receiving the request should raise a Zendesk ticket by sending an email to
 <ul>
 <li>Name of the Government Department or Public body</li>
 <li>The name of an individual who will act as the Organisation Manager</li>
-<li>Some information about the proposed service.</li>
+<li>The name of the proposed service.</li>
 </ul>
 
 <p>If this information is not provided or is unclear, PaaS Support should clarify
@@ -147,10 +147,25 @@ with the requester.</p>
 (see the Engagement Team’s <a href="https://docs.google.com/spreadsheets/d/1HSYj4EEW-Fr6WPaKvYYM_I45Xgay1-707k1Elajgdh8/edit?ts=5b8801d5#gid=939993178">CRM</a>).</p>
 
 <p>If the organisation is Crown and the requester has a gov.uk email address, PaaS
-Support must set up the trial organisation on a default quota, confirm this to
-the organisation via Zendesk, and cc a PaaS Product Manager and the relevant
-engagement lead from <a href="https://docs.google.com/document/d/13qGTlbQfqhH-Gx46e2w2XJKG4JyBnnFWLWJgM2XxUAc/edit">this document</a>.</p>
+Support must set up the trial organisation on a default quota. There&rsquo;s a script
+to do this in paas-cf <code>./scripts/create-org.sh</code>.</p>
 
+<p>Once the org is created, confirm this by responding on Zendesk, cc&#39;ing a PaaS
+Product Manager and the relevant engagement lead from
+<a href="https://docs.google.com/document/d/13qGTlbQfqhH-Gx46e2w2XJKG4JyBnnFWLWJgM2XxUAc/edit">this document</a>.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Hi $REQUESTOR_NAME,
+
+Thank you for your request. I've created a new trial organisation for you
+called $ORG_NAME in our London region. You should get two emails, one inviting
+you to create an account, and one inviting you to join our announcements
+mailing list.
+
+Please let us know how you get on, or if you have any questions about the service.
+
+Thank you,
+$YOUR_NAME
+GOV.UK PaaS Support
+</code></pre></div>
 <p>If the organisation is Crown and the requester does not have a gov.uk email
 address, PaaS Support must ask the requester to supply an individual with a
 gov.uk address to act as the organisation manager.</p>
