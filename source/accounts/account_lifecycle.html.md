@@ -26,7 +26,7 @@ We need to know the following information before setting up a trial account:
 
 - Name of the Government Department or Public body
 - The name of an individual who will act as the Organisation Manager
-- Some information about the proposed service.
+- The name of the proposed service.
 
 If this information is not provided or is unclear, PaaS Support should clarify
 with the requester.
@@ -35,9 +35,27 @@ PaaS Support should then check whether an organisation is Crown or non-Crown
 (see the Engagement Team’s [CRM][engagement team's CRM]).
 
 If the organisation is Crown and the requester has a gov.uk email address, PaaS
-Support must set up the trial organisation on a default quota, confirm this to
-the organisation via Zendesk, and cc a PaaS Product Manager and the relevant
-engagement lead from [this document](https://docs.google.com/document/d/13qGTlbQfqhH-Gx46e2w2XJKG4JyBnnFWLWJgM2XxUAc/edit).
+Support must set up the trial organisation on a default quota. There's a script
+to do this in paas-cf `./scripts/create-org.sh`.
+
+Once the org is created, confirm this by responding on Zendesk, cc'ing a PaaS
+Product Manager and the relevant engagement lead from
+[this document](https://docs.google.com/document/d/13qGTlbQfqhH-Gx46e2w2XJKG4JyBnnFWLWJgM2XxUAc/edit).
+
+```
+Hi $REQUESTOR_NAME,
+
+Thank you for your request. I've created a new trial organisation for you
+called $ORG_NAME in our London region. You should get two emails, one inviting
+you to create an account, and one inviting you to join our announcements
+mailing list.
+
+Please let us know how you get on, or if you have any questions about the service.
+
+Thank you,
+$YOUR_NAME
+GOV.UK PaaS Support
+```
 
 If the organisation is Crown and the requester does not have a gov.uk email
 address, PaaS Support must ask the requester to supply an individual with a
