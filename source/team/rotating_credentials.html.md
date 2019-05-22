@@ -51,6 +51,10 @@ between components is a much longer process. You need to:
 1. Run `delete-old-cf-certs` to delete old CAs
 1. Run `create-cloudfoundry` to remove the old CAs
 
+The following is a diagram of the steps of our CA rotation process. The thick arrows show a quicker route that should be able to be implemented if we choose.
+
+<p><a href="/diagrams/ca-cert-rotations.jpg" target="_blank" rel="noopener noreferrer"><img src="/diagrams/ca-cert-rotations.jpg" alt="Illustration of the CA and certificate YAML fields being moved around by this process" /></a></p>
+
 ### AWS keys generated in the pipeline
 
 The deployer Concourse has a job for triggering the rotation of AWS keys generated in the pipeline. These keys currently include:
