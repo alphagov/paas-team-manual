@@ -42,6 +42,8 @@ Rotating the internal certificates has 2 phases similar to rotating passwords. F
 Rotating the CA certificates that Cloud Foundry is using internally for mutual TLS
 between components is a much longer process. You need to:
 
+1. Run `rotate-cf-certs-leafs` to delete existing non-CA certs
+1. Run `create-cloudfoundry` to generate new certs and deploy them
 1. Run `rotate-cf-certs-cas` to copy existing CAs into `_old` suffixes
 1. Run `create-cloudfoundry` to generate new CAs and deploy them alongside the old CAs
 1. Run `rotate-cf-certs-leafs` to delete existing non-CA certs
