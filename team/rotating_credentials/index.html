@@ -140,6 +140,8 @@ not vice versa.</p>
 between components is a much longer process. You need to:</p>
 
 <ol>
+<li>Run <code>rotate-cf-certs-leafs</code> to delete existing non-CA certs</li>
+<li>Run <code>create-cloudfoundry</code> to generate new certs and deploy them</li>
 <li>Run <code>rotate-cf-certs-cas</code> to copy existing CAs into <code>_old</code> suffixes</li>
 <li>Run <code>create-cloudfoundry</code> to generate new CAs and deploy them alongside the old CAs</li>
 <li>Run <code>rotate-cf-certs-leafs</code> to delete existing non-CA certs</li>
