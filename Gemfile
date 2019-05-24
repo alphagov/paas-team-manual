@@ -15,5 +15,4 @@ gem 'html-proofer'
 
 gem 'middleman-gh-pages'
 
-# Added at 2018-04-27 17:48:28 +0100 by keymon:
-gem "mini_racer", "~> 0.1.15"
+gem "mini_racer", "~> 0.2"
