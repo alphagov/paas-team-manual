@@ -66,6 +66,9 @@
       <li>
         <a href="#routing">Routing</a>
       </li>
+      <li>
+        <a href="#tagging">Tagging</a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -100,6 +103,252 @@
 <p>Both email addresses are Google Groups. Originally we used Gmail Aliases but they did not support prepending to email subjects for Zendesk. These groups forward emails elsewhere and are not intended for use by themselves. Their spam protection is disabled to avoid emails being silently discarded.</p>
 
 <p>The in-hours email address prepends <code>[PaaS Support]</code> to email subjects, and forwards it to a Zendesk email address. The out-of-hours email address prepends <code>[PaaS Emergency Support]</code> and also forwards to a PagerDuty email address.</p>
+<h2 id="tagging">Tagging</h2>
+<p>We use the following tags to categorise support tickets:</p>
+
+<div style="height:1px;font-size:1px;">&nbsp;</div>
+<div class="table-container">
+        <table>
+          <tr>
+<th style="text-align: left">Category</th>
+<th style="text-align: left">Tag</th>
+</tr>
+<tr>
+<td style="text-align: left">Incident Report (cf)</td>
+<td style="text-align: left">govuk_paas_incident_report_cf_performance_issues</td>
+</tr>
+<tr>
+<td style="text-align: left">Incident Report (cf)</td>
+<td style="text-align: left">govuk_paas_incident_report_cf_availability</td>
+</tr>
+<tr>
+<td style="text-align: left">Incident Report (cf)</td>
+<td style="text-align: left">govuk_paas_incident_report_cf_deployment</td>
+</tr>
+<tr>
+<td style="text-align: left">Incident Report (cf)</td>
+<td style="text-align: left">govuk_paas_incident_report_cf_downtimes</td>
+</tr>
+<tr>
+<td style="text-align: left">Incident Report (tenant)</td>
+<td style="text-align: left">govuk_paas_incident_report_t_performance_issues</td>
+</tr>
+<tr>
+<td style="text-align: left">Incident Report (tenant)</td>
+<td style="text-align: left">govuk_paas_incident_report_t_availabilty</td>
+</tr>
+<tr>
+<td style="text-align: left">Incident Report (tenant)</td>
+<td style="text-align: left">govuk_paas_incident_report_t_deployment</td>
+</tr>
+<tr>
+<td style="text-align: left">Incident Report (tenant)</td>
+<td style="text-align: left">govuk_paas_incident_report_t_downtimes</td>
+</tr>
+<tr>
+<td style="text-align: left">Backing services</td>
+<td style="text-align: left">govuk_paas_backing_services_monitoring_metrics_logs</td>
+</tr>
+<tr>
+<td style="text-align: left">Backing services</td>
+<td style="text-align: left">govuk_paas_backing_services_binding_unbinding_issues</td>
+</tr>
+<tr>
+<td style="text-align: left">Backing services</td>
+<td style="text-align: left">govuk_paas_backing_services_private_beta_access</td>
+</tr>
+<tr>
+<td style="text-align: left">Backing services</td>
+<td style="text-align: left">govuk_paas_backing_services_connecting_issues</td>
+</tr>
+<tr>
+<td style="text-align: left">Backing services</td>
+<td style="text-align: left">govuk_paas_backing_services_database_backing_service</td>
+</tr>
+<tr>
+<td style="text-align: left">Backing services</td>
+<td style="text-align: left">govuk_paas_backing_services_performance</td>
+</tr>
+<tr>
+<td style="text-align: left">Backing services</td>
+<td style="text-align: left">govuk_paas_backing_services_scaling</td>
+</tr>
+<tr>
+<td style="text-align: left">Notifications</td>
+<td style="text-align: left">govuk_paas_notifications_security_cve</td>
+</tr>
+<tr>
+<td style="text-align: left">Notifications</td>
+<td style="text-align: left">govuk_paas_notifications_aws_notifications</td>
+</tr>
+<tr>
+<td style="text-align: left">Notifications</td>
+<td style="text-align: left">govuk_paas_notifications_upstream_notifications</td>
+</tr>
+<tr>
+<td style="text-align: left">Apps</td>
+<td style="text-align: left">govuk_paas_apps_mointoring_metrics_logs</td>
+</tr>
+<tr>
+<td style="text-align: left">Apps</td>
+<td style="text-align: left">govuk_paas_apps_deployment</td>
+</tr>
+<tr>
+<td style="text-align: left">Apps</td>
+<td style="text-align: left">govuk_paas_apps_certificates</td>
+</tr>
+<tr>
+<td style="text-align: left">Apps</td>
+<td style="text-align: left">govuk_paas_apps_buildpacks</td>
+</tr>
+<tr>
+<td style="text-align: left">Apps</td>
+<td style="text-align: left">govuk_paas_apps_secrets</td>
+</tr>
+<tr>
+<td style="text-align: left">Apps</td>
+<td style="text-align: left">govuk_paas_apps_performance</td>
+</tr>
+<tr>
+<td style="text-align: left">Apps</td>
+<td style="text-align: left">govuk_paas_apps_scaling</td>
+</tr>
+<tr>
+<td style="text-align: left">Apps</td>
+<td style="text-align: left">govuk_paas_apps_scheduling</td>
+</tr>
+<tr>
+<td style="text-align: left">Account Management</td>
+<td style="text-align: left">govuk_paas_account_management_user_addition</td>
+</tr>
+<tr>
+<td style="text-align: left">Account Management</td>
+<td style="text-align: left">govuk_paas_account_management_user_removal</td>
+</tr>
+<tr>
+<td style="text-align: left">Account Management</td>
+<td style="text-align: left">govuk_paas_account_management_user_password_reset</td>
+</tr>
+<tr>
+<td style="text-align: left">Account Management</td>
+<td style="text-align: left">govuk_paas_account_management_quota_increase</td>
+</tr>
+<tr>
+<td style="text-align: left">Account Management</td>
+<td style="text-align: left">govuk_paas_account_management_sla</td>
+</tr>
+<tr>
+<td style="text-align: left">Account Management</td>
+<td style="text-align: left">govuk_paas_account_management_organisation_account_management</td>
+</tr>
+<tr>
+<td style="text-align: left">Account Management</td>
+<td style="text-align: left">govuk_paas_account_management_domain_management</td>
+</tr>
+<tr>
+<td style="text-align: left">Account Management</td>
+<td style="text-align: left">govuk_paas_account_management_billing</td>
+</tr>
+<tr>
+<td style="text-align: left">Bug Report</td>
+<td style="text-align: left">govuk_paas_bug_report_cli</td>
+</tr>
+<tr>
+<td style="text-align: left">Bug Report</td>
+<td style="text-align: left">govuk_paas_bug_report_backing_services</td>
+</tr>
+<tr>
+<td style="text-align: left">Bug Report</td>
+<td style="text-align: left">govuk_paas_bug_report_documentation_error</td>
+</tr>
+<tr>
+<td style="text-align: left">Engagement Request</td>
+<td style="text-align: left">govuk_paas_engagement_request_trial_account</td>
+</tr>
+<tr>
+<td style="text-align: left">Engagement Request</td>
+<td style="text-align: left">govuk_paas_engagement_request_new_account_enquiry</td>
+</tr>
+<tr>
+<td style="text-align: left">Engagement Request</td>
+<td style="text-align: left">govuk_paas_engagement_request_contact_request</td>
+</tr>
+<tr>
+<td style="text-align: left">Engagement Request</td>
+<td style="text-align: left">govuk_paas_engagement_request_onboarding_request</td>
+</tr>
+<tr>
+<td style="text-align: left">Engagement Request</td>
+<td style="text-align: left">govuk_paas_engagement_request_pricing</td>
+</tr>
+<tr>
+<td style="text-align: left">Engagement Request</td>
+<td style="text-align: left">govuk_paas_engagement_request_sla</td>
+</tr>
+<tr>
+<td style="text-align: left">Security</td>
+<td style="text-align: left">govuk_paas_security_pen_test</td>
+</tr>
+<tr>
+<td style="text-align: left">Security</td>
+<td style="text-align: left">govuk_paas_security_information_assurance</td>
+</tr>
+<tr>
+<td style="text-align: left">Security</td>
+<td style="text-align: left">govuk_paas_security_authentication</td>
+</tr>
+<tr>
+<td style="text-align: left">Security</td>
+<td style="text-align: left">govuk_paas_security_secrets</td>
+</tr>
+<tr>
+<td style="text-align: left">Security</td>
+<td style="text-align: left">govuk_paas_security_access_control</td>
+</tr>
+<tr>
+<td style="text-align: left">Security</td>
+<td style="text-align: left">govuk_paas_security_infrastructure</td>
+</tr>
+<tr>
+<td style="text-align: left">Security</td>
+<td style="text-align: left">govuk_paas_security_domain_management</td>
+</tr>
+<tr>
+<td style="text-align: left">Feature / Query</td>
+<td style="text-align: left">govuk_paas_feature_query_IP_networking</td>
+</tr>
+<tr>
+<td style="text-align: left">Feature / Query</td>
+<td style="text-align: left">govuk_paas_feature_query_capability_question</td>
+</tr>
+<tr>
+<td style="text-align: left">Feature / Query</td>
+<td style="text-align: left">govuk_paas_feature_query_infrastructure</td>
+</tr>
+<tr>
+<td style="text-align: left">Feature / Query</td>
+<td style="text-align: left">govuk_paas_feature_query_domain_management</td>
+</tr>
+<tr>
+<td style="text-align: left">Feature / Query</td>
+<td style="text-align: left">govuk_paas_feature_query_untagged</td>
+</tr>
+<tr>
+<td style="text-align: left">Feature / Query</td>
+<td style="text-align: left">govuk_paas_feature_query_plugins</td>
+</tr>
+<tr>
+<td style="text-align: left">Misc</td>
+<td style="text-align: left">govuk_paas_misc_non_technical</td>
+</tr>
+<tr>
+<td style="text-align: left">Misc</td>
+<td style="text-align: left">govuk_paas_difficult_to_tag</td>
+</tr>
+
+        </table>
+      </div>
+<div style="height:1px;font-size:1px;">&nbsp;</div>
 
 
             
