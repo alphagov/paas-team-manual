@@ -48,7 +48,7 @@ We use the following tags to categorise support tickets:
 | Notifications | govuk_paas_notifications_security_cve |
 | Notifications | govuk_paas_notifications_aws_notifications |
 | Notifications | govuk_paas_notifications_upstream_notifications |
-| Apps | govuk_paas_apps_mointoring_metrics_logs |
+| Apps | govuk_paas_apps_monitoring_metrics_logs |
 | Apps | govuk_paas_apps_deployment |
 | Apps | govuk_paas_apps_certificates |
 | Apps | govuk_paas_apps_buildpacks |
