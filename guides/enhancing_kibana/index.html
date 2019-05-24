@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/enhancing_kibana/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#enhancing-kibana">Enhancing Kibana</a>
     <ul>
@@ -81,9 +84,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -91,10 +95,8 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="enhancing-kibana">Enhancing Kibana</h1>
-<p>We may find the need, to parse some more logs into Kibana for later use at convinient times.</p>
-<h2 id="how-it-works">How it works</h2>
-<p>The logstash config file is being generated:</p>
+  <h1 id="enhancing-kibana">Enhancing Kibana</h1><p>We may find the need, to parse some more logs into Kibana for later use at convinient times.</p>
+<h2 id="how-it-works">How it works</h2><p>The logstash config file is being generated:</p>
 
 <ol>
 <li>The <a href="https://github.com/alphagov/paas-logsearch-for-cloudfoundry/blob/master/packages/logsearch-for-cloudfoundry-filters/packaging">logsearch-4cf packaging</a> runs <a href="https://github.com/alphagov/paas-logsearch-for-cloudfoundry/blob/master/src/logsearch-config/bin/build">the build script</a> which executes <code>rake build</code>.</li>
@@ -120,8 +122,7 @@
 <li><a href="https://github.com/logstash-plugins/logstash-patterns-core/tree/master/patterns">List of patterns</a></li>
 </ul></li>
 </ol>
-<h3 id="patience">Patience</h3>
-<p>Working with the above, may be a very unappealing process&hellip; If you combine it with <a href="https://www.elastic.co/guide/en/logstash/current/reloading-config.html"></a> you can save a lot of time</p>
+<h3 id="patience">Patience</h3><p>Working with the above, may be a very unappealing process&hellip; If you combine it with <a href="https://www.elastic.co/guide/en/logstash/current/reloading-config.html"></a> you can save a lot of time</p>
 
 <ol>
 <li>To restart reading from the beginning of file: <code>rm data/plugins/inputs/file/.sincedb_*</code> and restart logstash</li>
@@ -134,11 +135,9 @@
 </code></pre></div></li>
 <li><p>If you combine it with https://www.elastic.co/guide/en/logstash/current/reloading-config.html you can save a lot of time</p></li>
 </ol>
-<h2 id="working-example">Working example</h2>
-<p>Now, let&rsquo;s say we&rsquo;ve got a log like:</p>
+<h2 id="working-example">Working example</h2><p>Now, let&rsquo;s say we&rsquo;ve got a log like:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>May 11 13:24:09 57n27d4b-60p0-42ly-a00a-f913j7b8841f custom_nginx_access: 10.0.1.217 - - [11/May/2017:13:24:09 +0000] "GET /healthz HTTP/1.1" 200 3 "-" "ELB-HealthChecker/1.0"
-</code></pre></div>
-<p>By adding few extra lines to our logstash configuration file, we can specify, what these actually are:</p>
+</code></pre></div><p>By adding few extra lines to our logstash configuration file, we can specify, what these actually are:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>if [@source][component] == "custom_nginx_access" {
   grok {
     match =&gt; {
@@ -147,8 +146,7 @@
     }
   }
 }
-</code></pre></div>
-<p>After a restart and successful entry in Kibana, it will look like that:</p>
+</code></pre></div><p>After a restart and successful entry in Kibana, it will look like that:</p>
 <div class="table-container">
         <table>
           <tr>

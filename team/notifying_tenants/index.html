@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/team/notifying_tenants/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#notifying-tenants">Notifying tenants</a>
     <ul>
@@ -95,9 +98,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -105,9 +109,7 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="notifying-tenants">Notifying tenants</h1>
-<p>Every now and then, we need to let our tenants know that something has happened or will happen on the platform. For example, letting teams know about security fixes, CF/stemcell/buildpack upgrades, new features and incidents.</p>
-
+  <h1 id="notifying-tenants">Notifying tenants</h1><p>Every now and then, we need to let our tenants know that something has happened or will happen on the platform. For example, letting teams know about security fixes, CF/stemcell/buildpack upgrades, new features and incidents.</p>
 <p>Depending on what it is we want to tell users, we have three different channels for sending these notifications:</p>
 
 <ul>
@@ -115,16 +117,11 @@
 <li>changes and fixes are sent via the <a href="#sending-critical-technical-emails">technical emails channel</a></li>
 <li>upgrades and new feature announcements are sent using the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce">GOV.UK PaaS Announce Google group</a></li>
 </ul>
-<h2 id="sending-incident-alerts-and-updates">Sending incident alerts and updates</h2>
-<p>Follow the guidance in <a href="/incident_management/incident_process/#incident-comms">this section</a> of the team manual if you&rsquo;re managing incident comms and you need to send alerts and updates to tenants.</p>
-<h2 id="sending-platform-change-and-new-feature-announcements">Sending platform change and new feature announcements</h2><h3 id="changes-upgrades-and-fixes">Changes, upgrades and fixes</h3>
-<p>Write a draft email and share it <a href="https://drive.google.com/drive/folders/1M5G-joG3tORfJ5kXj368Ib8rEKau2vFq">here.</a></p>
-
+<h2 id="sending-incident-alerts-and-updates">Sending incident alerts and updates</h2><p>Follow the guidance in <a href="/incident_management/incident_process/#incident-comms">this section</a> of the team manual if you&rsquo;re managing incident comms and you need to send alerts and updates to tenants.</p>
+<h2 id="sending-platform-change-and-new-feature-announcements">Sending platform change and new feature announcements</h2><h3 id="changes-upgrades-and-fixes">Changes, upgrades and fixes</h3><p>Write a draft email and share it <a href="https://drive.google.com/drive/folders/1M5G-joG3tORfJ5kXj368Ib8rEKau2vFq">here.</a></p>
 <p>Get a Product Manager to proof-read and add any &lsquo;product-y&rsquo; elements - we want to make sure our notifications are consistent and meet the GDS style guidelines. If the email is time-sensitive and there are no Product Managers around, get another member of the team to proof-read the email before it&rsquo;s sent.</p>
-<h3 id="announcing-new-features">Announcing new features</h3>
-<p>These announcements are our chance to showcase how we&rsquo;re developing GOV.UK PaaS and will be written and sent by the product managers. Product Managers may ask the team member who worked on the story to provide some technical details that can be inclued in the email.</p>
-<h3 id="sending-marketing-emails-to-tenants">Sending marketing emails to tenants</h3>
-<p>Use the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce">google group interface</a> to send the email.</p>
+<h3 id="announcing-new-features">Announcing new features</h3><p>These announcements are our chance to showcase how we&rsquo;re developing GOV.UK PaaS and will be written and sent by the product managers. Product Managers may ask the team member who worked on the story to provide some technical details that can be inclued in the email.</p>
+<h3 id="sending-marketing-emails-to-tenants">Sending marketing emails to tenants</h3><p>Use the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce">google group interface</a> to send the email.</p>
 
 <ul>
 <li>Click on <code>New topic</code></li>
@@ -135,8 +132,7 @@ Ex: &ldquo;Incident with&hellip;&rdquo;</li>
 one way communication</li>
 <li>Body: paste the content of the reviewed draft. You may have to adjust formatting.</li>
 </ul>
-<h2 id="sending-critical-technical-emails">Sending (critical) technical emails</h2>
-<p>Essential information and actions tenants need to carry out in order to ensure their service remains live.</p>
+<h2 id="sending-critical-technical-emails">Sending (critical) technical emails</h2><p>Essential information and actions tenants need to carry out in order to ensure their service remains live.</p>
 
 <ol>
 <li><p>Write email body copy to tenants to pupulate the email</p></li>
@@ -167,11 +163,9 @@ The GOV.UK PaaS Team
 <li><p>Tenant email addresses can be pulled from Cloud Foundry. There is a Make target for this, which produces a CSV that can be uploaded to GOV.UK Notify</p>
 <div class="highlight"><pre class="highlight plaintext"><code>make prod show-tenant-comms-addresses &gt; addresses_prod.csv
 make prod-lon show-tenant-comms-addresses &gt; addresses_prod-lon.csv
-</code></pre></div>
-<p>If the information being sent is critical, and not carrying out the required action will result in service downtime
+</code></pre></div><p>If the information being sent is critical, and not carrying out the required action will result in service downtime
 the <code>CRITICAL=true</code> flag can be passed. This will include org managers, org auditors and space 
 managers and auditors in the output.</p>
-
 <p>By default, only space developers are included.</p></li>
 </ul></li>
 <li><p>Create template to GOV.UK Notify</p>
@@ -184,11 +178,8 @@ managers and auditors in the output.</p>
 <li><p>Click on &#39;Send X emails’, where X should be the number of people to contact.</p></li>
 <li><p>Send emails to the contents of both CSV files</p></li>
 </ol>
-<h3 id="cf-upgrade-email-template">CF upgrade email template</h3>
-<p><a id="cf-upgrade"></a></p>
-
+<h3 id="cf-upgrade-email-template">CF upgrade email template</h3><p><a id="cf-upgrade"></a></p>
 <p>Subject (ex): GOV.UK PaaS - Cloud Foundry changes - 17th March 2017</p>
-
 <p>The body should contain:</p>
 
 <ul>
@@ -196,17 +187,14 @@ managers and auditors in the output.</p>
 <li>Downtime or service impact if any</li>
 <li>Summary of buildpack changes.</li>
 </ul>
-<h3 id="cf-buildpack-emails"> CF buildpack emails</h3>
-<p>Use the latest &ldquo;GOV.UK PaaS - Upcoming buildpack upgrades&rdquo; email in the
+<h3 id="cf-buildpack-emails"> CF buildpack emails</h3><p>Use the latest &ldquo;GOV.UK PaaS - Upcoming buildpack upgrades&rdquo; email in the
 gov-uk-paas-announce <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce">google group interface</a> as an example.</p>
-
 <p>You&rsquo;ll need to produce a summary of changes between the old and new buildpacks,
 which is a bit of a tedious manual process. See
 <a href="https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/operations.d/240-cf-set-buildpack-release.yml">operations.d/240-cf-set-buildpack-release.yml</a>
 for the pinned versions and the GitHub releases pages for the buildpacks (e.g.
 <a href="https://github.com/cloudfoundry/binary-buildpack/releases/v1.0.21">cloudfoundry/binary-buildpack/releases/v1.0.21</a>)
 to read about the changes.</p>
-
 <p><strong>NB Incident comms email templates are saved in Statuspage.</strong></p>
 
 

@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/incident_management/incident_process/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#incident-process">Incident Process</a>
     <ul>
@@ -109,9 +112,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -119,29 +123,33 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="incident-process">Incident Process</h1>
-<p>This section summarises :</p>
+  <h1 id="incident-process">Incident Process</h1><p>This section summarises :</p>
 
 <ul>
 <li>how to manage incidents and outages to ensure a highly available service</li>
 <li>how to manage incident comms</li>
 </ul>
 
-<p><strong>If you suspect a security breach, <a href="/support/responding_to_security_issues/#if-you-suspect-a-security-breach">alert Information Assurance (IA) immediately</a></strong></p>
-<h2 id="set-up-the-incident-team">Set up the incident team</h2>
-<p>When an incident happens, the person on support must:</p>
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    
+    <p>Reevaluate the information you have throughout an incident in a security context.</p>
+    <p>If you suspect a security breach, <a href="/support/responding_to_security_issues/#if-you-suspect-a-security-breach">alert Information Assurance (IA) immediately</a>.</p>
+    
+  </strong>
+</div>
+<h2 id="set-up-the-incident-team">Set up the incident team</h2><p>When an incident happens, the person on support must:</p>
 
 <ul>
 <li>nominate an incident lead; this person must have production access, and may be the person on support</li>
 <li>nominate an incident comms person; during out-of-hours this can be the person on the PaaS escalation rota</li>
 <li>join #paas-incident on Slack if required</li>
 </ul>
-
 <p>The incident lead, incident comms person and anyone else needed to work on the incident will form the incident team.</p>
-
 <p>Incident team leads can request support from any other members of the PaaS team. Incidents take priority over BAU, for example retrospectives or planning sessions.</p>
-<h2 id="investigate-and-resolve-the-incident">Investigate and resolve the incident</h2>
-<p>Your incident responsibilities depend on your role within the incident team.</p>
+<h2 id="investigate-and-resolve-the-incident">Investigate and resolve the incident</h2><p>Your incident responsibilities depend on your role within the incident team.</p>
 <h3 id="incident-lead">Incident lead</h3>
 <ol>
 <li><p>Investigate the incident, requesting help from PaaS team if required.</p></li>
@@ -149,20 +157,18 @@
 <li><p>Record actions taken and changes made in the #paas-incident slack channel.</p></li>
 <li><p>Discuss the incident with the PaaS product and delivery managers to decide when the incident is resolved, or can be downgraded as it is no longer impacting the service.</p></li>
 </ol>
-
 <p>As a lower priority, create a pivotal story to record all actions taken and identify any ongoing work.</p>
 <h3 id="incident-comms">Incident comms</h3>
 <ol>
 <li><p>Let the PaaS team know about the incident on the #paas Slack channel.</p></li>
-<li><p>Notify the tenants about the investigation by creating a new incident in <a href="https://team-manual.cloud.service.gov.uk/team/statuspage/">Statuspage</a> using the “Possible issue being investigated” template. </p>
+<li><p>Notify the tenants about the investigation by creating a new incident in <a href="https://team-manual.cloud.service.gov.uk/team/statuspage/">Statuspage</a> using the “Possible issue being investigated” template.</p>
 
 <blockquote>
 <p><strong>Important</strong>: When creating or updating an incident, you must tick the boxes to say which components are affected, otherwise notifications will not be sent.</p>
 </blockquote></li>
 <li><p>Update tenants hourly using the <a href="https://manage.statuspage.io/pages/h4wt7brwsqr0">saved templates</a> in our Statuspage account.</p></li>
 </ol>
-<h2 id="escalations">Escalations</h2>
-<p>You can escalate incidents within the GOV.UK PaaS team.</p>
+<h2 id="escalations">Escalations</h2><p>You can escalate incidents within the GOV.UK PaaS team.</p>
 
 <ol>
 <li><p>Go to <a href="https://governmentdigitalservice.pagerduty.com/services">PagerDuty</a>.</p></li>
@@ -171,34 +177,25 @@
 <li><p>Go back to <strong>Configuration</strong> and select <a href="https://governmentdigitalservice.pagerduty.com/users"><strong>Users</strong></a>.</p></li>
 <li><p>Select the relevant person to find their phone number.</p></li>
 </ol>
-
 <p>If you need to escalate an incident beyond the GOV.UK PaaS team, contact these people in the following order:</p>
 
 <ul>
 <li>Head of Reliability Engineering</li>
 <li>TechOps Programme Director</li>
 </ul>
-
-<p>The person contacted will decide if they need to alert a member of the GDS executive group. </p>
-
+<p>The person contacted will decide if they need to alert a member of the GDS executive group.</p>
 <p>If neither the TechOps Programme Director nor the Head of Reliability Engineering are available, you must contact the Director for GDS Portfolio Group.</p>
-
 <p>The contact details for the above people, as well as useful contacts, can be found in <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing">PaaS Emergency contacts and escalations (restricted access)</a></p>
-<h2 id="when-the-incident-is-over">When the incident is over</h2>
-<p>When the problem has been fixed, check that our <a href="https://status.cloud.service.gov.uk/">status page</a> is showing that the PaaS is operational.</p>
-<h3 id="write-the-incident-report">Write the incident report</h3>
-<p>The incident lead and incident comms must write the incident report, ensuring that all relevant details, decisions and comms are in the timeline section of the report.</p>
-
+<h2 id="when-the-incident-is-over">When the incident is over</h2><p>When the problem has been fixed, check that our <a href="https://status.cloud.service.gov.uk/">status page</a> is showing that the PaaS is operational.</p>
+<h3 id="write-the-incident-report">Write the incident report</h3><p>The incident lead and incident comms must write the incident report, ensuring that all relevant details, decisions and comms are in the timeline section of the report.</p>
 <p>The <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/155yrsyhHM9Feh-ucxLzyj7toIb2sMK8KiGVdEFLcyfQ/edit?usp=sharing">incident report template</a> provides guidance about how to complete it.</p>
-<h3 id="hold-an-incident-review-meeting">Hold an incident review meeting</h3>
-<p>Conduct a <a href="https://codeascraft.com/2012/05/22/blameless-postmortems/">no-blame retro</a> of the incident within one week of resolving the incident to:</p>
+<h3 id="hold-an-incident-review-meeting">Hold an incident review meeting</h3><p>Conduct a <a href="https://codeascraft.com/2012/05/22/blameless-postmortems/">no-blame retro</a> of the incident within one week of resolving the incident to:</p>
 
 <ul>
 <li>agree on what happened</li>
 <li>ensure the record fully reflects this</li>
 <li>agree all follow-up actions</li>
 </ul>
-
 <p>Invite the following people:</p>
 
 <ul>
@@ -209,22 +206,16 @@
 <li>Product Manager</li>
 <li>Technical Architect</li>
 </ul>
-<h3 id="publish-the-incident-report">Publish the incident report</h3>
-<p>Incident comms creates a version of the incident report for publication. Refer to the <a href="https://drive.google.com/open?id=1g2_KVXfZnBDVFFlxyModAi8YSbF0uun32Z1Pe5TYBc8">template</a> for guidance, and also see previous examples.</p>
-
-<p>By default we publish Incident Reports on Statuspage unless there is a good reason not to. It sets a good example and demonstrates openness. </p>
-
+<h3 id="publish-the-incident-report">Publish the incident report</h3><p>Incident comms creates a version of the incident report for publication. Refer to the <a href="https://drive.google.com/open?id=1g2_KVXfZnBDVFFlxyModAi8YSbF0uun32Z1Pe5TYBc8">template</a> for guidance, and also see previous examples.</p>
+<p>By default we publish Incident Reports on Statuspage unless there is a good reason not to. It sets a good example and demonstrates openness.</p>
 <p>The only incidents for which this is not automatically true are for security incidents which need to be carefully considered  to ensure that no further harm could be caused by publishing these.</p>
-<h2 id="suppliers">Suppliers</h2><h3 id="aws">AWS</h3>
-<p>We have a full support contract with AWS. Open a support case through the AWS console or at https://aws.amazon.com/support. If the incident is ‘critical’ or &lsquo;urgent’ severity, use <strong>click to chat</strong> or <strong>click to call</strong> for immediate contact.</p>
-<h3 id="aiven-elasticsearch">Aiven Elasticsearch</h3>
-<p>Aiven monitors its services 24 hours a day 365 days a year, and provides free email support regarding problems using and accessing its services. Aiven personnel:</p>
+<h2 id="suppliers">Suppliers</h2><h3 id="aws">AWS</h3><p>We have a full support contract with AWS. Open a support case through the AWS console or at https://aws.amazon.com/support. If the incident is ‘critical’ or &lsquo;urgent’ severity, use <strong>click to chat</strong> or <strong>click to call</strong> for immediate contact.</p>
+<h3 id="aiven-elasticsearch">Aiven Elasticsearch</h3><p>Aiven monitors its services 24 hours a day 365 days a year, and provides free email support regarding problems using and accessing its services. Aiven personnel:</p>
 
 <ul>
 <li>are automatically alerted on any service anomalies</li>
 <li>rapidly address any issues in system operations requiring manual intervention</li>
 </ul>
-
 <p>Responses are provided on a best-effort basis during the same or next business day. Email <a href="mailto:support@aiven.io">support@aiven.io</a> for all support requests.</p>
 
 

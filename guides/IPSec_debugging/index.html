@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/IPSec_debugging/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#ipsec-debugging">IPSec debugging</a>
     <ul>
@@ -76,9 +79,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -86,66 +90,44 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="ipsec-debugging">IPSec debugging</h1>
-<p>There may be a need, to debug the IPSec on our machines. In order to do that, you may want to log into the routers or cells. See <a href="/guides/Connecting_to_Concourse_and_BOSH/#connecting-bosh_cli-to-bosh">Connecting bosh_cli to Bosh</a> for instructions.</p>
-<h2 id="fiddle-with-the-logging-level">Fiddle with the logging level</h2>
-<p>Once logged into the VM, go ahead and edit the following file:</p>
-
+  <h1 id="ipsec-debugging">IPSec debugging</h1><p>There may be a need, to debug the IPSec on our machines. In order to do that, you may want to log into the routers or cells. See <a href="/guides/Connecting_to_Concourse_and_BOSH/#connecting-bosh_cli-to-bosh">Connecting bosh_cli to Bosh</a> for instructions.</p>
+<h2 id="fiddle-with-the-logging-level">Fiddle with the logging level</h2><p>Once logged into the VM, go ahead and edit the following file:</p>
 <p><code>
 /var/vcap/jobs/racoon/etc/racoon/racoon.conf
 </code></p>
-
 <p>And change the first line, from:</p>
-
 <p><code>
 log &#39;info&#39;;
 </code></p>
-
 <p>To:</p>
-
 <p><code>
 log &#39;debug&#39;;
 </code></p>
-
 <p>After changing the configuration, you may need to execute the following script, in order to apply the changes.</p>
-
 <p><code>
 monit restart racoon
 </code></p>
-
 <p>The log file, should be placed in:</p>
-
 <p><code>
 /var/vcap/sys/log/racoon/racoon.log
 </code></p>
-<h2 id="verifying-configuration">Verifying Configuration</h2>
-<p>You may find useful, to see changes applied to the kernel.</p>
-
+<h2 id="verifying-configuration">Verifying Configuration</h2><p>You may find useful, to see changes applied to the kernel.</p>
 <p>The configuration file for that, is located here:</p>
-
 <p><code>
 /var/vcap/jobs/racoon/etc/setkey.conf
 </code></p>
-
 <p>The values, from the configuration file, are taken to the consideration, when setting up the values to the kernel.</p>
-
 <p>In order to check the validity, you may want to run these commands:</p>
-
 <p><code>
 /var/vcap/packages/racoon/sbin/setkey -DP
 /var/vcap/packages/racoon/sbin/setkey -D
 </code></p>
-
 <p>More information on the script, can be found in the <a href="https://www.freebsd.org/cgi/man.cgi?query=setkey&amp;sektion=8">FreeBSD manual</a>.</p>
-<h2 id="monitoring-the-traffic">Monitoring the traffic</h2>
-<p>You may find a desire, to monitor the traffic between the VMs. You can do so, by running the following command:</p>
+<h2 id="monitoring-the-traffic">Monitoring the traffic</h2><p>You may find a desire, to monitor the traffic between the VMs. You can do so, by running the following command:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>tcpdump -n -i eth0 net 10.0.48.0/22
-</code></pre></div>
-<p>If you want to restrict tcpdump to capture IPSEC traffic only you can use:</p>
+</code></pre></div><p>If you want to restrict tcpdump to capture IPSEC traffic only you can use:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>tcpdump -i eth0 -n -s 0 -vv \(port 500 or port 4500 or proto 50\)
-</code></pre></div>
-<p><strong>Note:</strong> The IP address, may differ from the one set on the node you&rsquo;re debugging.</p>
-
+</code></pre></div><p><strong>Note:</strong> The IP address, may differ from the one set on the node you&rsquo;re debugging.</p>
 <p>You should encounter the following outcome, which will consist of header, encrypted content and finally the key exchange.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>16:31:09.873951 IP 10.0.48.101 &gt; 10.0.32.4: ESP(spi=0x0be0677a,seq=0x6cf), length 84
 16:31:09.874404 IP 10.0.48.101 &gt; 10.0.32.4: ESP(spi=0x0be0677a,seq=0x6d0), length 84

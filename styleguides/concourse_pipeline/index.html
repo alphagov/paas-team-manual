@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/styleguides/concourse_pipeline/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#concourse-pipelines">Concourse pipelines</a>
     <ul>
@@ -81,9 +84,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -91,24 +95,19 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="concourse-pipelines">Concourse pipelines</h1>
-<p>This documents some of the agreed styles we have to writing <a href="https://concourse-ci.org">Concourse</a>
+  <h1 id="concourse-pipelines">Concourse pipelines</h1><p>This documents some of the agreed styles we have to writing <a href="https://concourse-ci.org">Concourse</a>
 pipelines. Because these are written in YAML, the <a href="../YAML/">YAML styleguide</a> also
 applies.</p>
-<h2 id="triggering-patterns">Triggering patterns</h2>
-<p>Most of our pipelines follow the following pattern for triggering jobs. This
+<h2 id="triggering-patterns">Triggering patterns</h2><p>Most of our pipelines follow the following pattern for triggering jobs. This
 should be used unless there&rsquo;s a good reason not to.</p>
-
 <p>Pipelines start with an <code>init</code> job that bumps a <code>pipeline-trigger</code> semver
 resource. This resource is then used to trigger everything else througout the
 pipeline. This ensures that all of a pipeline runs, even if some of the
 jobs/tasks are a no-op. It also means there is a consistent way to initiate a
 pipeline run (where they are triggered manually).</p>
-<h2 id="tasks">Tasks</h2><h3 id="naming">Naming</h3>
-<p>Tasks should be given names that are verbs. Inputs and outputs should be given
+<h2 id="tasks">Tasks</h2><h3 id="naming">Naming</h3><p>Tasks should be given names that are verbs. Inputs and outputs should be given
 names that are nouns. Inputs and outputs should not be given names that are the
 same as a task name.</p>
-
 <p>For example a task that takes a terraform state file and extracts the outputs
 should be named as follows:
 <code>yaml
@@ -123,8 +122,7 @@ should be named as follows:
     run:
       # ...
 </code></p>
-<h3 id="ordering-of-sections">Ordering of sections</h3>
-<p>Task config section should be ordered as follows:</p>
+<h3 id="ordering-of-sections">Ordering of sections</h3><p>Task config section should be ordered as follows:</p>
 
 <ul>
 <li><code>platform</code></li>
@@ -134,7 +132,6 @@ should be named as follows:
 <li><code>params</code></li>
 <li><code>run</code></li>
 </ul>
-
 <p>This makes it easier to follow the flow of a task and see what it operates on.</p>
 
 

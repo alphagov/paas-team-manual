@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR017-cell-capacity-assignment/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr017-cell-capacity-assignment">ADR017: cell capacity assignment</a>
     <ul>
@@ -82,9 +85,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -92,28 +96,22 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr017-cell-capacity-assignment">ADR017: cell capacity assignment</h1><h2 id="superceded">Superceded</h2>
-<p>This has been superceded by <a href="/architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR021</a> since November 2017. It has been retained for historical purposes.</p>
+  <h1 id="adr017-cell-capacity-assignment">ADR017: cell capacity assignment</h1><h2 id="superceded">Superceded</h2><p>This has been superceded by <a href="/architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR021</a> since November 2017. It has been retained for historical purposes.</p>
 
 <hr>
-<h2 id="context">Context</h2>
-<p>We want to ensure our platform remains available when a single AZ fails. This means that we need to have enough spare memory capacity left on cells to cover deploying apps from the failed zone. In case of 3 zones, that means each zone should be able to host 50% more apps (memory capacity wise). We can calculate maximum memory usable by all orgs by doing sum of their quotas. However, in practice much less memory is consumed. This is because</p>
+<h2 id="context">Context</h2><p>We want to ensure our platform remains available when a single AZ fails. This means that we need to have enough spare memory capacity left on cells to cover deploying apps from the failed zone. In case of 3 zones, that means each zone should be able to host 50% more apps (memory capacity wise). We can calculate maximum memory usable by all orgs by doing sum of their quotas. However, in practice much less memory is consumed. This is because</p>
 
 <ol>
 <li>Org quotas come in T-shirt sizes and have considerable size jumps (e.g. 2, 10, 60 100G). You need to reserve next quota if previous one is too small for your needs, yet it doesn&rsquo;t mean you will be using all the capacity of the larger quota.</li>
 <li>App instance memory limits are set as upper memory consumption limit. Because of that, they tend to be set larger for safety. Actual app memory consumption is always lower, many times considerably.</li>
 </ol>
-
 <p>Practical example - this is a snapsot of our prod deployment in Feb 2017:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>Memory reserved by orgs: 368640 MB (360 GB)
 Memory reserved by apps: 107108 MB (104 GB)
 Memory actually used by apps: 32868 (32 GB)
-</code></pre></div>
-<p>This is not unusual and CF v1 had default overprovisioning factor of 2 (that is, it advertised 2 times more capacity than actual).</p>
-<h2 id="decision">Decision</h2>
-<p>We will maintain at least 50% of total org reserved capacity available when a zone fails. That is, remaining zones will have to be able to cover 50% of total reserved capacity.</p>
-<h2 id="status">Status</h2>
-<p>Superceded by <a href="/architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR021</a>.</p>
+</code></pre></div><p>This is not unusual and CF v1 had default overprovisioning factor of 2 (that is, it advertised 2 times more capacity than actual).</p>
+<h2 id="decision">Decision</h2><p>We will maintain at least 50% of total org reserved capacity available when a zone fails. That is, remaining zones will have to be able to cover 50% of total reserved capacity.</p>
+<h2 id="status">Status</h2><p>Superceded by <a href="/architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR021</a>.</p>
 <h2 id="consequences">Consequences</h2>
 <ul>
 <li>We will check if we have enough capacity available whenever we add a new organisation or increase quota of existing one. We will deploy more cells if we need more capacity.</li>

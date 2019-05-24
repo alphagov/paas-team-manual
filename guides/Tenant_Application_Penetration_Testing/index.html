@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/Tenant_Application_Penetration_Testing/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#tenant-application-penetration-and-load-testing">Tenant Application Penetration and Load Testing</a>
     <ul>
@@ -92,9 +95,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -102,8 +106,7 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="tenant-application-penetration-and-load-testing">Tenant Application Penetration and Load Testing</h1><h3 id="penetration-testing">Penetration testing</h3>
-<p>We no longer have to notify AWS of penetration testing, however it is useful for the team to know that this is taking place and that we have contact details of the testers if issues arise during the testing window.</p>
+  <h1 id="tenant-application-penetration-and-load-testing">Tenant Application Penetration and Load Testing</h1><h3 id="penetration-testing">Penetration testing</h3><p>We no longer have to notify AWS of penetration testing, however it is useful for the team to know that this is taking place and that we have contact details of the testers if issues arise during the testing window.</p>
 <div class="table-container">
         <table>
           <tr>
@@ -144,9 +147,7 @@
 </tr>
 
         </table>
-      </div><h3 id="load-testing">Load Testing</h3>
-<p>Before allowing a load test against applications running on PaaS we may have to notify AWS. Currently we are not sure on the scenarios when we do not have to notify AWS. We are erring on the side of caution and notifying for all load tests.</p>
-
+      </div><h3 id="load-testing">Load Testing</h3><p>Before allowing a load test against applications running on PaaS we may have to notify AWS. Currently we are not sure on the scenarios when we do not have to notify AWS. We are erring on the side of caution and notifying for all load tests.</p>
 <p>There are two methods to notify AWS: <a href="https://aws.amazon.com/forms/penetration-testing-request">a form which requires root account access</a>, or, by emailing <code>aws-security-cust-pen-test@amazon.com</code>. Both require providing the following information:</p>
 <div class="table-container">
         <table>
@@ -280,21 +281,17 @@
 </tr>
 
         </table>
-      </div><h2 id="find-penetration-testable-ec2-instance-ids">Find penetration testable EC2 instance IDs</h2>
-<p>AWS only allows penetration tests on instances of certain sizes. You can find all valid instances with the following:</p>
+      </div><h2 id="find-penetration-testable-ec2-instance-ids">Find penetration testable EC2 instance IDs</h2><p>AWS only allows penetration tests on instances of certain sizes. You can find all valid instances with the following:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>aws ec2 describe-instances \
 | jq '.Reservations[].Instances[] | select(.InstanceType != "t2.nano" and .InstanceType != "t1.micro" and .InstanceType != "m1.small") | .InstanceId' --raw-output
-</code></pre></div><h2 id="find-elbs">Find ELBs</h2>
-<p>For tenant application penetration testing it should only be necessary to provide the router ELB:</p>
+</code></pre></div><h2 id="find-elbs">Find ELBs</h2><p>For tenant application penetration testing it should only be necessary to provide the router ELB:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>aws elb describe-load-balancers \
 | jq '.LoadBalancerDescriptions[] | select(.Scheme == "internet-facing") | select(.LoadBalancerName | endswith("-router")) | .DNSName' --raw-output
-</code></pre></div><h2 id="find-cloudfront-distributions">Find CloudFront distributions</h2>
-<p>The <code>cdn-route</code> service uses a CloudFront distribution. You can discover these distributions with the following:</p>
+</code></pre></div><h2 id="find-cloudfront-distributions">Find CloudFront distributions</h2><p>The <code>cdn-route</code> service uses a CloudFront distribution. You can discover these distributions with the following:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>aws cloudfront list-distributions \
 | jq '.DistributionList.Items[] | select(.Comment == "cdn route service") | .Id' --raw-output
 </code></pre></div><h2 id="find-external-ips-nat">Find external IPs (NAT)</h2><div class="highlight"><pre class="highlight plaintext"><code>aws ec2 describe-nat-gateways | jq -r '.NatGateways[].NatGatewayAddresses[].PublicIp
-</code></pre></div><h2 id="find-rds-instances-from-a-given-org">Find RDS instances from a given org</h2>
-<p>Assuming you are logged in the production CF and <code>AWS_DEFAULT_REGION</code> set to the right region</p>
+</code></pre></div><h2 id="find-rds-instances-from-a-given-org">Find RDS instances from a given org</h2><p>Assuming you are logged in the production CF and <code>AWS_DEFAULT_REGION</code> set to the right region</p>
 <div class="highlight"><pre class="highlight plaintext"><code># AWS_DEFAULT_REGION=eu-west-1
 
 ORG=tenant-org

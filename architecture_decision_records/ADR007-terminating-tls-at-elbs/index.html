@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR007-terminating-tls-at-elbs/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr007-terminating-tls-at-elbs">ADR007: Terminating TLS at ELBs</a>
     <ul>
@@ -79,9 +82,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -89,13 +93,10 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr007-terminating-tls-at-elbs">ADR007: Terminating TLS at ELBs</h1><h2 id="context">Context</h2>
-<p>We needed to decide where to terminate TLS connections for public and tenant
+  <h1 id="adr007-terminating-tls-at-elbs">ADR007: Terminating TLS at ELBs</h1><h2 id="context">Context</h2><p>We needed to decide where to terminate TLS connections for public and tenant
 facing endpoints and how to manage the corresponding private keys.</p>
-
 <p>We had previously decided to only support HTTPS to both deployed applications
 and Cloud Foundry endpoints.</p>
-
 <p>At the time of writing there were 4 endpoints to consider:</p>
 
 <ul>
@@ -105,18 +106,15 @@ and Cloud Foundry endpoints.</p>
 <li>Loggregator. Accessed by tenants.</li>
 <li>SSH proxy. In theory accessed by tenants, but not working in our environment.</li>
 </ul>
-
 <p>We had an existing credentials store suitable for storing the private keys at
 rest. Only a small number of engineers within the team can access; the same
 ones that can make IAM changes using our account-wide terraform config.</p>
-
 <p>Placing ELBs in front of public-facing services is an architectural pattern
 advised by Amazon <a href="https://d0.awsstatic.com/whitepapers/DDoS_White_Paper_June2015.pdf">in order to reduce attack
 surface</a>.
 Specifically they advise that it helps withstand volumetric Denial of Service
 attacks; the ELB handles TCP connections and therefore the responsibility for
 handling DDOS at Layer 4 and below resides with the ELB team.</p>
-
 <p>We did a spike, where we attempted to place everything public-facing or
 tenant-facing behind ELBs. We found that:</p>
 
@@ -129,7 +127,6 @@ address to the downstream service. Practical consequences of this would be
 that tenants would be unable to see in their logs who is using their service or
 do any access control based on client IP address.</li>
 </ul>
-
 <p>In attempting to solve the second problem, we explored some options:</p>
 
 <ul>
@@ -141,8 +138,7 @@ seemed simple to add support to gorouter.</li>
 understands the proxy protocol and adds or appends to an <code>X-Forwarded-For</code>
 header with the client IP address as provided via the proxy protocol.</li>
 </ul>
-<h2 id="decision">Decision</h2>
-<p>We decided to:</p>
+<h2 id="decision">Decision</h2><p>We decided to:</p>
 
 <ul>
 <li>use the ELB to terminate TLS</li>
@@ -151,8 +147,7 @@ header with the client IP address as provided via the proxy protocol.</li>
 <li>use S3 logging to ensure we have the IP addresses of clients using the CF
 endpoint</li>
 </ul>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
+<h2 id="status">Status</h2><p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
 <ul>
 <li>We played a <a href="https://www.pivotaltracker.com/projects/1275640/stories/116619465">spike to investigate setting X-Forwarded-For

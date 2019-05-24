@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR011-security-group-structure/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr011-security-group-structure">ADR011: Security group structure</a>
     <ul>
@@ -79,9 +82,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -89,24 +93,20 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr011-security-group-structure">ADR011: Security group structure</h1><h2 id="context">Context</h2>
-<p>In https://www.pivotaltracker.com/story/show/115252309 we described a pattern
+  <h1 id="adr011-security-group-structure">ADR011: Security group structure</h1><h2 id="context">Context</h2><p>In https://www.pivotaltracker.com/story/show/115252309 we described a pattern
 for defining security groups between services and the VMs that connect to
 them. This involved creating a client security group for each service that
 the service allowed connections from. This client security group was then
 applied to the VMs that needed to be able to connect.</p>
-
 <p>This has the problem that in some cases we would need to add several client
 security groups to a given VM, and we are at risk of running into the AWS
 limits (by default it&rsquo;s a max of 5 groups per interface).</p>
-<h2 id="decision">Decision</h2>
-<p>We will use an alternative approach where a security group is defined for each
+<h2 id="decision">Decision</h2><p>We will use an alternative approach where a security group is defined for each
 component (or component group) in the system. Services then define rules
 allowing connections from the components that need access. There are some
 instances where a component will be both a client of other services and a
 provider of a service. We will use the same security group for both of these
 roles.</p>
-
 <p>This approach has a number of advantages:</p>
 
 <ul>
@@ -119,8 +119,7 @@ the rules for that service&rsquo;s security group.</li>
 <li>When moving a component between VMs it&rsquo;s much clearer which security groups
 need to move with it.</li>
 </ul>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
+<h2 id="status">Status</h2><p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
 <ul>
 <li>This will enable us to avoid hitting the AWS limits for the number of
@@ -129,7 +128,6 @@ security groups applied to a given interface.</li>
 service.</li>
 <li>There will be some work to update our existing groups to use this pattern.</li>
 </ul>
-
 <p>There are some potential issues:</p>
 
 <ul>

@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/editing_logstash_filters/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#updating-logstash-filters">Updating logstash filters</a>
     <ul>
@@ -76,9 +79,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -86,18 +90,14 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="updating-logstash-filters">Updating logstash filters</h1>
-<p>Sadly, there is no programmatic access to Logit&rsquo;s logstash filters.</p>
-<h2 id="for-new-logit-stacks">For new logit stacks&hellip;</h2>
-<p>If the logit stack is not a v6.x logstash (e.g. it&rsquo;s a v5.6 like the current PaaS stacks are)
+  <h1 id="updating-logstash-filters">Updating logstash filters</h1><p>Sadly, there is no programmatic access to Logit&rsquo;s logstash filters.</p>
+<h2 id="for-new-logit-stacks">For new logit stacks&hellip;</h2><p>If the logit stack is not a v6.x logstash (e.g. it&rsquo;s a v5.6 like the current PaaS stacks are)
 the new filters need a plugin installed into logstash. You need to request this via logit support
 (either through the web-based &ldquo;chat&rdquo; logit have once you&rsquo;ve logged in or via their email address).
 The plugin is for a filter called <code>alter</code>. v6.x logstash logit stacks have this plugin
 installed by default. Such a request might look like:</p>
-
 <p>Please could you install the &ldquo;alter&rdquo; filter plugin into logstash for the stack with id e3352477-f40c-41c5-be46-5c52c0e3de38?</p>
-<h2 id="process-for-generating-logstash-filters-for-logit">Process for generating logstash filters for Logit</h2>
-<p>We have instead come up with the following method.</p>
+<h2 id="process-for-generating-logstash-filters-for-logit">Process for generating logstash filters for Logit</h2><p>We have instead come up with the following method.</p>
 
 <ol>
 <li>Create your branch on PaaS-CF.</li>
@@ -113,8 +113,7 @@ installed by default. Such a request might look like:</p>
 <li>If the validation passes an <strong>Apply</strong> button will appear, click this.</li>
 <li>Wait for application of the filters to finish.</li>
 </ol>
-<h2 id="updating-the-components-of-the-logstash-filters">Updating the components of the logstash filters</h2>
-<p>This information can be found in the <a href="https://github.com/alphagov/paas-cf/blob/master/config/logit/README.md">readme</a></p>
+<h2 id="updating-the-components-of-the-logstash-filters">Updating the components of the logstash filters</h2><p>This information can be found in the <a href="https://github.com/alphagov/paas-cf/blob/master/config/logit/README.md">readme</a></p>
 
 
             

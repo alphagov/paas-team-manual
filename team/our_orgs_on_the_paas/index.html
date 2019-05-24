@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/team/our_orgs_on_the_paas/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#our-orgs-on-the-paas">Our orgs on the PaaS</a>
     <ul>
@@ -73,9 +76,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -83,16 +87,13 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="our-orgs-on-the-paas">Our orgs on the PaaS</h1>
-<p>We generally expect tenants to use a single org on the PaaS for their service.
+  <h1 id="our-orgs-on-the-paas">Our orgs on the PaaS</h1><p>We generally expect tenants to use a single org on the PaaS for their service.
 We therefore want to follow the same guidlines for our own apps running on the
 PaaS. As a result we avoid creating separate orgs for different things, and
 split our apps into one of 2 orgs as follows:</p>
-<h2 id="the-admin-org">The <code>admin</code> org</h2>
-<p>This is for things that make up part of the platform itself. This includes
+<h2 id="the-admin-org">The <code>admin</code> org</h2><p>This is for things that make up part of the platform itself. This includes
 things like service-brokers, monitoring tools etc.</p>
-<h2 id="the-govuk-paas-org">The <code>govuk-paas</code> org</h2>
-<p>This is for things relating to our team. This includes our documentation, team
+<h2 id="the-govuk-paas-org">The <code>govuk-paas</code> org</h2><p>This is for things relating to our team. This includes our documentation, team
 tools (eg rubbernecker) etc.</p>
 
 

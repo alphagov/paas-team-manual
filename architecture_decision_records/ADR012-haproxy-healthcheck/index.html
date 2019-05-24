@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR012-haproxy-healthcheck/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr012-haproxy-healthcheck">ADR012: Haproxy healthcheck</a>
     <ul>
@@ -79,9 +82,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -89,21 +93,16 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr012-haproxy-healthcheck">ADR012: Haproxy healthcheck</h1><h2 id="context">Context</h2>
-<p>Stories: <a href="https://www.pivotaltracker.com/story/show/123490171">#123490171</a> &amp; <a href="https://www.pivotaltracker.com/story/show/121933113">#121933113</a></p>
-
+  <h1 id="adr012-haproxy-healthcheck">ADR012: Haproxy healthcheck</h1><h2 id="context">Context</h2><p>Stories: <a href="https://www.pivotaltracker.com/story/show/123490171">#123490171</a> &amp; <a href="https://www.pivotaltracker.com/story/show/121933113">#121933113</a></p>
 <p>We were investigating how to avoid downtime to deployed applications when we
 made changes to the platform. We had discovered that short outages occurred
 when the gorouter was taken out of service.</p>
-
 <p>gorouter has drain functionality to allow upstream load balancers to gracefully
 take instances of the gorouter out of service before any requests start to
 fail.</p>
-
 <p>When a USR1 signal is sent to instruct the gorouter to start draining,
 healthchecking requests, identified by the header <code>User-Agent: HTTP-Monitor/1.1</code>
 start failing with HTTP 503. User requests are allowed to continue.</p>
-
 <p>Two things prevented us from using drain mode:</p>
 
 <ul>
@@ -113,11 +112,9 @@ ELB-HealthChecker/1.0</code>, which means they were not recognised as healthchec
 requests by gorouter, they returned HTTP 200 and the ELB did not take the
 draining gorouter out of service.</li>
 </ul>
-
 <p>The result was a very small amount of downtime for deployed apps that received
 requests during a short window of &lt; 1 second.</p>
-<h2 id="decision">Decision</h2>
-<p>We decided to:</p>
+<h2 id="decision">Decision</h2><p>We decided to:</p>
 
 <ul>
 <li>submit a change upstream to <a href="https://github.com/cloudfoundry/gorouter/pull/138">allow the gorouter to recognise ELB
@@ -126,8 +123,7 @@ healthchecks</a></li>
 which appends the <code>User-Agent: HTTP-Monitor/1.1</code> that gorouter expects</li>
 <li>enable HTTP healthchecks on the ELB</li>
 </ul>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
+<h2 id="status">Status</h2><p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
 <ul>
 <li>There was less downtime for deployed applications during a deploy.</li>

@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/team/orientation/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#orientation">Orientation</a>
     <ul>
@@ -107,9 +110,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -117,10 +121,8 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="orientation">Orientation</h1>
-<p>Some key information to help new starters to find their way.</p>
-<h2 id="product">Product</h2>
-<p>The following blog posts and videos give an overview of why we&rsquo;re here and
+  <h1 id="orientation">Orientation</h1><p>Some key information to help new starters to find their way.</p>
+<h2 id="product">Product</h2><p>The following blog posts and videos give an overview of why we&rsquo;re here and
 what we&rsquo;ve been doing so far:</p>
 
 <ul>
@@ -129,8 +131,7 @@ what we&rsquo;ve been doing so far:</p>
 <li><a href="https://gdstechnology.blog.gov.uk/2015/10/27/looking-at-open-source-paas-technologies/">Looking at open source PaaS technologies - Anna on the GDS Technology blog</a></li>
 <li><a href="https://governmentasaplatform.blog.gov.uk/2015/12/17/choosing-cloudfoundry/">Choosing Cloud Foundry - Anna on the GaaP blog</a></li>
 </ul>
-<h2 id="repos">Repos</h2>
-<p>These are the key repos that we use. There will be many others, which these
+<h2 id="repos">Repos</h2><p>These are the key repos that we use. There will be many others, which these
 depend on, but this list should be enough to get you started.</p>
 
 <ul>
@@ -138,20 +139,17 @@ depend on, but this list should be enough to get you started.</p>
 <li><a href="https://github.com/alphagov/paas-team-manual">alphagov/paas-team-manual</a></li>
 <li><a href="https://github.com/alphagov/paas-credentials">alphagov/paas-credentials</a> (private)</li>
 </ul>
-<h2 id="accounts">Accounts</h2>
-<p>You will need accounts to a number of tools/services that we use such as
+<h2 id="accounts">Accounts</h2><p>You will need accounts to a number of tools/services that we use such as
 GitHub and Pivotal Tracker. Government Digital Service staff can see a full
 list and their respective URLs in the following spreadsheet:</p>
 
 <ul>
 <li><a href="https://docs.google.com/spreadsheets/d/14gEh9jILg2p9aVIS78WTKEYMsz-ltetxnbugIw4TrWA/edit#gid=228343062">PaaS Team Checks</a></li>
 </ul>
-<h2 id="buddys-for-new-engineers">Buddys for new engineers</h2>
-<p>If you&rsquo;re a new developer or SRE you&rsquo;ll be paired with a buddy for the first
+<h2 id="buddys-for-new-engineers">Buddys for new engineers</h2><p>If you&rsquo;re a new developer or SRE you&rsquo;ll be paired with a buddy for the first
 few days. They&rsquo;ll help you get set up, explain the GOV.UK PaaS product in more
 detail and help you get started implementing your first stories.</p>
-<h2 id="events">Events</h2>
-<p>These are key events that happen each fortnightly sprint. You&rsquo;ll get
+<h2 id="events">Events</h2><p>These are key events that happen each fortnightly sprint. You&rsquo;ll get
 calendar invites that detail the actual times and locations.</p>
 
 <ul>
@@ -171,9 +169,7 @@ record things you want to hear more about or talk about in this <a href="https:/
 board</a> and one or two
 people present each, preferably with a demo.</li>
 </ul>
-<h3 id="late-for-standup">Late for Standup</h3>
-<p>Scary. Turning up late for the standup? How could such a thing happen.</p>
-
+<h3 id="late-for-standup">Late for Standup</h3><p>Scary. Turning up late for the standup? How could such a thing happen.</p>
 <p>Missing standup, or being late, means you will miss out on updates on:</p>
 
 <ul>
@@ -181,13 +177,10 @@ people present each, preferably with a demo.</li>
 <li>Product News (any significant developments worth knowing about)</li>
 <li>Context on Work in Progress</li>
 </ul>
-
 <p>The last one is especially important, as the standup is a valuable way to crowdsource ideas on problems that people may be having with a story, and if you are not there, you can&rsquo;t help.</p>
-<h2 id="learning-our-technologies">Learning our technologies</h2>
-<p>We use a number of technologies and you may find it easier to learn about each
+<h2 id="learning-our-technologies">Learning our technologies</h2><p>We use a number of technologies and you may find it easier to learn about each
 one on its own, rather than in our environment, where they all interact with
 each other.</p>
-
 <p>Here are some recommended exercises and documentation that will help you become
 familiar with each one.</p>
 <div class="table-container">
@@ -224,15 +217,12 @@ familiar with each one.</p>
 </tr>
 
         </table>
-      </div><h2 id="communicating-with-hand-signals">Communicating with Hand Signals</h2>
-<p>We use hand signals at our meetings to help make them more productive and
+      </div><h2 id="communicating-with-hand-signals">Communicating with Hand Signals</h2><p>We use hand signals at our meetings to help make them more productive and
 accessible for every person on the team. You can find out more about how this
 works in practice by reading <a href="https://gds.blog.gov.uk/2016/10/07/platform-as-a-service-team-takes-even-handed-approach-to-meetings/">our blog post</a>.</p>
-<h2 id="inclusive-language">Inclusive language</h2>
-<p>Diversity is important to us, as is inclusivity. To help create such an
+<h2 id="inclusive-language">Inclusive language</h2><p>Diversity is important to us, as is inclusivity. To help create such an
 atmosphere we avoid the use of certain words.</p>
-<h3 id="avoid-gender-specific-words">Avoid gender-specific words</h3>
-<p>Gender-specific words like these can act to exclude other groups of people:</p>
+<h3 id="avoid-gender-specific-words">Avoid gender-specific words</h3><p>Gender-specific words like these can act to exclude other groups of people:</p>
 
 <ul>
 <li>guys</li>
@@ -242,29 +232,23 @@ atmosphere we avoid the use of certain words.</p>
 <li>he</li>
 <li>girls</li>
 </ul>
-
 <p>There is a great write up on the word <a href="http://jvns.ca/blog/2013/12/27/guys-guys-guys/">guys by Jessica
 Evans</a> that helps explain why
 it isn&rsquo;t quite gender neutral.</p>
-
 <p>Words such as <em>everyone</em>, <em>folks</em> or <em>team</em> can be more inclusive.
 <a href="http://bridgetkromhout.com/blog/2014/11/03/the-first-rule-of-devops-club/">The first rule of devops club by Bridget Kromhout</a> is a great reference.</p>
-<h3 id="avoid-assuming-expertise">Avoid assuming expertise</h3>
-<p>Some words assume expertise and can belittle others contributions:</p>
+<h3 id="avoid-assuming-expertise">Avoid assuming expertise</h3><p>Some words assume expertise and can belittle others contributions:</p>
 
 <ul>
 <li>just</li>
 <li>obviously</li>
 <li>trivial</li>
 </ul>
-
 <p>For example, using the word obviously can be a form of
 <a href="https://en.wikipedia.org/wiki/Hindsight_bias">Hindsight Bias</a>: some
 people reading this may know it, but others may not. Not so obvious right?</p>
-
 <p>If this language is used widely it can stop people contributing to discussions.
 It can make asking questions scary. This is bad.</p>
-
 <p>Another problem with these set of words is that it can lead to underestimation
 of effort by the team when effort is played down.</p>
 <h3 id="avoid-treating-people-as-resources">Avoid treating people as resources</h3><div class="table-container">
@@ -277,15 +261,13 @@ of effort by the team when effort is played down.</p>
 </tr>
 
         </table>
-      </div>
-<p>Classic Management 1.0 speak, reducing people to Resources. We should not be
+      </div><p>Classic Management 1.0 speak, reducing people to Resources. We should not be
 doing this.</p>
 
 <blockquote>
 <p>Our thoughts shape our language, but our language also shapes our thoughts.
 The zeroth step in creating humane workplaces is to start talking about the
 people not resources.</p>
-
 <p><a href="http://www.estherderby.com/2010/12/resources-dont-write-software-people-do.html">Esther Derby</a></p>
 </blockquote>
 

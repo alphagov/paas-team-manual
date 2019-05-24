@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/upgrading_CF,_bosh_and_stemcells/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#upgrading-cf-bosh-and-stemcells">Upgrading CF, BOSH and stemcells</a>
     <ul>
@@ -104,9 +107,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -130,9 +134,7 @@
 <li><p>Use <code>git diff</code> or GitHub compare in the <code>cf-deployment</code> submodule repo to see and review changes to the manifest. For example, to see differences between v1.0.0 and v1.14.0:</p></li>
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>  git diff v1.0.0...v1.14.0 cf-deployment.yml
-</code></pre></div>
-<p>We also use a number of upstream ops files, so you will want to <code>diff</code> them too. See <a href="https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/scripts/generate-manifest.sh">the manifest generation script</a> for which ones get used.</p>
-
+</code></pre></div><p>We also use a number of upstream ops files, so you will want to <code>diff</code> them too. See <a href="https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/scripts/generate-manifest.sh">the manifest generation script</a> for which ones get used.</p>
 <p>Special differences to take into account:</p>
 
 <ul>
@@ -148,14 +150,11 @@
 <li>Note: If we are using a forked version of the smoke-tests or cf-acceptance test, create a new branch and rebase our forked version accordingly.</li>
 </ul></li>
 </ul>
-<h4 id="credhub">Credhub</h4>
-<p><em>(section added October 2018)</em></p>
-
+<h4 id="credhub">Credhub</h4><p><em>(section added October 2018)</em></p>
 <p>Our upgrade to cf-deployment v4.5.0 caused us to diverge from upstream, as
 documented in this <a href="https://www.pivotaltracker.com/story/show/160506139/comments/195512325">story
 comment</a>,
 by not including their suggested <code>credhub</code> instance group.</p>
-
 <p>This divergence isn&rsquo;t set in stone, but until a <em>CF</em>-level credhub is
 introduced, you should take care to check that no BOSH releases are relying on
 a <em>CF</em>-level credhub instance or service. It&rsquo;s possible that a stronger
@@ -163,15 +162,13 @@ dependency on credhub will be introduced in the future, in which case we&rsquo;l
 need to do the work to re-align with upstream before upgrading. It&rsquo;s worth
 checking for this early in the upgrade story, so that any requisite work can be
 flagged as a blocker ASAP.</p>
-
 <p>NBNB Here, we&rsquo;re talking about a <em>CF</em>-level credhub - <strong>not</strong> a <em>BOSH</em>-level
 credhub. We anticipate that we&rsquo;ll have one at the BOSH layer, to replace
 vars-store files, Sometime Soon
 (<a href="https://www.pivotaltracker.com/story/show/158978139">spike</a>). Be clear about
 the different consumers of any credhubs in our environments, and which one is
 being excluded at the time of writing.</p>
-<h2 id="doing-the-upgrade">Doing the upgrade</h2>
-<p>You should test the upgrade changeset:</p>
+<h2 id="doing-the-upgrade">Doing the upgrade</h2><p>You should test the upgrade changeset:</p>
 
 <ul>
 <li>From a fully deployed master with <code>SLIM_DEV_DEPLOYMENT=false</code> set, which is equivalent to the change that will happen
@@ -182,23 +179,14 @@ runs overnight.</li>
 <li>Confirm that <a href="/team/rotating_credentials/">rotating credentials</a> still
 works and doesn&rsquo;t cause additional downtime during deployments.</li>
 </ul>
-<h3 id="buildpacks">Buildpacks</h3>
-<p>We have to a give at least a week&rsquo;s notice to tenants about the buildpack upgrades, so prepare the version changes separately from the CF component upgrades.</p>
-
+<h3 id="buildpacks">Buildpacks</h3><p>We have to a give at least a week&rsquo;s notice to tenants about the buildpack upgrades, so prepare the version changes separately from the CF component upgrades.</p>
 <p>Buildpack upgrades are typically done as a separate story. You should upgrade the buildpacks to at least the versions included in the cf-deployment version currently deployed.</p>
-<h2 id="notify-the-tenants">Notify the tenants</h2>
-<p>Send an email to users following <a href="/team/notifying_tenants/#cf-upgrade">the upgrade template</a>.</p>
-<h2 id="problems-encountered-previously">Problems encountered previously</h2><h3 id="dns-name-resolution">DNS name resolution.</h3>
-<p>We encountered a wide variety of acceptance and smoke test failures which were intermittent. This was due to DNS health check failures. Consul uses these health checks to validate the consistency of the DNS records it serves, and will expire DNS records where the health check has failed.</p>
-
+<h2 id="notify-the-tenants">Notify the tenants</h2><p>Send an email to users following <a href="/team/notifying_tenants/#cf-upgrade">the upgrade template</a>.</p>
+<h2 id="problems-encountered-previously">Problems encountered previously</h2><h3 id="dns-name-resolution">DNS name resolution.</h3><p>We encountered a wide variety of acceptance and smoke test failures which were intermittent. This was due to DNS health check failures. Consul uses these health checks to validate the consistency of the DNS records it serves, and will expire DNS records where the health check has failed.</p>
 <p>The root cause was failure to remove the <code>consul.agent.services</code> property for Diego components in the CloudFoundry manifest. <a href="https://github.com/cloudfoundry-incubator/diego-release/releases/tag/v0.1452.0">Diego release notes for version 1452</a> did state these had to be removed, as Diego components now use the Locket library to configure its DNS health checks.</p>
-
 <p>The solution is to read the documentation on every release you are passing, for every component you are upgrading. This is a lot of documentation, but worth it in the long run.</p>
-<h3 id="cf-cli">CF CLI</h3>
-<p>The upgrade to cf-release v233 led to acceptance test failure, as it requires CF CLI version 6.16+. We upgraded to this version in our cf-cli and cf-acceptance-tests Docker containers, which confounded the tests of other developers when merged. Upgrades to CF CLI versions can be tested using your own private containers while in development. Perhaps we should think about versioning our docker images so that we can pin particular versions in the pipeline to match the CF &amp; BOSH versions being deployed.</p>
-<h3 id="acceptance-test-failures">Acceptance Test Failures</h3>
-<p>The upgrade to v233 has introduced some new tests in the acceptance-test suite, which do not appear to be quite ready for the prime-time yet.</p>
-
+<h3 id="cf-cli">CF CLI</h3><p>The upgrade to cf-release v233 led to acceptance test failure, as it requires CF CLI version 6.16+. We upgraded to this version in our cf-cli and cf-acceptance-tests Docker containers, which confounded the tests of other developers when merged. Upgrades to CF CLI versions can be tested using your own private containers while in development. Perhaps we should think about versioning our docker images so that we can pin particular versions in the pipeline to match the CF &amp; BOSH versions being deployed.</p>
+<h3 id="acceptance-test-failures">Acceptance Test Failures</h3><p>The upgrade to v233 has introduced some new tests in the acceptance-test suite, which do not appear to be quite ready for the prime-time yet.</p>
 <p>We experienced failures in:</p>
 
 <ul>

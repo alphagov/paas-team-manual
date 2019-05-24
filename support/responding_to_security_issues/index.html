@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/responding_to_security_issues/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#responding-to-security-issues">Responding to security issues</a>
     <ul>
@@ -87,9 +90,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -97,10 +101,8 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="responding-to-security-issues">Responding to security issues</h1>
-<p>Periodically we will learn of a security issue affecting CloudFoundry or our supporting systems we use, this is the process we follow in order to triage and mitigate the problem.</p>
-<h2 id="if-you-suspect-a-security-breach">If you suspect a security breach</h2>
-<p>If a breach is suspected to have occurred, <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/security/security-incidents">alert Information Assurance (IA) immediately</a> to the issue and provide all required information. IA will undertake all communication with Cabinet Office&rsquo;s Senior Information Risk Owner (SIRO) and any external parties as required.</p>
+  <h1 id="responding-to-security-issues">Responding to security issues</h1><p>Periodically we will learn of a security issue affecting CloudFoundry or our supporting systems we use, this is the process we follow in order to triage and mitigate the problem.</p>
+<h2 id="if-you-suspect-a-security-breach">If you suspect a security breach</h2><p>If a breach is suspected to have occurred, <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/security/security-incidents">alert Information Assurance (IA) immediately</a> to the issue and provide all required information. IA will undertake all communication with Cabinet Office&rsquo;s Senior Information Risk Owner (SIRO) and any external parties as required.</p>
 <h2 id="how-we-learn-of-issues">How we learn of issues</h2>
 <ul>
 <li>Automated CVE notifications from the <a href="https://www.cloudfoundry.org/category/security/">CloudFoundry security RSS feed</a>. This is implemented with <a href="https://ifttt.com">IFTTT</a> - credentials are in <code>paas-pass</code></li>
@@ -117,8 +119,7 @@
 <li>If the triage outcome is that we do not need to take any action, the story should be updated with the reasons why and finished as a 0 point story</li>
 <li>All PR&rsquo;s related to the security issue are prioritised for review until the issue is fully resolved</li>
 </ol>
-<h2 id="how-to-triage-an-issue">How to triage an issue</h2><h3 id="stemcell-upgrades">Stemcell upgrades</h3>
-<p>If the mitigation to the security issue is to upgrade the stemcell, you should
+<h2 id="how-to-triage-an-issue">How to triage an issue</h2><h3 id="stemcell-upgrades">Stemcell upgrades</h3><p>If the mitigation to the security issue is to upgrade the stemcell, you should
 apply the upgraded stemcell to a dev environment as a first step. While you are
 waiting for the upgraded stemcell to be applied, the issue can be triaged. If
 the upgrade applies successfully, a PR can be raised to upgrade the stemcell. If

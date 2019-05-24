@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR027-pipeline-locking/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr027-pipeline-locking">ADR027: Pipeline locking</a>
     <ul>
@@ -79,9 +82,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -89,8 +93,7 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr027-pipeline-locking">ADR027: Pipeline locking</h1><h2 id="context">Context</h2>
-<p>In our Concourse pipelines a locking mechanism was required to prevent concurrent deploys. Concurrent deploys cause
+  <h1 id="adr027-pipeline-locking">ADR027: Pipeline locking</h1><h2 id="context">Context</h2><p>In our Concourse pipelines a locking mechanism was required to prevent concurrent deploys. Concurrent deploys cause
 problems because:</p>
 
 <ul>
@@ -99,9 +102,7 @@ problems because:</p>
 <li>Bosh has its own locking mechanisms, which mean concurrent deploys will fail.</li>
 <li>concurrent testing puts extra load on the platform and Concourse</li>
 </ul>
-<h2 id="decision">Decision</h2>
-<p>We decided to implement locking using the Concourse pool resource, AWS CodeCommit, and Terraform.</p>
-
+<h2 id="decision">Decision</h2><p>We decided to implement locking using the Concourse pool resource, AWS CodeCommit, and Terraform.</p>
 <p>The Concourse pool resource was chosen because it is the Concourse-native solution for locking. This created a
 dependency on having a Git repository for the lock, as this is how the pool resource is implemented. AWS CodeCommit was
 chosen over Github for several reasons:</p>
@@ -113,15 +114,12 @@ It saved a lot of work.</li>
 Concourse VM.</li>
 <li>Github would have meant the repository containing the locks would have been public.</li>
 </ul>
-
 <p>Terraform was required to allow our pipelines (the Concourse instance profile) to manage AWS CodeCommit. We used a
 pattern whereby we allow the creation of IAM users under a specific name prefix, and allow adding these users to a
 predefined IAM group. The permissions of said group are defined in a private repository in Terraform configuration
 which is ran manually. This limits the permissions the Concourse instance profile can grant to users.</p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
-<h2 id="consequences">Consequences</h2>
-<p>We have to store an SSH private key for Git in an environment&rsquo;s S3 state bucket. This key has to be created in the
+<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="consequences">Consequences</h2><p>We have to store an SSH private key for Git in an environment&rsquo;s S3 state bucket. This key has to be created in the
 pipeline and used as an input to Terraform configuration which generates the CodeCommit repository.</p>
 
 

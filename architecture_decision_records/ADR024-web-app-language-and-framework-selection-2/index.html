@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR024-web-app-language-and-framework-selection-2/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr024-web-app-language-and-framework-selection">ADR024: web app language and framework selection</a>
     <ul>
@@ -79,9 +82,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -89,25 +93,20 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr024-web-app-language-and-framework-selection">ADR024: web app language and framework selection</h1><h2 id="context">Context</h2>
-<p>We are starting to develop a number of user-facing applications with web
+  <h1 id="adr024-web-app-language-and-framework-selection">ADR024: web app language and framework selection</h1><h2 id="context">Context</h2><p>We are starting to develop a number of user-facing applications with web
 interfaces that need to be GOV.UK branded. In order to keep things consistent
 we want to pick a single programming language to write these in.</p>
-
 <p>We&rsquo;ve previously chosen Ruby on Rails as our desired framework in the previous
 <a href="/architecture_decision_records/ADR022-web_app_language_and_framework_selection/">ADR022</a>. And whether or not it was a right choice, we decided to revisit and
 reconsider that choice.</p>
-
 <p>The reason for that, is simply the direction GDS is heading at. It would appear
 that old components will be soon deprecated and the Frontend Community has no
 desire to support gems in the future. Saying that, we could have remain with
 Rails and delegate the component management to NPM. This would however increase
 the amount of possible maintenance work we would need to undertake, due to the
 use of <a href="https://mozilla.github.io/nunjucks/">nunjucks</a> by the Design System team.</p>
-
 <p>We questioned the need of running Rails application for something that
 essentially is a templating system for existing data and API.</p>
-
 <p>After some more research, discussion with the head of the Frontend Community,
 members of the team and some others in GDS, the better choice would be Node for
 the following reasons:</p>
@@ -120,14 +119,11 @@ HTML parsing)</li>
 <li>It&rsquo;s light and essentially is JavaScript</li>
 <li>It supports <a href="https://mozilla.github.io/nunjucks/">nunjucks</a> which will help us in maintenance</li>
 </ul>
-<h2 id="decision">Decision</h2>
-<p>We will use Node to create new user-facing applications that render a web
+<h2 id="decision">Decision</h2><p>We will use Node to create new user-facing applications that render a web
 interface for our service but will not be used to implement any significant
 ‘application logic’.</p>
-<h2 id="status">Status</h2>
-<p>Accepted.</p>
-<h2 id="consequences">Consequences</h2>
-<p>We should consider porting some of our existing applications over to Node.</p>
+<h2 id="status">Status</h2><p>Accepted.</p>
+<h2 id="consequences">Consequences</h2><p>We should consider porting some of our existing applications over to Node.</p>
 
 
             

@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/CloudFoundry_debugging/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#cloud-foundry-debugging">Cloud Foundry debugging</a>
     <ul>
@@ -73,9 +76,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -83,15 +87,12 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="cloud-foundry-debugging">Cloud Foundry debugging</h1>
-<p>This is a set of useful things that may help you debug CloudFoundry problems.</p>
-<h2 id="finding-which-cell-an-app-instance-is-running-on">Finding which cell an app instance is running on</h2>
-<p>First, get the GUID of the app you want to investigate:
+  <h1 id="cloud-foundry-debugging">Cloud Foundry debugging</h1><p>This is a set of useful things that may help you debug CloudFoundry problems.</p>
+<h2 id="finding-which-cell-an-app-instance-is-running-on">Finding which cell an app instance is running on</h2><p>First, get the GUID of the app you want to investigate:
 <code>
 $ cf app APPNAME --guid
 c6d1259c-8057-489e-9ac2-beaa896c2bf3
 </code></p>
-
 <p>Then use <code>cf curl</code> and <code>jq</code> to extract the information from the stats endpoint:
 <code>
 $ cf curl /v2/apps/c6d1259c-8057-489e-9ac2-beaa896c2bf3/stats | jq &#39;with_entries(.value = .value.stats.host)&#39;
@@ -100,26 +101,20 @@ $ cf curl /v2/apps/c6d1259c-8057-489e-9ac2-beaa896c2bf3/stats | jq &#39;with_ent
   &quot;1&quot;: &quot;10.0.34.4&quot;
 }
 </code></p>
-
 <p>You can use <code>bosh vms</code> to correlate the IPs to BOSH job indexes or VM UUIDs.</p>
-<h2 id="downloading-an-app-container">Downloading an app container</h2>
-<p>If there are problems running an app then <code>cf files</code> will not function as the container must be running. An alternative is to grab the droplet image directly from CloudFoundry and unpack it locally. This can also be useful when you need to obtain a copy of a deployed app if you don&rsquo;t have the source.</p>
-
+<h2 id="downloading-an-app-container">Downloading an app container</h2><p>If there are problems running an app then <code>cf files</code> will not function as the container must be running. An alternative is to grab the droplet image directly from CloudFoundry and unpack it locally. This can also be useful when you need to obtain a copy of a deployed app if you don&rsquo;t have the source.</p>
 <p>First, get the GUID of the app you want to investigate:
 <code>
 $ cf app APPNAME --guid
 5ffab66f-0be2-4a65-b9ff-40a902a05b50
 </code></p>
-
 <p>Then use the <code>cf curl</code> wrapper to make an API call that retrieves the droplet and unpack it:
 <code>
 $ mkdir droplet &amp;&amp; cd droplet
 $ cf curl /v2/apps/5ffab66f-0be2-4a65-b9ff-40a902a05b50/droplet/download &gt; image.tar.gz
 $ tar -zxf image.tar.gz
 </code></p>
-
 <p><strong>Note:</strong> Tar will exit complaining about invalid gzip blocks - this is because the droplet has other data (such as a signature) appended to the end of the image. This isn&rsquo;t a problem, all the files for the image will be unpacked anyway.</p>
-
 <p>You should now have everything used to run the app and all the build logs. <code>app</code> contains everything the user <code>cf push</code>-ed plus any change from the staging phase (for example, compiled binaries):
 <code>
 $ ls -lah

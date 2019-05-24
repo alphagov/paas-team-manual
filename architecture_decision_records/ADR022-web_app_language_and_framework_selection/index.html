@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR022-web_app_language_and_framework_selection/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr022-web-app-language-and-framework-selection">ADR022: web app language and framework selection</a>
     <ul>
@@ -82,9 +85,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -92,21 +96,17 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr022-web-app-language-and-framework-selection">ADR022: web app language and framework selection</h1><h2 id="superceded">Superceded</h2>
-<p>This has been superceded by <a href="/architecture_decision_records/ADR024-web-app-language-and-framework-selection-2">ADR024</a> since February 2018. It has been retained for historical purposes.</p>
+  <h1 id="adr022-web-app-language-and-framework-selection">ADR022: web app language and framework selection</h1><h2 id="superceded">Superceded</h2><p>This has been superceded by <a href="/architecture_decision_records/ADR024-web-app-language-and-framework-selection-2">ADR024</a> since February 2018. It has been retained for historical purposes.</p>
 
 <hr>
-<h2 id="context">Context</h2>
-<p>We are starting to develop a number of user-facing applications with web
+<h2 id="context">Context</h2><p>We are starting to develop a number of user-facing applications with web
 interfaces that need to be styled to look like GOV.UK etc. In order to keep
 things consistent we want to pick a single programming language and framework
 to write these in.</p>
-
 <p>We&rsquo;ve previously used <a href="http://sinatrarb.com/">Sinatra</a> for this, but ran into
 issues with its default configuration which isn&rsquo;t secure, leading to an XSS
 vulnerability. We therefore want to choose something that comes with secure
 defaults, and makes it easier to avoid this sort of issue.</p>
-
 <p>Requirements:</p>
 
 <ul>
@@ -115,7 +115,6 @@ well as the future <a href="https://github.com/alphagov/govuk-frontend">govuk-fr
 <li>Must be understood broadly by members of the team.</li>
 <li>Must be understood broadly by members of the frontend developer community within GDS.</li>
 </ul>
-
 <p>After dicsussion with the head of the frontend community and members of the
 team, the choice seems to be Rails for the following reasons:</p>
 
@@ -129,12 +128,9 @@ future <a href="https://github.com/alphagov/govuk-frontend">govuk-frontend</a> p
 <li>It is opinionated, and comes with secure defaults making it much easier to
 create a secure web app.</li>
 </ul>
-<h2 id="decision">Decision</h2>
-<p>We will use Ruby and Rails to create new user-facing applications with web frontends.</p>
-<h2 id="status">Status</h2>
-<p>Superceded by <a href="/architecture_decision_records/ADR024-web-app-language-and-framework-selection-2">ADR024</a>.</p>
-<h2 id="consequences">Consequences</h2>
-<p>We should consider porting some of our existing applications over to Ruby and Rails.</p>
+<h2 id="decision">Decision</h2><p>We will use Ruby and Rails to create new user-facing applications with web frontends.</p>
+<h2 id="status">Status</h2><p>Superceded by <a href="/architecture_decision_records/ADR024-web-app-language-and-framework-selection-2">ADR024</a>.</p>
+<h2 id="consequences">Consequences</h2><p>We should consider porting some of our existing applications over to Ruby and Rails.</p>
 
 
             

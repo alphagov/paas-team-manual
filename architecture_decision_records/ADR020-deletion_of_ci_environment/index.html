@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR020-deletion_of_ci_environment/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr020-deletion-of-ci-environment">ADR020: Deletion of ci environment</a>
     <ul>
@@ -79,9 +82,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -89,14 +93,10 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr020-deletion-of-ci-environment">ADR020: Deletion of ci environment</h1><h2 id="context">Context</h2>
-<p>We have three environments in our deployment pipeline. Two non-production ones - CI and Staging and one Production. We think that it takes to much time for a change to reach production state in the current setup. We don&rsquo;t think having two environments before production is providing us much value, compared to the cost of running, maintaining, and waiting for deployments to be promoted.</p>
-<h2 id="decision">Decision</h2>
-<p>We will delete CI environment and migrate it&rsquo;s customizations, like tests , apps etc. to staging. We have decided to delete CI instead of staging as we want to separate build CI in it&rsquo;s own AWS account. Also, staging environment has valid certificates.</p>
-<h2 id="status">Status</h2>
-<p>Accepted.</p>
-<h2 id="consequences">Consequences</h2>
-<p>We will have less environments to maintain and a change will be able to reach production state quicker.</p>
+  <h1 id="adr020-deletion-of-ci-environment">ADR020: Deletion of ci environment</h1><h2 id="context">Context</h2><p>We have three environments in our deployment pipeline. Two non-production ones - CI and Staging and one Production. We think that it takes to much time for a change to reach production state in the current setup. We don&rsquo;t think having two environments before production is providing us much value, compared to the cost of running, maintaining, and waiting for deployments to be promoted.</p>
+<h2 id="decision">Decision</h2><p>We will delete CI environment and migrate it&rsquo;s customizations, like tests , apps etc. to staging. We have decided to delete CI instead of staging as we want to separate build CI in it&rsquo;s own AWS account. Also, staging environment has valid certificates.</p>
+<h2 id="status">Status</h2><p>Accepted.</p>
+<h2 id="consequences">Consequences</h2><p>We will have less environments to maintain and a change will be able to reach production state quicker.</p>
 
 
             

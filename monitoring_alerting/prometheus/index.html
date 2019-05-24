@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/monitoring_alerting/prometheus/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#prometheus">Prometheus</a>
     <ul>
@@ -84,9 +87,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -94,19 +98,12 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="prometheus">Prometheus</h1><h2 id="high-availability">High availability</h2>
-<p>All components run at least on two different VMs in different availability zones.</p>
-
+  <h1 id="prometheus">Prometheus</h1><h2 id="high-availability">High availability</h2><p>All components run at least on two different VMs in different availability zones.</p>
 <p>All Prometheus instances are independent and scrape the metrics endpoints separately. This means the Prometheus instances will have slightly different data (because of different scraping times). For various reasons (downtime, restart, etc.) one Prometheus instance might also have some data missing compared to the others.</p>
-
 <p>All Prometheus instances will send alerts to all alertmanagers. The alertmanagers form a separate cluster and will deduplicate any identical alerts.</p>
-
 <p>The Grafana instances will connect only to the Prometheus instance which is in the same availability zone.</p>
-
 <p>All instances have a unique url, so in case of an AZ failure you can use the monitoring urls from the working AZ.</p>
-<h2 id="alerting">Alerting</h2>
-<p>Prometheus is configured to send alerts to teams mailing lists.</p>
-
+<h2 id="alerting">Alerting</h2><p>Prometheus is configured to send alerts to teams mailing lists.</p>
 <p>You can find these mailing lists <a href="/team/platform_alerting/">here</a>.</p>
 <h2 id="urls">URLs</h2><h3 id="primary">Primary</h3><div class="table-container">
         <table>

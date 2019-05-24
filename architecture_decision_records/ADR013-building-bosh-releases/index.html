@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR013-building-bosh-releases/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr013-building-bosh-releases">ADR013: Building BOSH releases</a>
     <ul>
@@ -84,9 +87,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -94,30 +98,23 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr013-building-bosh-releases">ADR013: Building BOSH releases</h1><h2 id="context">Context</h2>
-<p>We use <a href="https://bosh.io/">Bosh</a> to create and manage our cloudfoundry deployment on AWS.
+  <h1 id="adr013-building-bosh-releases">ADR013: Building BOSH releases</h1><h2 id="context">Context</h2><p>We use <a href="https://bosh.io/">Bosh</a> to create and manage our cloudfoundry deployment on AWS.
 To deploy software, Bosh needs certain binary dependencies available.
 These are known as bosh <a href="https://bosh.io/docs/release.html">releases</a>.</p>
-
 <p>Before this decision, we usually built and uploaded releases to Bosh as part of our <a href="https://concourse-ci.org/">concourse</a> pipeline.
 Occasionally, we would manually build a release, store it on GitHub, and point Bosh to it there.</p>
-<h3 id="building-bosh-releases">Building Bosh Releases</h3>
-<p>We investigated different approaches to creating bosh releases, in particular</p>
+<h3 id="building-bosh-releases">Building Bosh Releases</h3><p>We investigated different approaches to creating bosh releases, in particular</p>
 
 <ul>
 <li>Multiple pipelines created dynamically using <a href="https://github.com/alphagov/paas-concourse-branch-manager">branch manager</a></li>
 <li>A single pipeline using <a href="https://github.com/jtarchie/pullrequest-resource">pullrequest-resource</a></li>
 </ul>
-
 <p>The work on these spikes was recorded in
 https://www.pivotaltracker.com/n/projects/1275640/stories/115142265
 https://www.pivotaltracker.com/n/projects/1275640/stories/128937731</p>
-<h2 id="decision">Decision</h2>
-<p>We will use the <a href="https://github.com/jtarchie/pullrequest-resource">pullrequest-resource</a> approach to build all our Bosh releases in a consistent way.</p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
-<h2 id="consequences">Consequences</h2>
-<p>We must gradually migrate all our Bosh release builds to their own build pipelines.
+<h2 id="decision">Decision</h2><p>We will use the <a href="https://github.com/jtarchie/pullrequest-resource">pullrequest-resource</a> approach to build all our Bosh releases in a consistent way.</p>
+<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="consequences">Consequences</h2><p>We must gradually migrate all our Bosh release builds to their own build pipelines.
 We will need separate jobs to build from master - this already has a proof of concept in the spike.
 We may have to add additional config in projects we fork to allow us to create final builds.</p>
 

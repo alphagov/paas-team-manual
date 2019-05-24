@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/support_manual/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#support-manual">Support manual</a>
     <ul>
@@ -99,9 +102,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -109,10 +113,8 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="support-manual">Support manual</h1><h2 id="what-are-we-supporting">What are we supporting</h2>
-<p>We are supporting the GOV.UK PaaS platform; we’re not providing user support for users of the apps hosted on it.
+  <h1 id="support-manual">Support manual</h1><h2 id="what-are-we-supporting">What are we supporting</h2><p>We are supporting the GOV.UK PaaS platform; we’re not providing user support for users of the apps hosted on it.
 However, in some cases service teams can’t self diagnose or fix problems (yet) so we need to be flexible about what we support.</p>
-
 <p>We’re supporting live services, teams who are using PaaS for prototyping and individuals within teams who are just trying it out.</p>
 <h2 id="support-hours">Support hours</h2>
 <ul>
@@ -124,8 +126,7 @@ However, in some cases service teams can’t self diagnose or fix problems (yet)
 <ul>
 <li><strong>First Response</strong>: Within 2 working days</li>
 </ul>
-<h2 id="alerting-out-of-hours">Alerting out of hours</h2>
-<p>These are the things we support out of hours:</p>
+<h2 id="alerting-out-of-hours">Alerting out of hours</h2><p>These are the things we support out of hours:</p>
 
 <ul>
 <li>Apps no longer being served due to an issue with our platform</li>
@@ -133,15 +134,10 @@ However, in some cases service teams can’t self diagnose or fix problems (yet)
 <li>Tenants are unable to push an emergency fix to an app due to the PaaS API not being available</li>
 <li>A Tenant’s live production app has a P1 issue which cannot be resolved without us</li>
 </ul>
-
 <p>We expect to hear about the first two via the alerts on Smoke Test Fails and Pingdom which are sent to Pagerduty.</p>
-
 <p>The second two, at the moment, are the things that a tenant may contact us about as we don’t cover all situations in which these could occur with our own alerting. They would contact us via our emergency email. Our emergency email is a Google Group which is not published publicly. It has ZenDesk and PagerDuty as its members, and therefore tickets and incidents are triggered automatically when an email is sent to it.</p>
-<h2 id="triaging-issues">Triaging issues</h2>
-<p>An issue could be something which is raised through our monitoring, alerting, ZenDesk or slack.</p>
-
+<h2 id="triaging-issues">Triaging issues</h2><p>An issue could be something which is raised through our monitoring, alerting, ZenDesk or slack.</p>
 <p>Triaging an issue is higher priority than other work. Once the issue has been triaged, it will be categorised (P1, P2 etc) and prioritised.</p>
-
 <p>The following questions should be answered when triaging/prioritising:</p>
 
 <ul>
@@ -152,15 +148,10 @@ However, in some cases service teams can’t self diagnose or fix problems (yet)
 <li>If there is uncertainty about which classification an issue should be given, the PaaS Product manager, PaaS Technical Architect or Tech Lead will be responsible for making a final call.</li>
 <li>In the event that none of the above people are available, you should use the triage questions to make a decision based on the information you have at the time.</li>
 </ul>
-<h2 id="severity-levels">Severity Levels</h2>
-<p>We classify issues by their impact to users (tenants and their users, and the PaaS team) and react accordingly. This allows us to set expectations about how we will work, and what other teams should expect.</p>
-
+<h2 id="severity-levels">Severity Levels</h2><p>We classify issues by their impact to users (tenants and their users, and the PaaS team) and react accordingly. This allows us to set expectations about how we will work, and what other teams should expect.</p>
 <p>For most types of issue, our priority is to ensure high availability of the service.</p>
-
 <p>An incident is any issue which causes significant problems for many platform users. This will include all P1 issues, and some P2 issues.</p>
-
 <p>The exceptions to this are for some categories of security breach or vulnerability, and for some incidents where there is a risk of data corruption.</p>
-
 <p><em>(Note this table is copied from overview doc - keep in sync. More detail may be needed later)</em></p>
 <div class="table-container">
         <table>
@@ -201,9 +192,7 @@ However, in some cases service teams can’t self diagnose or fix problems (yet)
 </tr>
 
         </table>
-      </div><h2 id="support-tickets">Support tickets</h2>
-<p>You can access our <a href="https://govuk.zendesk.com/agent/dashboard">support ticketing tool ZenDesk here</a></p>
-
+      </div><h2 id="support-tickets">Support tickets</h2><p>You can access our <a href="https://govuk.zendesk.com/agent/dashboard">support ticketing tool ZenDesk here</a></p>
 <p>If you don’t have an account ask the PaaS delivery manager to add you. You can adjust your notifications yourself.</p>
 <h3 id="tips-and-good-practice">Tips and good practice</h3>
 <ul>
@@ -214,8 +203,7 @@ Always notify the tenant about this change and why it is done.</li>
 <li>Always notify the user that we are closing it, why we are closing it and why the issue is resolved or it does not require more work from us.</li>
 <li>Let the user know that they can always reopen the ticket if required.</li>
 </ul>
-<h2 id="incident-process">Incident Process</h2>
-<p>This is now in its <a href="/incident_management/incident_process/">own section</a>.</p>
+<h2 id="incident-process">Incident Process</h2><p>This is now in its <a href="/incident_management/incident_process/">own section</a>.</p>
 <h2 id="useful-links">Useful links</h2>
 <ul>
 <li><a href="https://govuk.zendesk.com/agent/dashboard">ZenDesk</a></li>

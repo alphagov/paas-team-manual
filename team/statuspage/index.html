@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/team/statuspage/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#statuspage">StatusPage</a>
     <ul>
@@ -93,9 +96,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -103,17 +107,11 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="statuspage">StatusPage</h1>
-<p>The team uses <a href="https://www.statuspage.io/">StatusPage.io</a> to notify our users of platform issues and maintenance windows. As this provides simple, clear and concise information related to the health and status of the platform. It also enables webhook access for tenants to link to Slack / HipChat / Link.</p>
-
+  <h1 id="statuspage">StatusPage</h1><p>The team uses <a href="https://www.statuspage.io/">StatusPage.io</a> to notify our users of platform issues and maintenance windows. As this provides simple, clear and concise information related to the health and status of the platform. It also enables webhook access for tenants to link to Slack / HipChat / Link.</p>
 <p>The Announce mailing list is to be used to announce new features and any resulting changes to tenants.</p>
-<h2 id="accounts">Accounts</h2>
-<p>We have a team user for technical support of statuspage.io and for any issues that arise whilst on support. Its credentials are stored in the credentials repository.</p>
-
+<h2 id="accounts">Accounts</h2><p>We have a team user for technical support of statuspage.io and for any issues that arise whilst on support. Its credentials are stored in the credentials repository.</p>
 <p>We create individual users for those that will use it as a communication tool i.e. the Product and Delivery Managers. As they are not able to use the credentials store.</p>
-<h2 id="what-it-shows">What it shows</h2>
-<p>The banner section contains the Subscription button, subscriptions to updates are offered via email and webhooks.</p>
-
+<h2 id="what-it-shows">What it shows</h2><p>The banner section contains the Subscription button, subscriptions to updates are offered via email and webhooks.</p>
 <p>The top status section (platform HTTPS and Platform Database) is currently manually updated and has the following status options;</p>
 
 <ul>
@@ -123,26 +121,16 @@
 <li>Partial Outage</li>
 <li>Major Outage</li>
 </ul>
-
 <p>Below this are uptime and response time graphs. These are taken directly from Pingdom&rsquo;s API.</p>
-
 <p>Futher down the page is the incident log. This is also manually managed from the statuspage.io dashboard.</p>
-<h2 id="using-statuspage-io">Using Statuspage.io</h2>
-<p>Log in with your creds, this should take you to the dashboard.</p>
-
+<h2 id="using-statuspage-io">Using Statuspage.io</h2><p>Log in with your creds, this should take you to the dashboard.</p>
 <p>From the dashboard you can manage incidents either using free text or templates and the status of each component via a drop down menu.</p>
-
 <p>Full documentation is available at http://help.statuspage.io/help_center</p>
-<h3 id="incidents">Incidents</h3>
-<p>Incidents are a group of things that are occurring, they describe the bigger picture e.g. &ldquo;Unable to deploy&rdquo; or &ldquo;CDN is currently failing some requests&rdquo;.</p>
-
+<h3 id="incidents">Incidents</h3><p>Incidents are a group of things that are occurring, they describe the bigger picture e.g. &ldquo;Unable to deploy&rdquo; or &ldquo;CDN is currently failing some requests&rdquo;.</p>
 <p>The incident documentation is located at http://help.statuspage.io/knowledge_base/topics/incidents-overview</p>
-<h3 id="scheduled-maintenance">Scheduled maintenance</h3>
-<p>We can use statuspage for notifying users of scheduled maintenance to the service. This has a similar workflow to creating and managing incidents. The full documation is located at http://help.statuspage.io/knowledge_base/topics/scheduled-maintenance</p>
-
+<h3 id="scheduled-maintenance">Scheduled maintenance</h3><p>We can use statuspage for notifying users of scheduled maintenance to the service. This has a similar workflow to creating and managing incidents. The full documation is located at http://help.statuspage.io/knowledge_base/topics/scheduled-maintenance</p>
 <p>One of the key advantages is upon setting a maintenance window, subscribers to statuspage will be automatically notified 60 minutes before the window starts.</p>
-<h3 id="components">Components</h3>
-<p>To communicate the state of each component, they always have one of the 5 following statuses:</p>
+<h3 id="components">Components</h3><p>To communicate the state of each component, they always have one of the 5 following statuses:</p>
 
 <ul>
 <li>Operational</li>
@@ -151,15 +139,10 @@
 <li>Partial Outage</li>
 <li>Major Outage</li>
 </ul>
-
 <p>You can change the state of your components from the Dashboard.</p>
-
 <p>Documentation is available at http://help.statuspage.io/knowledge_base/topics/overview-1</p>
-<h2 id="how-it-was-setup">How it was setup</h2>
-<p>It was set up manually as we didn&rsquo;t have an API endpoint to hit until it had been created. This was a process of signing up using the details in the credentials repo.</p>
-
+<h2 id="how-it-was-setup">How it was setup</h2><p>It was set up manually as we didn&rsquo;t have an API endpoint to hit until it had been created. This was a process of signing up using the details in the credentials repo.</p>
 <p>Terraform manages the CNAME in Route53 in order for us to use a custom domain to host the page on.</p>
-
 <p>CSS was copied from Notify&rsquo;s statuspage to give a consistant look and feel. This is as close as we can get to the toolkit within the limited options available.</p>
 <h2 id="future-enhancements">Future enhancements</h2>
 <ul>

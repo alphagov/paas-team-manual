@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/styleguides/YAML/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#yaml">YAML</a>
     <ul>
@@ -75,9 +78,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -85,19 +89,15 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="yaml">YAML</h1>
-<p>We produce lots of YAML. This sets out some guidelines for how this should be
+  <h1 id="yaml">YAML</h1><p>We produce lots of YAML. This sets out some guidelines for how this should be
 formatted.</p>
-
 <p>In general, follow the same formatting style as examples in the <a href="#">YAML spec</a>.</p>
-<h2 id="indentation">Indentation</h2><h3 id="lists">Lists</h3>
-<p>Lists should be indented 2 spaces beyond the parent key. For example:</p>
+<h2 id="indentation">Indentation</h2><h3 id="lists">Lists</h3><p>Lists should be indented 2 spaces beyond the parent key. For example:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>foo:
   - one
   - two
   - three
-</code></pre></div>
-<p>It&rsquo;s worth noting that the YAML spec differs from the style that concourse
+</code></pre></div><p>It&rsquo;s worth noting that the YAML spec differs from the style that concourse
 generated when returning pipelines. We&rsquo;ve therefore had to pick one, and have
 chosen to stick with the YAML spec. This is also the indentation pattern that
 seems to be more commonly implemented by editors.</p>

@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/spruce/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#spruce">Spruce</a>
     <ul>
@@ -126,9 +129,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -136,18 +140,13 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="spruce">Spruce</h1>
-<p>This is a guide to <a href="https://github.com/geofffranks/spruce">spruce</a>, our tool to merge YAML manifests. It contains very simple examples to explain each feature.</p>
-
+  <h1 id="spruce">Spruce</h1><p>This is a guide to <a href="https://github.com/geofffranks/spruce">spruce</a>, our tool to merge YAML manifests. It contains very simple examples to explain each feature.</p>
 <p>For more information, see the spruce readme and <a href="https://github.com/geofffranks/spruce/tree/master/examples">examples</a>.</p>
-<h2 id="installation">Installation</h2>
-<p>You need to install spruce &gt;= 0.13.0. This version added support for operand expressions.</p>
+<h2 id="installation">Installation</h2><p>You need to install spruce &gt;= 0.13.0. This version added support for operand expressions.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>$ go get github.com/geofffranks/spruce/cmd/spruce # Builds spruce, including dependencies and puts it in $GOPATH/bin
-</code></pre></div>
-<p>To upgrade spruce:</p>
+</code></pre></div><p>To upgrade spruce:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>$ go get -u github.com/geofffranks/spruce/cmd/spruce
-</code></pre></div>
-<p>Note: If you previously built spruce from a branch, following instructions in a
+</code></pre></div><p>Note: If you previously built spruce from a branch, following instructions in a
 previous version of this guide, you may need to find and remove old
 copies of the <code>spruce</code> binary that were copied into your $PATH:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>$ spruce -v     # if version 0.12.0 is reported, you probably built from the branch
@@ -313,8 +312,7 @@ a:
 <ul>
 <li>This works for an array of maps. It updates the keys in the maps following the order of the array</li>
 </ul>
-<h3 id="inline">Inline</h3>
-<p>Same as <em>Simple replacement</em>, using <code>- (( inline ))</code> as first element. Maybe more explicit.</p>
+<h3 id="inline">Inline</h3><p>Same as <em>Simple replacement</em>, using <code>- (( inline ))</code> as first element. Maybe more explicit.</p>
 <h3 id="append">Append</h3><div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
 a:
 - a1
@@ -332,10 +330,8 @@ a:
 <li>The merge behaviour is specified in the <em>next</em> file, which is different than spiff</li>
 <li><code>(( append ))</code> must be the first element</li>
 </ul>
-<h3 id="prepend">Prepend</h3>
-<p>Prepend keys. Usage: same with <code>- (( prepend ))</code> instead</p>
-<h3 id="replace">Replace</h3>
-<p>Replaces the whole array. Usage: same with <code>- (( replace ))</code> instead</p>
+<h3 id="prepend">Prepend</h3><p>Prepend keys. Usage: same with <code>- (( prepend ))</code> instead</p>
+<h3 id="replace">Replace</h3><p>Replaces the whole array. Usage: same with <code>- (( replace ))</code> instead</p>
 <h3 id="merge-list-of-maps">Merge list of maps</h3><div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
 a:
 - name: a1
@@ -417,18 +413,14 @@ other_key: aaaa
 <li>Merge happens first, then <code>concat</code></li>
 <li>Can be separated with commas or spaces</li>
 </ul>
-<h2 id="replace-maps">Replace maps</h2>
-<p>The default in spruce is to merge maps, whereas spiff was replacing. To replace with spruce, we need 2 steps instead of 1:</p>
+<h2 id="replace-maps">Replace maps</h2><p>The default in spruce is to merge maps, whereas spiff was replacing. To replace with spruce, we need 2 steps instead of 1:</p>
 
 <ul>
 <li>delete the map</li>
 <li>add the new map</li>
 </ul>
-
 <p>See https://github.com/geofffranks/spruce#map-replacement</p>
-<h2 id="inject-subtree">Inject subtree</h2>
-<p>YAML has the concept of anchor/alias to inject another subtree from the same file. See: https://en.wikipedia.org/wiki/YAML#Repeated_nodes</p>
-
+<h2 id="inject-subtree">Inject subtree</h2><p>YAML has the concept of anchor/alias to inject another subtree from the same file. See: https://en.wikipedia.org/wiki/YAML#Repeated_nodes</p>
 <p>In spruce the same can be achieved <em>across different files</em>.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
 green:
@@ -447,8 +439,7 @@ meta:
   template:
     color: blue
     size: small
-</code></pre></div><h2 id="prevent-null-values">Prevent <em>null</em> values</h2>
-<p>We can add useful error checking to prevent null values due to merge errors. This is probably a good practice to use in any key where we expect a value from a merge.</p>
+</code></pre></div><h2 id="prevent-null-values">Prevent <em>null</em> values</h2><p>We can add useful error checking to prevent null values due to merge errors. This is probably a good practice to use in any key where we expect a value from a merge.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
 critical_key:
 $ spruce merge a.yml
@@ -464,8 +455,7 @@ $ cat b.yml
 critical_key: critical_value
 $ spruce merge a.yml b.yml
 critical_key: critical_value
-</code></pre></div><h2 id="or-operator"><em>OR</em> operator</h2>
-<p>Alows to specify alternate values in the first key is null. Compatible with <code>grab</code> and <code>concat</code>.</p>
+</code></pre></div><h2 id="or-operator"><em>OR</em> operator</h2><p>Alows to specify alternate values in the first key is null. Compatible with <code>grab</code> and <code>concat</code>.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
 key1:
     subkey1: a1

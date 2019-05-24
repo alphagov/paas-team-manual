@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR443-ssl-only-for-applications-and-cf-endpoints/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr443-ssl-only-for-applications-and-cf-endpoints">ADR443: SSL-only for applications and cf endpoints</a>
     <ul>
@@ -79,9 +82,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -89,47 +93,35 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr443-ssl-only-for-applications-and-cf-endpoints">ADR443: SSL-only for applications and cf endpoints</h1><h2 id="context">Context</h2>
-<p><strong>Note: This has been superceeded. See <a href="#status">Status</a> below.</strong></p>
-
+  <h1 id="adr443-ssl-only-for-applications-and-cf-endpoints">ADR443: SSL-only for applications and cf endpoints</h1><h2 id="context">Context</h2><p><strong>Note: This has been superceeded. See <a href="#status">Status</a> below.</strong></p>
 <p>It is expected for the government websites to be secure and keep the user
 interactions private. Because that we want to enforce all communications to
 any application and to the platform endpoints to use only and always HTTPS,
 as <a href="https://www.gov.uk/service-manual/technology/using-https">it is described in the Gov Service Manual</a>.</p>
-
 <p>When a user inputs a website name without specifying the
 protocol in the URL, most browsers will try first the HTTP protocol by default.
 Even if the server always redirect HTTP to HTTPS, an initial
 unprotected request including user information will be transferred
 in clear: full URL with domain, parameter, <a href="https://en.wikipedia.org/wiki/HTTP_cookie#Secure_and_HttpOnly">cookies without secure flag</a>
 or browser meta-information.</p>
-
 <p><a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HTTP Strict Transport Security</a>
 mitigates this issue by instructing modern browsers that support it to
 always connect using HTTPS.
 This is also a <a href="https://www.gov.uk/service-manual/technology/using-https">requirement in the service manual</a>.</p>
-
 <p>There is still a potential initial unprotected HTTP request that might happen
 before retrieve the HSTS headers or after the specified HSTS <code>max-age</code>.
 To solve this issue, the root domain can be added to
 <a href="https://hstspreload.appspot.com/">HSTS preload list</a> which will be used by most
 common browsers.</p>
-
 <p>Currently the only way to avoid any clear text HTTP interaction is closing or
 dropping any attempt to connect to the port 80 at TCP level.</p>
-
 <p>Although not all application deployed on the PaaS will be &ldquo;services&rdquo;
 as in the service manual meaning, we must not allow HTTP to make
 it easier to service owners to comply with this requirements.</p>
-<h2 id="decision">Decision</h2>
-<p>We will only open port 443 (HTTPS) and drop/reject any TCP connection to TCP port 80 (HTTP).</p>
-
+<h2 id="decision">Decision</h2><p>We will only open port 443 (HTTPS) and drop/reject any TCP connection to TCP port 80 (HTTP).</p>
 <p>We will implement and maintain HSTS preload lists for our production domains.</p>
-<h2 id="status">Status</h2>
-<p>Superceeded by <a href="../ADR444-redirect-http-for-applications">ADR444</a></p>
-<h2 id="consequences">Consequences</h2>
-<p>We must configure and maintain our domain in the HSTS preload lists.</p>
-
+<h2 id="status">Status</h2><p>Superceeded by <a href="../ADR444-redirect-http-for-applications">ADR444</a></p>
+<h2 id="consequences">Consequences</h2><p>We must configure and maintain our domain in the HSTS preload lists.</p>
 <p>Users of browsers which do not support HSTS, or HSTS preload lists, will not
 be able to connect to the sites without specify the protocol <code>https://</code> in
 the URL. This only happens when the user manually inputs the URL in the

@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR019-accessing-user-provided-services/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr019-accessing-user-provided-services">ADR019: Accessing user provided services</a>
     <ul>
@@ -82,9 +85,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -92,12 +96,10 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr019-accessing-user-provided-services">ADR019: Accessing user provided services</h1><h2 id="context">Context</h2>
-<p>A service that&rsquo;s onboarding at the moment depends on MySQL, memcached and
+  <h1 id="adr019-accessing-user-provided-services">ADR019: Accessing user provided services</h1><h2 id="context">Context</h2><p>A service that&rsquo;s onboarding at the moment depends on MySQL, memcached and
 elasticsearch that we don&rsquo;t yet offer, but are likely to in future, and has
 chosen to host them on AWS using RDS MySQL, Elasticache memcached and hosted
 Elasticache.</p>
-
 <p>We wanted to ensure that only the app instances belonging to that service could
 connect to those services in order to avoid other services being able to access or modify their data.</p>
 
@@ -109,12 +111,9 @@ elasticsearch requests using an AWS access
 key</a>.
 Requiring a custom elasticsearch client.</li>
 </ul>
-
 <p>The options for authentication are:</p>
-<h2 id="via-internet-using-network-access-controls">Via Internet, using network access controls</h2>
-<p>This is described for
+<h2 id="via-internet-using-network-access-controls">Via Internet, using network access controls</h2><p>This is described for
 <a href="http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Access.Outside.html">elasticache</a></p>
-
 <p>How we would set it up:</p>
 
 <ul>
@@ -125,7 +124,6 @@ forbid access to those IP addresses.</li>
 <li>PaaS team creates new application security group allowing access to those IP addresses.</li>
 <li>PaaS team binds application security group to space(s) belonging to tenants</li>
 </ul>
-
 <p>Risks/costs:</p>
 
 <ul>
@@ -139,8 +137,7 @@ service IPs.</li>
 occasion a space needs to gain or lose
 access to the list of service IPs.</li>
 </ul>
-<h2 id="using-private-address-space-vpc-peering">Using private address space (VPC peering)</h2>
-<p>How we would set it up:</p>
+<h2 id="using-private-address-space-vpc-peering">Using private address space (VPC peering)</h2><p>How we would set it up:</p>
 
 <ul>
 <li>Tenant raises support request to begin setup process</li>
@@ -153,7 +150,6 @@ access to the list of service IPs.</li>
 <li>PaaS team binds application security group to space(s) belonging to tenants</li>
 <li>Tenant accepts VPC peering request</li>
 </ul>
-
 <p>Risks/costs:</p>
 
 <ul>
@@ -164,15 +160,12 @@ peered VPC than intended.</li>
 occasion a space needs to gain or lose
 access to the peered VPC.</li>
 </ul>
-
 <p>Although this specific example uses VPC peering because the tenant in question
 uses AWS, we could use the same principle (us assigning IP address space and
 changing application security groups) to a VPN or some other network overlay
 technology to allow us to connect to things other than VPCs.</p>
-<h2 id="decision">Decision</h2>
-<p>We will offer VPC peering to tenants in specific cases where it is appropriate.</p>
-<h2 id="consequences">Consequences</h2>
-<p>Where we don&rsquo;t presently offer a specific backing-service, tenants have an
+<h2 id="decision">Decision</h2><p>We will offer VPC peering to tenants in specific cases where it is appropriate.</p>
+<h2 id="consequences">Consequences</h2><p>Where we don&rsquo;t presently offer a specific backing-service, tenants have an
 option to provision their own service and access it without having to expose it
 to the Internet. The process for doing this is documented
 <a href="/guides/vpc_peering/">here</a>.</p>

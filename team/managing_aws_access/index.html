@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/team/managing_aws_access/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#iam">IAM</a>
     <ul>
@@ -76,9 +79,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -86,19 +90,14 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="iam">IAM</h1>
-<p>Each AWS account has <a href="http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html">root account</a> credentials, which we don&rsquo;t use.</p>
-
+  <h1 id="iam">IAM</h1><p>Each AWS account has <a href="http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html">root account</a> credentials, which we don&rsquo;t use.</p>
 <p>Instead we access AWS resources using <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">IAM</a>.</p>
-<h2 id="iam-roles-for-vms">IAM Roles for VMs</h2>
-<p>We use <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</a> via <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">intance profiles</a> on our EC2 instances to delegate particular restricted permissions to processes running on those instances.</p>
-<h2 id="iam-roles-for-humans">IAM Roles for Humans</h2>
-<p>We use separate IAM roles for users on our team to use via AWS&rsquo; assume-role
+<h2 id="iam-roles-for-vms">IAM Roles for VMs</h2><p>We use <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</a> via <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">intance profiles</a> on our EC2 instances to delegate particular restricted permissions to processes running on those instances.</p>
+<h2 id="iam-roles-for-humans">IAM Roles for Humans</h2><p>We use separate IAM roles for users on our team to use via AWS&rsquo; assume-role
 feature. See the <a href="https://reliability-engineering.cloudapps.digital/iaas.html#access-aws-accounts">RE manual</a>
 for details on how to do this.  The available role ARNs that you&rsquo;ll need for
 this are documented <a href="https://github.com/alphagov/paas-aws-account-wide-terraform/blob/master/doc/assume_role_arns.md">in paas-aws-account-wide-terrafom here</a></p>
-<h2 id="role-configuration">Role configuration</h2>
-<p>We manage all these IAM roles, and the corresponding policies using Terraform.
+<h2 id="role-configuration">Role configuration</h2><p>We manage all these IAM roles, and the corresponding policies using Terraform.
 The config is in the <a href="https://github.com/alphagov/paas-aws-account-wide-terraform">account-wide-terraform</a>
 repo. This includes defining who is allowed to assume the above roles.</p>
 

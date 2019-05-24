@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/restoring_bosh_director/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#restoring-the-bosh-director">Restoring the Bosh Director</a>
     <ul>
@@ -76,9 +79,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -86,8 +90,7 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="restoring-the-bosh-director">Restoring the Bosh Director</h1>
-<p>This guide will show you how to restore the bosh director and cells, in the event that it becomes unreachable or unresponsive.</p>
+  <h1 id="restoring-the-bosh-director">Restoring the Bosh Director</h1><p>This guide will show you how to restore the bosh director and cells, in the event that it becomes unreachable or unresponsive.</p>
 <h2 id="contents">Contents</h2>
 <ol>
 <li><a href="#bootstrapping-the-director-in-another-az">Bootstrapping the director in another AZ</a></li>
@@ -103,8 +106,7 @@
 <li>Wait for the bootstrapper VM to come online, and access it at <code>localhost:8080</code></li>
 <li>Run the <code>create-bosh-concourse</code> pipeline from the left-hand edge</li>
 </ol>
-<h2 id="the-director-39-s-database-is-gone">The director&rsquo;s database is gone</h2>
-<p>In the event that the director&rsquo;s database is gone, it can be restored from the latest snapshot to get to back to a state from which the rest of the deployment can be fixed.</p>
+<h2 id="the-director-39-s-database-is-gone">The director&rsquo;s database is gone</h2><p>In the event that the director&rsquo;s database is gone, it can be restored from the latest snapshot to get to back to a state from which the rest of the deployment can be fixed.</p>
 
 <ol>
 <li>Find the latest snapshot of the director&rsquo;s database in the RDS console</li>

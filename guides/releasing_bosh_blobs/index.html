@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/releasing_bosh_blobs/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#releasing-bosh-blobs">Releasing BOSH blobs</a>
     <ul>
@@ -73,9 +76,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -83,43 +87,31 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="releasing-bosh-blobs">Releasing BOSH blobs</h1>
-<p>This is a guide to upload new BOSH blobs to our common blob store.</p>
-
+  <h1 id="releasing-bosh-blobs">Releasing BOSH blobs</h1><p>This is a guide to upload new BOSH blobs to our common blob store.</p>
 <p>Our blobs are stored in the <strong>gds-paas-build-releases-blobs</strong> S3 bucket which belongs to the CI AWS account.</p>
-
 <p>You can read about adding and uploading blobs <a href="https://bosh.io/docs/release-blobs.html">here</a>.</p>
 <h2 id="requirements">Requirements</h2>
 <ul>
 <li>You&rsquo;ll need access to the CI AWS account (write access to the blob store S3 bucket)</li>
 <li>BOSH cli</li>
 </ul>
-<h2 id="steps">Steps</h2>
-<p>In this example we&rsquo;re going to upload Go 1.9 to the blob store.</p>
-
+<h2 id="steps">Steps</h2><p>In this example we&rsquo;re going to upload Go 1.9 to the blob store.</p>
 <p>You have to run the following commands from a BOSH release.</p>
-
 <p><strong>1.</strong> First download the blob:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>curl -L https://redirector.gvt1.com/edgedl/go/go1.9.linux-amd64.tar.gz -O
-</code></pre></div>
-<p><strong>2.</strong> Add the new blob to the BOSH release</p>
+</code></pre></div><p><strong>2.</strong> Add the new blob to the BOSH release</p>
 <div class="highlight"><pre class="highlight plaintext"><code>bosh add-blob [PATH TO]/go1.9.linux-amd64.tar.gz golang/go1.9.linux-amd64.tar.gz
-</code></pre></div>
-<p><strong>3.</strong> As we are using environment variables for AWS access you have to create the file <strong>config/private.yml</strong> with the following content:</p>
+</code></pre></div><p><strong>3.</strong> As we are using environment variables for AWS access you have to create the file <strong>config/private.yml</strong> with the following content:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>blobstore:
   s3:
     access_key_id: ''
     secret_access_key: ''
-</code></pre></div>
-<p><strong>4.</strong> Check if adding the blob was successful:</p>
+</code></pre></div><p><strong>4.</strong> Check if adding the blob was successful:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>bosh blobs
-</code></pre></div>
-<p>It should list the added blob as new.</p>
-
+</code></pre></div><p>It should list the added blob as new.</p>
 <p><strong>5.</strong> Upload the new blob to the blobstore</p>
 <div class="highlight"><pre class="highlight plaintext"><code>bosh upload-blobs
-</code></pre></div>
-<p><strong>6.</strong> The <strong>config/blobs.yml</strong> should be updated now and you can commit the new or updated blob definiton.</p>
+</code></pre></div><p><strong>6.</strong> The <strong>config/blobs.yml</strong> should be updated now and you can commit the new or updated blob definiton.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>golang/go1.9.linux-amd64.tar.gz:
   object_id: e414cd61-f037-4d47-a671-c7909b39182c
   sha: 6a00c39435edc1e102f1fb75cc1137fba4c9e4e2

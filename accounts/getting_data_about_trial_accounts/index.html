@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/accounts/getting_data_about_trial_accounts/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#getting-data-about-trial-accounts">Getting data about trial accounts</a>
     <ul>
@@ -86,9 +89,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -96,8 +100,7 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="getting-data-about-trial-accounts">Getting data about trial accounts</h1>
-<p>This guide is for the technical work involved in managing trial and abandoned
+  <h1 id="getting-data-about-trial-accounts">Getting data about trial accounts</h1><p>This guide is for the technical work involved in managing trial and abandoned
 orgs. We are now enforcing a 3 month trial policy in order to reduce costs. We
 look for orgs which are older than 75 days because we want to notify them just
 prior to expiry.</p>
@@ -107,9 +110,7 @@ prior to expiry.</p>
 <li>Run <code>paas-cf/scripts/org-usage-report.rb</code></li>
 <li>Do the same for Prod (London)</li>
 </ol>
-<h2 id="expiring-orgs">Expiring Orgs</h2>
-<p>These are orgs that have are close to, or have gone over, their trial period.</p>
-
+<h2 id="expiring-orgs">Expiring Orgs</h2><p>These are orgs that have are close to, or have gone over, their trial period.</p>
 <p>Our process is still being refined. This work should be carried out as part of
 a Pivotal story, so for now it should be fine to just attach the HTML/PDF
 output to a comment in the story.</p>
@@ -125,14 +126,11 @@ do not have login details speak to a senior member of the team.</li>
 <li>Choose <code>Desktop/expiring-orgs.csv</code></li>
 <li>Click on <code>Send X emails</code>, where X should be the number of people to contact.</li>
 </ol>
-
 <p>We should then mark the story as blocked until seven days have passed. Once
 this time has passed we can upgrade the quota of the orgs to the next highest
 non-trial quota.</p>
-<h2 id="abandoned-orgs">Abandoned orgs</h2>
-<p>These are orgs created over 75 days ago, with no users or no apps.</p>
-<h3 id="abandoned-orgs-to-contact-the-org-managers">To contact the org managers</h3>
-<p><strong>At this point the data should be checked with the PM team before proceeding</strong></p>
+<h2 id="abandoned-orgs">Abandoned orgs</h2><p>These are orgs created over 75 days ago, with no users or no apps.</p>
+<h3 id="abandoned-orgs-to-contact-the-org-managers">To contact the org managers</h3><p><strong>At this point the data should be checked with the PM team before proceeding</strong></p>
 
 <ol>
 <li>Login to <a href="https://www.notifications.service.gov.uk/sign-in">Notify</a>. If you
@@ -145,7 +143,6 @@ do not have login details speak to a senior member of the team.</li>
 <li>Choose <code>Desktop/abandoned-orgs.csv</code></li>
 <li>Click on <code>Send X emails</code>, where X should be the number of people to contact.</li>
 </ol>
-
 <p>We should then mark the story as blocked until seven days have passed. Once
 this time has passed we can delete the orgs and notify them of deletion. For
 notification of deletion, follow the steps above but using the template called

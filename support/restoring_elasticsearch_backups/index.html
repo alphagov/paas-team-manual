@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/restoring_elasticsearch_backups/" />
+
+    
   </head>
 
   <body>
@@ -48,26 +50,28 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#restoring-elasticsearch-backups">Restoring Elasticsearch backups</a>
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -75,18 +79,14 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="restoring-elasticsearch-backups">Restoring Elasticsearch backups</h1>
-<p>There is no direct way for us to restore Elasticsearch backups either via the API or console.</p>
-
+  <h1 id="restoring-elasticsearch-backups">Restoring Elasticsearch backups</h1><p>There is no direct way for us to restore Elasticsearch backups either via the API or console.</p>
 <p>In order to have a bakup restored you will need to open a support ticket with Aiven via <a href="mailto:support@aiven.io">support@aiven.io</a> requesting a restoration of a backup they will need to know the instance ID <code>prod-$(cf service &lt;servicename&gt; --guid)</code> and the time of the backup you would like restored.</p>
-
 <p>The Web interface only shows the latest backup, they are taken on a 2 hourly basis and retained as follows;</p>
 
 <ul>
 <li>Startup (our tiny plan): 2 days</li>
 <li>Business (our small plan): 14 days</li>
 </ul>
-
 <p>If you are not sure which time, ask for a list of the available backups for the instance ID in question.</p>
 
 

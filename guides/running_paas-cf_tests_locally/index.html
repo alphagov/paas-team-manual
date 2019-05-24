@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/running_paas-cf_tests_locally/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#running-tests-on-paas-cf-locally">Running tests on paas-cf locally</a>
     <ul>
@@ -76,9 +79,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -86,11 +90,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="running-tests-on-paas-cf-locally">Running tests on <code>paas-cf</code> locally</h1>
-<p>A number of packages need to be installed in order to run the tests of <code>paas-cf</code> locally. To run them, install the packages below then run </p>
+  <h1 id="running-tests-on-paas-cf-locally">Running tests on <code>paas-cf</code> locally</h1><p>A number of packages need to be installed in order to run the tests of <code>paas-cf</code> locally. To run them, install the packages below then run</p>
 <div class="highlight"><pre class="highlight shell"><code>make <span class="nb">test</span>
-</code></pre></div><h2 id="pre-requisites">Pre-requisites</h2>
-<p><code>paas-cf</code> needs to be checked out in the correct location in your Go path: <code>$GOPATH/src/github.com/alphagov/paas-cf</code></p>
+</code></pre></div><h2 id="pre-requisites">Pre-requisites</h2><p><code>paas-cf</code> needs to be checked out in the correct location in your Go path: <code>$GOPATH/src/github.com/alphagov/paas-cf</code></p>
 <h2 id="install-required-packages">Install required packages</h2>
 <ul>
 <li><a href="https://brew.sh/">Homebrew</a></li>
@@ -105,8 +107,7 @@
 <li>Installed via rbenv</li>
 </ul>
 <div class="highlight"><pre class="highlight shell"><code>brew install rbenv
-</code></pre></div>
-<p>then in <code>~/.bashrc</code> somewhere, add <code>eval “$(rbenv init -)”</code></p></li>
+</code></pre></div><p>then in <code>~/.bashrc</code> somewhere, add <code>eval “$(rbenv init -)”</code></p></li>
 </ul>
 <div class="highlight"><pre class="highlight shell"><code>  rbenv install 2.5.1
 </code></pre></div>

@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/finding_activity/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#finding-the-activity-for-a-given-user">Finding the activity for a given user</a>
     <ul>
@@ -103,9 +106,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -113,21 +117,16 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="finding-the-activity-for-a-given-user">Finding the activity for a given user</h1>
-<p>In case of suspicion of compromised CF details, we can use Kibana to
+  <h1 id="finding-the-activity-for-a-given-user">Finding the activity for a given user</h1><p>In case of suspicion of compromised CF details, we can use Kibana to
 obtain some information about the API use.</p>
-<h2 id="finding-user-guid">Finding user GUID</h2>
-<p>To find the user ID of a particular user see <a href="/support/CF_UAA_user_management/#finding-a-user-account">finding a user account</a></p>
-<h3 id="finding-deleted-user-guid">Finding deleted user GUID</h3>
-<p>There may be a need to find a GUID for already deleted user. There is a
+<h2 id="finding-user-guid">Finding user GUID</h2><p>To find the user ID of a particular user see <a href="/support/CF_UAA_user_management/#finding-a-user-account">finding a user account</a></p>
+<h3 id="finding-deleted-user-guid">Finding deleted user GUID</h3><p>There may be a need to find a GUID for already deleted user. There is a
 way to do that, but it&rsquo;s a little inconvenient&hellip;</p>
-
 <p>If you go to Kibana, you can use the <code>&quot;DELETE \&quot;/v2/users&quot;</code> phrase in
 your search. This will print out the logs that were taken on user
 removal. This does not however, give you an indication of who the user
 was.</p>
-<h2 id="kibana-finding-api-usage">Kibana: Finding API usage</h2>
-<p>We can make the investigation easier for ourselves by considering the
+<h2 id="kibana-finding-api-usage">Kibana: Finding API usage</h2><p>We can make the investigation easier for ourselves by considering the
 following criteria:</p>
 
 <ul>
@@ -144,15 +143,12 @@ with a plus sign.</li>
 {REQUEST_GUID}&quot;</code></li>
 </ul></li>
 </ul>
-
 <p>You can combine many quoted attributes into one, by joining the quotes
 with <code>&amp;&amp;</code>, like so:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>"for user: {GUID}" &amp;&amp; "ip: {IP_ADDRESS}" &amp;&amp; "GET \"/v2/jobs"
-</code></pre></div>
-<p>It probably won&rsquo;t end here, but it should provide a start for an
+</code></pre></div><p>It probably won&rsquo;t end here, but it should provide a start for an
 individual to go further.</p>
-<h2 id="getting-further">Getting further</h2>
-<p>Once you found something interesting above, you could use it to refine
+<h2 id="getting-further">Getting further</h2><p>Once you found something interesting above, you could use it to refine
 your search to get deeper. For instance, one of the logs above, would have:</p>
 
 <ul>
@@ -160,15 +156,12 @@ your search to get deeper. For instance, one of the logs above, would have:</p>
 <code>4556706c-0e04-401e-bbc5-d0933e98f892</code></li>
 <li><code>@message</code> consisting of <code>vcap-request-id</code></li>
 </ul>
-
 <p>If you search for <code>&quot;{VCAP_REQUEST_ID}&quot;</code> in Kibana, you should get
 more actions performed on an API call.</p>
-
 <p>Each of the results will be different, but it could consist of more
 data. For example, with a <code>PUT</code> request, you could find a
 <code>cloud_controller_ng.body</code>, <code>cloud_controller_ng.method</code> and
 <code>cloud_controller_ng.message</code>.</p>
-
 <p>Here&rsquo;s a sample JSON of the above:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>{
     "timestamp": 1492615195.9275572,
@@ -185,27 +178,21 @@ data. For example, with a <code>PUT</code> request, you could find a
     "lineno": 52,
     "method": "create_and_stage"
 }
-</code></pre></div>
-<p>It would imply that a new app has been created and staged.</p>
-<h1 id="finding-the-access-logs">Finding the access logs</h1>
-<p>There may be times, where we&rsquo;d need to be troubleshooting or reviewing an API Access logs. Here is a list, of more relevant and interesting points to be concerned about:</p>
-<h2 id="gorouter">Gorouter</h2>
-<p>In kibana, filtering the <code>@source.component</code> to <code>gorouter</code> will show the access logs, error logs, and route registration events.</p>
-
+</code></pre></div><p>It would imply that a new app has been created and staged.</p>
+<h1 id="finding-the-access-logs">Finding the access logs</h1><p>There may be times, where we&rsquo;d need to be troubleshooting or reviewing an API Access logs. Here is a list, of more relevant and interesting points to be concerned about:</p>
+<h2 id="gorouter">Gorouter</h2><p>In kibana, filtering the <code>@source.component</code> to <code>gorouter</code> will show the access logs, error logs, and route registration events.</p>
 <p>You can filter access logs only with:</p>
 
 <ul>
 <li><code>tags:gorouter_access_log</code></li>
 </ul>
-
 <p>Request details are also parsed to allow searches like:</p>
 
 <ul>
 <li><code>NOT gorouter.status: 200</code></li>
 <li><code>gorouter.method: POST</code></li>
 </ul>
-<h2 id="router-haproxy">Router HAProxy</h2>
-<p>In Kibana, you can look for the following phrases, to filter the access logs.</p>
+<h2 id="router-haproxy">Router HAProxy</h2><p>In Kibana, you can look for the following phrases, to filter the access logs.</p>
 
 <ul>
 <li><code>haproxy.http_status_code: 200</code></li>
@@ -213,14 +200,12 @@ data. For example, with a <code>PUT</code> request, you could find a
 <li><code>haproxy.http_request_verb: POST</code></li>
 <li><code>haproxy.time_backend_response: &gt;7</code></li>
 </ul>
-<h2 id="cloud-controller">Cloud Controller</h2>
-<p>Nginx runs on the same VM as Cloud Controller, so you can filter with:</p>
+<h2 id="cloud-controller">Cloud Controller</h2><p>Nginx runs on the same VM as Cloud Controller, so you can filter with:</p>
 
 <ul>
 <li><code>@source.component:vcap_nginx_access</code></li>
 </ul>
-<h3 id="uaa-audit-log-in-detail">UAA audit log in detail</h3>
-<p>You may find it necessary, to go deeper into the audit logs:</p>
+<h3 id="uaa-audit-log-in-detail">UAA audit log in detail</h3><p>You may find it necessary, to go deeper into the audit logs:</p>
 
 <ul>
 <li>Token issued for a user: <code>uaa.audit.origin: &quot;test@example.com&quot;</code></li>
@@ -235,22 +220,16 @@ data. For example, with a <code>PUT</code> request, you could find a
 <li>Authentication failure for a user: <code>uaa.audit.type: PrincipalAuthenticationFailure AND uaa.audit.principal: admin</code></li>
 <li>SSO authentication failure doesn&rsquo;t show specific logs, only <code>uaa.audit.type: ClientAuthenticationSuccess</code> from the cf client.</li>
 </ul>
-<h1 id="finding-paas-internal-application-logs">Finding PaaS internal application logs</h1>
-<p>For certain applications we forward the logs to Logit using a syslog drain. In Kibana you can use the following filters to search for such logs:</p>
-
+<h1 id="finding-paas-internal-application-logs">Finding PaaS internal application logs</h1><p>For certain applications we forward the logs to Logit using a syslog drain. In Kibana you can use the following filters to search for such logs:</p>
 <p>To list all application logs:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>tags: logmessage
-</code></pre></div>
-<p>To list all application routing logs:</p>
+</code></pre></div><p>To list all application routing logs:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>tags: "logmessage-rtr"
-</code></pre></div>
-<p>To list all logs written by the application:</p>
+</code></pre></div><p>To list all logs written by the application:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>tags: "logmessage-app"
-</code></pre></div>
-<p>To filter by application name:</p>
+</code></pre></div><p>To filter by application name:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>@source.host:"&lt;org&gt;.&lt;space&gt;.&lt;app name&gt;", e.g. @source.host:"admin.public.paas-admin"
-</code></pre></div>
-<p>To filter by guid:</p>
+</code></pre></div><p>To filter by guid:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>@source.component:"&lt;GUID&gt;", e.g. @source.component:"6e70d438-d9ac-4576-816f-9d5511eb3e43"
 </code></pre></div>
 

@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/team/rotating_credentials/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#rotating-credentials">Rotating Credentials</a>
     <ul>
@@ -92,9 +95,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -102,41 +106,33 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="rotating-credentials">Rotating Credentials</h1><h2 id="third-party-services">Third-party services</h2>
-<p>We store credentials for third-party services in <a href="https://www.passwordstore.org/"><code>pass</code></a> stores which have some documentation about rotating the secrets held in them:</p>
+  <h1 id="rotating-credentials">Rotating Credentials</h1><h2 id="third-party-services">Third-party services</h2><p>We store credentials for third-party services in <a href="https://www.passwordstore.org/"><code>pass</code></a> stores which have some documentation about rotating the secrets held in them:</p>
 
 <ul>
 <li>https://github.com/alphagov/paas-credentials/blob/master/SECRET_ROTATION.md</li>
 <li>https://github.com/alphagov/paas-credentials-high/blob/master/SECRET_ROTATION.md</li>
 </ul>
-<h2 id="platform">Platform</h2>
-<p>From time to time, it might be necessary to rotate our platform credentials. We have created helper tasks in the deployer and bootstrap pipelines, credentials tab, to clean passwords that we know are safe to re-set.</p>
-<h3 id="rotating-passwords">Rotating passwords</h3>
-<p>Rotating passwords consists of two phases. First, you delete credentials using
+<h2 id="platform">Platform</h2><p>From time to time, it might be necessary to rotate our platform credentials. We have created helper tasks in the deployer and bootstrap pipelines, credentials tab, to clean passwords that we know are safe to re-set.</p>
+<h3 id="rotating-passwords">Rotating passwords</h3><p>Rotating passwords consists of two phases. First, you delete credentials using
 one of the CI helper jobs.</p>
-
 <p>There are two for CF (in the deployer pipeline), one for BOSH and one for
 Concourse (in the bootstrap pipeline). These tasks exclude passwords that are
 difficult or not safe to rotate and clean all other passwords. We do also
 delete generated ssh keys in these tasks.</p>
-
 <p>There are two CF cred rotation jobs (<code>rotate-cf-admin-password</code> and
 <code>rotate-cloudfoundry-credentials</code>, under
 <code>/teams/main/pipelines/create-cloudfoundry?groups=credentials</code>) so that you
 have the choice of rotating the admin password or not. Rotating the admin
 password automatically leads to the rest of the credentials being rotated, but
 not vice versa.</p>
-
 <p>Second phase consists of running the main pipeline (on deployer for CF, on bootstrap for BOSH and Concourse) to generate new credentials and apply them. Ensure that there is nothing else triggering this 2nd phase run, as that would mean you would be rotating passwords <em>and</em> trying to apply some changes at the same time, which might not work and you could end up with broken deployment. Pipeline run should complete successfully and all tests should pass. There should be no interruptions to deployed apps.</p>
-<h3 id="rotating-certificates">Rotating certificates</h3>
-<p>Rotating the internal certificates has 2 phases similar to rotating passwords. First we delete the existing certs, and then we run a deploy to generate and use new certificates.</p>
+<h3 id="rotating-certificates">Rotating certificates</h3><p>Rotating the internal certificates has 2 phases similar to rotating passwords. First we delete the existing certs, and then we run a deploy to generate and use new certificates.</p>
 
 <ol>
 <li>Run <code>rotate-cf-certs-leafs</code> to delete existing non-CA certs</li>
 <li>Run <code>create-cloudfoundry</code> to generate new certs and deploy them</li>
 </ol>
-<h4 id="rotating-ca-certificates">Rotating CA certificates</h4>
-<p>Rotating the CA certificates that Cloud Foundry is using internally for mutual TLS
+<h4 id="rotating-ca-certificates">Rotating CA certificates</h4><p>Rotating the CA certificates that Cloud Foundry is using internally for mutual TLS
 between components is a much longer process. You need to:</p>
 
 <ol>
@@ -149,22 +145,17 @@ between components is a much longer process. You need to:</p>
 <li>Run <code>delete-old-cf-certs</code> to delete old CAs</li>
 <li>Run <code>create-cloudfoundry</code> to remove the old CAs</li>
 </ol>
-
 <p>The following is a diagram of the steps of our CA rotation process. The thick arrows show a quicker route that should be able to be implemented if we choose.</p>
 
 <p><a href="../../diagrams/ca-cert-rotations.jpg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/ca-cert-rotations.jpg" alt="Illustration of the CA and certificate YAML fields being moved around by this process" /></a></p>
-<h3 id="aws-keys-generated-in-the-pipeline">AWS keys generated in the pipeline</h3>
-<p>The deployer Concourse has a job for triggering the rotation of AWS keys generated in the pipeline. These keys currently include:</p>
+<h3 id="aws-keys-generated-in-the-pipeline">AWS keys generated in the pipeline</h3><p>The deployer Concourse has a job for triggering the rotation of AWS keys generated in the pipeline. These keys currently include:</p>
 
 <ul>
 <li>Those used for generating SES SMTP credentials used by UAA for sending account management emails.</li>
 <li>Those used by the metrics tool to check the validity of CloudFront certificates.</li>
 </ul>
-
 <p>The job works by removing the resources from the Terraform state file (without touching the keys themselves). This causes new access keys to be generated on the next pipeline run. Unused keys are deleted in a post-deploy job after every pipeline run. This operation is safe to do at any time, so it triggers automatically every 30 days. It is also included as a step in the manual credential rotation job.</p>
-<h3 id="limited-functionality-during-rotation">Limited functionality during rotation</h3>
-<p>We have lot of functionality that requires credentials outside of the pipeline. These are mainly our scripts that are orchestrated via Makefile. Most of the tasks (like <code>bosh-cli</code> or any ssh tasks) will not work during rotation, as they need credentials (concourse password, ssh keys) that have been deleted and are either not available or not applied yet.</p>
-
+<h3 id="limited-functionality-during-rotation">Limited functionality during rotation</h3><p>We have lot of functionality that requires credentials outside of the pipeline. These are mainly our scripts that are orchestrated via Makefile. Most of the tasks (like <code>bosh-cli</code> or any ssh tasks) will not work during rotation, as they need credentials (concourse password, ssh keys) that have been deleted and are either not available or not applied yet.</p>
 <p>In case you need to run any of these tasks in the middle of the rotation, but before the new credentials have been applied, we suggest that you pause the pipeline first. You can download previous versions of the keys and secret files to recover needed credentials and either use them locally, or re-upload these files as latest version to the bucket. Note that if your pipeline will get into credential applying stage after you unpause, it will apply the latest uploaded credentials. If these are previous version, this means no actual credential rotation will happen and pipeline should finish without needing to apply any changes. If you still want to rotate credentials afterwards, repeat the rotation procedure again.</p>
 
 

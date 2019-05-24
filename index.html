@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#paas-team-manual">PaaS Team Manual</a>
     <ul>
@@ -93,9 +96,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -169,16 +173,14 @@
 <li><a href="guides/running_paas-cf_tests_locally/">Running tests on <code>paas-cf</code> locally</a></li>
 <li><a href="guides/restoring_bosh_director/">Restoring the bosh director</a></li>
 </ul>
-<h3 id="styleguides">Styleguides</h3>
-<p>This section contains some team-specific styleguides. These should be used in
+<h3 id="styleguides">Styleguides</h3><p>This section contains some team-specific styleguides. These should be used in
 addition to the <a href="#">GDS styleguides</a>.</p>
 
 <ul>
 <li><a href="styleguides/YAML/">YAML</a></li>
 <li><a href="styleguides/concourse_pipeline/">Concourse pipelines</a></li>
 </ul>
-<h2 id="architecture-decision-records">Architecture decision records</h2>
-<p>This section contains Architecture Decision Records (ADR) as described in this blog post <a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions</a>.</p>
+<h2 id="architecture-decision-records">Architecture decision records</h2><p>This section contains Architecture Decision Records (ADR) as described in this blog post <a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions</a>.</p>
 
 <ul>
 <li><a href="architecture_decision_records/ADR001-manifest-management/">ADR001 manifest management</a></li>

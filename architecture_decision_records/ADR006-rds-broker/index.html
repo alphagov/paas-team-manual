@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR006-rds-broker/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr006-rds-broker">ADR006: RDS broker</a>
     <ul>
@@ -79,9 +82,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -89,8 +93,7 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr006-rds-broker">ADR006: RDS broker</h1><h2 id="context">Context</h2>
-<p>We need to provide tenants with the ability to provision databases for use in
+  <h1 id="adr006-rds-broker">ADR006: RDS broker</h1><h2 id="context">Context</h2><p>We need to provide tenants with the ability to provision databases for use in
 their applications. Our first iteration of this will be using RDS.
 We investigated some implementations of a service broker which supported RDS</p>
 
@@ -98,14 +101,11 @@ We investigated some implementations of a service broker which supported RDS</p>
 <li><a href="https://github.com/cf-platform-eng/rds-broker">cf platform eng</a></li>
 <li><a href="https://github.com/18F/rds-service-broker">18F</a></li>
 </ul>
-<h2 id="decision">Decision</h2>
-<p>We will use the <a href="https://github.com/cf-platform-eng/rds-broker">cf platform eng</a>
+<h2 id="decision">Decision</h2><p>We will use the <a href="https://github.com/cf-platform-eng/rds-broker">cf platform eng</a>
 rds broker. As this is not a supported product, we will fork this and maintain
 this and implement new features ourselves.</p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
-<h2 id="consequences">Consequences</h2>
-<p>We will be maintaining a new service broker, but have a head start on creating
+<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="consequences">Consequences</h2><p>We will be maintaining a new service broker, but have a head start on creating
 it by basing it on an existing service broker.</p>
 
 

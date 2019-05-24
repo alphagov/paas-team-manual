@@ -25,6 +25,8 @@
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
       <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR029-aiven-project-structure/" />
+
+    
   </head>
 
   <body>
@@ -48,18 +50,19 @@
 
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-              <ul>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
   <li>
     <a href="#adr029-aiven-project-structure">ADR029: Aiven project structure</a>
     <ul>
@@ -79,9 +82,10 @@
   </li>
 </ul>
 
-            </nav>
+
+              </nav>
+            </div>
           </div>
-        </div>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
@@ -89,18 +93,14 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr029-aiven-project-structure">ADR029: Aiven project structure</h1><h2 id="context">Context</h2>
-<p>Aiven provides hosted Elasticsearch for the Elasticsearch backing service.</p>
-
+  <h1 id="adr029-aiven-project-structure">ADR029: Aiven project structure</h1><h2 id="context">Context</h2><p>Aiven provides hosted Elasticsearch for the Elasticsearch backing service.</p>
 <p>The PaaS has several environments which will need to use Aiven. These
 environments should be isolated from each other so that changes made in testing
 and development environments do do not affect production users.</p>
-
 <p>Aiven provide a &ldquo;Project&rdquo; abstraction where a user can be a member of several
 projects. API tokens are user specific. By creating one user per project it&rsquo;s
 possible to scope API tokens to a project.</p>
-<h2 id="decision">Decision</h2>
-<p>We&rsquo;ll use separate projects for separate environments, initially using the
+<h2 id="decision">Decision</h2><p>We&rsquo;ll use separate projects for separate environments, initially using the
 following Aiven projects:</p>
 
 <ul>
@@ -109,31 +109,22 @@ following Aiven projects:</p>
 <li>paas-cf-staging</li>
 <li>paas-cf-prod</li>
 </ul>
-
 <p>For staging and prod we will use separate API tokens within the same project to
 separate credentials between the London and Ireland regions.</p>
-
 <p>We will have the following per-project users to hold API tokens:</p>
-
 <p>the-multi-cloud-paas-team+aiven-ci@digital.cabinet-office.gov.uk
 the-multi-cloud-paas-team+aiven-dev@digital.cabinet-office.gov.uk
 the-multi-cloud-paas-team+aiven-staging@digital.cabinet-office.gov.uk
 the-multi-cloud-paas-team+aiven-prod@digital.cabinet-office.gov.uk</p>
-
 <p>The credentials for the ci and dev users will be stored in the
 <code>paas-credentials</code> passwordstore. staging and prod will be stored in
 <code>paas-credentials-high</code>.</p>
-
 <p>Members of the PaaS team will each have their own user which will have access
 all of the projects for management purposes.</p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
-<h2 id="consequences">Consequences</h2>
-<p>Members of the PaaS team will need their own Aiven accounts.</p>
-
+<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="consequences">Consequences</h2><p>Members of the PaaS team will need their own Aiven accounts.</p>
 <p>The Aiven credentials of the four service users will be managed in the PaaS
 team&rsquo;s passwordstores.</p>
-
 <p>We will be able to interact with elasticsearch on a given environment without
 risk of affecting other environments.</p>
 
