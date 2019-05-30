@@ -18,8 +18,8 @@ You must [Log into logit via Google](https://reliability-engineering.cloudapps.d
 * `principal=XXX` will give you the username
 * `origin=[1.2.3.4]` will give you the origin IP
 * `UserAuthenticationSuccess` will give you the successful attempts
-  * Google authentication origin will show `sessionId=XXX`
-  * non Google authentication origin will show `clientId=cf`
+  * SSO authentication origin will show `sessionId=XXX`
+  * UAA authentication origin will show `clientId=cf`
 
 ## CPU credits
 
