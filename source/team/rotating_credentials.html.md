@@ -55,6 +55,24 @@ The following is a diagram of the steps of our CA rotation process. The thick ar
 
 <p><a href="/diagrams/ca-cert-rotations.jpg" target="_blank" rel="noopener noreferrer"><img src="/diagrams/ca-cert-rotations.jpg" alt="Illustration of the CA and certificate YAML fields being moved around by this process" /></a></p>
 
+#### Rotating SSO IDP keys
+
+We use single sign-on using Google and Microsoft to allow our tenants to sign
+in, without using a username and password stored in UAA.
+
+Google has two credentials: `client_id` and `client_secret`
+
+Microsoft functionally has three credentials `client_id`, `client_secret`, and
+`tenant_id`, however `tenant_id` is not secret, we just store it as such.
+
+UAA is not able of consuming multiple pairs of `client_id` and `client_secret`.
+Rotating these credentials will briefly prevent users from signing in to GOV.UK
+PaaS using single sign-on via the IDP with credentials currently being rotated.
+
+Rotating these credentials requires changing the values in `paas-credentials`
+and running the `upload-{google,microsoft}-oauth-secrets` Make tasks and then
+running `create-cloudfoundry`.
+
 ### AWS keys generated in the pipeline
 
 The deployer Concourse has a job for triggering the rotation of AWS keys generated in the pipeline. These keys currently include:
