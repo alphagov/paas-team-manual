@@ -65,6 +65,7 @@
  - [VPC Peering](guides/vpc_peering/)
  - [Running tests on `paas-cf` locally](guides/running_paas-cf_tests_locally/)
  - [Restoring the bosh director](guides/restoring_bosh_director/)
+ - [Effective remote pairing guidance](guides/effective_remote_pairing/)
 
 ### Styleguides
 
