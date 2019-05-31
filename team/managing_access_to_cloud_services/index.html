@@ -10,7 +10,7 @@
     <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
     <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/team/managing_aws_access/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/team/managing_access_to_cloud_services/">
 
 
     <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
@@ -19,12 +19,12 @@
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/team/managing_aws_access/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/team/managing_access_to_cloud_services/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/team/managing_aws_access/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/team/managing_access_to_cloud_services/" />
 
     
   </head>
@@ -64,18 +64,32 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#iam">IAM</a>
+    <a href="#aws">AWS</a>
     <ul>
       <li>
-        <a href="#iam-roles-for-vms">IAM Roles for VMs</a>
-      </li>
-      <li>
-        <a href="#iam-roles-for-humans">IAM Roles for Humans</a>
-      </li>
-      <li>
-        <a href="#role-configuration">Role configuration</a>
+        <a href="#iam">IAM</a>
+        <ul>
+          <li>
+            <a href="#iam-roles-for-vms">IAM Roles for VMs</a>
+          </li>
+          <li>
+            <a href="#iam-roles-for-humans">IAM Roles for Humans</a>
+          </li>
+          <li>
+            <a href="#role-configuration">Role configuration</a>
+          </li>
+        </ul>
       </li>
     </ul>
+  </li>
+  <li>
+    <a href="#aiven">Aiven</a>
+  </li>
+  <li>
+    <a href="#microsoft-azure">Microsoft Azure</a>
+  </li>
+  <li>
+    <a href="#google-cloud">Google Cloud</a>
   </li>
 </ul>
 
@@ -90,16 +104,47 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="iam">IAM</h1><p>Each AWS account has <a href="http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html">root account</a> credentials, which we don&rsquo;t use.</p>
+  <h1 id="aws">AWS</h1><h2 id="iam">IAM</h2><p>Each AWS account has <a href="http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html">root account</a> credentials, which we don&rsquo;t use.</p>
 <p>Instead we access AWS resources using <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">IAM</a>.</p>
-<h2 id="iam-roles-for-vms">IAM Roles for VMs</h2><p>We use <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</a> via <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">intance profiles</a> on our EC2 instances to delegate particular restricted permissions to processes running on those instances.</p>
-<h2 id="iam-roles-for-humans">IAM Roles for Humans</h2><p>We use separate IAM roles for users on our team to use via AWS&rsquo; assume-role
+<h3 id="iam-roles-for-vms">IAM Roles for VMs</h3><p>We use <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</a> via <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">intance profiles</a> on our EC2 instances to delegate particular restricted permissions to processes running on those instances.</p>
+<h3 id="iam-roles-for-humans">IAM Roles for Humans</h3><p>We use separate IAM roles for users on our team to use via AWS&rsquo; assume-role
 feature. See the <a href="https://reliability-engineering.cloudapps.digital/iaas.html#access-aws-accounts">RE manual</a>
 for details on how to do this.  The available role ARNs that you&rsquo;ll need for
 this are documented <a href="https://github.com/alphagov/paas-aws-account-wide-terraform/blob/master/doc/assume_role_arns.md">in paas-aws-account-wide-terrafom here</a></p>
-<h2 id="role-configuration">Role configuration</h2><p>We manage all these IAM roles, and the corresponding policies using Terraform.
+<h3 id="role-configuration">Role configuration</h3><p>We manage all these IAM roles, and the corresponding policies using Terraform.
 The config is in the <a href="https://github.com/alphagov/paas-aws-account-wide-terraform">account-wide-terraform</a>
 repo. This includes defining who is allowed to assume the above roles.</p>
+<h1 id="aiven">Aiven</h1><p>We use Aiven for our Elasticsearch backing service.  We log in to Aiven using
+the <a href="https://console.aiven.io/">Aiven Console</a>.</p>
+<p>We have 4 separate projects:</p>
+
+<ul>
+<li>Dev</li>
+<li>CI</li>
+<li>Staging</li>
+<li>Prod</li>
+</ul>
+<h1 id="microsoft-azure">Microsoft Azure</h1><p>We use Microsoft Azure to provide single sign-on for some tenants. We log into Azure using the <a href="https://portal.azure.com">Azure
+Portal</a>.</p>
+<p>We have 4 separate Active Directory apps under the
+digital.cabinet-office.gov.uk Azure account:</p>
+
+<ul>
+<li>Dev</li>
+<li>Staging London</li>
+<li>Prod London</li>
+<li>Prod</li>
+</ul>
+<h1 id="google-cloud">Google Cloud</h1><p>We use Google Cloud for single sign-on. We log into Google using the <a href="https://console.cloud.google.com/">Google
+Cloud Console</a>.</p>
+<p>We have 2 separate projects under the digital.cabinet-office.gov.uk Azure
+account:</p>
+
+<ul>
+<li><a href="https://console.cloud.google.com/home/dashboard?project=govuk-paas">GOV.UK PaaS</a></li>
+<li><a href="https://console.cloud.google.com/home/dashboard?project=paas-development-210707">paas-development</a></li>
+</ul>
+<p>Our single sign-on apps are managed in <a href="https://console.cloud.google.com/apis/credentials?folder=&amp;organizationId=&amp;project=govuk-paas"><code>GOV.UK PaaS</code></a></p>
 
 
             
