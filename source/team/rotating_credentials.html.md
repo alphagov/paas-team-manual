@@ -65,7 +65,7 @@ Google has two credentials: `client_id` and `client_secret`
 Microsoft functionally has three credentials `client_id`, `client_secret`, and
 `tenant_id`, however `tenant_id` is not secret, we just store it as such.
 
-UAA is not able of consuming multiple pairs of `client_id` and `client_secret`.
+UAA is not capable of consuming multiple pairs of `client_id` and `client_secret`.
 Rotating these credentials will briefly prevent users from signing in to GOV.UK
 PaaS using single sign-on via the IDP with credentials currently being rotated.
 

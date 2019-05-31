@@ -36,7 +36,7 @@ We have 4 separate projects:
 
 # Microsoft Azure
 
-We use Microsoft Azure for single sign-on. We log into Azure using the [Azure
+We use Microsoft Azure to provide single sign-on for some tenants. We log into Azure using the [Azure
 Portal](https://portal.azure.com).
 
 We have 4 separate Active Directory apps under the
