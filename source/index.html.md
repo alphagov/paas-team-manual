@@ -35,7 +35,7 @@
  - [Working practices](team/working_practices/)
  - [Service Targets](team/service_targets/)
  - [Dashboard mac mini](team/dashboard_mac_mini/)
- - [Managing AWS access](team/managing_aws_access/)
+ - [Managing access to Cloud Services](team/managing_access_to_cloud_services/)
  - [Our networking in AWS](team/networking_in_aws/)
  - [How to notify tenants](team/notifying_tenants/)
  - [Our orgs on the paas](team/our_orgs_on_the_paas/)
