@@ -29,13 +29,15 @@ curl -L https://redirector.gvt1.com/edgedl/go/go1.9.linux-amd64.tar.gz -O
 bosh add-blob [PATH TO]/go1.9.linux-amd64.tar.gz golang/go1.9.linux-amd64.tar.gz
 ```
 
-**3.** As we are using environment variables for AWS access you have to create the file **config/private.yml** with the following content:
+**3.** As we are assuming roles from a parent account for AWS access you have to create the file **config/private.yml** with the following content:
 
 ```
+---
 blobstore:
-  s3:
-    access_key_id: ''
-    secret_access_key: ''
+  provider: s3
+  options:
+    credentials_source: env_or_profile
+
 ```
 
 **4.** Check if adding the blob was successful:
@@ -49,7 +51,7 @@ It should list the added blob as new.
 **5.** Upload the new blob to the blobstore
 
 ```
-bosh upload-blobs
+aws-vault exec <ACCOUNT-NAME> -- bosh upload-blobs
 ```
 
 **6.** The **config/blobs.yml** should be updated now and you can commit the new or updated blob definiton.
