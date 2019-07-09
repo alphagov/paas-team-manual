@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR445-continuously-deploy-platform-cf-apps/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR445-continuously-deploy-platform-cf-apps/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR445-continuously-deploy-platform-cf-apps/" />
+
+    
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#adr445-continuously-deploy-platform-cf-applications">ADR445: Continuously deploy platform CF applications</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr445-continuously-deploy-platform-cf-applications">ADR445: Continuously deploy platform CF applications</h1><h2 id="context">Context</h2><p>As part of GOV.UK PaaS we have a number of applications that we consider to be
+an essential part of the platform deployed as cloud foundry apps. These include:</p>
+
+<ul>
+<li>paas-admin</li>
+<li>paas-billing</li>
+<li>paas-accounts</li>
+</ul>
+<p>Prior to July 2019 the versions of these applications were pinned in paas-cf,
+and they were only deployed along with the whole platform. This had a couple of
+negative consequences:</p>
+
+<ul>
+<li>Following a change to an app&rsquo;s source and a passing build an additional
+manual change to paas-cf was required to deploy it</li>
+<li>Deploying apps required waiting for unrelated slow bits of the pipeline to
+complete (e.g. terraform apply, bosh deploy, cf acceptance tests), despite
+the fact that a change to an app could not possibly affect or be affected by
+these steps</li>
+</ul>
+<p>There were also some advantages of specifying the version of applications
+explicitly:</p>
+
+<ul>
+<li>There&rsquo;s an record of which versions of the applications work with which
+versions of the platform.</li>
+<li>Merges to paas-cf require a signed merge commit to be deployed, so we can be
+explicit about the set of people who are allowed to deploy changes</li>
+</ul>
+<h2 id="decision">Decision</h2><p>We will update the pipeline to:</p>
+
+<ul>
+<li>Require GPG signatures on git commits before deploying applications in staging and production</li>
+<li>Automatically deploy every build of the master branch of the applications to staging</li>
+<li>In staging: tag the application repo when a deployment passes its acceptance tests</li>
+<li>In production: automatically deploy any build which has been tagged by staging</li>
+</ul>
+<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<ul>
+<li>Deployments to paas-admin, paas-billing and paas-accounts will take minutes instead of hours</li>
+<li>We will continue to enforce that all production code requires a signed commit to deploy</li>
+<li>We will no longer have a single record of which version of the applications
+were deployed with which version of the platform</li>
+</ul>
+
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
