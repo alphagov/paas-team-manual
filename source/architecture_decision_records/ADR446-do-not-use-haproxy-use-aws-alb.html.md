@@ -9,18 +9,21 @@ In ADR008 and ADR014 we decided to use HAProxy, for three reasons:
 - Custom health check for Gorouter
 
 These problems have since been fixed:
+
 - Header rewriting was implemented in [v0.183.0](https://github.com/cloudfoundry/routing-release/releases/tag/0.183.0)
 - HTTP healthchecking was implemented in [v0.139.0](https://github.com/cloudfoundry/routing-release/releases/tag/0.139.0)
 - HTTP -> HTTPS redirect can be done using AWS ALBs
 
 We currently use multiple ELBs (classic) which we want to replace with ALBs.
 We want to use ALBs because:
+
 - ELBs are deprecated in terraform and cause crashes
 - ALBs can give us more metrics in CloudWatch
 - ALBs have better support for X-Forwarded-For
 - ALBs support fixed-response which can be used for HTTP -> HTTPS rewriting
 
 HAProxy adds significant complexity to our routing deployment and maintenance:
+
 - Proxy Protocol is non-standard and hard to understand
 - HTTP -> HTTPS rewriting is hard to understand
 - HAProxy config is rarely touched
