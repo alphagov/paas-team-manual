@@ -100,23 +100,32 @@
 <li>Implementing HTTP -&gt; HTTPS redirect</li>
 <li>Custom health check for Gorouter</li>
 </ul>
-<p>These problems have since been fixed:
-- Header rewriting was implemented in <a href="https://github.com/cloudfoundry/routing-release/releases/tag/0.183.0">v0.183.0</a>
-- HTTP healthchecking was implemented in <a href="https://github.com/cloudfoundry/routing-release/releases/tag/0.139.0">v0.139.0</a>
-- HTTP -&gt; HTTPS redirect can be done using AWS ALBs</p>
+<p>These problems have since been fixed:</p>
+
+<ul>
+<li>Header rewriting was implemented in <a href="https://github.com/cloudfoundry/routing-release/releases/tag/0.183.0">v0.183.0</a></li>
+<li>HTTP healthchecking was implemented in <a href="https://github.com/cloudfoundry/routing-release/releases/tag/0.139.0">v0.139.0</a></li>
+<li>HTTP -&gt; HTTPS redirect can be done using AWS ALBs</li>
+</ul>
 <p>We currently use multiple ELBs (classic) which we want to replace with ALBs.
-We want to use ALBs because:
-- ELBs are deprecated in terraform and cause crashes
-- ALBs can give us more metrics in CloudWatch
-- ALBs have better support for X-Forwarded-For
-- ALBs support fixed-response which can be used for HTTP -&gt; HTTPS rewriting</p>
-<p>HAProxy adds significant complexity to our routing deployment and maintenance:
-- Proxy Protocol is non-standard and hard to understand
-- HTTP -&gt; HTTPS rewriting is hard to understand
-- HAProxy config is rarely touched
-- We have to maintain our own HAProxy BOSH release
-- HAProxy duplicates the number of logs we receive because every platform request is written twice
-- HAProxy adds an extra network hop for every request</p>
+We want to use ALBs because:</p>
+
+<ul>
+<li>ELBs are deprecated in terraform and cause crashes</li>
+<li>ALBs can give us more metrics in CloudWatch</li>
+<li>ALBs have better support for X-Forwarded-For</li>
+<li>ALBs support fixed-response which can be used for HTTP -&gt; HTTPS rewriting</li>
+</ul>
+<p>HAProxy adds significant complexity to our routing deployment and maintenance:</p>
+
+<ul>
+<li>Proxy Protocol is non-standard and hard to understand</li>
+<li>HTTP -&gt; HTTPS rewriting is hard to understand</li>
+<li>HAProxy config is rarely touched</li>
+<li>We have to maintain our own HAProxy BOSH release</li>
+<li>HAProxy duplicates the number of logs we receive because every platform request is written twice</li>
+<li>HAProxy adds an extra network hop for every request</li>
+</ul>
 <h2 id="decision">Decision</h2>
 <ul>
 <li>Replace ELBs with ALBs</li>
