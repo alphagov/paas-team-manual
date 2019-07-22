@@ -72,6 +72,18 @@ If you only know part of the username:
 
     bundle exec uaac users 'username co "<NAME>"'
 
+The above two commands will only work for users who are not using single-sign
+on, PaaSmin has a page for getting diagnostic information about a user.
+Navigate to one of the following, depending on the region:
+
+- [https://admin.cloud.service.gov.uk/users/person@domain.com](https://admin.cloud.service.gov.uk/users/person@domain.com)
+- [https://admin.london.cloud.service.gov.uk/users/person@domain.com](https://admin.london.cloud.service.gov.uk/users/person@domain.com)
+
+The endpoint also works for UAA GUIDs:
+
+- [https://admin.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333](https://admin.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333)
+- [https://admin.london.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333](https://admin.london.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333)
+
 ## Locking a user account
 
 Sometimes it might be necessary to lock certain users. For example when we find out they have left GDS or don't have any more project to work on PaaS. CF has a facility to prevent users from logging in, while still preserving the user account with all their access rights and org membership. We do this as a first step in removing the user account. We then ask for confirmation from org managers (or managers of org managers in case we are removing an org manager) and only after confirmation finally remove the account completely (`cf delete-user`).
