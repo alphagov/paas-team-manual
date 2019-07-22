@@ -146,7 +146,21 @@ environment that you expect.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac user get &lt;EMAIL&gt;
 </code></pre></div><p>If you only know part of the username:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac users 'username co "&lt;NAME&gt;"'
-</code></pre></div><h2 id="locking-a-user-account">Locking a user account</h2><p>Sometimes it might be necessary to lock certain users. For example when we find out they have left GDS or don&rsquo;t have any more project to work on PaaS. CF has a facility to prevent users from logging in, while still preserving the user account with all their access rights and org membership. We do this as a first step in removing the user account. We then ask for confirmation from org managers (or managers of org managers in case we are removing an org manager) and only after confirmation finally remove the account completely (<code>cf delete-user</code>).</p>
+</code></pre></div><p>The above two commands will only work for users who are not using single-sign
+on, PaaSmin has a page for getting diagnostic information about a user.
+Navigate to one of the following, depending on the region:</p>
+
+<ul>
+<li><a href="https://admin.cloud.service.gov.uk/users/person@domain.com">https://admin.cloud.service.gov.uk/users/person@domain.com</a></li>
+<li><a href="https://admin.london.cloud.service.gov.uk/users/person@domain.com">https://admin.london.cloud.service.gov.uk/users/person@domain.com</a></li>
+</ul>
+<p>The endpoint also works for UAA GUIDs:</p>
+
+<ul>
+<li><a href="https://admin.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333">https://admin.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333</a></li>
+<li><a href="https://admin.london.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333">https://admin.london.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333</a></li>
+</ul>
+<h2 id="locking-a-user-account">Locking a user account</h2><p>Sometimes it might be necessary to lock certain users. For example when we find out they have left GDS or don&rsquo;t have any more project to work on PaaS. CF has a facility to prevent users from logging in, while still preserving the user account with all their access rights and org membership. We do this as a first step in removing the user account. We then ask for confirmation from org managers (or managers of org managers in case we are removing an org manager) and only after confirmation finally remove the account completely (<code>cf delete-user</code>).</p>
 <p>From <a href="https://github.com/alphagov/paas-cf">alphagov/paas-cf</a>:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>bundle install
 cd scripts
