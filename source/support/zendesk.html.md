@@ -42,7 +42,11 @@ We use the following tags to categorise support tickets:
 | Backing services | govuk_paas_backing_services_binding_unbinding_issues |
 | Backing services | govuk_paas_backing_services_private_beta_access |
 | Backing services | govuk_paas_backing_services_connecting_issues |
-| Backing services | govuk_paas_backing_services_database_backing_service |
+| Backing services | govuk_paas_backing_services_postgres |
+| Backing services | govuk_paas_backing_services_mysql |
+| Backing services | govuk_paas_backing_services_redis |
+| Backing services | govuk_paas_backing_services_elasticsearch |
+| Backing services | govuk_paas_backing_services_cdn |
 | Backing services | govuk_paas_backing_services_performance |
 | Backing services | govuk_paas_backing_services_scaling |
 | Notifications | govuk_paas_notifications_security_cve |
