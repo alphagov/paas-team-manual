@@ -67,10 +67,19 @@
     <a href="#billing-process-for-gov-uk-paas-paid-accounts">Billing process for GOV.UK PaaS paid accounts</a>
     <ul>
       <li>
-        <a href="#paid-account">Paid account</a>
+        <a href="#introduction">Introduction</a>
       </li>
       <li>
-        <a href="#billing-process-for-departments">Billing process for Departments</a>
+        <a href="#who-to-bill">Who to bill</a>
+      </li>
+      <li>
+        <a href="#tracking-billing">Tracking billing</a>
+      </li>
+      <li>
+        <a href="#how-to-bill-non-gds-orgs">How to bill non GDS orgs</a>
+      </li>
+      <li>
+        <a href="#next-steps">Next steps</a>
       </li>
       <li>
         <a href="#process-for-cross-charging-gds-paas-tenants">Process for cross-charging GDS PaaS tenants</a>
@@ -90,23 +99,60 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="billing-process-for-gov-uk-paas-paid-accounts">Billing process for GOV.UK PaaS paid accounts</h1><h2 id="paid-account">Paid account</h2><p>Once an organisation has finished their 3 month trial period they are given the option to carry on using the GOV.UK PaaS on a paid account. Refer to the team manual for more information on how to <a href="https://team-manual.cloud.service.gov.uk/accounts/account_lifecycle/#upgrading-trial-organisations-to-paid-organisations">move from a trial to paid organisation</a>.</p>
-<h2 id="billing-process-for-departments">Billing process for Departments</h2><p>Once it has been confirmed that an organisation is now on a paid account, the GOV.UK PaaS Delivery Manager should complete the following steps:</p>
+  <h1 id="billing-process-for-gov-uk-paas-paid-accounts">Billing process for GOV.UK PaaS paid accounts</h1><h2 id="introduction">Introduction</h2><p>New organisations on GOV.UK PaaS have the option to use a free trial account for a period of 3 months.</p>
+<p>After this period we should move that organisation onto a paid account and start billing them. Refer to the team manual for more information on how to move from a trial to paid organisation.</p>
+<p>This document outlines how to identify who should be paying, how to kick off billing with a new user and how to track billing.</p>
+<h2 id="who-to-bill">Who to bill</h2><p>There are different quotas for PaaS accounts which allow organisations different levels or memory and space. The available tiers are:</p>
 
-<ol>
-<li><p>Complete the <a href="https://docs.google.com/spreadsheets/d/1kFNnl3_10g949eSXTnnrvc47WzT6QqXHWoODlL8OMW8/edit#gid=0">billing sheet</a> for each billable department. One bill is sent per department so if a department has multiple organisations, those organisation are all listed on one bill.</p>
-<p>To find billing sheets, go to the <strong>Team Drive &gt; Billing and Pricing PII &gt; Billing Record</strong> then the appropriate department. Update the latest month’s figures using the <a href="https://login.cloud.service.gov.uk/login">PaaS Admin tool</a>.</p>
-<p>Once you have the figures, update these in the <a href="https://docs.google.com/spreadsheets/d/1Iu8rkO3mGhJaHketb_V4KiInSZ-68r83xId1jRKSFZ4/edit#gid=1990307727">billing tracker</a>. You will only need to complete the total figure for a department, not for each organisation in a department.</p></li>
-<li><p>For departments that you are going to bill, check the first sheet of the Billing Tracker to find the billing manager.</p></li>
-<li><p>Ascertain how often the GOV.UK PaaS needs to send a department’s bill. The below table gives an indication of how often it is appropriate to bill. Agree bill frequency with the organisation’s billing manager. Record the frequency in the <strong>Billing Frequency</strong> column in the billing tracker.</p>
+<ul>
+<li>Default - this is the quota given to trial accounts.</li>
+<li>Small</li>
+<li>Medium</li>
+<li>Large</li>
+<li>2XLarge</li>
+<li>GDS non chargeable - this is used for internal accounts on a default quota but we didn’t want to display as default so that we wouldn’t keep looking to close or upgrade them</li>
+</ul>
+<p>The best way to assess who should be billed is to look at the reporting view on the PaaS admin portal
+- <a href="https://admin.cloud.service.gov.uk/reports/cost/2019-07-01">Ireland</a>
+- <a href="https://admin.london.cloud.service.gov.uk/reports/cost/2019-07-01">London</a></p>
+<p>This view allows you to quickly pick out which orgs are eligible for billing. In general, all tiers other than ‘default’ or ‘GDS non chargeable’ should be billed. There may be some exceptions to this. For example, if a service has agreed with the Product Manager that they need a larger database than ‘default’ for testing, and we have granted that service access to a larger account while they test the platform. Orgs on billable quotas should be tracked in the billable org accounts spreadsheet. Add any useful notes to the comments column.</p>
+<h2 id="tracking-billing">Tracking billing</h2><p>We provide bills with a monthly breakdown. Each month you will need to complete the billing summary for the previous month. Billing summaries are provided per billing manager - some departments have just one person responsible for billing, others may split the billing by org depending on how their internal budget is allocated. You can see the billing manager in the PaaS admin interface by going into the org then selecting ‘members’. Keep the list of billing managers up to date in the Billable Org Accounts spreadsheet.</p>
+<p>Find the billing summaries in <a href="https://drive.google.com/drive/u/0/folders/1PhFbgFGZWuFkw8D9v-WBYgDdnBEXO9k_">Team drive &gt; GOV.UK PaaS &gt; Billing and Pricing PII &gt; Billing record</a></p>
+<p>Complete the record by visiting the organisation billing page on the PaaS admin interface.</p>
+<p>To note - we include a 10% admin fee on this page. You can also see monthly bills in the reporting view but the 10% isn’t included in that view so bills would be inaccurate.</p>
+<p>Add the monthly total for each department to the Monthly Billing Tracker. This allows us to see a monthly total across all our paying accounts.</p>
+<h2 id="how-to-bill-non-gds-orgs">How to bill non GDS orgs</h2><p>We are trialling a new process for billing, with the PMO team taking more responsibility. This means that we are now only responsible for the initial outreach to departments and collating bills. PMO will be responsible for chasing departments and requesting finance raise invoices.</p>
+<p>Before you are able to bill, you will need to have access to send emails from <code>gov-uk-paas-tenant-billing@digital.cabinet-office.gov.uk</code>.</p>
+<p>We use this address for all billing correspondence so that things won’t get lost in inboxes or held up by annual leave/sickness.</p>
+<p>At the start of a financial year or for new organisations who qualify for billing during the financial year and do not fall under an existing purchase order, the following needs to be completed:</p>
+
+<ul>
+<li>Send an email from the tenant billing address to the organisation billing manager requesting they raise a purchase order (PO) with sufficient funds for the full financial year
+
+<ul>
+<li>There is a draft email template for both new and existing orgs found in the GOV.UK PaaS &gt; Billing and Pricing PII folder</li>
+</ul></li>
+<li><p>The deadline to raise the PO should be a month from when you send the email</p>
+
+<ul>
+<li>Ensure that pmodelivery@digital.cabinet-office.gov.uk are cc’d into the email</li>
+</ul></li>
+<li><p>As POs are returned, update the Income Invoice Tracker</p>
+
+<ul>
+<li>This document is owned by the PMO team and they request that we use it to track the information they need in order for them to be able to request an invoice be raised</li>
+</ul></li>
+</ul>
+<p>We are not responsible for chasing missing POs. The PMO team are responsible for following up with billing managers who haven’t responded.</p>
+<p>Billing frequency is dictated by the level of usage. The table below gives a guideline for billing frequency. When a department is due to be invoiced, you should ensure the invoice tracker is updated and let the PMO team know that an invoice is due to go out.</p>
 <div class="table-container">
         <table>
           <tr>
-<th><strong>Approx. billable amount per month</strong></th>
-<th><strong>Billing frequency</strong></th>
+<th>Approx. billable amount per month</th>
+<th>Billing frequency</th>
 </tr>
 <tr>
-<td>&lt; £1000</td>
+<td>&lt;£1000</td>
 <td>Yearly</td>
 </tr>
 <tr>
@@ -119,49 +165,15 @@
 </tr>
 
         </table>
-      </div></li>
-<li><p>Send the billing manager the following email, attaching a pdf version of their billing statement:</p>
-<p>Dear _______</p>
-<p>Please find attached a statement(s) containing your charges for hosting on the GOV.UK PaaS from [input dates]. You can see your usage and costs at any time by logging into https://admin.cloud.service.gov.uk/</p>
-<p>As per your Memorandum of Understanding (MOU) you have agreed to cover the costs of hosting your services on the GOV.UK PaaS. Based on your current usage levels, we would like to send you invoices on a [monthly/quarterly/6 monthly] basis.</p>
-<p>You will now need to raise a purchase order using your own department’s processes.</p>
-<p>If you have any questions, please contact us on gov-uk-paas-support@digital.cabinet-office.gov.uk.</p>
-<p>Kind regards<br>
-[name]<br>
-GOV.UK PaaS [job title]</p></li>
-<li><p>The department will then set up a purchase order (PO) and send you a copy of the PO document which will include the PO number.</p></li>
-<li><p>Send the following email to pmodelivery@digital.cabinet-office.gov.uk:</p>
-<p>Dear _____</p>
-<p>I need to raise an invoice on SOP for [department name] usage of the GOV.UK PaaS. I have attached a PDF of the billing summary and the department’s purchase order. The total amount to invoice is £xxx including VAT.</p>
-<p>Please send the invoice to:<br>
-[name of contact which invoice should be addressed to]<br>
-[email address which invoice should be issued to]<br>
-[address which invoice should be issued to]</p>
-<p>Kind regards<br>
-[name]<br>
-GOV.UK PaaS [job title]</p></li>
-<li><p>The PMO team will then request that the Cabinet Office Finance department raise the invoice. If you do not get copied into an email from CO Finance when they raise the invoice, you should ask CO Finance to forward the email to you for your records.</p></li>
-<li><p>The responsibility for chasing payment of invoices lies with the CO Finance team. The PaaS team has completed everything they are responsible for.</p></li>
-</ol>
-<p>If you are missing any of this information ask the organisation’s Billing Manager to provide it.</p>
-<h2 id="process-for-cross-charging-gds-paas-tenants">Process for cross-charging GDS PaaS tenants</h2><p>We should cross charge GDS tenants who are not included in the same business case as us.</p>
-<p>We cannot cross charge the following teams within GDS:</p>
-
-<ul>
-<li>Notify</li>
-<li>Design System</li>
-<li>Pay</li>
-<li>Registers</li>
-<li>SD&amp;S (SD&amp;A) - service standard</li>
-<li>Accessibility</li>
-</ul>
-<p>The process for charging eligible teams is as follows:</p>
-
-<ol>
-<li><p>Complete step one as detailed in the ‘Billing process for departments’ section.</p></li>
-<li><p>Send the billing sheets to pmodelivery@digital.cabinet-office.gov.uk on a quarterly basis.</p></li>
-<li><p>The PMO team will then arrange cross charging within GDS.</p></li>
-</ol>
+      </div><h2 id="next-steps">Next steps</h2><p>Our responsibility ends here. However, it is useful to regularly keep in touch with the PMO team to check on billing progress.</p>
+<p>We are often asked to report on billing at programme check-ins so it is useful to have up to date knowledge of the billing status of each department.</p>
+<h2 id="process-for-cross-charging-gds-paas-tenants">Process for cross-charging GDS PaaS tenants</h2><p>We should cross charge GDS tenants outside of the PaaS team.</p>
+<p>The process for charging eligible teams is as follows:
+- Track their organisation billing as outlined above
+  - Ensure they are noted on the Billable Org Accounts spreadsheet and have billing summaries completed
+- Send the billing sheets to pmodelivery@digital.cabinet-office.gov.uk on a quarterly basis
+- The PMO team will then arrange cross charging within GDS</p>
+<p>You do not need to request a PO or follow up billing in any other way.</p>
 
 
             
