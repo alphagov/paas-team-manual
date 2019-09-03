@@ -109,7 +109,7 @@ Gender-specific words like these can act to exclude other groups of people:
 * he
 * girls
 
-There is a great write up on the word [guys by Jessica
+There is a great write up on the word [guys by Julia
 Evans](http://jvns.ca/blog/2013/12/27/guys-guys-guys/) that helps explain why
 it isn't quite gender neutral.
 
