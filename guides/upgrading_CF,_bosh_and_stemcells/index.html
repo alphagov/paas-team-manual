@@ -179,8 +179,24 @@ runs overnight.</li>
 <li>Confirm that <a href="/team/rotating_credentials/">rotating credentials</a> still
 works and doesn&rsquo;t cause additional downtime during deployments.</li>
 </ul>
-<h3 id="buildpacks">Buildpacks</h3><p>We have to a give at least a week&rsquo;s notice to tenants about the buildpack upgrades, so prepare the version changes separately from the CF component upgrades.</p>
-<p>Buildpack upgrades are typically done as a separate story. You should upgrade the buildpacks to at least the versions included in the cf-deployment version currently deployed.</p>
+<h3 id="buildpacks">Buildpacks</h3><p>Buildpack upgrades are typically done as a separate story. You should upgrade the buildpacks to at least the versions included in the cf-deployment version currently deployed.</p>
+<p>We have to a give at least a week&rsquo;s notice to tenants about the buildpack upgrades, so prepare the version changes separately from the CF component upgrades.</p>
+<p>There is a (semi-)automated process for upgrading buildpacks, which includes generating the email:</p>
+<p>The developer does the following:</p>
+
+<ul>
+<li>In paas-cf run <code>scripts/update_buildpacks.sh</code> to update our cache of buildpack dependencies</li>
+<li>Commit the changes to a branch</li>
+<li>Raise a PR for the changes and move the story into review</li>
+</ul>
+<p>The reviewer does the following:</p>
+
+<ul>
+<li>Run <code>scripts/create_buildpacks_email.sh</code> to create the email</li>
+<li>Send the email using the [google group interface] with the subject &ldquo;GOV.UK PaaS - Upcoming buildpack upgrades - $DATE&rdquo;, where $DATE is in the format &ldquo;11th September 2019&rdquo;</li>
+<li>Mark the story as blocked with a blocker in the form <code>until 2019/09/11</code></li>
+<li>Wait until the given date, then merge the PR to upgrade the buildpacks</li>
+</ul>
 <h2 id="notify-the-tenants">Notify the tenants</h2><p>Send an email to users following <a href="/team/notifying_tenants/#cf-upgrade">the upgrade template</a>.</p>
 <h2 id="problems-encountered-previously">Problems encountered previously</h2><h3 id="dns-name-resolution">DNS name resolution.</h3><p>We encountered a wide variety of acceptance and smoke test failures which were intermittent. This was due to DNS health check failures. Consul uses these health checks to validate the consistency of the DNS records it serves, and will expire DNS records where the health check has failed.</p>
 <p>The root cause was failure to remove the <code>consul.agent.services</code> property for Diego components in the CloudFoundry manifest. <a href="https://github.com/cloudfoundry-incubator/diego-release/releases/tag/v0.1452.0">Diego release notes for version 1452</a> did state these had to be removed, as Diego components now use the Locket library to configure its DNS health checks.</p>
