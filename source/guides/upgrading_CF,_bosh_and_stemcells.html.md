@@ -72,9 +72,25 @@ You should test the upgrade changeset:
 
 ### Buildpacks
 
+Buildpack upgrades are typically done as a separate story. You should upgrade the buildpacks to at least the versions included in the cf-deployment version currently deployed.
+
 We have to a give at least a week's notice to tenants about the buildpack upgrades, so prepare the version changes separately from the CF component upgrades.
 
-Buildpack upgrades are typically done as a separate story. You should upgrade the buildpacks to at least the versions included in the cf-deployment version currently deployed.
+There is a (semi-)automated process for upgrading buildpacks, which includes generating the email:
+
+The developer does the following:
+
+* In paas-cf run `scripts/update_buildpacks.sh` to update our cache of buildpack dependencies
+* Commit the changes to a branch
+* Raise a PR for the changes and move the story into review
+
+The reviewer does the following:
+
+* Run `scripts/create_buildpacks_email.sh` to create the email
+* Send the email using the [google group interface] with the subject "GOV.UK PaaS - Upcoming buildpack upgrades - $DATE", where $DATE is in the format "11th September 2019"
+* Mark the story as blocked with a blocker in the form `until 2019/09/11`
+* Wait until the given date, then merge the PR to upgrade the buildpacks
+
 
 ## Notify the tenants
 
