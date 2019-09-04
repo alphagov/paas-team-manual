@@ -108,15 +108,9 @@ The body should contain:
 
 ### CF buildpack emails
 
-Use the latest "GOV.UK PaaS - Upcoming buildpack upgrades" email in the
-gov-uk-paas-announce [google group interface] as an example.
-
-You'll need to produce a summary of changes between the old and new buildpacks,
-which is a bit of a tedious manual process. See
-[operations.d/240-cf-set-buildpack-release.yml](https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/operations.d/240-cf-set-buildpack-release.yml)
-for the pinned versions and the GitHub releases pages for the buildpacks (e.g.
-[cloudfoundry/binary-buildpack/releases/v1.0.21](https://github.com/cloudfoundry/binary-buildpack/releases/v1.0.21))
-to read about the changes.
+We generate our buildpack notification emails using the (semi-)automated
+process described in [the documentation about upgrading
+buildpacks](/guides/upgrading_CF,_bosh_and_stemcells/#buildpacks).
 
 **NB Incident comms email templates are saved in Statuspage.**
 
