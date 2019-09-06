@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
+    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR447-add-new-rds-broker-plans/">
+
+
+    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/application.js"></script>
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR447-add-new-rds-broker-plans/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR447-add-new-rds-broker-plans/" />
+
+    
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+  <div class="header__container">
+    <div class="header__brand">
+        <a href="https://team-manual.cloud.service.gov.uk">
+        <span class="header__title">
+          PaaS Team Manual
+            <span class="phase-banner">Internal</span>
+        </span>
+        </a>
+    </div>
+
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#recommended-database-plans">Recommended database plans</a>
+    <ul>
+      <li>
+        <a href="#context">Context</a>
+        <ul>
+          <li>
+            <a href="#current-plans">Current plans</a>
+            <ul>
+              <li>
+                <a href="#mysql">MySql</a>
+              </li>
+              <li>
+                <a href="#postgres">Postgres</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#current-analysis">Current analysis</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#decision">Decision</a>
+        <ul>
+          <li>
+            <a href="#create-new-plans-for-postgres-11">Create new plans for postgres 11</a>
+          </li>
+          <li>
+            <a href="#create-new-plans-for-mysql-8">Create new plans for mysql 8</a>
+          </li>
+          <li>
+            <a href="#create-new-quot-small-high-iops-quot-and-quot-small-ha-high-iops-quot-plans-for-mysql-5-7-postgres-9-5-and-10">Create new “small-high-iops” and “small-ha-high-iops” plans, for mysql 5.7, postgres 9.5 and 10</a>
+          </li>
+          <li>
+            <a href="#do-not-change-the-instance-types-for-the-existing-plans">Do not change the instance types for the existing plans</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#status">Status</a>
+      </li>
+      <li>
+        <a href="#consequences">Consequences</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="recommended-database-plans">Recommended database plans</h1>
+<!-- vim: set tw=100: -->
+<h2 id="context">Context</h2><h3 id="current-plans">Current plans</h3><p>As of 2019-09-03 <a href="https://cloud.service.gov.uk">GOV.UK PaaS</a> offers the following postgres and mysql
+plans to everyone:</p>
+<h4 id="mysql">MySql</h4><div class="table-container">
+        <table>
+          <tr>
+<th>service plan</th>
+<th>description</th>
+<th>free or paid</th>
+</tr>
+<tr>
+<td>tiny-unencrypted-5.7</td>
+<td>5GB Storage, NOT BACKED UP, Dedicated Instance. MySQL Version 5.7. DB Instance Class: db.t2.micro.</td>
+<td>free</td>
+</tr>
+<tr>
+<td>medium-ha-5.7</td>
+<td>100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.large.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>large-ha-5.7</td>
+<td>512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.2xlarge.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>xlarge-ha-5.7</td>
+<td>2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.4xlarge.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>small-ha-5.7</td>
+<td>20GB Storage, Dedicated Instance, Highly Available. Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.t2.small.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>small-5.7</td>
+<td>20GB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.t2.small.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>medium-5.7</td>
+<td>100GB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.large.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>large-5.7</td>
+<td>512GB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.2xlarge.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>xlarge-5.7</td>
+<td>2TB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.4xlarge.</td>
+<td>paid</td>
+</tr>
+
+        </table>
+      </div><h4 id="postgres">Postgres</h4><div class="table-container">
+        <table>
+          <tr>
+<th>service plan</th>
+<th>description</th>
+<th>free or paid</th>
+</tr>
+<tr>
+<td>tiny-unencrypted-9.5</td>
+<td>5GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.t2.micro.</td>
+<td>free</td>
+</tr>
+<tr>
+<td>medium-ha-9.5</td>
+<td>100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.large.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>large-ha-9.5</td>
+<td>512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.2xlarge.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>xlarge-ha-9.5</td>
+<td>2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.4xlarge.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>small-ha-9.5</td>
+<td>20GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.t2.small.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>small-9.5</td>
+<td>20GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.t2.small.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>medium-9.5</td>
+<td>100GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.large.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>large-9.5</td>
+<td>512GB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.2xlarge.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>xlarge-9.5</td>
+<td>2TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.4xlarge.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>tiny-unencrypted-10</td>
+<td>5GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.micro.</td>
+<td>free</td>
+</tr>
+<tr>
+<td>small-10</td>
+<td>20GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.small.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>small-ha-10</td>
+<td>20GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.small.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>medium-10</td>
+<td>100GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.large.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>medium-ha-10</td>
+<td>100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.large.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>large-10</td>
+<td>512GB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.2xlarge.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>large-ha-10</td>
+<td>512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.2xlarge.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>xlarge-10</td>
+<td>2TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.4xlarge.</td>
+<td>paid</td>
+</tr>
+<tr>
+<td>xlarge-ha-10</td>
+<td>2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.4xlarge.</td>
+<td>paid</td>
+</tr>
+
+        </table>
+      </div><h3 id="current-analysis">Current analysis</h3><p>In <a href="https://www.pivotaltracker.com/n/projects/1275640/stories/167839682">#167839682</a> we had a look
+at the usage on our existing databases and concluded that, for the most part, the existing plans are
+appropriate for current usage. We didn&rsquo;t identify any databases that could easily have been on a
+smaller instance size if only it had higher IOPS (which was one hypothesis).</p>
+<p>There was some evidence in the form of support tickets that our current small plans don&rsquo;t have
+enough IOPS, causing people to prematurely upgrade to mediums.  AWS warn you against creating DBs
+with less than 100G disk due to IOPS restrictions, so it seems sensible that we shouldn&rsquo;t provided
+plans smaller than that.</p>
+<p>At the moment, prices for postgres 10.5 Tiny, Small and Medium instances are:</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>plan</th>
+<th>price / month</th>
+</tr>
+<tr>
+<td>tiny</td>
+<td>£12.03</td>
+</tr>
+<tr>
+<td>small</td>
+<td>£24.50</td>
+</tr>
+<tr>
+<td>small-ha</td>
+<td>£48.98</td>
+</tr>
+<tr>
+<td>medium</td>
+<td>£125.94</td>
+</tr>
+<tr>
+<td>medium-ha</td>
+<td>£251.79</td>
+</tr>
+
+        </table>
+      </div><p>If we were to increase the disk size on small instances from the current 2G to 100G, this would
+cause the small plans to increase roughly as follows (based on Ireland prices):</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>plan</th>
+<th>price / month</th>
+</tr>
+<tr>
+<td>tiny</td>
+<td>£12.03</td>
+</tr>
+<tr>
+<td>small</td>
+<td>£34.40 (was £24.50)</td>
+</tr>
+<tr>
+<td>small-ha</td>
+<td>£67.88 (was £48.98)</td>
+</tr>
+<tr>
+<td>medium</td>
+<td>£125.94</td>
+</tr>
+<tr>
+<td>medium-ha</td>
+<td>£251.79</td>
+</tr>
+
+        </table>
+      </div><p>We have about 100 &ldquo;small&rdquo; databases, of which 28 are HA and 70 are not. This means if we changed the
+disk on the existing plans our tenants would have to pay an extra £1,200/month (but on the flip
+side, they might be able to stick with small plans for longer, because of the better IOPS).</p>
+<p>Alternatively we could add a new pair of plans like &ldquo;small-high-iops&rdquo; and &ldquo;small-ha-high-iops&rdquo;.
+This would allow an upgrade path of <code>small -&gt; small-high-iops -&gt; medium</code>, instead of the current
+<code>small -&gt; medium</code>, which would avoid people paying for CPU and memory they don&rsquo;t need.</p>
+<p>Separately, we should add support for postgres 11 and mysql 8, which are both supported by RDS now.
+For these new plans we should use the newest available instance types (so t3 / m5 instead of t2 /
+m4).</p>
+<h2 id="decision">Decision</h2><h3 id="create-new-plans-for-postgres-11">Create new plans for postgres 11</h3><p>We should play <a href="https://www.pivotaltracker.com/story/show/168322288">a story to add the following new plans</a>:</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>service plan</th>
+<th>summary</th>
+</tr>
+<tr>
+<td>tiny-unencrypted-11</td>
+<td>5GB Storage, NOT BACKED UP. DB Instance Class: db.t3.micro.</td>
+</tr>
+<tr>
+<td>small-11</td>
+<td>100GB Storage. DB Instance Class: db.t3.small.</td>
+</tr>
+<tr>
+<td>small-ha-11</td>
+<td>100GB Storage. DB Instance Class: db.t3.small.</td>
+</tr>
+<tr>
+<td>medium-11</td>
+<td>100GB Storage. DB Instance Class: db.m5.large.</td>
+</tr>
+<tr>
+<td>medium-ha-11</td>
+<td>100GB Storage. DB Instance Class: db.m5.large.</td>
+</tr>
+<tr>
+<td>large-11</td>
+<td>512GB Storage. DB Instance Class: db.m5.2xlarge.</td>
+</tr>
+<tr>
+<td>large-ha-11</td>
+<td>512GB Storage. DB Instance Class: db.m5.2xlarge.</td>
+</tr>
+<tr>
+<td>xlarge-11</td>
+<td>2TB Storage. DB Instance Class: db.m5.4xlarge.</td>
+</tr>
+<tr>
+<td>xlarge-ha-11</td>
+<td>2TB Storage. DB Instance Class: db.m5.4xlarge.</td>
+</tr>
+
+        </table>
+      </div><p>(note: t3 / m5 instances, small plans have 100G storage instead of 20G)</p>
+<h3 id="create-new-plans-for-mysql-8">Create new plans for mysql 8</h3><p>We should play <a href="https://www.pivotaltracker.com/story/show/168322475">a story to add the following new plans</a>:</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>service plan</th>
+<th>summary</th>
+</tr>
+<tr>
+<td>tiny-unencrypted-8</td>
+<td>5GB Storage. DB Instance Class: db.t3.micro.</td>
+</tr>
+<tr>
+<td>small-8</td>
+<td>100GB Storage. DB Instance Class: db.t3.small.</td>
+</tr>
+<tr>
+<td>small-ha-8</td>
+<td>100GB Storage. DB Instance Class: db.t3.small.</td>
+</tr>
+<tr>
+<td>medium-8</td>
+<td>100GB Storage. DB Instance Class: db.m5.large.</td>
+</tr>
+<tr>
+<td>medium-ha-8</td>
+<td>100GB Storage. DB Instance Class: db.m5.large.</td>
+</tr>
+<tr>
+<td>large-8</td>
+<td>512GB Storage. DB Instance Class: db.m5.2xlarge.</td>
+</tr>
+<tr>
+<td>large-ha-8</td>
+<td>512GB Storage. DB Instance Class: db.m5.2xlarge.</td>
+</tr>
+<tr>
+<td>xlarge-8</td>
+<td>2TB Storage. DB Instance Class: db.m5.4xlarge.</td>
+</tr>
+<tr>
+<td>xlarge-ha-8</td>
+<td>2TB Storage. DB Instance Class: db.m5.4xlarge.</td>
+</tr>
+
+        </table>
+      </div><p>(note: t3 / m5 instances, small plans have 100G storage instead of 20G)</p>
+<h3 id="create-new-quot-small-high-iops-quot-and-quot-small-ha-high-iops-quot-plans-for-mysql-5-7-postgres-9-5-and-10">Create new &ldquo;small-high-iops&rdquo; and &ldquo;small-ha-high-iops&rdquo; plans, for mysql 5.7, postgres 9.5 and 10</h3><p>We should play <a href="https://www.pivotaltracker.com/story/show/168322617">a story to add &ldquo;High IOPS&rdquo; plans for the existing postgres / mysql versions</a>.</p>
+<p>These should have 100G of storage and be on the <code>t3.small</code> instance type (since there&rsquo;s no reason to
+be adding new plans on old instance types).</p>
+<p>This story may turn out not to be a priority.</p>
+<h3 id="do-not-change-the-instance-types-for-the-existing-plans">Do not change the instance types for the existing plans</h3><p>We considered whether to upgrade existing databases to new m5 / t3 instances, or to make it so that
+new databases on old versions (i.e. postgres 9.5 / 10, mysql 5.7) get latest-generation instance
+types.</p>
+<p>We decided not to do this because it would be tricky to administer the change, and it&rsquo;s nice to have
+the new instance types as an incentive for people to upgrade.</p>
+<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<ul>
+<li>Small databases for the newer engine versions (postgres 11 / mysql 8) will be more expensive and
+have more disk.</li>
+<li>Some tenants may be able to stick with small databases for longer before they have to upgrade to
+the medium plan, saving them money.</li>
+<li>Tenants will be able to get higher performing databases by using the newest engine versions
+(postgres 11 / mysql 8).</li>
+<li>It will be possible for us to implement &ldquo;downgrading&rdquo; from <code>medium</code> to <code>small</code> databases for the
+new plans in the broker (since they have the same sized disks) - this could save tenants money if
+they optimise their database usage and discover they could move from a <code>medium</code> to a <code>small</code>.</li>
+<li>We will have 9 to 11 more plans for postgres and mysql.</li>
+</ul>
+
+
+            
+          </main>
+
+
+          <footer class="footer">
+  <div class="footer__licence">
+    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
+    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+  </div>
+
+  <div class="footer__copyright">
+    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
