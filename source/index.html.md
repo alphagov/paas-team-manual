@@ -115,4 +115,4 @@ This section contains Architecture Decision Records (ADR) as described in this b
  - [ADR444 redirect http for applications](architecture_decision_records/ADR444-redirect-http-for-applications/)
  - [ADR445 continuously deploy platform CF applications](architecture_decision_records/ADR445-continuously-deploy-platform-cf-apps/)
  - [ADR446 do not use HAProxy, use AWS ALB](architecture_decision_records/ADR446-do-not-use-haproxy-use-aws-alb/)
-
+ - [ADR447 add new RDS broker plans](architecture_decision_records/ADR447-add-new-rds-broker-plans/)
