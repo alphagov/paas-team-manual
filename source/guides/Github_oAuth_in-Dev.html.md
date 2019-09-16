@@ -9,7 +9,7 @@ This will enable anyone on the team to be able to log into your concourse
  - Run `make dev upload-github-oauth GITHUB_PASSWORD_STORE_DIR=<your pass dir> DEPLOY_ENV=<your env>`
  - Checkout Master and push the pipeline with the following command for deployer concourse
 ```
-BRANCH=$(git rev-parse --abbrev-ref HEAD) make dev deployer-concourse pipelines SELF_UPDATE_PIPELINE=false ENABLE_GITHUB=true
+BRANCH=$(git rev-parse --abbrev-ref HEAD) make dev deployer-concourse pipelines SELF_UPDATE_PIPELINE=false
 ```
  - Run the `create-bosh-concourse` pipeline
  - once it has completed, login to team main using the login with Github button.
