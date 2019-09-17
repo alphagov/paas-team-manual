@@ -89,7 +89,7 @@
 <li>Run <code>make dev upload-github-oauth GITHUB_PASSWORD_STORE_DIR=&lt;your pass dir&gt; DEPLOY_ENV=&lt;your env&gt;</code></li>
 <li>Checkout Master and push the pipeline with the following command for deployer concourse
 <code>
-BRANCH=$(git rev-parse --abbrev-ref HEAD) make dev deployer-concourse pipelines SELF_UPDATE_PIPELINE=false ENABLE_GITHUB=true
+BRANCH=$(git rev-parse --abbrev-ref HEAD) make dev deployer-concourse pipelines SELF_UPDATE_PIPELINE=false
 </code></li>
 <li>Run the <code>create-bosh-concourse</code> pipeline</li>
 <li>once it has completed, login to team main using the login with Github button.</li>
