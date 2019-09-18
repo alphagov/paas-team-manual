@@ -59,4 +59,4 @@ We use the [Super Auto Refresh](https://chrome.google.com/webstore/detail/super-
 
 We have created a [dashboard in Grafana, called 'User Impact - prod'](https://grafana.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod?refresh=5s&orgId=1) and [dashboard in Grafana, called 'User Impact - prod-lon'](https://grafana.london.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod-lon?refresh=5s&orgId=1), which displays a count of monitors by trigger status (healthy, warning, critical, or unknown) for each production environment.
 
-The credentials for the Grafana mon users can be found by running `make <env> showenv` from paas-cf.
+The credentials for the Grafana mon users can be found by running `make <env> credhub` from paas-cf.
