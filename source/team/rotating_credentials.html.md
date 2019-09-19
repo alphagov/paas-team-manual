@@ -30,30 +30,10 @@ not vice versa.
 
 Second phase consists of running the main pipeline (on deployer for CF, on bootstrap for BOSH and Concourse) to generate new credentials and apply them. Ensure that there is nothing else triggering this 2nd phase run, as that would mean you would be rotating passwords _and_ trying to apply some changes at the same time, which might not work and you could end up with broken deployment. Pipeline run should complete successfully and all tests should pass. There should be no interruptions to deployed apps.
 
-### Rotating certificates
+### Rotating CA and leaf certificates
 
-Rotating the internal certificates has 2 phases similar to rotating passwords. First we delete the existing certs, and then we run a deploy to generate and use new certificates.
-
-1. Run `rotate-cf-certs-leafs` to delete existing non-CA certs
-1. Run `create-cloudfoundry` to generate new certs and deploy them
-
-#### Rotating CA certificates
-
-Rotating the CA certificates that Cloud Foundry is using internally for mutual TLS
-between components is a much longer process. You need to:
-
-1. Run `rotate-cf-certs-leafs` to delete existing non-CA certs
-1. Run `create-cloudfoundry` to generate new certs and deploy them
-1. Run `rotate-cf-certs-cas` to copy existing CAs into `_old` suffixes
-1. Run `create-cloudfoundry` to generate new CAs and deploy them alongside the old CAs
-1. Run `rotate-cf-certs-leafs` to delete existing non-CA certs
-1. Run `create-cloudfoundry` to generate new non-CA certs against the new CAs and deploy them
-1. Run `delete-old-cf-certs` to delete old CAs
-1. Run `create-cloudfoundry` to remove the old CAs
-
-The following is a diagram of the steps of our CA rotation process. The thick arrows show a quicker route that should be able to be implemented if we choose.
-
-<p><a href="/diagrams/ca-cert-rotations.jpg" target="_blank" rel="noopener noreferrer"><img src="/diagrams/ca-cert-rotations.jpg" alt="Illustration of the CA and certificate YAML fields being moved around by this process" /></a></p>
+We rotate CA and leaf certificates automatically as part of the `create-cloudfoundry`
+Concourse pipeline. You can learn more about it by reading [ADR448 automated certificate rotation](/architecture_decision_records/ADR448-automated-certificate-rotation/)
 
 #### Rotating SSO IDP keys
 
