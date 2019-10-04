@@ -70,25 +70,13 @@
         <a href="#rota">Rota</a>
       </li>
       <li>
-        <a href="#expectations">Expectations</a>
+        <a href="#in-hours-support-role-and-responsibility">In hours support role and responsibility</a>
       </li>
       <li>
-        <a href="#in-hours">In-hours</a>
+        <a href="#out-of-hours-support-role-and-responsibility">Out of hours support role and responsibility</a>
       </li>
       <li>
-        <a href="#out-of-hours">Out of hours</a>
-      </li>
-      <li>
-        <a href="#bank-holidays">Bank Holidays</a>
-      </li>
-      <li>
-        <a href="#in-hours-responsibilities">In-hours responsibilities</a>
-      </li>
-      <li>
-        <a href="#out-of-hours-responsibilities">Out-of-hours responsibilities</a>
-      </li>
-      <li>
-        <a href="#escalations-responsibilities">Escalations responsibilities</a>
+        <a href="#techops-re-incident-escalation-role-and-responsibility">TechOps RE Incident Escalation role and responsibility</a>
       </li>
     </ul>
   </li>
@@ -106,49 +94,44 @@
   </div>
 
   <h1 id="support-roles-and-responsibilities">Support roles and responsibilities</h1><p>What each role does on support and when it&rsquo;s needed.</p>
+<p>You can refer to <a href="/incident_management/incident_process/">Incident Process</a> for information on How to manage incidents and incident communication.</p>
 <h2 id="rota">Rota</h2><p>The support rota is on <a href="https://governmentdigitalservice.pagerduty.com/schedules">Pagerduty</a>.</p>
-<p>For in-hours support, one person from the team will be the Support Lead on a weekly basis. For out of hours support, to begin with, we will have one person from the team on call as Support lead, again on a weekly basis. We will also have a second person on call for Escalations.</p>
-<p>If you are on in-hours support, add your shift onto the #paas slack channel description so your colleagues find it easier to see who is on support. If you need to swap shifts, ask your colleagues if they can swap or cover, update Pagerduty <a href="https://support.pagerduty.com/hc/en-us/articles/202830170-Creating-and-Deleting-Overrides">using an override</a>.</p>
-<h2 id="expectations">Expectations</h2><p>The broad response times and action that our users expect from us are documented in the <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1FLiKPmM61ikO1MJNo96YpxGaYPUMb8CdAcWPnzBBa0U/edit?usp=sharing">PaaS Support Overview (Gdoc)</a>, and <a href="https://www.cloud.service.gov.uk/support.html">Product pages</a>. Please read it so you know what they expect. These expectations are different for in-hours and out of hours support.</p>
-<h2 id="in-hours">In-hours</h2><p>For in-hours support, if you need to take a break for lunch or essential meetings etc, make sure you tell people ahead of time, and arrange for a colleague to cover for you. All other members of the team are responsible for providing assistance to the support person as needed. If you don’t feel comfortable asking your colleagues, talk to the delivery manager or team lead who can help.</p>
-<h2 id="out-of-hours">Out of hours</h2><p>For out of hours similar guidelines apply, if you need cover for an hour or two or an evening (e.g. for an appointment, or a family dinner), you need to agree this in advance with a colleague who can cover for you, and <a href="https://support.pagerduty.com/hc/en-us/articles/202830170-Creating-and-Deleting-Overrides">update Pagerduty using an override</a>.</p>
-<p>When we first start out of hours support we’ll be in private beta and have few live services which need OOH. These services know that we are learning about OOH, and will not be as polished as we will be later.</p>
-<h2 id="bank-holidays">Bank Holidays</h2><p>On a Bank Holiday, we create a daytime override on the out-of-hours schedule so there is someone on the rota during Bank Holiday daytime. This person is usually the current out-of-hours person. We also create an override on the in-hours schedule to ensure that any alerts go to PaaS team email rather than the in-hours person.</p>
-<h2 id="in-hours-responsibilities">In-hours responsibilities</h2><p>The In hours Support Lead is responsible for</p>
+<p>There are three separate rotas; in hours, out of hours and TechOps RE Incident Escalation.</p>
+<p>If you are on support, add your shift onto the #paas slack channel description so your colleagues can see who is on support and that you are currently looking at the issue. If you need to swap shifts, ask your colleagues if they can swap or cover, then <a href="https://support.pagerduty.com/hc/en-us/articles/202830170-Creating-and-Deleting-Overrides">update Pagerduty using an override</a>.</p>
+<h2 id="in-hours-support-role-and-responsibility">In hours support role and responsibility</h2><p>The in hours support lead is responsible for:</p>
 
 <ul>
-<li>monitoring system alerts and system health, and recording any issues in ZenDesk</li>
-<li>recording the number and nature of build fails on pivotal (label: fixing the build) so we can identify higher impact/frequent ones</li>
+<li>monitoring system alerts and system health</li>
+<li>recording the number and nature of build fails on pivotal (label: fixing the build) so we can identify higher impact/frequency ones</li>
 <li>ensuring that each ticket in ZenDesk is picked up and responded to appropriately</li>
-<li>assigning /starting work on tickets and telling the initiator that you are doing so</li>
-<li>initial triage - providing or confirming the initial assessment of priority  - there may be some discussion with the initiator (tenant) required here to clarify impact.</li>
+<li>initial triage - providing or confirming the initial assessment of priority - there may be some discussion with the initiator (tenant) required here to clarify impact.</li>
 <li>involving other people as needed - supported by the delivery or product manager</li>
 <li>assigning an incident lead if the item is an incident.</li>
-<li>working on <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/167ymOJmv1zXCPK8UUoW4P_zUKvv9qr96oBioXXnNK5o/edit?usp=sharing">other items (Gdoc)</a> while not responding to alerts (NOTE items should be kicked off and have tickets/cards the same as any other work)</li>
-<li>noting what they have done in a <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1tC5G48uHnlu-qK9oGGx85QrArZSJRuFNKV2kKtFsVck/edit?usp=sharing">support week document (Gdoc)</a> which lives in the <a href="https://drive.google.com/drive/folders/0B3dxtmub3df5WmMtWnZJSi1VcXc?usp=sharing_">weeknotes folder</a></li>
+<li>picking up ‘small tasks’ in Pivotal if there is time in between support tasks</li>
 <li>having a support handover meeting at the beginning and end of the support week</li>
 </ul>
-<h2 id="out-of-hours-responsibilities">Out-of-hours responsibilities</h2><p>The Out of hours Support Lead is responsible for</p>
+<p>When you need to take a break for lunch or essential meetings etc, make sure you tell people ahead of time, and arrange for a colleague to cover for you. All other members of the team are responsible for providing assistance to the support person as needed. If you don’t feel comfortable asking your colleagues, talk to the delivery manager or team lead who can help.</p>
+<h2 id="out-of-hours-support-role-and-responsibility">Out of hours support role and responsibility</h2><p>The out of hours support engineer is responsible for:</p>
 
 <ul>
-<li>Responding to system alerts which will be sent to you via pagerduty. These will be things which seriously impact the availability of live services due to a problem with our platform</li>
+<li>Responding to system alerts which will be sent to you via pagerduty. These will only be things which seriously impact the availability of live services due to a problem with our platform.</li>
 <li>Responding to notification from tenant teams of P1 issues they are having which are caused by problems with the PaaS. This will also be via Pagerduty.</li>
-<li>Looking at the issue and telling the initiator that you are doing so (if initiated by a human)</li>
+<li>Looking at the issue and telling the initiator that you are doing so (if initiated by a human).</li>
 <li>Doing what is needed to ensure the platform is available, not necessarily fixing or diagnosing the root cause.</li>
-<li>Telling the escalation person if we need to put out tenant comms before morning.</li>
-<li>Involve other people if needed NO HEROICS, do not deploy if unsure. Some things are not a one person decision</li>
-<li>Noting what has been done in a <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1tC5G48uHnlu-qK9oGGx85QrArZSJRuFNKV2kKtFsVck/edit?usp=sharing">support week document (Gdoc)</a></li>
-<li>Having a support handover meeting at the beginning and end of the support week</li>
+<li>Alerting the communication escalation person if they feel they need support with putting out tenant comms.</li>
+<li>Involving other people if needed. NO HEROICS, do not deploy if unsure. Some things are not a one-person-decision.</li>
 </ul>
-<h2 id="escalations-responsibilities">Escalations responsibilities</h2><p>The Escalations Out of hours person is responsible for</p>
+<p>For out of hours similar guidelines apply, if you need cover for an hour or two or an evening (e.g. for an appointment, or a family dinner), you need to agree this in advance with a colleague who can cover for you, and <a href="https://support.pagerduty.com/hc/en-us/articles/202830170-Creating-and-Deleting-Overrides">update Pagerduty using an override</a>.</p>
+<p>On a Bank Holiday, we create a daytime override on the out-of-hours schedule so there is someone on the rota during Bank Holiday daytime. This person is usually the current out-of-hours person. We also create an override on the in-hours schedule to ensure that any alerts go to PaaS team email rather than the in-hours person.</p>
+<h2 id="techops-re-incident-escalation-role-and-responsibility">TechOps RE Incident Escalation role and responsibility</h2><p>This person will only be alerted if the out of hours 1st line support has decided that they need help with tenant communications so they can focus on fixing the issue. Or if the 1st line support does not answer the alert for 30 mins, pagerduty will automatically call this rota. They will then be responsible for:</p>
 
 <ul>
-<li>Responding to system alerts which will be sent to you via pagerduty if the OOH support lead is unable to deal with them. These will be things which seriously impact the availability of live services due to a problem with our platform.</li>
-<li>Making decisions about and sending any tenant comms during OOH.</li>
-<li>Escalating outside the team (through GDS) if required. More on this in the <a href="/incident_management/incident_process/#incident-comms">Incident Process</a></li>
-<li>noting what has been done in a <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1tC5G48uHnlu-qK9oGGx85QrArZSJRuFNKV2kKtFsVck/edit?usp=sharing_">support week document</a></li>
-<li>having a support handover meeting at the beginning and end of the support week</li>
+<li>Making decisions and sending out tenant communications (if appropriate). This includes Slack <a href="https://gds.slack.com/messages/CAD4W35KK">#paas-incident</a> channel, and <a href="/team/statuspage/">Statuspage</a>.</li>
+<li>To act as an automatic escalation if an on-call engineer fails to respond to an incident. If this happens the escalation person is responsible for finding someone from the team who can respond to the incident. Pagerduty will only trigger an alert if there are issues seriously impact the availability of the live services running on PaaS. The Escalation person will not be expected to fix the problem, just ensure that it is being handled appropriately.</li>
+<li>To provide leadership-level backup for RE on-call engineers if an incident requires leadership decision making or a broader response involving updating comms or activating other engineers.</li>
 </ul>
+<p>You can find more information on the PaaS <a href="/incident_management/incident_process/#incident-process">incident Process</a>.</p>
+<p>You can also refer to <a href="https://re-team-manual.cloudapps.digital/documentation/re-oncall-escalation-info.html#reliability-engineering-on-call-escalation">Reliability Engineering on-call escalation</a> section in the RE team manual for descriptions of the escalation roles and responsibility in Reliability Engineering.</p>
 
 
             

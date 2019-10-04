@@ -67,33 +67,60 @@
     <a href="#incident-process">Incident Process</a>
     <ul>
       <li>
-        <a href="#set-up-the-incident-team">Set up the incident team</a>
-      </li>
-      <li>
-        <a href="#investigate-and-resolve-the-incident">Investigate and resolve the incident</a>
+        <a href="#in-hours-incident-process">In hours incident process</a>
         <ul>
           <li>
-            <a href="#incident-lead">Incident lead</a>
+            <a href="#investigate-and-resolve-the-incident">Investigate and resolve the incident</a>
+            <ul>
+              <li>
+                <a href="#in-hours-support-lead-incident-lead">In hours support lead (incident lead)</a>
+              </li>
+              <li>
+                <a href="#incident-comms-lead">Incident comms lead</a>
+              </li>
+            </ul>
           </li>
           <li>
-            <a href="#incident-comms">Incident comms</a>
+            <a href="#when-the-incident-is-over">When the incident is over</a>
+            <ul>
+              <li>
+                <a href="#write-the-incident-report">Write the incident report</a>
+              </li>
+              <li>
+                <a href="#hold-an-incident-review-meeting">Hold an incident review meeting</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </li>
       <li>
-        <a href="#escalations">Escalations</a>
+        <a href="#publish-the-incident-report">Publish the incident report</a>
       </li>
       <li>
-        <a href="#when-the-incident-is-over">When the incident is over</a>
+        <a href="#out-of-hours-incident-process">Out of hours incident process</a>
         <ul>
           <li>
-            <a href="#write-the-incident-report">Write the incident report</a>
+            <a href="#step-one-preliminary-investigation-max-15-minutes">Step one - Preliminary investigation (max. 15 minutes)</a>
           </li>
           <li>
-            <a href="#hold-an-incident-review-meeting">Hold an incident review meeting</a>
+            <a href="#step-two-investigate-and-resolve-the-incident">Step two - Investigate and resolve the incident</a>
+            <ul>
+              <li>
+                <a href="#incident-lead-on-call-engineer">Incident lead (on call engineer)</a>
+              </li>
+              <li>
+                <a href="#incident-comms-on-call-engineer-or-techops-re-incident-escalation">Incident comms (on call engineer or Techops RE Incident Escalation)</a>
+              </li>
+              <li>
+                <a href="#step-two-investigate-and-resolve-the-incident-when-the-incident-is-over">When the incident is over</a>
+              </li>
+            </ul>
           </li>
           <li>
-            <a href="#publish-the-incident-report">Publish the incident report</a>
+            <a href="#the-next-working-day">The next working day</a>
+          </li>
+          <li>
+            <a href="#if-the-out-of-hours-support-engineer-does-not-respond">If the out of hours support engineer does not respond</a>
           </li>
         </ul>
       </li>
@@ -105,6 +132,9 @@
           </li>
           <li>
             <a href="#aiven-elasticsearch">Aiven Elasticsearch</a>
+          </li>
+          <li>
+            <a href="#other-important-contacts-in-reliability-engineering">Other Important contacts in Reliability Engineering</a>
           </li>
         </ul>
       </li>
@@ -129,6 +159,7 @@
 <li>how to manage incidents and outages to ensure a highly available service</li>
 <li>how to manage incident comms</li>
 </ul>
+<p>You may refer to <a href="/support/roles_and_responsibilities/">Support roles and responsibilities</a> for information on support rota, roles and responsibilities for in hour, out of hour engineers and Techops RE Incident Escalation.</p>
 
 <div class="govuk-warning-text">
   <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
@@ -140,75 +171,83 @@
     
   </strong>
 </div>
-<h2 id="set-up-the-incident-team">Set up the incident team</h2><p>When an incident happens, the person on support must:</p>
-
-<ul>
-<li>nominate an incident lead; this person must have production access, and may be the person on support</li>
-<li>nominate an incident comms person; during out-of-hours this can be the person on the PaaS escalation rota</li>
-<li>join #paas-incident on Slack if required</li>
-</ul>
-<p>The incident lead, incident comms person and anyone else needed to work on the incident will form the incident team.</p>
-<p>Incident team leads can request support from any other members of the PaaS team. Incidents take priority over BAU, for example retrospectives or planning sessions.</p>
-<h2 id="investigate-and-resolve-the-incident">Investigate and resolve the incident</h2><p>Your incident responsibilities depend on your role within the incident team.</p>
-<h3 id="incident-lead">Incident lead</h3>
+<h2 id="in-hours-incident-process">In hours incident process</h2><p>For incidents which occur during the working day, the in hours support lead should begin by investigating the incident and assessing the severity. If needed, the support lead should request one other person from the team to act as communications lead. Depending on the severity of the incident, they should also request more support from other members of the PaaS team. <strong>Incidents take priority over BAU work</strong>.</p>
+<h3 id="investigate-and-resolve-the-incident">Investigate and resolve the incident</h3><p>Your responsibility depends on your role within the ‘incident team’:</p>
+<h4 id="in-hours-support-lead-incident-lead">In hours support lead (incident lead)</h4>
 <ol>
-<li><p>Investigate the incident, requesting help from PaaS team if required.</p></li>
-<li><p>Make necessary changes to the production environment (only the incident lead can do this).</p></li>
-<li><p>Record actions taken and changes made in the #paas-incident slack channel.</p></li>
-<li><p>Discuss the incident with the PaaS product and delivery managers to decide when the incident is resolved, or can be downgraded as it is no longer impacting the service.</p></li>
+<li>Investigate the incident and request additional help if required.</li>
+<li>Decide on the incident <a href="/support/support_manual/#severity-levels">severity level</a>.</li>
+<li>Make necessary changes to the production environment (only the incident lead should do this).</li>
+<li>Record actions taken and changes made in the #paas-incident Slack channel.</li>
+<li>Discuss the incident with the PaaS product and delivery managers to decide when the incident is resolved or can be downgraded as it is no longer impacting the service.</li>
 </ol>
-<p>As a lower priority, create a pivotal story to record all actions taken and identify any ongoing work.</p>
-<h3 id="incident-comms">Incident comms</h3>
+<h4 id="incident-comms-lead">Incident comms lead</h4>
 <ol>
-<li><p>Let the PaaS team know about the incident on the #paas Slack channel.</p></li>
-<li><p>Notify the tenants about the investigation by creating a new incident in <a href="https://team-manual.cloud.service.gov.uk/team/statuspage/">Statuspage</a> using the “Possible issue being investigated” template.</p>
-
-<blockquote>
-<p><strong>Important</strong>: When creating or updating an incident, you must tick the boxes to say which components are affected, otherwise notifications will not be sent.</p>
-</blockquote></li>
-<li><p>Update tenants hourly using the <a href="https://manage.statuspage.io/pages/h4wt7brwsqr0">saved templates</a> in our Statuspage account.</p></li>
+<li>Let the PaaS team know about the incident on #paas-incident Slack channel.</li>
+<li>Notify the tenants about the investigation by creating a new incident in <a href="/team/statuspage/">Statuspage</a> using the ‘Possible issue being investigated’ template. 
+<strong>Important: when creating or updating an incident you must tick the boxes to say which components are affected, otherwise notifications will not be sent.</strong></li>
+<li>  Update tenants regularly using the <a href="https://manage.statuspage.io/login?redirect=%2Fpages%2Fh4wt7brwsqr0">saved templates</a> in our <a href="https://team-manual.cloud.service.gov.uk/team/statuspage/">Statuspage</a> account. The severity level page shows how frequently you should update tenants.</li>
 </ol>
-<h2 id="escalations">Escalations</h2><p>You can escalate incidents within the GOV.UK PaaS team.</p>
-
-<ol>
-<li><p>Go to <a href="https://governmentdigitalservice.pagerduty.com/services">PagerDuty</a>.</p></li>
-<li><p>Go to <strong>Configuration</strong> and select <a href="https://governmentdigitalservice.pagerduty.com/schedules"><strong>Schedules</strong></a>.</p></li>
-<li><p>Check who is currently on the escalation rota.</p></li>
-<li><p>Go back to <strong>Configuration</strong> and select <a href="https://governmentdigitalservice.pagerduty.com/users"><strong>Users</strong></a>.</p></li>
-<li><p>Select the relevant person to find their phone number.</p></li>
-</ol>
-<p>If you need to escalate an incident beyond the GOV.UK PaaS team, contact these people in the following order:</p>
+<p>Between them, the incident lead and comms lead should make a decision as to whether the incident needs to be escalated further. Their first point of call should be the GOV.UK PaaS Product Manager.</p>
+<h3 id="when-the-incident-is-over">When the incident is over</h3><p>When the problem has been fixed, check that our <a href="/team/statuspage/">Statuspage</a> is showing that the PaaS is operational. Note on #paas-incident channel that the issue is resolved.</p>
+<h4 id="write-the-incident-report">Write the incident report</h4><p>The incident lead and incident comms must write the incident report, ensuring that all relevant details, decisions and comms are in the timeline section of the report.</p>
+<p>The <a href="https://docs.google.com/document/d/155yrsyhHM9Feh-ucxLzyj7toIb2sMK8KiGVdEFLcyfQ/edit">incident report template</a> provides guidance about how to complete it.</p>
+<h4 id="hold-an-incident-review-meeting">Hold an incident review meeting</h4><p>Conduct a no-blame retro of the incident within one week of resolving the incident in order to:</p>
 
 <ul>
-<li>Head of Reliability Engineering</li>
-<li>TechOps Programme Director</li>
+<li>Agree on what happened</li>
+<li>Ensure the record fully reflects this</li>
+<li>Agree all follow-up actions</li>
 </ul>
-<p>The person contacted will decide if they need to alert a member of the GDS executive group.</p>
-<p>If neither the TechOps Programme Director nor the Head of Reliability Engineering are available, you must contact the Director for GDS Portfolio Group.</p>
-<p>The contact details for the above people, as well as useful contacts, can be found in <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing">PaaS Emergency contacts and escalations (restricted access)</a></p>
-<h2 id="when-the-incident-is-over">When the incident is over</h2><p>When the problem has been fixed, check that our <a href="https://status.cloud.service.gov.uk/">status page</a> is showing that the PaaS is operational.</p>
-<h3 id="write-the-incident-report">Write the incident report</h3><p>The incident lead and incident comms must write the incident report, ensuring that all relevant details, decisions and comms are in the timeline section of the report.</p>
-<p>The <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/155yrsyhHM9Feh-ucxLzyj7toIb2sMK8KiGVdEFLcyfQ/edit?usp=sharing">incident report template</a> provides guidance about how to complete it.</p>
-<h3 id="hold-an-incident-review-meeting">Hold an incident review meeting</h3><p>Conduct a <a href="https://codeascraft.com/2012/05/22/blameless-postmortems/">no-blame retro</a> of the incident within one week of resolving the incident to:</p>
+<p>Invite the following people to the retro:</p>
 
 <ul>
-<li>agree on what happened</li>
-<li>ensure the record fully reflects this</li>
-<li>agree all follow-up actions</li>
-</ul>
-<p>Invite the following people:</p>
-
-<ul>
-<li>Incident Lead</li>
-<li>Incident Comms</li>
-<li>Incident team</li>
-<li>Delivery manager</li>
-<li>Product Manager</li>
+<li>Incident lead</li>
+<li>Incident comms</li>
+<li>Delivery Manager</li>
+<li>Product manager</li>
 <li>Technical Architect</li>
+<li>Anyone else who had any involvement in the incident</li>
 </ul>
-<h3 id="publish-the-incident-report">Publish the incident report</h3><p>Incident comms creates a version of the incident report for publication. Refer to the <a href="https://drive.google.com/open?id=1g2_KVXfZnBDVFFlxyModAi8YSbF0uun32Z1Pe5TYBc8">template</a> for guidance, and also see previous examples.</p>
-<p>By default we publish Incident Reports on Statuspage unless there is a good reason not to. It sets a good example and demonstrates openness.</p>
-<p>The only incidents for which this is not automatically true are for security incidents which need to be carefully considered  to ensure that no further harm could be caused by publishing these.</p>
+<p>Write Pivotal stories for any actions which have come out of the incident.</p>
+<h2 id="publish-the-incident-report">Publish the incident report</h2><p>The incident comms lead should create a version of the incident report for publication. Refer to the <a href="https://docs.google.com/document/d/1g2_KVXfZnBDVFFlxyModAi8YSbF0uun32Z1Pe5TYBc8/edit">template</a> for guidance, and also see previous examples.</p>
+<p>By default we publish Incident Reports on <a href="/team/statuspage/">Statuspage</a> unless there is a good reason not to. It sets a good example and demonstrates openness.</p>
+<p>The only incidents for which this is not automatically true are for security incidents which need to be carefully considered to ensure that no further harm could be caused by publishing these.</p>
+<h2 id="out-of-hours-incident-process">Out of hours incident process</h2><h3 id="step-one-preliminary-investigation-max-15-minutes">Step one - Preliminary investigation (max. 15 minutes)</h3><p>Carry out enough investigation to confirm that there really is an issue and what the priority is (according to the <a href="/support/support_manual/#severity-levels">severity levels</a>). For P1 incidents, contact the <strong>Techops RE Incident Escalation</strong> person if you need help for communication so that you can focus on investigating the incident:</p>
+
+<ol>
+<li>Go to <a href="https://governmentdigitalservice.pagerduty.com/services">PagerDuty</a>.</li>
+<li>Under teams, select GOV.UK PaaS.</li>
+<li>Go to <strong>Configuration</strong> and select <a href="https://governmentdigitalservice.pagerduty.com/schedules">Schedules</a>.</li>
+<li>Check who is currently on the <strong>Techops RE Incident Escalation</strong> rota.</li>
+<li>Go back to <strong>Configuration</strong> and select <a href="https://governmentdigitalservice.pagerduty.com/users">Users</a>.</li>
+<li>Select the relevant person to find the phone number.</li>
+</ol>
+<p>For all other incidents update <a href="https://team-manual.cloud.service.gov.uk/team/statuspage/">Statuspage</a> and #paas-incident yourself, and then wait until working hours to investigate further.</p>
+<h3 id="step-two-investigate-and-resolve-the-incident">Step two - Investigate and resolve the incident</h3><p>If you are paged out of hour as the on-call engineer, you will become the incident lead and incident comms. You may decide to escalate to Techops RE Incident Escalation, in that case, the escalation person will be responsible for incident comms.</p>
+<h4 id="incident-lead-on-call-engineer">Incident lead (on call engineer)</h4>
+<ol>
+<li>Investigate the incident.</li>
+<li>If deemed necessary, contact the TechOps RE Incident Escalation person to get comms support.</li>
+<li>Make necessary changes to the production environment (only the incident lead can do this).</li>
+<li>Record actions taken and changes made in the #paas-incident slack channel.</li>
+<li>Discuss the incident with the communication escalations person to decide when the incident is resolved or can be downgraded as it is no longer a P1 incident.</li>
+<li>Update the #paas-incident slack channel to state it is no longer a P1 incident.</li>
+</ol>
+<h4 id="incident-comms-on-call-engineer-or-techops-re-incident-escalation">Incident comms (on call engineer or Techops RE Incident Escalation)</h4>
+<ol>
+<li>Notify tenants about the investigation by creating a new incident in <a href="/team/statuspage/">Statuspage</a> using the ‘Possible issue being investigated’ template.</li>
+<li>Let the PaaS team know about the incident on the #paas-incident slack channel.</li>
+<li>Update tenants hourly using the <a href="https://manage.statuspage.io/login?redirect=%2Fpages%2Fh4wt7brwsqr0">saved templates</a> in our Statuspage account.</li>
+<li>The Techop escalation rota is the final decision point. </li>
+</ol>
+<p>Useful contact details can be found in <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing">PaaS Emergency contacts and escalations (restricted access)</a></p>
+<h4 id="step-two-investigate-and-resolve-the-incident-when-the-incident-is-over">When the incident is over</h4><p>When the problem has been fixed, check that our <a href="/team/statuspage/">Statuspage</a> is showing that the PaaS is operational.</p>
+<p>Ensure that #paas-incident is updated to show the incident is over.</p>
+<h3 id="the-next-working-day">The next working day</h3><p>Using the information documented in the #paas-incident channel, create a Pivotal story to record all actions taken and identify any ongoing work.</p>
+<p>Continue as per the <a href="/incident_management/incident_process/#when-the-incident-is-over">in hours</a> process.</p>
+<h3 id="if-the-out-of-hours-support-engineer-does-not-respond">If the out of hours support engineer does not respond</h3><p>In the event that the out of hours support engineer doesn’t respond to the Pagerduty alert within 30 minutes of being notified, Pagerduty will then automatically contact the TechOps RE Incident Escalation rota. The escalation person will then need to reach out to another engineer to try and resolve the issue. If the TechOps RE Incident Escalation doesn’t respond to the alert within 30 minutes, Pagerduty will automatically alert all members of the out of hours support rota by email.</p>
+<p>In the event that you are contacted but aren’t scheduled to be on the rota, your first point of call should be to check the #paas-incident Slack channel to see if another engineer has already picked it up. If no one has, leave a message to state that you are beginning to investigate.</p>
 <h2 id="suppliers">Suppliers</h2><h3 id="aws">AWS</h3><p>We have a full support contract with AWS. Open a support case through the AWS console or at https://aws.amazon.com/support. If the incident is ‘critical’ or &lsquo;urgent’ severity, use <strong>click to chat</strong> or <strong>click to call</strong> for immediate contact.</p>
 <h3 id="aiven-elasticsearch">Aiven Elasticsearch</h3><p>Aiven monitors its services 24 hours a day 365 days a year, and provides free email support regarding problems using and accessing its services. Aiven personnel:</p>
 
@@ -217,6 +256,7 @@
 <li>rapidly address any issues in system operations requiring manual intervention</li>
 </ul>
 <p>Responses are provided on a best-effort basis during the same or next business day. Email <a href="mailto:support@aiven.io">support@aiven.io</a> for all support requests.</p>
+<h3 id="other-important-contacts-in-reliability-engineering">Other Important contacts in Reliability Engineering</h3><p>You can refer to <a href="https://re-team-manual.cloudapps.digital/documentation/re-oncall-escalation-info.html#important-contacts">RE On-call escalation</a> for other important contacts that may be relevant, including Cyber Security.</p>
 
 
             
