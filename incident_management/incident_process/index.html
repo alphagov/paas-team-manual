@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en" class="govuk-template no-js">
   <head>
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta charset="utf-8">
@@ -7,14 +7,10 @@
 
     <title>PaaS Team Manual</title>
 
-    <!--[if gt IE 8]><!--><link href="../../stylesheets/screen.css" rel="stylesheet" media="screen" /><!--<![endif]-->
-    <!--[if lte IE 8]><link href="../../stylesheets/screen-old-ie.css" rel="stylesheet" media="screen" /><![endif]-->
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/incident_management/incident_process/">
 
-
-    <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
-    <script src="../../javascripts/application.js"></script>
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
@@ -29,22 +25,23 @@
     
   </head>
 
-  <body>
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
     <div class="app-pane">
       <div class="app-pane__header toc-open-disabled">
-        <a href="#content" class="skip-link">Skip to main content</a>
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
 
-        <header class="header header--full-width">
-  <div class="header__container">
-    <div class="header__brand">
-        <a href="https://team-manual.cloud.service.gov.uk">
-        <span class="header__title">
+        <header class="govuk-header " role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
           PaaS Team Manual
-            <span class="phase-banner">Internal</span>
         </span>
-        </a>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
     </div>
-
   </div>
 </header>
 
@@ -64,77 +61,77 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#incident-process">Incident Process</a>
+    <a href="#incident-process"><span>Incident Process</span></a>
     <ul>
       <li>
-        <a href="#in-hours-incident-process">In hours incident process</a>
+        <a href="#in-hours-incident-process"><span>In hours incident process</span></a>
         <ul>
           <li>
-            <a href="#investigate-and-resolve-the-incident">Investigate and resolve the incident</a>
+            <a href="#investigate-and-resolve-the-incident"><span>Investigate and resolve the incident</span></a>
             <ul>
               <li>
-                <a href="#in-hours-support-lead-incident-lead">In hours support lead (incident lead)</a>
+                <a href="#in-hours-support-lead-incident-lead"><span>In hours support lead (incident lead)</span></a>
               </li>
               <li>
-                <a href="#incident-comms-lead">Incident comms lead</a>
+                <a href="#incident-comms-lead"><span>Incident comms lead</span></a>
               </li>
             </ul>
           </li>
           <li>
-            <a href="#when-the-incident-is-over">When the incident is over</a>
+            <a href="#when-the-incident-is-over"><span>When the incident is over</span></a>
             <ul>
               <li>
-                <a href="#write-the-incident-report">Write the incident report</a>
+                <a href="#write-the-incident-report"><span>Write the incident report</span></a>
               </li>
               <li>
-                <a href="#hold-an-incident-review-meeting">Hold an incident review meeting</a>
+                <a href="#hold-an-incident-review-meeting"><span>Hold an incident review meeting</span></a>
               </li>
             </ul>
           </li>
         </ul>
       </li>
       <li>
-        <a href="#publish-the-incident-report">Publish the incident report</a>
+        <a href="#publish-the-incident-report"><span>Publish the incident report</span></a>
       </li>
       <li>
-        <a href="#out-of-hours-incident-process">Out of hours incident process</a>
+        <a href="#out-of-hours-incident-process"><span>Out of hours incident process</span></a>
         <ul>
           <li>
-            <a href="#step-one-preliminary-investigation-max-15-minutes">Step one - Preliminary investigation (max. 15 minutes)</a>
+            <a href="#step-one-preliminary-investigation-max-15-minutes"><span>Step one - Preliminary investigation (max. 15 minutes)</span></a>
           </li>
           <li>
-            <a href="#step-two-investigate-and-resolve-the-incident">Step two - Investigate and resolve the incident</a>
+            <a href="#step-two-investigate-and-resolve-the-incident"><span>Step two - Investigate and resolve the incident</span></a>
             <ul>
               <li>
-                <a href="#incident-lead-on-call-engineer">Incident lead (on call engineer)</a>
+                <a href="#incident-lead-on-call-engineer"><span>Incident lead (on call engineer)</span></a>
               </li>
               <li>
-                <a href="#incident-comms-on-call-engineer-or-techops-re-incident-escalation">Incident comms (on call engineer or Techops RE Incident Escalation)</a>
+                <a href="#incident-comms-on-call-engineer-or-techops-re-incident-escalation"><span>Incident comms (on call engineer or Techops RE Incident Escalation)</span></a>
               </li>
               <li>
-                <a href="#step-two-investigate-and-resolve-the-incident-when-the-incident-is-over">When the incident is over</a>
+                <a href="#step-two-investigate-and-resolve-the-incident-when-the-incident-is-over"><span>When the incident is over</span></a>
               </li>
             </ul>
           </li>
           <li>
-            <a href="#the-next-working-day">The next working day</a>
+            <a href="#the-next-working-day"><span>The next working day</span></a>
           </li>
           <li>
-            <a href="#if-the-out-of-hours-support-engineer-does-not-respond">If the out of hours support engineer does not respond</a>
+            <a href="#if-the-out-of-hours-support-engineer-does-not-respond"><span>If the out of hours support engineer does not respond</span></a>
           </li>
         </ul>
       </li>
       <li>
-        <a href="#suppliers">Suppliers</a>
+        <a href="#suppliers"><span>Suppliers</span></a>
         <ul>
           <li>
-            <a href="#aws">AWS</a>
+            <a href="#aws"><span>AWS</span></a>
           </li>
           <li>
-            <a href="#aiven-elasticsearch">Aiven Elasticsearch</a>
+            <a href="#aiven-elasticsearch"><span>Aiven Elasticsearch</span></a>
           </li>
           <li>
-            <a href="#other-important-contacts-in-reliability-engineering">Other Important contacts in Reliability Engineering</a>
+            <a href="#other-important-contacts-in-reliability-engineering"><span>Other Important contacts in Reliability Engineering</span></a>
           </li>
         </ul>
       </li>
@@ -263,14 +260,40 @@
           </main>
 
 
-          <footer class="footer">
-  <div class="footer__licence">
-    <a class="footer__licence-logo" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a>
-    <p class="footer__licence-description">All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
-  </div>
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
 
-  <div class="footer__copyright">
-    <a class="footer__copyright-logo" href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+
+      <svg
+        role="presentation"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
   </div>
 </footer>
 
@@ -279,5 +302,6 @@
     </div>
 
     
+    <script src="../../javascripts/application.js"></script>
   </body>
 </html>
