@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR448-automated-certificate-rotation/">
+
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR448-automated-certificate-rotation/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR448-automated-certificate-rotation/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header " role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#automated-certificate-rotation"><span>Automated certificate rotation</span></a>
+    <ul>
+      <li>
+        <a href="#context"><span>Context</span></a>
+      </li>
+      <li>
+        <a href="#decision"><span>Decision</span></a>
+      </li>
+      <li>
+        <a href="#status"><span>Status</span></a>
+      </li>
+      <li>
+        <a href="#consequences"><span>Consequences</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="automated-certificate-rotation">Automated certificate rotation</h1><h2 id="context">Context</h2><p>Our certificate rotation was a largely manual process, involving an operator triggering a series of Concourse pipeline jobs in a particular sequence. We did not have a routine for doing rotations, and would typically only do them as part of a CF upgrade.</p>
+<p>The only means we had for knowing if a cert rotation was necessary was the <code>check-certificates</code> job, in the <code>create-cloudfoundry</code> Concourse pipeline, which would fail if any certificate had less than 30 days until it expired.</p>
+<p>In Q2 2019 (August/September) we moved all of our platform secrets from AWS S3 to <a href="https://docs.cloudfoundry.org/credhub/">Credhub</a>. This covered third-party service credentials, platform passwords, and certificates. Since Credhub supports <a href="https://github.com/pivotal-cf/credhub-release/blob/master/docs/ca-rotation.md">certificate rotation</a>, we chose to implement automatic certificate rotation. This ADR contains details of how we did it.</p>
+<h2 id="decision">Decision</h2><p>Credhub has the notion of a transitional certificate. As written in <a href="https://github.com/pivotal-cf/credhub-release/blob/master/docs/ca-rotation.md">their documentation</a>, a transitional certificate is</p>
+
+<blockquote>
+<p>a new version that will not be used for signing yet, but can be added to your servers trusted certificate lists.</p>
+</blockquote>
+<p>Our certificate rotation process is built around the setting and migration of the <code>transitional</code> flag, such that over a number of deployments an active certificate is retired and a new certificate is deployed, without downtime.</p>
+<p>In order to make certificate rotation automatic, and require no operator interaction, it is implemented as a job at the tail end of the <code>create-cloudfoundry</code> pipeline; after acceptance tests and before releases tagging.</p>
+<p>The new <code>rotate-certs</code> job has three tasks:</p>
+
+<ul>
+<li><code>remove-transitional-flag-for-ca</code></li>
+<li><code>move-transitional-flag-for-ca</code></li>
+<li><code>set-transitional-flag-for-ca</code></li>
+</ul>
+<p>These three tasks are in <em>reverse</em> order of the process for rotating a certificate. If the tasks were ordered normally, the first task would set up the state for the second, and the second would set up the state for the third, and Bosh would be unable to deploy the certificates without downtime. However, here the tasks are explained in the proper order to make it easier to understand how a certificate is rotated. To understand how it happens in the pipeline, assume a Bosh deploy happens between each step.</p>
+<p><code>set-transitional-flag-for-ca</code> is the first step in the process. It iterates through all CA certificates in Credhub, looking for any expiring under 30 days. Any that are, are regenerated as transitional certificates. This results in Credhub holding two certificates for the same credential name: the expiring certificate, and the new certificate with the <code>transitional</code> flag.</p>
+<p><code>move-transitional-flag-for-ca</code> is the second step in the process, and has two jobs:</p>
+
+<ol>
+<li>It finds all CA certificates in Credhub which have 2 values, where the oldest certificate <em>does not</em> have the <code>transitional</code> flag and the newer one <em>does</em>. For each of those, it swaps the <code>transitional</code> flag to the <em>older</em> certificate. Finally, it looks for any leaf certificates signed by the CA certificate and regenerates them using the new CA certificate.</li>
+<li>It looks for any leaf certificates that are expiring in less than 30 days and regenerates them. This is a one step process and they are deployed on the next Bosh deploy.</li>
+</ol>
+<p><code>remove-transitional-flag-for-ca</code> is the third and final step in the process. It iterates through all of the CA certificates in Credhub, looking for any with 2 values, where the older certificate is marked as <code>transitional</code> and the newer certificate is not. It then removes the <code>transitional</code> flag from the older certificate, which has the effect of dropping the certificate.</p>
+<p>The existing <code>check-certificates</code> job has also been modified to check for certificates that are expiring in less than 15 days. If a certificate fails this check, that should suggest to us that something has gone wrong in our certificate rotation process.</p>
+<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="consequences">Consequences</h2><p>Certificate rotations will happen more frequently, and we&rsquo;ll need to update our documentation surrounding certificate rotation and any documentation that references it.</p>
+
+
+            
+          </main>
+
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+
+      <svg
+        role="presentation"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../javascripts/application.js"></script>
+  </body>
+</html>

@@ -252,7 +252,7 @@ fundimental connectivity issue to the reported endpoint.</p>
 information. This is deployed to the &#39;monitoring&rsquo; space of the &#39;admin&rsquo; org.</p>
 <h2 id="cloud-foundry-internal-certificates">Cloud Foundry internal certificates</h2><p>We generate several certificates for Cloud Foundry which need to be rotated regularly (most of them have a 1 year expiry).</p>
 <p>We have a <a href="https://deployer.cloud.service.gov.uk/teams/main/pipelines/create-cloudfoundry/jobs/check-certificates/builds/latest">Concourse job</a> which checks if we have certificates expiring in less than 30 days.</p>
-<p>If we need to rotate any of the certificates please follow the intructions <a href="/team/rotating_credentials/#rotating-certificates">here</a>.</p>
+<p>If you need to rotate a certificate before it would otherwise be rotated automatically, you can <a href="https://github.com/pivotal-cf/credhub-release/blob/master/docs/ca-rotation.md#step-1-regenerate">perform step 1</a> of the Credhub CA cert rotation, and then allow the pipeline to take over.</p>
 <h2 id="trusted-advisor-warnings">Trusted Advisor Warnings</h2><p>If you see a warning from Trusted Advisor it should be addressed.</p>
 
 <ul>
