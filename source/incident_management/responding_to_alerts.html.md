@@ -191,7 +191,7 @@ We generate several certificates for Cloud Foundry which need to be rotated regu
 
 We have a [Concourse job](https://deployer.cloud.service.gov.uk/teams/main/pipelines/create-cloudfoundry/jobs/check-certificates/builds/latest) which checks if we have certificates expiring in less than 30 days.
 
-If we need to rotate any of the certificates please follow the intructions [here](/team/rotating_credentials/#rotating-certificates).
+If you need to rotate a certificate before it would otherwise be rotated automatically, you can [perform step 1](https://github.com/pivotal-cf/credhub-release/blob/master/docs/ca-rotation.md#step-1-regenerate) of the Credhub CA cert rotation, and then allow the pipeline to take over.
 
 ## Trusted Advisor Warnings
 
