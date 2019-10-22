@@ -40,7 +40,7 @@ one way communication
 ## Sending (critical) technical emails
 Essential information and actions tenants need to carry out in order to ensure their service remains live.
 
-1. Write email body copy to tenants to pupulate the email
+1. Write email body copy to tenants to populate the email
 
 1. Your email **must** contain the following header
 
