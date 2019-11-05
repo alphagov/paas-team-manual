@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <title>PaaS Team Manual</title>
+
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR449-audit-logs-in-splunk/">
+
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR449-audit-logs-in-splunk/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR449-audit-logs-in-splunk/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header " role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#audit-logs-in-splunk"><span>Audit logs in Splunk</span></a>
+    <ul>
+      <li>
+        <a href="#context"><span>Context</span></a>
+        <ul>
+          <li>
+            <a href="#audit-events"><span>Audit events</span></a>
+          </li>
+          <li>
+            <a href="#logging-service"><span>Logging service</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#decision"><span>Decision</span></a>
+      </li>
+      <li>
+        <a href="#status"><span>Status</span></a>
+      </li>
+      <li>
+        <a href="#consequences"><span>Consequences</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="audit-logs-in-splunk">Audit logs in Splunk</h1><h2 id="context">Context</h2><h3 id="audit-events">Audit events</h3><p>The GOV.UK PaaS has components which expose events which can be used for
+auditing. For example:</p>
+
+<ul>
+<li>BOSH director kernel audit logs</li>
+<li>BOSH director Credhub security events</li>
+<li>BOSH director UAA events</li>
+<li>Cloud Foundry UAA events</li>
+<li>Cloud Foundry Cloud Controller security events</li>
+</ul>
+<p>The BOSH director and BOSH managed instances store these logs in
+<code>/var/vcap/sys/log/</code>.</p>
+<h3 id="logging-service">Logging service</h3><p>The Cyber Security team run a centralised log ingestion system called the
+Central Security Logging Service (CSLS).</p>
+<p>This service runs in AWS and uses <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html">CloudWatch log group subscription
+filters</a>
+to ingest logs, which are then sent to Splunk for indexing.</p>
+<h2 id="decision">Decision</h2><p>We will use Terraform to create log groups in our existing pipelines:</p>
+
+<ul>
+<li><code>create-bosh-concourse</code></li>
+<li><code>create-cloudfoundry</code></li>
+</ul>
+<p>We will store audit logs in CloudWatch for 18 months (545 days).</p>
+<p>We will use Terraform to create log group subscription filters which will send
+logs to CSLS.</p>
+<p>Terraform failing to create log group subscription filters should not block the
+execution of the pipeline, so our pipelines are not coupled to CSLS.</p>
+<p>We will run a fork of the
+<a href="https://github.com/alphagov/paas-awslogs-boshrelease">awslogs-boshrelease</a>,
+on all instances that have relevant audit and security event logs, to send logs
+from the instances to CloudWatch.</p>
+<p>The CloudWatch log groups will have subscription filters that will send logs
+to CSLS so that logs are indexed in Splunk.</p>
+<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="consequences">Consequences</h2><p>We will store audit and security events for 18 months.</p>
+<p>We will share audit and security events with Cyber Security using CSLS.</p>
+
+
+            
+          </main>
+
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+
+      <svg
+        role="presentation"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../javascripts/application.js"></script>
+  </body>
+</html>
