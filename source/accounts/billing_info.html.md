@@ -96,8 +96,9 @@ GDS pay their AWS bills centrally. Usage is pre-paid in payments of several
 million dollars. Therefore the actual exchange rate paid by GDS is the rate at
 the point of prepayment, rather than at the point of use.
 
-The Finance team will let the PaaS team know whenever a prepayment is made, and
-tell the team:
+The PMO team will let PaaS support know whenever a prepayment is made, by
+emailing gov-uk-paas-support@digital.cabinet-office.gov.uk with the subject
+"Amazon exchange rate". They will tell the team:
 
 * what the exchange rate was (or how many GBP it cost for the payment in USD)
 * when the first AWS invoice will be paid from this prepayment
