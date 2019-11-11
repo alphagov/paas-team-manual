@@ -40,7 +40,7 @@ detail and help you get started implementing your first stories.
 These are key events that happen each fortnightly sprint. You'll get
 calendar invites that detail the actual times and locations.
 
-- Stand-up is at 09:45 every morning. We'll talk briefly about progress,
+- Stand-up is at 10:00 every morning. We'll talk briefly about progress,
 blockers, and pair rotation. Please be on time and keep it succinct. There
 is time for more detailed conversations immediately afterwards.
 - Planning is at the beginning of a sprint. Most of the stories
