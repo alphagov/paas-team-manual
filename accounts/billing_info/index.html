@@ -81,6 +81,9 @@
       <li>
         <a href="#process-for-cross-charging-gds-paas-tenants"><span>Process for cross-charging GDS PaaS tenants</span></a>
       </li>
+      <li>
+        <a href="#how-paas-sets-the-exchange-rate"><span>How PaaS sets the exchange rate</span></a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -171,6 +174,24 @@
 - Send the billing sheets to pmodelivery@digital.cabinet-office.gov.uk on a quarterly basis
 - The PMO team will then arrange cross charging within GDS</p>
 <p>You do not need to request a PO or follow up billing in any other way.</p>
+<h2 id="how-paas-sets-the-exchange-rate">How PaaS sets the exchange rate</h2><p>GOV.UK PaaS bases its prices on the cost of its infrastructure. Some of this
+infrastructure is paid for in dollars. This means there needs to be a record of
+the exchange rate between pounds (which tenants are billed in) and dollars
+(which some costs are paid in).</p>
+<p>GDS pay their AWS bills centrally. Usage is pre-paid in payments of several
+million dollars. Therefore the actual exchange rate paid by GDS is the rate at
+the point of prepayment, rather than at the point of use.</p>
+<p>The PMO team will let PaaS support know whenever a prepayment is made, by
+emailing gov-uk-paas-support@digital.cabinet-office.gov.uk with the subject
+&ldquo;Amazon exchange rate&rdquo;. They will tell the team:</p>
+
+<ul>
+<li>what the exchange rate was (or how many GBP it cost for the payment in USD)</li>
+<li>when the first AWS invoice will be paid from this prepayment</li>
+</ul>
+<p>The PaaS team will then update the PaaS billing system with the new exchange
+rate valid from the first day of the month where the new prepayment takes
+effect.</p>
 
 
             
