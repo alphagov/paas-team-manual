@@ -85,3 +85,24 @@ The process for charging eligible teams is as follows:
 
 You do not need to request a PO or follow up billing in any other way.
 
+## How PaaS sets the exchange rate
+
+GOV.UK PaaS bases its prices on the cost of its infrastructure. Some of this
+infrastructure is paid for in dollars. This means there needs to be a record of
+the exchange rate between pounds (which tenants are billed in) and dollars
+(which some costs are paid in).
+
+GDS pay their AWS bills centrally. Usage is pre-paid in payments of several
+million dollars. Therefore the actual exchange rate paid by GDS is the rate at
+the point of prepayment, rather than at the point of use.
+
+The PMO team will let PaaS support know whenever a prepayment is made, by
+emailing gov-uk-paas-support@digital.cabinet-office.gov.uk with the subject
+"Amazon exchange rate". They will tell the team:
+
+* what the exchange rate was (or how many GBP it cost for the payment in USD)
+* when the first AWS invoice will be paid from this prepayment
+
+The PaaS team will then update the PaaS billing system with the new exchange
+rate valid from the first day of the month where the new prepayment takes
+effect.
