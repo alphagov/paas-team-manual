@@ -26,7 +26,7 @@ The other person will be the guest.
 The host should get a clean slate in git, create a new branch to work on. They then open the project in their IDE, and connect to their own workspace. When prompted, the host will overwrite the workspace's files with their own. This makes the workspace look the same as the on the host's machine.
 
 ### 2. Configure `.flooignore`
-If it doesn't already exist, create the `.floorignore` file in the root of the project. Add to it the `.git` directory, any git submodule directories, and any third-party package directories like `node_modules`. We've found that, in a Go project, when the `vendor` directory is included in version control, that it should not be ignored by Floobits.
+If it doesn't already exist, create the `.flooignore` file in the root of the project. Add to it the `.git` directory, any git submodule directories, and any third-party package directories like `node_modules`. We've found that, in a Go project, when the `vendor` directory is included in version control, that it should not be ignored by Floobits.
 
 It's also worth adding any folders maintained by the IDE (such as `.idea`), so that settings and state don't bleed between participants using the same IDE.
 
