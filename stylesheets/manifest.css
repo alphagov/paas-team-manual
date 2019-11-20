@@ -3057,12 +3057,10 @@ html.has-search-results-open {
   font-weight: 400;
   font-size: 16px;
   font-size: 1rem;
-  line-height: 1.25;
+  line-height: 1.4;
   display: block;
   margin: 15px;
-  font-size: 19px;
   max-width: 40em;
-  line-height: 1.4;
   color: #0b0c0c; }
   @media print {
     .technical-documentation {
@@ -3071,11 +3069,11 @@ html.has-search-results-open {
     .technical-documentation {
       font-size: 19px;
       font-size: 1.1875rem;
-      line-height: 1.3157894737; } }
+      line-height: 1.4; } }
   @media print {
     .technical-documentation {
       font-size: 14pt;
-      line-height: 1.15; } }
+      line-height: 1.4; } }
   @media (min-width: 40.0625em) {
     .technical-documentation {
       margin: 0 30px 32px; } }
@@ -3090,8 +3088,7 @@ html.has-search-results-open {
   .technical-documentation > b {
     font-weight: 700; }
   .technical-documentation table {
-    margin-bottom: 20px;
-    table-layout: fixed; }
+    margin-bottom: 20px; }
     @media (min-width: 40.0625em) {
       .technical-documentation table {
         margin-bottom: 30px; } }
@@ -3133,6 +3130,10 @@ html.has-search-results-open {
       .technical-documentation blockquote {
         font-size: 14pt;
         line-height: 1.15; } }
+  .technical-documentation pre,
+  .technical-documentation code {
+    font-family: monospace, monospace;
+    font-size: 1em; }
   .technical-documentation pre {
     background: #f9f9f8;
     padding: 15px;
@@ -3149,6 +3150,7 @@ html.has-search-results-open {
     border-radius: 1px;
     font-family: monaco, Consolas, "Lucida Console", monospace;
     font-size: 15px;
+    font-size: 0.9375rem;
     color: #a71d5d;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -3159,12 +3161,18 @@ html.has-search-results-open {
     word-break: break-word; }
     @media (min-width: 40.0625em) {
       .technical-documentation code {
-        font-size: 16px; } }
+        font-size: 16px;
+        font-size: 1rem; } }
   .technical-documentation h1 code, .technical-documentation h2 code, .technical-documentation h3 code, .technical-documentation h4 code, .technical-documentation h5 code, .technical-documentation h6 code {
     font-size: inherit;
     color: #0b0c0c;
     background: none;
     padding: 0; }
+  .technical-documentation a code {
+    color: inherit; }
+  .technical-documentation a:focus code {
+    background: inherit;
+    color: inherit; }
   .technical-documentation .table-container {
     display: block;
     max-width: 100%;
