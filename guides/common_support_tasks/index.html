@@ -70,9 +70,6 @@
         <a href="#subscribe-and-check-the-aws-notifications"><span>Subscribe and check the AWS notifications</span></a>
       </li>
       <li>
-        <a href="#resetting-the-user-testing-organisation"><span>Resetting the user testing organisation</span></a>
-      </li>
-      <li>
         <a href="#notifying-all-users"><span>Notifying all users</span></a>
       </li>
       <li>
@@ -106,11 +103,6 @@
 <p>The script will mark the user as &ldquo;unverified&rdquo; and send a new invite
 link, which essentially will be a new password.</p>
 <h2 id="subscribe-and-check-the-aws-notifications">Subscribe and check the AWS notifications</h2><p>AWS <a href="/team/responding_to_aws_alert/">sends notifications to our maillists</a>. You should subscribe to these groups to get any notification.</p>
-<h2 id="resetting-the-user-testing-organisation">Resetting the user testing organisation</h2><p>After a user testing lab session, we rotate test user passwords and delete and recreate the <code>paas_user_testing</code> org in prod.</p>
-<p>We use the same test users each time. They are of the form <code>holly.challenger+N@digital.cabinet-office.gov.uk</code> for N 1-6.</p>
-<p>If Holly needs anything extra (for example, a Jenkins box provisioned) she will ask on a case-by-case basis.</p>
-<p>You need admin access to <code>cf</code> in prod to do the reset.</p>
-<p>The script lives in <code>paas-cf</code>.</p>
 <h2 id="notifying-all-users">Notifying all users</h2><p>Occasionally you may need to notify all users of an event on the platform, perhaps during an incident in progress or to send an incident report.</p>
 <p>To do this, follow the instructions on <a href="/team/notifying_tenants/">notifying tenants</a>.</p>
 <h2 id="uncontactable-org-managers">Uncontactable Org Managers</h2><p>If none of the org managers for a specific org are contactable (for example if they&rsquo;ve all left) then the following people within the team are permitted to approve the nomination of another person to be org manager:</p>
