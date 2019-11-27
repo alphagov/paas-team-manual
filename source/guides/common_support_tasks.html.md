@@ -19,18 +19,6 @@ link, which essentially will be a new password.
 
 AWS [sends notifications to our maillists](/team/responding_to_aws_alert/). You should subscribe to these groups to get any notification.
 
-## Resetting the user testing organisation
-
-After a user testing lab session, we rotate test user passwords and delete and recreate the `paas_user_testing` org in prod.
-
-We use the same test users each time. They are of the form `holly.challenger+N@digital.cabinet-office.gov.uk` for N 1-6.
-
-If Holly needs anything extra (for example, a Jenkins box provisioned) she will ask on a case-by-case basis.
-
-You need admin access to `cf` in prod to do the reset.
-
-The script lives in `paas-cf`.
-
 ## Notifying all users
 
 Occasionally you may need to notify all users of an event on the platform, perhaps during an incident in progress or to send an incident report.
