@@ -22,6 +22,10 @@ Aiven has _service integrations_ which add extra functionality to an Aiven _serv
 
 We currently run Prometheus for monitoring the platform, using the [Prometheus BOSH release](https://github.com/bosh-prometheus/prometheus-boshrelease) and have confidence and experience using it.
 
+We will need to think about Prometheus failover. If we load balance Prometheus without sticky sessions, then the metrics reported by Prometheus will be erratic as different instances report different metrics.
+In the initial implementation we will use Caddy and Gorouter to load balance Prometheus. This should be seen as a temporary implementation which will be revisited when we look at how to expose the Prometheus API to users.
+Caddy does automatic failover, such that during normal operation all traffic gets proxied to a single instance, but when the normal instance is unreachable, the local Prometheus is used.
+
 ## Decision
 
 We will use Prometheus to scrape Aiven provided services.
