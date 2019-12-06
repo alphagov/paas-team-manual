@@ -118,3 +118,4 @@ This section contains Architecture Decision Records (ADR) as described in this b
  - [ADR447 add new RDS broker plans](architecture_decision_records/ADR447-add-new-rds-broker-plans/)
  - [ADR448 automated certificate rotation](architecture_decision_records/ADR448-automated-certificate-rotation/)
  - [ADR449 audit logs in Splunk](architecture_decision_records/ADR449-audit-logs-in-splunk/)
+ - [ADR450 provide Aiven metrics to users](architecture_decision_records/ADR450-aiven-metrics-for-users/)
