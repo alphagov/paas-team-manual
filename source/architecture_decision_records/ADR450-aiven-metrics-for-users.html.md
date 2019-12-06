@@ -23,8 +23,6 @@ Aiven has _service integrations_ which add extra functionality to an Aiven _serv
 We currently run Prometheus for monitoring the platform, using the [Prometheus BOSH release](https://github.com/bosh-prometheus/prometheus-boshrelease) and have confidence and experience using it.
 
 We will need to think about Prometheus failover. If we load balance Prometheus without sticky sessions, then the metrics reported by Prometheus will be erratic as different instances report different metrics.
-In the initial implementation we will use Caddy and Gorouter to load balance Prometheus. This should be seen as a temporary implementation which will be revisited when we look at how to expose the Prometheus API to users.
-Caddy does automatic failover, such that during normal operation all traffic gets proxied to a single instance, but when the normal instance is unreachable, the local Prometheus is used.
 
 ## Decision
 
@@ -36,6 +34,25 @@ We will need to automate the following tasks:
 
 - Service discovery: ensure Prometheus has an updated list of Aiven _services_ to scrape. This automation must be colocated with the Prometheus instance.
 - Service integration: ensure every eligible Aiven provided _service_ uses the Aiven _service integration_ for Prometheus.
+
+## Initial implementation
+
+In the initial implementation we deploy multiple instances of Prometheus for high availability.
+
+![architecture](../images/adr450-prometheus-aiven-architecture.svg)
+
+There will be three services on the instance:
+
+- Prometheus
+- Caddy
+- Aiven service discovery
+
+We use gorouter for exposing Prometheus publicly.
+
+We use Caddy for failover and for authentication.
+Caddy does automatic failover, such that during regular operation all traffic gets proxied to a single instance, but when the usual instance is unreachable, Caddy will proxy the request to the colocated Prometheus.
+
+This architecture is temporary and will be revisited when we look at how to expose the Prometheus API to all users.
 
 ## Status
 
