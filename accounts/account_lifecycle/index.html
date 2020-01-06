@@ -64,36 +64,41 @@
     <a href="#account-lifecycle"><span>Account lifecycle</span></a>
     <ul>
       <li>
-        <a href="#definition-of-trial-organisation"><span>Definition of trial organisation</span></a>
-      </li>
-      <li>
-        <a href="#creating-new-trial-organisations"><span>Creating new trial organisations</span></a>
-      </li>
-      <li>
-        <a href="#upgrading-trial-organisations-to-paid-organisations"><span>Upgrading trial organisations to paid organisations</span></a>
+        <a href="#handling-requests-for-a-new-trial-organisation-org"><span>Handling requests for a new trial organisation (org)</span></a>
         <ul>
           <li>
-            <a href="#requests-to-upgrade"><span>Requests to upgrade</span></a>
+            <a href="#when-the-request-doesn-39-t-come-through-the-signup-form"><span>When the request doesn’t come through the signup form</span></a>
           </li>
           <li>
-            <a href="#upgrade-approval-within-gov-uk-paas-team"><span>Upgrade approval within GOV.UK PaaS team</span></a>
+            <a href="#when-requests-come-from-beis"><span>When requests come from BEIS</span></a>
           </li>
           <li>
-            <a href="#perform-upgrade"><span>Perform upgrade</span></a>
+            <a href="#who-can-request-a-trial-org"><span>Who can request a trial org?</span></a>
           </li>
           <li>
-            <a href="#notify-engagement-team"><span>Notify engagement team</span></a>
+            <a href="#how-to-set-up-a-trial-org"><span>How to set up a trial org</span></a>
           </li>
         </ul>
       </li>
       <li>
-        <a href="#annex"><span>Annex</span></a>
+        <a href="#upgrading-trial-orgs-to-paid-orgs"><span>Upgrading trial orgs to paid orgs</span></a>
         <ul>
           <li>
-            <a href="#how-to-identify-trial-accounts"><span>How to identify trial accounts</span></a>
+            <a href="#before-you-upgrade"><span>Before you upgrade</span></a>
           </li>
           <li>
-            <a href="#upgrade-notification-email"><span>Upgrade notification email</span></a>
+            <a href="#what-to-do-when-a-user-requests-an-upgrade"><span>What to do when a user requests an upgrade</span></a>
+          </li>
+          <li>
+            <a href="#how-to-upgrade-an-org"><span>How to upgrade an org</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#product-manager-payment-and-support-onboarding"><span>Product Manager payment and support onboarding </span></a>
+        <ul>
+          <li>
+            <a href="#product-manager-updates-list-of-live-services-and-closes-ticket"><span>Product Manager updates list of live services and closes ticket</span></a>
           </li>
         </ul>
       </li>
@@ -112,137 +117,97 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="account-lifecycle">Account lifecycle</h1><h2 id="definition-of-trial-organisation">Definition of trial organisation</h2><p>When a team starts using GOV.UK PaaS, they get to try out the platform for 3 months using a trial organisation. With this account, the team can:</p>
+  <h1 id="account-lifecycle">Account lifecycle</h1><h2 id="handling-requests-for-a-new-trial-organisation-org">Handling requests for a new trial organisation (org)</h2><p>Requests to create a new trial org are always handled via Zendesk by the support agent. A range of Zendesk macros are available to speed up the completion of this task.</p>
+<p>In most cases, a user will request a trial org by using the form at <a href="https://www.cloud.service.gov.uk/signup">https://www.cloud.service.gov.uk/signup</a>, which triggers an automated Zendesk ticket. Users should be encouraged to use this route.</p>
+<h3 id="when-the-request-doesn-39-t-come-through-the-signup-form">When the request doesn&rsquo;t come through the signup form</h3><p>In some cases a user might send their request directly to <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
+<p>In these cases, use the Zendesk macro <code>Trial Request &gt; User has bypassed form</code>, which will request the required information from the user.</p>
+<p>If the request comes through any other channel, then it should always be routed into Zendesk by emailing it to <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>. Use the macro appropriately to collect the required information.</p>
+<h3 id="when-requests-come-from-beis">When requests come from BEIS</h3><p>Currently we have a special arrangment with the department BEIS. Before granting requests for trial accounts from users at BEIS, use the Zendesk macro <code>Trial Request &gt; Trial creation BEIS</code> and wait for a response.</p>
+<p>When creating the org, ensure you add the people named in the macro as billing managers.</p>
+<h3 id="who-can-request-a-trial-org">Who can request a trial org?</h3>
+<ul>
+<li>  Anyone working for a government or public sector organisation </li>
+<li>  Contractors or third party suppliers working on behalf of the government or public sector</li>
+<li>  Crown or non-crown bodies</li>
+<li>  No Memorandum of Understanding (MOU) is required at this stage</li>
+</ul>
+<h3 id="how-to-set-up-a-trial-org">How to set up a trial org</h3>
+<ol>
+<li><p>Check you have the information you need to set up the trial org:</p>
 
 <ul>
-<li>manage users</li>
-<li>create and manage spaces</li>
-<li>deploy and run apps</li>
-<li>use trial-sized editions of our backing services</li>
+<li>The name of the service or the team the user is working on</li>
+<li>  The name of the government organisation or public body that will be using the org</li>
+<li>  An email address of at least one person who can act as an Org Manager, who can add and remove users to the org.
+<strong>When creating an org, at least one person with an email address belonging to the government organisation or public body using the org must be identified as an Org Manager</strong></li>
+<li>  The email address of anyone else the user would like to add to the account</li>
 </ul>
-<p>The trial period is free of charge, but users are only allowed a capped quota of resources, cannot set up custom domains and cannot run production apps on the platform.</p>
-<h2 id="creating-new-trial-organisations">Creating new trial organisations</h2><p>An existing tenant or someone new to the platform can request a trial
-organisation at <a href="https://www.cloud.service.gov.uk/signup">https://www.cloud.service.gov.uk/signup</a>. This
-triggers an automated Zendesk ticket to support. The applicant will need an
-official (gov.uk) email address to use this form.</p>
-<p>If a request comes in outside Zendesk (for example via email), the person
-receiving the request should raise a Zendesk ticket by sending an email to
-<a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
-<p>We need to know the following information before setting up a trial account:</p>
+<p>If this information is not provided or is unclear, clarify with the requester.</p></li>
+<li><p>Use <code>./scripts/create-org.sh</code> to create an org in paas-cf</p>
+<p>The naming convention we use is <code>department-serviceorteam</code>, using <a href="https://wiki.c2.com/?KebabCase">kebab case</a> for example:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>gds-tech-ops
+gds-performance-platform
+gds-data-science
+</code></pre></div><p>When identifying the department, use the names listed in the <a href="https://www.registers.service.gov.uk/registers/government-organisation">Government organisations Register</a> if possible.</p></li>
+<li><p>Confirm the trial org creation with the user</p>
+<p>Use Zendesk macro <code>Trial request &gt; Trial creation confirm</code></p></li>
+</ol>
+<h2 id="upgrading-trial-orgs-to-paid-orgs">Upgrading trial orgs to paid orgs</h2><p>Currently there is no form for requesting an upgrade to a paid account. Users need to email <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
+<p>It may sometimes be unclear to a tenant that they need to upgrade their org to the paid service, and they might not always explicitly request this. As a support agent, it might sometimes be necessary to infer this need. For example when:</p>
 
 <ul>
-<li>Name of the Government Department or Public body</li>
-<li>The name of an individual who will act as the Organisation Manager</li>
-<li>The name of the proposed service.</li>
+<li><p>the tenant says they need access to a bigger service plan or app memory quota, unavailable on the default quota</p></li>
+<li><p>the tenant asks about &ldquo;going live&rdquo; with their service</p></li>
+<li><p>the tenant&rsquo;s other orgs are on paid quotas, they might assume that a new org is automatically going to be created on a paid quota.</p></li>
 </ul>
-<p>If this information is not provided or is unclear, PaaS Support should clarify
-with the requester.</p>
-<p>PaaS Support should then check whether an organisation is Crown or non-Crown
-(see the Engagement Team’s <a href="https://docs.google.com/spreadsheets/d/1HSYj4EEW-Fr6WPaKvYYM_I45Xgay1-707k1Elajgdh8/edit?ts=5b8801d5#gid=939993178">CRM</a>).</p>
-<p>If the organisation is Crown and the requester has a gov.uk email address, PaaS
-Support must set up the trial organisation on a default quota. There&rsquo;s a script
-to do this in paas-cf <code>./scripts/create-org.sh</code>.</p>
-<p>Once the org is created, confirm this by responding on Zendesk, cc&#39;ing a PaaS
-Product Manager and the relevant engagement lead from
-<a href="https://docs.google.com/document/d/13qGTlbQfqhH-Gx46e2w2XJKG4JyBnnFWLWJgM2XxUAc/edit">this document</a>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Hi $REQUESTOR_NAME,
+<h3 id="before-you-upgrade">Before you upgrade</h3><p>Check the <a href="https://trello.com/b/SFyQGwfH/govuk-paas-tracker">Engagement Tracker</a> to see if that department has signed a Memorandum of Understanding with GDS. Note that Ministry of Defence currently require a separate MOU per service.</p>
+<p>If yes, continue to the next step.</p>
+<p>If no, escalate to Product Manager, who will need to use the Zendesk macro <code>Upgrade request &gt; Info capture - No MOU</code> and support the department to sign an MOU.</p>
+<h3 id="what-to-do-when-a-user-requests-an-upgrade">What to do when a user requests an upgrade</h3>
+<ol>
+<li><p>Collect the necessary information from the tenant:</p>
 
-Thank you for your request. I've created a new trial organisation for you
-called $ORG_NAME in our London region. You should get two emails, one inviting
-you to create an account, and one inviting you to join our announcements
-mailing list.
-
-Please let us know how you get on, or if you have any questions about the service.
-
-Thank you,
-$YOUR_NAME
-GOV.UK PaaS Support
-</code></pre></div><p>If the organisation is Crown and the requester does not have a gov.uk email
-address, PaaS Support must ask the requester to supply an individual with a
-gov.uk address to act as the organisation manager.</p>
-<p>If the organisation is non-Crown, a trial organisation is available at the
-discretion of the PaaS Product Manager, who should be contacted via an internal
-note on Zendesk. As of November 2018 we can offer non-Crown bodies a trial
-organisation, but when setting it up we must include the following note:</p>
+<ul>
+<li>  the name of the GOV.UK PaaS org that needs upgrading</li>
+<li>  confirmation that they have approval from the appropriate person or people in your department to start using the paid service</li>
+<li>  confirmation that they have <a href="https://docs.cloud.service.gov.uk/orgs_spaces_users.html#billing-manager">added a suitable Billing Manager to their GOV.UK PaaS org account</a>. This will be the person or people we will send invoices to and contact about paying for the service.</li>
+</ul>
+<p>If they haven&rsquo;t provided this information up front, use the Zendesk macro <code>Upgrade request &gt; Info capture - MOU</code> to ask for it.</p>
+<p>You might need to add some appropriate words before the macro to put it in the context of what the user is trying to do. For example</p>
 
 <blockquote>
-<p>Currently, non-Crown bodies are able to trial the GOV.UK PaaS but cannot
-provide live services on it. We expect to be able to fully service non-Crown
-bodies by January 2019.</p>
-</blockquote>
-<p>GOV.UK PaaS Support must define the name of the organisation in a way that
-identifies the department and the service, for example defra-cleanair.</p>
-<p>Once GOV.UK PaaS Support has set up the trial organisation on a default quota,
-GOV.UK PaaS Support must confirm this to the organisation via Zendesk, and cc a
-Product Manager. It is then the responsibility of the Product Manager to liaise
-with the <a href="mailto:common-platforms@digital.cabinet-office.gov.uk">Engagement team</a> to ensure they are aware of
-the new organisation. If the Department does not have a Memorandum of
-Understanding (see the Engagement Team’s <a href="https://docs.google.com/spreadsheets/d/1HSYj4EEW-Fr6WPaKvYYM_I45Xgay1-707k1Elajgdh8/edit?ts=5b8801d5#gid=939993178">CRM</a>), then
-the Product Manager must check with the Engagement Team whether they are in the
-process of getting one signed. Getting an MOU signed is the remit of the
-Engagement Team, not the PaaS team.</p>
-<h2 id="upgrading-trial-organisations-to-paid-organisations">Upgrading trial organisations to paid organisations</h2><h3 id="requests-to-upgrade">Requests to upgrade</h3><p>Requests to upgrade from a trial to a paid organisation can come from multiple sources: e.g. Zendesk, email, the engagement team. Regardless of the source, the same process applies:
-Zendesk ticket and tenant confirmation</p>
-<p>To keep track in Zendesk and get the tenant to confirm the pricing:</p>
-
-<ol>
-<li>A Zendesk ticket must be raised by either the tenant, engagement team or the GOV.UK PaaS team.</li>
-<li>GOV.UK PaaS support picks up this ticket and tags it as ‘govuk_paas_trial_upgrade’ in Zendesk to track it.</li>
-<li>In the Zendesk ticket, cc in the organisation managers and billing managers in the organisation. (see PaaS Admin interface)<br>
-Send a reminder, including:
-
-<ul>
-<li>that the GOV.UK PaaS is a paid service </li>
-<li>a link to the <a href="https://admin.cloud.service.gov.uk/calculator">billing calculator</a>.</li>
-<li>a list of available quotas and suggest one</li>
-<li>a reminder that approval from the billing manager is required </li>
-</ul></li>
-<li>Ticket is kept in <em>Pending</em> state until the tenant responds. </li>
-<li>If the tenant still wants to proceed with the upgrade, continue the upgrade process. Otherwise close the ticket.</li>
+<p>&ldquo;In order to get access to all the platform&rsquo;s features, you will have to start using the paid service&hellip;&rdquo;</p>
+<p>&ldquo;In order to deploy your app to production or start storing user data you will need to start using the paid service&hellip;&rdquo;</p>
+</blockquote></li>
+<li><p>Ticket is kept in Pending state until the tenant responds.</p></li>
+<li><p>If the tenant provides the information satisfactorily, continue the upgrade process.</p></li>
+<li><p>After upgrading the org, send a confirmation message using the Zendesk macro <code>Upgrade request &gt; Confirm</code></p></li>
+<li><p>CC the Product Manager on the Zendesk ticket, so they can proceed with payment and support onboarding.</p></li>
 </ol>
-<h3 id="upgrade-approval-within-gov-uk-paas-team">Upgrade approval within GOV.UK PaaS team</h3><p>GOV.UK PaaS Support can approve the upgrade if:</p>
+<h3 id="how-to-upgrade-an-org">How to upgrade an org</h3><p>To upgrade an org from a trial to paid, alter the orgs quota using the CF CLI.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>cf set-quota ORG QUOTA
+</code></pre></div><p>Upgrade a trial org to the <code>small</code> quota. The Zendesk macro tells tenants how to request a larger quota.</p>
+<h2 id="product-manager-payment-and-support-onboarding">Product Manager payment and support onboarding </h2>
+<ol>
+<li><p>Send an &ldquo;Please arrange payment for your GOV.UK PaaS account&rdquo; email </p>
+<p>Send the email from gov-uk-paas-tenant-billing@digital.cabinet-office.gov.uk </p>
+<p>Send the email to </p>
 
 <ul>
-<li>GOV.UK PaaS has a signed copy of the <a href="https://docs.google.com/spreadsheets/d/1HSYj4EEW-Fr6WPaKvYYM_I45Xgay1-707k1Elajgdh8/edit?ts=5b8801d5#gid=939993178">Memorandum of Understanding</a> (MOU) for the corresponding department; you can check this on the Engagement team’s <a href="https://docs.google.com/spreadsheets/d/1HSYj4EEW-Fr6WPaKvYYM_I45Xgay1-707k1Elajgdh8/edit?ts=5b8801d5#gid=939993178">CRM document</a>.</li>
-<li>The org has a confirmed billing manager as the billing contact in the PaaS Admin interface. </li>
+<li>  all Org Managers and Billing Managers for the org</li>
+<li>  pmo@digital.cabinet-office.gov.uk</li>
 </ul>
-<p>If Support is not confident that these prerequisites are true, Support should request approval from the GOV.UK PaaS Product Manager (PM) via a private response in Zendesk explaining why in the ticket.</p>
-<h3 id="perform-upgrade">Perform upgrade</h3><p>Once previous prerequisites are satisfied and/or the PM has approved the upgrade Support will:</p>
-
-<ol>
-<li>Agree the new quota with the tenant.</li>
-<li>Ask the tenant for billing manager approval, and wait for it.</li>
-<li>Change the team quota in the GOV.UK PaaS</li>
-<li>Notify the Product Manager, who finishes the process.</li>
+<p>It is important that pmo@digital.cabinet-office.gov.uk is copied into this email because this is used to trigger their bill tracking and payment recovery process.</p>
+<p><a href="https://docs.google.com/document/d/1Yn9wsbPB9MFPO5_xJrGGnN5Ki1jkWpUfOQP2OTZ7v2g/edit#bookmark=id.72fufiqa0182">Use this email copy </a> and attach the <a href="https://drive.google.com/drive/folders/1VU209JscH-M4_htGcPzsP9a_UAGPbVAR">Terms of Use</a></p></li>
+<li><p>Send &ldquo;Get support for your service&rdquo; email </p>
+<p>Send the email from gov-uk-paas-tenant-billing@digital.cabinet-office.gov.uk </p>
+<p>Send the email to all Org Managers and Billing Managers for the org</p></li>
 </ol>
-<h3 id="notify-engagement-team">Notify engagement team</h3><p>The PM must:</p>
-
-<ol>
-<li>Email the Engagement team at common-platforms@digital.cabinet-office.gov.uk about the account upgrade.</li>
-<li>Send an email from gov-uk-paas-tenant-billing@digital.cabinet-office.gov.uk to the org manager and billing manager, copying in the Engagement team (common-platforms@digital.cabinet-office.gov.uk). See annex.</li>
-<li>Check with the tenant the expected date their service goes live. </li>
-<li>Update the GOV.UK PaaS <a href="https://docs.google.com/spreadsheets/d/1iI39lXMaLEVskv5hFI7C0TMAWvGCE_msAITbcEZb1V8/edit#gid=267936930">list of live services</a>, including the date of upgrade so the GOV.UK PaaS team can start issuing bills at the right time.</li>
-<li>Close the Zendesk ticket</li>
-</ol>
-<h2 id="annex">Annex</h2><h3 id="how-to-identify-trial-accounts">How to identify trial accounts</h3><p>To check whether an organisation is in trial, the Product Manager (PM) can either:</p>
-
-<ul>
-<li>go to the <a href="https://admin.cloud.service.gov.uk/reports/cost/2018-07">Billables page</a> for the relevant org and check if the quota is default.</li>
-<li>run the following in the command line:</li>
-</ul>
-<div class="highlight"><pre class="highlight plaintext"><code>cf org org_name
-</code></pre></div><h3 id="upgrade-notification-email">Upgrade notification email</h3><p>Note: We should move this to http://notifications.service.gov.uk/</p>
-<p>Congratulations on upgrading to the GOV.UK PaaS paid service! You can now make full use of the platform. We already have a Memorandum of Understanding with [dept - ]. We will send you a single bill for all of [dept]; the frequency of billing depends on usage across all the orgs in your Department.</p>
-<p>Please tell us when you expect your service to go live so that we can provide you with escalation contact information. Please also send us your emergency contact details.</p>
-<p>Please ensure you are familiar with our Terms of Use (TOU) [1]
-https://docs.google.com/document/d/1HgEMoLw0JlnvzLTAsj67Ib4Ia2aG3wjf8riCAi1BUJk/edit?usp=sharing</p>
-<p>You can see your usage and billing information at any time by logging in to the GOV.UK PaaS Admin tool for London or Ireland. [2]</p>
-<p>Feel free to contact me at any time if you need any further information.</p>
-<p>[name]
-Sr Product Manager
-GOV.UK PaaS Team</p>
-<p>[1] We need to publish the TOU to the product page. For now, attach the linked page as a PDF
-[2] London: https://admin.london.cloud.service.gov.uk/ Ireland: https://admin.cloud.service.gov.uk</p>
+<p><a href="https://docs.google.com/document/d/1Yn9wsbPB9MFPO5_xJrGGnN5Ki1jkWpUfOQP2OTZ7v2g/edit#bookmark=id.naohbyl472s3">Use this email copy</a></p>
+<h3 id="product-manager-updates-list-of-live-services-and-closes-ticket">Product Manager updates list of live services and closes ticket</h3><p>Update the <a href="https://docs.google.com/spreadsheets/d/1ZVOvlP28a-sUC61sqpZlMtkCiEqF6cCjWEIStvdAmsU/edit#gid=366936614">list of live services</a>. This is used as a rough count of the number of live services using GOV.UK PaaS - which we sometimes need to report on.</p>
+<p>Usually an account upgrade is conducted at an early stage of building the service, and it may take some time until the service might be considered &ldquo;live&rdquo;.</p>
+<p>In these cases the org/service should be marked as &ldquo;early stage&rdquo; - until there is a clear indication that the service is going into production soon.</p>
+<p>Finally, close the ticket.</p>
 
 
             
