@@ -11,10 +11,39 @@ We use [IAM roles](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
 
 ### IAM Roles for Humans
 
-We use separate IAM roles for users on our team to use via AWS' assume-role
-feature. See the [RE manual](https://reliability-engineering.cloudapps.digital/iaas.html#access-aws-accounts)
-for details on how to do this.  The available role ARNs that you'll need for
-this are documented [in paas-aws-account-wide-terrafom here](https://github.com/alphagov/paas-aws-account-wide-terraform/blob/master/doc/assume_role_arns.md)
+See [the reliability engineering documentation on how to access AWS accounts](https://reliability-engineering.cloudapps.digital/iaas.html#access-aws-accounts).
+
+We have a number of IAM roles intended for operators of the platform to use.
+
+You should always try to use the least privileged role possible. This helps mitigate several risks, such as:
+
+* accidentally performing a destructive action due to a typo (e.g. running `terraform destroy -auto-approve` against the wrong account)
+* compromise of a privileged token leading to a serious security incident
+
+#### Operator
+
+The `Operator` role grants a minimal set of mostly read-only permissions.
+
+Wherever possible this should be the only role we use to interact with
+non-dev environments. Actions which require higher privileges should usually
+be done through version controlled changes deployed through our pipelines.
+
+There are some actions which are not deployed through the pipelines for which
+the operator role is insufficient. For example:
+
+* running AWS account wide terraform (requires Admin)
+* performing maintenance on tenant databases (requires Admin)
+
+In these situations it is acceptable to use an Admin role.
+
+#### Admin
+
+The `Admin` role grants full IAM access to an account. It should only be used
+in production when the operator role is not sufficient.
+
+Before using the Admin role in a production environment you should think
+carefully about whether you could make a version controlled change deployed
+through our pipelines instead of using an ad hoc AWS session.
 
 ### Role configuration
 
