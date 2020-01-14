@@ -71,6 +71,14 @@
           </li>
           <li>
             <a href="#iam-roles-for-humans"><span>IAM Roles for Humans</span></a>
+            <ul>
+              <li>
+                <a href="#operator"><span>Operator</span></a>
+              </li>
+              <li>
+                <a href="#admin"><span>Admin</span></a>
+              </li>
+            </ul>
           </li>
           <li>
             <a href="#role-configuration"><span>Role configuration</span></a>
@@ -104,10 +112,31 @@
   <h1 id="aws">AWS</h1><h2 id="iam">IAM</h2><p>Each AWS account has <a href="http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html">root account</a> credentials, which we don&rsquo;t use.</p>
 <p>Instead we access AWS resources using <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">IAM</a>.</p>
 <h3 id="iam-roles-for-vms">IAM Roles for VMs</h3><p>We use <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</a> via <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">intance profiles</a> on our EC2 instances to delegate particular restricted permissions to processes running on those instances.</p>
-<h3 id="iam-roles-for-humans">IAM Roles for Humans</h3><p>We use separate IAM roles for users on our team to use via AWS&rsquo; assume-role
-feature. See the <a href="https://reliability-engineering.cloudapps.digital/iaas.html#access-aws-accounts">RE manual</a>
-for details on how to do this.  The available role ARNs that you&rsquo;ll need for
-this are documented <a href="https://github.com/alphagov/paas-aws-account-wide-terraform/blob/master/doc/assume_role_arns.md">in paas-aws-account-wide-terrafom here</a></p>
+<h3 id="iam-roles-for-humans">IAM Roles for Humans</h3><p>See <a href="https://reliability-engineering.cloudapps.digital/iaas.html#access-aws-accounts">the reliability engineering documentation on how to access AWS accounts</a>.</p>
+<p>We have a number of IAM roles intended for operators of the platform to use.</p>
+<p>You should always try to use the least privileged role possible. This helps mitigate several risks, such as:</p>
+
+<ul>
+<li>accidentally performing a destructive action due to a typo (e.g. running <code>terraform destroy -auto-approve</code> against the wrong account)</li>
+<li>compromise of a privileged token leading to a serious security incident</li>
+</ul>
+<h4 id="operator">Operator</h4><p>The <code>Operator</code> role grants a minimal set of mostly read-only permissions.</p>
+<p>Wherever possible this should be the only role we use to interact with
+non-dev environments. Actions which require higher privileges should usually
+be done through version controlled changes deployed through our pipelines.</p>
+<p>There are some actions which are not deployed through the pipelines for which
+the operator role is insufficient. For example:</p>
+
+<ul>
+<li>running AWS account wide terraform (requires Admin)</li>
+<li>performing maintenance on tenant databases (requires Admin)</li>
+</ul>
+<p>In these situations it is acceptable to use an Admin role.</p>
+<h4 id="admin">Admin</h4><p>The <code>Admin</code> role grants full IAM access to an account. It should only be used
+in production when the operator role is not sufficient.</p>
+<p>Before using the Admin role in a production environment you should think
+carefully about whether you could make a version controlled change deployed
+through our pipelines instead of using an ad hoc AWS session.</p>
 <h3 id="role-configuration">Role configuration</h3><p>We manage all these IAM roles, and the corresponding policies using Terraform.
 The config is in the <a href="https://github.com/alphagov/paas-aws-account-wide-terraform">account-wide-terraform</a>
 repo. This includes defining who is allowed to assume the above roles.</p>
