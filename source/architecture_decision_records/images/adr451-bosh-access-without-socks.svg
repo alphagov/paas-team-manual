@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Title: G Pages: 1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="354pt" height="218pt" viewBox="0.00 0.00 353.97 218.40">
+    <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 214.4)">
+        <title>G</title>
+        <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-214.4 349.9715,-214.4 349.9715,4 -4,4"/>
+        <g id="clust1" class="cluster">
+            <title>cluster_2</title>
+            <polygon fill="none" stroke="#000000" points="27.9715,-8 27.9715,-166.4 337.9715,-166.4 337.9715,-8 27.9715,-8"/>
+            <text text-anchor="middle" x="182.9715" y="-149.8" font-family="Times,serif" font-size="14.00" fill="#000000">VPC</text>
+        </g>
+        <g id="clust2" class="cluster">
+            <title>cluster_1</title>
+            <polygon fill="none" stroke="#000000" points="35.9715,-16 35.9715,-133.6 329.9715,-133.6 329.9715,-16 35.9715,-16"/>
+            <text text-anchor="middle" x="182.9715" y="-117" font-family="Times,serif" font-size="14.00" fill="#000000">Security Group</text>
+        </g>
+        <g id="clust3" class="cluster">
+            <title>cluster_0</title>
+            <polygon fill="#d3d3d3" stroke="#d3d3d3" points="43.9715,-24 43.9715,-100.8 321.9715,-100.8 321.9715,-24 43.9715,-24"/>
+            <text text-anchor="middle" x="182.9715" y="-84.2" font-family="Times,serif" font-size="14.00" fill="#000000">BOSH Director</text>
+        </g>
+        <!-- BOSH -->
+        <g id="node1" class="node">
+            <title>BOSH</title>
+            <ellipse fill="#ffffff" stroke="#ffffff" cx="276.9715" cy="-50" rx="36.5767" ry="18"/>
+            <text text-anchor="middle" x="276.9715" y="-45.8" font-family="Times,serif" font-size="14.00" fill="#000000">BOSH</text>
+        </g>
+        <!-- Credhub -->
+        <g id="node2" class="node">
+            <title>Credhub</title>
+            <ellipse fill="#ffffff" stroke="#ffffff" cx="177.9715" cy="-50" rx="44.0852" ry="18"/>
+            <text text-anchor="middle" x="177.9715" y="-45.8" font-family="Times,serif" font-size="14.00" fill="#000000">Credhub</text>
+        </g>
+        <!-- UAA -->
+        <g id="node3" class="node">
+            <title>UAA</title>
+            <ellipse fill="#ffffff" stroke="#ffffff" cx="83.9715" cy="-50" rx="31.9012" ry="18"/>
+            <text text-anchor="middle" x="83.9715" y="-45.8" font-family="Times,serif" font-size="14.00" fill="#000000">UAA</text>
+        </g>
+        <!-- Internet (GDS IPs) -->
+        <g id="node4" class="node">
+            <title>Internet (GDS IPs)</title>
+            <ellipse fill="none" stroke="#000000" cx="83.9715" cy="-192.4" rx="83.9431" ry="18"/>
+            <text text-anchor="middle" x="83.9715" y="-188.2" font-family="Times,serif" font-size="14.00" fill="#000000">Internet (GDS IPs)</text>
+        </g>
+        <!-- Internet (GDS IPs)&#45;&gt;UAA -->
+        <g id="edge1" class="edge">
+            <title>Internet (GDS IPs)-&gt;UAA</title>
+            <path fill="none" stroke="#000000" d="M83.9715,-174.3649C83.9715,-150.2093 83.9715,-107.0858 83.9715,-78.5087"/>
+            <polygon fill="#000000" stroke="#000000" points="87.4716,-78.3384 83.9715,-68.3384 80.4716,-78.3384 87.4716,-78.3384"/>
+        </g>
+    </g>
+</svg>
