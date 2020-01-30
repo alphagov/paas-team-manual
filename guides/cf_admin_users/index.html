@@ -81,6 +81,16 @@ account in CI, staging and prod to avoid needing to share credentials and to be
 able to attribute actions to individuals.</p>
 <p>In order to ensure two factor authentication is used, we use our google apps accounts to authenticate:</p>
 <p><code>cf login -a api.SYSTEM_DOMAIN --sso</code></p>
+<p>This will give you a link to the UAA login page which lists identity providers.</p>
+<p>Using the normal &ldquo;Google&rdquo; identity provider will give you global auditor
+access.</p>
+<p>Using the &ldquo;Platform Administrators&rdquo; identity provider will give you global
+administrator access, which you should use only when necessary, for instance:</p>
+
+<ul>
+<li>during an incident</li>
+<li>to help a tenant debug a problem with their application</li>
+</ul>
 
 
             
