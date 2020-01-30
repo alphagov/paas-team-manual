@@ -7,3 +7,14 @@ able to attribute actions to individuals.
 In order to ensure two factor authentication is used, we use our google apps accounts to authenticate:
 
 `cf login -a api.SYSTEM_DOMAIN --sso`
+
+This will give you a link to the UAA login page which lists identity providers.
+
+Using the normal "Google" identity provider will give you global auditor
+access.
+
+Using the "Platform Administrators" identity provider will give you global
+administrator access, which you should use only when necessary, for instance:
+
+- during an incident
+- to help a tenant debug a problem with their application
