@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Title: G Pages: 1 -->
+<svg width="334pt" height="262pt"
+     viewBox="0.00 0.00 334.00 262.40" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 258.4)">
+        <title>G</title>
+        <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-258.4 330,-258.4 330,4 -4,4"/>
+        <g id="clust1" class="cluster">
+            <title>cluster_0</title>
+            <polygon fill="#d3d3d3" stroke="#d3d3d3" points="8,-8 8,-210.4 318,-210.4 318,-8 8,-8"/>
+            <text text-anchor="middle" x="163" y="-193.8" font-family="Times,serif" font-size="14.00" fill="#000000">VPC</text>
+        </g>
+        <g id="clust2" class="cluster">
+            <title>cluster_1</title>
+            <polygon fill="#ffa500" stroke="#ffa500" points="16,-16 16,-177.6 310,-177.6 310,-16 16,-16"/>
+            <text text-anchor="middle" x="163" y="-161" font-family="Times,serif" font-size="14.00" fill="#000000">Security Group</text>
+        </g>
+        <g id="clust3" class="cluster">
+            <title>cluster_2</title>
+            <polygon fill="#00ff00" stroke="#00ff00" points="24,-24 24,-100.8 302,-100.8 302,-24 24,-24"/>
+            <text text-anchor="middle" x="163" y="-84.2" font-family="Times,serif" font-size="14.00" fill="#000000">BOSH Director</text>
+        </g>
+        <!-- mTLS Proxy -->
+        <g id="node1" class="node">
+            <title>mTLS Proxy</title>
+            <ellipse fill="#ffffff" stroke="#ffffff" cx="168" cy="-126.8" rx="61.3977" ry="18"/>
+            <text text-anchor="middle" x="168" y="-122.6" font-family="Times,serif" font-size="14.00" fill="#000000">mTLS Proxy</text>
+        </g>
+        <!-- UAA -->
+        <g id="node2" class="node">
+            <title>UAA</title>
+            <ellipse fill="#ffffff" stroke="#ffffff" cx="262" cy="-50" rx="31.9012" ry="18"/>
+            <text text-anchor="middle" x="262" y="-45.8" font-family="Times,serif" font-size="14.00" fill="#000000">UAA</text>
+        </g>
+        <!-- mTLS Proxy&#45;&gt;UAA -->
+        <g id="edge2" class="edge">
+            <title>mTLS Proxy&#45;&gt;UAA</title>
+            <path fill="none" stroke="#000000" d="M203.5136,-112.0691C209.6315,-108.794 215.7145,-105.0212 221,-100.8 229.9929,-93.6179 238.3025,-84.1405 245.056,-75.3188"/>
+            <polygon fill="#000000" stroke="#000000" points="247.9464,-77.2956 251.0257,-67.1581 242.2967,-73.1627 247.9464,-77.2956"/>
+        </g>
+        <!-- Credhub -->
+        <g id="node3" class="node">
+            <title>Credhub</title>
+            <ellipse fill="#ffffff" stroke="#ffffff" cx="168" cy="-50" rx="44.0852" ry="18"/>
+            <text text-anchor="middle" x="168" y="-45.8" font-family="Times,serif" font-size="14.00" fill="#000000">Credhub</text>
+        </g>
+        <!-- mTLS Proxy&#45;&gt;Credhub -->
+        <g id="edge3" class="edge">
+            <title>mTLS Proxy&#45;&gt;Credhub</title>
+            <path fill="none" stroke="#000000" d="M168,-108.5995C168,-99.5132 168,-88.3176 168,-78.1549"/>
+            <polygon fill="#000000" stroke="#000000" points="171.5001,-78.0698 168,-68.0699 164.5001,-78.0699 171.5001,-78.0698"/>
+        </g>
+        <!-- BOSH -->
+        <g id="node4" class="node">
+            <title>BOSH</title>
+            <ellipse fill="#ffffff" stroke="#ffffff" cx="69" cy="-50" rx="36.5767" ry="18"/>
+            <text text-anchor="middle" x="69" y="-45.8" font-family="Times,serif" font-size="14.00" fill="#000000">BOSH</text>
+        </g>
+        <!-- mTLS Proxy&#45;&gt;BOSH -->
+        <g id="edge4" class="edge">
+            <title>mTLS Proxy&#45;&gt;BOSH</title>
+            <path fill="none" stroke="#000000" d="M132.9599,-111.9656C126.7295,-108.6807 120.4852,-104.9311 115,-100.8 105.2495,-93.4565 95.9263,-83.8401 88.2539,-74.952"/>
+            <polygon fill="#000000" stroke="#000000" points="90.7924,-72.5307 81.707,-67.0803 85.4105,-77.0068 90.7924,-72.5307"/>
+        </g>
+        <!-- Internet (Any IP) -->
+        <g id="node5" class="node">
+            <title>Internet (Any IP)</title>
+            <ellipse fill="none" stroke="#000000" cx="168" cy="-236.4" rx="77.5665" ry="18"/>
+            <text text-anchor="middle" x="168" y="-232.2" font-family="Times,serif" font-size="14.00" fill="#000000">Internet (Any IP)</text>
+        </g>
+        <!-- Internet (Any IP)&#45;&gt;mTLS Proxy -->
+        <g id="edge1" class="edge">
+            <title>Internet (Any IP)&#45;&gt;mTLS Proxy</title>
+            <path fill="none" stroke="#000000" d="M168,-218.3018C168,-201.0883 168,-174.9333 168,-154.9888"/>
+            <polygon fill="#000000" stroke="#000000" points="171.5001,-154.9251 168,-144.9251 164.5001,-154.9251 171.5001,-154.9251"/>
+        </g>
+    </g>
+</svg>

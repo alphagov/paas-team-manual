@@ -119,3 +119,5 @@ This section contains Architecture Decision Records (ADR) as described in this b
  - [ADR448 automated certificate rotation](architecture_decision_records/ADR448-automated-certificate-rotation/)
  - [ADR449 audit logs in Splunk](architecture_decision_records/ADR449-audit-logs-in-splunk/)
  - [ADR450 provide Aiven metrics to users](architecture_decision_records/ADR450-aiven-metrics-for-users/)
+ - [ADR451 BOSH access without SOCKS](architecture_decision_records/ADR451-bosh-access-without-socks/)
+ - [ADR452 BOSH access with mTLS](architecture_decision_records/ADR452-bosh-access-with-mtls/)
