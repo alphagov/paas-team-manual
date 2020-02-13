@@ -33,7 +33,7 @@ Isolation segments will have the following variable properties:
 - Instance type (e.g. small/large - maps to an AWS instance type + disk sizing)
 - Whether egress to the internet is restricted
 
-We will use iptables rules to achieve egress restriction. 
+We will use IPTables rules to achieve egress restriction.
 
 ### Isolation segments
 
@@ -74,27 +74,31 @@ Virtual Extensible Local Area Network
 Each container is assigned a virtual IP address inside the subnet 10.255/16
 
 [Silk](https://github.com/cloudfoundry/silk)
-and VXLAN use 
-[iptables](https://linux.die.net/man/8/iptables)
-(part of Linux kernel networking) via the Container Network Interface
-([CNI](https://github.com/containernetworking/cni))
-to create/update/delete iptables rules, to ensure containers can talk to each
-other.
+and VXLAN create/update/delete
+[IPTables](https://linux.die.net/man/8/iptables) rules
+via the Container Network Interface
+([CNI](https://github.com/containernetworking/cni)),
+to ensure containers can talk to each other.
+IPTables is an interface to control networking within the Linux kernel.
 
-We can configure additional iptables rules to impose further restriction to
-network traffic already defined by Silk and VXLAN. The additional rules can
-have a higher precedence than the existing rules, allowing us to impose tighter
-restrictions.
+Existing network traffic restrictions are defined by Silk and VXLAN as
+described above. We can configure extra IPTables rules with higher precedence
+to create tighter restrictions than currently exist.
 
-iptables can be used to prevent unauthorised egress via REJECT rules,
+IPTables can be used to prevent unauthorised egress via REJECT rules,
 depending on the destination IP address. This can be done, either:
 
 - In the global INPUT or FORWARD chains, with source IP qualifier to ensure only container traffic is affected
 - In each container’s “netout” chain
 
-Thus, any app traffic (from an IP address within 10.255/16) to a non-VPC
-address (outside 10/8) can be blocked. These rules would be applied to running
-apps and tasks, but not staging apps.
+Implementing such IPTables rules allows us to block traffic from an IP address
+within 10.255.0.0/16 (apps) to an address outside 10.0.0.0/8 (outside the VPC).
+This would have the effect of preventing app traffic egressing from the
+platform.
+
+We would apply these IPTables rules to running apps and tasks, but not staging
+apps.  This will allow staging apps to communicate with the outside world (e.g.
+for downloading dependencies).
 
 ## Consequences
 
