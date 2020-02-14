@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>PaaS Team Manual</title>
+
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR453-isolation-segments/">
+
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR453-isolation-segments/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR453-isolation-segments/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header " role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#isolation-segments"><span>Isolation segments</span></a>
+    <ul>
+      <li>
+        <a href="#status"><span>Status</span></a>
+      </li>
+      <li>
+        <a href="#context"><span>Context</span></a>
+      </li>
+      <li>
+        <a href="#decision"><span>Decision</span></a>
+        <ul>
+          <li>
+            <a href="#decision-isolation-segments"><span>Isolation segments</span></a>
+          </li>
+          <li>
+            <a href="#egress-restrictions"><span>Egress restrictions</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#consequences"><span>Consequences</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="isolation-segments">Isolation segments</h1><h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="context">Context</h2><p>GOV.UK PaaS would like to be able to isolate specific tenant apps and tasks to
+different pools of virtual machines (VMs).</p>
+<p>GOV.UK PaaS would like to be able to prevent specific tenant apps and tasks
+from egressing to the internet.</p>
+<p>Apps running inside the separate pools of VMs should be able to discover and
+access other apps running within the platform, providing that the correct Cloud
+Foundry Network Policies have been created.</p>
+<p>Apps running in the shared pools of VMs should be able to discover and access
+apps running inside an isolation segment, providing that the correct Cloud
+Foundry Network Policies have been created.</p>
+<h2 id="decision">Decision</h2><p>GOV.UK PaaS will implement egress-restricted isolation segments.</p>
+<p>Isolation segments will be configured by a GOV.UK PaaS developer, in a similar
+manner to VPC peering connections.</p>
+<p>Isolation segments will have the following variable properties:</p>
+
+<ul>
+<li>Number of instances (e.g. 1, 2, 3, 6)</li>
+<li>Instance type (e.g. small/large - maps to an AWS instance type + disk sizing)</li>
+<li>Whether egress to the internet is restricted</li>
+</ul>
+<p>We will use IPTables rules to achieve egress restriction.</p>
+<h3 id="decision-isolation-segments">Isolation segments</h3><p>Cloud Foundry supports separating apps and tasks for specific Organizations
+and Spaces via a feature called
+<a href="https://docs.cloudfoundry.org/adminguide/isolation-segments.html">Isolation Segments</a>.</p>
+<p>An Isolation Segment is a group of Diego cells with separate placement tags,
+which map to the isolation segment name.</p>
+<p>Isolation segments will be implemented as new instance groups defined in the
+BOSH deployment manifest, with additional placement tags. A placement tag
+corresponds to an isolation group name.</p>
+<p>For example, an instance group with the placement tags:</p>
+
+<ul>
+<li><code>fast-cpu</code></li>
+<li><code>fast-network</code></li>
+</ul>
+<p>enables us to run the following commands successfully:</p>
+
+<ul>
+<li><code>cf create-isolation-segment fast-cpu</code></li>
+<li><code>cf create-isolation-segment fast-network</code></li>
+</ul>
+<p>which creates two isolation segments.</p>
+<p>These isolation segments can be shared such that a segment can be:</p>
+
+<ul>
+<li>used by only a single organization or space</li>
+<li>shared by multiple organizations and spaces</li>
+</ul>
+<h3 id="egress-restrictions">Egress restrictions</h3><p>Container-to-container networking within Cloud Foundry is implemented via a
+Virtual Extensible Local Area Network
+(<a href="https://tools.ietf.org/html/rfc7348">VXLAN</a>).</p>
+<p>Each container is assigned a virtual IP address inside the subnet 10.255/16</p>
+<p><a href="https://github.com/cloudfoundry/silk">Silk</a>
+and VXLAN create/update/delete
+<a href="https://linux.die.net/man/8/iptables">IPTables</a> rules
+via the Container Network Interface
+(<a href="https://github.com/containernetworking/cni">CNI</a>),
+to ensure containers can talk to each other.
+IPTables is an interface to control networking within the Linux kernel.</p>
+<p>Existing network traffic restrictions are defined by Silk and VXLAN as
+described above. We can configure extra IPTables rules with higher precedence
+to create tighter restrictions than currently exist.</p>
+<p>IPTables can be used to prevent unauthorised egress via REJECT rules,
+depending on the destination IP address. This can be done, either:</p>
+
+<ul>
+<li>In the global INPUT or FORWARD chains, with source IP qualifier to ensure only container traffic is affected</li>
+<li>In each container’s “netout” chain</li>
+</ul>
+<p>Implementing such IPTables rules allows us to block traffic from an IP address
+within 10.255.0.0/16 (apps) to an address outside 10.0.0.0/8 (outside the VPC).
+This would have the effect of preventing app traffic egressing from the
+platform.</p>
+<p>We would apply these IPTables rules to running apps and tasks, but not staging
+apps.  This will allow staging apps to communicate with the outside world (e.g.
+for downloading dependencies).</p>
+<h2 id="consequences">Consequences</h2><p>The implementation of isolation segments:</p>
+
+<ul>
+<li>will enable us to host apps which should not have access to the internet</li>
+<li>will enable us to host apps for users on separate virtual machines from other running on the platform</li>
+<li>will enable us to provision cells of different instance types</li>
+<li>will not interfere with normal Cloud Foundry container-to-container networking</li>
+</ul>
+<p>The implementation of egress-restricted isolation segments:</p>
+
+<ul>
+<li>will not interfere with VPC peering, or brokered services which reside inside the platform VPC</li>
+<li>may interfere with app communication with brokered services which reside external to the platform VPC</li>
+<li>will not interfere with non-app traffic on the isolation segment virtual machines</li>
+<li>will not prevent future implementation of DNS masking for egress restricted apps</li>
+</ul>
+<p>We will not have to change network topology, only virtual machine network configuration.</p>
+<p>The maximum capacity of an isolation segment will be much smaller than the
+shared pool. A tenant who wishes to immediately change their capacity within an
+isolation segment will have to contact GOV.UK PaaS support.</p>
+
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+
+      <svg
+        role="presentation"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../javascripts/application.js"></script>
+  </body>
+</html>
