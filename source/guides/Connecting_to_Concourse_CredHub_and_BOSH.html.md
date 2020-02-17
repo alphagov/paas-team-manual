@@ -1,14 +1,15 @@
-# Connecting to Concourse and BOSH
+# Connecting to Concourse, CredHub, and BOSH
 
-We use Google single sign-on (SSO) to connect to BOSH/UAA/Credhub.
+## Single sign-on
 
-We use three different workflows:
+We use Google single sign-on (SSO)
+to represent an audited identity instead of shared credentials.
 
-- `bosh-cli`
-- `credhub` shell
-- `upload-secrets` to CredHub
+We use SSO for operator workflows, for instance:
 
-The SSO identity represents an audited identity instead of shared credentials.
+- Using BOSH via the `bosh-cli` task
+- Interacting with CredHub directly via the `credhub` shell task
+- Uploading secrets to CredHub via the `upload-secrets` task
 
 ## SSH into the Concourse VM
 

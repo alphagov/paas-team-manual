@@ -1,6 +1,6 @@
 # IPSec debugging
 
-There may be a need, to debug the IPSec on our machines. In order to do that, you may want to log into the routers or cells. See [Connecting bosh_cli to Bosh](/guides/Connecting_to_Concourse_and_BOSH/#connecting-bosh_cli-to-bosh) for instructions.
+There may be a need, to debug the IPSec on our machines. In order to do that, you may want to log into the routers or cells. See [Connecting bosh_cli to Bosh](/guides/Connecting_to_Concourse_CredHub_and_BOSH/#connecting-bosh_cli-to-bosh) for instructions.
 
 ## Fiddle with the logging level
 
