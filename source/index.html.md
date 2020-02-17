@@ -48,7 +48,7 @@
 ## Guides
 
  - [Cloud Foundry debugging tips](guides/CloudFoundry_debugging/)
- - [Connecting to Concourse and BOSH](guides/Connecting_to_Concourse_and_BOSH/)
+ - [Connecting to Concourse, Credhub, and BOSH](guides/Connecting_to_Concourse_CredHub_and_BOSH/)
  - [Documentation for tenants (`paas-tech-docs`)](guides/Documentation_system/)
  - [How to use GPG](guides/GPG/)
  - [How to enable Github OAuth for your dev environment](guides/Github_oAuth_in-Dev/)
