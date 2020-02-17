@@ -9,18 +9,18 @@
 
     <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/Connecting_to_Concourse_and_BOSH/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/Connecting_to_Concourse_CredHub_and_BOSH/">
 
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/Connecting_to_Concourse_and_BOSH/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/Connecting_to_Concourse_CredHub_and_BOSH/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/Connecting_to_Concourse_and_BOSH/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/Connecting_to_Concourse_CredHub_and_BOSH/" />
 
     
   </head>
@@ -61,8 +61,11 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#connecting-to-concourse-and-bosh"><span>Connecting to Concourse and BOSH</span></a>
+    <a href="#connecting-to-concourse-credhub-and-bosh"><span>Connecting to Concourse, CredHub, and BOSH</span></a>
     <ul>
+      <li>
+        <a href="#single-sign-on"><span>Single sign-on</span></a>
+      </li>
       <li>
         <a href="#ssh-into-the-concourse-vm"><span>SSH into the Concourse VM</span></a>
       </li>
@@ -76,6 +79,9 @@
       </li>
       <li>
         <a href="#ssh-into-the-bosh-vm"><span>SSH into the BOSH VM</span></a>
+      </li>
+      <li>
+        <a href="#interact-with-credhub"><span>Interact with CredHub</span></a>
       </li>
     </ul>
   </li>
@@ -92,19 +98,43 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="connecting-to-concourse-and-bosh">Connecting to Concourse and BOSH</h1><h2 id="ssh-into-the-concourse-vm">SSH into the Concourse VM</h2><p>We can SSH directly into the Concourse VM using a Makefile target in <code>paas-bootstrap</code>. This copies the Concourse VM&rsquo;s SSH key from a state bucket on S3, prints the VM&rsquo;s sudo password, and makes the SSH connection.</p>
+  <h1 id="connecting-to-concourse-credhub-and-bosh">Connecting to Concourse, CredHub, and BOSH</h1><h2 id="single-sign-on">Single sign-on</h2><p>We use Google single sign-on (SSO)
+to represent an audited identity instead of shared credentials.</p>
+<p>We use SSO for operator workflows, for instance:</p>
+
+<ul>
+<li>Using BOSH via the <code>bosh-cli</code> task</li>
+<li>Interacting with CredHub directly via the <code>credhub</code> shell task</li>
+<li>Uploading secrets to CredHub via the <code>upload-secrets</code> task</li>
+</ul>
+<h2 id="ssh-into-the-concourse-vm">SSH into the Concourse VM</h2><p>To SSH directly into the Concourse VM, use <code>make</code> in <code>paas-bootstrap</code>.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>make ssh_concourse
 </code></pre></div><h2 id="connecting-bosh-cli-to-bosh">Connecting bosh_cli to BOSH</h2><p><a id="connecting-bosh_cli-to-bosh"></a></p>
-<p>A Makefile task in <code>paas-bootstrap</code> pulls a Docker image and runs a container loaded with the secrets required to interact with Bosh using the CLI:</p>
+<p>A Makefile task in <code>paas-bootstrap</code> pulls a Docker image,
+sets some environment variables to aid with signing in,
+and runs a container targeting BOSH:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>DEPLOY_ENV=foo make dev bosh-cli
-</code></pre></div><p>The container will automatically login and target the CF deployment.</p>
-<p>If you want to target the <code>concourse</code> deployment you have to define it for your commands specifically, e.g.:</p>
+</code></pre></div><p>The container will automatically target the CF deployment.
+To target the <code>concourse</code> deployment directly,
+you have to define it for your commands specifically, e.g.:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>bosh -d concourse vms
-</code></pre></div><h3 id="bosh-ssh">Bosh SSH</h3><p>To SSH to Bosh-managed VMs you need to go via a gateway, as they aren&rsquo;t exposed publicly. We use the Bosh VM as the gateway - this is set up automatically. From inside the container you can run:</p>
+</code></pre></div><h3 id="bosh-ssh">Bosh SSH</h3><p>To SSH to Bosh-managed VMs you need to go via a gateway, as they aren&rsquo;t exposed publicly.
+We use the Bosh VM as the gateway - the task sets this up automatically.
+From inside the container you can run:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>bosh ssh router/bd695524-353e-43ef-84a6-4e256537bd95
-</code></pre></div><h2 id="ssh-into-the-bosh-vm">SSH into the BOSH VM</h2><p>There is a Makefile task in <code>paas-bootstrap</code> to establish this SSH connection.  This copies SSH keys for the BOSH VM from a state bucket on S3, prints the BOSH VM&rsquo;s sudo password, and makes the SSH connection.</p>
+</code></pre></div><h2 id="ssh-into-the-bosh-vm">SSH into the BOSH VM</h2><p>We use the Makefile task in <code>paas-bootstrap</code> to establish this SSH connection.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>make ssh_bosh
-</code></pre></div>
+</code></pre></div><h2 id="interact-with-credhub">Interact with CredHub</h2><p>To interact with CredHub directly, use <code>make</code> in <code>paas-cf</code>.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>make dev credhub
+</code></pre></div><p>and follow the instructions.</p>
+<p>To upload secrets:</p>
+
+<ul>
+<li>Enter a CredHub subshell (<code>make dev credhub</code>)</li>
+<li>Log in to CredHub (<code>credhub login --sso</code>)</li>
+<li>Run the secrets task (<code>make upload-all-secrets</code>)</li>
+</ul>
+
 
             
           </main>
