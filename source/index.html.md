@@ -1,55 +1,24 @@
 # PaaS Team Manual
 
-## Incident management
+## Incident and support model
 
  - [Incident process](incident_management/incident_process/)
- - [Responding to alerts](incident_management/responding_to_alerts/)
+ - [Support manual](incident_management/support_manual/)
+ - [Support roles and responsibilities](incident_management/roles_and_responsibilities/)
+ - [Service Targets](team/service_targets/)
 
-## Monitoring and alerting
-
-- [Prometheus](monitoring_alerting/prometheus)
-
-## Support
+## Support Runbook
 
  - [User management](support/CF_UAA_user_management/)
+ - [Responding to alerts](support/responding_to_alerts/)
  - [Finding activity](support/finding_activity/)
  - [Finding route owners](support/finding_route_owners)
  - [Finding apps with noisy logging](support/finding_apps_with_noisy_logging)
  - [Restoring Elasticsearch Backups](support/restoring_elasticsearch_backups/)
  - [Responding to security issues](support/responding_to_security_issues/)
- - [Support roles and responsibilities](support/roles_and_responsibilities/)
  - [Investigating rsyslog issues](support/rsyslog/)
- - [Support manual](support/support_manual/)
- - [Zendesk](support/zendesk/)
-
-## Accounts and Billing
-
- - [Account lifecycle](accounts/account_lifecycle)
- - [Getting data about trial accounts](accounts/getting_data_about_trial_accounts/)
- - [Tenant personal data](accounts/tenant_personal_data/)
- - [Billing process for GOV.UK PaaS paid accounts](accounts/billing_info)
-
-## Team
-
- - [Orientation](team/orientation/)
- - [Working practices](team/working_practices/)
- - [Service Targets](team/service_targets/)
- - [Dashboard mac mini](team/dashboard_mac_mini/)
- - [Managing access to Cloud Services](team/managing_access_to_cloud_services/)
- - [Our networking in AWS](team/networking_in_aws/)
- - [How to notify tenants](team/notifying_tenants/)
- - [Our orgs on the paas](team/our_orgs_on_the_paas/)
- - [Pagerduty](team/pagerduty/)
- - [Platform alerting](team/platform_alerting/)
- - [Responding to aws alert](team/responding_to_aws_alert/)
- - [Rotating credentials](team/rotating_credentials/)
- - [Statuspage](team/statuspage/)
-
-## Guides
-
  - [Cloud Foundry debugging tips](guides/CloudFoundry_debugging/)
  - [Connecting to Concourse, Credhub, and BOSH](guides/Connecting_to_Concourse_CredHub_and_BOSH/)
- - [Documentation for tenants (`paas-tech-docs`)](guides/Documentation_system/)
  - [How to use GPG](guides/GPG/)
  - [How to enable Github OAuth for your dev environment](guides/Github_oAuth_in-Dev/)
  - [IPSec debugging](guides/IPSec_debugging/)
@@ -66,16 +35,53 @@
  - [Running tests on `paas-cf` locally](guides/running_paas-cf_tests_locally/)
  - [Restoring the bosh director](guides/restoring_bosh_director/)
  - [Effective remote pairing guidance](guides/effective_remote_pairing/)
+ - [Rotating credentials](team/rotating_credentials/)
+ - [Our orgs on the paas](team/our_orgs_on_the_paas/)
+ - [Platform alerting](team/platform_alerting/)
+ - [Responding to aws alert](team/responding_to_aws_alert/)
+
+## Tenant Account Management
+
+ - [Account lifecycle](accounts/account_lifecycle)
+ - [Getting data about trial accounts](accounts/getting_data_about_trial_accounts/)
+ - [Tenant personal data](accounts/tenant_personal_data/)
+
+## Tenant Billing
+ - [Billing process for GOV.UK PaaS paid accounts](accounts/billing_info)
+
+## Team Accounts and Software
+ - [Zendesk](support/zendesk/)
+ - [Statuspage](team/statuspage/)
+ - [Pagerduty](team/pagerduty/)
+ - [Documentation for tenants (`paas-tech-docs`)](guides/Documentation_system/)
+ - [Third parties cloud accounts](team/managing_access_to_cloud_services/
+
+## Policies and Procedures
+### Team process
+ - [Orientation](team/orientation/)
+ - [Dashboard mac mini](team/dashboard_mac_mini/)
+ )
+ - [How to notify tenants](team/notifying_tenants/)
+
+### Working practices
+ - [Development process](team/working_practices/#development-process)
+ - [Development Stories](team/working_practices/#stories)
+ - [Tech doc changes](team/working_practices/#stories)
+
+## Technical Design
+ - [GOV.UK PaaS Architecture Document](https://docs.google.com/document/d/1bNL2wi0hdqv_fpdcI4LMNxpU_KpqoB_YI_z-7RWOutI/edit#heading=h.m1yfz0hmgd73) (team visibility)
+ - [Prometheus](technical_design/prometheus)
+ - [Networking in AWS](technical_design/networking_in_aws/)
 
 ### Styleguides
 
-This section contains some team-specific styleguides. These should be used in
-addition to the [GDS styleguides]().
+  This section contains some team-specific styleguides. These should be used in
+  addition to the [GDS styleguides]().
 
-[GDS styleguides]: https://github.com/alphagov/styleguides/
+  [GDS styleguides]: https://github.com/alphagov/styleguides/
 
- - [YAML](styleguides/YAML/)
- - [Concourse pipelines](styleguides/concourse_pipeline/)
+   - [YAML](styleguides/YAML/)
+   - [Concourse pipelines](styleguides/concourse_pipeline/)
 
 ## Architecture decision records
 
