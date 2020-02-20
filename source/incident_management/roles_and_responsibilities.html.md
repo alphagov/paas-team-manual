@@ -53,5 +53,4 @@ This person will only be alerted if the out of hours 1st line support has decide
 
 You can find more information on the PaaS [incident Process](/incident_management/incident_process/#incident-process).
 
-You can also refer to [Reliability Engineering on-call escalation](https://re-team-manual.cloudapps.digital/documentation/re-oncall-escalation-info.html#reliability-engineering-on-call-escalation) section in the RE team manual for descriptions of the escalation roles and responsibility in Reliability Engineering. 
-
+You can also refer to [Reliability Engineering on-call escalation](https://re-team-manual.cloudapps.digital/documentation/re-oncall-escalation-info.html#reliability-engineering-on-call-escalation) section in the RE team manual for descriptions of the escalation roles and responsibility in Reliability Engineering.

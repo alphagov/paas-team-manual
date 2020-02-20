@@ -11,11 +11,11 @@
 
  - [User management](support/CF_UAA_user_management/)
  - [Responding to alerts](support/responding_to_alerts/)
+ - [Responding to security issues](support/responding_to_security_issues/)
  - [Finding activity](support/finding_activity/)
  - [Finding route owners](support/finding_route_owners)
  - [Finding apps with noisy logging](support/finding_apps_with_noisy_logging)
  - [Restoring Elasticsearch Backups](support/restoring_elasticsearch_backups/)
- - [Responding to security issues](support/responding_to_security_issues/)
  - [Investigating rsyslog issues](support/rsyslog/)
  - [Cloud Foundry debugging tips](guides/CloudFoundry_debugging/)
  - [Connecting to Concourse, Credhub, and BOSH](guides/Connecting_to_Concourse_CredHub_and_BOSH/)
