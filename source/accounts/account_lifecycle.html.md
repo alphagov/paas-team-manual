@@ -40,15 +40,7 @@ When creating the org, ensure you add the people named in the macro as billing m
     If this information is not provided or is unclear, clarify with the requester.
 
 
-2. Use `./scripts/create-org.sh` to create an org in paas-cf
-
-    The naming convention we use is `department-serviceorteam`, using [kebab case](https://wiki.c2.com/?KebabCase) for example:
-
-    ```
-    gds-tech-ops
-    gds-performance-platform
-    gds-data-science
-    ```
+2. Use `GOV.UK PaaS Admin > Platform Admin > Create new organisation` functionality.
 
     When identifying the department, use the names listed in the [Government organisations Register](https://www.registers.service.gov.uk/registers/government-organisation) if possible.
 
