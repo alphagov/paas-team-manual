@@ -57,15 +57,17 @@ The NAT Gateways each need an EIP to function.
 The bosh and concourse VMs each need an EIP to allow making outbound connections to the internet to download dependencies.
 They can't use the NAT Gateways for this because the NAT Gateways don't exist when concourse and bosh are first deployed and may be torn down afterwards in dev environments.
 
-### ELBs
+### ALBs
 
-We allocate several [Classic Elastic Load Balancers](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html) (ELBs) to provide load-balanced SSL access to Concourse, logs and metrics, and some CF components.
+We allocate several [Application Load Balancers](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html) (ALBs) to provide load-balanced SSL access to Concourse, logs and metrics, and some CF components.
 
-An ELB has a presence in each AZ, and scales automatically with the traffic volume being balanced.
+An ALB has a presence in each AZ, and scales automatically with the traffic volume being balanced.
 
-The scaling is transparent to the external user because each ELB provides a DNS name - IP addresses of additional ELB components are added automatically when the ELB scales.
+The scaling is transparent to the external user because each ALB provides a DNS name - IP addresses of additional ALB components are added automatically when the ALB scales.
 
-ELBs also handle TLS termination. See [ADR 007](/architecture_decision_records/ADR007-terminating-tls-at-elbs).
+ALBs also handle TLS termination. See [ADR 007](/architecture_decision_records/ADR007-terminating-tls-at-elbs).
+
+We replaced the ELBs with ALBs. See [ADR 447](https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR446-do-not-use-haproxy-use-aws-alb).
 
 ## Subnet Routing
 
