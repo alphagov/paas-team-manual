@@ -7,6 +7,7 @@
 
 ## Monitoring and alerting
 
+- [Audit](monitoring_alerting/audit)
 - [Prometheus](monitoring_alerting/prometheus)
 
 ## Support

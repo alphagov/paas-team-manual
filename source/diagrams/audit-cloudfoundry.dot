@@ -1,0 +1,69 @@
+digraph G {
+  node [shape=rect, fontname="monospace"];
+  graph [fontname="monospace"];
+  
+  subgraph cluster_1 {
+    style=filled;
+    color=lightgrey;
+    node [style=filled,color=white];
+    label = "App (paas-auditor)";
+    shipper;
+    fetcher;
+    
+      
+    db [label="auditor-db"];    
+    shipper -> db [style="dashed"];
+    shipper -> db;
+    fetcher -> db;
+  }
+  
+  subgraph cluster_2 {
+    style=filled;
+    color=lightgrey;
+    node [style=filled,color=white];
+    label = "VM (api)";
+    
+    cc_api [label="CC"];
+    cc_awslogs [label="awslogs"];
+    cc_log_files [label="Log files"];
+    
+    cc_awslogs -> cc_log_files [style="dashed"];
+    cc_api -> cc_log_files;
+  }
+  
+  subgraph cluster_3 {
+    style=filled;
+    color=lightgrey;
+    node [style=filled,color=white];
+    label = "VM (uaa)";
+    
+    uaa_api [label="UAA"];
+    uaa_awslogs [label="awslogs"];
+    uaa_log_files[label="Log files"]
+    
+    uaa_log_files;
+    uaa_awslogs -> uaa_log_files [style="dashed"];
+    uaa_api -> uaa_log_files;
+  }
+  
+  subgraph cluster_4 {
+    label = "Managed by Cyber";
+    labelloc=b;
+    hec;
+    csls;
+    splunk
+  }
+  
+  splunk [label="Splunk Cloud", fontsize=8];
+  csls [label="CSLS"];
+  hec [label="Splunk HEC"];
+  cloudwatch [label="AWS CloudWatch"];
+  
+  fetcher -> cc_api [style="dashed"];
+  shipper -> hec;
+  hec -> splunk;
+  csls -> splunk;
+  cloudwatch -> csls;
+  cc_awslogs -> cloudwatch;
+  uaa_awslogs -> cloudwatch;
+}
