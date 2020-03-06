@@ -1,0 +1,65 @@
+digraph G {
+  node [shape=rect, fontname="monospace"];
+  graph [fontname="monospace"];
+
+  subgraph cluster_1 {
+    style=filled;
+    color=lightgrey;
+    node [style=filled,color=white];
+    label = "bosh-director";
+
+    uaa [label="UAA"];
+    credhub [label="CredHub"];
+    director [label="Director"];
+
+    log_files [label="Log files"];
+    audit [label="Audit"];
+
+    awslogs;
+
+    subgraph cluster_2 {
+        style=filled;
+        color=grey;
+        node [style=filled,color=white];
+        label = "bosh-auditor";
+
+        cursor;
+        fetcher;
+        shipper;
+
+        shipper -> fetcher [style="dashed"];
+        shipper -> cursor [style="dashed"];
+        shipper -> cursor;
+    }
+  }
+
+  subgraph cluster_3 {
+    label = "Managed by Cyber";
+    labelloc=b;
+    hec;
+    csls;
+    splunk
+  }
+
+  splunk [label="Splunk Cloud", fontsize=8];
+  csls [label="CSLS"];
+  hec [label="Splunk HEC"];
+  cloudwatch [label="AWS CloudWatch"];
+
+  fetcher -> director [style="dashed"];
+  director -> uaa;
+
+  credhub -> log_files;
+  uaa -> log_files;
+  director -> log_files;
+  audit -> log_files;
+
+  shipper -> hec;
+
+  awslogs -> log_files [style="dashed"];
+  awslogs -> cloudwatch;
+  cloudwatch -> csls;
+
+  hec -> splunk;
+  csls -> splunk;
+}
