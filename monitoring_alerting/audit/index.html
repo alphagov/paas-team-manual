@@ -9,18 +9,18 @@
 
     <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/support/responding_to_security_issues/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/monitoring_alerting/audit/">
 
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/support/responding_to_security_issues/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/monitoring_alerting/audit/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/responding_to_security_issues/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/monitoring_alerting/audit/" />
 
     
   </head>
@@ -61,25 +61,21 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#responding-to-security-issues"><span>Responding to security issues</span></a>
+    <a href="#audit"><span>Audit</span></a>
     <ul>
       <li>
-        <a href="#if-you-suspect-a-security-breach"><span>If you suspect a security breach</span></a>
-      </li>
-      <li>
-        <a href="#how-we-learn-of-issues"><span>How we learn of issues</span></a>
-      </li>
-      <li>
-        <a href="#how-we-deal-with-issues"><span>How we deal with issues</span></a>
-      </li>
-      <li>
-        <a href="#how-to-triage-an-issue"><span>How to triage an issue</span></a>
+        <a href="#bosh"><span>BOSH</span></a>
         <ul>
           <li>
-            <a href="#stemcell-upgrades"><span>Stemcell upgrades</span></a>
+            <a href="#diagram"><span>Diagram</span></a>
           </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#cloud-foundry"><span>Cloud Foundry</span></a>
+        <ul>
           <li>
-            <a href="#other-issues"><span>Other issues</span></a>
+            <a href="#cloud-foundry-diagram"><span>Diagram</span></a>
           </li>
         </ul>
       </li>
@@ -98,42 +94,93 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="responding-to-security-issues">Responding to security issues</h1><p>Periodically we will learn of a security issue affecting CloudFoundry or our supporting systems we use, this is the process we follow in order to triage and mitigate the problem.</p>
-<h2 id="if-you-suspect-a-security-breach">If you suspect a security breach</h2><p>If a breach is suspected to have occurred, <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/security/security-incidents">alert Information Assurance (IA) immediately</a> to the issue and provide all required information. IA will undertake all communication with Cabinet Office&rsquo;s Senior Information Risk Owner (SIRO) and any external parties as required.</p>
-<h2 id="how-we-learn-of-issues">How we learn of issues</h2>
+  <h1 id="audit">Audit</h1><p>To hold operators and users to account, and to meet compliance requirements, we
+store and audit operator and platform events.</p>
+<h2 id="bosh">BOSH</h2><p>In each environment we have a VM which runs BOSH and has components:</p>
+
 <ul>
-<li>Automated CVE notifications from the <a href="https://www.cloudfoundry.org/category/security/">CloudFoundry security RSS feed</a>. This is implemented with <a href="https://ifttt.com">IFTTT</a> - credentials are in <code>paas-pass</code></li>
-<li>Notifications from <a href="https://lists.cloudfoundry.org/archives/list/cf-dev@lists.cloudfoundry.org/">cf-dev</a></li>
-<li>Notifications in slack from a team member, the #security channel, or others</li>
-<li>NCSC <a href="https://www.webcheck.service.ncsc.gov.uk/">Web Check tool</a></li>
+<li>BOSH Director</li>
+<li>UAA</li>
+<li>CredHub</li>
 </ul>
-<h2 id="how-we-deal-with-issues">How we deal with issues</h2>
+<p>These components log security events to disk.</p>
+<p>Additionally, SSH daemons and other kernel audit logs generate useful logs.</p>
+<p>Additionally, the BOSH director has an API which lists events, for example:</p>
+
+<ul>
+<li>SSH session creation</li>
+<li>SSH cleanup</li>
+<li>Variable creation</li>
+<li>Deployment create/update/delete</li>
+</ul>
+<p>To better audit operator actions, we ship audit events to <a href="https://gds.splunkcloud.com/">Splunk</a>.</p>
+<p>We ship events to Splunk via two mechanisms:</p>
+
 <ol>
-<li>The person on support should immediately create a Pivotal story with all the currently known information</li>
-<li>If a Zendesk ticket was raised, add the story link to the ticket and close the ticket</li>
-<li>The person on support should notify the #paas channel that they are triaging the incident</li>
-<li>The person on support should either immediately triage the issue themselves, or request support from team members with appropriate domain knowledge (See: &ldquo;How to triage an issue&rdquo; below)</li>
-<li>If the triage outcome is that we must take action the story should be prioritised according to severity by the product manager and played if necessary</li>
-<li>If the triage outcome is that we do not need to take any action, the story should be updated with the reasons why and finished as a 0 point story</li>
-<li>All PR&rsquo;s related to the security issue are prioritised for review until the issue is fully resolved</li>
+<li><p><a href="https://github.com/alphagov/paas-observability-release/tree/master/src/bosh-auditor">bosh-auditor</a></p>
+
+<ul>
+<li>fetches events from Director&rsquo;s events API</li>
+<li>ships them to the Splunk Cloud HTTP Event Collector (HEC)</li>
+<li>An operator can retrieve BOSH audit events with
+
+<ul>
+<li><code>index=paas sourcetype=&quot;bosh-audit-event&quot;</code></li>
+</ul></li>
+</ul></li>
+<li><p>An awslogs agent on each instance</p>
+
+<ul>
+<li>ships events on disk to CloudWatch</li>
+<li>CloudWatch forwards logs to Cyber&rsquo;s Central Security Logging Service (<a href="https://github.com/alphagov/centralised-security-logging-service">CSLS</a>)</li>
+<li>CloudWatch stores shipped events for 18 months</li>
+</ul></li>
 </ol>
-<h2 id="how-to-triage-an-issue">How to triage an issue</h2><h3 id="stemcell-upgrades">Stemcell upgrades</h3><p>If the mitigation to the security issue is to upgrade the stemcell, you should
-apply the upgraded stemcell to a dev environment as a first step. While you are
-waiting for the upgraded stemcell to be applied, the issue can be triaged. If
-the upgrade applies successfully, a PR can be raised to upgrade the stemcell. If
-it does not apply successfully, we should prioritise the upgrade based on the
-severity of the CVE</p>
-<h3 id="other-issues">Other issues</h3>
+<h3 id="diagram">Diagram</h3>
+<ul>
+<li><code>bosh-auditor</code> is a BOSH job colocated with the director</li>
+<li>dashed arrows mean read</li>
+<li>solid arrows mean write or use</li>
+</ul>
+<p><a href="../../diagrams/audit-bosh.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/audit-bosh.svg" alt="Diagram of BOSH events" /></a></p>
+<h2 id="cloud-foundry">Cloud Foundry</h2><p>In each environment we have components which generate events which we should audit:</p>
+
+<ul>
+<li>Cloud Controller API</li>
+<li>UAA</li>
+</ul>
+<p>Additionally, SSH daemon&rsquo;s and other kernel audit logs generate useful logs.</p>
+<p>To better audit operator actions, and the actions of PaaS users, we ship audit events to Splunk.
+We ship events to Splunk via two mechanisms:</p>
+
 <ol>
-<li>If possible locate the original CVE report</li>
-<li>Identify each component of CF and our supporting systems that is affected by the issue</li>
-<li>Confirm we are vulnerable by reproducing the security issue on a suitable environment</li>
-<li>Identify what the CVE report says needs to be done to mitigate the issue</li>
-<li>Identify if there are any other practical ways for us to mitigate the situation, such as disabling features or altering configurations</li>
-<li>Identify if the issue is fixed in a newer release of the software we are using</li>
-<li>Briefly investigate how difficult the upgrade would be, if needed</li>
-<li>Record all this information on the story associated with the issue</li>
+<li><p><a href="https://github.com/alphagov/paas-auditor">paas-auditor</a></p>
+
+<ul>
+<li>fetches events from Cloud Controller&rsquo;s events API</li>
+<li>stores events in a database</li>
+<li>ships them to the Splunk Cloud HTTP Event Collector (HEC)</li>
+<li>An operator can retrieve CF audit events with
+
+<ul>
+<li><code>index=paas sourcetype=&quot;cf-audit-event&quot;</code></li>
+</ul></li>
+</ul></li>
+<li><p>An awslogs agent on each instance</p>
+
+<ul>
+<li>ships events on disk to CloudWatch</li>
+<li>CloudWatch forwards logs to Cyber&rsquo;s Central Security Logging Service (<a href="https://github.com/alphagov/centralised-security-logging-service">CSLS</a>)</li>
+<li>CloudWatch stores shipped events for 18 months</li>
+</ul></li>
 </ol>
+<h3 id="cloud-foundry-diagram">Diagram</h3>
+<ul>
+<li><code>paas-auditor</code> is a Cloud Foundry app</li>
+<li>dashed arrows mean read</li>
+<li>solid arrows mean write or use</li>
+</ul>
+<p><a href="../../diagrams/audit-cloudfoundry.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/audit-cloudfoundry.svg" alt="Diagram of Cloud Foundry events" /></a></p>
 
 
             
