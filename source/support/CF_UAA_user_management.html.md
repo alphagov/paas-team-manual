@@ -4,7 +4,7 @@
 
 We encourage tenants to invite and manage their own users via the paas-admin interface.
 
-If you need to create a new org and invite the initial org manager(s) you can do so using the script in paas-cf, found at `./paas-cf/scripts/create-org.sh`. You should be creating new orgs in the London region by default.
+If you need to create a new org and invite the initial org manager(s) you can do so using the `GOV.UK PaaS Admin > Platform Admin > Create new organisation` page. You should be creating new orgs in the London region by default.
 
 ## Interacting with UAA
 
