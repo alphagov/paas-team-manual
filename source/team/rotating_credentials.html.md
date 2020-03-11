@@ -74,6 +74,28 @@ To perform the rotation:
 1. Unpause the `create-cloudfoundry` pipeline
 1. Trugger the `create-cloudfoundry` pipeline and allow it to run to completion
 
+### Rotating broker credentials
+
+Our service brokers have basic auth in front of them to ensure that only we
+can communicate with them. Unfortunately our brokers do not support swapping
+credentials without downtime.
+
+In the `create-cloudfoundry` pipeline, under the `credentials` tab, there
+is a `rotate-broker-credentials` job. Rotating the broker credentials is a
+two step process:
+
+1. Run the `rotate-broker-credentials` job to update the credentials in Credhub.
+2. Run the main `create-cloudfoundry` job to apply the new credentials.
+
+There will be downtime between when the pipeline redeploys the brokers and
+when it updates the broker credentials to be used by Cloud Controller. For
+information on what happened the first time, and how to communicate this to
+tenants, see https://status.cloud.service.gov.uk/incidents/3qll54zh55zk.
+
+At the time of writing this only rotates the basic auth used to talk to the
+brokers. It does not rotate other difficult secrets, such as those used to
+generate passwords for service instances.
+
 ### Rotating CA and leaf certificates
 
 We rotate CA and leaf certificates automatically as part of the `create-cloudfoundry`
