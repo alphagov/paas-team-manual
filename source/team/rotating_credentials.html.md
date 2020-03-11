@@ -9,33 +9,77 @@ We store credentials for third-party services in [`pass`](https://www.passwordst
 
 ## Platform
 
-From time to time, it might be necessary to rotate our platform credentials. We have created helper tasks in the deployer and bootstrap pipelines, credentials tab, to clean passwords that we know are safe to re-set.
+From time to time, it might be necessary to rotate our platform credentials. We
+have created helper tasks in the deployer and bootstrap pipelines to regenerate
+passwords that we know are safe to be rotated. This can be found under the
+`credentials` tab of each Concourse pipeline.
 
-### Rotating passwords
+### Rotating platform credentials
 
-Rotating passwords consists of two phases. First, you delete credentials using
-one of the CI helper jobs.
+We have Concourse jobs for rotating credentials that can be rotated without
+downtime. These might not include everything. If you are responding to a
+security incident then it is worth checking whether the credentials you
+care about are included.
 
-There are two for CF (in the deployer pipeline), one for BOSH and one for
-Concourse (in the bootstrap pipeline). These tasks exclude passwords that are
-difficult or not safe to rotate and clean all other passwords. We do also
-delete generated ssh keys in these tasks.
+Credential rotation is done in two phases:
 
-There are two CF cred rotation jobs (`rotate-cf-admin-password` and
-`rotate-cloudfoundry-credentials`, under
-`/teams/main/pipelines/create-cloudfoundry?groups=credentials`) so that you
-have the choice of rotating the admin password or not. Rotating the admin
-password automatically leads to the rest of the credentials being rotated, but
-not vice versa.
+1. rotation in the secret store (Credhub)
+2. deployment of the secrets
 
-Second phase consists of running the main pipeline (on deployer for CF, on bootstrap for BOSH and Concourse) to generate new credentials and apply them. Ensure that there is nothing else triggering this 2nd phase run, as that would mean you would be rotating passwords _and_ trying to apply some changes at the same time, which might not work and you could end up with broken deployment. Pipeline run should complete successfully and all tests should pass. There should be no interruptions to deployed apps.
+These jobs are not run very often. It is wise to re-examine them for drift. Perform a test run in a development environment before executing them in a production environment.
+
+If something goes wrong then in many cases
+you can obtain the old passwords from the credential history in Credhub using
+the `--versions` flag of `credhub get`:
+
+```
+$ credhub get -n /prod-lon/prod-lon/cf_admin_password --versions=10
+
+- id: 764582ca-b3f0-4d08-8da4-6a48b69907fd
+  name: /prod-lon/prod-lon/cf_admin_password
+  type: password
+  value: [redacted newest password]
+  version_created_at: "2020-03-13T11:22:50Z"
+- id: 949f97e8-5ba3-4e64-8bf2-49dc3b94ec7a
+  name: /prod-lon/prod-lon/cf_admin_password
+  type: password
+  value: [redacted previous password]
+  version_created_at: "2020-03-11T10:10:13Z"
+```
+
+#### Rotating BOSH and Concourse credentials
+
+In `create-bosh-concourse` there are two rotation jobs under the `credentials`
+tab: `rotate-bosh-passwords` for BOSH and `clear-concourse-credentials` for Concourse
+
+To perform the rotation:
+1. Pause the `create-bosh-concourse` pipeline, and ensure it isn't running
+1. Run the relevant rotation Concourse job (`rotate-bosh-passwords` and/or `clear-concourse-credentials`)
+1. Unpause the `create-bosh-concourse` pipeline
+1. Trigger the `create-bosh-concourse` pipeline and allow it to run all the way through
+
+#### Rotating Cloud Foundry and Prometheus credentials
+
+In `create-cloudfoundry` there are four rotation jobs under the `credentials`
+tab:
+
+* `rotate-cloudfoundry-credentials`
+* `rotate-cf-admin-password`
+* `rotate-prometheus-credentials`
+* `rotate-database-encryption-keys`
+
+To perform the rotation:
+1. Pause the `create-cloudfoundry` pipeline and ensure it isn't running
+1. Run one or more of the above rotation jobs as necessary
+1. Unpause the `create-cloudfoundry` pipeline
+1. Trugger the `create-cloudfoundry` pipeline and allow it to run to completion
 
 ### Rotating CA and leaf certificates
 
 We rotate CA and leaf certificates automatically as part of the `create-cloudfoundry`
 Concourse pipeline. You can learn more about it by reading [ADR448 automated certificate rotation](/architecture_decision_records/ADR448-automated-certificate-rotation/)
 
-#### Rotating SSO IDP keys
+### Rotating SSO IDP keys
 
 We use single sign-on using Google and Microsoft to allow our tenants to sign
 in, without using a username and password stored in UAA.
