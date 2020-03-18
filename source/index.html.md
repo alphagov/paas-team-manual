@@ -54,7 +54,7 @@
  - [Statuspage](team/statuspage/)
  - [Pagerduty](team/pagerduty/)
  - [Documentation for tenants (`paas-tech-docs`)](guides/Documentation_system/)
- - [Third parties cloud accounts](team/managing_access_to_cloud_services/
+ - [Third parties cloud accounts](team/managing_access_to_cloud_services/)
 
 ## Policies and Procedures
 ### Team process
