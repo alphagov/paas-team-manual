@@ -1,0 +1,63 @@
+digraph G {
+  node [shape=rect, fontname="monospace", fontsize=6.5];
+  graph [fontname="monospace"];
+
+  subgraph cluster_0 {
+      labelloc=b;
+      labeljust=l;
+      style=filled;
+      color=lightgrey;
+      node [style=filled,color=white];
+      label = "vpc";
+      
+      rds;
+      alb;
+      
+      subgraph cluster_1 {
+          labelloc=b;
+          labeljust=l;
+          label = "bosh/0"
+          style=filled;
+          color=grey;
+          node [style=filled,color=white];
+          
+          {
+            rank = "same";
+            credhub [label="CredHub"];
+            uaa [label="UAA"];
+            director [label="Director"];
+          }
+          
+          sshd [label="SSH Daemon"];
+          director -> uaa;
+          credhub -> uaa;
+      }
+  }
+  
+  {
+      rank = "same";
+      uaa_login;
+      bosh_login;
+      credhub_login
+  }
+
+  uaa_login [label="SSO\nvia UAA"];
+  bosh_login [label="bosh login"];
+  credhub_login [label="credhub login"]
+
+  uaa_login -> alb;
+  bosh_login -> sshd;
+  credhub_login -> sshd;
+  
+  alb [label="AWS ALB"];
+  alb -> uaa;
+
+  sshd -> credhub [style="dashed"];
+  sshd -> director [style="dashed"];
+  
+  rds [label="RDS Postgres"]
+  
+  director -> rds;
+  uaa -> rds;
+  credhub -> rds;
+}
