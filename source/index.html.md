@@ -69,6 +69,7 @@
 
 ## Technical Design
  - [Audit](monitoring_alerting/audit)
+ - [BOSH](technical_design/bosh)
  - [GOV.UK PaaS Architecture Document](https://docs.google.com/document/d/1bNL2wi0hdqv_fpdcI4LMNxpU_KpqoB_YI_z-7RWOutI/edit#heading=h.m1yfz0hmgd73) (team visibility)
  - [Prometheus](technical_design/prometheus)
  - [Networking in AWS](technical_design/networking_in_aws/)
