@@ -70,15 +70,21 @@
         <a href="#platform"><span>Platform</span></a>
         <ul>
           <li>
-            <a href="#rotating-passwords"><span>Rotating passwords</span></a>
+            <a href="#rotating-platform-credentials"><span>Rotating platform credentials</span></a>
+            <ul>
+              <li>
+                <a href="#rotating-bosh-and-concourse-credentials"><span>Rotating BOSH and Concourse credentials</span></a>
+              </li>
+              <li>
+                <a href="#rotating-cloud-foundry-and-prometheus-credentials"><span>Rotating Cloud Foundry and Prometheus credentials</span></a>
+              </li>
+            </ul>
           </li>
           <li>
             <a href="#rotating-ca-and-leaf-certificates"><span>Rotating CA and leaf certificates</span></a>
-            <ul>
-              <li>
-                <a href="#rotating-sso-idp-keys"><span>Rotating SSO IDP keys</span></a>
-              </li>
-            </ul>
+          </li>
+          <li>
+            <a href="#rotating-sso-idp-keys"><span>Rotating SSO IDP keys</span></a>
           </li>
           <li>
             <a href="#aws-keys-generated-in-the-pipeline"><span>AWS keys generated in the pipeline</span></a>
@@ -109,23 +115,60 @@
 <li>https://github.com/alphagov/paas-credentials/blob/master/SECRET_ROTATION.md</li>
 <li>https://github.com/alphagov/paas-credentials-high/blob/master/SECRET_ROTATION.md</li>
 </ul>
-<h2 id="platform">Platform</h2><p>From time to time, it might be necessary to rotate our platform credentials. We have created helper tasks in the deployer and bootstrap pipelines, credentials tab, to clean passwords that we know are safe to re-set.</p>
-<h3 id="rotating-passwords">Rotating passwords</h3><p>Rotating passwords consists of two phases. First, you delete credentials using
-one of the CI helper jobs.</p>
-<p>There are two for CF (in the deployer pipeline), one for BOSH and one for
-Concourse (in the bootstrap pipeline). These tasks exclude passwords that are
-difficult or not safe to rotate and clean all other passwords. We do also
-delete generated ssh keys in these tasks.</p>
-<p>There are two CF cred rotation jobs (<code>rotate-cf-admin-password</code> and
-<code>rotate-cloudfoundry-credentials</code>, under
-<code>/teams/main/pipelines/create-cloudfoundry?groups=credentials</code>) so that you
-have the choice of rotating the admin password or not. Rotating the admin
-password automatically leads to the rest of the credentials being rotated, but
-not vice versa.</p>
-<p>Second phase consists of running the main pipeline (on deployer for CF, on bootstrap for BOSH and Concourse) to generate new credentials and apply them. Ensure that there is nothing else triggering this 2nd phase run, as that would mean you would be rotating passwords <em>and</em> trying to apply some changes at the same time, which might not work and you could end up with broken deployment. Pipeline run should complete successfully and all tests should pass. There should be no interruptions to deployed apps.</p>
+<h2 id="platform">Platform</h2><p>From time to time, it might be necessary to rotate our platform credentials. We
+have created helper tasks in the deployer and bootstrap pipelines to regenerate
+passwords that we know are safe to be rotated. This can be found under the
+<code>credentials</code> tab of each Concourse pipeline.</p>
+<h3 id="rotating-platform-credentials">Rotating platform credentials</h3><p>We have Concourse jobs for rotating credentials that can be rotated without
+downtime. These might not include everything. If you are responding to a
+security incident then it is worth checking whether the credentials you
+care about are included.</p>
+<p>Credential rotation is done in two phases:</p>
+
+<ol>
+<li>rotation in the secret store (Credhub)</li>
+<li>deployment of the secrets</li>
+</ol>
+<p>These jobs are not run very often. It is wise to re-examine them for drift. Perform a test run in a development environment before executing them in a production environment.</p>
+<p>If something goes wrong then in many cases
+you can obtain the old passwords from the credential history in Credhub using
+the <code>--versions</code> flag of <code>credhub get</code>:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>$ credhub get -n /prod-lon/prod-lon/cf_admin_password --versions=10
+
+- id: 764582ca-b3f0-4d08-8da4-6a48b69907fd
+  name: /prod-lon/prod-lon/cf_admin_password
+  type: password
+  value: [redacted newest password]
+  version_created_at: "2020-03-13T11:22:50Z"
+- id: 949f97e8-5ba3-4e64-8bf2-49dc3b94ec7a
+  name: /prod-lon/prod-lon/cf_admin_password
+  type: password
+  value: [redacted previous password]
+  version_created_at: "2020-03-11T10:10:13Z"
+</code></pre></div><h4 id="rotating-bosh-and-concourse-credentials">Rotating BOSH and Concourse credentials</h4><p>In <code>create-bosh-concourse</code> there are two rotation jobs under the <code>credentials</code>
+tab: <code>rotate-bosh-passwords</code> for BOSH and <code>clear-concourse-credentials</code> for Concourse</p>
+<p>To perform the rotation:
+1. Pause the <code>create-bosh-concourse</code> pipeline, and ensure it isn&rsquo;t running
+1. Run the relevant rotation Concourse job (<code>rotate-bosh-passwords</code> and/or <code>clear-concourse-credentials</code>)
+1. Unpause the <code>create-bosh-concourse</code> pipeline
+1. Trigger the <code>create-bosh-concourse</code> pipeline and allow it to run all the way through</p>
+<h4 id="rotating-cloud-foundry-and-prometheus-credentials">Rotating Cloud Foundry and Prometheus credentials</h4><p>In <code>create-cloudfoundry</code> there are four rotation jobs under the <code>credentials</code>
+tab:</p>
+
+<ul>
+<li><code>rotate-cloudfoundry-credentials</code></li>
+<li><code>rotate-cf-admin-password</code></li>
+<li><code>rotate-prometheus-credentials</code></li>
+<li><code>rotate-database-encryption-keys</code></li>
+</ul>
+<p>To perform the rotation:
+1. Pause the <code>create-cloudfoundry</code> pipeline and ensure it isn&rsquo;t running
+1. Run one or more of the above rotation jobs as necessary
+1. Unpause the <code>create-cloudfoundry</code> pipeline
+1. Trugger the <code>create-cloudfoundry</code> pipeline and allow it to run to completion</p>
 <h3 id="rotating-ca-and-leaf-certificates">Rotating CA and leaf certificates</h3><p>We rotate CA and leaf certificates automatically as part of the <code>create-cloudfoundry</code>
 Concourse pipeline. You can learn more about it by reading <a href="/architecture_decision_records/ADR448-automated-certificate-rotation/">ADR448 automated certificate rotation</a></p>
-<h4 id="rotating-sso-idp-keys">Rotating SSO IDP keys</h4><p>We use single sign-on using Google and Microsoft to allow our tenants to sign
+<h3 id="rotating-sso-idp-keys">Rotating SSO IDP keys</h3><p>We use single sign-on using Google and Microsoft to allow our tenants to sign
 in, without using a username and password stored in UAA.</p>
 <p>Google has two credentials: <code>client_id</code> and <code>client_secret</code></p>
 <p>Microsoft functionally has three credentials <code>client_id</code>, <code>client_secret</code>, and
