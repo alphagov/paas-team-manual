@@ -81,6 +81,9 @@
             </ul>
           </li>
           <li>
+            <a href="#rotating-broker-credentials"><span>Rotating broker credentials</span></a>
+          </li>
+          <li>
             <a href="#rotating-ca-and-leaf-certificates"><span>Rotating CA and leaf certificates</span></a>
           </li>
           <li>
@@ -166,6 +169,24 @@ tab:</p>
 1. Run one or more of the above rotation jobs as necessary
 1. Unpause the <code>create-cloudfoundry</code> pipeline
 1. Trugger the <code>create-cloudfoundry</code> pipeline and allow it to run to completion</p>
+<h3 id="rotating-broker-credentials">Rotating broker credentials</h3><p>Our service brokers have basic auth in front of them to ensure that only we
+can communicate with them. Unfortunately our brokers do not support swapping
+credentials without downtime.</p>
+<p>In the <code>create-cloudfoundry</code> pipeline, under the <code>credentials</code> tab, there
+is a <code>rotate-broker-credentials</code> job. Rotating the broker credentials is a
+two step process:</p>
+
+<ol>
+<li>Run the <code>rotate-broker-credentials</code> job to update the credentials in Credhub.</li>
+<li>Run the main <code>create-cloudfoundry</code> job to apply the new credentials.</li>
+</ol>
+<p>There will be downtime between when the pipeline redeploys the brokers and
+when it updates the broker credentials to be used by Cloud Controller. For
+information on what happened the first time, and how to communicate this to
+tenants, see https://status.cloud.service.gov.uk/incidents/3qll54zh55zk.</p>
+<p>At the time of writing this only rotates the basic auth used to talk to the
+brokers. It does not rotate other difficult secrets, such as those used to
+generate passwords for service instances.</p>
 <h3 id="rotating-ca-and-leaf-certificates">Rotating CA and leaf certificates</h3><p>We rotate CA and leaf certificates automatically as part of the <code>create-cloudfoundry</code>
 Concourse pipeline. You can learn more about it by reading <a href="/architecture_decision_records/ADR448-automated-certificate-rotation/">ADR448 automated certificate rotation</a></p>
 <h3 id="rotating-sso-idp-keys">Rotating SSO IDP keys</h3><p>We use single sign-on using Google and Microsoft to allow our tenants to sign
