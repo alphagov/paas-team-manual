@@ -46,29 +46,29 @@ Essential information and actions tenants need to carry out in order to ensure t
 
     ```
     Dear GOV.UK PaaS tenant,
-	  
-    We (GOV.UK Platform as a Service - PaaS) are contacting you to inform you of 
+
+    We (GOV.UK Platform as a Service - PaaS) are contacting you to inform you of
     [BODY COPY].
     ```
 
 1. Your email **must** contain the following footer
-	  
+
     ```
     This communication complies with out data protection policy.
-	  
-    As we outline in our Privacy Notice: 
-	  
+
+    As we outline in our Privacy Notice:
+
     In order to make GOV.UK PaaS secure and available we need to collect, process and store personal data from tenants. We store the data you provide to:
     get in contact to reply to your queries
     make your user account function correctly
     manage your user account
     send you updates and notices
     If you have any questions, please contact gov-uk-paas-support@digital.cabinet-office.gov.uk
-	  
+
     Kind regards,
     The GOV.UK PaaS Team
     ```
-	
+
 1. Get tenant email addresses
 	* Tenant email addresses can be pulled from Cloud Foundry. There is a Make target for this, which produces a CSV that can be uploaded to GOV.UK Notify
 
@@ -76,25 +76,25 @@ Essential information and actions tenants need to carry out in order to ensure t
 		make prod show-tenant-comms-addresses > addresses_prod.csv
 		make prod-lon show-tenant-comms-addresses > addresses_prod-lon.csv
 		```
-		
+
 	 	If the information being sent is critical, and not carrying out the required action will result in service downtime
-		the `CRITICAL=true` flag can be passed. This will include org managers, org auditors and space 
+		the `CRITICAL=true` flag can be passed. This will include org managers, org auditors and space
 		managers and auditors in the output.
 		
         If the information being sent is not suitable for developers or they are unlikely to have the information required
         the `MANAGEMENT=true` flag can be passed. This will include org managers, org auditors and billing managers in the output.
 		
 		By default, only space developers are included.
-		
+
 1. Create template to GOV.UK Notify
 	1. Login to [GOV.UK Notify](https://www.notifications.service.gov.uk/sign-in). If you do not have login details speak to a senior member of the team.
-    
+
 	1. Create a new template in GOV.UK Notify, with the body of the email.
-    
+
 1. Navigate to where you stored the CSV files, and import it.
-    
+
 1. Click on 'Send X emails’, where X should be the number of people to contact.
-	
+
 1. Send emails to the contents of both CSV files
 
 ### CF upgrade email template
