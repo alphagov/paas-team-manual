@@ -163,6 +163,8 @@ make prod-lon show-tenant-comms-addresses &gt; addresses_prod-lon.csv
 </code></pre></div><p>If the information being sent is critical, and not carrying out the required action will result in service downtime
 the <code>CRITICAL=true</code> flag can be passed. This will include org managers, org auditors and space 
 managers and auditors in the output.</p>
+<p>If the information being sent is not suitable for developers or they are unlikely to have the information required
+the <code>MANAGEMENT=true</code> flag can be passed. This will include org managers, org auditors and billing managers in the output.</p>
 <p>By default, only space developers are included.</p></li>
 </ul></li>
 <li><p>Create template to GOV.UK Notify</p>
