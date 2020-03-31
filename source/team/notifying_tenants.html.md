@@ -81,6 +81,9 @@ Essential information and actions tenants need to carry out in order to ensure t
 		the `CRITICAL=true` flag can be passed. This will include org managers, org auditors and space 
 		managers and auditors in the output.
 		
+        If the information being sent is not suitable for developers or they are unlikely to have the information required
+        the `MANAGEMENT=true` flag can be passed. This will include org managers, org auditors and billing managers in the output.
+		
 		By default, only space developers are included.
 		
 1. Create template to GOV.UK Notify
