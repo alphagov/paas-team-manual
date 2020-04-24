@@ -60,6 +60,7 @@ We use the following tags to categorise support tickets:
 | Apps | govuk_paas_apps_performance |
 | Apps | govuk_paas_apps_scaling |
 | Apps | govuk_paas_apps_scheduling |
+| Apps | govuk_paas_apps_logs |
 | Account Management | govuk_paas_account_management_user_addition |
 | Account Management | govuk_paas_account_management_user_removal |
 | Account Management | govuk_paas_account_management_user_password_reset |
