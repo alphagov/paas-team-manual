@@ -125,7 +125,7 @@ Upgrade a trial org to the `small` quota. The Zendesk macro tells tenants how to
 
 ### Product Manager updates list of live services and closes ticket
 
-Update the [list of live services](https://docs.google.com/spreadsheets/d/1ZVOvlP28a-sUC61sqpZlMtkCiEqF6cCjWEIStvdAmsU/edit#gid=366936614). This is used as a rough count of the number of live services using GOV.UK PaaS - which we sometimes need to report on.
+Update the [list of live services](https://docs.google.com/spreadsheets/d/1vX196ed_k9r6LSTYUo9rJskihS79voFr3pPl5w74YPA/edit#gid=1236658429). This is used as a rough count of the number of live services using GOV.UK PaaS - which we sometimes need to report on.
 
 Usually an account upgrade is conducted at an early stage of building the service, and it may take some time until the service might be considered "live".
 
