@@ -130,3 +130,4 @@ This section contains Architecture Decision Records (ADR) as described in this b
  - [ADR451 BOSH access without SOCKS](architecture_decision_records/ADR451-bosh-access-without-socks/)
  - [ADR452 BOSH access with mTLS](architecture_decision_records/ADR452-bosh-access-with-mtls/)
  - [ADR453 Isolation segments](architecture_decision_records/ADR453-isolation-segments/)
+ - [ADR454 new product pages language and framework selection](architecture_decision_records/ADR454-new-product-pages-language-and-framework/)
