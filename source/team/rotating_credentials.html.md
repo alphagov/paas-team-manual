@@ -99,7 +99,7 @@ generate passwords for service instances.
 ### Rotating CA and leaf certificates
 
 We rotate CA and leaf certificates automatically as part of the `create-cloudfoundry`
-Concourse pipeline. You can learn more about it by reading [ADR448 automated certificate rotation](/architecture_decision_records/ADR448-automated-certificate-rotation/)
+Concourse pipeline. You can learn more about it by reading [ADR037 automated certificate rotation](/architecture_decision_records/ADR037-automated-certificate-rotation/)
 
 ### Rotating SSO IDP keys
 

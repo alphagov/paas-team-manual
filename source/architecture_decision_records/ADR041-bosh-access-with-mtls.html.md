@@ -1,8 +1,8 @@
-# BOSH access with mTLS
+# ADR041: BOSH access with mTLS
 
 ## Context
 
-In [ADR451 BOSH access without SOCKS](../ADR451-bosh-access-without-socks/) we removed the requirement for using a SOCKS5 proxy or SSH tunnel to access UAA.
+In [ADR040 BOSH access without SOCKS](../ADR040-bosh-access-without-socks/) we removed the requirement for using a SOCKS5 proxy or SSH tunnel to access UAA.
 
 We are moving towards a [zero trust network model](https://www.ncsc.gov.uk/blog-post/zero-trust-architecture-design-principles) and as part of this are removing the IP whitelists that have been in place. 
 
