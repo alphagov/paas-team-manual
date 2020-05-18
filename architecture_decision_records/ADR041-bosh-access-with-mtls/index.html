@@ -9,18 +9,18 @@
 
     <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR446-do-not-use-haproxy-use-aws-alb/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR041-bosh-access-with-mtls/">
 
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR446-do-not-use-haproxy-use-aws-alb/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR041-bosh-access-with-mtls/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR446-do-not-use-haproxy-use-aws-alb/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR041-bosh-access-with-mtls/" />
 
     
   </head>
@@ -61,13 +61,16 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#adr446-do-not-use-haproxy-use-aws-albs"><span>ADR446: Do not use HAProxy ; Use AWS ALBs</span></a>
+    <a href="#adr041-bosh-access-with-mtls"><span>ADR041: BOSH access with mTLS</span></a>
     <ul>
       <li>
         <a href="#context"><span>Context</span></a>
       </li>
       <li>
         <a href="#decision"><span>Decision</span></a>
+      </li>
+      <li>
+        <a href="#implementation"><span>Implementation</span></a>
       </li>
       <li>
         <a href="#status"><span>Status</span></a>
@@ -90,60 +93,26 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr446-do-not-use-haproxy-use-aws-albs">ADR446: Do not use HAProxy ; Use AWS ALBs</h1><h2 id="context">Context</h2><p>In ADR008 and ADR014 we decided to use HAProxy, for three reasons:</p>
+  <h1 id="adr041-bosh-access-with-mtls">ADR041: BOSH access with mTLS</h1><h2 id="context">Context</h2><p>In <a href="../ADR040-bosh-access-without-socks/">ADR040 BOSH access without SOCKS</a> we removed the requirement for using a SOCKS5 proxy or SSH tunnel to access UAA.</p>
+<p>We are moving towards a <a href="https://www.ncsc.gov.uk/blog-post/zero-trust-architecture-design-principles">zero trust network model</a> and as part of this are removing the IP whitelists that have been in place.</p>
+<p>Discussion has taken place with both IA and with Cyber on the proposed methods after reviewing the <a href="https://docs.google.com/document/d/1XZsrNp88tOSyC_bjy1mg3Yyv2TkpKgYSjoYResGAbps/edit#heading=h.xscqoqxlc072">RFC created as part of #169915408</a></p>
+<h2 id="decision">Decision</h2><p>We will remove the reliance on IP Whitelisting for all services on the BOSH Instance.</p>
+<p>The IP Whitelisting will be replaced with Mutual TLS.</p>
+<p>This method is one that is prefered by Cyber, as it give a much stronger authentication to the platform. This is due to authenticating both the individual and the machine that are accessing critical services.</p>
+<h2 id="implementation">Implementation</h2><p>Mutual TLS will be implemented on the BOSH Director in order to gain access to the APIs contained. This will be achieved by using a mTLS proxy such as <a href="https://github.com/square/ghostunnel">ghostunnel</a>, <a href="https://github.com/drGrove/mtls-server">mTLS-server</a> or <a href="https://www.loadbalancer.org/blog/client-certificate-authentication-with-haproxy/">HAProxy</a></p>
+<p>The following components will be accessible via 0.0.0.0/0 provided that there is a valid TLS certificate presented by the client.</p>
 
 <ul>
-<li>Writing HSTS header if they are not present in the upstream request</li>
-<li>Implementing HTTP -&gt; HTTPS redirect</li>
-<li>Custom health check for Gorouter</li>
+<li>UAA</li>
+<li>BOSH</li>
+<li>Credhub</li>
 </ul>
-<p>These problems have since been fixed:</p>
-
-<ul>
-<li>Header rewriting was implemented in <a href="https://github.com/cloudfoundry/routing-release/releases/tag/0.183.0">v0.183.0</a></li>
-<li>HTTP healthchecking was implemented in <a href="https://github.com/cloudfoundry/routing-release/releases/tag/0.139.0">v0.139.0</a></li>
-<li>HTTP -&gt; HTTPS redirect can be done using AWS ALBs</li>
-</ul>
-<p>We currently use multiple ELBs (classic) which we want to replace with ALBs.
-We want to use ALBs because:</p>
-
-<ul>
-<li>ELBs are deprecated in terraform and cause crashes</li>
-<li>ALBs can give us more metrics in CloudWatch</li>
-<li>ALBs have better support for X-Forwarded-For</li>
-<li>ALBs support fixed-response which can be used for HTTP -&gt; HTTPS rewriting</li>
-</ul>
-<p>HAProxy adds significant complexity to our routing deployment and maintenance:</p>
-
-<ul>
-<li>Proxy Protocol is non-standard and hard to understand</li>
-<li>HTTP -&gt; HTTPS rewriting is hard to understand</li>
-<li>HAProxy config is rarely touched</li>
-<li>We have to maintain our own HAProxy BOSH release</li>
-<li>HAProxy duplicates the number of logs we receive because every platform request is written twice</li>
-<li>HAProxy adds an extra network hop for every request</li>
-</ul>
-<h2 id="decision">Decision</h2>
-<ul>
-<li>Replace ELBs with ALBs</li>
-<li>Use ALB fixed-response to redirect HTTP -&gt; HTTPS</li>
-<li>Use Gorouter directly for:
-
-<ul>
-<li>TLS termination</li>
-<li>HSTS header rewriting</li>
-<li>Healthchecking the router instance</li>
-</ul></li>
-<li>Remove HAProxy</li>
-</ul>
+<p><a href="../images/adr452-bosh-access-with-mtls.svg" target="_blank" rel="noopener noreferrer"><img src="../images/adr452-bosh-access-with-mtls.svg" alt="architecture" /></a></p>
+<p>By passing all the inbound connections through an mTLS proxy we are able to keep multiple authentication factors in play and in the event of a DDoS attack on the proxy it does not place additional load directly on the BOSH Director.</p>
 <h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2>
-<ul>
-<li>We will archive alphagov/paas-haproxy-release</li>
-<li>We must use Gorouter&rsquo;s /health endpoint for drained healthchecking</li>
-<li>We must communicate with tenants that the X-Forwarded-For header contents will change</li>
-<li>We will no longer have HAProxy logs, and save money on log ingestion/storage</li>
-</ul>
+<h2 id="consequences">Consequences</h2><p>We will no longer rely on IP Whitelisting when accessing the components on the BOSH Director.</p>
+<p>Full alerting can be undertaken by Cyber for this component.</p>
+<p>We will not be using SSH access to the BOSH Director when carrying out daily operator tasks which should reduce false alerting within Cyber.</p>
 
 
             

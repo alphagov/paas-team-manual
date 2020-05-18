@@ -9,18 +9,18 @@
 
     <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR445-continuously-deploy-platform-cf-apps/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR039-aiven-metrics-for-users/">
 
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR445-continuously-deploy-platform-cf-apps/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR039-aiven-metrics-for-users/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR445-continuously-deploy-platform-cf-apps/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR039-aiven-metrics-for-users/" />
 
     
   </head>
@@ -61,13 +61,16 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#adr445-continuously-deploy-platform-cf-applications"><span>ADR445: Continuously deploy platform CF applications</span></a>
+    <a href="#adr039-aiven-metrics-for-users"><span>ADR039: Aiven metrics for users</span></a>
     <ul>
       <li>
         <a href="#context"><span>Context</span></a>
       </li>
       <li>
         <a href="#decision"><span>Decision</span></a>
+      </li>
+      <li>
+        <a href="#initial-implementation"><span>Initial implementation</span></a>
       </li>
       <li>
         <a href="#status"><span>Status</span></a>
@@ -90,51 +93,54 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr445-continuously-deploy-platform-cf-applications">ADR445: Continuously deploy platform CF applications</h1><h2 id="context">Context</h2><p>As part of GOV.UK PaaS we have a number of applications that we consider to be
-an essential part of the platform deployed as cloud foundry apps. These include:</p>
+  <h1 id="adr039-aiven-metrics-for-users">ADR039: Aiven metrics for users</h1><h2 id="context">Context</h2><p>We offer backing services via <a href="https://aiven.io">Aiven</a> to our users:</p>
 
 <ul>
-<li>paas-admin</li>
-<li>paas-billing</li>
-<li>paas-accounts</li>
+<li>Elasticsearch</li>
+<li>InfluxDB (private beta)</li>
 </ul>
-<p>Prior to July 2019 the versions of these applications were pinned in paas-cf,
-and they were only deployed along with the whole platform. This had a couple of
-negative consequences:</p>
+<p>We want to ensure our users can view metrics for their Aiven backing services so that our users can:</p>
 
 <ul>
-<li>Following a change to an app&rsquo;s source and a passing build an additional
-manual change to paas-cf was required to deploy it</li>
-<li>Deploying apps required waiting for unrelated slow bits of the pipeline to
-complete (e.g. terraform apply, bosh deploy, cf acceptance tests), despite
-the fact that a change to an app could not possibly affect or be affected by
-these steps</li>
+<li>debug and respond to usage and service performance changes</li>
+<li>understand the operational characteristics of their applications and services</li>
+<li>make better capacity planning and budgeting decisions</li>
 </ul>
-<p>There were also some advantages of specifying the version of applications
-explicitly:</p>
+<p>Aiven has <em>service integrations</em> which add extra functionality to an Aiven <em>service</em>. <em>Service integrations</em> can be used to:</p>
 
 <ul>
-<li>There&rsquo;s an record of which versions of the applications work with which
-versions of the platform.</li>
-<li>Merges to paas-cf require a signed merge commit to be deployed, so we can be
-explicit about the set of people who are allowed to deploy changes</li>
+<li>ship logs to an Elasticsearch/Rsyslog</li>
+<li>send metrics to Datadog</li>
+<li>send metrics to Aiven Postgres/InfluxDB</li>
+<li>expose metrics in Prometheus exposition format</li>
 </ul>
-<h2 id="decision">Decision</h2><p>We will update the pipeline to:</p>
+<p>We currently run Prometheus for monitoring the platform, using the <a href="https://github.com/bosh-prometheus/prometheus-boshrelease">Prometheus BOSH release</a> and have confidence and experience using it.</p>
+<p>We will need to think about Prometheus failover. If we load balance Prometheus without sticky sessions, then the metrics reported by Prometheus will be erratic as different instances report different metrics.</p>
+<h2 id="decision">Decision</h2><p>We will use Prometheus to scrape Aiven provided services.</p>
+<p>We will deploy new Prometheis in the CF BOSH deployment using the Prometheus BOSH release. This will reduce blast radius - tenant usage of metrics will not affect our ability to operate and monitor the platform using Prometheus.</p>
+<p>We will need to automate the following tasks:</p>
 
 <ul>
-<li>Require GPG signatures on git commits before deploying applications in staging and production</li>
-<li>Automatically deploy every build of the master branch of the applications to staging</li>
-<li>In staging: tag the application repo when a deployment passes its acceptance tests</li>
-<li>In production: automatically deploy any build which has been tagged by staging</li>
+<li>Service discovery: ensure Prometheus has an updated list of Aiven <em>services</em> to scrape. This automation must be colocated with the Prometheus instance.</li>
+<li>Service integration: ensure every eligible Aiven provided <em>service</em> uses the Aiven <em>service integration</em> for Prometheus.</li>
 </ul>
+<h2 id="initial-implementation">Initial implementation</h2><p>In the initial implementation we deploy multiple instances of Prometheus for high availability.</p>
+<p><a href="../images/adr450-prometheus-aiven-architecture.svg" target="_blank" rel="noopener noreferrer"><img src="../images/adr450-prometheus-aiven-architecture.svg" alt="architecture" /></a></p>
+<p>There will be three services on the instance:</p>
+
+<ul>
+<li>Prometheus</li>
+<li>Caddy</li>
+<li>Aiven service discovery</li>
+</ul>
+<p>We use gorouter for exposing Prometheus publicly.</p>
+<p>We use Caddy for failover and for authentication.
+Caddy does automatic failover, such that during regular operation all traffic gets proxied to a single instance, but when the usual instance is unreachable, Caddy will proxy the request to the colocated Prometheus.</p>
+<p>This architecture is temporary and will be revisited when we look at how to expose the Prometheus API to all users.</p>
 <h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2>
-<ul>
-<li>Deployments to paas-admin, paas-billing and paas-accounts will take minutes instead of hours</li>
-<li>We will continue to enforce that all production code requires a signed commit to deploy</li>
-<li>We will no longer have a single record of which version of the applications
-were deployed with which version of the platform</li>
-</ul>
+<h2 id="consequences">Consequences</h2><p>We will provide Prometheus as the datastore and interface for (a subset of) tenant metrics.</p>
+<p>We will deploy additional stateful instances to our CF BOSH deployment.</p>
+<p>We will maintain software to automate the integration of Aiven services and Prometheus.</p>
 
 
             

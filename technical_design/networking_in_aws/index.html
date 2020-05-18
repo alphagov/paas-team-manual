@@ -144,7 +144,7 @@ They can&rsquo;t use the NAT Gateways for this because the NAT Gateways don&rsqu
 <p>An ALB has a presence in each AZ, and scales automatically with the traffic volume being balanced.</p>
 <p>The scaling is transparent to the external user because each ALB provides a DNS name - IP addresses of additional ALB components are added automatically when the ALB scales.</p>
 <p>ALBs also handle TLS termination. See <a href="/architecture_decision_records/ADR007-terminating-tls-at-elbs">ADR 007</a>.</p>
-<p>We replaced the ELBs with ALBs. See <a href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR446-do-not-use-haproxy-use-aws-alb">ADR 447</a>.</p>
+<p>We replaced the ELBs with ALBs. See <a href="/architecture_decision_records/ADR035-do-not-use-haproxy-use-aws-alb">ADR 037</a>.</p>
 <h2 id="subnet-routing">Subnet Routing</h2><p>A subnet is called &lsquo;public&rsquo; if the route table associated with it has a route to an internet gateway.</p>
 <p>An instance in a public subnet can talk to the internet if it has a public or elastic IP address.</p>
 <p>An instance in a private subnet can talk to the internet if it has a route to a NAT Gateway.

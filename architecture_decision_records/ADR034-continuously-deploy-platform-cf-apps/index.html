@@ -9,18 +9,18 @@
 
     <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR444-redirect-http-for-applications/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR034-continuously-deploy-platform-cf-apps/">
 
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR444-redirect-http-for-applications/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR034-continuously-deploy-platform-cf-apps/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR444-redirect-http-for-applications/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR034-continuously-deploy-platform-cf-apps/" />
 
     
   </head>
@@ -61,18 +61,10 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#adr444-redirect-http-for-applications"><span>ADR444: Redirect HTTP for applications</span></a>
+    <a href="#adr034-continuously-deploy-platform-cf-applications"><span>ADR034: Continuously deploy platform CF applications</span></a>
     <ul>
       <li>
         <a href="#context"><span>Context</span></a>
-        <ul>
-          <li>
-            <a href="#update-the-cf-cli-to-include-the-scheme"><span>Update the CF CLI to include the scheme</span></a>
-          </li>
-          <li>
-            <a href="#redirect-http-to-https"><span>Redirect http to https</span></a>
-          </li>
-        </ul>
       </li>
       <li>
         <a href="#decision"><span>Decision</span></a>
@@ -98,43 +90,51 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr444-redirect-http-for-applications">ADR444: Redirect HTTP for applications</h1><h2 id="context">Context</h2><p>In <a href="../ADR443-ssl-only-for-applications-and-cf-endpoints">ADR443</a> we decided that
-we would only support https for applications on the PaaS, and that we would
-drop plain http connections (port 80).</p>
-<p>Since then, we&rsquo;ve observed this causing confusion for users on numerous
-occasions where they think their app isn&rsquo;t working after being pushed.</p>
-<p>The situation is improved with the inclusion of the <code>cloudapps.digital</code> domain
-in the <a href="https://hstspreload.org/?domain=cloudapps.digital">HSTS preload</a> list,
-but this only helps users with recent versions of modern browsers.</p>
-<p>As a result of the continued confusion for users we should revisit the decision
-from ADR443.</p>
-<p>There are a number of things that could be done to address this:</p>
-<h3 id="update-the-cf-cli-to-include-the-scheme">Update the CF CLI to include the scheme</h3><p>Currently, the CF CLI outputs the fully-qualified hostname of the app after
-pushing, but doesn&rsquo;t include the scheme. This has caused confusion for users
-when this is copy/pasted into browsers, and then times out.</p>
-<p>Getting the CLI to include the scheme here will help with the specific case of
-users getting confused immediately after pushing an app.</p>
-<p>It&rsquo;s unclear how much work this involves, as currently information about
-whether a route is http or https doesn&rsquo;t appear to be modeled in CloudFoundry
-anywhere.</p>
-<p>If this involves changes to the CLI, there&rsquo;s no guarantee that users will
-upgrade their CLI.</p>
-<p>Additionally, there is some debate about how effective this change would be. It
-will probably fix some cases, but won&rsquo;t cover everything.</p>
-<h3 id="redirect-http-to-https">Redirect http to https</h3><p>Add an endpoint that listens to all http requests on cloudapps.digital and
-redirects them to the corresponding https URL.</p>
-<p>There&rsquo;s a risk with this that a service could link to the http version of a
-page by mistake and not notice due to the redirect. We can mitigate this be
-having the redirect strip the path and query when redirecting so that it always
-redirects to the base URL.</p>
-<p>There&rsquo;s another risk that a misconfiguration could allow non-encrypted traffic
-through to applications. This would need to be mitigated by having acceptance
-tests to cover this.</p>
-<h2 id="decision">Decision</h2><p>We will redirect http traffic to the corresponding root https endpoint.</p>
-<p>We will continue to maintain HSTS preload lists for our production domains.</p>
+  <h1 id="adr034-continuously-deploy-platform-cf-applications">ADR034: Continuously deploy platform CF applications</h1><h2 id="context">Context</h2><p>As part of GOV.UK PaaS we have a number of applications that we consider to be
+an essential part of the platform deployed as cloud foundry apps. These include:</p>
+
+<ul>
+<li>paas-admin</li>
+<li>paas-billing</li>
+<li>paas-accounts</li>
+</ul>
+<p>Prior to July 2019 the versions of these applications were pinned in paas-cf,
+and they were only deployed along with the whole platform. This had a couple of
+negative consequences:</p>
+
+<ul>
+<li>Following a change to an app&rsquo;s source and a passing build an additional
+manual change to paas-cf was required to deploy it</li>
+<li>Deploying apps required waiting for unrelated slow bits of the pipeline to
+complete (e.g. terraform apply, bosh deploy, cf acceptance tests), despite
+the fact that a change to an app could not possibly affect or be affected by
+these steps</li>
+</ul>
+<p>There were also some advantages of specifying the version of applications
+explicitly:</p>
+
+<ul>
+<li>There&rsquo;s an record of which versions of the applications work with which
+versions of the platform.</li>
+<li>Merges to paas-cf require a signed merge commit to be deployed, so we can be
+explicit about the set of people who are allowed to deploy changes</li>
+</ul>
+<h2 id="decision">Decision</h2><p>We will update the pipeline to:</p>
+
+<ul>
+<li>Require GPG signatures on git commits before deploying applications in staging and production</li>
+<li>Automatically deploy every build of the master branch of the applications to staging</li>
+<li>In staging: tag the application repo when a deployment passes its acceptance tests</li>
+<li>In production: automatically deploy any build which has been tagged by staging</li>
+</ul>
 <h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>We must configure and maintain an endpoint on the routers that accepts http
-connections and redirects to the corresponding base https endpoint.</p>
+<h2 id="consequences">Consequences</h2>
+<ul>
+<li>Deployments to paas-admin, paas-billing and paas-accounts will take minutes instead of hours</li>
+<li>We will continue to enforce that all production code requires a signed commit to deploy</li>
+<li>We will no longer have a single record of which version of the applications
+were deployed with which version of the platform</li>
+</ul>
 
 
             

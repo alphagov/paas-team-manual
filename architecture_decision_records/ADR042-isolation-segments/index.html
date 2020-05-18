@@ -9,18 +9,18 @@
 
     <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR453-isolation-segments/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR042-isolation-segments/">
 
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR453-isolation-segments/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR042-isolation-segments/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR453-isolation-segments/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR042-isolation-segments/" />
 
     
   </head>
@@ -61,7 +61,7 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#isolation-segments"><span>Isolation segments</span></a>
+    <a href="#adr042-isolation-segments"><span>ADR042: Isolation segments</span></a>
     <ul>
       <li>
         <a href="#status"><span>Status</span></a>
@@ -73,7 +73,7 @@
         <a href="#decision"><span>Decision</span></a>
         <ul>
           <li>
-            <a href="#decision-isolation-segments"><span>Isolation segments</span></a>
+            <a href="#isolation-segments"><span>Isolation segments</span></a>
           </li>
           <li>
             <a href="#egress-restrictions"><span>Egress restrictions</span></a>
@@ -98,7 +98,7 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="isolation-segments">Isolation segments</h1><h2 id="status">Status</h2><p>Accepted</p>
+  <h1 id="adr042-isolation-segments">ADR042: Isolation segments</h1><h2 id="status">Status</h2><p>Accepted</p>
 <h2 id="context">Context</h2><p>GOV.UK PaaS would like to be able to isolate specific tenant apps and tasks to
 different pools of virtual machines (VMs).</p>
 <p>GOV.UK PaaS would like to be able to prevent specific tenant apps and tasks
@@ -120,7 +120,7 @@ manner to VPC peering connections.</p>
 <li>Whether egress to the internet is restricted</li>
 </ul>
 <p>We will use IPTables rules to achieve egress restriction.</p>
-<h3 id="decision-isolation-segments">Isolation segments</h3><p>Cloud Foundry supports separating apps and tasks for specific Organizations
+<h3 id="isolation-segments">Isolation segments</h3><p>Cloud Foundry supports separating apps and tasks for specific Organizations
 and Spaces via a feature called
 <a href="https://docs.cloudfoundry.org/adminguide/isolation-segments.html">Isolation Segments</a>.</p>
 <p>An Isolation Segment is a group of Diego cells with separate placement tags,

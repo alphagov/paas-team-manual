@@ -9,18 +9,18 @@
 
     <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR443-ssl-only-for-applications-and-cf-endpoints/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR033-redirect-http-for-applications/">
 
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR443-ssl-only-for-applications-and-cf-endpoints/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR033-redirect-http-for-applications/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR443-ssl-only-for-applications-and-cf-endpoints/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR033-redirect-http-for-applications/" />
 
     
   </head>
@@ -61,10 +61,18 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#adr443-ssl-only-for-applications-and-cf-endpoints"><span>ADR443: SSL-only for applications and cf endpoints</span></a>
+    <a href="#adr033-redirect-http-for-applications"><span>ADR033: Redirect HTTP for applications</span></a>
     <ul>
       <li>
         <a href="#context"><span>Context</span></a>
+        <ul>
+          <li>
+            <a href="#update-the-cf-cli-to-include-the-scheme"><span>Update the CF CLI to include the scheme</span></a>
+          </li>
+          <li>
+            <a href="#redirect-http-to-https"><span>Redirect http to https</span></a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#decision"><span>Decision</span></a>
@@ -90,39 +98,43 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr443-ssl-only-for-applications-and-cf-endpoints">ADR443: SSL-only for applications and cf endpoints</h1><h2 id="context">Context</h2><p><strong>Note: This has been superceeded. See <a href="#status">Status</a> below.</strong></p>
-<p>It is expected for the government websites to be secure and keep the user
-interactions private. Because that we want to enforce all communications to
-any application and to the platform endpoints to use only and always HTTPS,
-as <a href="https://www.gov.uk/service-manual/technology/using-https">it is described in the Gov Service Manual</a>.</p>
-<p>When a user inputs a website name without specifying the
-protocol in the URL, most browsers will try first the HTTP protocol by default.
-Even if the server always redirect HTTP to HTTPS, an initial
-unprotected request including user information will be transferred
-in clear: full URL with domain, parameter, <a href="https://en.wikipedia.org/wiki/HTTP_cookie#Secure_and_HttpOnly">cookies without secure flag</a>
-or browser meta-information.</p>
-<p><a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HTTP Strict Transport Security</a>
-mitigates this issue by instructing modern browsers that support it to
-always connect using HTTPS.
-This is also a <a href="https://www.gov.uk/service-manual/technology/using-https">requirement in the service manual</a>.</p>
-<p>There is still a potential initial unprotected HTTP request that might happen
-before retrieve the HSTS headers or after the specified HSTS <code>max-age</code>.
-To solve this issue, the root domain can be added to
-<a href="https://hstspreload.appspot.com/">HSTS preload list</a> which will be used by most
-common browsers.</p>
-<p>Currently the only way to avoid any clear text HTTP interaction is closing or
-dropping any attempt to connect to the port 80 at TCP level.</p>
-<p>Although not all application deployed on the PaaS will be &ldquo;services&rdquo;
-as in the service manual meaning, we must not allow HTTP to make
-it easier to service owners to comply with this requirements.</p>
-<h2 id="decision">Decision</h2><p>We will only open port 443 (HTTPS) and drop/reject any TCP connection to TCP port 80 (HTTP).</p>
-<p>We will implement and maintain HSTS preload lists for our production domains.</p>
-<h2 id="status">Status</h2><p>Superceeded by <a href="../ADR444-redirect-http-for-applications">ADR444</a></p>
-<h2 id="consequences">Consequences</h2><p>We must configure and maintain our domain in the HSTS preload lists.</p>
-<p>Users of browsers which do not support HSTS, or HSTS preload lists, will not
-be able to connect to the sites without specify the protocol <code>https://</code> in
-the URL. This only happens when the user manually inputs the URL in the
-browser.</p>
+  <h1 id="adr033-redirect-http-for-applications">ADR033: Redirect HTTP for applications</h1><h2 id="context">Context</h2><p>In <a href="/architecture_decision_records/ADR032-ssl-only-for-applications-and-cf-endpoints">ADR032</a> we decided that
+we would only support https for applications on the PaaS, and that we would
+drop plain http connections (port 80).</p>
+<p>Since then, we&rsquo;ve observed this causing confusion for users on numerous
+occasions where they think their app isn&rsquo;t working after being pushed.</p>
+<p>The situation is improved with the inclusion of the <code>cloudapps.digital</code> domain
+in the <a href="https://hstspreload.org/?domain=cloudapps.digital">HSTS preload</a> list,
+but this only helps users with recent versions of modern browsers.</p>
+<p>As a result of the continued confusion for users we should revisit the decision
+from ADR443.</p>
+<p>There are a number of things that could be done to address this:</p>
+<h3 id="update-the-cf-cli-to-include-the-scheme">Update the CF CLI to include the scheme</h3><p>Currently, the CF CLI outputs the fully-qualified hostname of the app after
+pushing, but doesn&rsquo;t include the scheme. This has caused confusion for users
+when this is copy/pasted into browsers, and then times out.</p>
+<p>Getting the CLI to include the scheme here will help with the specific case of
+users getting confused immediately after pushing an app.</p>
+<p>It&rsquo;s unclear how much work this involves, as currently information about
+whether a route is http or https doesn&rsquo;t appear to be modeled in CloudFoundry
+anywhere.</p>
+<p>If this involves changes to the CLI, there&rsquo;s no guarantee that users will
+upgrade their CLI.</p>
+<p>Additionally, there is some debate about how effective this change would be. It
+will probably fix some cases, but won&rsquo;t cover everything.</p>
+<h3 id="redirect-http-to-https">Redirect http to https</h3><p>Add an endpoint that listens to all http requests on cloudapps.digital and
+redirects them to the corresponding https URL.</p>
+<p>There&rsquo;s a risk with this that a service could link to the http version of a
+page by mistake and not notice due to the redirect. We can mitigate this be
+having the redirect strip the path and query when redirecting so that it always
+redirects to the base URL.</p>
+<p>There&rsquo;s another risk that a misconfiguration could allow non-encrypted traffic
+through to applications. This would need to be mitigated by having acceptance
+tests to cover this.</p>
+<h2 id="decision">Decision</h2><p>We will redirect http traffic to the corresponding root https endpoint.</p>
+<p>We will continue to maintain HSTS preload lists for our production domains.</p>
+<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="consequences">Consequences</h2><p>We must configure and maintain an endpoint on the routers that accepts http
+connections and redirects to the corresponding base https endpoint.</p>
 
 
             

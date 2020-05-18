@@ -9,18 +9,18 @@
 
     <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR451-bosh-access-without-socks/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR035-do-not-use-haproxy-use-aws-alb/">
 
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR451-bosh-access-without-socks/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR035-do-not-use-haproxy-use-aws-alb/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR451-bosh-access-without-socks/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR035-do-not-use-haproxy-use-aws-alb/" />
 
     
   </head>
@@ -61,16 +61,13 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#bosh-access-without-socks5-or-ssh"><span>BOSH access without SOCKS5 or SSH</span></a>
+    <a href="#adr035-do-not-use-haproxy-use-aws-albs"><span>ADR035: Do not use HAProxy ; Use AWS ALBs</span></a>
     <ul>
       <li>
         <a href="#context"><span>Context</span></a>
       </li>
       <li>
         <a href="#decision"><span>Decision</span></a>
-      </li>
-      <li>
-        <a href="#implementation"><span>Implementation</span></a>
       </li>
       <li>
         <a href="#status"><span>Status</span></a>
@@ -93,21 +90,60 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="bosh-access-without-socks5-or-ssh">BOSH access without SOCKS5 or SSH</h1><h2 id="context">Context</h2><p>To comply with <a href="https://www.pcisecuritystandards.org/pci_security/maintaining_payment_security">PCI Requirements</a> we will remove the use of shared credentials anywhere in the platform.</p>
-<p>We will use Single Sign On (SSO) to avoid credential sharing.</p>
-<p>To enable SSO we will expose some of the APIs on the BOSH instance without using a SOCKS5 proxy. This is due to the SOCKS5 proxy not playing nicely with the VPN, which in turn creates a support risk</p>
-<p>Discussion has taken place with both IA and with Cyber on the proposed methods after reviewing the <a href="https://docs.google.com/document/d/1XZsrNp88tOSyC_bjy1mg3Yyv2TkpKgYSjoYResGAbps/edit#heading=h.xscqoqxlc072">RFC created as part of #169915408</a></p>
-<h2 id="decision">Decision</h2><p>We will remove the reliance on SOCKS5 or SSH tunnels for the UAA API endpoint so that we can remove the use of shared credentials.</p>
-<p>With these in place we are unable to complete an SSO journey from one of our existing IDPs as the BOSH instance is not broswer accessible.</p>
-<p>The current method will be replaced with Single Sign On in order to obtain a UAA token. This token is then used to interact with the rest of the APIs on the BOSH instance.</p>
-<h2 id="implementation">Implementation</h2><p>In the initial implementation we will place UAA on the bosh director in the internet using the IP Whitelist and using Google for SSO</p>
-<p>Access to both BOSH and Credhub will remain via SSH Tunnels during this phase of implementation.</p>
-<p><a href="../images/adr451-bosh-access-without-socks.svg" target="_blank" rel="noopener noreferrer"><img src="../images/adr451-bosh-access-without-socks.svg" alt="architecture" /></a></p>
-<p>By using this method we are retaining the benefit of using IP whitelisting whilst removing the shared credential that is in use.</p>
+  <h1 id="adr035-do-not-use-haproxy-use-aws-albs">ADR035: Do not use HAProxy ; Use AWS ALBs</h1><h2 id="context">Context</h2><p>In ADR008 and ADR014 we decided to use HAProxy, for three reasons:</p>
+
+<ul>
+<li>Writing HSTS header if they are not present in the upstream request</li>
+<li>Implementing HTTP -&gt; HTTPS redirect</li>
+<li>Custom health check for Gorouter</li>
+</ul>
+<p>These problems have since been fixed:</p>
+
+<ul>
+<li>Header rewriting was implemented in <a href="https://github.com/cloudfoundry/routing-release/releases/tag/0.183.0">v0.183.0</a></li>
+<li>HTTP healthchecking was implemented in <a href="https://github.com/cloudfoundry/routing-release/releases/tag/0.139.0">v0.139.0</a></li>
+<li>HTTP -&gt; HTTPS redirect can be done using AWS ALBs</li>
+</ul>
+<p>We currently use multiple ELBs (classic) which we want to replace with ALBs.
+We want to use ALBs because:</p>
+
+<ul>
+<li>ELBs are deprecated in terraform and cause crashes</li>
+<li>ALBs can give us more metrics in CloudWatch</li>
+<li>ALBs have better support for X-Forwarded-For</li>
+<li>ALBs support fixed-response which can be used for HTTP -&gt; HTTPS rewriting</li>
+</ul>
+<p>HAProxy adds significant complexity to our routing deployment and maintenance:</p>
+
+<ul>
+<li>Proxy Protocol is non-standard and hard to understand</li>
+<li>HTTP -&gt; HTTPS rewriting is hard to understand</li>
+<li>HAProxy config is rarely touched</li>
+<li>We have to maintain our own HAProxy BOSH release</li>
+<li>HAProxy duplicates the number of logs we receive because every platform request is written twice</li>
+<li>HAProxy adds an extra network hop for every request</li>
+</ul>
+<h2 id="decision">Decision</h2>
+<ul>
+<li>Replace ELBs with ALBs</li>
+<li>Use ALB fixed-response to redirect HTTP -&gt; HTTPS</li>
+<li>Use Gorouter directly for:
+
+<ul>
+<li>TLS termination</li>
+<li>HSTS header rewriting</li>
+<li>Healthchecking the router instance</li>
+</ul></li>
+<li>Remove HAProxy</li>
+</ul>
 <h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>We will no longer rely on IP Whitelisting or SSH tunnels and have individual credentials for accessing UAA on the BOSH Director.</p>
-<p>Full alerting can be undertaken by Cyber for this component.</p>
-<p>We will not be using SSH tunnels to obtain UAA tokens.</p>
+<h2 id="consequences">Consequences</h2>
+<ul>
+<li>We will archive alphagov/paas-haproxy-release</li>
+<li>We must use Gorouter&rsquo;s /health endpoint for drained healthchecking</li>
+<li>We must communicate with tenants that the X-Forwarded-For header contents will change</li>
+<li>We will no longer have HAProxy logs, and save money on log ingestion/storage</li>
+</ul>
 
 
             

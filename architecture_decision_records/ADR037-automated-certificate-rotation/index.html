@@ -9,18 +9,18 @@
 
     <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR448-automated-certificate-rotation/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR037-automated-certificate-rotation/">
 
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR448-automated-certificate-rotation/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR037-automated-certificate-rotation/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR448-automated-certificate-rotation/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR037-automated-certificate-rotation/" />
 
     
   </head>
@@ -61,7 +61,7 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#automated-certificate-rotation"><span>Automated certificate rotation</span></a>
+    <a href="#adr037-automated-certificate-rotation"><span>ADR037: Automated certificate rotation</span></a>
     <ul>
       <li>
         <a href="#context"><span>Context</span></a>
@@ -90,7 +90,7 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="automated-certificate-rotation">Automated certificate rotation</h1><h2 id="context">Context</h2><p>Our certificate rotation was a largely manual process, involving an operator triggering a series of Concourse pipeline jobs in a particular sequence. We did not have a routine for doing rotations, and would typically only do them as part of a CF upgrade.</p>
+  <h1 id="adr037-automated-certificate-rotation">ADR037: Automated certificate rotation</h1><h2 id="context">Context</h2><p>Our certificate rotation was a largely manual process, involving an operator triggering a series of Concourse pipeline jobs in a particular sequence. We did not have a routine for doing rotations, and would typically only do them as part of a CF upgrade.</p>
 <p>The only means we had for knowing if a cert rotation was necessary was the <code>check-certificates</code> job, in the <code>create-cloudfoundry</code> Concourse pipeline, which would fail if any certificate had less than 30 days until it expired.</p>
 <p>In Q2 2019 (August/September) we moved all of our platform secrets from AWS S3 to <a href="https://docs.cloudfoundry.org/credhub/">Credhub</a>. This covered third-party service credentials, platform passwords, and certificates. Since Credhub supports <a href="https://github.com/pivotal-cf/credhub-release/blob/master/docs/ca-rotation.md">certificate rotation</a>, we chose to implement automatic certificate rotation. This ADR contains details of how we did it.</p>
 <h2 id="decision">Decision</h2><p>Credhub has the notion of a transitional certificate. As written in <a href="https://github.com/pivotal-cf/credhub-release/blob/master/docs/ca-rotation.md">their documentation</a>, a transitional certificate is</p>

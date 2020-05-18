@@ -9,18 +9,18 @@
 
     <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR452-bosh-access-with-mtls/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR043-new-product-pages-language-and-framework/">
 
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR452-bosh-access-with-mtls/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR043-new-product-pages-language-and-framework/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR452-bosh-access-with-mtls/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR043-new-product-pages-language-and-framework/" />
 
     
   </head>
@@ -61,16 +61,13 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#bosh-access-with-mtls"><span>BOSH access with mTLS</span></a>
+    <a href="#adr043-new-product-pages-language-and-framework"><span>ADR043: new product pages language and framework</span></a>
     <ul>
       <li>
         <a href="#context"><span>Context</span></a>
       </li>
       <li>
         <a href="#decision"><span>Decision</span></a>
-      </li>
-      <li>
-        <a href="#implementation"><span>Implementation</span></a>
       </li>
       <li>
         <a href="#status"><span>Status</span></a>
@@ -93,26 +90,46 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="bosh-access-with-mtls">BOSH access with mTLS</h1><h2 id="context">Context</h2><p>In <a href="../ADR451-bosh-access-without-socks/">ADR451 BOSH access without SOCKS</a> we removed the requirement for using a SOCKS5 proxy or SSH tunnel to access UAA.</p>
-<p>We are moving towards a <a href="https://www.ncsc.gov.uk/blog-post/zero-trust-architecture-design-principles">zero trust network model</a> and as part of this are removing the IP whitelists that have been in place.</p>
-<p>Discussion has taken place with both IA and with Cyber on the proposed methods after reviewing the <a href="https://docs.google.com/document/d/1XZsrNp88tOSyC_bjy1mg3Yyv2TkpKgYSjoYResGAbps/edit#heading=h.xscqoqxlc072">RFC created as part of #169915408</a></p>
-<h2 id="decision">Decision</h2><p>We will remove the reliance on IP Whitelisting for all services on the BOSH Instance.</p>
-<p>The IP Whitelisting will be replaced with Mutual TLS.</p>
-<p>This method is one that is prefered by Cyber, as it give a much stronger authentication to the platform. This is due to authenticating both the individual and the machine that are accessing critical services.</p>
-<h2 id="implementation">Implementation</h2><p>Mutual TLS will be implemented on the BOSH Director in order to gain access to the APIs contained. This will be achieved by using a mTLS proxy such as <a href="https://github.com/square/ghostunnel">ghostunnel</a>, <a href="https://github.com/drGrove/mtls-server">mTLS-server</a> or <a href="https://www.loadbalancer.org/blog/client-certificate-authentication-with-haproxy/">HAProxy</a></p>
-<p>The following components will be accessible via 0.0.0.0/0 provided that there is a valid TLS certificate presented by the client.</p>
+  <h1 id="adr043-new-product-pages-language-and-framework">ADR043: new product pages language and framework</h1><h2 id="context">Context</h2><p><a href="https://www.cloud.service.gov.uk/">PaaS product pages</a> have been reviewed and a number of accessibility issues
+have been identified. To resolve those we, would need to make an upgrade and
+and review if any additional changes are needed to align with the GOV.UK Design System.</p>
+<p>As those pages are built in Ruby and in <a href="/architecture_decision_records/ADR024-web-app-language-and-framework-selection-2">ADR024</a> we&rsquo;ve made the decision
+to develop our user-facing applications on Node, it&rsquo;s a good opportunity to 
+look at rebuilding the product pages.</p>
+<p>We&rsquo;ve discussed user needs and it emerged that:</p>
 
 <ul>
-<li>UAA</li>
-<li>BOSH</li>
-<li>Credhub</li>
+<li>anyone in the team (developer and non-developer) should be able to update pages 
+with less effort</li>
+<li>pages should be performant for end users</li>
+<li>pages should be rendered by the server</li>
+<li>keeping pages up to date with GOV.UK Design System releases should be quicker and easier</li>
+<li>alignment of technologies for our user-facing web products should provide better 
+developer experience and give us the option to have shared component libraries</li>
 </ul>
-<p><a href="../images/adr452-bosh-access-with-mtls.svg" target="_blank" rel="noopener noreferrer"><img src="../images/adr452-bosh-access-with-mtls.svg" alt="architecture" /></a></p>
-<p>By passing all the inbound connections through an mTLS proxy we are able to keep multiple authentication factors in play and in the event of a DDoS attack on the proxy it does not place additional load directly on the BOSH Director.</p>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>We will no longer rely on IP Whitelisting when accessing the components on the BOSH Director.</p>
-<p>Full alerting can be undertaken by Cyber for this component.</p>
-<p>We will not be using SSH access to the BOSH Director when carrying out daily operator tasks which should reduce false alerting within Cyber.</p>
+<p>With the above in mind we researched options. Our admin interface is built in React,
+so we narrowed the scope to React-based static site generators.</p>
+<p>We ended up comparing two: <a href="https://nextjs.org/">NextJS</a> with static page export and <a href="https://www.gatsbyjs.org/">GatsbyJS</a> 
+which exports static pages by default.
+For page content we agreed that writing pages in <a href="https://www.markdownguide.org/getting-started/">Markdown</a> is a good option,
+so we tested both with <a href="https://mdxjs.com/">MDX</a> which can also embed React components inside content pages.</p>
+<p><a href="https://nextjs.org/">NextJS</a> and <a href="https://www.gatsbyjs.org/">GatsbyJS</a> have different approaches to development and there are minor 
+performance differences between them.</p>
+<p>Our use case for now is narrow enough, and with the primary need of anyone in the team
+being able to update pages, <a href="https://nextjs.org/">NextJS</a> marginally gets more votes as Gatsby cannot be installed and run on
+non-developer machines.</p>
+<h2 id="decision">Decision</h2><p>We will use <a href="https://nextjs.org/">NextJS</a> together with <a href="https://mdxjs.com/">MDX</a> to author PaaS product pages content in 
+<a href="https://www.markdownguide.org/getting-started/">Markdown</a> and deliver them to users as static pages.</p>
+<h2 id="status">Status</h2><p>Accepted.</p>
+<h2 id="consequences">Consequences</h2><p>This implementation will allow us to:</p>
+
+<ul>
+<li>iterate our content more quickly as non-developers will be able to make chances easily</li>
+<li>keep our page updated with newer releases of GOV.UK Design System to continue to makem
+accessible to everyone and aligned with the latest designs</li>
+<li>have both user-facing products on the same platform</li>
+<li>allow us to have shared components if the need arises</li>
+</ul>
 
 
             

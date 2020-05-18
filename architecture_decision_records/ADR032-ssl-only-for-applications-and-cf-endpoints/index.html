@@ -9,18 +9,18 @@
 
     <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR450-aiven-metrics-for-users/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR032-ssl-only-for-applications-and-cf-endpoints/">
 
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR450-aiven-metrics-for-users/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR032-ssl-only-for-applications-and-cf-endpoints/" />
       <meta property="twitter:card" content="summary" />
       <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR450-aiven-metrics-for-users/" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR032-ssl-only-for-applications-and-cf-endpoints/" />
 
     
   </head>
@@ -61,16 +61,13 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#aiven-metrics-for-users"><span>Aiven metrics for users</span></a>
+    <a href="#adr032-ssl-only-for-applications-and-cf-endpoints"><span>ADR032: SSL-only for applications and cf endpoints</span></a>
     <ul>
       <li>
         <a href="#context"><span>Context</span></a>
       </li>
       <li>
         <a href="#decision"><span>Decision</span></a>
-      </li>
-      <li>
-        <a href="#initial-implementation"><span>Initial implementation</span></a>
       </li>
       <li>
         <a href="#status"><span>Status</span></a>
@@ -93,54 +90,39 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="aiven-metrics-for-users">Aiven metrics for users</h1><h2 id="context">Context</h2><p>We offer backing services via <a href="https://aiven.io">Aiven</a> to our users:</p>
-
-<ul>
-<li>Elasticsearch</li>
-<li>InfluxDB (private beta)</li>
-</ul>
-<p>We want to ensure our users can view metrics for their Aiven backing services so that our users can:</p>
-
-<ul>
-<li>debug and respond to usage and service performance changes</li>
-<li>understand the operational characteristics of their applications and services</li>
-<li>make better capacity planning and budgeting decisions</li>
-</ul>
-<p>Aiven has <em>service integrations</em> which add extra functionality to an Aiven <em>service</em>. <em>Service integrations</em> can be used to:</p>
-
-<ul>
-<li>ship logs to an Elasticsearch/Rsyslog</li>
-<li>send metrics to Datadog</li>
-<li>send metrics to Aiven Postgres/InfluxDB</li>
-<li>expose metrics in Prometheus exposition format</li>
-</ul>
-<p>We currently run Prometheus for monitoring the platform, using the <a href="https://github.com/bosh-prometheus/prometheus-boshrelease">Prometheus BOSH release</a> and have confidence and experience using it.</p>
-<p>We will need to think about Prometheus failover. If we load balance Prometheus without sticky sessions, then the metrics reported by Prometheus will be erratic as different instances report different metrics.</p>
-<h2 id="decision">Decision</h2><p>We will use Prometheus to scrape Aiven provided services.</p>
-<p>We will deploy new Prometheis in the CF BOSH deployment using the Prometheus BOSH release. This will reduce blast radius - tenant usage of metrics will not affect our ability to operate and monitor the platform using Prometheus.</p>
-<p>We will need to automate the following tasks:</p>
-
-<ul>
-<li>Service discovery: ensure Prometheus has an updated list of Aiven <em>services</em> to scrape. This automation must be colocated with the Prometheus instance.</li>
-<li>Service integration: ensure every eligible Aiven provided <em>service</em> uses the Aiven <em>service integration</em> for Prometheus.</li>
-</ul>
-<h2 id="initial-implementation">Initial implementation</h2><p>In the initial implementation we deploy multiple instances of Prometheus for high availability.</p>
-<p><a href="../images/adr450-prometheus-aiven-architecture.svg" target="_blank" rel="noopener noreferrer"><img src="../images/adr450-prometheus-aiven-architecture.svg" alt="architecture" /></a></p>
-<p>There will be three services on the instance:</p>
-
-<ul>
-<li>Prometheus</li>
-<li>Caddy</li>
-<li>Aiven service discovery</li>
-</ul>
-<p>We use gorouter for exposing Prometheus publicly.</p>
-<p>We use Caddy for failover and for authentication.
-Caddy does automatic failover, such that during regular operation all traffic gets proxied to a single instance, but when the usual instance is unreachable, Caddy will proxy the request to the colocated Prometheus.</p>
-<p>This architecture is temporary and will be revisited when we look at how to expose the Prometheus API to all users.</p>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>We will provide Prometheus as the datastore and interface for (a subset of) tenant metrics.</p>
-<p>We will deploy additional stateful instances to our CF BOSH deployment.</p>
-<p>We will maintain software to automate the integration of Aiven services and Prometheus.</p>
+  <h1 id="adr032-ssl-only-for-applications-and-cf-endpoints">ADR032: SSL-only for applications and cf endpoints</h1><h2 id="context">Context</h2><p><strong>Note: This has been superceeded. See <a href="#status">Status</a> below.</strong></p>
+<p>It is expected for the government websites to be secure and keep the user
+interactions private. Because that we want to enforce all communications to
+any application and to the platform endpoints to use only and always HTTPS,
+as <a href="https://www.gov.uk/service-manual/technology/using-https">it is described in the Gov Service Manual</a>.</p>
+<p>When a user inputs a website name without specifying the
+protocol in the URL, most browsers will try first the HTTP protocol by default.
+Even if the server always redirect HTTP to HTTPS, an initial
+unprotected request including user information will be transferred
+in clear: full URL with domain, parameter, <a href="https://en.wikipedia.org/wiki/HTTP_cookie#Secure_and_HttpOnly">cookies without secure flag</a>
+or browser meta-information.</p>
+<p><a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HTTP Strict Transport Security</a>
+mitigates this issue by instructing modern browsers that support it to
+always connect using HTTPS.
+This is also a <a href="https://www.gov.uk/service-manual/technology/using-https">requirement in the service manual</a>.</p>
+<p>There is still a potential initial unprotected HTTP request that might happen
+before retrieve the HSTS headers or after the specified HSTS <code>max-age</code>.
+To solve this issue, the root domain can be added to
+<a href="https://hstspreload.appspot.com/">HSTS preload list</a> which will be used by most
+common browsers.</p>
+<p>Currently the only way to avoid any clear text HTTP interaction is closing or
+dropping any attempt to connect to the port 80 at TCP level.</p>
+<p>Although not all application deployed on the PaaS will be &ldquo;services&rdquo;
+as in the service manual meaning, we must not allow HTTP to make
+it easier to service owners to comply with this requirements.</p>
+<h2 id="decision">Decision</h2><p>We will only open port 443 (HTTPS) and drop/reject any TCP connection to TCP port 80 (HTTP).</p>
+<p>We will implement and maintain HSTS preload lists for our production domains.</p>
+<h2 id="status">Status</h2><p>Superceeded by <a href="../ADR033-redirect-http-for-applications">ADR033</a></p>
+<h2 id="consequences">Consequences</h2><p>We must configure and maintain our domain in the HSTS preload lists.</p>
+<p>Users of browsers which do not support HSTS, or HSTS preload lists, will not
+be able to connect to the sites without specify the protocol <code>https://</code> in
+the URL. This only happens when the user manually inputs the URL in the
+browser.</p>
 
 
             

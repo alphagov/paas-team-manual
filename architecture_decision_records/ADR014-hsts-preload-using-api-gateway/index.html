@@ -90,7 +90,7 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr014-hsts-preload-using-api-gateway">ADR014: HSTS preload using api gateway</h1><h2 id="context">Context</h2><p>We will only <a href="../ADR443-ssl-only-for-applications-and-cf-endpoints">serve HTTPS traffic, keeping TCP port 80 (HTTP) closed and use HSTS preload lists</a>.</p>
+  <h1 id="adr014-hsts-preload-using-api-gateway">ADR014: HSTS preload using api gateway</h1><h2 id="context">Context</h2><p>We will only <a href="../ADR032-ssl-only-for-applications-and-cf-endpoints">serve HTTPS traffic, keeping TCP port 80 (HTTP) closed and use HSTS preload lists</a>.</p>
 <p>To add our domains to <a href="https://hstspreload.appspot.com/">HSTS preload lists</a>, there are these requirements:</p>
 
 <ol>
