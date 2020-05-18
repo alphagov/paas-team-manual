@@ -67,7 +67,7 @@ The scaling is transparent to the external user because each ALB provides a DNS 
 
 ALBs also handle TLS termination. See [ADR 007](/architecture_decision_records/ADR007-terminating-tls-at-elbs).
 
-We replaced the ELBs with ALBs. See [ADR 447](https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR446-do-not-use-haproxy-use-aws-alb).
+We replaced the ELBs with ALBs. See [ADR 037](/architecture_decision_records/ADR035-do-not-use-haproxy-use-aws-alb).
 
 ## Subnet Routing
 

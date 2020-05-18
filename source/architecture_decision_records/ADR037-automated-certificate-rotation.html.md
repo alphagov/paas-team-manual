@@ -1,4 +1,4 @@
-# Automated certificate rotation
+# ADR037: Automated certificate rotation
 
 ## Context
 Our certificate rotation was a largely manual process, involving an operator triggering a series of Concourse pipeline jobs in a particular sequence. We did not have a routine for doing rotations, and would typically only do them as part of a CF upgrade.

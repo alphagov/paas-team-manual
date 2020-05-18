@@ -1,8 +1,8 @@
-# ADR444: Redirect HTTP for applications
+# ADR033: Redirect HTTP for applications
 
 ## Context
 
-In [ADR443](../ADR443-ssl-only-for-applications-and-cf-endpoints) we decided that
+In [ADR032](/architecture_decision_records/ADR032-ssl-only-for-applications-and-cf-endpoints) we decided that
 we would only support https for applications on the PaaS, and that we would
 drop plain http connections (port 80).
 

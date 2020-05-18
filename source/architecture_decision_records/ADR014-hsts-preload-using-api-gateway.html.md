@@ -2,7 +2,7 @@
 
 ## Context
 
-We will only [serve HTTPS traffic, keeping TCP port 80 (HTTP) closed and use HSTS preload lists](../ADR443-ssl-only-for-applications-and-cf-endpoints).
+We will only [serve HTTPS traffic, keeping TCP port 80 (HTTP) closed and use HSTS preload lists](../ADR032-ssl-only-for-applications-and-cf-endpoints).
 
 To add our domains to [HSTS preload lists](https://hstspreload.appspot.com/), there are these requirements:
 

@@ -1,4 +1,4 @@
-Recommended database plans
+# ADR036: Recommended database plans
 ==========================
 
 <!-- vim: set tw=100: -->

@@ -1,4 +1,4 @@
-# ADR443: SSL-only for applications and cf endpoints
+# ADR032: SSL-only for applications and cf endpoints
 
 ## Context
 
@@ -43,7 +43,7 @@ We will implement and maintain HSTS preload lists for our production domains.
 
 ## Status
 
-Superceeded by [ADR444](../ADR444-redirect-http-for-applications)
+Superceeded by [ADR033](../ADR033-redirect-http-for-applications)
 
 ## Consequences
 
