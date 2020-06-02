@@ -29,7 +29,7 @@
  - [Enhancing kibana](guides/enhancing_kibana/)
  - [Releasing bosh blobs](guides/releasing_bosh_blobs/)
  - [Spruce (for merging YAML)](guides/spruce/)
- - [upgrading CF, bosh and stemcells](guides/upgrading_CF,_bosh_and_stemcells/)
+ - [Upgrading CF, bosh and stemcells](guides/upgrading_CF,_bosh_and_stemcells/)
  - [Updating Logstash filters in Logit](guides/editing_logstash_filters/)
  - [VPC Peering](guides/vpc_peering/)
  - [Running tests on `paas-cf` locally](guides/running_paas-cf_tests_locally/)
