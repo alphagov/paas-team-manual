@@ -66,7 +66,7 @@ Check the [Engagement Tracker](https://trello.com/b/SFyQGwfH/govuk-paas-tracker)
 
 If yes, continue to the next step.
 
-If no, escalate to Product Manager, who will need to use the Zendesk macro `Upgrade request > Info capture - No MOU` and support the department to sign an MOU.
+If no, escalate to the Delivery Manager, who will need to use the Zendesk macro `Upgrade request > Info capture - No MOU` and support the department to sign an MOU.
 
 ### What to do when a user requests an upgrade
 
@@ -90,7 +90,7 @@ If no, escalate to Product Manager, who will need to use the Zendesk macro `Upgr
 
 3.  After upgrading the org, send a confirmation message using the Zendesk macro `Upgrade request > Confirm`
 
-4.  CC the Product Manager on the Zendesk ticket, so they can proceed with payment and support onboarding.
+4.  CC the Delivery Manager on the Zendesk ticket, so they can proceed with payment and support onboarding.
 
 ### How to upgrade an org
 To upgrade an org from a trial to paid, alter the orgs quota using the CF CLI.
@@ -101,7 +101,7 @@ cf set-quota ORG QUOTA
 
 Upgrade a trial org to the `small` quota. The Zendesk macro tells tenants how to request a larger quota.
 
-## Product Manager payment and support onboarding 
+## Delivery Manager payment and support onboarding 
 
 1.  Send an "Please arrange payment for your GOV.UK PaaS account" email 
 
@@ -123,7 +123,7 @@ Upgrade a trial org to the `small` quota. The Zendesk macro tells tenants how to
 
    [Use this email copy](https://docs.google.com/document/d/1Yn9wsbPB9MFPO5_xJrGGnN5Ki1jkWpUfOQP2OTZ7v2g/edit#bookmark=id.naohbyl472s3)
 
-### Product Manager updates list of live services and closes ticket
+### Delivery Manager updates list of live services and closes ticket
 
 Update the [list of live services](https://docs.google.com/spreadsheets/d/1vX196ed_k9r6LSTYUo9rJskihS79voFr3pPl5w74YPA/edit#gid=1236658429). This is used as a rough count of the number of live services using GOV.UK PaaS - which we sometimes need to report on.
 
