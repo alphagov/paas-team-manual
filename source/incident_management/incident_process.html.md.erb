@@ -21,14 +21,14 @@ Your responsibility depends on your role within the ‘incident team’:
 
 #### In hours support engineer (incident lead)
 1. Investigate the incident and request additional help if required.
-1. Decide on the incident [severity level](/incident_management/support_manual/#severity-levels).
-1. Make necessary changes to the production environment (only the incident lead should do this).
-1. Record actions taken and changes made in the #paas-incident Slack channel.
-1. Discuss the incident with the incident comms lead to decide when the incident is resolved or can be downgraded as it is no longer impacting the service.
+2. Decide on the incident [severity level](/incident_management/support_manual/#severity-levels).
+3. Make necessary changes to the production environment (only the incident lead should do this).
+4. Record actions taken and changes made in the #paas-incident Slack channel.
+5. Discuss the incident with the incident comms lead to decide when the incident is resolved or can be downgraded as it is no longer impacting the service.
 
 #### Incident comms lead
 1. Let the PaaS team know about the incident on #paas-incident Slack channel.
-1. Notify the tenants about the investigation by creating a new incident in [Statuspage](/team/statuspage/) using the ‘Possible issue being investigated’ template.
+2. Notify the tenants about the investigation by creating a new incident in [Statuspage](/team/statuspage/) using the ‘Possible issue being investigated’ template.
 **Important: when creating or updating an incident you must tick the boxes to say which components are affected, otherwise notifications will not be sent.**
 3.   Update tenants regularly using the [saved templates](https://manage.statuspage.io/login?redirect=%2Fpages%2Fh4wt7brwsqr0) in our [Statuspage](https://team-manual.cloud.service.gov.uk/team/statuspage/) account. The severity level page shows how frequently you should update tenants.
 
@@ -81,11 +81,11 @@ The comms lead will:
 
 If the on call Techops RE Incident Escalation person needs to know then:
 1. Go to [PagerDuty](https://governmentdigitalservice.pagerduty.com/services).
-1. Under teams, select GOV.UK PaaS.
-1. Go to **Configuration** and select [Schedules](https://governmentdigitalservice.pagerduty.com/schedules).
-1. Check who is currently on the **Techops RE Incident Escalation** rota.
-1. Go back to **Configuration** and select [Users](https://governmentdigitalservice.pagerduty.com/users).
-1. Select the relevant person to find the phone number.
+2. Under teams, select GOV.UK PaaS.
+3. Go to **Configuration** and select [Schedules](https://governmentdigitalservice.pagerduty.com/schedules).
+4. Check who is currently on the **Techops RE Incident Escalation** rota.
+5. Go back to **Configuration** and select [Users](https://governmentdigitalservice.pagerduty.com/users).
+6. Select the relevant person to find the phone number.
 
 For all other incidents the communication and support lead will update [Statuspage](https://team-manual.cloud.service.gov.uk/team/statuspage/) and #paas-incident, and then wait until working hours to investigate further.
 
@@ -95,20 +95,20 @@ For all other incidents the communication and support lead will update [Statuspa
 If you are paged out of hours as the on-call engineer, you will be the incident lead. There will also be an on-call comms lead paged. The comms lead will be responsible for incident comms. You may decide to escalate to Techops RE Incident Escalation so they can engage with senior stakeholders and advise on communication with tenants.
 
 #### Incident lead (on-call engineer)
-
 1. Investigate the incident.
-1. Make necessary changes to the production environment (only the incident lead can do this).
-1. Record actions taken and changes made in the #paas-incident slack channel.
-1. Discuss the incident with the comms lead to decide when the incident is resolved or can be downgraded as it is no longer a P1 incident.
+2. Make necessary changes to the production environment (only the incident lead can do this).
+3. Record actions taken and changes made in the #paas-incident slack channel.
+4. Discuss the incident with the comms lead to decide when the incident is resolved or can be downgraded as it is no longer a P1 incident.
 
 #### Incident comms (on-call comms lead)
 1. Create an open hangout and share with incident team to enable ongoing discussion.
-1. If deemed necessary, contact the TechOps RE Incident Escalation person to get comms support.
-1. Notify tenants about the investigation by creating a new incident in [Statuspage](/team/statuspage/) using the ‘Possible issue being investigated’ template.
-1. Let the PaaS team know about the incident on the #paas-incident slack channel.
-1. Update tenants hourly using the [saved templates](https://manage.statuspage.io/login?redirect=%2Fpages%2Fh4wt7brwsqr0) in our Statuspage account.
-1. When the incident is resolved or downgraded, update the #paas-incident slack channel to state it is no longer a P1 incident.
-1. The Techop escalation rota is the final decision point.
+2. If deemed necessary, contact the TechOps RE Incident Escalation person to get comms support.
+3. Notify tenants about the investigation by creating a new incident in [Statuspage](/team/statuspage/) using the ‘Possible issue being investigated’ template.
+4. Let the PaaS team know about the incident on the #paas-incident slack channel.
+5. Update tenants hourly using the [saved templates](https://manage.statuspage.io/login?redirect=%2Fpages%2Fh4wt7brwsqr0) in our Statuspage account.
+6. When the incident is resolved or downgraded, update the #paas-incident slack channel to state it is no longer a P1 incident.
+7. Before the incident lead and comms lead can break, they should write an 'incident handover' on the #paas-incident slack channel so that the in hours on call support team can pick up the incident. This should include the status of the incident and what time it finished so the team knows when to expect them back 'at work' if relevant. 
+8. The TechOps escalation rota is the final decision point.
 
 
 Useful contact details can be found in [PaaS Emergency contacts and escalations (restricted access)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing)
@@ -125,8 +125,8 @@ Continue as per the [in hours](/incident_management/incident_process/#when-the-i
 
 ### If neither the out of hours support engineer nor out of hours comms lead respond
 1. Pagerduty will automatically contact the TechOps RE Incident Escalation rota.
-1. The escalation person will then need to reach out to another engineer to try and resolve the issue.
-1. If the TechOps RE Incident Escalation doesn’t respond to the alert within 30 minutes, Pagerduty will automatically alert all members of the out of hours support rota by email.
+2. The escalation person will then need to reach out to another engineer to try and resolve the issue.
+3. If the TechOps RE Incident Escalation doesn’t respond to the alert within 30 minutes, Pagerduty will automatically alert all members of the out of hours support rota by email.
 
 In the event that you are contacted but aren’t scheduled to be on the rota, your first point of call should be to check the #paas-incident Slack channel to see if another engineer has already picked it up. If no one has, leave a message to state that you are beginning to investigate.
 
