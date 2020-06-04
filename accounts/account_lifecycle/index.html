@@ -95,10 +95,10 @@
         </ul>
       </li>
       <li>
-        <a href="#product-manager-payment-and-support-onboarding"><span>Product Manager payment and support onboarding </span></a>
+        <a href="#delivery-manager-payment-and-support-onboarding"><span>Delivery Manager payment and support onboarding </span></a>
         <ul>
           <li>
-            <a href="#product-manager-updates-list-of-live-services-and-closes-ticket"><span>Product Manager updates list of live services and closes ticket</span></a>
+            <a href="#delivery-manager-updates-list-of-live-services-and-closes-ticket"><span>Delivery Manager updates list of live services and closes ticket</span></a>
           </li>
         </ul>
       </li>
@@ -158,7 +158,7 @@
 </ul>
 <h3 id="before-you-upgrade">Before you upgrade</h3><p>Check the <a href="https://trello.com/b/SFyQGwfH/govuk-paas-tracker">Engagement Tracker</a> to see if that department has signed a Memorandum of Understanding with GDS. Note that Ministry of Defence currently require a separate MOU per service.</p>
 <p>If yes, continue to the next step.</p>
-<p>If no, escalate to Product Manager, who will need to use the Zendesk macro <code>Upgrade request &gt; Info capture - No MOU</code> and support the department to sign an MOU.</p>
+<p>If no, escalate to the Delivery Manager, who will need to use the Zendesk macro <code>Upgrade request &gt; Info capture - No MOU</code> and support the department to sign an MOU.</p>
 <h3 id="what-to-do-when-a-user-requests-an-upgrade">What to do when a user requests an upgrade</h3>
 <ol>
 <li><p>Collect the necessary information from the tenant:</p>
@@ -178,12 +178,12 @@
 <li><p>Ticket is kept in Pending state until the tenant responds.</p></li>
 <li><p>If the tenant provides the information satisfactorily, continue the upgrade process.</p></li>
 <li><p>After upgrading the org, send a confirmation message using the Zendesk macro <code>Upgrade request &gt; Confirm</code></p></li>
-<li><p>CC the Product Manager on the Zendesk ticket, so they can proceed with payment and support onboarding.</p></li>
+<li><p>CC the Delivery Manager on the Zendesk ticket, so they can proceed with payment and support onboarding.</p></li>
 </ol>
 <h3 id="how-to-upgrade-an-org">How to upgrade an org</h3><p>To upgrade an org from a trial to paid, alter the orgs quota using the CF CLI.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>cf set-quota ORG QUOTA
 </code></pre></div><p>Upgrade a trial org to the <code>small</code> quota. The Zendesk macro tells tenants how to request a larger quota.</p>
-<h2 id="product-manager-payment-and-support-onboarding">Product Manager payment and support onboarding </h2>
+<h2 id="delivery-manager-payment-and-support-onboarding">Delivery Manager payment and support onboarding </h2>
 <ol>
 <li><p>Send an &ldquo;Please arrange payment for your GOV.UK PaaS account&rdquo; email </p>
 <p>Send the email from gov-uk-paas-tenant-billing@digital.cabinet-office.gov.uk </p>
@@ -200,7 +200,7 @@
 <p>Send the email to all Org Managers and Billing Managers for the org</p></li>
 </ol>
 <p><a href="https://docs.google.com/document/d/1Yn9wsbPB9MFPO5_xJrGGnN5Ki1jkWpUfOQP2OTZ7v2g/edit#bookmark=id.naohbyl472s3">Use this email copy</a></p>
-<h3 id="product-manager-updates-list-of-live-services-and-closes-ticket">Product Manager updates list of live services and closes ticket</h3><p>Update the <a href="https://docs.google.com/spreadsheets/d/1vX196ed_k9r6LSTYUo9rJskihS79voFr3pPl5w74YPA/edit#gid=1236658429">list of live services</a>. This is used as a rough count of the number of live services using GOV.UK PaaS - which we sometimes need to report on.</p>
+<h3 id="delivery-manager-updates-list-of-live-services-and-closes-ticket">Delivery Manager updates list of live services and closes ticket</h3><p>Update the <a href="https://docs.google.com/spreadsheets/d/1vX196ed_k9r6LSTYUo9rJskihS79voFr3pPl5w74YPA/edit#gid=1236658429">list of live services</a>. This is used as a rough count of the number of live services using GOV.UK PaaS - which we sometimes need to report on.</p>
 <p>Usually an account upgrade is conducted at an early stage of building the service, and it may take some time until the service might be considered &ldquo;live&rdquo;.</p>
 <p>In these cases the org/service should be marked as &ldquo;early stage&rdquo; - until there is a clear indication that the service is going into production soon.</p>
 <p>Finally, close the ticket.</p>
