@@ -68,6 +68,17 @@
       </li>
       <li>
         <a href="#support-runbook"><span>Support Runbook</span></a>
+        <ul>
+          <li>
+            <a href="#response"><span>Response</span></a>
+          </li>
+          <li>
+            <a href="#how-to"><span>How-to</span></a>
+          </li>
+          <li>
+            <a href="#other-information"><span>Other information</span></a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#tenant-account-management"><span>Tenant Account Management</span></a>
@@ -122,38 +133,45 @@
 <li><a href="incident_management/roles_and_responsibilities/">Support roles and responsibilities</a></li>
 <li><a href="team/service_targets/">Service Targets</a></li>
 </ul>
-<h2 id="support-runbook">Support Runbook</h2>
+<h2 id="support-runbook">Support Runbook</h2><h3 id="response">Response</h3>
 <ul>
-<li><a href="support/CF_UAA_user_management/">User management</a></li>
 <li><a href="support/responding_to_alerts/">Responding to alerts</a></li>
 <li><a href="support/responding_to_security_issues/">Responding to security issues</a></li>
-<li><a href="support/finding_activity/">Finding activity</a></li>
-<li><a href="support/finding_route_owners/">Finding route owners</a></li>
-<li><a href="support/finding_apps_with_noisy_logging/">Finding apps with noisy logging</a></li>
-<li><a href="support/restoring_elasticsearch_backups/">Restoring Elasticsearch Backups</a></li>
-<li><a href="support/rsyslog/">Investigating rsyslog issues</a></li>
-<li><a href="guides/CloudFoundry_debugging/">Cloud Foundry debugging tips</a></li>
-<li><a href="guides/Connecting_to_Concourse_CredHub_and_BOSH/">Connecting to Concourse, Credhub, and BOSH</a></li>
+<li><a href="team/responding_to_aws_alert/">Responding to AWS alerts</a></li>
+</ul>
+<h3 id="how-to">How-to</h3>
+<ul>
+<li><a href="guides/common_support_tasks/">How to do common support tasks</a></li>
+<li><a href="support/CF_UAA_user_management/">How to do user and organisation management</a></li>
 <li><a href="guides/GPG/">How to use GPG</a></li>
 <li><a href="guides/Github_oAuth_in-Dev/">How to enable Github OAuth for your dev environment</a></li>
-<li><a href="guides/IPSec_debugging/">IPSec debugging</a></li>
-<li><a href="guides/Restoring_the_CF_databases/">Restoring the CF databases</a></li>
-<li><a href="guides/Tenant_Application_Penetration_Testing/">Tenant Application Penetration Testing</a></li>
 <li><a href="guides/cf_admin_users/">How to sign into your CF admin account</a></li>
-<li><a href="guides/common_support_tasks/">Common support tasks</a></li>
-<li><a href="guides/enhancing_kibana/">Enhancing kibana</a></li>
-<li><a href="guides/releasing_bosh_blobs/">Releasing bosh blobs</a></li>
-<li><a href="guides/spruce/">Spruce (for merging YAML)</a></li>
-<li><a href="guides/upgrading_CF,_bosh_and_stemcells/">upgrading CF, bosh and stemcells</a></li>
-<li><a href="guides/editing_logstash_filters/">Updating Logstash filters in Logit</a></li>
-<li><a href="guides/vpc_peering/">VPC Peering</a></li>
-<li><a href="guides/running_paas-cf_tests_locally/">Running tests on <code>paas-cf</code> locally</a></li>
-<li><a href="guides/restoring_bosh_director/">Restoring the bosh director</a></li>
-<li><a href="guides/effective_remote_pairing/">Effective remote pairing guidance</a></li>
-<li><a href="team/rotating_credentials/">Rotating credentials</a></li>
+<li><a href="guides/Connecting_to_Concourse_CredHub_and_BOSH/">How to connect to Concourse, Credhub, and BOSH</a></li>
+<li><a href="guides/vpc_peering/">How to set up VPC Peering</a></li>
+<li><a href="guides/upgrading_CF,_bosh_and_stemcells/">How to upgrade CF, bosh and stemcells</a></li>
+<li><a href="guides/editing_logstash_filters/">How to update Logstash filters in Logit</a></li>
+<li><a href="support/finding_route_owners/">How to find route owners</a></li>
+<li><a href="support/finding_apps_with_noisy_logging/">How to find apps with noisy logging</a></li>
+<li><a href="support/finding_activity/">How to find activity</a></li>
+<li><a href="support/restoring_elasticsearch_backups/">How to restore Elasticsearch backups</a></li>
+<li><a href="support/tenant_elasticache_service_updates/">How to apply tenant ElastiCache (redis) service updates </a></li>
+<li><a href="guides/Restoring_the_CF_databases/">How to restore the CF databases</a></li>
+<li><a href="guides/restoring_bosh_director/">How to restore the bosh director</a></li>
+<li><a href="guides/releasing_bosh_blobs/">How to release bosh blobs</a></li>
+<li><a href="guides/running_paas-cf_tests_locally/">How to run <code>paas-cf</code> tests locally</a></li>
+<li><a href="team/rotating_credentials/">How to rotate credentials</a></li>
+</ul>
+<h3 id="other-information">Other information</h3>
+<ul>
 <li><a href="team/our_orgs_on_the_paas/">Our orgs on the paas</a></li>
+<li><a href="guides/IPSec_debugging/">Debugging IPSec</a></li>
+<li><a href="guides/enhancing_kibana/">Enhancing Kibana</a></li>
+<li><a href="support/rsyslog/">Investigating Rsyslog issues</a></li>
+<li><a href="guides/CloudFoundry_debugging/">Cloud Foundry debugging tips</a></li>
+<li><a href="guides/Tenant_Application_Penetration_Testing/">Tenant application penetration testing</a></li>
+<li><a href="guides/spruce/">Spruce (for merging YAML)</a></li>
+<li><a href="guides/effective_remote_pairing/">Effective remote pairing</a></li>
 <li><a href="team/platform_alerting/">Platform alerting</a></li>
-<li><a href="team/responding_to_aws_alert/">Responding to aws alert</a></li>
 </ul>
 <h2 id="tenant-account-management">Tenant Account Management</h2>
 <ul>
@@ -204,49 +222,49 @@
 <h2 id="architecture-decision-records">Architecture decision records</h2><p>This section contains Architecture Decision Records (ADR) as described in this blog post <a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions</a>.</p>
 
 <ul>
-<li><a href="architecture_decision_records/ADR001-manifest-management/">ADR001 manifest management</a></li>
-<li><a href="architecture_decision_records/ADR002-concourse-pool-resource/">ADR002 concourse pool resource</a></li>
-<li><a href="architecture_decision_records/ADR003-AWS-credentials/">ADR003 AWS credentials</a></li>
-<li><a href="architecture_decision_records/ADR004-domain-naming-scheme/">ADR004 domain naming scheme</a></li>
-<li><a href="architecture_decision_records/ADR005-pingdom-healthchecks/">ADR005 pingdom healthchecks</a></li>
-<li><a href="architecture_decision_records/ADR006-rds-broker/">ADR006 rds broker</a></li>
-<li><a href="architecture_decision_records/ADR007-terminating-tls-at-elbs/">ADR007 terminating tls at elbs</a></li>
-<li><a href="architecture_decision_records/ADR008-haproxy-for-request-rewriting/">ADR008 haproxy for request rewriting</a></li>
-<li><a href="architecture_decision_records/ADR009-x-forwarded-headers/">ADR009 x forwarded headers</a></li>
-<li><a href="architecture_decision_records/ADR010-postgres-bind-behaviour/">ADR010 postgres bind behaviour</a></li>
-<li><a href="architecture_decision_records/ADR011-security-group-structure/">ADR011 security group structure</a></li>
-<li><a href="architecture_decision_records/ADR012-haproxy-healthcheck/">ADR012 haproxy healthcheck</a></li>
-<li><a href="architecture_decision_records/ADR013-building-bosh-releases/">ADR013 building bosh releases</a></li>
-<li><a href="architecture_decision_records/ADR014-hsts-preload-using-api-gateway/">ADR014 hsts preload using api gateway</a></li>
-<li><a href="architecture_decision_records/ADR015-rds-storage-encryption-plans/">ADR015 rds storage encryption plans</a></li>
-<li><a href="architecture_decision_records/ADR016-end-to-end-encryption/">ADR016 end to end encryption</a></li>
-<li><a href="architecture_decision_records/ADR017-cell-capacity-assignment/">ADR017 cell capacity assignment</a></li>
-<li><a href="architecture_decision_records/ADR018-rds-broker-restore-last-operation/">ADR018 rds broker restore last operation</a></li>
-<li><a href="architecture_decision_records/ADR019-accessing-user-provided-services/">ADR019 accessing user provided services</a></li>
-<li><a href="architecture_decision_records/ADR020-deletion_of_ci_environment/">ADR020 deletion of ci environment</a></li>
-<li><a href="architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR021 cell capacity assignment 2</a></li>
-<li><a href="architecture_decision_records/ADR022-web_app_language_and_framework_selection/">ADR022 web app language and framework selection</a></li>
-<li><a href="architecture_decision_records/ADR023-idle-cpu-alerting-change/">ADR023 idle cpu alerting change</a></li>
-<li><a href="architecture_decision_records/ADR024-web-app-language-and-framework-selection-2/">ADR024 web app language and framework selection</a></li>
-<li><a href="architecture_decision_records/ADR025-service-plan-naming-conventions/">ADR025 Service plan naming conventions</a></li>
-<li><a href="architecture_decision_records/ADR026-DNS-layout-for-UK-hosting/">ADR026 DNS layout for UK hosting</a></li>
-<li><a href="architecture_decision_records/ADR027-pipeline-locking/">ADR027 pipeline locking</a></li>
-<li><a href="architecture_decision_records/ADR028-move-logs-to-logit/">ADR028 Move platform logs to Logit</a></li>
-<li><a href="architecture_decision_records/ADR029-aiven-project-structure/">ADR029 Aiven project structure</a></li>
-<li><a href="architecture_decision_records/ADR030-single-staging-london/">ADR030 single staging environment in London</a></li>
-<li><a href="architecture_decision_records/ADR031-services-core-pipeline-separate-jobs/">ADR031 Separate PaaS services from the Platform core pipeline</a></li>
-<li><a href="architecture_decision_records/ADR032-ssl-only-for-applications-and-cf-endpoints/">ADR032 ssl only for applications and cf endpoints</a></li>
-<li><a href="architecture_decision_records/ADR033-redirect-http-for-applications/">ADR033 redirect http for applications</a></li>
-<li><a href="architecture_decision_records/ADR034-continuously-deploy-platform-cf-apps/">ADR034 continuously deploy platform CF applications</a></li>
-<li><a href="architecture_decision_records/ADR035-do-not-use-haproxy-use-aws-alb/">ADR035 do not use HAProxy, use AWS ALB</a></li>
-<li><a href="architecture_decision_records/ADR036-add-new-rds-broker-plans/">ADR036 add new RDS broker plans</a></li>
-<li><a href="architecture_decision_records/ADR037-automated-certificate-rotation/">ADR037 automated certificate rotation</a></li>
-<li><a href="architecture_decision_records/ADR038-audit-logs-in-splunk/">ADR038 audit logs in Splunk</a></li>
-<li><a href="architecture_decision_records/ADR039-aiven-metrics-for-users/">ADR039 provide Aiven metrics to users</a></li>
-<li><a href="architecture_decision_records/ADR040-bosh-access-without-socks/">ADR040 BOSH access without SOCKS</a></li>
-<li><a href="architecture_decision_records/ADR041-bosh-access-with-mtls/">ADR041 BOSH access with mTLS</a></li>
-<li><a href="architecture_decision_records/ADR042-isolation-segments/">ADR042 Isolation segments</a></li>
-<li><a href="architecture_decision_records/ADR043-new-product-pages-language-and-framework/">ADR043 new product pages language and framework selection</a></li>
+<li><a href="architecture_decision_records/ADR001-manifest-management/">ADR-001 Manifest management</a></li>
+<li><a href="architecture_decision_records/ADR002-concourse-pool-resource/">ADR-002 Concourse pool resource</a></li>
+<li><a href="architecture_decision_records/ADR003-AWS-credentials/">ADR-003 AWS credentials</a></li>
+<li><a href="architecture_decision_records/ADR004-domain-naming-scheme/">ADR-004 Domain naming scheme</a></li>
+<li><a href="architecture_decision_records/ADR005-pingdom-healthchecks/">ADR-005 Pingdom healthchecks</a></li>
+<li><a href="architecture_decision_records/ADR006-rds-broker/">ADR-006 Rds broker</a></li>
+<li><a href="architecture_decision_records/ADR007-terminating-tls-at-elbs/">ADR-007 Terminating tls at elbs</a></li>
+<li><a href="architecture_decision_records/ADR008-haproxy-for-request-rewriting/">ADR-008 HAProxy for request rewriting</a></li>
+<li><a href="architecture_decision_records/ADR009-x-forwarded-headers/">ADR-009 X-Forwarded headers</a></li>
+<li><a href="architecture_decision_records/ADR010-postgres-bind-behaviour/">ADR-010 Postgres bind behaviour</a></li>
+<li><a href="architecture_decision_records/ADR011-security-group-structure/">ADR-011 Security group structure</a></li>
+<li><a href="architecture_decision_records/ADR012-haproxy-healthcheck/">ADR-012 Haproxy healthcheck</a></li>
+<li><a href="architecture_decision_records/ADR013-building-bosh-releases/">ADR-013 Building bosh releases</a></li>
+<li><a href="architecture_decision_records/ADR014-hsts-preload-using-api-gateway/">ADR-014 Hsts preload using api gateway</a></li>
+<li><a href="architecture_decision_records/ADR015-rds-storage-encryption-plans/">ADR-015 Rds storage encryption plans</a></li>
+<li><a href="architecture_decision_records/ADR016-end-to-end-encryption/">ADR-016 End to end encryption</a></li>
+<li><a href="architecture_decision_records/ADR017-cell-capacity-assignment/">ADR-017 Cell capacity assignment</a></li>
+<li><a href="architecture_decision_records/ADR018-rds-broker-restore-last-operation/">ADR-018 Rds broker restore last operation</a></li>
+<li><a href="architecture_decision_records/ADR019-accessing-user-provided-services/">ADR-019 Accessing user provided services</a></li>
+<li><a href="architecture_decision_records/ADR020-deletion_of_ci_environment/">ADR-020 Deletion of ci environment</a></li>
+<li><a href="architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR-021 Cell capacity assignment 2</a></li>
+<li><a href="architecture_decision_records/ADR022-web_app_language_and_framework_selection/">ADR-022 Web app language and framework selection</a></li>
+<li><a href="architecture_decision_records/ADR023-idle-cpu-alerting-change/">ADR-023 Idle cpu alerting change</a></li>
+<li><a href="architecture_decision_records/ADR024-web-app-language-and-framework-selection-2/">ADR-024 Web app language and framework selection</a></li>
+<li><a href="architecture_decision_records/ADR025-service-plan-naming-conventions/">ADR-025 Service plan naming conventions</a></li>
+<li><a href="architecture_decision_records/ADR026-DNS-layout-for-UK-hosting/">ADR-026 DNS layout for UK hosting</a></li>
+<li><a href="architecture_decision_records/ADR027-pipeline-locking/">ADR-027 Pipeline locking</a></li>
+<li><a href="architecture_decision_records/ADR028-move-logs-to-logit/">ADR-028 Move platform logs to Logit</a></li>
+<li><a href="architecture_decision_records/ADR029-aiven-project-structure/">ADR-029 Aiven project structure</a></li>
+<li><a href="architecture_decision_records/ADR030-single-staging-london/">ADR-030 Single staging environment in London</a></li>
+<li><a href="architecture_decision_records/ADR031-services-core-pipeline-separate-jobs/">ADR-031 Separate PaaS services from the Platform core pipeline</a></li>
+<li><a href="architecture_decision_records/ADR032-ssl-only-for-applications-and-cf-endpoints/">ADR-032 SSL only for applications and cf endpoints</a></li>
+<li><a href="architecture_decision_records/ADR033-redirect-http-for-applications/">ADR-033 Redirect http for applications</a></li>
+<li><a href="architecture_decision_records/ADR034-continuously-deploy-platform-cf-apps/">ADR-034 Continuously deploy platform CF applications</a></li>
+<li><a href="architecture_decision_records/ADR035-do-not-use-haproxy-use-aws-alb/">ADR-035 Do not use HAProxy, use AWS ALB</a></li>
+<li><a href="architecture_decision_records/ADR036-add-new-rds-broker-plans/">ADR-036 Add new RDS broker plans</a></li>
+<li><a href="architecture_decision_records/ADR037-automated-certificate-rotation/">ADR-037 Automated certificate rotation</a></li>
+<li><a href="architecture_decision_records/ADR038-audit-logs-in-splunk/">ADR-038 Audit logs in Splunk</a></li>
+<li><a href="architecture_decision_records/ADR039-aiven-metrics-for-users/">ADR-039 Provide Aiven metrics to users</a></li>
+<li><a href="architecture_decision_records/ADR040-bosh-access-without-socks/">ADR-040 BOSH access without SOCKS</a></li>
+<li><a href="architecture_decision_records/ADR041-bosh-access-with-mtls/">ADR-041 BOSH access with mTLS</a></li>
+<li><a href="architecture_decision_records/ADR042-isolation-segments/">ADR-042 Isolation segments</a></li>
+<li><a href="architecture_decision_records/ADR043-new-product-pages-language-and-framework/">ADR-043 New product pages language and framework selection</a></li>
 </ul>
 
 
