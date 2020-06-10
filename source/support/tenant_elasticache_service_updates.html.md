@@ -15,14 +15,19 @@ non-highly available instances, there may be some downtime (up to 30 minutes).
 Depending on the update, it might be more or less important to upgrade.
 AWS emails PaaS Support when updates are available.
 
-Also we may wish to do schedule an update when a many instances have an
-available, you can determine this percentage with the Prometheus query:
+We may also wish to schedule an update when many instances have an update
+available. You can determine this percentage with the Prometheus query:
 
 ```
 count(paas_aws_elasticache_cluster_update_required)
 /
 count(paas_aws_elasticache_replication_group_nodes_count)
 ```
+
+## Caveats
+
+Updates are currently still applied manually (via the Console or the API) and
+we do not have a process in place for applying the updates automatically.
 
 ## Process outline
 
@@ -31,6 +36,7 @@ count(paas_aws_elasticache_replication_group_nodes_count)
 1. Pick maintenance windows, one earlier, one later
   * Eg Tuesday 16 June 2020 between 0600-0800
   * Eg Thursday 18 June 2020 between 1800-2000
+  * These were picked before and after working hours arbitrarily
 
 1. For each production region, repeat the following steps:
 
