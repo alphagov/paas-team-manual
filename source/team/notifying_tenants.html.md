@@ -54,7 +54,7 @@ Essential information and actions tenants need to carry out in order to ensure t
 1. Your email **must** contain the following footer
 
     ```
-    This communication complies with out data protection policy.
+    This communication complies with our data protection policy.
 
     As we outline in our Privacy Notice:
 
