@@ -113,7 +113,7 @@ Upgrade a trial org to the `small` quota. The Zendesk macro tells tenants how to
 
     It is important that pmo@digital.cabinet-office.gov.uk is copied into this email because this is used to trigger their bill tracking and payment recovery process.
 
-    [Use this email copy ](https://docs.google.com/document/d/1Yn9wsbPB9MFPO5_xJrGGnN5Ki1jkWpUfOQP2OTZ7v2g/edit#bookmark=id.72fufiqa0182) and attach the [Terms of Use](https://drive.google.com/drive/folders/1VU209JscH-M4_htGcPzsP9a_UAGPbVAR)
+    [Use the relvant email copy (depending on organisation type)](https://docs.google.com/document/d/1pATbc1uTAJpdkO2B8xg6P9i3NSx5_aBT-G-R6LAeegQ/edit) and link to our [Terms of Use](https://www.cloud.service.gov.uk/terms-of-use)
 
 2. Send "Get support for your service" email 
 
