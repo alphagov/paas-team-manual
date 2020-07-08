@@ -113,7 +113,7 @@ Upgrade a trial org to the `small` quota. The Zendesk macro tells tenants how to
 
     It is important that pmo@digital.cabinet-office.gov.uk is copied into this email because this is used to trigger their bill tracking and payment recovery process.
 
-    [Use the relvant email copy (depending on organisation type)](https://docs.google.com/document/d/1pATbc1uTAJpdkO2B8xg6P9i3NSx5_aBT-G-R6LAeegQ/edit) and link to our [Terms of Use](https://www.cloud.service.gov.uk/terms-of-use)
+    [Use the relevant email copy (depending on organisation type)](https://docs.google.com/document/d/1pATbc1uTAJpdkO2B8xg6P9i3NSx5_aBT-G-R6LAeegQ/edit) and link to our [Terms of Use](https://www.cloud.service.gov.uk/terms-of-use)
 
 2. Send "Get support for your service" email 
 
@@ -125,7 +125,7 @@ Upgrade a trial org to the `small` quota. The Zendesk macro tells tenants how to
 
 ### Delivery Manager updates list of live services and closes ticket
 
-Update the [list of live services](https://docs.google.com/spreadsheets/d/1vX196ed_k9r6LSTYUo9rJskihS79voFr3pPl5w74YPA/edit#gid=1236658429). This is used as a rough count of the number of live services using GOV.UK PaaS - which we sometimes need to report on.
+Update the [list of live services](https://drive.google.com/drive/folders/1yYV8X7Rzj4BlAbuFPjsfupouy_1v95eG) - use the most recent version of GOV.UK PaaS usage and adoption tracker in this folder. This is used as a rough count of the number of live services using GOV.UK PaaS - which we sometimes need to report on.
 
 Usually an account upgrade is conducted at an early stage of building the service, and it may take some time until the service might be considered "live".
 
