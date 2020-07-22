@@ -16,7 +16,7 @@ Email notifications of incoming tickets are administered manually. This needs do
 
 ## Routing
 
-The in-hours email address `gov-uk-paas-support@digital.cabinet-office.gov.uk` is given in numerous places, for instance our [Support](https://www.cloud.service.gov.uk/support) page. The out-of-hours email address is deliberately not written down in public, to avoid spam waking people up at night.
+The in-hours email address `gov-uk-paas-support@digital.cabinet-office.gov.uk` is given in numerous places, for instance our [Support](https://admin.london.cloud.service.gov.uk/support) page. The out-of-hours email address is deliberately not written down in public, to avoid spam waking people up at night.
 
 Both email addresses are Google Groups. Originally we used Gmail Aliases but they did not support prepending to email subjects for Zendesk. These groups forward emails elsewhere and are not intended for use by themselves. Their spam protection is disabled to avoid emails being silently discarded.
 
