@@ -5,7 +5,7 @@
 
 Requests to create a new trial org are always handled via Zendesk by the support agent. A range of Zendesk macros are available to speed up the completion of this task.
 
-In most cases, a user will request a trial org by using the form at <https://www.cloud.service.gov.uk/signup>, which triggers an automated Zendesk ticket. Users should be encouraged to use this route.
+In most cases, a user will request a trial org by using the form at <https://admin.london.cloud.service.gov.uk/support/sign-up>, which triggers an automated Zendesk ticket. Users should be encouraged to use this route.
 
 ### When the request doesn't come through the signup form
 
