@@ -9,14 +9,14 @@ best-effort basis.
 ![Diagram of the alpha Elasticsearch Prometheus exporter](/diagrams/elasticsearch-metric-exporter-alpha.jpg)
 
 Aiven already provide a Prometheus endpoint on every Elasticsearch
-node, but there are 3 problems with tenants using them:
+node, but there are 3 problems with tenants using that:
 
   - tenants don't know how to find the endpoints
 
   - we can't give tenants the necessary credentials
 
-  - an IP safelist will stop any Prometheus outside PaaS from
-    scrape the endpoints.
+  - an IP safelist stops any Prometheus outside PaaS from scraping the
+    endpoints.
 
 We deploy a PaaS app running both `aiven-service-discovery` and
 Prometheus. `aiven-service-discovery` emits a list of all the

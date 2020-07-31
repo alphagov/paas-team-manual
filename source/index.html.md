@@ -23,6 +23,7 @@
  - [How to set up VPC Peering](guides/vpc_peering/)
  - [How to upgrade CF, bosh and stemcells](guides/upgrading_CF,_bosh_and_stemcells/)
  - [How to update Logstash filters in Logit](guides/editing_logstash_filters/)
+ - [How to view our data in splunk](support/viewing_our_data_in_splunk/)
  - [How to find route owners](support/finding_route_owners)
  - [How to find apps with noisy logging](support/finding_apps_with_noisy_logging)
  - [How to find activity](support/finding_activity/)
