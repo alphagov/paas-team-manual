@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>PaaS Team Manual</title>
+
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/support/shipping_elasticsearch_metrics_to_tenants/">
+
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/support/shipping_elasticsearch_metrics_to_tenants/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/shipping_elasticsearch_metrics_to_tenants/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header " role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#shipping-elasticsearch-metrics-to-our-tenants"><span>Shipping Elasticsearch metrics to our tenants</span></a>
+    <ul>
+      <li>
+        <a href="#how-it-works"><span>How it works</span></a>
+      </li>
+      <li>
+        <a href="#if-something-goes-wrong"><span>If something goes wrong</span></a>
+      </li>
+      <li>
+        <a href="#how-to-set-it-up-for-a-new-tenant"><span>How to set it up for a new tenant</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="shipping-elasticsearch-metrics-to-our-tenants">Shipping Elasticsearch metrics to our tenants</h1><p>As of July 2020 we provide Elasticsearch metrics to several tenant
+Prometheuses. This is an informal &ldquo;alpha&rdquo; and only on an in-hours,
+best-effort basis.</p>
+<h2 id="how-it-works">How it works</h2><p><a href="../../diagrams/elasticsearch-metric-exporter-alpha.jpg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/elasticsearch-metric-exporter-alpha.jpg" alt="Diagram of the alpha Elasticsearch Prometheus exporter" /></a></p>
+<p>Aiven already provide a Prometheus endpoint on every Elasticsearch
+node, but there are 3 problems with tenants using that:</p>
+
+<ul>
+<li><p>tenants don&rsquo;t know how to find the endpoints</p></li>
+<li><p>we can&rsquo;t give tenants the necessary credentials</p></li>
+<li><p>an IP safelist stops any Prometheus outside PaaS from scraping the
+endpoints.</p></li>
+</ul>
+<p>We deploy a PaaS app running both <code>aiven-service-discovery</code> and
+Prometheus. <code>aiven-service-discovery</code> emits a list of all the
+endpoints to scrape. The Prometheus scrapes those endpoints. Tenants
+then federate to their own Prometheus (i.e., have their Prometheus
+scrape the <code>/federate</code> endpoint.)</p>
+<p>We deploy one per tenant, behind a basic auth route service. These
+apps and route services are in the <code>admin / monitoring</code> space of
+Ireland and London.</p>
+<p>One issue is that we have to manually list the Elasticsearch service
+instances and include a list of them in the app. So if tenant creates
+a new Elasticsearch instance it won&rsquo;t receive metrics unless we update
+the app manually. Fixing this is left until it&rsquo;s less of an alpha.</p>
+<p>The code and manifests are in <a href="https://github.com/alphagov/paas-observability-release/pull/5">a PR on <code>alphagov/paas-observability-release</code></a>.</p>
+<h2 id="if-something-goes-wrong">If something goes wrong</h2><p>Don&rsquo;t worry. This is an informal &ldquo;alpha&rdquo; and only on an in-hours,
+best-effort basis.</p>
+<p>Ideas for debugging:</p>
+
+<ul>
+<li>Access the Prometheus using the credentials from <code>cf env</code> on the
+route service app
+
+<ul>
+<li>See if it is still receiving metrics</li>
+<li>Look at the Targets page and see whether it is still scraping
+data from all the tenant&rsquo;s Elasticsearch nodes</li>
+</ul></li>
+<li>Look at the Elasticsearch services in Aiven and see if you can
+make metrics requests manually (use <code>cf ssh</code> so your requests come
+from the PaaS IP ranges)</li>
+<li>Talk to Aiven support</li>
+<li>Ask Miki or Andy for help (we worked on it originally)</li>
+</ul>
+<h2 id="how-to-set-it-up-for-a-new-tenant">How to set it up for a new tenant</h2><p>Checkout the code from <a href="https://github.com/alphagov/paas-observability-release/pull/5">github.com/alphagov/paas-observability-release/pull/5</a> and make a copy of one of
+the existing manifests.</p>
+<p>Next you need to make a JSON file listing all their service instances
+and some metadata that will be turned into Prometheus metric labels.
+Unfortunately we don&rsquo;t have a script for this yet. Here&rsquo;s an example:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>[
+  {
+    "aiven_service": "${DEPLOY_ENV}-${SERVICE_INSTANCE_GUID}",
+    "extra_labels": {
+      "service_guid": "${SERVICE_INSTANCE_GUID}",
+      "service_name": "${SERVICE_INSTANCE_NAME}",
+      "space_guid": "${SPACE_GUID}",
+      "space_name": "${SPACE_NAME}",
+      "org_guid": "${ORG_GUID}",
+      "org_name": "${ORG_NAME}"
+    }
+  },
+  …
+]
+</code></pre></div><p>Save that list in the same directory as the manifest and alter
+<code>SERVICES_FILE</code> in the manifest to be named appropriately.
+Also alter the rest of the manifest so that its names match your
+tenant.</p>
+<p>Now it&rsquo;s time to deploy. <code>cf push</code> the manifest using <code>--var</code> to
+provide values for the Aiven secrets it requires. You can get those
+values from an existing app or our credential stores.</p>
+<p>Visit the app URL and you should see a Prometheus interface. Check its
+Targets page and you should see it scraping data from all the nodes of
+the Elasticsearch services you configured in the JSON file. Check the
+metric graphs look sensible (you can compare them to ones in Aiven&rsquo;s
+interface.)</p>
+<p>Once that&rsquo;s working OK it&rsquo;s time to deploy a basic auth service in
+front of the app. Our public documentation says how to do that.</p>
+<p>Finally you need to help the tenant configure their Prometheus. By
+default there are 700-ish different metrics reported, and tenants
+probably don&rsquo;t want to saturate their Prometheus with that much data.
+We have an <a href="https://gist.github.com/46bit/bbc7f267f6115fc008c9ddb43cd56745">example Prometheus config</a>
+and a <a href="https://docs.google.com/spreadsheets/d/1LffFBhe5T937MF0vYQWSH4j10niZS7IImlUAW4cYiNE/edit#gid=0">spreadsheet showing what metrics are available</a>.</p>
+
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+
+      <svg
+        role="presentation"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../javascripts/application.js"></script>
+  </body>
+</html>
