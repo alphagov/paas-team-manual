@@ -28,6 +28,7 @@
  - [How to find apps with noisy logging](support/finding_apps_with_noisy_logging)
  - [How to find activity](support/finding_activity/)
  - [How to restore Elasticsearch backups](support/restoring_elasticsearch_backups/)
+ - [Shipping Elasticsearch metrics to our tenants](support/shipping_elasticsearch_metrics_to_tenants/)
  - [How to apply tenant ElastiCache (redis) service updates ](support/tenant_elasticache_service_updates/)
  - [How to restore the CF databases](guides/Restoring_the_CF_databases/)
  - [How to restore the bosh director](guides/restoring_bosh_director/)
