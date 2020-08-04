@@ -48,7 +48,7 @@ The output will look something like the following:
 
 Take the long ID listed after `Key fingerprint =` and run:
 
-    gpg --keyserver pgp.mit.edu --send-keys 'YOUR ID HERE …'
+    gpg --keyserver keyserver.ubuntu.com --send-keys 'YOUR ID HERE …'
 
 You will need to provide the same ID to an existing member of the team so
 that they can add you to any secret stores that you need access to.
