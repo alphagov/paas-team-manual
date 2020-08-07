@@ -121,7 +121,7 @@ Upgrade a trial org to the `small` quota. The Zendesk macro tells tenants how to
 
     Send the email to all Org Managers and Billing Managers for the org
 
-   [Use this email copy](https://docs.google.com/document/d/1Yn9wsbPB9MFPO5_xJrGGnN5Ki1jkWpUfOQP2OTZ7v2g/edit#bookmark=id.naohbyl472s3)
+   [Send this information as a PDF or in email copy](https://docs.google.com/document/d/12ak2BP39ElqpSfYp9zudllet-sRe2F9qdZwfv-707jo/edit)
 
 ### Delivery Manager updates list of live services and closes ticket
 
