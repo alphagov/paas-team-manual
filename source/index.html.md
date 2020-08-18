@@ -68,7 +68,7 @@
  - [Dashboard mac mini](team/dashboard_mac_mini/)
  - [How to notify tenants](team/notifying_tenants/)
  - [Comms lead role](team/comms_lead_role/)
- - [Roadmap](teams/roadmap/)
+ - [Roadmap](team/roadmap/)
 
 ### Working practices
  - [Development process](team/working_practices/#development-process)
