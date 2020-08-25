@@ -70,17 +70,13 @@
         <a href="#decision"><span>Decision</span></a>
         <ul>
           <li>
-            <ul>
-              <li>
-                <a href="#for-example"><span>For example:</span></a>
-              </li>
-              <li>
-                <a href="#example-migrations-of-some-existing-plans"><span>Example migrations of some existing plans:</span></a>
-              </li>
-              <li>
-                <a href="#additionally"><span>Additionally:</span></a>
-              </li>
-            </ul>
+            <a href="#for-example"><span>For example:</span></a>
+          </li>
+          <li>
+            <a href="#example-migrations-of-some-existing-plans"><span>Example migrations of some existing plans:</span></a>
+          </li>
+          <li>
+            <a href="#additionally"><span>Additionally:</span></a>
           </li>
         </ul>
       </li>
@@ -122,13 +118,13 @@ versions.</p>
 <li><code>LABEL</code> is a string describing some specific variant of the service if relvent.</li>
 <li><code>VERSION</code> is the version number of the service plan.</li>
 </ul>
-<h4 id="for-example">For example:</h4><p>A large multi-az postgres plan for version 9.6 would be <code>large-ha-9.6</code>.</p>
+<h3 id="for-example">For example:</h3><p>A large multi-az postgres plan for version 9.6 would be <code>large-ha-9.6</code>.</p>
 <p>A small not multi-az, unclustered, redis 3.2 plan would be <code>redis-unclustered-3.2</code>.</p>
-<h4 id="example-migrations-of-some-existing-plans">Example migrations of some existing plans:</h4><div class="highlight"><pre class="highlight plaintext"><code>L-HA-enc-dedicated-9.5 =&gt; large-ha-9.5
+<h3 id="example-migrations-of-some-existing-plans">Example migrations of some existing plans:</h3><div class="highlight"><pre class="highlight plaintext"><code>L-HA-enc-dedicated-9.5 =&gt; large-ha-9.5
 M-HA-enc-dedicated-9.5 =&gt; medium-ha-9.5
 tiny-clustered =&gt; tiny-clustered-3.2
 tiny-unclustered =&gt; tiny-unclustered-3.2
-</code></pre></div><h4 id="additionally">Additionally:</h4>
+</code></pre></div><h3 id="additionally">Additionally:</h3>
 <ul>
 <li>We will avoid use of the word &ldquo;free&rdquo; in names.</li>
 <li>We will avoid using redundent words (like &lsquo;dedicated&rsquo;) in names to reduce noise.</li>
