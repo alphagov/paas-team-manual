@@ -98,13 +98,13 @@ of the tenants databases created by our <a href="https://github.com/alphagov/paa
 <ul>
 <li>Storage Encryption can only be enabled on creation of the DB. There is no way to update an instance to enable or disable encryption. The only way is by creating a encrypted (or unencrypted) copy of a snapshot, to then restore it to a DB instance.</li>
 <li><s>Storage Encryption is only supported <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#d0e47573">for some instance types</a>. Specifically it is not supported for <code>db.t2.small</code> and <code>db.t2.micro.</code>, used in our Small and Free plans</s></li>
-<li><strong>Update 2018-01-24:</strong> Amazon have now <a href="https://aws.amazon.com/about-aws/whats-new/2017/06/amazon-rds-enables-encryption-at-rest-for-additional-t2-instance-types/">enabled support for encryption of <code>t2</code> instances</a>.</li>
+<li>Update 2018-01-24: Amazon have now <a href="https://aws.amazon.com/about-aws/whats-new/2017/06/amazon-rds-enables-encryption-at-rest-for-additional-t2-instance-types/">enabled support for encryption of <code>t2</code> instances</a>.</li>
 </ul>
 <p>In consequence:</p>
 
 <ul>
-<li>Users <strong>can not</strong> migrate from a plan with encryption (Medium or Large) to a plan without encryption (Small or Free). But this use case is less common.</li>
-<li>Users <strong>can</strong> migrate from Free/Small to a plan with encryption (Medium or Large), but the instance will not have encryption enabled.</li>
+<li>Users cannot migrate from a plan with encryption (Medium or Large) to a plan without encryption (Small or Free). But this use case is less common.</li>
+<li>Users can migrate from Free/Small to a plan with encryption (Medium or Large), but the instance will not have encryption enabled.</li>
 <li>If we enable encryption in the existing plans, the existing databases will remain without encryption.</li>
 <li>Due the API broker limitations, it is not possible to query the attributes of an existing instance.</li>
 </ul>

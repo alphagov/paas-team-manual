@@ -107,7 +107,7 @@
 
 <ol>
 <li>Find the latest snapshot of the director&rsquo;s database in the RDS console</li>
-<li>Create a new database from this snapshot, using <strong>exactly</strong> the same name as set by Terraform in <code>paas-bootstrap/terraform/bosh/rds.tf</code></li>
+<li>Create a new database from this snapshot, using exactly the same name as set by Terraform in <code>paas-bootstrap/terraform/bosh/rds.tf</code></li>
 <li>Bootstrap a new deployer-concourse using <code>paas-bootstrap</code> in the same region.</li>
 <li>Wait for the new database to be available.</li>
 <li>Run the <code>create-bosh-concourse</code> pipeline from the left-hand edge. During the <code>bosh-terraform</code> step, Terraform will find the same-named database and configure its parameter group, security group etc correctly.</li>

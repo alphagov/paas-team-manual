@@ -309,7 +309,7 @@ a:
 <ul>
 <li>This works for an array of maps. It updates the keys in the maps following the order of the array</li>
 </ul>
-<h3 id="inline">Inline</h3><p>Same as <em>Simple replacement</em>, using <code>- (( inline ))</code> as first element. Maybe more explicit.</p>
+<h3 id="inline">Inline</h3><p>Same as Simple replacement, using <code>- (( inline ))</code> as first element. Maybe more explicit.</p>
 <h3 id="append">Append</h3><div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
 a:
 - a1
@@ -324,7 +324,7 @@ a:
 - b4
 </code></pre></div>
 <ul>
-<li>The merge behaviour is specified in the <em>next</em> file, which is different than spiff</li>
+<li>The merge behaviour is specified in the next file, which is different than spiff</li>
 <li><code>(( append ))</code> must be the first element</li>
 </ul>
 <h3 id="prepend">Prepend</h3><p>Prepend keys. Usage: same with <code>- (( prepend ))</code> instead</p>
@@ -418,7 +418,7 @@ other_key: aaaa
 </ul>
 <p>See https://github.com/geofffranks/spruce#map-replacement</p>
 <h2 id="inject-subtree">Inject subtree</h2><p>YAML has the concept of anchor/alias to inject another subtree from the same file. See: https://en.wikipedia.org/wiki/YAML#Repeated_nodes</p>
-<p>In spruce the same can be achieved <em>across different files</em>.</p>
+<p>In spruce the same can be achieved across different files.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
 green:
   woot: (( inject meta.template ))
@@ -436,7 +436,7 @@ meta:
   template:
     color: blue
     size: small
-</code></pre></div><h2 id="prevent-null-values">Prevent <em>null</em> values</h2><p>We can add useful error checking to prevent null values due to merge errors. This is probably a good practice to use in any key where we expect a value from a merge.</p>
+</code></pre></div><h2 id="prevent-null-values">Prevent null values</h2><p>We can add useful error checking to prevent null values due to merge errors. This is probably a good practice to use in any key where we expect a value from a merge.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
 critical_key:
 $ spruce merge a.yml
@@ -452,7 +452,7 @@ $ cat b.yml
 critical_key: critical_value
 $ spruce merge a.yml b.yml
 critical_key: critical_value
-</code></pre></div><h2 id="or-operator"><em>OR</em> operator</h2><p>Alows to specify alternate values in the first key is null. Compatible with <code>grab</code> and <code>concat</code>.</p>
+</code></pre></div><h2 id="or-operator">OR operator</h2><p>Alows to specify alternate values in the first key is null. Compatible with <code>grab</code> and <code>concat</code>.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
 key1:
     subkey1: a1

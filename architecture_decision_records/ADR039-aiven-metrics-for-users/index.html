@@ -106,7 +106,7 @@
 <li>understand the operational characteristics of their applications and services</li>
 <li>make better capacity planning and budgeting decisions</li>
 </ul>
-<p>Aiven has <em>service integrations</em> which add extra functionality to an Aiven <em>service</em>. <em>Service integrations</em> can be used to:</p>
+<p>Aiven has service integrations which add extra functionality to an Aiven service. Service integrations can be used to:</p>
 
 <ul>
 <li>ship logs to an Elasticsearch/Rsyslog</li>
@@ -121,8 +121,8 @@
 <p>We will need to automate the following tasks:</p>
 
 <ul>
-<li>Service discovery: ensure Prometheus has an updated list of Aiven <em>services</em> to scrape. This automation must be colocated with the Prometheus instance.</li>
-<li>Service integration: ensure every eligible Aiven provided <em>service</em> uses the Aiven <em>service integration</em> for Prometheus.</li>
+<li>Service discovery: ensure Prometheus has an updated list of Aiven services to scrape. This automation must be colocated with the Prometheus instance.</li>
+<li>Service integration: ensure every eligible Aiven provided service uses the Aiven service integration for Prometheus.</li>
 </ul>
 <h2 id="initial-implementation">Initial implementation</h2><p>In the initial implementation we deploy multiple instances of Prometheus for high availability.</p>
 <p><a href="../images/adr450-prometheus-aiven-architecture.svg" target="_blank" rel="noopener noreferrer"><img src="../images/adr450-prometheus-aiven-architecture.svg" alt="architecture" /></a></p>

@@ -142,7 +142,7 @@
 <p>It&rsquo;s also worth adding any folders maintained by the IDE (such as <code>.idea</code>), so that settings and state don&rsquo;t bleed between participants using the same IDE.</p>
 <p><strong>Note:</strong> We ignore the <code>.git</code> directory so that any git actions taken by either party don&rsquo;t affect the other.</p>
 <h3 id="3-the-guest-connects">3. The guest connects</h3><p>The guest uses their IDE to connect to the host&rsquo;s workspace. They should open the workspace at the same path as they have their version-controlled copy of the project locally. When prompted, the guest overwrites their local files with those from the remote workspace.</p>
-<p><strong>Important:</strong> Opening the workspace on top of a local project gives the guest the full support of their IDE. This is particularly important in Go projects, where the path matters.</p>
+<p>Important: Opening the workspace on top of a local project gives the guest the full support of their IDE. This is particularly important in Go projects, where the path matters.</p>
 <h3 id="4-run-the-tests">4. Run the tests</h3><p>Both parties should run the tests locally, to verify that they have all the files and working versions thereof.</p>
 <h3 id="5-do-the-work">5. Do the work</h3><p>All parties work together however they see fit</p>
 <h3 id="6-the-host-makes-git-commits">6. The host makes git commits</h3><p>The host should be the one to make changes in git, because the <code>.git</code> directory should have been ignored in <code>.flooignore</code>.</p>

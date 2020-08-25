@@ -124,7 +124,7 @@ monit restart racoon
 <div class="highlight"><pre class="highlight plaintext"><code>tcpdump -n -i eth0 net 10.0.48.0/22
 </code></pre></div><p>If you want to restrict tcpdump to capture IPSEC traffic only you can use:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>tcpdump -i eth0 -n -s 0 -vv \(port 500 or port 4500 or proto 50\)
-</code></pre></div><p><strong>Note:</strong> The IP address, may differ from the one set on the node you&rsquo;re debugging.</p>
+</code></pre></div><p>Note: The IP address, may differ from the one set on the node you&rsquo;re debugging.</p>
 <p>You should encounter the following outcome, which will consist of header, encrypted content and finally the key exchange.</p>
 <div class="highlight"><pre class="highlight plaintext"><code>16:31:09.873951 IP 10.0.48.101 &gt; 10.0.32.4: ESP(spi=0x0be0677a,seq=0x6cf), length 84
 16:31:09.874404 IP 10.0.48.101 &gt; 10.0.32.4: ESP(spi=0x0be0677a,seq=0x6d0), length 84

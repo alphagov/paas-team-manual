@@ -90,8 +90,8 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr009-x-forwarded-headers">ADR009: X-Forwarded- headers</h1><p><strong>This has been superceded: the first option is now used to encrypt traffic
-between the ELB and HAProxy (see <a href="../ADR016-end-to-end-encryption">ADR016</a>)</strong></p>
+  <h1 id="adr009-x-forwarded-headers">ADR009: X-Forwarded- headers</h1><p>This has been superceded: the first option is now used to encrypt traffic
+between the ELB and HAProxy (see <a href="../ADR016-end-to-end-encryption">ADR016</a>)</p>
 <h2 id="context">Context</h2><p>We need to pass correct client IP and requested protocol to applications deployed to the platform. To achieve this we want to use X-Forwarded-For and X-Forwarded-Proto headers.
 In the current setup we&rsquo;ve got HAProxy behind ELB to allow insert HSTS headers, and ELB is configured in SSL mode (not HTTPS) because it does not support WebSockets. In SSL/TCP mode ELB is not able to set any <code>X-Forwarded</code> header.</p>
 <p>The solution is to use ProxyProtocol to pass information about recorded client IP and protocol to HAProxy which can set required headers for us. Unfortunately <a href="http://serverfault.com/questions/775010/aws-elb-with-ssl-backend-adds-proxy-protocol-inside-ssl-stream">ELB sets ProxyProtocol header inside SSL stream and HAProxy expects it outside</a>.</p>
