@@ -157,7 +157,13 @@ Navigate to one of the following, depending on the region:</p>
 <li><a href="https://admin.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333">https://admin.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333</a></li>
 <li><a href="https://admin.london.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333">https://admin.london.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333</a></li>
 </ul>
-<h2 id="locking-a-user-account">Locking a user account</h2><p>Sometimes it might be necessary to lock certain users. For example when we find out they have left GDS or don&rsquo;t have any more project to work on PaaS. CF has a facility to prevent users from logging in, while still preserving the user account with all their access rights and org membership. We do this as a first step in removing the user account. We then ask for confirmation from org managers (or managers of org managers in case we are removing an org manager) and only after confirmation finally remove the account completely (<code>cf delete-user</code>).</p>
+<h2 id="locking-a-user-account">Locking a user account</h2><p>Sometimes it might be necessary to lock certain user accounts. For example, when we find out they have left GDS or are no longer working on the PaaS team.</p>
+<p>Cloud Foundry has a facility to prevent users from logging in while still preserving the user account with all their access rights and org membership. We use this facility as a first step in removing the user account and then:</p>
+
+<ul>
+<li>ask for confirmation from org managers (or managers of org managers if we are removing an org manager)</li>
+<li>remove the account completely (<code>cf delete-user</code>) once we have received confirmation</li>
+</ul>
 <p>From <a href="https://github.com/alphagov/paas-cf">alphagov/paas-cf</a>:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>bundle install
 cd scripts
