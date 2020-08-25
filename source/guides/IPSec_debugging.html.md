@@ -69,7 +69,7 @@ If you want to restrict tcpdump to capture IPSEC traffic only you can use:
 tcpdump -i eth0 -n -s 0 -vv \(port 500 or port 4500 or proto 50\)
 ```
 
-**Note:** The IP address, may differ from the one set on the node you're debugging.
+Note: The IP address, may differ from the one set on the node you're debugging.
 
 You should encounter the following outcome, which will consist of header, encrypted content and finally the key exchange.
 

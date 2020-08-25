@@ -41,7 +41,7 @@ These are orgs created over 75 days ago, with no users or no apps.
 
 ### To contact the org managers
 
-**At this point the data should be checked with the PM team before proceeding**
+At this point the data should be checked with the PM team before proceeding
 
 1. Login to [Notify](https://www.notifications.service.gov.uk/sign-in). If you
    do not have login details speak to a senior member of the team.

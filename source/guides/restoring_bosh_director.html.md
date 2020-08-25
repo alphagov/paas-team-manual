@@ -19,7 +19,7 @@ BOSH_AZ=eu-west-2b make $ENV deployer-concourse bootstrap
 In the event that the director's database is gone, it can be restored from the latest snapshot to get to back to a state from which the rest of the deployment can be fixed.
 
 1. Find the latest snapshot of the director's database in the RDS console
-2. Create a new database from this snapshot, using **exactly** the same name as set by Terraform in `paas-bootstrap/terraform/bosh/rds.tf`
+2. Create a new database from this snapshot, using exactly the same name as set by Terraform in `paas-bootstrap/terraform/bosh/rds.tf`
 3. Bootstrap a new deployer-concourse using `paas-bootstrap` in the same region.
 4. Wait for the new database to be available.
 5. Run the `create-bosh-concourse` pipeline from the left-hand edge. During the `bosh-terraform` step, Terraform will find the same-named database and configure its parameter group, security group etc correctly.

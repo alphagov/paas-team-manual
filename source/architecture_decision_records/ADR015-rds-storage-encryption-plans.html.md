@@ -10,12 +10,12 @@ But there are [some limitations](http://docs.aws.amazon.com/AmazonRDS/latest/Use
 
  * Storage Encryption can only be enabled on creation of the DB. There is no way to update an instance to enable or disable encryption. The only way is by creating a encrypted (or unencrypted) copy of a snapshot, to then restore it to a DB instance.
  * <s>Storage Encryption is only supported [for some instance types](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html#d0e47573). Specifically it is not supported for `db.t2.small` and `db.t2.micro.`, used in our Small and Free plans</s>
- * **Update 2018-01-24:** Amazon have now [enabled support for encryption of `t2` instances](https://aws.amazon.com/about-aws/whats-new/2017/06/amazon-rds-enables-encryption-at-rest-for-additional-t2-instance-types/).
+ * Update 2018-01-24: Amazon have now [enabled support for encryption of `t2` instances](https://aws.amazon.com/about-aws/whats-new/2017/06/amazon-rds-enables-encryption-at-rest-for-additional-t2-instance-types/).
 
 In consequence:
 
-  * Users **can not** migrate from a plan with encryption (Medium or Large) to a plan without encryption (Small or Free). But this use case is less common.
-  * Users **can** migrate from Free/Small to a plan with encryption (Medium or Large), but the instance will not have encryption enabled.
+  * Users cannot migrate from a plan with encryption (Medium or Large) to a plan without encryption (Small or Free). But this use case is less common.
+  * Users can migrate from Free/Small to a plan with encryption (Medium or Large), but the instance will not have encryption enabled.
   * If we enable encryption in the existing plans, the existing databases will remain without encryption.
   * Due the API broker limitations, it is not possible to query the attributes of an existing instance.
 

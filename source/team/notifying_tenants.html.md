@@ -42,7 +42,7 @@ Essential information and actions tenants need to carry out in order to ensure t
 
 1. Write email body copy to tenants to populate the email
 
-1. Your email **must** contain the following header
+1. Your email must contain the following header
 
     ```
     Dear GOV.UK PaaS tenant,
@@ -51,7 +51,7 @@ Essential information and actions tenants need to carry out in order to ensure t
     [BODY COPY].
     ```
 
-1. Your email **must** contain the following footer
+1. Your email must contain the following footer
 
     ```
     This communication complies with our data protection policy.
@@ -115,6 +115,6 @@ We generate our buildpack notification emails using the (semi-)automated
 process described in [the documentation about upgrading
 buildpacks](/guides/upgrading_CF,_bosh_and_stemcells/#buildpacks).
 
-**NB Incident comms email templates are saved in Statuspage.**
+NB Incident comms email templates are saved in Statuspage.
 
 [google group interface]: https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/?hl=en#!forum/gov-uk-paas-announce
