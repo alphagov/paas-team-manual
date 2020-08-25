@@ -20,7 +20,7 @@ The current method will be replaced with Single Sign On in order to obtain a UAA
 
 ## Implementation
 
-In the initial implementation we will place UAA on the bosh director in the internet using the IP Whitelist and using Google for SSO
+In the initial implementation we will place UAA on the bosh director in the internet using the IP allow list and using Google for SSO
 
 Access to both BOSH and Credhub will remain via SSH Tunnels during this phase of implementation.
 

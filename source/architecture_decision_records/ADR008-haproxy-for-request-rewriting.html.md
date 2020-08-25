@@ -6,7 +6,7 @@ We want to serve [HSTS
 headers](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security) for all
 HTTPS requests to the apps domains, but it will safeguard existing users from
 being MITMed over insecure connections and it will improve the user experience
-when they click on a hostname that doesn't have a protocol.
+when they select a hostname that doesn't have a protocol.
 (Note that without pre-loading in browsers this won't help first time users,
 but that is out of context)
 
