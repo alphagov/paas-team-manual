@@ -102,7 +102,7 @@ TARGET=$(cf curl /v2/info | jq -r .token_endpoint) \
 
 In order to notify the org manager of a given user, we need to find out who that would be. UAA does not know which org/space user belongs to. This information is only available to cloud controller: `cf curl /v2/users/<uaa_user_id>/summary`
 
-The user summary contains all orgs and spaces they are member of. It also contains the UAA ID of managers of these. To get user name from UAA id, simply: `bundle exec uaac curl /Users/<uaa_user_id> | grep userName`
+The user summary contains all orgs and spaces they are member of. It also contains the UAA ID of managers of these. To get user name from UAA id, enter: `bundle exec uaac curl /Users/<uaa_user_id> | grep userName`
 
 ## Notifying the org manager
 

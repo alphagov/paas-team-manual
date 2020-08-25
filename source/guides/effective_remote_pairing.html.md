@@ -6,7 +6,7 @@ Remote pairing can be more difficult than pairing in person, so we use tools to 
 The tools we use for remote pairing are ..
 
 ### [Floobits](https://floobits.com)
-Floobits is a tool which synchronises the contents of a workspace between 2 or more connected users. It has a number of IDE integrations available, and can even share shell sessions through [flootty](https://floobits.com/help/flootty) (although we've found that to be a bit janky).
+Floobits is a tool which synchronises the contents of a workspace between 2 or more connected users. It has a number of IDE integrations available, and can even share shell sessions through [flootty](https://floobits.com/help/flootty) (although we've found that to be a bit unreliable).
 
 ### An IDE
 Pick a [supported IDE](https://floobits.com/help/plugins), configure it however you want, and install the Floobits plugin. It shouldn't matter if two people are using different IDEs, since only the source code is synchronised.

@@ -22,11 +22,11 @@ We have instead come up with the following method.
 1. Run `make logit-filters` from the paas-cf directory (requires docker). This updates the `config/logit/output/generated_logit_filters.conf` file with the latest filter configuraton.
 1. Check the diff for any potential gotchas.
 1. [Log into logit via Google](https://reliability-engineering.cloudapps.digital/manuals/logit-io-joiners.html)[external link].
-1. From the dashboard view click on the __Settings__ button for the stack you wish to modify.
-1. Click on __Logstash Filters__ and wait for the current page to load.
+1. From the dashboard view, select the __Settings__ button for the stack you wish to modify.
+1. Select __Logstash Filters__ and wait for the current page to load.
 1. Select all of the existing filters and delete them.
-1. Paste in your new filters and click __Validate__.
-1. If the validation passes an __Apply__ button will appear, click this.
+1. Paste in your new filters and select __Validate__.
+1. If the validation passes an __Apply__ button will appear. Select this button.
 1. Wait for application of the filters to finish.
 
 ## Updating the components of the logstash filters

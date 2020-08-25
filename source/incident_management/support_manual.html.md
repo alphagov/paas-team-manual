@@ -5,7 +5,7 @@
 We are supporting the GOV.UK PaaS platform; we’re not providing user support for users of the apps hosted on it.
 However, in some cases service teams can’t self diagnose or fix problems (yet) so we need to be flexible about what we support.
 
-We’re supporting live services, teams who are using PaaS for prototyping and individuals within teams who are just trying it out.
+We’re supporting live services, teams who are using PaaS for prototyping and individuals within teams who are trying it out.
 
 ## Support hours
 * **In hours**: Monday to Friday 9am to 5pm

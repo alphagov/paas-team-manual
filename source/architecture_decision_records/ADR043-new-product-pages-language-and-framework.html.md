@@ -48,7 +48,7 @@ Accepted.
 
 This implementation will allow us to:
 
-- iterate our content more quickly as non-developers will be able to make chances easily
+- iterate our content more quickly as non-developers will be able to make changes easily
 - keep our page updated with newer releases of GOV.UK Design System to continue to makem
 accessible to everyone and aligned with the latest designs
 - have both user-facing products on the same platform

@@ -47,7 +47,7 @@ On a Bank Holiday, we create a daytime override on the out-of-hours schedule so 
 This person will only be alerted if the out of hours 1st line support has decided that they need help with tenant communications so they can focus on fixing the issue. Or if the 1st line support does not answer the alert for 30 mins, pagerduty will automatically call this rota. They will then be responsible for:
 
 * Making decisions and sending out tenant communications (if appropriate). This includes Slack [#paas-incident](https://gds.slack.com/messages/CAD4W35KK) channel, and [Statuspage](/team/statuspage/).
-* To act as an automatic escalation if an on-call engineer fails to respond to an incident. If this happens the escalation person is responsible for finding someone from the team who can respond to the incident. Pagerduty will only trigger an alert if there are issues seriously impact the availability of the live services running on PaaS. The Escalation person will not be expected to fix the problem, just ensure that it is being handled appropriately.
+* To act as an automatic escalation if an on-call engineer fails to respond to an incident. If this happens the escalation person is responsible for finding someone from the team who can respond to the incident. Pagerduty will only trigger an alert if there are issues seriously impact the availability of the live services running on PaaS. The Escalation person will not be expected to fix the problem, only ensure that it is being handled appropriately.
 * To provide leadership-level backup for RE on-call engineers if an incident requires leadership decision making or a broader response involving updating comms or activating other engineers.
 
 

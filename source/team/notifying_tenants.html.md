@@ -29,7 +29,7 @@ These announcements are our chance to showcase how we're developing GOV.UK PaaS 
 
 Use the [google group interface] to send the email.
 
-* Click on `New topic`
+* Select `New topic`
 * In `By` select: Post on behalf of GOV.UK PaaS announce
 * The `Subject` should help identify immediately the purpose of the email.
 Ex: "Incident with..."
@@ -93,7 +93,7 @@ Essential information and actions tenants need to carry out in order to ensure t
 
 1. Navigate to where you stored the CSV files, and import it.
 
-1. Click on 'Send X emails’, where X should be the number of people to contact.
+1. Select 'Send X emails’, where X should be the number of people to contact.
 
 1. Send emails to the contents of both CSV files
 

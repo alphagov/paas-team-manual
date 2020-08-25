@@ -21,7 +21,7 @@ Learn about [Statuspage](/team/statuspage/)
 1. The subscribers on statuspage will get the notifications
 
 ## If you need to escalate to SMT on call:
-1. If you need to escalate to SMT (for example, if its affecting coronavirus services) - go to [rotas app](https://rotas.cloudapps.digital/teams/techops-management-escalations) and click on the current on call individual to get their contact info 
+1. If you need to escalate to SMT (for example, if its affecting coronavirus services) - go to [rotas app](https://rotas.cloudapps.digital/teams/techops-management-escalations) and select the current on call individual to get their contact info 
 
 ## Don’t forget:
 1. Your aim is to do just enough support out of hours to get through to working hours :)
