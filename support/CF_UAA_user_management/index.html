@@ -171,7 +171,7 @@ TARGET=$(cf curl /v2/info | jq -r .token_endpoint) \
   TOKEN=$(cf oauth-token) \
   bundle exec ./uaa_lock_user.rb &lt;USERNAME&gt;
 </code></pre></div><h2 id="finding-out-org-membership">Finding out org membership</h2><p>In order to notify the org manager of a given user, we need to find out who that would be. UAA does not know which org/space user belongs to. This information is only available to cloud controller: <code>cf curl /v2/users/&lt;uaa_user_id&gt;/summary</code></p>
-<p>The user summary contains all orgs and spaces they are member of. It also contains the UAA ID of managers of these. To get user name from UAA id, simply: <code>bundle exec uaac curl /Users/&lt;uaa_user_id&gt; | grep userName</code></p>
+<p>The user summary contains all orgs and spaces they are member of. It also contains the UAA ID of managers of these. To get user name from UAA id, enter: <code>bundle exec uaac curl /Users/&lt;uaa_user_id&gt; | grep userName</code></p>
 <h2 id="notifying-the-org-manager">Notifying the org manager</h2><p>Send an email from support email address: <code>gov-uk-paas-support@digital.cabinet-office.gov.uk</code>. Example email:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>Hi &lt;org manager 1st name&gt;,
 

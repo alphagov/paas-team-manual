@@ -92,7 +92,7 @@
 <li>Create a new entry in <code>paas-cf/terraform/prod{-lon}.vpc_peering.json</code>. Deploy this to production.</li>
 <li>A CF security group will have been automatically created that gives access to the peered VPC, the name of the group will be <code>vpc_peer_$PEER_NAME</code>. <code>cf bind-security-group</code> this to the spaces that the tenant needs access from.</li>
 <li>Tell the tenant to accept the VPC peering request they have received, and add a VPC route for <code>10.0.0.0/16</code> pointing at the peering connection.</li>
-<li>Make sure the tenant knows that they need to whitelist <code>10.0.0.0/16</code> in any security groups attached to resources in their VPC, and that they need to raise a support request to have VPC access granted to any new spaces they create.</li>
+<li>Make sure the tenant knows that they need to place <code>10.0.0.0/16</code> onto the allow list in any security groups attached to resources in their VPC, and that they need to raise a support request to have VPC access granted to any new spaces they create.</li>
 <li>🎉</li>
 </ol>
 <h2 id="things-to-note">Things to note</h2>

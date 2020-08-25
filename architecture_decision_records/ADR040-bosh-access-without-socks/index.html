@@ -100,7 +100,7 @@
 <h2 id="decision">Decision</h2><p>We will remove the reliance on SOCKS5 or SSH tunnels for the UAA API endpoint so that we can remove the use of shared credentials.</p>
 <p>With these in place we are unable to complete an SSO journey from one of our existing IDPs as the BOSH instance is not broswer accessible.</p>
 <p>The current method will be replaced with Single Sign On in order to obtain a UAA token. This token is then used to interact with the rest of the APIs on the BOSH instance.</p>
-<h2 id="implementation">Implementation</h2><p>In the initial implementation we will place UAA on the bosh director in the internet using the IP Whitelist and using Google for SSO</p>
+<h2 id="implementation">Implementation</h2><p>In the initial implementation we will place UAA on the bosh director in the internet using the IP allow list and using Google for SSO</p>
 <p>Access to both BOSH and Credhub will remain via SSH Tunnels during this phase of implementation.</p>
 <p><a href="../images/adr451-bosh-access-without-socks.svg" target="_blank" rel="noopener noreferrer"><img src="../images/adr451-bosh-access-without-socks.svg" alt="architecture" /></a></p>
 <p>By using this method we are retaining the benefit of using IP whitelisting whilst removing the shared credential that is in use.</p>
