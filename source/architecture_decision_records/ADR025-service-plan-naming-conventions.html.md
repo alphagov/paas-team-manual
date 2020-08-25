@@ -26,13 +26,13 @@ Where:
 * `LABEL` is a string describing some specific variant of the service if relvent.
 * `VERSION` is the version number of the service plan.
 
-#### For example:
+### For example:
 
 A large multi-az postgres plan for version 9.6 would be `large-ha-9.6`.
 
 A small not multi-az, unclustered, redis 3.2 plan would be `redis-unclustered-3.2`.
 
-#### Example migrations of some existing plans:
+### Example migrations of some existing plans:
 
 ```
 L-HA-enc-dedicated-9.5 => large-ha-9.5
@@ -41,7 +41,7 @@ tiny-clustered => tiny-clustered-3.2
 tiny-unclustered => tiny-unclustered-3.2
 ```
 
-#### Additionally:
+### Additionally:
 
 * We will avoid use of the word "free" in names.
 * We will avoid using redundent words (like 'dedicated') in names to reduce noise.

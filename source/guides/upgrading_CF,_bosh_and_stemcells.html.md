@@ -33,7 +33,7 @@ Special differences to take into account:
 * Update the cf-acceptance-tests resource in the pipeline to use an upstream `cfX.Y` branch matching the cf-deployment version.
 * Note: If we are using a forked version of the smoke-tests or cf-acceptance test, create a new branch and rebase our forked version accordingly.
 
-#### Credhub
+### Credhub
 
 _(section added October 2018)_
 
