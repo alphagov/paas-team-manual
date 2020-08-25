@@ -1,7 +1,7 @@
 # Tenant Application Penetration and Load Testing
 
 
-### Penetration testing
+## Penetration testing
 
 We no longer have to notify AWS of penetration testing, however it is useful for the team to know that this is taking place and that we have contact details of the testers if issues arise during the testing window.
 
@@ -17,7 +17,7 @@ We no longer have to notify AWS of penetration testing, however it is useful for
 | emergency_contact | Provided by penetration tester. Email and phone number in case issues arise. |
 
 
-### Load Testing
+## Load Testing
 
 
 Before allowing a load test against applications running on PaaS we may have to notify AWS. Currently we are not sure on the scenarios when we do not have to notify AWS. We are erring on the side of caution and notifying for all load tests.
