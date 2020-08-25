@@ -1,7 +1,7 @@
 # ADR009: X-Forwarded- headers
 
-**This has been superceded: the first option is now used to encrypt traffic
-between the ELB and HAProxy (see [ADR016](../ADR016-end-to-end-encryption))**
+This has been superceded: the first option is now used to encrypt traffic
+between the ELB and HAProxy (see [ADR016](../ADR016-end-to-end-encryption))
 
 ## Context
 

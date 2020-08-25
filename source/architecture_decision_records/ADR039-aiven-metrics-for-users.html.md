@@ -13,7 +13,7 @@ We want to ensure our users can view metrics for their Aiven backing services so
 - understand the operational characteristics of their applications and services
 - make better capacity planning and budgeting decisions
 
-Aiven has _service integrations_ which add extra functionality to an Aiven _service_. _Service integrations_ can be used to:
+Aiven has service integrations which add extra functionality to an Aiven service. Service integrations can be used to:
 
 - ship logs to an Elasticsearch/Rsyslog
 - send metrics to Datadog
@@ -32,8 +32,8 @@ We will deploy new Prometheis in the CF BOSH deployment using the Prometheus BOS
 
 We will need to automate the following tasks:
 
-- Service discovery: ensure Prometheus has an updated list of Aiven _services_ to scrape. This automation must be colocated with the Prometheus instance.
-- Service integration: ensure every eligible Aiven provided _service_ uses the Aiven _service integration_ for Prometheus.
+- Service discovery: ensure Prometheus has an updated list of Aiven services to scrape. This automation must be colocated with the Prometheus instance.
+- Service integration: ensure every eligible Aiven provided service uses the Aiven service integration for Prometheus.
 
 ## Initial implementation
 

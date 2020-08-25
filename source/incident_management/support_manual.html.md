@@ -8,13 +8,13 @@ However, in some cases service teams can’t self diagnose or fix problems (yet)
 We’re supporting live services, teams who are using PaaS for prototyping and individuals within teams who are just trying it out.
 
 ## Support hours
-* **In hours**: Monday to Friday 9am to 5pm
-* **Out of hours - waking hours**	: 9am to 5pm each non-working day including weekends and bank holidays
-* **Out of hours - overnight**: 5pm to 9am each day
+* In hours: Monday to Friday 9am to 5pm
+* Out of hours - waking hours	: 9am to 5pm each non-working day including weekends and bank holidays
+* Out of hours - overnight: 5pm to 9am each day
 
 ## Service Targets
 
-* **First Response**: Within 2 working days
+* First Response: Within 2 working days
 
 ## Alerting out of hours
 
@@ -54,7 +54,7 @@ An incident is any issue which causes significant problems for many platform use
 
 The exceptions to this are for some categories of security breach or vulnerability, and for some incidents where there is a risk of data corruption.
 
-*(Note this table is copied from overview doc - keep in sync. More detail may be needed later)*
+(Note this table is copied from overview doc - keep in sync. More detail may be needed later)
 
 | Classification | AKA | Example | In hours| Out of hours |
 | --- | --- | --- | --- | --- |

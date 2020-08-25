@@ -36,7 +36,7 @@ It's also worth adding any folders maintained by the IDE (such as `.idea`), so t
 
 The guest uses their IDE to connect to the host's workspace. They should open the workspace at the same path as they have their version-controlled copy of the project locally. When prompted, the guest overwrites their local files with those from the remote workspace.
 
-**Important:** Opening the workspace on top of a local project gives the guest the full support of their IDE. This is particularly important in Go projects, where the path matters.
+Important: Opening the workspace on top of a local project gives the guest the full support of their IDE. This is particularly important in Go projects, where the path matters.
 
 ### 4. Run the tests
 Both parties should run the tests locally, to verify that they have all the files and working versions thereof.

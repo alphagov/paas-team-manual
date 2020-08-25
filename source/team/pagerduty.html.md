@@ -37,9 +37,9 @@ The team email notification is added at the end as well to cover any potential g
 
 ## Services
 
-We integrate with Pingdom and Prometheus. For each integration we create one *in hours* service that uses the in hours only escalation policy, and one *24x7* service that uses the 24x7 escalation policy.
+We integrate with Pingdom and Prometheus. For each integration we create one in hours service that uses the in hours only escalation policy, and one 24x7 service that uses the 24x7 escalation policy.
 
-A special service called *Emergency email* is dedicated to urgent platform issues impacting tenants. Sending an email to it triggers a ZenDesk ticket to be created and an incident in PagerDuty. The incident is attached to the *24x7* escalation policy.
+A special service called Emergency email is dedicated to urgent platform issues impacting tenants. Sending an email to it triggers a ZenDesk ticket to be created and an incident in PagerDuty. The incident is attached to the *24x7* escalation policy.
 
 For all services, incidents are not auto resolved and only high-urgency notification rules are used.
 
@@ -57,7 +57,7 @@ To schedule an override, click on `Schedule an override` on the right handside. 
 
 ### Swap
 
-When a user has planned vacation for example, it is better to swap their shift with another user. If user1 wants to swap a shift with user2, create a user2 override for user1's shift, and a user1 override for user2's shift. The 2 shift should be *exactly the same duration*.
+When a user has planned vacation for example, it is better to swap their shift with another user. If user1 wants to swap a shift with user2, create a user2 override for user1's shift, and a user1 override for user2's shift. The 2 shift should be exactly the same duration.
 
 Tip: click on the shift you want to override and select `Schedule an override` from the drop-down menu.
 
