@@ -85,9 +85,9 @@
 ### Styleguides
 
   This section contains some team-specific styleguides. These should be used in
-  addition to the [GDS styleguides]().
+  addition to the [GDS styleguides](https://github.com/alphagov/styleguides/).
 
-  [GDS styleguides]: https://github.com/alphagov/styleguides/
+
 
    - [YAML](styleguides/YAML/)
    - [Concourse pipelines](styleguides/concourse_pipeline/)
