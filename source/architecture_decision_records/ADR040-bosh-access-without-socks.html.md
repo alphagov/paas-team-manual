@@ -20,13 +20,13 @@ The current method will be replaced with Single Sign On in order to obtain a UAA
 
 ## Implementation
 
-In the initial implementation we will place UAA on the bosh director in the internet using the IP Whitelist and using Google for SSO
+In the initial implementation we will place UAA on the bosh director in the internet using the IP allow list and using Google for SSO
 
 Access to both BOSH and Credhub will remain via SSH Tunnels during this phase of implementation.
 
 ![architecture](../images/adr451-bosh-access-without-socks.svg)
 
-By using this method we are retaining the benefit of using IP whitelisting whilst removing the shared credential that is in use.
+By using this method we are retaining the benefit of using IP allow lists whilst removing the shared credential that is in use.
 
 ## Status
 
@@ -34,7 +34,7 @@ Accepted
 
 ## Consequences
 
-We will no longer rely on IP Whitelisting or SSH tunnels and have individual credentials for accessing UAA on the BOSH Director.
+We will no longer rely on IP allow lists or SSH tunnels and have individual credentials for accessing UAA on the BOSH Director.
 
 Full alerting can be undertaken by Cyber for this component.
 
