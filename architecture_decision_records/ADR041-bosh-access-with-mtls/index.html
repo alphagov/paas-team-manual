@@ -94,10 +94,10 @@
   </div>
 
   <h1 id="adr041-bosh-access-with-mtls">ADR041: BOSH access with mTLS</h1><h2 id="context">Context</h2><p>In <a href="../ADR040-bosh-access-without-socks/">ADR040 BOSH access without SOCKS</a> we removed the requirement for using a SOCKS5 proxy or SSH tunnel to access UAA.</p>
-<p>We are moving towards a <a href="https://www.ncsc.gov.uk/blog-post/zero-trust-architecture-design-principles">zero trust network model</a> and as part of this are removing the IP whitelists that have been in place.</p>
+<p>We are moving towards a <a href="https://www.ncsc.gov.uk/blog-post/zero-trust-architecture-design-principles">zero trust network model</a> and as part of this are removing the IP allow lists that have been in place.</p>
 <p>Discussion has taken place with both IA and with Cyber on the proposed methods after reviewing the <a href="https://docs.google.com/document/d/1XZsrNp88tOSyC_bjy1mg3Yyv2TkpKgYSjoYResGAbps/edit#heading=h.xscqoqxlc072">RFC created as part of #169915408</a></p>
-<h2 id="decision">Decision</h2><p>We will remove the reliance on IP Whitelisting for all services on the BOSH Instance.</p>
-<p>The IP Whitelisting will be replaced with Mutual TLS.</p>
+<h2 id="decision">Decision</h2><p>We will remove the reliance on IP allow lists for all services on the BOSH Instance.</p>
+<p>The IP allow lists will be replaced with Mutual TLS.</p>
 <p>This method is one that is prefered by Cyber, as it give a much stronger authentication to the platform. This is due to authenticating both the individual and the machine that are accessing critical services.</p>
 <h2 id="implementation">Implementation</h2><p>Mutual TLS will be implemented on the BOSH Director in order to gain access to the APIs contained. This will be achieved by using a mTLS proxy such as <a href="https://github.com/square/ghostunnel">ghostunnel</a>, <a href="https://github.com/drGrove/mtls-server">mTLS-server</a> or <a href="https://www.loadbalancer.org/blog/client-certificate-authentication-with-haproxy/">HAProxy</a></p>
 <p>The following components will be accessible via 0.0.0.0/0 provided that there is a valid TLS certificate presented by the client.</p>
@@ -110,7 +110,7 @@
 <p><a href="../images/adr452-bosh-access-with-mtls.svg" target="_blank" rel="noopener noreferrer"><img src="../images/adr452-bosh-access-with-mtls.svg" alt="architecture" /></a></p>
 <p>By passing all the inbound connections through an mTLS proxy we are able to keep multiple authentication factors in play and in the event of a DDoS attack on the proxy it does not place additional load directly on the BOSH Director.</p>
 <h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>We will no longer rely on IP Whitelisting when accessing the components on the BOSH Director.</p>
+<h2 id="consequences">Consequences</h2><p>We will no longer rely on IP allow lists when accessing the components on the BOSH Director.</p>
 <p>Full alerting can be undertaken by Cyber for this component.</p>
 <p>We will not be using SSH access to the BOSH Director when carrying out daily operator tasks which should reduce false alerting within Cyber.</p>
 

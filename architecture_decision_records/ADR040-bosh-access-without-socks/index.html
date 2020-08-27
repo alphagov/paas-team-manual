@@ -103,9 +103,9 @@
 <h2 id="implementation">Implementation</h2><p>In the initial implementation we will place UAA on the bosh director in the internet using the IP allow list and using Google for SSO</p>
 <p>Access to both BOSH and Credhub will remain via SSH Tunnels during this phase of implementation.</p>
 <p><a href="../images/adr451-bosh-access-without-socks.svg" target="_blank" rel="noopener noreferrer"><img src="../images/adr451-bosh-access-without-socks.svg" alt="architecture" /></a></p>
-<p>By using this method we are retaining the benefit of using IP whitelisting whilst removing the shared credential that is in use.</p>
+<p>By using this method we are retaining the benefit of using IP allow lists whilst removing the shared credential that is in use.</p>
 <h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>We will no longer rely on IP Whitelisting or SSH tunnels and have individual credentials for accessing UAA on the BOSH Director.</p>
+<h2 id="consequences">Consequences</h2><p>We will no longer rely on IP allow lists or SSH tunnels and have individual credentials for accessing UAA on the BOSH Director.</p>
 <p>Full alerting can be undertaken by Cyber for this component.</p>
 <p>We will not be using SSH tunnels to obtain UAA tokens.</p>
 
