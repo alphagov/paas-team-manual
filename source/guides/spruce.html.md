@@ -210,7 +210,7 @@ a:
 * This works for an array of maps. It updates the keys in the maps following the order of the array
 
 ### Inline
-Same as *Simple replacement*, using `- (( inline ))` as first element. Maybe more explicit.
+Same as Simple replacement, using `- (( inline ))` as first element. Maybe more explicit.
 
 ### Append
 
@@ -229,7 +229,7 @@ a:
 - b4
 ```
 
-* The merge behaviour is specified in the *next* file, which is different than spiff
+* The merge behaviour is specified in the next file, which is different than spiff
 * `(( append ))` must be the first element
 
 ### Prepend
@@ -339,7 +339,7 @@ See https://github.com/geofffranks/spruce#map-replacement
 ## Inject subtree
 YAML has the concept of anchor/alias to inject another subtree from the same file. See: https://en.wikipedia.org/wiki/YAML#Repeated_nodes
 
-In spruce the same can be achieved *across different files*.
+In spruce the same can be achieved across different files.
 
 ```
 $ cat a.yml
@@ -361,7 +361,7 @@ meta:
     size: small
 ```
 
-## Prevent *null* values
+## Prevent null values
 We can add useful error checking to prevent null values due to merge errors. This is probably a good practice to use in any key where we expect a value from a merge.
 
 ```
@@ -382,7 +382,7 @@ $ spruce merge a.yml b.yml
 critical_key: critical_value
 ```
 
-## *OR* operator
+## OR operator
 
 Alows to specify alternate values in the first key is null. Compatible with `grab` and `concat`.
 

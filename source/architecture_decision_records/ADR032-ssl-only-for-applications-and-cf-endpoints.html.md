@@ -2,7 +2,7 @@
 
 ## Context
 
-**Note: This has been superceeded. See [Status](#status) below.**
+Note: This has been superceeded. See [Status](#status) below.
 
 It is expected for the government websites to be secure and keep the user
 interactions private. Because that we want to enforce all communications to

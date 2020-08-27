@@ -37,9 +37,9 @@ The team email notification is added at the end as well to cover any potential g
 
 ## Services
 
-We integrate with Pingdom and Prometheus. For each integration we create one *in hours* service that uses the in hours only escalation policy, and one *24x7* service that uses the 24x7 escalation policy.
+We integrate with Pingdom and Prometheus. For each integration we create one in hours service that uses the in hours only escalation policy, and one 24x7 service that uses the 24x7 escalation policy.
 
-A special service called *Emergency email* is dedicated to urgent platform issues impacting tenants. Sending an email to it triggers a ZenDesk ticket to be created and an incident in PagerDuty. The incident is attached to the *24x7* escalation policy.
+A special service called Emergency email is dedicated to urgent platform issues impacting tenants. Sending an email to it triggers a ZenDesk ticket to be created and an incident in PagerDuty. The incident is attached to the *24x7* escalation policy.
 
 For all services, incidents are not auto resolved and only high-urgency notification rules are used.
 
@@ -47,19 +47,19 @@ For all services, incidents are not auto resolved and only high-urgency notifica
 
 ### Add/remove from rota
 
-Edit the schedule and add the user to the list of users. Be careful as it may change the other users' schedule. Don't forget to click `Save changes`.
+Edit the schedule and add the user to the list of users. Be careful as it may change the other users' schedule. Don't forget to select `Save changes`.
 
 ### Temporary change
 
 Overrides can be used to temporary replace a default user from the rota with another user. The original rota remains unchanged and PagerDuty reverts to it at the end of the override.
 
-To schedule an override, click on `Schedule an override` on the right handside. It will then be listed under `Upcoming overrides` on the right handside and can be removed from there.
+To schedule an override, select `Schedule an override` on the right handside. It will then be listed under `Upcoming overrides` on the right handside and can be removed from there.
 
 ### Swap
 
-When a user has planned vacation for example, it is better to swap their shift with another user. If user1 wants to swap a shift with user2, create a user2 override for user1's shift, and a user1 override for user2's shift. The 2 shift should be *exactly the same duration*.
+When a user has planned vacation for example, it is better to swap their shift with another user. If user1 wants to swap a shift with user2, create a user2 override for user1's shift, and a user1 override for user2's shift. The 2 shift should be exactly the same duration.
 
-Tip: click on the shift you want to override and select `Schedule an override` from the drop-down menu.
+Tip: select the shift you want to override and select `Schedule an override` from the drop-down menu.
 
 ## Respond to incidents
 

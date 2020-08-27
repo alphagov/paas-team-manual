@@ -16,20 +16,20 @@ prior to expiry.
 These are orgs that have are close to, or have gone over, their trial period.
 
 Our process is still being refined. This work should be carried out as part of
-a Pivotal story, so for now it should be fine to just attach the HTML/PDF
+a Pivotal story, so for now it should be fine to attach the HTML/PDF
 output to a comment in the story.
 
 ### To contact the org managers
 
 1. Login to [Notify](https://www.notifications.service.gov.uk/sign-in). If you
    do not have login details speak to a senior member of the team.
-1. Click on `Templates`
-1. Click on `Convert trial period to paid org`
-1. Click on `Send`
-1. Click on `Upload a list of email addresses`
-1. Click on `Choose a file`
+1. Select `Templates`
+1. Select `Convert trial period to paid org`
+1. Select `Send`
+1. Select `Upload a list of email addresses`
+1. Select `Choose a file`
 1. Choose `Desktop/expiring-orgs.csv`
-1. Click on `Send X emails`, where X should be the number of people to contact.
+1. Select `Send X emails`, where X should be the number of people to contact.
 
 We should then mark the story as blocked until seven days have passed. Once
 this time has passed we can upgrade the quota of the orgs to the next highest
@@ -41,17 +41,17 @@ These are orgs created over 75 days ago, with no users or no apps.
 
 ### To contact the org managers
 
-**At this point the data should be checked with the PM team before proceeding**
+At this point the data should be checked with the PM team before proceeding
 
 1. Login to [Notify](https://www.notifications.service.gov.uk/sign-in). If you
    do not have login details speak to a senior member of the team.
-1. Click on `Templates`
-1. Click on `Unused organisation removal notice`
-1. Click on `Send`
-1. Click on `Upload a list of email addresses`
-1. Click on `Choose a file`
+1. Select `Templates`
+1. Select `Unused organisation removal notice`
+1. Select `Send`
+1. Select `Upload a list of email addresses`
+1. Select `Choose a file`
 1. Choose `Desktop/abandoned-orgs.csv`
-1. Click on `Send X emails`, where X should be the number of people to contact.
+1. Select `Send X emails`, where X should be the number of people to contact.
 
 We should then mark the story as blocked until seven days have passed. Once
 this time has passed we can delete the orgs and notify them of deletion. For

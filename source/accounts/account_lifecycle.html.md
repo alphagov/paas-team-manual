@@ -34,7 +34,7 @@ When creating the org, ensure you add the people named in the macro as billing m
   - The name of the service or the team the user is working on
   -   The name of the government organisation or public body that will be using the org
   -   An email address of at least one person who can act as an Org Manager, who can add and remove users to the org.
-	   **When creating an org, at least one person with an email address belonging to the government organisation or public body using the org must be identified as an Org Manager**
+	   When creating an org, at least one person with an email address belonging to the government organisation or public body using the org must be identified as an Org Manager
   -   The email address of anyone else the user would like to add to the account
 
     If this information is not provided or is unclear, clarify with the requester.

@@ -6,7 +6,7 @@ Remote pairing can be more difficult than pairing in person, so we use tools to 
 The tools we use for remote pairing are ..
 
 ### [Floobits](https://floobits.com)
-Floobits is a tool which synchronises the contents of a workspace between 2 or more connected users. It has a number of IDE integrations available, and can even share shell sessions through [flootty](https://floobits.com/help/flootty) (although we've found that to be a bit janky).
+Floobits is a tool which synchronises the contents of a workspace between 2 or more connected users. It has a number of IDE integrations available, and can even share shell sessions through [flootty](https://floobits.com/help/flootty) (although we've found that to be a bit unreliable).
 
 ### An IDE
 Pick a [supported IDE](https://floobits.com/help/plugins), configure it however you want, and install the Floobits plugin. It shouldn't matter if two people are using different IDEs, since only the source code is synchronised.
@@ -36,7 +36,7 @@ It's also worth adding any folders maintained by the IDE (such as `.idea`), so t
 
 The guest uses their IDE to connect to the host's workspace. They should open the workspace at the same path as they have their version-controlled copy of the project locally. When prompted, the guest overwrites their local files with those from the remote workspace.
 
-**Important:** Opening the workspace on top of a local project gives the guest the full support of their IDE. This is particularly important in Go projects, where the path matters.
+Important: Opening the workspace on top of a local project gives the guest the full support of their IDE. This is particularly important in Go projects, where the path matters.
 
 ### 4. Run the tests
 Both parties should run the tests locally, to verify that they have all the files and working versions thereof.

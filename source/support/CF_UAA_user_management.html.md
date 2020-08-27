@@ -86,7 +86,12 @@ The endpoint also works for UAA GUIDs:
 
 ## Locking a user account
 
-Sometimes it might be necessary to lock certain users. For example when we find out they have left GDS or don't have any more project to work on PaaS. CF has a facility to prevent users from logging in, while still preserving the user account with all their access rights and org membership. We do this as a first step in removing the user account. We then ask for confirmation from org managers (or managers of org managers in case we are removing an org manager) and only after confirmation finally remove the account completely (`cf delete-user`).
+Sometimes it might be necessary to lock certain user accounts. For example, when we find out they have left GDS or are no longer working on the PaaS team. 
+
+Cloud Foundry has a facility to prevent users from logging in while still preserving the user account with all their access rights and org membership. We use this facility as a first step in removing the user account and then:
+
+* ask for confirmation from org managers (or managers of org managers if we are removing an org manager)
+* remove the account completely (`cf delete-user`) once we have received confirmation
 
 From [alphagov/paas-cf](https://github.com/alphagov/paas-cf):
 
@@ -102,7 +107,7 @@ TARGET=$(cf curl /v2/info | jq -r .token_endpoint) \
 
 In order to notify the org manager of a given user, we need to find out who that would be. UAA does not know which org/space user belongs to. This information is only available to cloud controller: `cf curl /v2/users/<uaa_user_id>/summary`
 
-The user summary contains all orgs and spaces they are member of. It also contains the UAA ID of managers of these. To get user name from UAA id, simply: `bundle exec uaac curl /Users/<uaa_user_id> | grep userName`
+The user summary contains all orgs and spaces they are member of. It also contains the UAA ID of managers of these. To get user name from UAA id, enter: `bundle exec uaac curl /Users/<uaa_user_id> | grep userName`
 
 ## Notifying the org manager
 
