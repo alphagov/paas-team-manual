@@ -26,7 +26,7 @@ Access to both BOSH and Credhub will remain via SSH Tunnels during this phase of
 
 ![architecture](../images/adr451-bosh-access-without-socks.svg)
 
-By using this method we are retaining the benefit of using IP whitelisting whilst removing the shared credential that is in use.
+By using this method we are retaining the benefit of using IP allow lists whilst removing the shared credential that is in use.
 
 ## Status
 
@@ -34,7 +34,7 @@ Accepted
 
 ## Consequences
 
-We will no longer rely on IP Whitelisting or SSH tunnels and have individual credentials for accessing UAA on the BOSH Director.
+We will no longer rely on IP allow lists or SSH tunnels and have individual credentials for accessing UAA on the BOSH Director.
 
 Full alerting can be undertaken by Cyber for this component.
 

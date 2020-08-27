@@ -4,15 +4,15 @@
 
 In [ADR040 BOSH access without SOCKS](../ADR040-bosh-access-without-socks/) we removed the requirement for using a SOCKS5 proxy or SSH tunnel to access UAA.
 
-We are moving towards a [zero trust network model](https://www.ncsc.gov.uk/blog-post/zero-trust-architecture-design-principles) and as part of this are removing the IP whitelists that have been in place. 
+We are moving towards a [zero trust network model](https://www.ncsc.gov.uk/blog-post/zero-trust-architecture-design-principles) and as part of this are removing the IP allow lists that have been in place. 
 
 Discussion has taken place with both IA and with Cyber on the proposed methods after reviewing the [RFC created as part of #169915408](https://docs.google.com/document/d/1XZsrNp88tOSyC_bjy1mg3Yyv2TkpKgYSjoYResGAbps/edit#heading=h.xscqoqxlc072)
 
 ## Decision
 
-We will remove the reliance on IP Whitelisting for all services on the BOSH Instance.
+We will remove the reliance on IP allow lists for all services on the BOSH Instance.
 
-The IP Whitelisting will be replaced with Mutual TLS.
+The IP allow lists will be replaced with Mutual TLS.
 
 This method is one that is prefered by Cyber, as it give a much stronger authentication to the platform. This is due to authenticating both the individual and the machine that are accessing critical services.
 
@@ -36,7 +36,7 @@ Accepted
 
 ## Consequences
 
-We will no longer rely on IP Whitelisting when accessing the components on the BOSH Director.
+We will no longer rely on IP allow lists when accessing the components on the BOSH Director.
 
 Full alerting can be undertaken by Cyber for this component.
 
