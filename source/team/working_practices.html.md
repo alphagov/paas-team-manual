@@ -19,7 +19,7 @@ instance it's okay to ask for help, it's okay to have quiet days, and many other
   prioritised
 - The team make the necessary changes in their own development environments and
   branches
-- The changes are [reviewed](#pull-requests) by an engineer
+- An engineer reviews the changes in a [pull request](#pull-requests) 
 - The reviewer merges the changes into the master branch of the repository
 - The latest revision of the code is automatically tested on staging using the
   Cloud Foundry smoke and acceptance tests to ensure that basic user functions
@@ -106,11 +106,11 @@ branches and GitHub pull requests. [Anna's blog post][] explains how to
 raise a good pull request.
 
 [Anna's blog post]: http://www.annashipman.co.uk/jfdi/good-pull-requests.html
-[this template]: https://github.com/alphagov/paas-cf/blob/master/.github/PULL_REQUEST_TEMPLATE.md
+[the pull request template]: https://github.com/alphagov/paas-cf/blob/master/.github/PULL_REQUEST_TEMPLATE.md
 
 When you create a pull request please:
 
-- use [this template][] for the description so that it is easier for
+- use [the pull request template][] for the description so that it is easier for
   the reviewer to understand and test your changes
 
 - prefix the subject with the story ID from Pivotal Tracker (format:
