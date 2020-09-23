@@ -38,7 +38,6 @@
 
 ### Other information
  - [Our orgs on the paas](team/our_orgs_on_the_paas/)
- - [Debugging IPSec](guides/IPSec_debugging/)
  - [Enhancing Kibana](guides/enhancing_kibana/)
  - [Investigating Rsyslog issues](support/rsyslog/)
  - [Cloud Foundry debugging tips](guides/CloudFoundry_debugging/)
