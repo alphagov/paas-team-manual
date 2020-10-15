@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>PaaS Team Manual</title>
+
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/test_alertmanager/">
+
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/test_alertmanager/" />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="twitter:title" content="PaaS Team Manual" />
+      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/test_alertmanager/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header " role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#testing-alertmanager"><span>Testing Alertmanager</span></a>
+    <ul>
+      <li>
+        <a href="#requirements"><span>Requirements</span></a>
+      </li>
+      <li>
+        <a href="#before-you-start"><span>Before you start</span></a>
+      </li>
+      <li>
+        <a href="#checking-where-alerts-go"><span> Checking where alerts go</span></a>
+      </li>
+      <li>
+        <a href="#simulating-an-alert"><span>Simulating an alert</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="testing-alertmanager">Testing Alertmanager</h1><p>This is a guide to testing Alertmanager</p>
+<p>We use Alertmanager for broadcasting and silencing our Prometheus alerts.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>AWS access</li>
+<li>CredHub CLI</li>
+<li><code>amtool</code> - the Alertmanager CLI</li>
+</ul>
+<p>Install <code>amtool</code> with <code>go get github.com/prometheus/alertmanager/cmd/amtool</code></p>
+<h2 id="before-you-start">Before you start</h2><p><strong>1.</strong> <a href="/guides/Connecting_to_Concourse_CredHub_and_BOSH/">Get credentials</a> to
+talk to Alertmanager</p>
+<p><strong>2.</strong> Navigate to Alertmanager&rsquo;s web UI</p>
+<p>For example:</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Env</th>
+<th>URL</th>
+</tr>
+<tr>
+<td>Dev</td>
+<td><code>https://alertmanager-1.tlwr.cloudpipeline.digital</code></td>
+</tr>
+<tr>
+<td>Staging</td>
+<td><code>https://alertmanager-1.london.staging.cloudpipeline.digital</code></td>
+</tr>
+<tr>
+<td>London</td>
+<td><code>https://alertmanager-1.london.cloud.service.gov.uk</code></td>
+</tr>
+<tr>
+<td>Ireland</td>
+<td><code>https://alertmanager-1.cloud.service.gov.uk</code></td>
+</tr>
+
+        </table>
+      </div><p><strong>3.</strong> Check you can talk to Alertmanager</p>
+<div class="highlight"><pre class="highlight plaintext"><code>amtool \
+  --alertmanager.url=https://admin:&lt;PASSWORD&gt;@alertmanager-1.tlwr.dev.cloudpipeline.digital \
+  config show
+</code></pre></div><p>where <code>&lt;PASSWORD&gt;</code> is the Alertmanager password from CredHub</p>
+<p><em>The following <code>amtool</code> commands assume that you specify <code>--alertmanager.url</code></em></p>
+<h2 id="checking-where-alerts-go"> Checking where alerts go</h2><p>Alertmanager has a concept of &ldquo;routes&rdquo;, which dictate where alerts are routed</p>
+<p>You can list routes:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>amtool config routes show
+</code></pre></div><p>which will print:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>Routing tree:
+.
+└── default-route  receiver: critical-receiver
+    ├── {severity="warning"}  continue: true  receiver: warning-receiver
+    ├── {severity="critical"}  continue: true  receiver: critical-receiver
+    ├── {notify="pagerduty-24-7"}  continue: true  receiver: pagerduty-24-7-receiver
+    └── {notify="pagerduty-in-hours"}  receiver: pagerduty-in-hours-receiver
+</code></pre></div><p>You can see which route would be selected for an imaginary alert:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>amtool config routes test severity=warning otherlabel=mylabelvalue
+</code></pre></div><p>prints:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>warning-receiver
+</code></pre></div><p>and</p>
+<div class="highlight"><pre class="highlight plaintext"><code>amtool config routes test notify=pagerduty-24-7 otherlabel=foo
+</code></pre></div><p>prints</p>
+<div class="highlight"><pre class="highlight plaintext"><code>pagerduty-24-7-receiver
+</code></pre></div><h2 id="simulating-an-alert">Simulating an alert</h2><p><strong>1.</strong> Notify your colleagues that you are going to be testing alerts</p>
+<p><strong>2.</strong> Add an override in PagerDuty</p>
+<p><em>You may wish to override both the engineer and the comms schedules, so that
+only you are called</em></p>
+<p><strong>3.</strong> Create an alert that will expire in 5 minutes</p>
+<div class="highlight"><pre class="highlight plaintext"><code>amtool alert add \
+  this-is-a-test-alert \
+  notify=pagerduty-in-hours \
+  --end="$(date -v +5M -u '+%Y-%m-%dT%H:%M:%SZ')"
+</code></pre></div><p><strong>4.</strong> Await your phone call from PagerDuty, and resolve the incident</p>
+
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="../../accessibility/">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        role="presentation"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../javascripts/application.js"></script>
+  </body>
+</html>
