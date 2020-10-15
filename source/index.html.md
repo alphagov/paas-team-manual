@@ -35,6 +35,7 @@
  - [How to release bosh blobs](guides/releasing_bosh_blobs/)
  - [How to run `paas-cf` tests locally](guides/running_paas-cf_tests_locally/)
  - [How to rotate credentials](team/rotating_credentials/)
+ - [How to test Alertmanager](guides/test_alertmanager/)
 
 ### Other information
  - [Our orgs on the paas](team/our_orgs_on_the_paas/)
