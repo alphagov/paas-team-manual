@@ -49,6 +49,7 @@
 
 ## Tenant Account Management
  - [Account lifecycle](accounts/account_lifecycle)
+ - [Closing GOV.UK PaaS trial accounts](accounts/closing_trial_accounts/)
  - [Getting data about trial accounts](accounts/getting_data_about_trial_accounts/)
  - [Tenant personal data](accounts/tenant_personal_data/)
 
