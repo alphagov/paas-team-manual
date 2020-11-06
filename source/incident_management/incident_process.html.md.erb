@@ -28,20 +28,23 @@ Your responsibility depends on your role within the ‘incident team’:
 
 #### Incident comms lead
 1. Let the PaaS team know about the incident on #paas-incident Slack channel.
-2. Notify the tenants about the investigation by creating a new incident in [Statuspage](/team/statuspage/) using the ‘Possible issue being investigated’ template.
+2. Open a hangout for you and the support engineer (share a link in the #paas-incident Slack channel, but suggest that only PaaS team members working on the incident join to avoid distractions).
+3. Set up a new incident report document (make a copy of the [blank incident report template] (https://docs.google.com/document/d/1sloIDHtRK6ErB-0lmKNTFlj6lYmcr71wkTUMP1NR4ZU/edit?usp=sharing)). Record a timeline of events. Make sure the incident report can be viewed by anyone in GDS, and share a link in the #paas-incident Slack channel.
+4. Notify the tenants about the investigation by creating a new incident in [Statuspage](/team/statuspage/) using the ‘Possible issue being investigated’ template.
 Important: when creating or updating an incident you must tick the boxes to say which components are affected, otherwise notifications will not be sent.
-3.   Update tenants regularly using the [saved templates](https://manage.statuspage.io/login?redirect=%2Fpages%2Fh4wt7brwsqr0) in our [Statuspage](https://team-manual.cloud.service.gov.uk/team/statuspage/) account. The severity level page shows how frequently you should update tenants.
+5. Update tenants in the #govuk-paas cross-government Slack channel.
+6. Update tenants regularly using the [saved templates](https://manage.statuspage.io/login?redirect=%2Fpages%2Fh4wt7brwsqr0) in our [Statuspage](https://team-manual.cloud.service.gov.uk/team/statuspage/) account. The severity level page shows how frequently you should update tenants.
 
 Between them, the incident lead and comms lead should make a decision as to whether the incident needs to be escalated further.
 
 ### When the incident is over
 
-When the problem has been fixed, check that our [Statuspage](/team/statuspage/) is showing that the PaaS is operational. Note on #paas-incident channel that the issue is resolved.
+When the problem has been fixed, check that our [Statuspage](/team/statuspage/) is showing that the PaaS is operational. Note on #paas-incident channel that the issue is resolved. Update tenants in the #govuk-paas cross-government Slack channel.
 
 #### Write the incident report
 The incident lead and comms lead must write the incident report, ensuring that all relevant details, decisions and comms are in the timeline section of the report.
 
-The [incident report template](https://docs.google.com/document/d/1TeqTvWkgYudK67a7BM2h-u8JhDqYli3azyA-hiEoyy8/edit) provides guidance about how to complete it.
+The [incident report template](https://docs.google.com/document/d/1sloIDHtRK6ErB-0lmKNTFlj6lYmcr71wkTUMP1NR4ZU/edit?usp=sharing) provides guidance about how to complete it.
 
 #### Hold an incident review meeting
 Conduct a no-blame retro of the incident within one week of resolving the incident in order to:
@@ -74,12 +77,17 @@ The only incidents for which this is not automatically true are for security inc
 ## Out of hours incident process
 ### Step one - Preliminary investigation (max. 15 minutes)
 
-Carry out enough investigation to confirm that there really is an issue and what the priority is (according to the [severity levels](/incident_management/support_manual/#severity-levels)). For P1 incidents, the comms lead should contact the Techops RE Incident Escalation person if you need help for communication so that the incident lead can focus on investigating the incident:
+#### Incident lead (on-call engineer)
+1. Carry out enough investigation to confirm that there really is an issue.
+2. Decide what the priority is (according to the [severity levels](/incident_management/support_manual/#severity-levels)).
 
-The comms lead will:
-1. Create an open hangout and share with incident team to enable ongoing discussion.
+#### Incident comms (on-call comms lead)
+1. Open a hangout for you and the support engineer (share a link in the #paas-incident Slack channel). If other on-call support people from other GDS teams join, suggest that only PaaS team members working on the incident are on the call to avoid distractions.
+2. Set up a new incident report document (make a copy of the [blank incident report template] (https://docs.google.com/document/d/1sloIDHtRK6ErB-0lmKNTFlj6lYmcr71wkTUMP1NR4ZU/edit?usp=sharing)). Record a timeline of events. Make sure the incident report can be viewed by anyone in GDS, and share a link in the #paas-incident Slack channel.
+3. For P1 incidents, contact the Techops RE Incident Escalation person if you need help for communication so that the incident lead can focus on investigating the incident.
 
 If the on call Techops RE Incident Escalation person needs to know then:
+
 1. Go to [PagerDuty](https://governmentdigitalservice.pagerduty.com/services).
 2. Under teams, select GOV.UK PaaS.
 3. Go to **Configuration** and select [Schedules](https://governmentdigitalservice.pagerduty.com/schedules).
@@ -101,22 +109,20 @@ If you are paged out of hours as the on-call engineer, you will be the incident 
 4. Discuss the incident with the comms lead to decide when the incident is resolved or can be downgraded as it is no longer a P1 incident.
 
 #### Incident comms (on-call comms lead)
-1. Create an open hangout and share with incident team to enable ongoing discussion.
-2. If deemed necessary, contact the TechOps RE Incident Escalation person to get comms support.
-3. Notify tenants about the investigation by creating a new incident in [Statuspage](/team/statuspage/) using the ‘Possible issue being investigated’ template.
-4. Let the PaaS team know about the incident on the #paas-incident slack channel.
-5. Update tenants hourly using the [saved templates](https://manage.statuspage.io/login?redirect=%2Fpages%2Fh4wt7brwsqr0) in our Statuspage account.
-6. When the incident is resolved or downgraded, update the #paas-incident slack channel to state it is no longer a P1 incident.
-7. Before the incident lead and comms lead can break, they should write an 'incident handover' on the #paas-incident slack channel so that the in hours on call support team can pick up the incident. This should include the status of the incident and what time it finished so the team knows when to expect them back 'at work' if relevant. 
-8. The TechOps escalation rota is the final decision point.
-
+3. Notify tenants about the investigation by creating a new incident in [Statuspage](/team/statuspage/) using the ‘Possible issue being investigated’ template. Important: when creating or updating an incident you must tick the boxes to say which components are affected, otherwise notifications will not be sent.
+4. Let the PaaS team know about the incident on the #paas-incident slack channel so team members are updated next day.
+5. Update tenants in the #govuk-paas cross-government Slack channel.
+6. Update tenants hourly using the [saved templates](https://manage.statuspage.io/login?redirect=%2Fpages%2Fh4wt7brwsqr0) in our Statuspage account.
+7. When the incident is resolved or downgraded, update the #paas-incident and the #govuk-paas cross-government Slack channels to state it is no longer a P1 incident.
+8. Before the incident lead and comms lead can break, they should write an 'incident handover' on the #paas-incident slack channel so that the in hours on call support team can pick up the incident. This should include the status of the incident and what time it finished so the team knows when to expect them back 'at work' if relevant. 
+9. The TechOps escalation rota is the final decision point.
 
 Useful contact details can be found in [PaaS Emergency contacts and escalations (restricted access)](https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing)
 
 #### When the incident is over
 When the problem has been fixed, check that our [Statuspage](/team/statuspage/) is showing that the PaaS is operational.
 
-Ensure that #paas-incident is updated to show the incident is over.
+Ensure that #paas-incident and #govuk-paas cross-government Slack channels are updated to show the incident is over.
 
 ### The next working day
 Using the information documented in the #paas-incident channel, create a Pivotal story to record all actions taken and identify any ongoing work.
