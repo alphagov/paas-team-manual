@@ -8,32 +8,43 @@ best-effort basis.
 
 ![Diagram of the alpha Elasticsearch Prometheus exporter](/diagrams/elasticsearch-metric-exporter-alpha.jpg)
 
-Aiven already provide a Prometheus endpoint on every Elasticsearch
-node, but there are 3 problems with tenants using that:
+# Elasticsearch Metric Exporter alpha
 
-  - tenants don't know how to find the endpoints
 
-  - we can't give tenants the necessary credentials
+[Elasticsearch](https://www.elastic.co/elasticsearch/) is an open source full-text RESTful search and analytics engine that allows you to store and search data.
 
-  - an IP safelist stops any Prometheus outside PaaS from scraping the
-    endpoints.
+GOV.UK Platform as a Service (PaaS) offer Elasticsearch as a service to our tenants. We procure Elasticsearch from [Aiven](https://aiven.io/), who offer fully managed open source data infrastructure running in public cloud environments. The GOV.UK PaaS Elasticsearch services are hosted on AWS EC2 instances in Ireland or London, depending on your choice of GOV.UK PaaS region.
 
-We deploy a PaaS app running both `aiven-service-discovery` and
-Prometheus. `aiven-service-discovery` emits a list of all the
-endpoints to scrape. The Prometheus scrapes those endpoints. Tenants
-then federate to their own Prometheus (i.e., have their Prometheus
-scrape the `/federate` endpoint.)
+In addition to the core data infrastructure services, Aiven offer a HTTP REST API ([Aiven API](https://api.aiven.io/doc/)) which allows automated access to and control of account and service configuration. Aiven also provide access to Elasticsearch metrics through [Prometheus endpoints](https://prometheus.io/docs/concepts/jobs_instances/).
 
-We deploy one per tenant, behind a basic auth route service. These
-apps and route services are in the `admin / monitoring` space of
-Ireland and London.
+However, GOV.UK PaaS tenants are not able to access the Aiven API directly for security reasons. This is because:
 
-One issue is that we have to manually list the Elasticsearch service
-instances and include a list of them in the app. So if tenant creates
-a new Elasticsearch instance it won't receive metrics unless we update
-the app manually. Fixing this is left until it's less of an alpha.
+* the Aiven API access credentials allow access to all services procured by GOV.UK PaaS
+* access to Aiven services is restricted to GOV.UK PaaS IP ranges
 
-The code and manifests are in [a PR on `alphagov/paas-observability-release`](https://github.com/alphagov/paas-observability-release/pull/5).
+To make Elasticsearch metrics provided by the Aiven Prometheus endpoints available to our tenants, GOV.UK PaaS are developing the Elasticsearch Metric Exporter app, which is currently in alpha.
+
+The code and manifests are in a [`pull request`](https://github.com/alphagov/paas-observability-release/pull/5) on [`paas-observability-release`](https://github.com/alphagov/paas-observability-release).
+
+## How it works
+
+The Elasticsearch Metric Exporter app runs two components, a [Prometheus server](https://prometheus.io/) and the `aiven-service-discovery` process as a [sidecar](https://docs.cloudfoundry.org/devguide/sidecars.html).
+
+The `aiven-service-discovery` process is configured by providing a JSON file that lists the services to collect metrics for. It then:
+
+* connects to the Aiven API to identify the IP addresses of the services' Elasticsearch nodes
+* configures the scrape targets of the Elasticsearch Metric Exporter Prometheus server.
+
+Once configured, the Elasticsearch Metric Exporter Prometheus server reads metrics from the Aiven Prometheus endpoints and stores them in an InfluxDB instance. Access to the server is provided by a [basic auth route service](https://docs.cloud.service.gov.uk/deploying_services/route_services/#example-route-service-to-add-username-and-password-authentication).
+
+We are operating one Elasticsearch Metric Exporter instance and one basic auth route service per tenant participating in the alpha. The apps and services are deployed in the `monitoring` space of the `admin` organisation in Ireland and London, respectively.
+
+Tenants are able to access their Elasticsearch metrics by providing basic authentication credentials when accessing their Elasticsearch Metric Exporter instance. They can [federate](https://prometheus.io/docs/prometheus/latest/federation/) the metrics to a Prometheus server operated outside of GOV.UK PaaS by scraping the `/federate` endpoint of the Elasticsearch Metric Exporter instance.
+
+## Limitations of the alpha
+
+The service list configuration of the `aiven-service-discovery` process is static. This means that if a tenant creates a new Elasticsearch service, they will not receive its metrics until the configuration is manually updated and the Elasticsearch Metric Exporter redeployed.
+
 
 ## If something goes wrong
 
