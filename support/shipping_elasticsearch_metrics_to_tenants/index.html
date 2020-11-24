@@ -66,6 +66,17 @@
       <li>
         <a href="#how-it-works"><span>How it works</span></a>
       </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#elasticsearch-metric-exporter-alpha"><span>Elasticsearch Metric Exporter alpha</span></a>
+    <ul>
+      <li>
+        <a href="#elasticsearch-metric-exporter-alpha-how-it-works"><span>How it works</span></a>
+      </li>
+      <li>
+        <a href="#limitations-of-the-alpha"><span>Limitations of the alpha</span></a>
+      </li>
       <li>
         <a href="#if-something-goes-wrong"><span>If something goes wrong</span></a>
       </li>
@@ -91,28 +102,28 @@
 Prometheuses. This is an informal &ldquo;alpha&rdquo; and only on an in-hours,
 best-effort basis.</p>
 <h2 id="how-it-works">How it works</h2><p><a href="../../diagrams/elasticsearch-metric-exporter-alpha.jpg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/elasticsearch-metric-exporter-alpha.jpg" alt="Diagram of the alpha Elasticsearch Prometheus exporter" /></a></p>
-<p>Aiven already provide a Prometheus endpoint on every Elasticsearch
-node, but there are 3 problems with tenants using that:</p>
+<h1 id="elasticsearch-metric-exporter-alpha">Elasticsearch Metric Exporter alpha</h1><p><a href="https://www.elastic.co/elasticsearch/">Elasticsearch</a> is an open source full-text RESTful search and analytics engine that allows you to store and search data.</p>
+<p>GOV.UK Platform as a Service (PaaS) offer Elasticsearch as a service to our tenants. We procure Elasticsearch from <a href="https://aiven.io/">Aiven</a>, who offer fully managed open source data infrastructure running in public cloud environments. The GOV.UK PaaS Elasticsearch services are hosted on AWS EC2 instances in Ireland or London, depending on your choice of GOV.UK PaaS region.</p>
+<p>In addition to the core data infrastructure services, Aiven offer a HTTP REST API (<a href="https://api.aiven.io/doc/">Aiven API</a>) which allows automated access to and control of account and service configuration. Aiven also provide access to Elasticsearch metrics through <a href="https://prometheus.io/docs/concepts/jobs_instances/">Prometheus endpoints</a>.</p>
+<p>However, GOV.UK PaaS tenants are not able to access the Aiven API directly for security reasons. This is because:</p>
 
 <ul>
-<li><p>tenants don&rsquo;t know how to find the endpoints</p></li>
-<li><p>we can&rsquo;t give tenants the necessary credentials</p></li>
-<li><p>an IP safelist stops any Prometheus outside PaaS from scraping the
-endpoints.</p></li>
+<li>the Aiven API access credentials allow access to all services procured by GOV.UK PaaS</li>
+<li>access to Aiven services is restricted to GOV.UK PaaS IP ranges</li>
 </ul>
-<p>We deploy a PaaS app running both <code>aiven-service-discovery</code> and
-Prometheus. <code>aiven-service-discovery</code> emits a list of all the
-endpoints to scrape. The Prometheus scrapes those endpoints. Tenants
-then federate to their own Prometheus (i.e., have their Prometheus
-scrape the <code>/federate</code> endpoint.)</p>
-<p>We deploy one per tenant, behind a basic auth route service. These
-apps and route services are in the <code>admin / monitoring</code> space of
-Ireland and London.</p>
-<p>One issue is that we have to manually list the Elasticsearch service
-instances and include a list of them in the app. So if tenant creates
-a new Elasticsearch instance it won&rsquo;t receive metrics unless we update
-the app manually. Fixing this is left until it&rsquo;s less of an alpha.</p>
-<p>The code and manifests are in <a href="https://github.com/alphagov/paas-observability-release/pull/5">a PR on <code>alphagov/paas-observability-release</code></a>.</p>
+<p>To make Elasticsearch metrics provided by the Aiven Prometheus endpoints available to our tenants, GOV.UK PaaS are developing the Elasticsearch Metric Exporter app, which is currently in alpha.</p>
+<p>The code and manifests are in a <a href="https://github.com/alphagov/paas-observability-release/pull/5"><code>pull request</code></a> on <a href="https://github.com/alphagov/paas-observability-release"><code>paas-observability-release</code></a>.</p>
+<h2 id="elasticsearch-metric-exporter-alpha-how-it-works">How it works</h2><p>The Elasticsearch Metric Exporter app runs two components, a <a href="https://prometheus.io/">Prometheus server</a> and the <code>aiven-service-discovery</code> process as a <a href="https://docs.cloudfoundry.org/devguide/sidecars.html">sidecar</a>.</p>
+<p>The <code>aiven-service-discovery</code> process is configured by providing a JSON file that lists the services to collect metrics for. It then:</p>
+
+<ul>
+<li>connects to the Aiven API to identify the IP addresses of the services&rsquo; Elasticsearch nodes</li>
+<li>configures the scrape targets of the Elasticsearch Metric Exporter Prometheus server.</li>
+</ul>
+<p>Once configured, the Elasticsearch Metric Exporter Prometheus server reads metrics from the Aiven Prometheus endpoints and stores them in an InfluxDB instance. Access to the server is provided by a <a href="https://docs.cloud.service.gov.uk/deploying_services/route_services/#example-route-service-to-add-username-and-password-authentication">basic auth route service</a>.</p>
+<p>We are operating one Elasticsearch Metric Exporter instance and one basic auth route service per tenant participating in the alpha. The apps and services are deployed in the <code>monitoring</code> space of the <code>admin</code> organisation in Ireland and London, respectively.</p>
+<p>Tenants are able to access their Elasticsearch metrics by providing basic authentication credentials when accessing their Elasticsearch Metric Exporter instance. They can <a href="https://prometheus.io/docs/prometheus/latest/federation/">federate</a> the metrics to a Prometheus server operated outside of GOV.UK PaaS by scraping the <code>/federate</code> endpoint of the Elasticsearch Metric Exporter instance.</p>
+<h2 id="limitations-of-the-alpha">Limitations of the alpha</h2><p>The service list configuration of the <code>aiven-service-discovery</code> process is static. This means that if a tenant creates a new Elasticsearch service, they will not receive its metrics until the configuration is manually updated and the Elasticsearch Metric Exporter redeployed.</p>
 <h2 id="if-something-goes-wrong">If something goes wrong</h2><p>Don&rsquo;t worry. This is an informal &ldquo;alpha&rdquo; and only on an in-hours,
 best-effort basis.</p>
 <p>Ideas for debugging:</p>
