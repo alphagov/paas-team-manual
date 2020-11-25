@@ -1,9 +1,0 @@
-<h1 id="adr044-remove-ipsec">ADR044: Remove IPSec</h1><h2 id="context">Context</h2><p>GOV.UK PaaS uses mutual TLS via routing-release between gorouter and apps.
-This is a form of end-to-end encryption.</p>
-<p>GOV.UK PaaS uses IPSec between gorouter and diego cells (which run apps).
-This is a form of end-to-end encryption.</p>
-<p>The <a href="https://lists.cloudfoundry.org/g/cf-dev/message/9143">cf-dev mailing list</a>
-alleges that the IPSec release is no longer maintained.</p>
-<h2 id="decision">Decision</h2><p>We will not run IPSec in our BOSH deployments.</p>
-<h2 id="status">Status</h2><p>Accepted.</p>
-<h2 id="consequences">Consequences</h2><p>End-to-end encryption between gorouter and apps will done solely by mTLS.</p>
