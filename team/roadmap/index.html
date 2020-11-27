@@ -61,7 +61,23 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#gov-uk-paas-public-roadmap"><span>GOV.UK PaaS public roadmap</span></a>
+    <a href="#gov-uk-paas-public-roadmap-triaging"><span>GOV.UK PaaS public roadmap triaging</span></a>
+    <ul>
+      <li>
+        <a href="#overview"><span>Overview</span></a>
+      </li>
+      <li>
+        <a href="#adding-items-to-the-roadmap"><span>Adding items to the roadmap</span></a>
+      </li>
+      <li>
+        <a href="#roadmap-triage-meetings"><span>Roadmap triage meetings</span></a>
+        <ul>
+          <li>
+            <a href="#standing-agenda"><span>Standing agenda</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -76,10 +92,68 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="gov-uk-paas-public-roadmap">GOV.UK PaaS public roadmap</h1><p>Our public roadmap is a <a href="https://github.com/alphagov/paas-roadmap/projects/1?fullscreen=true">GitHub project</a> in the <a href="https://github.com/alphagov/paas-roadmap/">alphagov/paas-roadmap</a> repository</p>
+  <h1 id="gov-uk-paas-public-roadmap-triaging">GOV.UK PaaS public roadmap triaging</h1><h2 id="overview">Overview</h2><p>Our public roadmap is a <a href="https://github.com/alphagov/paas-roadmap/projects/1?fullscreen=true">GitHub project</a> in the <a href="https://github.com/alphagov/paas-roadmap]">alphagov/paas-roadmap</a> repository</p>
 <p>The roadmap is publicly visible on the internet, and it is intended for tenants and prospective tenants.</p>
-<p>Tenants can make feature requests, suggest new services we might broker, and discuss and vote on existing issues. When a tenant makes a request via support, or otherwise expresses an unmet need, we should encourage them to document it in the &ldquo;Proposed&rdquo; column of the roadmap.</p>
-<p>We review the roadmap every other week. We aim to triage the issues, respond to commenters, retire any issues that aren&rsquo;t useful, and make sure the board reflects reality (i.e. things being worked on are in &ldquo;Doing&rdquo;)</p>
+<p>Tenants can make feature requests, suggest new services we might broker, and discuss and vote on existing issues. When a tenant makes a request via support, or otherwise expresses an unmet need, we should encourage them to document it in the &lsquo;Proposed&rsquo; column of the roadmap.</p>
+<p>We review the roadmap every month.
+We aim to: 
+-   triage the issues
+-   respond to comments
+-   retire any issues that aren&rsquo;t useful
+-   ensure the board reflects reality (i.e. things being worked on are in &#39;Doing&rsquo;).</p>
+<p>While new issues are responded to quickly, we will take them into account for more long term planning. </p>
+<h2 id="adding-items-to-the-roadmap">Adding items to the roadmap</h2><p>We encourage users to engage with us by publishing an open and editable public roadmap.</p>
+<p>If you have a need for a feature that doesn&rsquo;t exist on the platform and isn&rsquo;t currently planned then <a href="https://github.com/alphagov/paas-roadmap/issues/new/choose">you can submit a feature request</a> as an issue through GitHub.</p>
+<p>You can also read feature requests from other people on our roadmap, upvote the request or add your own comments.</p>
+<p>There are macros available in ZenDesk for when support tickets about feature requests and we signpost people to the GitHub project
+-   GOVUK PaaS::Feature request::Feature doesn&rsquo;t exist on roadmap
+-   GOVUK PaaS::Feature request::Feature is on roadmap</p>
+<p>The information we ask for when creating a feature request is:
+-   Is your feature request related to a problem? Please describe.
+-   Is this blocking you from doing anything?
+-   Describe the outcome you&rsquo;d like
+-   Describe the solutions you&rsquo;ve considered
+-   Any additional context</p>
+<p>We also signpost to evidence from support tickets and related pivotal stories on the feature card to help prioritise and show demand.</p>
+<h2 id="roadmap-triage-meetings">Roadmap triage meetings</h2><p>Every month we discuss the items on the public roadmap as a team. This session lets us discuss the roadmap in context of what else is going on in the team and our current workload.</p>
+<h3 id="standing-agenda">Standing agenda</h3>
+<ol>
+<li><p>Review <a href="https://github.com/alphagov/paas-roadmap/issues?q=is%3Aopen+is%3Aissue">new suggestions</a> (issues and/or comments) from tenants, add new issues to board using &ldquo;Add card&rdquo; and decide whether to do one of the following:</p>
+
+<ul>
+<li>  Add to &#39;proposed&rsquo; column and to future mission planning considerations</li>
+<li>  Consider it as a candidate for the paas-community or a firebreak project (label it if so)</li>
+<li>  Add to <a href="https://www.pivotaltracker.com/n/projects/1275640">pivotal tracker backlog</a> as a story for spiking or doing now/later</li>
+<li>  Close card if not relevant/possible or merge if request has already been raised or is being combined and respond to user</li>
+</ul></li>
+<li><p>Refine the roadmap: </p>
+
+<ul>
+<li>  refine existing issues so that they are complete and intelligible to the team and tenants</li>
+<li>  provide labels and status updates to existing cards if applicable</li>
+<li>  review the order of the cards in &#39;proposed&rsquo; so that it is more of less in order of priority i.e. &#39;what will be next&rsquo;</li>
+<li>  discuss if any of the cards ready to move from &#39;proposed&rsquo; to &#39;next&rsquo; (or &#39;now&rsquo;) by considering:</li>
+<li>  How important is it? </li>
+<li>  what problem is it solving?</li>
+<li>  how much demand is there for it?</li>
+<li>  what would add the most value?</li>
+<li>  how does it align to our vision/use cases for GOV.UK PaaS?</li>
+<li>  What&rsquo;s the effort?</li>
+<li>  how much development will this take?</li>
+<li>  how complex is it?</li>
+<li>  is it feasible?</li>
+<li>  how much capacity do we have to work on it (this sprint/this quarter/this year)?</li>
+<li>  move any card left to right where necessary (i.e. from proposed &gt; next &gt; now &gt; delivered)</li>
+<li>  close card if not relevant/possible or merge if request has already been raised or is being combined and respond to user</li>
+</ul></li>
+<li><p>Next steps:</p>
+
+<ul>
+<li>  anything that should be pitched for ad hoc and added from team</li>
+<li>  review output from sessions and agree owners of actions</li>
+<li>  anything that moves from &#39;proposed&rsquo; to &#39;next&rsquo;/&#39;now&rsquo; need to have stories/epics written for it and moved into PivotalTracker so we can add it to priorities in delivery and planning and later backlog refinement</li>
+</ul></li>
+</ol>
 
 
             
