@@ -15,16 +15,21 @@ instance it's okay to ask for help, it's okay to have quiet days, and many other
 
 ![Illustration of changes being promoted to prod](/diagrams/development-process.svg)
 
-- The Product Manager makes decisions on what work (features, bugs) is
-  prioritised
-- The team make the necessary changes in their own development environments and
-  branches
-- An engineer reviews the changes in a [pull request](#pull-requests) 
-- The reviewer merges the changes into the master branch of the repository
-- The latest revision of the code is automatically tested on staging using the
-  Cloud Foundry smoke and acceptance tests to ensure that basic user functions
-  still work.
-- The changes are deployed to the production environment.
+The development process consists of the following steps:
+
+1. The Product Manager makes decisions on which work (for example, features or bugs) to prioritise.
+
+2. The team make the necessary changes in their own development environments on feature branches.
+
+3. An engineer reviews the changes in a [pull request](#pull-requests).
+
+4. The reviewer merges the changes into the master branch of the repository.
+
+5. The Cloud Foundry smoke and acceptance tests automatically test the latest revision of the code in staging to make sure that basic user functions still work.
+
+6. The changes are deployed to the production environment.
+
+7. The team move the card to the 'Done' column of the Pivotal Tracker and a team member with appropriate access signs off the work.
 
 The diagram below shows how this process is implemented using git tags. It does
 not show some planned improvements, such as using git commit signatures to
