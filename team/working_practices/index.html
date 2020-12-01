@@ -175,19 +175,17 @@ that and ask for things to improve.</p>
 <a href="https://gds.blog.gov.uk/2016/05/25/its-ok-to-say-whats-ok/">It&rsquo;s OK</a> poster. For
 instance it&rsquo;s okay to ask for help, it&rsquo;s okay to have quiet days, and many other things.</p>
 <h1 id="development-process">Development process</h1><p><a href="../../diagrams/development-process.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/development-process.svg" alt="Illustration of changes being promoted to prod" /></a></p>
+<p>The development process consists of the following steps:</p>
 
-<ul>
-<li>The Product Manager makes decisions on what work (features, bugs) is
-prioritised</li>
-<li>The team make the necessary changes in their own development environments and
-branches</li>
-<li>An engineer reviews the changes in a <a href="#pull-requests">pull request</a> </li>
-<li>The reviewer merges the changes into the master branch of the repository</li>
-<li>The latest revision of the code is automatically tested on staging using the
-Cloud Foundry smoke and acceptance tests to ensure that basic user functions
-still work.</li>
-<li>The changes are deployed to the production environment.</li>
-</ul>
+<ol>
+<li><p>The Product Manager makes decisions on which work (for example, features or bugs) to prioritise.</p></li>
+<li><p>The team make the necessary changes in their own development environments on feature branches.</p></li>
+<li><p>An engineer reviews the changes in a <a href="#pull-requests">pull request</a>.</p></li>
+<li><p>The reviewer merges the changes into the master branch of the repository.</p></li>
+<li><p>The Cloud Foundry smoke and acceptance tests automatically test the latest revision of the code in staging to make sure that basic user functions still work.</p></li>
+<li><p>The changes are deployed to the production environment.</p></li>
+<li><p>The team move the card to the &lsquo;Done&rsquo; column of the Pivotal Tracker and a team member with appropriate access signs off the work.</p></li>
+</ol>
 <p>The diagram below shows how this process is implemented using git tags. It does
 not show some planned improvements, such as using git commit signatures to
 ensure that commits have been reviewed before deploying them.</p>
