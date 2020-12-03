@@ -15,6 +15,8 @@ instance it's okay to ask for help, it's okay to have quiet days, and many other
 
 ![Illustration of changes being promoted to prod](/diagrams/development-process.svg)
 
+[Full size version](/diagrams/development-process.svg)
+
 The development process consists of the following steps:
 
 1. The Product Manager makes decisions on which work (for example, features or bugs) to prioritise.
@@ -31,13 +33,30 @@ The development process consists of the following steps:
 
 7. The team move the card to the 'Done' column of the Pivotal Tracker and a team member with appropriate access signs off the work.
 
-The diagram below shows how this process is implemented using git tags. It does
-not show some planned improvements, such as using git commit signatures to
-ensure that commits have been reviewed before deploying them.
 
 ![Sequence of events promoting a release](/diagrams/release-sequence.svg)
 
 [Full size version](/diagrams/release-sequence.svg)
+
+The release process consists of the following steps:
+
+1. Developers (engineers) commit code to a development branch on a git repository.
+
+2. When the development is complete, a developer raises a pull request against the main branch of the git repository for review.
+
+3. Another team member reviews the pull request and if there are no problems, merges the changes into the main branch. Alternatively, they may provide feedback to the developers and request corrections and/or additional work.
+
+4. A new commit to the main branch triggers a Concourse git_resource that performs an automated deployment to the staging environment.
+
+5. The staging environment runs automated tests.
+  - 5 a. If the deployment or tests fail, the automated release process is halted and the team is notified.
+  - 5 b. If the deployment is successful and all tests pass, the main branch commit is tagged for release to production.
+
+6. A new release tag triggers a Concourse git_resource that performs an automated deployment to the production environment.
+
+This process does not include the use of git commit signatures which we use to
+verify developer and merger identity for a number of git
+repositories.
 
 ## Pairing
 
