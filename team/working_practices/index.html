@@ -175,6 +175,7 @@ that and ask for things to improve.</p>
 <a href="https://gds.blog.gov.uk/2016/05/25/its-ok-to-say-whats-ok/">It&rsquo;s OK</a> poster. For
 instance it&rsquo;s okay to ask for help, it&rsquo;s okay to have quiet days, and many other things.</p>
 <h1 id="development-process">Development process</h1><p><a href="../../diagrams/development-process.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/development-process.svg" alt="Illustration of changes being promoted to prod" /></a></p>
+<p><a href="../../diagrams/development-process.svg">Full size version</a></p>
 <p>The development process consists of the following steps:</p>
 
 <ol>
@@ -186,11 +187,26 @@ instance it&rsquo;s okay to ask for help, it&rsquo;s okay to have quiet days, an
 <li><p>The changes are deployed to the production environment.</p></li>
 <li><p>The team move the card to the &lsquo;Done&rsquo; column of the Pivotal Tracker and a team member with appropriate access signs off the work.</p></li>
 </ol>
-<p>The diagram below shows how this process is implemented using git tags. It does
-not show some planned improvements, such as using git commit signatures to
-ensure that commits have been reviewed before deploying them.</p>
 <p><a href="../../diagrams/release-sequence.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/release-sequence.svg" alt="Sequence of events promoting a release" /></a></p>
 <p><a href="../../diagrams/release-sequence.svg">Full size version</a></p>
+<p>The release process consists of the following steps:</p>
+
+<ol>
+<li><p>Developers (engineers) commit code to a development branch on a git repository.</p></li>
+<li><p>When the development is complete, a developer raises a pull request against the main branch of the git repository for review.</p></li>
+<li><p>Another team member reviews the pull request and if there are no problems, merges the changes into the main branch. Alternatively, they may provide feedback to the developers and request corrections and/or additional work.</p></li>
+<li><p>A new commit to the main branch triggers a Concourse git_resource that performs an automated deployment to the staging environment.</p></li>
+<li><p>The staging environment runs automated tests.</p>
+
+<ul>
+<li>5 a. If the deployment or tests fail, the automated release process is halted and the team is notified.</li>
+<li>5 b. If the deployment is successful and all tests pass, the main branch commit is tagged for release to production.</li>
+</ul></li>
+<li><p>A new release tag triggers a Concourse git_resource that performs an automated deployment to the production environment.</p></li>
+</ol>
+<p>This process does not include the use of git commit signatures which we use to
+verify developer and merger identity for a number of git
+repositories.</p>
 <h2 id="pairing">Pairing</h2><p>We pair on all stories to ensure that people don&rsquo;t get stuck on the same
 types of work and that there is a good distribution of knowledge across the
 team. We aim to rotate pairs regularly by:</p>
