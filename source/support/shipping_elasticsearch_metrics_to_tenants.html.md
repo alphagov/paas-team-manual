@@ -7,6 +7,7 @@ best-effort basis.
 ## How it works
 
 ![Diagram of the alpha Elasticsearch Prometheus exporter](/diagrams/elasticsearch-metric-exporter-alpha.jpg)
+[Link to SVG version of the diagram](/diagrams/elasticsearch-metric-exporter-alpha.svg)
 
 # Elasticsearch Metric Exporter alpha
 
