@@ -8,12 +8,14 @@ You can refer to [Incident Process](/incident_management/incident_process/) for 
 
 The support rota is on [Pagerduty](https://governmentdigitalservice.pagerduty.com/schedules).
 
-There are three separate rotas; in hours, out of hours and TechOps RE Incident Escalation.
+We have four rotas; in hours engineering, in hours comms, out of hours engineering and out of hours comms.
 
-If you are on support, add your shift onto the #paas slack channel description so your colleagues can see who is on support and that you are currently looking at the issue. If you need to swap shifts, ask your colleagues if they can swap or cover, then [update Pagerduty using an override](https://support.pagerduty.com/hc/en-us/articles/202830170-Creating-and-Deleting-Overrides).
+Our escalation rota is [GaaP SCS Escalation] (https://governmentdigitalservice.pagerduty.com/schedules#PE6NQ9Z).
+
+If you are the engineer on support, add your shift onto the #paas slack channel description so your colleagues can see who is on support and that you are currently looking at the issue. If you need to swap shifts, ask your colleagues if they can swap or cover, then [update Pagerduty using an override](https://support.pagerduty.com/hc/en-us/articles/202830170-Creating-and-Deleting-Overrides).
 
 
-## In hours support role and responsibility
+## In hours engineering support role and responsibility
 The in hours support lead is responsible for:
 
 * monitoring system alerts and system health
@@ -28,7 +30,7 @@ The in hours support lead is responsible for:
 When you need to take a break for lunch or essential meetings etc, make sure you tell people ahead of time, and arrange for a colleague to cover for you. All other members of the team are responsible for providing assistance to the support person as needed. If you don’t feel comfortable asking your colleagues, talk to the delivery manager or team lead who can help.
 
 
-## Out of hours support role and responsibility
+## Out of hours engineering support role and responsibility
 
 The out of hours support engineer is responsible for:
 
@@ -43,14 +45,32 @@ For out of hours similar guidelines apply, if you need cover for an hour or two 
 
 On a Bank Holiday, we create a daytime override on the out-of-hours schedule so there is someone on the rota during Bank Holiday daytime. This person is usually the current out-of-hours person. We also create an override on the in-hours schedule to ensure that any alerts go to PaaS team email rather than the in-hours person.
 
-## TechOps RE Incident Escalation role and responsibility
-This person will only be alerted if the out of hours 1st line support has decided that they need help with tenant communications so they can focus on fixing the issue. Or if the 1st line support does not answer the alert for 30 mins, pagerduty will automatically call this rota. They will then be responsible for:
+## In hours comms lead role and responsibility
 
-* Making decisions and sending out tenant communications (if appropriate). This includes Slack [#paas-incident](https://gds.slack.com/messages/CAD4W35KK) channel, and [Statuspage](/team/statuspage/).
-* To act as an automatic escalation if an on-call engineer fails to respond to an incident. If this happens the escalation person is responsible for finding someone from the team who can respond to the incident. Pagerduty will only trigger an alert if there are issues seriously impact the availability of the live services running on PaaS. The Escalation person will not be expected to fix the problem, only ensure that it is being handled appropriately.
-* To provide leadership-level backup for RE on-call engineers if an incident requires leadership decision making or a broader response involving updating comms or activating other engineers.
+* Checks the on call engineer is ok and finds out if they need any additional support.
+* Responsible for any communications (internal or external) required throughout the duration of the incident.
+* Protects the support engineer from unnecessary distractions or questions.
+* Opens an incident template with view permissions to all GDS staff. Posts it in #paas-incident channel.
+* Records a timeline of events through the incident.
+* Drafts and sends regular updates to tenants via Statuspage.
+
+## Out of hours comms lead role and responsibility
+
+* Checks the on call engineer is ok and finds out if they need any additional support.
+* If more support is required, attempt to contact others from team (or GDS). Get help from the GaaP SCS Escalation person with this if needed.
+* In the case of a P1 incident, or if any additional support is required, contact the person on duty on the [GaaP SCS Escalation rota] (https://governmentdigitalservice.pagerduty.com/schedules#PE6NQ9Z).
+* Responsible for any communications (internal or external) required throughout the duration of the incident.
+* Protects the support engineer from unnecessary distractions or questions.
+* Opens an incident template with view permissions to all GDS staff. Posts it in #paas-incident channel.
+* Records a timeline of events through the incident.
+* Drafts and sends regular updates to tenants via Statuspage.
+
+
+## GaaP SCS Escalation role and responsibility
+If the out of hours 1st line support has decided that they need help with tenant communications so they can focus on fixing the issue, you should contact the person on the [GaaP SCS Escalation rota] (https://governmentdigitalservice.pagerduty.com/schedules#PE6NQ9Z). They will then be responsible for:
+
+* Making decisions and assisting with tenant communications (if appropriate). This includes Slack [#paas-incident](https://gds.slack.com/messages/CAD4W35KK) channel, and [Statuspage](/team/statuspage/).
+* To provide leadership-level backup for engineers if an incident requires leadership decision making or a broader response involving updating comms or activating other engineers.
 
 
 You can find more information on the PaaS [incident Process](/incident_management/incident_process/#incident-process).
-
-You can also refer to [Reliability Engineering on-call escalation](https://re-team-manual.cloudapps.digital/documentation/re-oncall-escalation-info.html#reliability-engineering-on-call-escalation) section in the RE team manual for descriptions of the escalation roles and responsibility in Reliability Engineering.
