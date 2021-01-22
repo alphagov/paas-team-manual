@@ -24,74 +24,42 @@ The in-hours email address prepends `[PaaS Support]` to email subjects, and forw
 
 ## Tagging
 
+In hours support is responsible for tagging incoming tickets to enable analysis.
+
 We use the following tags to categorise support tickets:
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
 
-| Category | Tag |
+| Tag| Description |
 |:---|:---|
-| Incident Report (cf) | govuk_paas_incident_report_cf_performance_issues |
-| Incident Report (cf) | govuk_paas_incident_report_cf_availability |
-| Incident Report (cf) | govuk_paas_incident_report_cf_deployment |
-| Incident Report (cf) | govuk_paas_incident_report_cf_downtimes |
-| Incident Report (tenant) | govuk_paas_incident_report_t_performance_issues |
-| Incident Report (tenant) | govuk_paas_incident_report_t_availabilty |
-| Incident Report (tenant) | govuk_paas_incident_report_t_deployment |
-| Incident Report (tenant) | govuk_paas_incident_report_t_downtimes |
-| Backing services | govuk_paas_backing_services_monitoring_metrics_logs |
-| Backing services | govuk_paas_backing_services_binding_unbinding_issues |
-| Backing services | govuk_paas_backing_services_private_beta_access |
-| Backing services | govuk_paas_backing_services_connecting_issues |
-| Backing services | govuk_paas_backing_services_postgres |
-| Backing services | govuk_paas_backing_services_mysql |
-| Backing services | govuk_paas_backing_services_redis |
-| Backing services | govuk_paas_backing_services_elasticsearch |
-| Backing services | govuk_paas_backing_services_cdn |
-| Backing services | govuk_paas_backing_services_performance |
-| Backing services | govuk_paas_backing_services_scaling |
-| Notifications | govuk_paas_notifications_security_cve |
-| Notifications | govuk_paas_notifications_aws_notifications |
-| Notifications | govuk_paas_notifications_upstream_notifications |
-| Apps | govuk_paas_apps_monitoring_metrics_logs |
-| Apps | govuk_paas_apps_deployment |
-| Apps | govuk_paas_apps_certificates |
-| Apps | govuk_paas_apps_buildpacks |
-| Apps | govuk_paas_apps_secrets |
-| Apps | govuk_paas_apps_performance |
-| Apps | govuk_paas_apps_scaling |
-| Apps | govuk_paas_apps_scheduling |
-| Apps | govuk_paas_apps_logs |
-| Account Management | govuk_paas_account_management_user_addition |
-| Account Management | govuk_paas_account_management_user_removal |
-| Account Management | govuk_paas_account_management_user_password_reset |
-| Account Management | govuk_paas_account_management_quota_increase |
-| Account Management | govuk_paas_account_management_sla |
-| Account Management | govuk_paas_account_management_organisation_account_management |
-| Account Management | govuk_paas_account_management_domain_management |
-| Account Management | govuk_paas_account_management_billing |
-| Bug Report | govuk_paas_bug_report_cli |
-| Bug Report | govuk_paas_bug_report_backing_services |
-| Bug Report | govuk_paas_bug_report_documentation_error |
-| Engagement Request | govuk_paas_engagement_request_trial_account |
-| Engagement Request | govuk_paas_engagement_request_new_account_enquiry |
-| Engagement Request | govuk_paas_engagement_request_contact_request |
-| Engagement Request | govuk_paas_engagement_request_onboarding_request |
-| Engagement Request | govuk_paas_engagement_request_pricing |
-| Engagement Request | govuk_paas_engagement_request_sla |
-| Security | govuk_paas_security_pen_test |
-| Security | govuk_paas_security_information_assurance |
-| Security | govuk_paas_security_authentication |
-| Security | govuk_paas_security_secrets |
-| Security | govuk_paas_security_access_control |
-| Security | govuk_paas_security_infrastructure |
-| Security | govuk_paas_security_domain_management |
-| Feature / Query | govuk_paas_feature_query_IP_networking |
-| Feature / Query | govuk_paas_feature_query_capability_question |
-| Feature / Query | govuk_paas_feature_query_infrastructure |
-| Feature / Query | govuk_paas_feature_query_domain_management |
-| Feature / Query | govuk_paas_feature_query_untagged |
-| Feature / Query | govuk_paas_feature_query_plugins |
-| Misc | govuk_paas_misc_non_technical |
-| Misc | govuk_paas_difficult_to_tag |
+|activity_update|The tenant is providing the GOV.UK PaaS team with information about their activity, this could be load testing, penetration testing, moving the service to live|
+|backing_service|The tenant has a question about backing services: mysql, postgres, redis, elasticsearch, influxdb, cdn, autoscaling|
+|bug|The tenant has encountered a bug, error or fault in GOV.UK PaaS that we need to fix.|
+|buildpacks|The tenant has a question about buildpacks|
+|cc|Non actionable items, information from upstream and others|
+|consultancy|The tenant needs advice and expertise from a member of the GOV.UK PaaS team in the form of a meeting or phone call to determine suitability, billing, pricing, roadmap|
+|deployment|The tenant is having issues deploying an application to the platform|
+|feature_request|The tenant needs or wants a new feature that GOV.UK PaaS does not offer|
+|incident_report|The tenant is reporting an incident|
+|logging_monitoring_alerting|The tenant has a query, request or problem related to monitoring, metrics, logs |
+|misc|The ticket does not fit into any of the existing tags|
+|missing_information |The tenant is unable to find the information they're looking for |
+|monitoring|Informational items that come from our platform monitoring systems (Pingdom, Cronitor, PagerDuty)|
+|org_billable|The tenant has a query about billing or wants to go move to a billable plan|
+|org_demise|An organisation is to be demised|
+|org_quota|The tenant is requesting to increase their usage quota|
+|org_trial|A prospective tenant is requesting a trial account to evaluate the use of the platform|
+|outofhours|Out of hours support|
+|paas_action|The tenant needs the GOV.UK PaaS team to perform an action for them|
+|platform_tests|Automated messages from smoketest pipeline|
+|question|The tenant needs more information about GOV.UK PaaS|
+|routing|The tenant is having issues with routing|
+|security|The tenant has a question or problem related to security or information assurance|
+|spam|Unsolicited off topic tickets|
+|tenant_action|The tenant needs to perform an action for the GOV.UK PaaS team|
+|test|test tickets generated by user testing that should be ignored|
+|troubleshooting|The tenant needs help to identify and resolve an issue they are experiencing|
+|upstream|Actionable items that come from our upstream providers (AWS, Aiven, Cloud Foundry Foundation) leaked keys, ec2 abuse, phishing websites, deprecation notices, cve notifications from the Cloud Foundry Foundation|
+|user_account|The tenant needs help to do something with their account. For example, resetting a password, adding or removing a user|
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>
