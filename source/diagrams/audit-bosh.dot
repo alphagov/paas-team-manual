@@ -1,5 +1,5 @@
 digraph G {
-  node [shape=rect, fontname="monospace"];
+  node [pin=true, shape=rect, fontname="monospace"];
   graph [fontname="monospace"];
 
   subgraph cluster_1 {
@@ -41,6 +41,21 @@ digraph G {
     splunk
   }
 
+  subgraph cluster_5 {
+    label = "legend";
+    labelloc=tl;
+    key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+      <tr><td port="i1">&nbsp;</td></tr>
+      <tr><td port="i2">&nbsp;</td></tr>
+      </table>>]
+    key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+      <tr><td align="left" port="i1">read</td></tr>
+      <tr><td align="left" port="i2">write/use</td></tr>
+      </table>>]
+    key:i1:e -> key2:i1:w [ordering=out,constraint=false,style=dashed]
+    key:i2:e -> key2:i2:w [ordering=out,constraint=false]
+  }
+
   splunk [label="Splunk Cloud", fontsize=8];
   csls [label="CSLS"];
   hec [label="Splunk HEC"];
@@ -62,4 +77,6 @@ digraph G {
 
   hec -> splunk;
   csls -> splunk;
+
+  log_files -> key2 [style="invis",minlen="2"];
 }
