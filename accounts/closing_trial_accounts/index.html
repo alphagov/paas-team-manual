@@ -156,7 +156,7 @@
 <li>Notify tenant (via <a href="https://docs.google.com/document/d/1shOo7PSvWh2CqxSEzqW8Q4OyRCAW3g7xrSGQ9foRfAA/edit#heading=h.v5ekyyl9lqs3">zendesk macro</a> saying the trial account is past the 3 month period and give 2 weeks notice that we will suspend the account state 4 (Suspended). <a href="https://docs.google.com/document/d/1shOo7PSvWh2CqxSEzqW8Q4OyRCAW3g7xrSGQ9foRfAA/edit#">Macros definition</a></li>
 <li>If tenant confirms they intend to keep using their account, they need to <a href="https://team-manual.cloud.service.gov.uk/accounts/account_lifecycle/#upgrading-trial-orgs-to-paid-orgs">switch to billable</a> - support engineer and DM to help (track via zendesk).
 If tenant says they don’t want the account, go to state 6 (Removed).</li>
-<li>If no response from tenant after 2 weeks grace period the support engineer suspends the account - State 4 (Suspended).</li>
+<li>If no response from tenant after 2 weeks grace period the support engineer suspends the account - State 4 (Suspended). To suspend use <code>cf curl -X PATCH -d &#39;{&quot;suspended&quot;: true}&#39; &quot;/v3/organizations/$(cf org &lt;ORG-TO-BE-SUSPENDED&gt; --guid)&quot;</code></li>
 <li>Notify the tenant that their trial account has been suspended and they have 30 days to tell us they need the account. Make it clear that after this timeframe, we will stop their apps running, but keep their data State 5 (Halted).</li>
 <li>If tenant responds, they need to <a href="https://team-manual.cloud.service.gov.uk/accounts/account_lifecycle/#upgrading-trial-orgs-to-paid-orgs">switch to billable</a> - support engineer and DM to help (track via Zendesk).
 If tenant says they don’t want the account, go to state 6 (Removed).</li>
