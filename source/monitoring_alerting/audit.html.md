@@ -27,6 +27,7 @@ To better audit operator actions, we ship audit events to [Splunk](https://gds.s
 We ship events to Splunk via two mechanisms:
 
 1. [bosh-auditor](https://github.com/alphagov/paas-observability-release/tree/master/src/bosh-auditor)
+  - is a BOSH job colocated with the BOSH director
   - fetches events from Director's events API
   - ships them to the Splunk Cloud HTTP Event Collector (HEC)
   - An operator can retrieve BOSH audit events with
@@ -36,12 +37,6 @@ We ship events to Splunk via two mechanisms:
   - ships events on disk to CloudWatch
   - CloudWatch forwards logs to Cyber's Central Security Logging Service ([CSLS](https://github.com/alphagov/centralised-security-logging-service))
   - CloudWatch stores shipped events for 18 months
-
-### Diagram
-
-- `bosh-auditor` is a BOSH job colocated with the director
-- dashed arrows mean read
-- solid arrows mean write or use
 
 ![Diagram of BOSH events](/diagrams/audit-bosh.svg)
 
@@ -58,6 +53,7 @@ To better audit operator actions, and the actions of PaaS users, we ship audit e
 We ship events to Splunk via two mechanisms:
 
 1. [paas-auditor](https://github.com/alphagov/paas-auditor)
+  - is a Cloud Foundry app
   - fetches events from Cloud Controller's events API
   - stores events in a database
   - ships them to the Splunk Cloud HTTP Event Collector (HEC)
@@ -68,11 +64,5 @@ We ship events to Splunk via two mechanisms:
   - ships events on disk to CloudWatch
   - CloudWatch forwards logs to Cyber's Central Security Logging Service ([CSLS](https://github.com/alphagov/centralised-security-logging-service))
   - CloudWatch stores shipped events for 18 months
-
-### Diagram
-
-- `paas-auditor` is a Cloud Foundry app
-- dashed arrows mean read
-- solid arrows mean write or use
 
 ![Diagram of Cloud Foundry events](/diagrams/audit-cloudfoundry.svg)
