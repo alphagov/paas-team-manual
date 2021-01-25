@@ -65,19 +65,9 @@
     <ul>
       <li>
         <a href="#bosh"><span>BOSH</span></a>
-        <ul>
-          <li>
-            <a href="#diagram"><span>Diagram</span></a>
-          </li>
-        </ul>
       </li>
       <li>
         <a href="#cloud-foundry"><span>Cloud Foundry</span></a>
-        <ul>
-          <li>
-            <a href="#cloud-foundry-diagram"><span>Diagram</span></a>
-          </li>
-        </ul>
       </li>
     </ul>
   </li>
@@ -120,6 +110,7 @@ store and audit operator and platform events.</p>
 <li><p><a href="https://github.com/alphagov/paas-observability-release/tree/master/src/bosh-auditor">bosh-auditor</a></p>
 
 <ul>
+<li>is a BOSH job colocated with the BOSH director</li>
 <li>fetches events from Director&rsquo;s events API</li>
 <li>ships them to the Splunk Cloud HTTP Event Collector (HEC)</li>
 <li>An operator can retrieve BOSH audit events with
@@ -136,12 +127,6 @@ store and audit operator and platform events.</p>
 <li>CloudWatch stores shipped events for 18 months</li>
 </ul></li>
 </ol>
-<h3 id="diagram">Diagram</h3>
-<ul>
-<li><code>bosh-auditor</code> is a BOSH job colocated with the director</li>
-<li>dashed arrows mean read</li>
-<li>solid arrows mean write or use</li>
-</ul>
 <p><a href="../../diagrams/audit-bosh.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/audit-bosh.svg" alt="Diagram of BOSH events" /></a></p>
 <h2 id="cloud-foundry">Cloud Foundry</h2><p>In each environment we have components which generate events which we should audit:</p>
 
@@ -157,6 +142,7 @@ We ship events to Splunk via two mechanisms:</p>
 <li><p><a href="https://github.com/alphagov/paas-auditor">paas-auditor</a></p>
 
 <ul>
+<li>is a Cloud Foundry app</li>
 <li>fetches events from Cloud Controller&rsquo;s events API</li>
 <li>stores events in a database</li>
 <li>ships them to the Splunk Cloud HTTP Event Collector (HEC)</li>
@@ -174,12 +160,6 @@ We ship events to Splunk via two mechanisms:</p>
 <li>CloudWatch stores shipped events for 18 months</li>
 </ul></li>
 </ol>
-<h3 id="cloud-foundry-diagram">Diagram</h3>
-<ul>
-<li><code>paas-auditor</code> is a Cloud Foundry app</li>
-<li>dashed arrows mean read</li>
-<li>solid arrows mean write or use</li>
-</ul>
 <p><a href="../../diagrams/audit-cloudfoundry.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/audit-cloudfoundry.svg" alt="Diagram of Cloud Foundry events" /></a></p>
 
 
