@@ -2,6 +2,39 @@
 
 Some key information to help new starters to find their way.
 
+## Team members
+We are a multidisciplinary team responsible for the developement and maintenance of GOV.UK PaaS. 
+EL - Engineering Lead Support responsiblities 
+CL - Comms Lead Support responsibilities
+
+### Delivery Management
+- Jennifer Sleeman - Delivery Manager (CL)
+- Kam Niijar - Associate Delivery Manager 
+
+### Engineering
+- Lee Porte - Tech Lead (EL/CL)
+- Andy Hunt - Site Reliability Engineer (EL)
+- Dave Povery - Site Reliability Engineer 
+- Momhamed Deerow - Site Reliability Engineer (EL)
+- Sebastian Schmieschek - Site Reliability Engineer (EL/CL)
+- Miki Mokrysz - Senior Developer (EL)
+- Rafal Proszowski - Sneior Developer (EL)
+- Tom Whitwell - Developer (EL)
+- Jani Kraner - Front End Developer (CL)
+
+### Product Management
+- Mark Buckley - Product Manager (CL)
+
+### Technical Architecture
+- Paul Dougan - Technical Architect (CL)
+
+### Technical Writing 
+- Claire McNally - Technical Writer
+
+### User Research
+- Clare Barnett - Senior User Researcher
+- Laura Young - User Researcher
+
 ## Product
 
 The following blog posts and videos give an overview of why we're here and
