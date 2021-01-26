@@ -9,7 +9,7 @@ CL - Comms Lead Support responsibilities
 
 ### Delivery Management
 - Jennifer Sleeman - Delivery Manager (CL)
-- Kam Niijar - Associate Delivery Manager 
+- Kam Nijjar - Associate Delivery Manager 
 
 ### Engineering
 - Lee Porte - Tech Lead (EL/CL)
