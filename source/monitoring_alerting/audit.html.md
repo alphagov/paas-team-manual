@@ -24,11 +24,13 @@ To better audit operator actions, we ship audit events to [Splunk](https://gds.s
 
 We ship events to Splunk in two ways:
 
-1. [bosh-auditor](https://github.com/alphagov/paas-observability-release/tree/master/src/bosh-auditor) is a BOSH job colocated with the BOSH Director. It: 
+1. [bosh-auditor](https://github.com/alphagov/paas-observability-release/tree/master/src/bosh-auditor) is a BOSH job colocated with the BOSH Director. It:
+    - fetches events from the Director's events API
+    - ships them to the Splunk Cloud HTTP Event Collector (HEC)
 
-  - fetches events from the Director's events API
-  - ships them to the Splunk Cloud HTTP Event Collector (HEC)
-  An operator can retrieve BOSH audit events with `index=paas sourcetype="bosh-audit-event"`
+    An operator can retrieve BOSH audit events with:
+
+    `index=paas sourcetype="bosh-audit-event"`
 
 2. An AWS CloudWatch logs agent on each instance ships events on disk to CloudWatch. CloudWatch then forwards logs to Cyber's Central Security Logging Service ([CSLS](https://github.com/alphagov/centralised-security-logging-service)) and stores shipped events for 18 months.
 
@@ -47,8 +49,9 @@ To better audit operator actions, and the actions of PaaS users, we ship audit e
 
 1. [paas-auditor](https://github.com/alphagov/paas-auditor) is a Cloud Foundry app which fetches events from Cloud Controller's events API, stores the events in a database and ships them to the Splunk Cloud HTTP Event Collector (HEC).
 
-An operator can retrieve CF audit events with
-      - `index=paas sourcetype="cf-audit-event"`
+    An operator can retrieve CF audit events with:
+
+    `index=paas sourcetype="cf-audit-event"`
 
 2. An AWS CloudWatch logs agent on each instance ships events on disk to CloudWatch. CloudWatch then forwards logs to Cyber's Central Security Logging Service ([CSLS](https://github.com/alphagov/centralised-security-logging-service)) and stores shipped events for 18 months.
 
