@@ -61,7 +61,7 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#audit"><span>Audit</span></a>
+    <a href="#auditing-operator-and-platform-events"><span>Auditing operator and platform events</span></a>
     <ul>
       <li>
         <a href="#bosh"><span>BOSH</span></a>
@@ -84,9 +84,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="audit">Audit</h1><p>To hold operators and users to account, and to meet compliance requirements, we
+  <h1 id="auditing-operator-and-platform-events">Auditing operator and platform events</h1><p>To hold operators and users to account, and to meet compliance requirements, we
 store and audit operator and platform events.</p>
-<h2 id="bosh">BOSH</h2><p>In each environment we have a VM which runs BOSH and has components:</p>
+<h2 id="bosh">BOSH</h2><p>In each environment, we have a virtual machine (VM) which runs <a href="https://bosh.io/docs/">BOSH</a> and has the following components:</p>
 
 <ul>
 <li>BOSH Director</li>
@@ -94,8 +94,7 @@ store and audit operator and platform events.</p>
 <li>CredHub</li>
 </ul>
 <p>These components log security events to disk.</p>
-<p>Additionally, SSH daemons and other kernel audit logs generate useful logs.</p>
-<p>Additionally, the BOSH director has an API which lists events, for example:</p>
+<p>Additionally, SSH daemons and other kernel audit logs generate useful logs and the BOSH director has an API which lists events, for example:</p>
 
 <ul>
 <li>SSH session creation</li>
@@ -104,61 +103,34 @@ store and audit operator and platform events.</p>
 <li>Deployment create/update/delete</li>
 </ul>
 <p>To better audit operator actions, we ship audit events to <a href="https://gds.splunkcloud.com/">Splunk</a>.</p>
-<p>We ship events to Splunk via two mechanisms:</p>
+<p>We ship events to Splunk in two ways:</p>
 
 <ol>
-<li><p><a href="https://github.com/alphagov/paas-observability-release/tree/master/src/bosh-auditor">bosh-auditor</a></p>
+<li><p><a href="https://github.com/alphagov/paas-observability-release/tree/master/src/bosh-auditor">bosh-auditor</a> is a BOSH job colocated with the BOSH Director. It:</p>
 
 <ul>
-<li>is a BOSH job colocated with the BOSH director</li>
-<li>fetches events from Director&rsquo;s events API</li>
+<li>fetches events from the Director&rsquo;s events API</li>
 <li>ships them to the Splunk Cloud HTTP Event Collector (HEC)</li>
-<li>An operator can retrieve BOSH audit events with
-
-<ul>
-<li><code>index=paas sourcetype=&quot;bosh-audit-event&quot;</code></li>
-</ul></li>
-</ul></li>
-<li><p>An awslogs agent on each instance</p>
-
-<ul>
-<li>ships events on disk to CloudWatch</li>
-<li>CloudWatch forwards logs to Cyber&rsquo;s Central Security Logging Service (<a href="https://github.com/alphagov/centralised-security-logging-service">CSLS</a>)</li>
-<li>CloudWatch stores shipped events for 18 months</li>
-</ul></li>
+</ul>
+<p>An operator can retrieve BOSH audit events with:</p>
+<p><code>index=paas sourcetype=&quot;bosh-audit-event&quot;</code></p></li>
+<li><p>An AWS CloudWatch logs agent on each instance ships events on disk to CloudWatch. CloudWatch then forwards logs to Cyber&rsquo;s Central Security Logging Service (<a href="https://github.com/alphagov/centralised-security-logging-service">CSLS</a>) and stores shipped events for 18 months.</p></li>
 </ol>
 <p><a href="../../diagrams/audit-bosh.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/audit-bosh.svg" alt="Diagram of BOSH events" /></a></p>
-<h2 id="cloud-foundry">Cloud Foundry</h2><p>In each environment we have components which generate events which we should audit:</p>
+<h2 id="cloud-foundry">Cloud Foundry</h2><p>In each environment, the following components generate events we should audit:</p>
 
 <ul>
 <li>Cloud Controller API</li>
 <li>UAA</li>
 </ul>
-<p>Additionally, SSH daemon&rsquo;s and other kernel audit logs generate useful logs.</p>
-<p>To better audit operator actions, and the actions of PaaS users, we ship audit events to Splunk.
-We ship events to Splunk via two mechanisms:</p>
+<p>Additionally, SSH daemons and other kernel audit logs generate useful logs.</p>
+<p>To better audit operator actions, and the actions of PaaS users, we ship audit events to Splunk in two ways:</p>
 
 <ol>
-<li><p><a href="https://github.com/alphagov/paas-auditor">paas-auditor</a></p>
-
-<ul>
-<li>is a Cloud Foundry app</li>
-<li>fetches events from Cloud Controller&rsquo;s events API</li>
-<li>stores events in a database</li>
-<li>ships them to the Splunk Cloud HTTP Event Collector (HEC)</li>
-<li>An operator can retrieve CF audit events with
-
-<ul>
-<li><code>index=paas sourcetype=&quot;cf-audit-event&quot;</code></li>
-</ul></li>
-</ul></li>
-<li><p>An awslogs agent on each instance</p>
-
-<ul>
-<li>ships events on disk to CloudWatch</li>
-<li>CloudWatch forwards logs to Cyber&rsquo;s Central Security Logging Service (<a href="https://github.com/alphagov/centralised-security-logging-service">CSLS</a>)</li>
-<li>CloudWatch stores shipped events for 18 months</li>
-</ul></li>
+<li><p><a href="https://github.com/alphagov/paas-auditor">paas-auditor</a> is a Cloud Foundry app which fetches events from Cloud Controller&rsquo;s events API, stores the events in a database and ships them to the Splunk Cloud HTTP Event Collector (HEC).</p>
+<p>An operator can retrieve CF audit events with:</p>
+<p><code>index=paas sourcetype=&quot;cf-audit-event&quot;</code></p></li>
+<li><p>An AWS CloudWatch logs agent on each instance ships events on disk to CloudWatch. CloudWatch then forwards logs to Cyber&rsquo;s Central Security Logging Service (<a href="https://github.com/alphagov/centralised-security-logging-service">CSLS</a>) and stores shipped events for 18 months.</p></li>
 </ol>
 <p><a href="../../diagrams/audit-cloudfoundry.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/audit-cloudfoundry.svg" alt="Diagram of Cloud Foundry events" /></a></p>
 
