@@ -11,16 +11,16 @@
 
     <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/support/responding_to_alerts/">
 
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/responding_to_alerts/" />
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/support/responding_to_alerts/" />
-      <meta property="twitter:card" content="summary" />
-      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
-      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
-      <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/responding_to_alerts/" />
 
     
   </head>
@@ -32,7 +32,7 @@
       <div class="app-pane__header toc-open-disabled">
         <a href="#content" class="govuk-skip-link">Skip to main content</a>
 
-        <header class="govuk-header " role="banner" data-module="govuk-header">
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
   <div class="govuk-header__container govuk-header__container--full-width">
     <div class="govuk-header__logo">
       <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
@@ -195,7 +195,7 @@ We found out the issue by logging into the VM itself and dig through the logs.</
 <div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">PAAS_BOOTSTRAP_DIR</span><span class="k">}</span>
 <span class="nv">DEPLOY_ENV</span><span class="o">=</span>prod make prod bosh-cli
 bosh ssh uaa/23888ebf-2dd3-4afe-b370-51705403d423
-tail <span class="nt">-1000</span> /var/vcap/sys/log/uaa/uaa.log
+<span class="nb">tail</span> <span class="nt">-1000</span> /var/vcap/sys/log/uaa/uaa.log
 </code></pre></div><p>In the case of the UAA latency incident, it turned out that the CF Upgrade we
 did previously, contained a UAA release introducing the memory leak. The
 solution was to upgrade UAA release on its own.</p>
@@ -217,7 +217,7 @@ timed out due to ELB node failures.</p>
 with one or more ELB nodes that we should raise a &ldquo;high priority&rdquo; support
 ticket with them.</p>
 <p>To obtain the IP address of the failing node(s), you should inspect the logs of
-the paas-metrics app. This is deployed to the &lsquo;monitoring&rsquo; space of the &#39;admin&rsquo;
+the paas-metrics app. This is deployed to the &lsquo;monitoring&rsquo; space of the &lsquo;admin&rsquo;
 org. You should see logs such as:</p>
 <div class="highlight"><pre class="highlight plaintext"><code>2017-12-01T14:14:09.68+0000 [APP/PROC/WEB/0] OUT
 {
@@ -249,7 +249,7 @@ they failed to renew via Let&rsquo;s Encrypt.</p>
 <p>If you are seeing <code>NO_DATA</code> errors for this monitor then there may be a more
 fundimental connectivity issue to the reported endpoint.</p>
 <p>The <code>cf logs</code> output of the paas-metrics app may contain additional
-information. This is deployed to the &#39;monitoring&rsquo; space of the &#39;admin&rsquo; org.</p>
+information. This is deployed to the &lsquo;monitoring&rsquo; space of the &lsquo;admin&rsquo; org.</p>
 <h2 id="cloud-foundry-internal-certificates">Cloud Foundry internal certificates</h2><p>We generate several certificates for Cloud Foundry which need to be rotated regularly (most of them have a 1 year expiry).</p>
 <p>We have a <a href="https://deployer.cloud.service.gov.uk/teams/main/pipelines/create-cloudfoundry/jobs/check-certificates/builds/latest">Concourse job</a> which checks if we have certificates expiring in less than 30 days.</p>
 <p>If you need to rotate a certificate before it would otherwise be rotated automatically, you can <a href="https://github.com/pivotal-cf/credhub-release/blob/master/docs/ca-rotation.md#step-1-regenerate">perform step 1</a> of the Credhub CA cert rotation, and then allow the pipeline to take over.</p>
@@ -297,7 +297,7 @@ to help with rotating keys.</li>
         </ul>
 
       <svg
-        role="presentation"
+        aria-hidden="true"
         focusable="false"
         class="govuk-footer__licence-logo"
         xmlns="http://www.w3.org/2000/svg"

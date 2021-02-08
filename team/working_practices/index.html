@@ -11,16 +11,16 @@
 
     <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/team/working_practices/">
 
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/team/working_practices/" />
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/team/working_practices/" />
-      <meta property="twitter:card" content="summary" />
-      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
-      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
-      <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/team/working_practices/" />
 
     
   </head>
@@ -32,7 +32,7 @@
       <div class="app-pane__header toc-open-disabled">
         <a href="#content" class="govuk-skip-link">Skip to main content</a>
 
-        <header class="govuk-header " role="banner" data-module="govuk-header">
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
   <div class="govuk-header__container govuk-header__container--full-width">
     <div class="govuk-header__logo">
       <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
@@ -289,10 +289,10 @@ This means that merges can&rsquo;t be done in the Github UI - they have to be do
 using the <code>merge_pr</code> make task in each repository.</p>
 <p>We only use signed revisions of <a href="https://github.com/alphagov/paas-cf">paas-cf</a> and <a href="https://github.com/alphagov/paas-bootstrap">paas-bootstrap</a> from our concourse pipelines.
 This is enforced by the gpg functionality in Concourse Git resource. We may require signing merges in other repositories in future.</p>
-<h3 id="managing-allowed-signers">Managing allowed signers</h3><p>For every repository we are forcing commit signing on there will be a file called &rsquo;.gpg-id&rsquo; in the root directory. It should contain the public key IDs of every key which is allowed to sign commits. There will also be a helper script for generating the necessary vars file for Concourse. For example:</p>
+<h3 id="managing-allowed-signers">Managing allowed signers</h3><p>For every repository we are forcing commit signing on there will be a file called &lsquo;.gpg-id&rsquo; in the root directory. It should contain the public key IDs of every key which is allowed to sign commits. There will also be a helper script for generating the necessary vars file for Concourse. For example:</p>
 <div class="highlight"><pre class="highlight shell"><code><span class="nb">cd </span>paas-cf
 make update_merge_keys
-</code></pre></div><p>Run the helper script and commit the changes every time you change the contents of &rsquo;.gpg-id&rsquo;.</p>
+</code></pre></div><p>Run the helper script and commit the changes every time you change the contents of &lsquo;.gpg-id&rsquo;.</p>
 <h3 id="initial-setup-for-signing-commits">Initial setup for signing commits</h3><p>Ensure you have gpg setup on your machine (see our <a href="/guides/GPG/">GPG guide</a> for
 details).</p>
 <p>By default, git will look for a secret key in your local keyring that exactly
@@ -419,7 +419,7 @@ responsibility for the progress of the relevant epic.</p>
         </ul>
 
       <svg
-        role="presentation"
+        aria-hidden="true"
         focusable="false"
         class="govuk-footer__licence-logo"
         xmlns="http://www.w3.org/2000/svg"

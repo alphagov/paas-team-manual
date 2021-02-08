@@ -11,16 +11,16 @@
 
     <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/team/dashboard_mac_mini/">
 
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/team/dashboard_mac_mini/" />
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/team/dashboard_mac_mini/" />
-      <meta property="twitter:card" content="summary" />
-      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
-      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
-      <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/team/dashboard_mac_mini/" />
 
     
   </head>
@@ -32,7 +32,7 @@
       <div class="app-pane__header toc-open-disabled">
         <a href="#content" class="govuk-skip-link">Skip to main content</a>
 
-        <header class="govuk-header " role="banner" data-module="govuk-header">
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
   <div class="govuk-header__container govuk-header__container--full-width">
     <div class="govuk-header__logo">
       <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
@@ -125,7 +125,7 @@ echo "https://alphagov.github.io/fourth-wall/?token=${GITHUB_API_TOKEN}&amp;team
 on the Dashboard.</p>
 <h2 id="pingdom">Pingdom</h2><p>You can use the <a href="http://stats.pingdom.com/ejtodj13fqqx">Pingdom public status page</a> (<a href="https://help.pingdom.com/hc/en-us/articles/205386171-Public-Status-Page">and Pingdom public status page documentation</a>) to display the uptime and current status of our healthcheck application. It is not currently presented on the monitors, as we did not find it useful enough. The Pingdom account is shared with other Government-as-a-Platform services, such as Notify, and there is only one shared dashboard for the entire account.</p>
 <p>We use the <a href="https://chrome.google.com/webstore/detail/super-easy-auto-refresh/globgafddkdlnalejlkcpaefakkhkdoa?hl=en">Super Easy Auto Refresh Chrome extension</a> to refresh the page.</p>
-<h2 id="prometheus-triggered-monitors">Prometheus Triggered Monitors</h2><p>We have created a <a href="https://grafana-1.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod?refresh=5s&amp;orgId=1">dashboard in Grafana, called &lsquo;User Impact - prod&rsquo;</a> and <a href="https://grafana-1.london.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod-lon?refresh=5s&amp;orgId=1">dashboard in Grafana, called &#39;User Impact - prod-lon&rsquo;</a>, which displays a count of monitors by trigger status (healthy, warning, critical, or unknown) for each production environment.</p>
+<h2 id="prometheus-triggered-monitors">Prometheus Triggered Monitors</h2><p>We have created a <a href="https://grafana-1.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod?refresh=5s&amp;orgId=1">dashboard in Grafana, called &lsquo;User Impact - prod&rsquo;</a> and <a href="https://grafana-1.london.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod-lon?refresh=5s&amp;orgId=1">dashboard in Grafana, called &lsquo;User Impact - prod-lon&rsquo;</a>, which displays a count of monitors by trigger status (healthy, warning, critical, or unknown) for each production environment.</p>
 <p>The credentials for the Grafana mon users can be found by running <code>make &lt;env&gt; credhub</code> from paas-cf.</p>
 
 
@@ -146,7 +146,7 @@ on the Dashboard.</p>
         </ul>
 
       <svg
-        role="presentation"
+        aria-hidden="true"
         focusable="false"
         class="govuk-footer__licence-logo"
         xmlns="http://www.w3.org/2000/svg"

@@ -11,16 +11,16 @@
 
     <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/incident_management/incident_process/">
 
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/incident_management/incident_process/" />
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/incident_management/incident_process/" />
-      <meta property="twitter:card" content="summary" />
-      <meta property="twitter:domain" content="team-manual.cloud.service.gov.uk" />
-      <meta property="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
-      <meta property="twitter:title" content="PaaS Team Manual" />
-      <meta property="twitter:url" content="https://team-manual.cloud.service.gov.uk/incident_management/incident_process/" />
 
     
   </head>
@@ -32,7 +32,7 @@
       <div class="app-pane__header toc-open-disabled">
         <a href="#content" class="govuk-skip-link">Skip to main content</a>
 
-        <header class="govuk-header " role="banner" data-module="govuk-header">
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
   <div class="govuk-header__container govuk-header__container--full-width">
     <div class="govuk-header__logo">
       <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
@@ -248,7 +248,7 @@ Important: when creating or updating an incident you must tick the boxes to say 
 <li>Update tenants in the #govuk-paas cross-government Slack channel.</li>
 <li>Update tenants hourly using the <a href="https://manage.statuspage.io/login?redirect=%2Fpages%2Fh4wt7brwsqr0">saved templates</a> in our Statuspage account.</li>
 <li>When the incident is resolved or downgraded, update the #paas-incident and the #govuk-paas cross-government Slack channels to state it is no longer a P1 incident.</li>
-<li>Before the incident lead and comms lead can break, they should write an &lsquo;incident handover&rsquo; on the #paas-incident slack channel so that the in hours on call support team can pick up the incident. This should include the status of the incident and what time it finished so the team knows when to expect them back &#39;at work&rsquo; if relevant. </li>
+<li>Before the incident lead and comms lead can break, they should write an &lsquo;incident handover&rsquo; on the #paas-incident slack channel so that the in hours on call support team can pick up the incident. This should include the status of the incident and what time it finished so the team knows when to expect them back &lsquo;at work&rsquo; if relevant. </li>
 <li>The GaaP SCS Escalation rota is the final decision point.</li>
 </ol>
 <p>Useful contact details can be found in <a href="https://docs.google.com/a/digital.cabinet-office.gov.uk/document/d/1_6zxOjvwY-zrf1D8eDNT9AeRhlcPAocBhC8dmHfRw0Y/edit?usp=sharing">PaaS Emergency contacts and escalations (restricted access)</a></p>
@@ -258,7 +258,7 @@ Important: when creating or updating an incident you must tick the boxes to say 
 <p>Continue as per the <a href="/incident_management/incident_process/#when-the-incident-is-over">in hours</a> process.</p>
 <h3 id="if-neither-the-out-of-hours-support-engineer-nor-out-of-hours-comms-lead-respond-first-time">If neither the out of hours support engineer nor out of hours comms lead respond first time</h3><p>Pagerduty will attempt to alert both support engineer and comms lead again, 15 minutes after the first alert.</p>
 <p>In the event that you are contacted but aren’t scheduled to be on the rota, your first point of call should be to check the #paas-incident Slack channel to see if another engineer has already picked it up. If no one has, leave a message to state that you are beginning to investigate.</p>
-<h2 id="suppliers">Suppliers</h2><h3 id="aws">AWS</h3><p>We have a full support contract with AWS. Open a support case through the AWS console or at https://aws.amazon.com/support. If the incident is ‘critical’ or &#39;urgent’ severity, use <strong>click to chat</strong> or <strong>click to call</strong> for immediate contact.</p>
+<h2 id="suppliers">Suppliers</h2><h3 id="aws">AWS</h3><p>We have a full support contract with AWS. Open a support case through the AWS console or at https://aws.amazon.com/support. If the incident is ‘critical’ or &lsquo;urgent’ severity, use <strong>click to chat</strong> or <strong>click to call</strong> for immediate contact.</p>
 <h3 id="aiven-elasticsearch">Aiven Elasticsearch</h3><p>Aiven monitors its services 24 hours a day 365 days a year, and provides free email support regarding problems using and accessing its services. Aiven personnel:</p>
 
 <ul>
@@ -286,7 +286,7 @@ Important: when creating or updating an incident you must tick the boxes to say 
         </ul>
 
       <svg
-        role="presentation"
+        aria-hidden="true"
         focusable="false"
         class="govuk-footer__licence-logo"
         xmlns="http://www.w3.org/2000/svg"
