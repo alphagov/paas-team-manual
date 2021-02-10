@@ -93,37 +93,37 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr039-aiven-metrics-for-users">ADR039: Aiven metrics for users</h1><h2 id="context">Context</h2><p>We offer backing services via <a href="https://aiven.io">Aiven</a> to our users:</p>
+  <h1 id="adr039-aiven-metrics-for-users">ADR039: Aiven metrics for users</h1><h2 id="context">Context</h2><p>We offer our users the following backing services through <a href="https://aiven.io">Aiven</a>:</p>
 
 <ul>
 <li>Elasticsearch</li>
 <li>InfluxDB (private beta)</li>
 </ul>
-<p>We want to ensure our users can view metrics for their Aiven backing services so that our users can:</p>
+<p>We want to make sure our users can view metrics for their Aiven backing services so that our users can:</p>
 
 <ul>
 <li>debug and respond to usage and service performance changes</li>
 <li>understand the operational characteristics of their applications and services</li>
 <li>make better capacity planning and budgeting decisions</li>
 </ul>
-<p>Aiven has service integrations which add extra functionality to an Aiven service. Service integrations can be used to:</p>
+<p>Aiven has service integrations which add extra functionality to an Aiven service. Service integrations are useful for:</p>
 
 <ul>
-<li>ship logs to an Elasticsearch/Rsyslog</li>
-<li>send metrics to Datadog</li>
-<li>send metrics to Aiven Postgres/InfluxDB</li>
-<li>expose metrics in Prometheus exposition format</li>
+<li>shipping logs to an Elasticsearch/Rsyslog</li>
+<li>sending metrics to Datadog</li>
+<li>sending metrics to Aiven Postgres/InfluxDB</li>
+<li>exposing metrics in Prometheus exposition format</li>
 </ul>
 <p>We currently run Prometheus for monitoring the platform, using the <a href="https://github.com/bosh-prometheus/prometheus-boshrelease">Prometheus BOSH release</a> and have confidence and experience using it.</p>
-<p>We will need to think about Prometheus failover. If we load balance Prometheus without sticky sessions, then the metrics reported by Prometheus will be erratic as different instances report different metrics.</p>
-<h2 id="decision">Decision</h2><p>We will use Prometheus to scrape Aiven provided services.</p>
-<p>We will deploy new Prometheis in the CF BOSH deployment using the Prometheus BOSH release. This will reduce blast radius - tenant usage of metrics will not affect our ability to operate and monitor the platform using Prometheus.</p>
+<p>We will need to think about Prometheus failover. If we load balance Prometheus without sticky sessions, the metrics Prometheus reports will be erratic, as different instances report different metrics.</p>
+<h2 id="decision">Decision</h2><p>We will use Prometheus to scrape Aiven-provided services.</p>
+<p>We will deploy new Prometheus in the Cloud Foundry BOSH deployment using the Prometheus BOSH release. This will reduce blast radius - tenant usage of metrics will not affect our ability to operate and monitor the platform using Prometheus.</p>
 <p>We will need to automate the following tasks:</p>
 
-<ul>
-<li>Service discovery: ensure Prometheus has an updated list of Aiven services to scrape. This automation must be colocated with the Prometheus instance.</li>
-<li>Service integration: ensure every eligible Aiven provided service uses the Aiven service integration for Prometheus.</li>
-</ul>
+<ol>
+<li>Service discovery: make sure Prometheus has an updated list of Aiven services to scrape. We must colocate this automation with the Prometheus instance.</li>
+<li>Service integration: make sure every eligible Aiven-provided service uses the Aiven service integration for Prometheus.</li>
+</ol>
 <h2 id="initial-implementation">Initial implementation</h2><p>In the initial implementation we deploy multiple instances of Prometheus for high availability.</p>
 <p><a href="../images/adr450-prometheus-aiven-architecture.svg" target="_blank" rel="noopener noreferrer"><img src="../images/adr450-prometheus-aiven-architecture.svg" alt="architecture" /></a></p>
 <p>There will be three services on the instance:</p>
@@ -133,13 +133,13 @@
 <li>Caddy</li>
 <li>Aiven service discovery</li>
 </ul>
-<p>We use gorouter for exposing Prometheus publicly.</p>
+<p>We use Gorouter for exposing Prometheus publicly.</p>
 <p>We use Caddy for failover and for authentication.
-Caddy does automatic failover, such that during regular operation all traffic gets proxied to a single instance, but when the usual instance is unreachable, Caddy will proxy the request to the colocated Prometheus.</p>
-<p>This architecture is temporary and will be revisited when we look at how to expose the Prometheus API to all users.</p>
+Caddy does automatic failover. This means that during regular operation, it proxies all traffic to a single instance, but when the usual instance is unreachable, Caddy will proxy the request to the colocated Prometheus.</p>
+<p>This architecture is temporary and we will review it when we look at how to expose the Prometheus API to all users.</p>
 <h2 id="status">Status</h2><p>Accepted</p>
 <h2 id="consequences">Consequences</h2><p>We will provide Prometheus as the datastore and interface for (a subset of) tenant metrics.</p>
-<p>We will deploy additional stateful instances to our CF BOSH deployment.</p>
+<p>We will deploy additional stateful instances to our Cloud Foundry BOSH deployment.</p>
 <p>We will maintain software to automate the integration of Aiven services and Prometheus.</p>
 
 
