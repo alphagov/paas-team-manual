@@ -18,7 +18,7 @@ Cyber prefer this method, as it give a much stronger authentication to the platf
 
 ## Implementation
 
-We will implement Mutual TLS on the BOSH Director in order to gain access to the APIs it contains. We will achieve this by using an mTLS proxy such as [ghostunnel](https://github.com/square/ghostunnel), [mTLS-server](https://github.com/drGrove/mtls-server) or [HAProxy](https://www.loadbalancer.org/blog/client-certificate-authentication-with-haproxy/)
+We will implement Mutual TLS on the BOSH Director to gain access to the APIs it contains. We will achieve this by using an mTLS proxy such as [ghostunnel](https://github.com/square/ghostunnel), [mTLS-server](https://github.com/drGrove/mtls-server) or [HAProxy](https://www.loadbalancer.org/blog/client-certificate-authentication-with-haproxy/)
 
 The following components will be accessible through 0.0.0.0/0 provided that the client presents a valid TLS certificate.
 
