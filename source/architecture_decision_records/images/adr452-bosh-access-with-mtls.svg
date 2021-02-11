@@ -13,12 +13,12 @@
         </g>
         <g id="clust2" class="cluster">
             <title>cluster_1</title>
-            <polygon fill="#ffa500" stroke="#ffa500" points="16,-16 16,-177.6 310,-177.6 310,-16 16,-16"/>
+            <polygon fill="#5694ca" stroke="#5694ca" points="16,-16 16,-177.6 310,-177.6 310,-16 16,-16"/>
             <text text-anchor="middle" x="163" y="-161" font-family="Times,serif" font-size="14.00" fill="#000000">Security Group</text>
         </g>
         <g id="clust3" class="cluster">
             <title>cluster_2</title>
-            <polygon fill="#00ff00" stroke="#00ff00" points="24,-24 24,-100.8 302,-100.8 302,-24 24,-24"/>
+            <polygon fill="#f3f2f1" stroke="#f3f2f1" points="24,-24 24,-100.8 302,-100.8 302,-24 24,-24"/>
             <text text-anchor="middle" x="163" y="-84.2" font-family="Times,serif" font-size="14.00" fill="#000000">BOSH Director</text>
         </g>
         <!-- mTLS Proxy -->
