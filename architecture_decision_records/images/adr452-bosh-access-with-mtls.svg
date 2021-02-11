@@ -17,7 +17,7 @@
             <text text-anchor="middle" x="163" y="-161" font-family="Times,serif" font-size="14.00" fill="#000000">Security Group</text>
         </g>
         <g id="clust3" class="cluster">
-            <title>cluster_2</title>
+            <title>BOSH Director</title>
             <polygon fill="#f3f2f1" stroke="#f3f2f1" points="24,-24 24,-100.8 302,-100.8 302,-24 24,-24"/>
             <text text-anchor="middle" x="163" y="-84.2" font-family="Times,serif" font-size="14.00" fill="#000000">BOSH Director</text>
         </g>
