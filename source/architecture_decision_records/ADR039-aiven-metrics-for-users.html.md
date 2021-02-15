@@ -52,6 +52,12 @@ We use Gorouter for exposing Prometheus publicly.
 We use Caddy for failover and for authentication.
 Caddy does automatic failover. This means that during regular operation, it proxies all traffic to a single instance, but when the usual instance is unreachable, Caddy will proxy the request to the colocated Prometheus.
 
+The Aiven service discovery will regularly query the Aiven API in order to keep
+an updated list of Aiven Elasticsearch services for which we want to receive metrics.
+
+The Prometheus server instances will be configured with this list and retrieve
+metrics from the respective Aiven Elasticsearch service instances.
+
 This architecture is temporary and we will review it when we look at how to expose the Prometheus API to all users.
 
 ## Status
