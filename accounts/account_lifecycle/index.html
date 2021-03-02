@@ -73,6 +73,9 @@
             <a href="#when-requests-come-from-beis"><span>When requests come from BEIS</span></a>
           </li>
           <li>
+            <a href="#when-requests-come-from-dfe"><span>When requests come from DfE</span></a>
+          </li>
+          <li>
             <a href="#who-can-request-a-trial-org"><span>Who can request a trial org?</span></a>
           </li>
           <li>
@@ -122,8 +125,10 @@
 <h3 id="when-the-request-doesn-39-t-come-through-the-signup-form">When the request doesn&rsquo;t come through the signup form</h3><p>In some cases a user might send their request directly to <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
 <p>In these cases, use the Zendesk macro <code>Trial Request &gt; User has bypassed form</code>, which will request the required information from the user.</p>
 <p>If the request comes through any other channel, then it should always be routed into Zendesk by emailing it to <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>. Use the macro appropriately to collect the required information.</p>
-<h3 id="when-requests-come-from-beis">When requests come from BEIS</h3><p>Currently we have a special arrangment with the department BEIS. Before granting requests for trial accounts from users at BEIS, use the Zendesk macro <code>Trial Request &gt; Trial creation BEIS</code> and wait for a response.</p>
+<h3 id="when-requests-come-from-beis">When requests come from BEIS</h3><p>Currently we have a special arrangment with the department BEIS. Before granting requests for trial accounts from users at BEIS, use the Zendesk macro <code>GOVUK PaaS::Account lifecycle::2c. Trial creation BEIS</code> and wait for a response.</p>
 <p>When creating the org, ensure you add the people named in the macro as billing managers.</p>
+<h3 id="when-requests-come-from-dfe">When requests come from DfE</h3><p>Department for Education (DfE) is centrally managing its GOV.UK PaaS usage by having one Org with many Spaces. As such, the DfE digital tools team needs to be notified so they can set up the Spaces and user permissions accordingly.</p>
+<p>There is a macro for this outlining the process <code>GOVUK PaaS::Account lifecycle::2d. Org creation request DfE</code> so that we don&rsquo;t proliferate DfE Orgs.</p>
 <h3 id="who-can-request-a-trial-org">Who can request a trial org?</h3>
 <ul>
 <li>  Anyone working for a government or public sector organisation </li>
