@@ -17,9 +17,15 @@ If the request comes through any other channel, then it should always be routed 
 
 ### When requests come from BEIS
 
-Currently we have a special arrangment with the department BEIS. Before granting requests for trial accounts from users at BEIS, use the Zendesk macro `Trial Request > Trial creation BEIS` and wait for a response.
+Currently we have a special arrangment with the department BEIS. Before granting requests for trial accounts from users at BEIS, use the Zendesk macro `GOVUK PaaS::Account lifecycle::2c. Trial creation BEIS` and wait for a response.
 
 When creating the org, ensure you add the people named in the macro as billing managers.
+
+### When requests come from DfE
+
+Department for Education (DfE) is centrally managing its GOV.UK PaaS usage by having one Org with many Spaces. As such, the DfE digital tools team needs to be notified so they can set up the Spaces and user permissions accordingly. 
+
+There is a macro for this outlining the process `GOVUK PaaS::Account lifecycle::2d. Org creation request DfE` so that we don't proliferate DfE Orgs. 
 
 ### Who can request a trial org?
 
