@@ -11,7 +11,7 @@ In most cases, a user will request a trial org by using the form at <https://adm
 
 In some cases a user might send their request directly to <gov-uk-paas-support@digital.cabinet-office.gov.uk>.
 
-In these cases, use the Zendesk macro `Trial Request > User has bypassed form`, which will request the required information from the user.
+In these cases, use the Zendesk macro `GOVUK PaaS::Account lifecycle::2b. User has bypassed form`, which will request the required information from the user.
 
 If the request comes through any other channel, then it should always be routed into Zendesk by emailing it to <gov-uk-paas-support@digital.cabinet-office.gov.uk>. Use the macro appropriately to collect the required information.
 
@@ -52,7 +52,7 @@ There is a macro for this outlining the process `GOVUK PaaS::Account lifecycle::
 
 3. Confirm the trial org creation with the user
 
-    Use Zendesk macro `Trial request > Trial creation confirm`
+    Use Zendesk macro `GOVUK PaaS::Account lifecycle::2a. Trial creation confirm`
 
 ## Upgrading trial orgs to paid orgs
 
@@ -82,7 +82,7 @@ If no, escalate to the Delivery Manager, who will need to use the Zendesk macro 
     -   confirmation that they have approval from the appropriate person or people in your department to start using the paid service
     -   confirmation that they have [added a suitable Billing Manager to their GOV.UK PaaS org account](https://docs.cloud.service.gov.uk/orgs_spaces_users.html#billing-manager). This will be the person or people we will send invoices to and contact about paying for the service.
 
-    If they haven't provided this information up front, use the Zendesk macro `Upgrade request > Info capture - MOU` to ask for it.
+    If they haven't provided this information up front, use the Zendesk macro `GOVUK PaaS::Account lifecycle::3a. Info capture - No MOU` to ask for it.
 
     You might need to add some appropriate words before the macro to put it in the context of what the user is trying to do. For example
 
@@ -94,7 +94,7 @@ If no, escalate to the Delivery Manager, who will need to use the Zendesk macro 
 
 2.  If the tenant provides the information satisfactorily, continue the upgrade process.
 
-3.  After upgrading the org, send a confirmation message using the Zendesk macro `Upgrade request > Confirm`
+3.  After upgrading the org, send a confirmation message using the Zendesk macro `GOVUK PaaS::Account lifecycle::3c. Billing confirm`
 
 4.  CC the Delivery Manager on the Zendesk ticket, so they can proceed with payment and support onboarding.
 
@@ -129,11 +129,9 @@ Upgrade a trial org to the `small` quota. The Zendesk macro tells tenants how to
 
    [Send this information as a PDF or in email copy](https://docs.google.com/document/d/12ak2BP39ElqpSfYp9zudllet-sRe2F9qdZwfv-707jo/edit)
 
-### Delivery Manager updates list of live services and closes ticket
+### Delivery Manager updates list of Billable Organisations and closes ticket
 
-Update the [list of live services](https://drive.google.com/drive/folders/1yYV8X7Rzj4BlAbuFPjsfupouy_1v95eG) - use the most recent version of GOV.UK PaaS usage and adoption tracker in this folder. This is used as a rough count of the number of live services using GOV.UK PaaS - which we sometimes need to report on.
-
-Usually an account upgrade is conducted at an early stage of building the service, and it may take some time until the service might be considered "live".
+Update the [list of Trial and Billable Accounts](https://drive.google.com/drive/folders/1yYV8X7Rzj4BlAbuFPjsfupouy_1v95eG) - use the most recent version of GOV.UK PaaS usage and adoption tracker in this folder. This is used as a rough count of the number of live services using GOV.UK PaaS - which we sometimes need to report on.
 
 In these cases the org/service should be marked as "early stage" - until there is a clear indication that the service is going into production soon.
 
