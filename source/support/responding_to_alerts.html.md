@@ -92,6 +92,25 @@ From `paas-cf` repository, run the following command:
 ./scripts/get-instance-details.sh "${RDS_INSTANCE_ID}"
 ```
 
+## DDoS mitigation
+
+When AWS detect a possible denial-of-service attack against PaaS, our in-hours
+support gets an email. If you receive such an email, log into AWS Shield and look
+at the details of what AWS have detected.
+
+AWS automatically mitigate layer 3 and 4 attacks (i.e., junk network traffic.) You
+should monitor PaaS's performance. Unless PaaS is degraded there is likely no need
+to do more than monitor this.
+
+AWS do not automatically mitigate layer 7 attacks (i.e., mass HTTP requests.) These
+are not always malicious: large submissions to GOV.UK Notify can run at 900rps, and
+AWS detects that as a request flood. Reviewing the details in AWS Shield can help
+identify whether there is a real attack. You can create new AWS WAF rules to combat
+this traffic.
+
+If facing a large, complex or uncertain attack, contact the AWS DDoS Response Team
+(DRT): https://docs.aws.amazon.com/waf/latest/developerguide/ddos-responding.html.
+
 ## API Latency
 
 Last time we received an alert for API latency, it was a UAA bug that caused
