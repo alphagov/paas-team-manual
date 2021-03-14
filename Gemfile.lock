@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.4.4)
+    activesupport (5.2.4.5)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
@@ -18,7 +18,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    commonmarker (0.21.1)
+    commonmarker (0.21.2)
       ruby-enum (~> 0.5)
     compass (1.0.3)
       chunky_png (~> 1.2)
@@ -44,9 +44,9 @@ GEM
     eventmachine (1.2.7)
     execjs (2.7.0)
     fast_blank (1.0.0)
-    fastimage (2.2.2)
-    ffi (1.14.2)
-    govuk_tech_docs (2.1.0)
+    fastimage (2.2.3)
+    ffi (1.15.0)
+    govuk_tech_docs (2.2.0)
       activesupport
       chronic (~> 0.10.2)
       middleman (~> 4.0)
@@ -68,7 +68,7 @@ GEM
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
     hashie (3.6.0)
-    html-proofer (3.18.5)
+    html-proofer (3.18.8)
       addressable (~> 2.3)
       mercenary (~> 0.3)
       nokogumbo (~> 2.0)
@@ -144,9 +144,9 @@ GEM
     mini_portile2 (2.5.0)
     mini_racer (0.3.1)
       libv8 (~> 8.4.255)
-    minitest (5.14.3)
+    minitest (5.14.4)
     multi_json (1.15.0)
-    nokogiri (1.11.1)
+    nokogiri (1.11.2)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     nokogumbo (2.0.4)
