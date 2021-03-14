@@ -16,12 +16,12 @@ A closed account:
 
 | Sequence | Title | Description | Max time |
 |:---|:---|:---|:---|
-|1|New tenant|A new tenant that does not have a PaaS account yet|Indefinitely|
-|2|Trial|A tenant with a 90 day trial account with the ability to deploy apps and provision small backing services|90 days|
-|3|Billable|A full tenant with a billing arrangement that is being recharged for the resource consumed|Indefinitely|
-|4|Suspended|The org is suspended and the tenant will not be able to perform any operations on apps or services.<br /><br />Users will be able to use the apps. Tenants will be able to log in to Cloud Foundry.|30 days|
-|5|Halted|The apps are stopped and users will receive '404' error messages from the platform.<br /><br />The data is preserved and the account will still run up bills for the databases|30 days|
-|6|Removed|The application instances and services are deleted by an operator.<br /><br />Users will see no difference compared to a halted/stopped app, but the tenant will have to re-push the app and re-create any backing services to restore their apps.<br /><br />At this point the account cannot incur any billable events and the bill goes to zero.<br /><br />All app, services and data are unavailable.|Indefinitely|
+|# 1|New tenant|A new tenant that does not have a PaaS account yet|Indefinitely|
+|# 2|Trial|A tenant with a 90 day trial account with the ability to deploy apps and provision small backing services|90 days|
+|# 3 Billable|A full tenant with a billing arrangement that is being recharged for the resource consumed|Indefinitely|
+|# 4|Suspended|The org is suspended and the tenant will not be able to perform any operations on apps or services.<br /><br />Users will be able to use the apps. Tenants will be able to log in to Cloud Foundry.|30 days|
+|# 5|Halted|The apps are stopped and users will receive '404' error messages from the platform.<br /><br />The data is preserved and the account will still run up bills for the databases|30 days|
+|# 6|Removed|The application instances and services are deleted by an operator.<br /><br />Users will see no difference compared to a halted/stopped app, but the tenant will have to re-push the app and re-create any backing services to restore their apps.<br /><br />At this point the account cannot incur any billable events and the bill goes to zero.<br /><br />All app, services and data are unavailable.|Indefinitely|
 
 ![BAU trial account expiry process](/diagrams/BAU-trial-account-expiry-process-map.svg)
 

@@ -38,34 +38,34 @@ It is important to note that live services will 'Bring Your Own' domain, apps av
 ### Development Domains
 Purpose | URL |
 ------------ | -------------
-Deployer Concourse | deployer.foo.dev.cloudpipeline.digital
-Cloud Foundry API | api.foo.dev.cloudpipeline.digital
-Cloud Foundry User Account and Authentication | uaa.foo.dev.cloudpipeline.digital
-Applications | bar.foo.dev.cloudpipelineapps.digital
+# Deployer Concourse | deployer.foo.dev.cloudpipeline.digital
+# Cloud Foundry API | api.foo.dev.cloudpipeline.digital
+# Cloud Foundry User Account and Authentication | uaa.foo.dev.cloudpipeline.digital
+# Applications | bar.foo.dev.cloudpipelineapps.digital
 
 ### Continuous Integration (CI) Domains
 Purpose | URL |
 ------------ | -------------
-Deployer Concourse | deployer.master.ci.cloudpipeline.digital
-Cloud Foundry API | api.master.ci.cloudpipeline.digital
-Cloud Foundry User Account and Authentication | uaa.master.ci.cloudpipeline.digital
-Applications | bar.master.ci.cloudpipelineapps.digital
+# Deployer Concourse | deployer.master.ci.cloudpipeline.digital
+# Cloud Foundry API | api.master.ci.cloudpipeline.digital
+# Cloud Foundry User Account and Authentication | uaa.master.ci.cloudpipeline.digital
+# Applications | bar.master.ci.cloudpipelineapps.digital
 
 ### Staging Domains
 Purpose | URL |
 ------------ | -------------
-Deployer Concourse | deployer.london.staging.cloudpipeline.digital
-Cloud Foundry API | api.london.staging.cloudpipeline.digital
-Cloud Foundry User Account and Authentication | uaa.london.staging.cloudpipeline.digital
-Applications | bar.london.staging.cloudpipelineapps.digital
+# Deployer Concourse | deployer.london.staging.cloudpipeline.digital
+# Cloud Foundry API | api.london.staging.cloudpipeline.digital
+# Cloud Foundry User Account and Authentication | uaa.london.staging.cloudpipeline.digital
+# Applications | bar.london.staging.cloudpipelineapps.digital
 
 ### Production Domains
 Purpose | URL |
 ------------ | -------------
-Deployer Concourse | deployer.cloud.service.gov.uk
-Cloud Foundry API | api.cloud.service.gov.uk
-Cloud Foundry User Account and Authentication | uaa.cloud.service.gov.uk
-Applications | bar.cloudapps.digital
+# Deployer Concourse | deployer.cloud.service.gov.uk
+# Cloud Foundry API | api.cloud.service.gov.uk
+# Cloud Foundry User Account and Authentication | uaa.cloud.service.gov.uk
+# Applications | bar.cloudapps.digital
 
 ## Status
 

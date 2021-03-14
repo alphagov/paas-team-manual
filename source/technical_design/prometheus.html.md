@@ -24,14 +24,14 @@ You can find these mailing lists [here](/team/platform_alerting/).
 
 | Ireland                                                                            | UK                                                                                               |
 | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| [prometheus-1.cloud.service.gov.uk](https://prometheus-1.cloud.service.gov.uk)     | [prometheus-1.london.cloud.service.gov.uk](https://prometheus-1.london.cloud.service.gov.uk)     |
-| [alertmanager-1.cloud.service.gov.uk](https://alertmanager-1.cloud.service.gov.uk) | [alertmanager-1.london.cloud.service.gov.uk](https://alertmanager-1.london.cloud.service.gov.uk) |
-| [grafana-1.cloud.service.gov.uk](https://grafana-1.cloud.service.gov.uk)           | [grafana-1.london.cloud.service.gov.uk](https://grafana-1.london.cloud.service.gov.uk)           |
+|# [prometheus-1.cloud.service.gov.uk](https://prometheus-1.cloud.service.gov.uk)     | [prometheus-1.london.cloud.service.gov.uk](https://prometheus-1.london.cloud.service.gov.uk)     |
+|# [alertmanager-1.cloud.service.gov.uk](https://alertmanager-1.cloud.service.gov.uk) | [alertmanager-1.london.cloud.service.gov.uk](https://alertmanager-1.london.cloud.service.gov.uk) |
+|# [grafana-1.cloud.service.gov.uk](https://grafana-1.cloud.service.gov.uk)           | [grafana-1.london.cloud.service.gov.uk](https://grafana-1.london.cloud.service.gov.uk)           |
 
 ### Secondary
 
 | Ireland                                                                            | UK                                                                                               |
 | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| [prometheus-2.cloud.service.gov.uk](https://prometheus-2.cloud.service.gov.uk)     | [prometheus-2.london.cloud.service.gov.uk](https://prometheus-2.london.cloud.service.gov.uk)     |
-| [alertmanager-2.cloud.service.gov.uk](https://alertmanager-2.cloud.service.gov.uk) | [alertmanager-2.london.cloud.service.gov.uk](https://alertmanager-2.london.cloud.service.gov.uk) |
-| [grafana-2.cloud.service.gov.uk](https://grafana-2.cloud.service.gov.uk)           | [grafana-2.london.cloud.service.gov.uk](https://grafana-2.london.cloud.service.gov.uk)           |
+|# [prometheus-2.cloud.service.gov.uk](https://prometheus-2.cloud.service.gov.uk)     | [prometheus-2.london.cloud.service.gov.uk](https://prometheus-2.london.cloud.service.gov.uk)     |
+|# [alertmanager-2.cloud.service.gov.uk](https://alertmanager-2.cloud.service.gov.uk) | [alertmanager-2.london.cloud.service.gov.uk](https://alertmanager-2.london.cloud.service.gov.uk) |
+|# [grafana-2.cloud.service.gov.uk](https://grafana-2.cloud.service.gov.uk)           | [grafana-2.london.cloud.service.gov.uk](https://grafana-2.london.cloud.service.gov.uk)           |

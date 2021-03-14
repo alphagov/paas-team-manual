@@ -15,38 +15,38 @@ plans to everyone:
 
 | service plan           | description                                                                                                                    | free or paid |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------|--------------|
-| tiny-unencrypted-5.7   | 5GB Storage, NOT BACKED UP, Dedicated Instance. MySQL Version 5.7. DB Instance Class: db.t2.micro.                             | free |
-| medium-ha-5.7          | 100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.large.     | paid |
-| large-ha-5.7           | 512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.2xlarge.   | paid |
-| xlarge-ha-5.7          | 2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.4xlarge.     | paid |
-| small-ha-5.7           | 20GB Storage, Dedicated Instance, Highly Available. Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.t2.small.      | paid |
-| small-5.7              | 20GB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.t2.small.                        | paid |
-| medium-5.7             | 100GB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.large.                       | paid |
-| large-5.7              | 512GB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.2xlarge.                     | paid |
-| xlarge-5.7             | 2TB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.4xlarge.                       | paid |
+|#  tiny-unencrypted-5.7   | 5GB Storage, NOT BACKED UP, Dedicated Instance. MySQL Version 5.7. DB Instance Class: db.t2.micro.                             | free |
+|#  medium-ha-5.7          | 100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.large.     | paid |
+|#  large-ha-5.7           | 512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.2xlarge.   | paid |
+|#  xlarge-ha-5.7          | 2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.4xlarge.     | paid |
+|#  small-ha-5.7           | 20GB Storage, Dedicated Instance, Highly Available. Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.t2.small.      | paid |
+|#  small-5.7              | 20GB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.t2.small.                        | paid |
+|#  medium-5.7             | 100GB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.large.                       | paid |
+|#  large-5.7              | 512GB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.2xlarge.                     | paid |
+|#  xlarge-5.7             | 2TB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.4xlarge.                       | paid |
 
 #### Postgres
 
 | service plan           | description                                                                                                                                                        | free or paid |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
-| tiny-unencrypted-9.5   | 5GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.t2.micro.                               | free |
-| medium-ha-9.5          | 100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.large.      | paid |
-| large-ha-9.5           | 512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.2xlarge.   | paid |
-| xlarge-ha-9.5          | 2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.4xlarge.     | paid |
-| small-ha-9.5           | 20GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.t2.small.       | paid |
-| small-9.5              | 20GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.t2.small.                         | paid |
-| medium-9.5             | 100GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.large.                        | paid |
-| large-9.5              | 512GB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.2xlarge.                     | paid |
-| xlarge-9.5             | 2TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.4xlarge.                       | paid |
-| tiny-unencrypted-10    | 5GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.micro.                                | free |
-| small-10               | 20GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.small.                          | paid |
-| small-ha-10            | 20GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.small.        | paid |
-| medium-10              | 100GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.large.                         | paid |
-| medium-ha-10           | 100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.large.       | paid |
-| large-10               | 512GB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.2xlarge.                      | paid |
-| large-ha-10            | 512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.2xlarge.    | paid |
-| xlarge-10              | 2TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.4xlarge.                        | paid |
-| xlarge-ha-10           | 2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.4xlarge.      | paid |
+|#  tiny-unencrypted-9.5   | 5GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.t2.micro.                               | free |
+|#  medium-ha-9.5          | 100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.large.      | paid |
+|#  large-ha-9.5           | 512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.2xlarge.   | paid |
+|#  xlarge-ha-9.5          | 2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.4xlarge.     | paid |
+|#  small-ha-9.5           | 20GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.t2.small.       | paid |
+|#  small-9.5              | 20GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.t2.small.                         | paid |
+|#  medium-9.5             | 100GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.large.                        | paid |
+|#  large-9.5              | 512GB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.2xlarge.                     | paid |
+|#  xlarge-9.5             | 2TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.4xlarge.                       | paid |
+|#  tiny-unencrypted-10    | 5GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.micro.                                | free |
+|#  small-10               | 20GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.small.                          | paid |
+|#  small-ha-10            | 20GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.small.        | paid |
+|#  medium-10              | 100GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.large.                         | paid |
+|#  medium-ha-10           | 100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.large.       | paid |
+|#  large-10               | 512GB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.2xlarge.                      | paid |
+|#  large-ha-10            | 512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.2xlarge.    | paid |
+|#  xlarge-10              | 2TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.4xlarge.                        | paid |
+|#  xlarge-ha-10           | 2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.4xlarge.      | paid |
 
 ### Current analysis
 
@@ -64,22 +64,22 @@ At the moment, prices for postgres 10.5 Tiny, Small and Medium instances are:
 
 | plan      | price / month |
 |-----------|---------------|
-| tiny      | £12.03        |
-| small     | £24.50        |
-| small-ha  | £48.98        |
-| medium    | £125.94       |
-| medium-ha | £251.79       |
+|# tiny      | £12.03        |
+|# small     | £24.50        |
+|# small-ha  | £48.98        |
+|# medium    | £125.94       |
+|# medium-ha | £251.79       |
 
 If we were to increase the disk size on small instances from the current 2G to 100G, this would
 cause the small plans to increase roughly as follows (based on Ireland prices):
 
 | plan      | price / month       |
 |-----------|---------------------|
-| tiny      | £12.03              |
-| small     | £34.40 (was £24.50) |
-| small-ha  | £67.88 (was £48.98) |
-| medium    | £125.94             |
-| medium-ha | £251.79             |
+|# tiny      | £12.03              |
+|# small     | £34.40 (was £24.50) |
+|# small-ha  | £67.88 (was £48.98) |
+|# medium    | £125.94             |
+|# medium-ha | £251.79             |
 
 We have about 100 "small" databases, of which 28 are HA and 70 are not. This means if we changed the
 disk on the existing plans our tenants would have to pay an extra £1,200/month (but on the flip
@@ -102,15 +102,15 @@ We should play [a story to add the following new plans](https://www.pivotaltrack
 
 | service plan          | summary                                                     |
 |-----------------------|-------------------------------------------------------------|
-| tiny-unencrypted-11   | 5GB Storage, NOT BACKED UP. DB Instance Class: db.t3.micro. |
-| small-11              | 100GB Storage. DB Instance Class: db.t3.small.              |
-| small-ha-11           | 100GB Storage. DB Instance Class: db.t3.small.              |
-| medium-11             | 100GB Storage. DB Instance Class: db.m5.large.              |
-| medium-ha-11          | 100GB Storage. DB Instance Class: db.m5.large.              |
-| large-11              | 512GB Storage. DB Instance Class: db.m5.2xlarge.            |
-| large-ha-11           | 512GB Storage. DB Instance Class: db.m5.2xlarge.            |
-| xlarge-11             | 2TB Storage. DB Instance Class: db.m5.4xlarge.              |
-| xlarge-ha-11          | 2TB Storage. DB Instance Class: db.m5.4xlarge.              |
+|# tiny-unencrypted-11   | 5GB Storage, NOT BACKED UP. DB Instance Class: db.t3.micro. |
+|# small-11              | 100GB Storage. DB Instance Class: db.t3.small.              |
+|# small-ha-11           | 100GB Storage. DB Instance Class: db.t3.small.              |
+|# medium-11             | 100GB Storage. DB Instance Class: db.m5.large.              |
+|# medium-ha-11          | 100GB Storage. DB Instance Class: db.m5.large.              |
+|# large-11              | 512GB Storage. DB Instance Class: db.m5.2xlarge.            |
+|# large-ha-11           | 512GB Storage. DB Instance Class: db.m5.2xlarge.            |
+|# xlarge-11             | 2TB Storage. DB Instance Class: db.m5.4xlarge.              |
+|# xlarge-ha-11          | 2TB Storage. DB Instance Class: db.m5.4xlarge.              |
 
 (note: t3 / m5 instances, small plans have 100G storage instead of 20G)
 
@@ -120,15 +120,15 @@ We should play [a story to add the following new plans](https://www.pivotaltrack
 
 | service plan       | summary                                          |
 |--------------------|--------------------------------------------------|
-| tiny-unencrypted-8 | 5GB Storage. DB Instance Class: db.t3.micro.     |
-| small-8            | 100GB Storage. DB Instance Class: db.t3.small.   |
-| small-ha-8         | 100GB Storage. DB Instance Class: db.t3.small.   |
-| medium-8           | 100GB Storage. DB Instance Class: db.m5.large.   |
-| medium-ha-8        | 100GB Storage. DB Instance Class: db.m5.large.   |
-| large-8            | 512GB Storage. DB Instance Class: db.m5.2xlarge. |
-| large-ha-8         | 512GB Storage. DB Instance Class: db.m5.2xlarge. |
-| xlarge-8           | 2TB Storage. DB Instance Class: db.m5.4xlarge.   |
-| xlarge-ha-8        | 2TB Storage. DB Instance Class: db.m5.4xlarge.   |
+|# tiny-unencrypted-8 | 5GB Storage. DB Instance Class: db.t3.micro.     |
+|# small-8            | 100GB Storage. DB Instance Class: db.t3.small.   |
+|# small-ha-8         | 100GB Storage. DB Instance Class: db.t3.small.   |
+|# medium-8           | 100GB Storage. DB Instance Class: db.m5.large.   |
+|# medium-ha-8        | 100GB Storage. DB Instance Class: db.m5.large.   |
+|# large-8            | 512GB Storage. DB Instance Class: db.m5.2xlarge. |
+|# large-ha-8         | 512GB Storage. DB Instance Class: db.m5.2xlarge. |
+|# xlarge-8           | 2TB Storage. DB Instance Class: db.m5.4xlarge.   |
+|# xlarge-ha-8        | 2TB Storage. DB Instance Class: db.m5.4xlarge.   |
 
 (note: t3 / m5 instances, small plans have 100G storage instead of 20G)
 

@@ -31,15 +31,15 @@ The domain structure for the dev and CI environments won't change. For the dev e
 
 |Ireland|London|
 |----|------|
-|_api.cloud.service.gov.uk_|_api.london.cloud.service.gov.uk_|
-|_sample-app.cloudapps.digital_|_sample-app.london.cloudapps.digital_|
+|# _api.cloud.service.gov.uk_|_api.london.cloud.service.gov.uk_|
+|# _sample-app.cloudapps.digital_|_sample-app.london.cloudapps.digital_|
 
 #### Staging
 
 |Ireland|London|
 |----|------|
-|_api.staging.cloudpipeline.digital_|_api.london.staging.cloudpipeline.digital_|
-|_sample-app.staging.cloudpipelineapps.digital_|_sample-app.london.staging.cloudpipelineapps.digital_|
+|# _api.staging.cloudpipeline.digital_|_api.london.staging.cloudpipeline.digital_|
+|# _sample-app.staging.cloudpipelineapps.digital_|_sample-app.london.staging.cloudpipelineapps.digital_|
 
 ## Status
 
