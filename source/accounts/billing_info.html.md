@@ -63,9 +63,9 @@ Billing frequency is dictated by the level of usage. The table below gives a gui
 
 | Approx. billable amount per month | Billing frequency |
 | --- | --- |
-| <£1000 | Yearly |
-| £1000-£5000 | 6 monthly |
-| > £5000 | Quarterly |
+|# <£1000 | Yearly |
+|#  £1000-£5000 | 6 monthly |
+|#  > £5000 | Quarterly |
 
 ## Next steps
 

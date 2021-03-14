@@ -23,10 +23,10 @@ For example:
 
 | Env | URL |
 | --- | --- |
-| Dev | `https://alertmanager-1.tlwr.cloudpipeline.digital` |
-| Staging | `https://alertmanager-1.london.staging.cloudpipeline.digital` |
-| London | `https://alertmanager-1.london.cloud.service.gov.uk` |
-| Ireland | `https://alertmanager-1.cloud.service.gov.uk` |
+|# Dev | `https://alertmanager-1.tlwr.cloudpipeline.digital` |
+|# Staging | `https://alertmanager-1.london.staging.cloudpipeline.digital` |
+|# London | `https://alertmanager-1.london.cloud.service.gov.uk` |
+|# Ireland | `https://alertmanager-1.cloud.service.gov.uk` |
 
 **3.** Check you can talk to Alertmanager
 

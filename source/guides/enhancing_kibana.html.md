@@ -68,14 +68,14 @@ After a restart and successful entry in Kibana, it will look like that:
 
 | Key | Value |
 |---|---|
-| nginx.agent | "ELB-HealthChecker/1.0" |
-| nginx.bytes | 566 |
-| nginx.clientip | 10.0.16.6 |
-| nginx.httpversion | 1.1 |
-| nginx.request | /info |
-| nginx.response | 200 |
-| nginx.response_time | 0.029 |
-| nginx.timestamp | 11/May/2017:14:59:04 +0000 |
-| nginx.vcap_request_id | 9ed66476-764d-486e-b52c-05280929f726 |
-| nginx.verb | GET |
-| nginx.x_forwarded_for | 10.0.0.116 |
+|# nginx.agent | "ELB-HealthChecker/1.0" |
+|# nginx.bytes | 566 |
+|# nginx.clientip | 10.0.16.6 |
+|# nginx.httpversion | 1.1 |
+|# nginx.request | /info |
+|# nginx.response | 200 |
+|# nginx.response_time | 0.029 |
+|# nginx.timestamp | 11/May/2017:14:59:04 +0000 |
+|# nginx.vcap_request_id | 9ed66476-764d-486e-b52c-05280929f726 |
+|# nginx.verb | GET |
+|# nginx.x_forwarded_for | 10.0.0.116 |

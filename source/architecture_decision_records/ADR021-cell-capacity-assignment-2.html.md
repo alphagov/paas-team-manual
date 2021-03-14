@@ -36,10 +36,10 @@ Our objectives are:
 
 State | Expected behaviour
 ------|-------------------
-All cells operational | Enough capacity to allow some but not all tenants to scale up to their full quota. The amount of excess capacity required should be enough to accommodate the fluctuations we can expect over a 3 day period (weekend + reaction time)
-While CF being deployed | As above: enough capacity to allow some tenants to scale up to their full quota
-One availability zone failed/degraded | Enough capacity to maintain steady state app usage. Not guaranteed to be able to scale apps up.
-More than one AZ failed | The system is not expected to have sufficient capacity to host all running apps.
+# All cells operational | Enough capacity to allow some but not all tenants to scale up to their full quota. The amount of excess capacity required should be enough to accommodate the fluctuations we can expect over a 3 day period (weekend + reaction time)
+# While CF being deployed | As above: enough capacity to allow some tenants to scale up to their full quota
+# One availability zone failed/degraded | Enough capacity to maintain steady state app usage. Not guaranteed to be able to scale apps up.
+# More than one AZ failed | The system is not expected to have sufficient capacity to host all running apps.
 
 To achieve this we need to start basing our capacity planning on current memory
 occupied by processes on cells, rather than the sum of all quotas given to
