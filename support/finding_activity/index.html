@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -142,7 +142,7 @@ with a plus sign.</li>
 </ul>
 <p>You can combine many quoted attributes into one, by joining the quotes
 with <code>&amp;&amp;</code>, like so:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>"for user: {GUID}" &amp;&amp; "ip: {IP_ADDRESS}" &amp;&amp; "GET \"/v2/jobs"
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>"for user: {GUID}" &amp;&amp; "ip: {IP_ADDRESS}" &amp;&amp; "GET \"/v2/jobs"
 </code></pre></div><p>It probably won&rsquo;t end here, but it should provide a start for an
 individual to go further.</p>
 <h2 id="getting-further">Getting further</h2><p>Once you found something interesting above, you could use it to refine
@@ -160,7 +160,7 @@ data. For example, with a <code>PUT</code> request, you could find a
 <code>cloud_controller_ng.body</code>, <code>cloud_controller_ng.method</code> and
 <code>cloud_controller_ng.message</code>.</p>
 <p>Here&rsquo;s a sample JSON of the above:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>{
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>{
     "timestamp": 1492615195.9275572,
     "message": "droplet created: XXXXX-XXXX-XXXX-XXXXX",
     "log_level": "info",
@@ -219,15 +219,15 @@ data. For example, with a <code>PUT</code> request, you could find a
 </ul>
 <h1 id="finding-paas-internal-application-logs">Finding PaaS internal application logs</h1><p>For certain applications we forward the logs to Logit using a syslog drain. In Kibana you can use the following filters to search for such logs:</p>
 <p>To list all application logs:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>tags: logmessage
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>tags: logmessage
 </code></pre></div><p>To list all application routing logs:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>tags: "logmessage-rtr"
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>tags: "logmessage-rtr"
 </code></pre></div><p>To list all logs written by the application:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>tags: "logmessage-app"
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>tags: "logmessage-app"
 </code></pre></div><p>To filter by application name:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>@source.host:"&lt;org&gt;.&lt;space&gt;.&lt;app name&gt;", e.g. @source.host:"admin.public.paas-admin"
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>@source.host:"&lt;org&gt;.&lt;space&gt;.&lt;app name&gt;", e.g. @source.host:"admin.public.paas-admin"
 </code></pre></div><p>To filter by guid:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>@source.component:"&lt;GUID&gt;", e.g. @source.component:"6e70d438-d9ac-4576-816f-9d5511eb3e43"
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>@source.component:"&lt;GUID&gt;", e.g. @source.component:"6e70d438-d9ac-4576-816f-9d5511eb3e43"
 </code></pre></div>
 
             

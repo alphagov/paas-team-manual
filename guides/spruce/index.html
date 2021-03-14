@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -140,15 +140,15 @@
   <h1 id="spruce">Spruce</h1><p>This is a guide to <a href="https://github.com/geofffranks/spruce">spruce</a>, our tool to merge YAML manifests. It contains very simple examples to explain each feature.</p>
 <p>For more information, see the spruce readme and <a href="https://github.com/geofffranks/spruce/tree/master/examples">examples</a>.</p>
 <h2 id="installation">Installation</h2><p>You need to install spruce &gt;= 0.13.0. This version added support for operand expressions.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>$ go get github.com/geofffranks/spruce/cmd/spruce # Builds spruce, including dependencies and puts it in $GOPATH/bin
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ go get github.com/geofffranks/spruce/cmd/spruce # Builds spruce, including dependencies and puts it in $GOPATH/bin
 </code></pre></div><p>To upgrade spruce:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>$ go get -u github.com/geofffranks/spruce/cmd/spruce
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ go get -u github.com/geofffranks/spruce/cmd/spruce
 </code></pre></div><p>Note: If you previously built spruce from a branch, following instructions in a
 previous version of this guide, you may need to find and remove old
 copies of the <code>spruce</code> binary that were copied into your $PATH:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>$ spruce -v     # if version 0.12.0 is reported, you probably built from the branch
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ spruce -v     # if version 0.12.0 is reported, you probably built from the branch
 $ which spruce  # shows files you may need to remove
-</code></pre></div><h2 id="default-merge-with-simple-keys">Default merge with simple keys</h2><div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+</code></pre></div><h2 id="default-merge-with-simple-keys">Default merge with simple keys</h2><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 a: aaaa
 a2: aaaa
 $ cat b.yml
@@ -168,7 +168,7 @@ b: bbbb
 <li>Files to merge are listed in-order on the command line. The first file serves as the base to the file structure, and subsequent files are merged on top, adding when keys are new, replacing when keys exist</li>
 <li>A key in the subsequent file overrides the key at the same place. No need for <code>(( merge ))</code> for simple values</li>
 </ul>
-<h2 id="default-merge-with-maps">Default merge with maps</h2><div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+<h2 id="default-merge-with-maps">Default merge with maps</h2><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 key:
   subkey1: aa1
   subkey2: aa2
@@ -190,7 +190,7 @@ key:
 <li>Additional keys are added</li>
 <li>Keys not present in other files are kept</li>
 </ul>
-<h2 id="reference-other-data">Reference other data</h2><div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+<h2 id="reference-other-data">Reference other data</h2><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 key:
   subkey1: aa1
   subkey2: aa2
@@ -209,7 +209,7 @@ key:
 <li><code>grab</code> allows to merge with the value of another key</li>
 <li>The merge happens first: here <code>key.subkey1</code> changes from <code>aa</code> to <code>bb1</code>. Then the <code>grab</code> happens: <code>a:</code> takes the new <code>key.subkey1</code> value <code>bb1</code></li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 key:
   subkey1: aa1
   subkey2: aa2
@@ -233,7 +233,7 @@ key:
 <li>Values can be simple keys or more complex like maps</li>
 <li>Can be separated with commas or spaces</li>
 </ul>
-<h2 id="pruning">Pruning</h2><div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+<h2 id="pruning">Pruning</h2><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 key:
   subkey1: aa
   subkey2: aa
@@ -266,7 +266,7 @@ key:
 <li>To reference a key in an array of maps, use <code>name:</code> as identifer</li>
 <li>This can be useful to delete temporary keys, ones that we use only to generate values for other keys but we don&rsquo;t need in the final output</li>
 </ul>
-<h2 id="arrays">Arrays</h2><h3 id="default-inline-replace-with-simple-keys">Default inline replace with simple keys</h3><div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+<h2 id="arrays">Arrays</h2><h3 id="default-inline-replace-with-simple-keys">Default inline replace with simple keys</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 a:
 - a1
 - a2
@@ -285,7 +285,7 @@ a:
 <ul>
 <li>This replaces key by key in the order of the array</li>
 </ul>
-<h3 id="default-inline-replace-with-maps">Default inline replace with maps</h3><div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+<h3 id="default-inline-replace-with-maps">Default inline replace with maps</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 a:
 - name123: a1
   a11: a11
@@ -310,7 +310,7 @@ a:
 <li>This works for an array of maps. It updates the keys in the maps following the order of the array</li>
 </ul>
 <h3 id="inline">Inline</h3><p>Same as Simple replacement, using <code>- (( inline ))</code> as first element. Maybe more explicit.</p>
-<h3 id="append">Append</h3><div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+<h3 id="append">Append</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 a:
 - a1
 - a2
@@ -329,7 +329,7 @@ a:
 </ul>
 <h3 id="prepend">Prepend</h3><p>Prepend keys. Usage: same with <code>- (( prepend ))</code> instead</p>
 <h3 id="replace">Replace</h3><p>Replaces the whole array. Usage: same with <code>- (( replace ))</code> instead</p>
-<h3 id="merge-list-of-maps">Merge list of maps</h3><div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+<h3 id="merge-list-of-maps">Merge list of maps</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 a:
 - name: a1
   a11: a11
@@ -356,7 +356,7 @@ a:
 <li>This allows to override only a set of keys in an array of maps</li>
 <li>To merge based on another key, use <code>(( merge on &lt;key&gt; ))</code></li>
 </ul>
-<h2 id="static-ips">Static IPs</h2><div class="highlight"><pre class="highlight plaintext"><code>$ cat networks.yml
+<h2 id="static-ips">Static IPs</h2><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat networks.yml
 networks:
 - name: net1
   subnets:
@@ -387,7 +387,7 @@ properties:
 <li>It checks for conflicts</li>
 <li>merge runs first, then <code>static_ips()</code>, then finally <code>grab</code>. So the order of the manifests in the merge command doesn&rsquo;t matter for this particular case.</li>
 </ul>
-<h2 id="concatenate-strings">Concatenate strings</h2><div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+<h2 id="concatenate-strings">Concatenate strings</h2><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 key:
   subkey1: aa1
   subkey2: aa2
@@ -419,7 +419,7 @@ other_key: aaaa
 <p>See https://github.com/geofffranks/spruce#map-replacement</p>
 <h2 id="inject-subtree">Inject subtree</h2><p>YAML has the concept of anchor/alias to inject another subtree from the same file. See: https://en.wikipedia.org/wiki/YAML#Repeated_nodes</p>
 <p>In spruce the same can be achieved across different files.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 green:
   woot: (( inject meta.template ))
   color: green
@@ -437,7 +437,7 @@ meta:
     color: blue
     size: small
 </code></pre></div><h2 id="prevent-null-values">Prevent null values</h2><p>We can add useful error checking to prevent null values due to merge errors. This is probably a good practice to use in any key where we expect a value from a merge.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 critical_key:
 $ spruce merge a.yml
 critical_key: null
@@ -453,7 +453,7 @@ critical_key: critical_value
 $ spruce merge a.yml b.yml
 critical_key: critical_value
 </code></pre></div><h2 id="or-operator">OR operator</h2><p>Alows to specify alternate values in the first key is null. Compatible with <code>grab</code> and <code>concat</code>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>$ cat a.yml
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cat a.yml
 key1:
     subkey1: a1
     subkey2: a2

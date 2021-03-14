@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -104,153 +104,123 @@
 <th style="text-align: left">Name</th>
 <th style="text-align: left">Tag</th>
 <th style="text-align: left">Description</th>
-</tr>
-<tr>
-<td style="text-align: left">Activity update</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Activity update</th>
 <td style="text-align: left">paas_activity_update</td>
 <td style="text-align: left">The tenant is providing the GOV.UK PaaS team with information about their activity, this could be load testing, penetration testing, moving the service to live</td>
-</tr>
-<tr>
-<td style="text-align: left">Backing service</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Backing service</th>
 <td style="text-align: left">paas_backing_service</td>
 <td style="text-align: left">The tenant has a question about backing services: mysql, postgres, redis, elasticsearch, influxdb, cdn, autoscaling</td>
-</tr>
-<tr>
-<td style="text-align: left">Bug</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Bug</th>
 <td style="text-align: left">paas_bug</td>
 <td style="text-align: left">The tenant has encountered a bug, error or fault in GOV.UK PaaS that we need to fix.</td>
-</tr>
-<tr>
-<td style="text-align: left">Buildpacks</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Buildpacks</th>
 <td style="text-align: left">paas_buildpacks</td>
 <td style="text-align: left">The tenant has a question about buildpacks</td>
-</tr>
-<tr>
-<td style="text-align: left">CC</td>
+</tr><tr>
+<th style="text-align: left" scope="row">CC</th>
 <td style="text-align: left">paas_cc</td>
 <td style="text-align: left">Non actionable items, information from upstream and others</td>
-</tr>
-<tr>
-<td style="text-align: left">Consultancy</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Consultancy</th>
 <td style="text-align: left">paas_consultancy</td>
 <td style="text-align: left">The tenant needs advice and expertise from a member of the GOV.UK PaaS team in the form of a meeting or phone call to determine suitability, billing, pricing, roadmap</td>
-</tr>
-<tr>
-<td style="text-align: left">Deployment</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Deployment</th>
 <td style="text-align: left">paas_deployment</td>
 <td style="text-align: left">The tenant is having issues deploying an application to the platform</td>
-</tr>
-<tr>
-<td style="text-align: left">Feature request</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Feature request</th>
 <td style="text-align: left">paas_feature_request</td>
 <td style="text-align: left">The tenant needs or wants a new feature that GOV.UK PaaS does not offer</td>
-</tr>
-<tr>
-<td style="text-align: left">Incident</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Incident</th>
 <td style="text-align: left">paas_incident_report</td>
 <td style="text-align: left">The tenant is reporting an incident</td>
-</tr>
-<tr>
-<td style="text-align: left">Logging/Monitoring/Alerting</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Logging/Monitoring/Alerting</th>
 <td style="text-align: left">paas_logging_monitoring_alerting</td>
 <td style="text-align: left">The tenant has a query, request or problem related to monitoring, metrics, logs</td>
-</tr>
-<tr>
-<td style="text-align: left">Misc</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Misc</th>
 <td style="text-align: left">paas_misc</td>
 <td style="text-align: left">The ticket does not fit into any of the existing tags</td>
-</tr>
-<tr>
-<td style="text-align: left">Missing information</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Missing information</th>
 <td style="text-align: left">paas_missing_information</td>
 <td style="text-align: left">The tenant is unable to find the information they&rsquo;re looking for</td>
-</tr>
-<tr>
-<td style="text-align: left">Platform monitoring</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Platform monitoring</th>
 <td style="text-align: left">paas_monitoring</td>
 <td style="text-align: left">Informational items that come from our platform monitoring systems (Pingdom, Cronitor, PagerDuty)</td>
-</tr>
-<tr>
-<td style="text-align: left">Org billable</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Org billable</th>
 <td style="text-align: left">paas_org_billable</td>
 <td style="text-align: left">The tenant has a query about billing or wants to go move to a billable plan</td>
-</tr>
-<tr>
-<td style="text-align: left">Org demise</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Org demise</th>
 <td style="text-align: left">paas_org_demise</td>
 <td style="text-align: left">An organisation is to be demised</td>
-</tr>
-<tr>
-<td style="text-align: left">Org quota</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Org quota</th>
 <td style="text-align: left">paas_org_quota</td>
 <td style="text-align: left">The tenant is requesting to increase their usage quota</td>
-</tr>
-<tr>
-<td style="text-align: left">Org trial</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Org trial</th>
 <td style="text-align: left">paas_org_trial</td>
 <td style="text-align: left">A prospective tenant is requesting a trial account to evaluate the use of the platform</td>
-</tr>
-<tr>
-<td style="text-align: left">Out of hours</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Out of hours</th>
 <td style="text-align: left">paas_outofhours</td>
 <td style="text-align: left">Out of hours support</td>
-</tr>
-<tr>
-<td style="text-align: left">Action</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Action</th>
 <td style="text-align: left">paas_paas_action</td>
 <td style="text-align: left">The tenant needs the GOV.UK PaaS team to perform an action for them</td>
-</tr>
-<tr>
-<td style="text-align: left">Platform tests</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Platform tests</th>
 <td style="text-align: left">paas_platform_tests</td>
 <td style="text-align: left">Automated messages from smoketest pipeline</td>
-</tr>
-<tr>
-<td style="text-align: left">Question</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Question</th>
 <td style="text-align: left">paas_question</td>
 <td style="text-align: left">The tenant needs more information about GOV.UK PaaS</td>
-</tr>
-<tr>
-<td style="text-align: left">Routing</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Routing</th>
 <td style="text-align: left">paas_routing</td>
 <td style="text-align: left">The tenant is having issues with routing</td>
-</tr>
-<tr>
-<td style="text-align: left">Security</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Security</th>
 <td style="text-align: left">paas_security</td>
 <td style="text-align: left">The tenant has a question or problem related to security or information assurance</td>
-</tr>
-<tr>
-<td style="text-align: left">Spam</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Spam</th>
 <td style="text-align: left">paas_spam</td>
 <td style="text-align: left">Unsolicited off topic tickets</td>
-</tr>
-<tr>
-<td style="text-align: left">Tenant action</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Tenant action</th>
 <td style="text-align: left">paas_tenant_action</td>
 <td style="text-align: left">The tenant needs to perform an action for the GOV.UK PaaS team</td>
-</tr>
-<tr>
-<td style="text-align: left">Test</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Test</th>
 <td style="text-align: left">paas_test</td>
 <td style="text-align: left">test tickets generated by user testing that should be ignored</td>
-</tr>
-<tr>
-<td style="text-align: left">Troubleshooting</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Troubleshooting</th>
 <td style="text-align: left">paas_troubleshooting</td>
 <td style="text-align: left">The tenant needs help to identify and resolve an issue they are experiencing</td>
-</tr>
-<tr>
-<td style="text-align: left">Upstream</td>
+</tr><tr>
+<th style="text-align: left" scope="row">Upstream</th>
 <td style="text-align: left">paas_upstream</td>
 <td style="text-align: left">Actionable items that come from our upstream providers (AWS, Aiven, Cloud Foundry Foundation) leaked keys, ec2 abuse, phishing websites, deprecation notices, cve notifications from the Cloud Foundry Foundation</td>
-</tr>
-<tr>
-<td style="text-align: left">User account</td>
+</tr><tr>
+<th style="text-align: left" scope="row">User account</th>
 <td style="text-align: left">paas_user_account</td>
 <td style="text-align: left">The tenant needs help to do something with their account. For example, resetting a password, adding or removing a user</td>
 </tr>
-
         </table>
       </div>
 <div style="height:1px;font-size:1px;">&nbsp;</div>

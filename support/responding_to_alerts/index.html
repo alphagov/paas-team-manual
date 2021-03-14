@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -151,7 +151,7 @@ errors.</p>
 <p>Prometheus doesn&rsquo;t report the response body, which can make it hard to determine the actual problem. To
 get this information you will need to SSH to any Cloud Foundry VM and query
 the endpoint yourself:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bash# bosh-ssh api/0
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bash# bosh-ssh api/0
 …
 api/00673a4a-b11f-410d-a037-34d56a3e2e71:~$ curl -i https://cdn-broker.&lt;SYSTEM_DOMAIN&gt;/healthcheck
 HTTP/1.1 500 Internal Server Error
@@ -182,17 +182,17 @@ to learn who to contact.</p>
 <h3 id="how-to-obtain-organisation-managers">How to obtain organisation managers</h3><p>We&rsquo;ve prepared a script to obtain organisation, space, instance name and the
 list of managers connected to the instance you&rsquo;re after.</p>
 <p>From <code>paas-cf</code> repository, run the following command:</p>
-<div class="highlight"><pre class="highlight shell"><code>./scripts/get-instance-details.sh <span class="s2">"</span><span class="k">${</span><span class="nv">RDS_INSTANCE_ID</span><span class="k">}</span><span class="s2">"</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>./scripts/get-instance-details.sh <span class="s2">"</span><span class="k">${</span><span class="nv">RDS_INSTANCE_ID</span><span class="k">}</span><span class="s2">"</span>
 </code></pre></div><h2 id="api-latency">API Latency</h2><p>Last time we received an alert for API latency, it was a UAA bug that caused
 instances to leak memory. It also resulted in high CPU usage and the quickest
 solution to restoring the platform was to restart both instances one after the
 other.</p>
-<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">PAAS_BOOTSTRAP_DIR</span><span class="k">}</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">PAAS_BOOTSTRAP_DIR</span><span class="k">}</span>
 <span class="nv">DEPLOY_ENV</span><span class="o">=</span>prod make prod bosh-cli
 bosh restart uaa <span class="c"># You may want/need to target an instance, e.g. uaa/23888ebf-2dd3-4afe-b370-51705403d423</span>
 </code></pre></div><p>There may be different reasons for the latency to drop down on any of the VMs.
 We found out the issue by logging into the VM itself and dig through the logs.</p>
-<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">PAAS_BOOTSTRAP_DIR</span><span class="k">}</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> <span class="k">${</span><span class="nv">PAAS_BOOTSTRAP_DIR</span><span class="k">}</span>
 <span class="nv">DEPLOY_ENV</span><span class="o">=</span>prod make prod bosh-cli
 bosh ssh uaa/23888ebf-2dd3-4afe-b370-51705403d423
 <span class="nb">tail</span> <span class="nt">-1000</span> /var/vcap/sys/log/uaa/uaa.log
@@ -219,7 +219,7 @@ ticket with them.</p>
 <p>To obtain the IP address of the failing node(s), you should inspect the logs of
 the paas-metrics app. This is deployed to the &lsquo;monitoring&rsquo; space of the &lsquo;admin&rsquo;
 org. You should see logs such as:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>2017-12-01T14:14:09.68+0000 [APP/PROC/WEB/0] OUT
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>2017-12-01T14:14:09.68+0000 [APP/PROC/WEB/0] OUT
 {
     "timestamp":"1512137649.686135292",
     "source":"metrics",

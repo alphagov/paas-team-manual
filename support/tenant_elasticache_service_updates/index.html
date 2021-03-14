@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -98,7 +98,7 @@ non-highly available instances, there may be some downtime (up to 30 minutes).</
 AWS emails PaaS Support when updates are available.</p>
 <p>We may also wish to schedule an update when many instances have an update
 available. You can determine this percentage with the Prometheus query:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>count(paas_aws_elasticache_cluster_update_required)
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>count(paas_aws_elasticache_cluster_update_required)
 /
 count(paas_aws_elasticache_replication_group_nodes_count)
 </code></pre></div><h2 id="caveats">Caveats</h2><p>Updates are currently still applied manually (via the Console or the API) and
@@ -118,7 +118,7 @@ we do not have a process in place for applying the updates automatically.</p>
 <ol>
 <li>Log in to CF <code>cf login --sso</code> as a Global Auditor or Admin</li>
 <li><p>Find which instances need to be updated:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>AWS_REGION=eu-west-1 gds aws paas-prod -- \
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>AWS_REGION=eu-west-1 gds aws paas-prod -- \
 ./tools/aws_redis_update_manager/aws_redis_update_manager \
 --action print \
 --paas-accounts-url https://accounts.cloud.service.gov.uk \
@@ -126,7 +126,7 @@ we do not have a process in place for applying the updates automatically.</p>
 --paas-accounts-password "$( echo get this from credhub ; exit 1 )"
 </code></pre></div></li>
 <li><p>Send a preview email to yourself:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>AWS_REGION=eu-west-1 gds aws paas-prod -- \
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>AWS_REGION=eu-west-1 gds aws paas-prod -- \
 ./tools/aws_redis_update_manager/aws_redis_update_manager \
 --action preview \
 --notify-api-key "$( echo make a key or get from credhub ; exit 1)" \
@@ -138,7 +138,7 @@ we do not have a process in place for applying the updates automatically.</p>
 --preview-email 'your@email.here'
 </code></pre></div></li>
 <li><p>Send the email to tenants:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>AWS_REGION=eu-west-1 gds aws paas-prod -- \
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>AWS_REGION=eu-west-1 gds aws paas-prod -- \
 ./tools/aws_redis_update_manager/aws_redis_update_manager \
 --action preview \
 --paas-accounts-url https://accounts.cloud.service.gov.uk \

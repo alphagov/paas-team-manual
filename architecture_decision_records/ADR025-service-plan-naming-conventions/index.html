@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -109,7 +109,7 @@ use to the platform operators or to tenants consuming the service.</p>
 problem by multiplying plans of different characteristics with different
 versions.</p>
 <h2 id="decision">Decision</h2><p>We have decided to use the following naming convention for naming plans going forward:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>SIZE[-HA][-LABEL,-LABEL,...]-VERSION
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>SIZE[-HA][-LABEL,-LABEL,...]-VERSION
 </code></pre></div><p>Where:</p>
 
 <ul>
@@ -120,7 +120,7 @@ versions.</p>
 </ul>
 <h3 id="for-example">For example:</h3><p>A large multi-az postgres plan for version 9.6 would be <code>large-ha-9.6</code>.</p>
 <p>A small not multi-az, unclustered, redis 3.2 plan would be <code>redis-unclustered-3.2</code>.</p>
-<h3 id="example-migrations-of-some-existing-plans">Example migrations of some existing plans:</h3><div class="highlight"><pre class="highlight plaintext"><code>L-HA-enc-dedicated-9.5 =&gt; large-ha-9.5
+<h3 id="example-migrations-of-some-existing-plans">Example migrations of some existing plans:</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>L-HA-enc-dedicated-9.5 =&gt; large-ha-9.5
 M-HA-enc-dedicated-9.5 =&gt; medium-ha-9.5
 tiny-clustered =&gt; tiny-clustered-3.2
 tiny-unclustered =&gt; tiny-unclustered-3.2

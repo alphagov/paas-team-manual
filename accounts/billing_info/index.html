@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -150,20 +150,16 @@
           <tr>
 <th>Approx. billable amount per month</th>
 <th>Billing frequency</th>
-</tr>
-<tr>
-<td>&lt;£1000</td>
+</tr><tr>
+<th scope="row">&lt;£1000</th>
 <td>Yearly</td>
-</tr>
-<tr>
-<td>£1000-£5000</td>
+</tr><tr>
+<th scope="row">£1000-£5000</th>
 <td>6 monthly</td>
-</tr>
-<tr>
-<td>&gt; £5000</td>
+</tr><tr>
+<th scope="row">&gt; £5000</th>
 <td>Quarterly</td>
 </tr>
-
         </table>
       </div><h2 id="next-steps">Next steps</h2><p>Our responsibility ends here. However, it is useful to regularly keep in touch with the PMO team to check on billing progress.</p>
 <p>We are often asked to report on billing at programme check-ins so it is useful to have up to date knowledge of the billing status of each department.</p>

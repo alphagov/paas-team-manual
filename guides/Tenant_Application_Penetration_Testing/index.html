@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -105,40 +105,31 @@
           <tr>
 <th>Name</th>
 <th>Value</th>
-</tr>
-<tr>
-<td>source_IP</td>
+</tr><tr>
+<th scope="row">source_IP</th>
 <td>Provided by penetration tester. The IPs that the test will originate from.</td>
-</tr>
-<tr>
-<td>phone_for_testing_team</td>
+</tr><tr>
+<th scope="row">phone_for_testing_team</th>
 <td>Provided by penetration tester. Phone number of the testers.</td>
-</tr>
-<tr>
-<td>peak_bandwidth</td>
+</tr><tr>
+<th scope="row">peak_bandwidth</th>
 <td>Provided by penetration tester. The peak amount of bandwidth the tests will consume (Gbps).</td>
-</tr>
-<tr>
-<td>peak_rps</td>
+</tr><tr>
+<th scope="row">peak_rps</th>
 <td>Provided by penetration tester. The peak number of requests-per-second the tests will perform.</td>
-</tr>
-<tr>
-<td>StartDate</td>
+</tr><tr>
+<th scope="row">StartDate</th>
 <td>Provided by penetration tester. When will the test start?  (eg. <code>2017-09-26T09:00:00Z</code> )</td>
-</tr>
-<tr>
-<td>EndDate</td>
+</tr><tr>
+<th scope="row">EndDate</th>
 <td>Provided by penetration tester. When will the test end? (eg. <code>2017-09-26T18:00:00Z</code> )</td>
-</tr>
-<tr>
-<td>can_you_stop</td>
+</tr><tr>
+<th scope="row">can_you_stop</th>
 <td>Provided by penetration tester. Once started, is it possible to stop the test immediately if there is an issue?</td>
-</tr>
-<tr>
-<td>emergency_contact</td>
+</tr><tr>
+<th scope="row">emergency_contact</th>
 <td>Provided by penetration tester. Email and phone number in case issues arise.</td>
 </tr>
-
         </table>
       </div><h2 id="load-testing">Load Testing</h2><p>Before allowing a load test against applications running on PaaS we may have to notify AWS. Currently we are not sure on the scenarios when we do not have to notify AWS. We are erring on the side of caution and notifying for all load tests.</p>
 <p>There are two methods to notify AWS: <a href="https://aws.amazon.com/forms/penetration-testing-request">a form which requires root account access</a>, or, by emailing <code>aws-security-cust-pen-test@amazon.com</code>. Both require providing the following information:</p>
@@ -147,145 +138,116 @@
           <tr>
 <th>Name</th>
 <th>Value</th>
-</tr>
-<tr>
-<td>AWS AccountId</td>
+</tr><tr>
+<th scope="row">AWS AccountId</th>
 <td>Production account ID</td>
-</tr>
-<tr>
-<td>SubmitterName</td>
+</tr><tr>
+<th scope="row">SubmitterName</th>
 <td>Your name</td>
-</tr>
-<tr>
-<td>CompanyName</td>
+</tr><tr>
+<th scope="row">CompanyName</th>
 <td><code>Government Digital Service</code></td>
-</tr>
-<tr>
-<td>EmailAddress</td>
+</tr><tr>
+<th scope="row">EmailAddress</th>
 <td>Team email address</td>
-</tr>
-<tr>
-<td>AdditionalEmail1</td>
+</tr><tr>
+<th scope="row">AdditionalEmail1</th>
 <td>Optional</td>
-</tr>
-<tr>
-<td>AdditionalEmail2</td>
+</tr><tr>
+<th scope="row">AdditionalEmail2</th>
 <td>Optional</td>
-</tr>
-<tr>
-<td>AdditionalEmail3</td>
+</tr><tr>
+<th scope="row">AdditionalEmail3</th>
 <td>Optional</td>
-</tr>
-<tr>
-<td>Customer_NDA</td>
+</tr><tr>
+<th scope="row">Customer_NDA</th>
 <td><code>yes</code></td>
-</tr>
-<tr>
-<td>ec2_resources</td>
-<td><a href="#find-penetration-testable-ec2-instance-ids">EC2 resource IDs to be tested</a>.</td>
-</tr>
-<tr>
-<td>cloudfront_ID</td>
-<td><a href="#find-cloudfront-distributions">CloudFront distribution IDs to be tested</a>.</td>
-</tr>
-<tr>
-<td>api_gateway</td>
+</tr><tr>
+<th scope="row">ec2_resources</th>
+<td>
+<a href="#find-penetration-testable-ec2-instance-ids">EC2 resource IDs to be tested</a>.</td>
+</tr><tr>
+<th scope="row">cloudfront_ID</th>
+<td>
+<a href="#find-cloudfront-distributions">CloudFront distribution IDs to be tested</a>.</td>
+</tr><tr>
+<th scope="row">api_gateway</th>
 <td>N/A</td>
-</tr>
-<tr>
-<td>rds_resources</td>
+</tr><tr>
+<th scope="row">rds_resources</th>
 <td>N/A</td>
-</tr>
-<tr>
-<td>elb_resources</td>
-<td><a href="#find-elbs">ELB hostnames to be tested</a>.</td>
-</tr>
-<tr>
-<td>external_IPs</td>
+</tr><tr>
+<th scope="row">elb_resources</th>
+<td>
+<a href="#find-elbs">ELB hostnames to be tested</a>.</td>
+</tr><tr>
+<th scope="row">external_IPs</th>
 <td>N/A</td>
-</tr>
-<tr>
-<td>nameserver_info</td>
+</tr><tr>
+<th scope="row">nameserver_info</th>
 <td>N/A</td>
-</tr>
-<tr>
-<td>dns_owner_notified</td>
+</tr><tr>
+<th scope="row">dns_owner_notified</th>
 <td>N/A</td>
-</tr>
-<tr>
-<td>TLD_scanned</td>
+</tr><tr>
+<th scope="row">TLD_scanned</th>
 <td>N/A</td>
-</tr>
-<tr>
-<td>source_IP</td>
+</tr><tr>
+<th scope="row">source_IP</th>
 <td>Provided by tester. The IPs that the test will originate from.</td>
-</tr>
-<tr>
-<td>on_prem</td>
+</tr><tr>
+<th scope="row">on_prem</th>
 <td>Provided by tester. Will the requests originate from the office of the testers?</td>
-</tr>
-<tr>
-<td>third_party</td>
+</tr><tr>
+<th scope="row">third_party</th>
 <td>Provided by tenant. Are the testers a third-party company?</td>
-</tr>
-<tr>
-<td>phone_for_testing_team</td>
+</tr><tr>
+<th scope="row">phone_for_testing_team</th>
 <td>Provided by tester. Phone number of the testers.</td>
-</tr>
-<tr>
-<td>testing_company_NDA</td>
+</tr><tr>
+<th scope="row">testing_company_NDA</th>
 <td>Provided by tester. Has an NDA with AWS been signed by the penetration testers?</td>
-</tr>
-<tr>
-<td>peak_bandwidth</td>
+</tr><tr>
+<th scope="row">peak_bandwidth</th>
 <td>Provided by tester. The peak amount of bandwidth the tests will consume (Gbps).</td>
-</tr>
-<tr>
-<td>peak_rps</td>
+</tr><tr>
+<th scope="row">peak_rps</th>
 <td>Provided by tester. The peak number of requests-per-second the tests will perform.</td>
-</tr>
-<tr>
-<td>dns_walking_qps</td>
+</tr><tr>
+<th scope="row">dns_walking_qps</th>
 <td>N/A</td>
-</tr>
-<tr>
-<td>StartDate</td>
+</tr><tr>
+<th scope="row">StartDate</th>
 <td>Provided by tester. When will the test start?  (eg. <code>2017-09-26T09:00:00Z</code> )</td>
-</tr>
-<tr>
-<td>EndDate</td>
+</tr><tr>
+<th scope="row">EndDate</th>
 <td>Provided by tester. When will the test end? (eg. <code>2017-09-26T18:00:00Z</code> )</td>
-</tr>
-<tr>
-<td>testing_details</td>
+</tr><tr>
+<th scope="row">testing_details</th>
 <td>Provided by tenant. Why is the test being carried out? What is the test covering?</td>
-</tr>
-<tr>
-<td>metrics_of_test</td>
+</tr><tr>
+<th scope="row">metrics_of_test</th>
 <td>Provided by tester. What metrics are being measured in order to decide the success or failure of the test?</td>
-</tr>
-<tr>
-<td>can_you_stop</td>
+</tr><tr>
+<th scope="row">can_you_stop</th>
 <td>Provided by tester. Once started, is it possible to stop the test immediately if there is an issue?</td>
-</tr>
-<tr>
-<td>emergency_contact</td>
+</tr><tr>
+<th scope="row">emergency_contact</th>
 <td>Provided by tester. Email and phone number in case issues arise.</td>
 </tr>
-
         </table>
       </div><h2 id="find-penetration-testable-ec2-instance-ids">Find penetration testable EC2 instance IDs</h2><p>AWS only allows penetration tests on instances of certain sizes. You can find all valid instances with the following:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>aws ec2 describe-instances \
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws ec2 describe-instances \
 | jq '.Reservations[].Instances[] | select(.InstanceType != "t2.nano" and .InstanceType != "t1.micro" and .InstanceType != "m1.small") | .InstanceId' --raw-output
 </code></pre></div><h2 id="find-elbs">Find ELBs</h2><p>For tenant application penetration testing it should only be necessary to provide the router ELB:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>aws elb describe-load-balancers \
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws elb describe-load-balancers \
 | jq '.LoadBalancerDescriptions[] | select(.Scheme == "internet-facing") | select(.LoadBalancerName | endswith("-router")) | .DNSName' --raw-output
 </code></pre></div><h2 id="find-cloudfront-distributions">Find CloudFront distributions</h2><p>The <code>cdn-route</code> service uses a CloudFront distribution. You can discover these distributions with the following:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>aws cloudfront list-distributions \
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws cloudfront list-distributions \
 | jq '.DistributionList.Items[] | select(.Comment == "cdn route service") | .Id' --raw-output
-</code></pre></div><h2 id="find-external-ips-nat">Find external IPs (NAT)</h2><div class="highlight"><pre class="highlight plaintext"><code>aws ec2 describe-nat-gateways | jq -r '.NatGateways[].NatGatewayAddresses[].PublicIp
+</code></pre></div><h2 id="find-external-ips-nat">Find external IPs (NAT)</h2><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws ec2 describe-nat-gateways | jq -r '.NatGateways[].NatGatewayAddresses[].PublicIp
 </code></pre></div><h2 id="find-rds-instances-from-a-given-org">Find RDS instances from a given org</h2><p>Assuming you are logged in the production CF and <code>AWS_DEFAULT_REGION</code> set to the right region</p>
-<div class="highlight"><pre class="highlight plaintext"><code># AWS_DEFAULT_REGION=eu-west-1
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># AWS_DEFAULT_REGION=eu-west-1
 
 ORG=tenant-org
 

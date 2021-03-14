@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -97,12 +97,12 @@
 decrypted by members of the team. These instructions may be useful if you
 haven&rsquo;t used GPG recently or ever at all.</p>
 <h2 id="install">Install</h2><p>On Mac OS X:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>brew install gpg gpg-agent
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>brew install gpg gpg-agent
 </code></pre></div><p>On Ubuntu:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>sudo apt-get update
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo apt-get update
 sudo apt-get install gnupg2 gnupg-agent pinentry-curses
 </code></pre></div><h2 id="generate-keypair">Generate keypair</h2><p>To generate a new public and private keypair:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>gpg --gen-key
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --gen-key
 </code></pre></div><p>You should choose a key size of 4096 bits. The other defaults are OK to
 accept.</p>
 <h2 id="publish-key">Publish key</h2><p>Public keyservers are a simple way of distributing your public key so that
@@ -111,14 +111,14 @@ other people can download it and encrypt content for you.</p>
 risk of clashes when using the shortened last 8 digits (which is the
 default).</p>
 <p>To list your keys:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>gpg -K --fingerprint
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg -K --fingerprint
 </code></pre></div><p>The output will look something like the following:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>sec   4096R/22652456 2013-02-06
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sec   4096R/22652456 2013-02-06
       Key fingerprint = 9562 E7AD 3A95 E7BC 708D  036F F894 D400 2265 2456
 uid                  Dan Carley (Government Digital Service) &lt;dan.carley@digital.cabinet-office.gov.uk&gt;
 ssb   4096R/233AD793 2013-02-06
 </code></pre></div><p>Take the long ID listed after <code>Key fingerprint =</code> and run:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>gpg --keyserver keyserver.ubuntu.com --send-keys 'YOUR ID HERE …'
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --keyserver keyserver.ubuntu.com --send-keys 'YOUR ID HERE …'
 </code></pre></div><p>You will need to provide the same ID to an existing member of the team so
 that they can add you to any secret stores that you need access to.</p>
 <h2 id="setup-agent">Setup agent</h2><p>If you&rsquo;re accessing several secrets in quick succession then it can be
@@ -127,7 +127,7 @@ configure <code>gpg-agent</code>, which is similar in concept to <code>ssh-agent
 your password for a short period of time.</p>
 <p>Write the following to your shell initialisation (such as <code>~/.bashrc</code> or
 <code>~/.zshrc</code>) to load <code>gpg-agent</code> each time you start a new shell:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>if which gpg-agent &gt;/dev/null; then
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>if which gpg-agent &gt;/dev/null; then
   GPG_ENV_FILE="${HOME}/.gnupg/gpg-agent.env"
   if ! pgrep gpg-agent &gt;/dev/null; then
     gpg-agent --daemon --write-env-file "${GPG_ENV_FILE}" &gt;/dev/null
@@ -148,9 +148,9 @@ leave your shell and GPG in an unusable state. Symptoms include:</p>
 <li>subsequent calls to <code>gpg</code> hang</li>
 </ul>
 <p>You can fix this by killing any outstanding <code>pinentry</code> processes:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>pkill -9 pinentry
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>pkill -9 pinentry
 </code></pre></div><p>And resetting your terminal with:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>reset
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>reset
 </code></pre></div>
 
             

@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -88,14 +88,14 @@
   </div>
 
   <h1 id="running-tests-on-paas-cf-locally">Running tests on <code>paas-cf</code> locally</h1><p>A number of packages need to be installed in order to run the tests of <code>paas-cf</code> locally. To run them, install the packages below then run</p>
-<div class="highlight"><pre class="highlight shell"><code>make <span class="nb">test</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>make <span class="nb">test</span>
 </code></pre></div><h2 id="pre-requisites">Pre-requisites</h2><p><code>paas-cf</code> needs to be checked out in the correct location in your Go path: <code>$GOPATH/src/github.com/alphagov/paas-cf</code></p>
 <h2 id="install-required-packages">Install required packages</h2>
 <ul>
 <li><a href="https://brew.sh/">Homebrew</a></li>
 <li>Golang &gt;=1.11.4</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>  brew <span class="nb">install </span>golang
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  brew <span class="nb">install </span>golang
 </code></pre></div>
 <ul>
 <li><p>Ruby 2.5.1</p>
@@ -103,71 +103,71 @@
 <ul>
 <li>Installed via rbenv</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>brew <span class="nb">install </span>rbenv
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>brew <span class="nb">install </span>rbenv
 </code></pre></div><p>then in <code>~/.bashrc</code> somewhere, add <code>eval “$(rbenv init -)”</code></p></li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>  rbenv <span class="nb">install </span>2.5.1
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  rbenv <span class="nb">install </span>2.5.1
 </code></pre></div>
 <ul>
 <li>Shellcheck</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>  curl <span class="nt">-L</span> <span class="nt">-o</span> /usr/local/bin/shellcheck https://github.com/alphagov/paas-cf/releases/download/shellcheck_binary_0.4.6/shellcheck_darwin_amd64
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  curl <span class="nt">-L</span> <span class="nt">-o</span> /usr/local/bin/shellcheck https://github.com/alphagov/paas-cf/releases/download/shellcheck_binary_0.4.6/shellcheck_darwin_amd64
   <span class="nb">chmod</span> +x /usr/local/bin/shellcheck
 </code></pre></div>
 <ul>
 <li>Terraform (0.11.1)</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>  wget https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_darwin_amd64.zip
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  wget https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_darwin_amd64.zip
   unzip <span class="nt">-o</span> terraform_0.11.1_darwin_amd64.zip <span class="nt">-d</span> /usr/local/bin
   <span class="nb">rm </span>terraform_0.11.1_darwin_amd64.zip
 </code></pre></div>
 <ul>
 <li>BOSH cli v2 (2.0.48)</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>  brew <span class="nb">install </span>cloudfoundry/tap/bosh-cli
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  brew <span class="nb">install </span>cloudfoundry/tap/bosh-cli
 </code></pre></div>
 <ul>
 <li>Prometheus &amp; Promtool</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>  brew <span class="nb">install </span>prometheus
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  brew <span class="nb">install </span>prometheus
 </code></pre></div>
 <ul>
 <li>CF CLI</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>  brew <span class="nb">install </span>cloudfoundry/tap/cf-cli<span class="sb">`</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  brew <span class="nb">install </span>cloudfoundry/tap/cf-cli<span class="sb">`</span>
 </code></pre></div>
 <ul>
 <li>YAML Lint</li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  brew install yamllint
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  brew install yamllint
 </code></pre></div>
 <ul>
 <li>Bundler</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>  gem <span class="nb">install </span>bundler
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  gem <span class="nb">install </span>bundler
 </code></pre></div>
 <ul>
 <li><p>Gems via bundler</p>
-<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd </span>path/to/paas-cf/
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd </span>path/to/paas-cf/
 bundle <span class="nb">install</span>
 </code></pre></div>
 <ul>
 <li>Ginkgo and gomega (prereq: golang)</li>
 </ul></li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>  <span class="nb">cd </span>path/to/paas-cf/
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  <span class="nb">cd </span>path/to/paas-cf/
   go get github.com/onsi/ginkgo/ginkgo
   go get github.com/onsi/gomega/...
 </code></pre></div>
 <ul>
 <li>jq</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>  brew <span class="nb">install </span>jq
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  brew <span class="nb">install </span>jq
 </code></pre></div><h2 id="install-optional-packages">Install optional packages</h2>
 <ul>
 <li>CloudFoundry cf-uaac</li>
 </ul>
-<div class="highlight"><pre class="highlight shell"><code>  gem <span class="nb">install </span>cf-uaac
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>  gem <span class="nb">install </span>cf-uaac
 </code></pre></div>
 <ul>
 <li><a href="https://github.com/cloudfoundry-incubator/uaa-cli">CloudFoundry UAA CLI</a></li>

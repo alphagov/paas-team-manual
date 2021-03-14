@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -131,53 +131,43 @@ plans to everyone:</p>
 <th>service plan</th>
 <th>description</th>
 <th>free or paid</th>
-</tr>
-<tr>
-<td>tiny-unencrypted-5.7</td>
+</tr><tr>
+<th scope="row">tiny-unencrypted-5.7</th>
 <td>5GB Storage, NOT BACKED UP, Dedicated Instance. MySQL Version 5.7. DB Instance Class: db.t2.micro.</td>
 <td>free</td>
-</tr>
-<tr>
-<td>medium-ha-5.7</td>
+</tr><tr>
+<th scope="row">medium-ha-5.7</th>
 <td>100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.large.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>large-ha-5.7</td>
+</tr><tr>
+<th scope="row">large-ha-5.7</th>
 <td>512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.2xlarge.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>xlarge-ha-5.7</td>
+</tr><tr>
+<th scope="row">xlarge-ha-5.7</th>
 <td>2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.4xlarge.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>small-ha-5.7</td>
+</tr><tr>
+<th scope="row">small-ha-5.7</th>
 <td>20GB Storage, Dedicated Instance, Highly Available. Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.t2.small.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>small-5.7</td>
+</tr><tr>
+<th scope="row">small-5.7</th>
 <td>20GB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.t2.small.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>medium-5.7</td>
+</tr><tr>
+<th scope="row">medium-5.7</th>
 <td>100GB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.large.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>large-5.7</td>
+</tr><tr>
+<th scope="row">large-5.7</th>
 <td>512GB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.2xlarge.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>xlarge-5.7</td>
+</tr><tr>
+<th scope="row">xlarge-5.7</th>
 <td>2TB Storage, Dedicated Instance, Storage Encrypted. MySQL Version 5.7. DB Instance Class: db.m4.4xlarge.</td>
 <td>paid</td>
 </tr>
-
         </table>
       </div><h4 id="postgres">Postgres</h4><div class="table-container">
         <table>
@@ -185,98 +175,79 @@ plans to everyone:</p>
 <th>service plan</th>
 <th>description</th>
 <th>free or paid</th>
-</tr>
-<tr>
-<td>tiny-unencrypted-9.5</td>
+</tr><tr>
+<th scope="row">tiny-unencrypted-9.5</th>
 <td>5GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.t2.micro.</td>
 <td>free</td>
-</tr>
-<tr>
-<td>medium-ha-9.5</td>
+</tr><tr>
+<th scope="row">medium-ha-9.5</th>
 <td>100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.large.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>large-ha-9.5</td>
+</tr><tr>
+<th scope="row">large-ha-9.5</th>
 <td>512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.2xlarge.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>xlarge-ha-9.5</td>
+</tr><tr>
+<th scope="row">xlarge-ha-9.5</th>
 <td>2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.4xlarge.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>small-ha-9.5</td>
+</tr><tr>
+<th scope="row">small-ha-9.5</th>
 <td>20GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.t2.small.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>small-9.5</td>
+</tr><tr>
+<th scope="row">small-9.5</th>
 <td>20GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.t2.small.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>medium-9.5</td>
+</tr><tr>
+<th scope="row">medium-9.5</th>
 <td>100GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.large.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>large-9.5</td>
+</tr><tr>
+<th scope="row">large-9.5</th>
 <td>512GB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.2xlarge.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>xlarge-9.5</td>
+</tr><tr>
+<th scope="row">xlarge-9.5</th>
 <td>2TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 9.5. DB Instance Class: db.m4.4xlarge.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>tiny-unencrypted-10</td>
+</tr><tr>
+<th scope="row">tiny-unencrypted-10</th>
 <td>5GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.micro.</td>
 <td>free</td>
-</tr>
-<tr>
-<td>small-10</td>
+</tr><tr>
+<th scope="row">small-10</th>
 <td>20GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.small.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>small-ha-10</td>
+</tr><tr>
+<th scope="row">small-ha-10</th>
 <td>20GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.small.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>medium-10</td>
+</tr><tr>
+<th scope="row">medium-10</th>
 <td>100GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.large.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>medium-ha-10</td>
+</tr><tr>
+<th scope="row">medium-ha-10</th>
 <td>100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.large.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>large-10</td>
+</tr><tr>
+<th scope="row">large-10</th>
 <td>512GB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.2xlarge.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>large-ha-10</td>
+</tr><tr>
+<th scope="row">large-ha-10</th>
 <td>512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.2xlarge.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>xlarge-10</td>
+</tr><tr>
+<th scope="row">xlarge-10</th>
 <td>2TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.4xlarge.</td>
 <td>paid</td>
-</tr>
-<tr>
-<td>xlarge-ha-10</td>
+</tr><tr>
+<th scope="row">xlarge-ha-10</th>
 <td>2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.4xlarge.</td>
 <td>paid</td>
 </tr>
-
         </table>
       </div><h3 id="current-analysis">Current analysis</h3><p>In <a href="https://www.pivotaltracker.com/n/projects/1275640/stories/167839682">#167839682</a> we had a look
 at the usage on our existing databases and concluded that, for the most part, the existing plans are
@@ -292,28 +263,22 @@ plans smaller than that.</p>
           <tr>
 <th>plan</th>
 <th>price / month</th>
-</tr>
-<tr>
-<td>tiny</td>
+</tr><tr>
+<th scope="row">tiny</th>
 <td>£12.03</td>
-</tr>
-<tr>
-<td>small</td>
+</tr><tr>
+<th scope="row">small</th>
 <td>£24.50</td>
-</tr>
-<tr>
-<td>small-ha</td>
+</tr><tr>
+<th scope="row">small-ha</th>
 <td>£48.98</td>
-</tr>
-<tr>
-<td>medium</td>
+</tr><tr>
+<th scope="row">medium</th>
 <td>£125.94</td>
-</tr>
-<tr>
-<td>medium-ha</td>
+</tr><tr>
+<th scope="row">medium-ha</th>
 <td>£251.79</td>
 </tr>
-
         </table>
       </div><p>If we were to increase the disk size on small instances from the current 2G to 100G, this would
 cause the small plans to increase roughly as follows (based on Ireland prices):</p>
@@ -322,28 +287,22 @@ cause the small plans to increase roughly as follows (based on Ireland prices):<
           <tr>
 <th>plan</th>
 <th>price / month</th>
-</tr>
-<tr>
-<td>tiny</td>
+</tr><tr>
+<th scope="row">tiny</th>
 <td>£12.03</td>
-</tr>
-<tr>
-<td>small</td>
+</tr><tr>
+<th scope="row">small</th>
 <td>£34.40 (was £24.50)</td>
-</tr>
-<tr>
-<td>small-ha</td>
+</tr><tr>
+<th scope="row">small-ha</th>
 <td>£67.88 (was £48.98)</td>
-</tr>
-<tr>
-<td>medium</td>
+</tr><tr>
+<th scope="row">medium</th>
 <td>£125.94</td>
-</tr>
-<tr>
-<td>medium-ha</td>
+</tr><tr>
+<th scope="row">medium-ha</th>
 <td>£251.79</td>
 </tr>
-
         </table>
       </div><p>We have about 100 &ldquo;small&rdquo; databases, of which 28 are HA and 70 are not. This means if we changed the
 disk on the existing plans our tenants would have to pay an extra £1,200/month (but on the flip
@@ -360,44 +319,34 @@ m4).</p>
           <tr>
 <th>service plan</th>
 <th>summary</th>
-</tr>
-<tr>
-<td>tiny-unencrypted-11</td>
+</tr><tr>
+<th scope="row">tiny-unencrypted-11</th>
 <td>5GB Storage, NOT BACKED UP. DB Instance Class: db.t3.micro.</td>
-</tr>
-<tr>
-<td>small-11</td>
+</tr><tr>
+<th scope="row">small-11</th>
 <td>100GB Storage. DB Instance Class: db.t3.small.</td>
-</tr>
-<tr>
-<td>small-ha-11</td>
+</tr><tr>
+<th scope="row">small-ha-11</th>
 <td>100GB Storage. DB Instance Class: db.t3.small.</td>
-</tr>
-<tr>
-<td>medium-11</td>
+</tr><tr>
+<th scope="row">medium-11</th>
 <td>100GB Storage. DB Instance Class: db.m5.large.</td>
-</tr>
-<tr>
-<td>medium-ha-11</td>
+</tr><tr>
+<th scope="row">medium-ha-11</th>
 <td>100GB Storage. DB Instance Class: db.m5.large.</td>
-</tr>
-<tr>
-<td>large-11</td>
+</tr><tr>
+<th scope="row">large-11</th>
 <td>512GB Storage. DB Instance Class: db.m5.2xlarge.</td>
-</tr>
-<tr>
-<td>large-ha-11</td>
+</tr><tr>
+<th scope="row">large-ha-11</th>
 <td>512GB Storage. DB Instance Class: db.m5.2xlarge.</td>
-</tr>
-<tr>
-<td>xlarge-11</td>
+</tr><tr>
+<th scope="row">xlarge-11</th>
+<td>2TB Storage. DB Instance Class: db.m5.4xlarge.</td>
+</tr><tr>
+<th scope="row">xlarge-ha-11</th>
 <td>2TB Storage. DB Instance Class: db.m5.4xlarge.</td>
 </tr>
-<tr>
-<td>xlarge-ha-11</td>
-<td>2TB Storage. DB Instance Class: db.m5.4xlarge.</td>
-</tr>
-
         </table>
       </div><p>(note: t3 / m5 instances, small plans have 100G storage instead of 20G)</p>
 <h3 id="create-new-plans-for-mysql-8">Create new plans for mysql 8</h3><p>We should play <a href="https://www.pivotaltracker.com/story/show/168322475">a story to add the following new plans</a>:</p>
@@ -406,44 +355,34 @@ m4).</p>
           <tr>
 <th>service plan</th>
 <th>summary</th>
-</tr>
-<tr>
-<td>tiny-unencrypted-8</td>
+</tr><tr>
+<th scope="row">tiny-unencrypted-8</th>
 <td>5GB Storage. DB Instance Class: db.t3.micro.</td>
-</tr>
-<tr>
-<td>small-8</td>
+</tr><tr>
+<th scope="row">small-8</th>
 <td>100GB Storage. DB Instance Class: db.t3.small.</td>
-</tr>
-<tr>
-<td>small-ha-8</td>
+</tr><tr>
+<th scope="row">small-ha-8</th>
 <td>100GB Storage. DB Instance Class: db.t3.small.</td>
-</tr>
-<tr>
-<td>medium-8</td>
+</tr><tr>
+<th scope="row">medium-8</th>
 <td>100GB Storage. DB Instance Class: db.m5.large.</td>
-</tr>
-<tr>
-<td>medium-ha-8</td>
+</tr><tr>
+<th scope="row">medium-ha-8</th>
 <td>100GB Storage. DB Instance Class: db.m5.large.</td>
-</tr>
-<tr>
-<td>large-8</td>
+</tr><tr>
+<th scope="row">large-8</th>
 <td>512GB Storage. DB Instance Class: db.m5.2xlarge.</td>
-</tr>
-<tr>
-<td>large-ha-8</td>
+</tr><tr>
+<th scope="row">large-ha-8</th>
 <td>512GB Storage. DB Instance Class: db.m5.2xlarge.</td>
-</tr>
-<tr>
-<td>xlarge-8</td>
+</tr><tr>
+<th scope="row">xlarge-8</th>
+<td>2TB Storage. DB Instance Class: db.m5.4xlarge.</td>
+</tr><tr>
+<th scope="row">xlarge-ha-8</th>
 <td>2TB Storage. DB Instance Class: db.m5.4xlarge.</td>
 </tr>
-<tr>
-<td>xlarge-ha-8</td>
-<td>2TB Storage. DB Instance Class: db.m5.4xlarge.</td>
-</tr>
-
         </table>
       </div><p>(note: t3 / m5 instances, small plans have 100G storage instead of 20G)</p>
 <h3 id="create-new-quot-small-high-iops-quot-and-quot-small-ha-high-iops-quot-plans-for-mysql-5-7-postgres-9-5-and-10">Create new &ldquo;small-high-iops&rdquo; and &ldquo;small-ha-high-iops&rdquo; plans, for mysql 5.7, postgres 9.5 and 10</h3><p>We should play <a href="https://www.pivotaltracker.com/story/show/168322617">a story to add &ldquo;High IOPS&rdquo; plans for the existing postgres / mysql versions</a>.</p>

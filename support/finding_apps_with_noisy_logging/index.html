@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -82,7 +82,7 @@ logging more than they should be.</p>
 <p>Install the plugin with <code>cf install-plugin -r CF-Community &quot;top&quot;</code>, then (while
 logged in as a global admin) run <code>cf top</code>.</p>
 <p>You should see something like:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>┌────────────────────────────────────────────────────────────────────────────────────────────────────┐
 │Events: 4,768 (337/sec)             Warm-up: 40s           04-12-2019 09:08:00                      │
 │Target: [admin]api.towers.dev.cloudpipeline.digital                                                   │
 │Stack: cflinuxfs3    Cells: 2                                                                       │

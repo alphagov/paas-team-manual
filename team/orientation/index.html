@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -246,33 +246,30 @@ familiar with each one.</p>
 <th>What</th>
 <th>Get started</th>
 <th>Learn the concepts</th>
-</tr>
-<tr>
-<td>Cloud Foundry, as a user</td>
+</tr><tr>
+<th scope="row">Cloud Foundry, as a user</th>
 <td><a href="https://docs.cloud.service.gov.uk">Our getting started guide</a></td>
 <td><a href="http://docs.cloudfoundry.org/devguide/deploy-apps/prepare-to-deploy.html">Considerations for application developers</a></td>
-</tr>
-<tr>
-<td><a href="http://concourse-ci.org/">Concourse</a>, the CI server we use for deployment</td>
+</tr><tr>
+<th scope="row"><a href="http://concourse-ci.org/">Concourse</a>, the CI server we use for deployment</th>
 <td><a href="https://github.com/starkandwayne/concourse-tutorial">Concourse tutorials</a></td>
 <td><a href="http://concourse-ci.org/concepts.html">Concepts</a></td>
-</tr>
-<tr>
-<td><a href="http://bosh.io/">BOSH</a>. It deploys Cloud Foundry and other things.</td>
+</tr><tr>
+<th scope="row"><a href="http://bosh.io/">BOSH</a>. It deploys Cloud Foundry and other things.</th>
 <td><a href="http://mariash.github.io/learn-bosh/">A guide to using BOSH</a></td>
 <td><a href="http://bosh.io/docs/problems.html">What problems does BOSH solve?</a></td>
-</tr>
-<tr>
-<td>Cloud Foundry, for those managing it</td>
+</tr><tr>
+<th scope="row">Cloud Foundry, for those managing it</th>
 <td></td>
-<td><a href="https://docs.google.com/presentation/d/1LkR4Y3jLBQ8uskKeLIyKtSKDoutnAvty-vSSGfVNXZU/view">Cloud Foundry presentation, written by the team</a>, an <a href="https://docs.google.com/presentation/d/1sZH1Nn_GiYfpBtT6br_AnZn_dynLzvYizJ9aQ4Zc1Ww/view">older presentation from before the move to Diego archecture</a></td>
-</tr>
-<tr>
-<td>Terraform</td>
-<td>The terraform <a href="https://www.terraform.io/intro/index.html">intro</a></td>
+<td>
+<a href="https://docs.google.com/presentation/d/1LkR4Y3jLBQ8uskKeLIyKtSKDoutnAvty-vSSGfVNXZU/view">Cloud Foundry presentation, written by the team</a>, an <a href="https://docs.google.com/presentation/d/1sZH1Nn_GiYfpBtT6br_AnZn_dynLzvYizJ9aQ4Zc1Ww/view">older presentation from before the move to Diego archecture</a>
+</td>
+</tr><tr>
+<th scope="row">Terraform</th>
+<td>The terraform <a href="https://www.terraform.io/intro/index.html">intro</a>
+</td>
 <td>The intro also covers key concepts.</td>
 </tr>
-
         </table>
       </div><h2 id="communicating-with-hand-signals">Communicating with Hand Signals</h2><p>We use hand signals at our meetings to help make them more productive and
 accessible for every person on the team. You can find out more about how this
@@ -312,11 +309,9 @@ of effort by the team when effort is played down.</p>
         <table>
           <tr>
 <th>Anti People</th>
-</tr>
-<tr>
+</tr><tr>
 <td>Resource(s)</td>
 </tr>
-
         </table>
       </div><p>Classic Management 1.0 speak, reducing people to Resources. We should not be
 doing this.</p>

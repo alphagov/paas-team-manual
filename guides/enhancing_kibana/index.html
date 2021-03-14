@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -124,7 +124,7 @@
 <ol>
 <li>To restart reading from the beginning of file: <code>rm data/plugins/inputs/file/.sincedb_*</code> and restart logstash</li>
 <li><p>To start reading the log file from beginning everytime you restart logstash:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>file {
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>file {
     path =&gt; "/Users/colin/Documents/Boulot/gds/logstash/nginx_access.log"
     start_position =&gt; "beginning"
     sincedb_path =&gt; "/dev/null"
@@ -133,9 +133,9 @@
 <li><p>If you combine it with https://www.elastic.co/guide/en/logstash/current/reloading-config.html you can save a lot of time</p></li>
 </ol>
 <h2 id="working-example">Working example</h2><p>Now, let&rsquo;s say we&rsquo;ve got a log like:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>May 11 13:24:09 57n27d4b-60p0-42ly-a00a-f913j7b8841f custom_nginx_access: 10.0.1.217 - - [11/May/2017:13:24:09 +0000] "GET /healthz HTTP/1.1" 200 3 "-" "ELB-HealthChecker/1.0"
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>May 11 13:24:09 57n27d4b-60p0-42ly-a00a-f913j7b8841f custom_nginx_access: 10.0.1.217 - - [11/May/2017:13:24:09 +0000] "GET /healthz HTTP/1.1" 200 3 "-" "ELB-HealthChecker/1.0"
 </code></pre></div><p>By adding few extra lines to our logstash configuration file, we can specify, what these actually are:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>if [@source][component] == "custom_nginx_access" {
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>if [@source][component] == "custom_nginx_access" {
   grok {
     match =&gt; {
       "@message" =&gt;
@@ -149,52 +149,40 @@
           <tr>
 <th>Key</th>
 <th>Value</th>
-</tr>
-<tr>
-<td>nginx.agent</td>
+</tr><tr>
+<th scope="row">nginx.agent</th>
 <td>&ldquo;ELB-HealthChecker/1.0&rdquo;</td>
-</tr>
-<tr>
-<td>nginx.bytes</td>
+</tr><tr>
+<th scope="row">nginx.bytes</th>
 <td>566</td>
-</tr>
-<tr>
-<td>nginx.clientip</td>
+</tr><tr>
+<th scope="row">nginx.clientip</th>
 <td>10.0.16.6</td>
-</tr>
-<tr>
-<td>nginx.httpversion</td>
+</tr><tr>
+<th scope="row">nginx.httpversion</th>
 <td>1.1</td>
-</tr>
-<tr>
-<td>nginx.request</td>
+</tr><tr>
+<th scope="row">nginx.request</th>
 <td>/info</td>
-</tr>
-<tr>
-<td>nginx.response</td>
+</tr><tr>
+<th scope="row">nginx.response</th>
 <td>200</td>
-</tr>
-<tr>
-<td>nginx.response_time</td>
+</tr><tr>
+<th scope="row">nginx.response_time</th>
 <td>0.029</td>
-</tr>
-<tr>
-<td>nginx.timestamp</td>
+</tr><tr>
+<th scope="row">nginx.timestamp</th>
 <td>11/May/2017:14:59:04 +0000</td>
-</tr>
-<tr>
-<td>nginx.vcap_request_id</td>
+</tr><tr>
+<th scope="row">nginx.vcap_request_id</th>
 <td>9ed66476-764d-486e-b52c-05280929f726</td>
-</tr>
-<tr>
-<td>nginx.verb</td>
+</tr><tr>
+<th scope="row">nginx.verb</th>
 <td>GET</td>
-</tr>
-<tr>
-<td>nginx.x_forwarded_for</td>
+</tr><tr>
+<th scope="row">nginx.x_forwarded_for</th>
 <td>10.0.0.116</td>
 </tr>
-
         </table>
       </div>
 

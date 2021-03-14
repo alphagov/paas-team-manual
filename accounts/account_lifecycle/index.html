@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -186,7 +186,7 @@ When creating an org, at least one person with an email address belonging to the
 <li><p>CC the Delivery Manager on the Zendesk ticket, so they can proceed with payment and support onboarding.</p></li>
 </ol>
 <h3 id="how-to-upgrade-an-org">How to upgrade an org</h3><p>To upgrade an org from a trial to paid, alter the orgs quota using the CF CLI.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>cf set-quota ORG QUOTA
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf set-quota ORG QUOTA
 </code></pre></div><p>Upgrade a trial org to the <code>small</code> quota. The Zendesk macro tells tenants how to request a larger quota.</p>
 <h2 id="delivery-manager-payment-and-support-onboarding">Delivery Manager payment and support onboarding </h2>
 <ol>

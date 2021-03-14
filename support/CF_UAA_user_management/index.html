@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -114,23 +114,23 @@
 <a href="https://github.com/alphagov/paas-cf">alphagov/paas-cf</a>. Using <a href="http://bundler.io/">Bundler</a> will ensure that you have the
 appropriate version.</p>
 <p>To install:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>➜  paas-cf git:(master) ✗ bundle install
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>➜  paas-cf git:(master) ✗ bundle install
 …
 </code></pre></div><p>To confirm that it works:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>➜  paas-cf git:(master) ✗ bundle exec uaac help
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>➜  paas-cf git:(master) ✗ bundle exec uaac help
 
 UAA Command Line Interface
 …
 </code></pre></div><h3 id="log-in">Log in</h3><p>To target an environment:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac target https://login.&lt;SYSTEM_DOMAIN&gt;
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle exec uaac target https://login.&lt;SYSTEM_DOMAIN&gt;
 </code></pre></div><p>You can log in with a normal CF account. You should use either:</p>
 
 <ul>
 <li><p>for persistent environments where we have SSO admin users:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac token sso get cf -s ""
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle exec uaac token sso get cf -s ""
 </code></pre></div></li>
 <li><p>for development environments where we have a single CF admin account:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac token owner get cf admin -s ""
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle exec uaac token owner get cf admin -s ""
 </code></pre></div></li>
 </ul>
 <p>Please avoid using <code>uaa_admin_client_secret</code> and <code>uaa_admin_password</code>
@@ -140,9 +140,9 @@ track activity in persistent environments.</p>
 worth re-authenticating instead to ensure that you are still targeting the
 environment that you expect.</p>
 <h2 id="finding-a-user-account">Finding a user account</h2><p>If you know the exact username of the account:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac user get &lt;EMAIL&gt;
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle exec uaac user get &lt;EMAIL&gt;
 </code></pre></div><p>If you only know part of the username:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac users 'username co "&lt;NAME&gt;"'
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle exec uaac users 'username co "&lt;NAME&gt;"'
 </code></pre></div><p>The above two commands will only work for users who are not using single-sign
 on, PaaSmin has a page for getting diagnostic information about a user.
 Navigate to one of the following, depending on the region:</p>
@@ -165,7 +165,7 @@ Navigate to one of the following, depending on the region:</p>
 <li>remove the account completely (<code>cf delete-user</code>) once we have received confirmation</li>
 </ul>
 <p>From <a href="https://github.com/alphagov/paas-cf">alphagov/paas-cf</a>:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bundle install
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle install
 cd scripts
 TARGET=$(cf curl /v2/info | jq -r .token_endpoint) \
   TOKEN=$(cf oauth-token) \
@@ -173,7 +173,7 @@ TARGET=$(cf curl /v2/info | jq -r .token_endpoint) \
 </code></pre></div><h2 id="finding-out-org-membership">Finding out org membership</h2><p>In order to notify the org manager of a given user, we need to find out who that would be. UAA does not know which org/space user belongs to. This information is only available to cloud controller: <code>cf curl /v2/users/&lt;uaa_user_id&gt;/summary</code></p>
 <p>The user summary contains all orgs and spaces they are member of. It also contains the UAA ID of managers of these. To get user name from UAA id, enter: <code>bundle exec uaac curl /Users/&lt;uaa_user_id&gt; | grep userName</code></p>
 <h2 id="notifying-the-org-manager">Notifying the org manager</h2><p>Send an email from support email address: <code>gov-uk-paas-support@digital.cabinet-office.gov.uk</code>. Example email:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Hi &lt;org manager 1st name&gt;,
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Hi &lt;org manager 1st name&gt;,
 
 We have noticed that &lt;user name of disabled account&gt; was inactive &lt;describe how we found out, e.g. when we tried to send him email and it got bounced&gt;. We wondered if perhaps this person has left GDS. We have noticed this user still has an account in `&lt;org name&gt;` organization and `&lt;space name(s)&gt;` space. We have disabled this user for now.
 
@@ -186,11 +186,11 @@ PaaS for Government
 <h2 id="global-auditor-role">Global Auditor role</h2><p>We use the <a href="https://docs.cloudfoundry.org/concepts/roles.html#roles-and-permissions">Global Auditor role</a> for team members of our team that need to
 query or report on usage but don&rsquo;t have production access.</p>
 <p>To add someone:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac member add cloud_controller.global_auditor &lt;EMAIL&gt;
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle exec uaac member add cloud_controller.global_auditor &lt;EMAIL&gt;
 </code></pre></div><p>To remove someone:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bundle exec uaac member delete cloud_controller.global_auditor &lt;EMAIL&gt;
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle exec uaac member delete cloud_controller.global_auditor &lt;EMAIL&gt;
 </code></pre></div><p>To see the current members:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>(set -o pipefail \
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>(set -o pipefail \
   &amp;&amp; bundle exec uaac group get cloud_controller.global_auditor \
   | awk '$1 == "value:" {print $2}' \
   | xargs -n1 -I{} bundle exec uaac users "id eq \"{}\"" -a username)

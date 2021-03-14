@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -136,7 +136,7 @@ care about are included.</p>
 <p>If something goes wrong then in many cases
 you can obtain the old passwords from the credential history in Credhub using
 the <code>--versions</code> flag of <code>credhub get</code>:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>$ credhub get -n /prod-lon/prod-lon/cf_admin_password --versions=10
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ credhub get -n /prod-lon/prod-lon/cf_admin_password --versions=10
 
 - id: 764582ca-b3f0-4d08-8da4-6a48b69907fd
   name: /prod-lon/prod-lon/cf_admin_password

@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -107,7 +107,7 @@
 <li>BOSH</li>
 <li>CredHub</li>
 </ul>
-<p><a href="../images/adr452-bosh-access-with-mtls.svg" target="_blank" rel="noopener noreferrer"><img src="../images/adr452-bosh-access-with-mtls.svg" alt="architecture" /></a></p>
+<p><a href="../images/adr452-bosh-access-with-mtls.svg" rel="noopener noreferrer"><img src="../images/adr452-bosh-access-with-mtls.svg" alt="architecture" /></a></p>
 <p>By passing all the inbound connections through an mTLS proxy, we are able to keep multiple authentication factors in play. A DDoS attack on the proxy would not place additional load directly on the BOSH Director.</p>
 <h2 id="status">Status</h2><p>Accepted</p>
 <h2 id="consequences">Consequences</h2><p>We will no longer rely on IP allow lists when accessing the components on the BOSH Director.</p>

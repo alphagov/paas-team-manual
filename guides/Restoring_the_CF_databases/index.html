@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -129,7 +129,7 @@
 <h2 id="restoring-an-individual-table-or-database">Restoring an individual table or database</h2><p>Below are some generic instructions on restoring the CF RDS instance databases or tables. They are generic as we did not agree on specific situations we are guarding against. For example, restoring to fix corrupted data would be very different to fixing accidental deletion of a table/database.</p>
 <p><strong>1.</strong> First, follow the instructions above on creating an RDS instance from a backup. This instance will provide the data for the restoration.</p>
 <p><strong>2.</strong> Create a tunnel to the backup via Concourse:</p>
-<div class="highlight"><pre class="highlight plaintext"><code># CHANGEME to your paas-bootstrap directory
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># CHANGEME to your paas-bootstrap directory
 cd /path/to/paas-bootstrap
 
 # CHANGEME to the endpoint (hostname) of the RDS instance you
@@ -138,13 +138,13 @@ db_endpoint='some-db-instance-name.colgoy4debsd.eu-west-1.rds.amazonaws.com'
 
 make tunnel TUNNEL=5432:${db_endpoint}:5432
 </code></pre></div><p><strong>3.</strong> The password for the instance created from a snapshot will be the same as the original:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>db_password=$(
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>db_password=$(
   concourse/scripts/val_from_yaml.rb \
   secrets_cf_db_master_password \
   &lt;(aws s3 cp s3://gds-paas-${DEPLOY_ENV}-state/cf-secrets.yml -) \
 )
 </code></pre></div><p><strong>4.</strong> Run commands from Docker. The following example dumps a single table in binary format. You can omit the <code>--table</code> option if you want the entire database, and you can use <code>-Fp</code> instead of <code>-Fc</code> to produce a plain-text output. Plain-text makes it easier to see what it intends to do, but doesn&rsquo;t work fully with <code>pg_restore</code>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>docker pull postgres:9.5-alpine
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>docker pull postgres:9.5-alpine
 docker run --rm -ti \
   -e PGPASSWORD="${db_password}" \
   postgres:9.5-alpine \
@@ -154,7 +154,7 @@ docker run --rm -ti \
     --dbname=&lt;db_name&gt; \
     --table &lt;table_name&gt; &gt; "/tmp/&lt;table_name&gt;.sql"
 </code></pre></div><p><strong>5.</strong> Close the tunnel and create a new one to your CloudFoundry RDS instance:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>make stop-tunnel TUNNEL=5432:${db_endpoint}:5432
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>make stop-tunnel TUNNEL=5432:${db_endpoint}:5432
 
 db_endpoint=$(
   aws s3 cp s3://gds-paas-${DEPLOY_ENV}-state/cf.tfstate - \
@@ -162,10 +162,10 @@ db_endpoint=$(
 )
 make tunnel TUNNEL=5432:${db_endpoint}:5432
 </code></pre></div><p><strong>6.</strong> To restore into the CloudFoundry database you can use Docker, as per the instructions above, but swapping your <code>pg_dump</code> command for <code>pg_restore</code> with the necessary options:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>pg_restore --dbname=&lt;db_name&gt; --host=docker.for.mac.localhost --username=dbadmin &lt;filename&gt;
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>pg_restore --dbname=&lt;db_name&gt; --host=docker.for.mac.localhost --username=dbadmin &lt;filename&gt;
 </code></pre></div><p>You can use the <code>--data-only</code> option for situations where you have the schema but need to restore data. You can use the <code>--table</code> option to restore individual tables, but make sure to read <code>man pg_restore</code> for its caveats. This approach will work for deleted tables and databases, but not corrupted ones.</p>
 <p>If you have corrupted data you may need to log in first to do manual cleanup, in which case use this command from Docker to get an interactive shell:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>psql \
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>psql \
   --host=docker.for.mac.localhost \
   --username=dbadmin \
   --dbname=&lt;db_name&gt;

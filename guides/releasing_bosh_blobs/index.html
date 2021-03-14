@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -95,23 +95,23 @@
 <h2 id="steps">Steps</h2><p>In this example we&rsquo;re going to upload Go 1.9 to the blob store.</p>
 <p>You have to run the following commands from a BOSH release.</p>
 <p><strong>1.</strong> First download the blob:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>curl -L https://redirector.gvt1.com/edgedl/go/go1.9.linux-amd64.tar.gz -O
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>curl -L https://redirector.gvt1.com/edgedl/go/go1.9.linux-amd64.tar.gz -O
 </code></pre></div><p><strong>2.</strong> Add the new blob to the BOSH release</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bosh add-blob [PATH TO]/go1.9.linux-amd64.tar.gz golang/go1.9.linux-amd64.tar.gz
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bosh add-blob [PATH TO]/go1.9.linux-amd64.tar.gz golang/go1.9.linux-amd64.tar.gz
 </code></pre></div><p><strong>3.</strong> As we are assuming roles from a parent account for AWS access you have to create the file <strong>config/private.yml</strong> with the following content:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>---
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>---
 blobstore:
   provider: s3
   options:
     credentials_source: env_or_profile
 
 </code></pre></div><p><strong>4.</strong> Check if adding the blob was successful:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bosh blobs
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bosh blobs
 </code></pre></div><p>It should list the added blob as new.</p>
 <p><strong>5.</strong> Upload the new blob to the blobstore</p>
-<div class="highlight"><pre class="highlight plaintext"><code>aws-vault exec &lt;ACCOUNT-NAME&gt; -- bosh upload-blobs
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws-vault exec &lt;ACCOUNT-NAME&gt; -- bosh upload-blobs
 </code></pre></div><p><strong>6.</strong> The <strong>config/blobs.yml</strong> should be updated now and you can commit the new or updated blob definiton.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>golang/go1.9.linux-amd64.tar.gz:
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>golang/go1.9.linux-amd64.tar.gz:
   object_id: e414cd61-f037-4d47-a671-c7909b39182c
   sha: 6a00c39435edc1e102f1fb75cc1137fba4c9e4e2
   size: 102601309

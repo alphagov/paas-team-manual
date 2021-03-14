@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -101,7 +101,7 @@
   <h1 id="shipping-elasticsearch-metrics-to-our-tenants">Shipping Elasticsearch metrics to our tenants</h1><p>As of July 2020 we provide Elasticsearch metrics to several tenant
 Prometheuses. This is an informal &ldquo;alpha&rdquo; and only on an in-hours,
 best-effort basis.</p>
-<h2 id="how-it-works">How it works</h2><p><a href="../../diagrams/elasticsearch-metric-exporter-alpha.jpg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/elasticsearch-metric-exporter-alpha.jpg" alt="Diagram of the alpha Elasticsearch Prometheus exporter" /></a>
+<h2 id="how-it-works">How it works</h2><p><a href="../../diagrams/elasticsearch-metric-exporter-alpha.jpg" rel="noopener noreferrer"><img src="../../diagrams/elasticsearch-metric-exporter-alpha.jpg" alt="Diagram of the alpha Elasticsearch Prometheus exporter" /></a>
 <a href="../../diagrams/elasticsearch-metric-exporter-alpha.svg">Link to SVG version of the diagram</a></p>
 <h1 id="elasticsearch-metric-exporter-alpha">Elasticsearch Metric Exporter alpha</h1><p><a href="https://www.elastic.co/elasticsearch/">Elasticsearch</a> is an open source full-text RESTful search and analytics engine that allows you to store and search data.</p>
 <p>GOV.UK Platform as a Service (PaaS) offer Elasticsearch as a service to our tenants. We procure Elasticsearch from <a href="https://aiven.io/">Aiven</a>, who offer fully managed open source data infrastructure running in public cloud environments. The GOV.UK PaaS Elasticsearch services are hosted on AWS EC2 instances in Ireland or London, depending on your choice of GOV.UK PaaS region.</p>
@@ -149,7 +149,7 @@ the existing manifests.</p>
 <p>Next you need to make a JSON file listing all their service instances
 and some metadata that will be turned into Prometheus metric labels.
 Unfortunately we don&rsquo;t have a script for this yet. Here&rsquo;s an example:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>[
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>[
   {
     "aiven_service": "${DEPLOY_ENV}-${SERVICE_INSTANCE_GUID}",
     "extra_labels": {

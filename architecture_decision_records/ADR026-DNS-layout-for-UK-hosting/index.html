@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -130,32 +130,30 @@
           <tr>
 <th>Ireland</th>
 <th>London</th>
-</tr>
-<tr>
-<td><em>api.cloud.service.gov.uk</em></td>
+</tr><tr>
+<th scope="row"><em>api.cloud.service.gov.uk</em>
+</th>
 <td><em>api.london.cloud.service.gov.uk</em></td>
-</tr>
-<tr>
-<td><em>sample-app.cloudapps.digital</em></td>
+</tr><tr>
+<th scope="row"><em>sample-app.cloudapps.digital</em>
+</th>
 <td><em>sample-app.london.cloudapps.digital</em></td>
 </tr>
-
         </table>
       </div><h4 id="staging">Staging</h4><div class="table-container">
         <table>
           <tr>
 <th>Ireland</th>
 <th>London</th>
-</tr>
-<tr>
-<td><em>api.staging.cloudpipeline.digital</em></td>
+</tr><tr>
+<th scope="row"><em>api.staging.cloudpipeline.digital</em>
+</th>
 <td><em>api.london.staging.cloudpipeline.digital</em></td>
-</tr>
-<tr>
-<td><em>sample-app.staging.cloudpipelineapps.digital</em></td>
+</tr><tr>
+<th scope="row"><em>sample-app.staging.cloudpipelineapps.digital</em>
+</th>
 <td><em>sample-app.london.staging.cloudpipelineapps.digital</em></td>
 </tr>
-
         </table>
       </div><h2 id="status">Status</h2><p>Accepted</p>
 <h2 id="consequences">Consequences</h2><p>New tenants will be encouraged to use London hosting. Plans need to be derived to notify exiting tenants to move their apps and services to London.</p>

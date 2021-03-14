@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -119,24 +119,19 @@ contention and not all the cell memory is being used.</p>
           <tr>
 <th>State</th>
 <th>Expected behaviour</th>
-</tr>
-<tr>
-<td>All cells operational</td>
+</tr><tr>
+<th scope="row">All cells operational</th>
 <td>Enough capacity to allow some but not all tenants to scale up to their full quota. The amount of excess capacity required should be enough to accommodate the fluctuations we can expect over a 3 day period (weekend + reaction time)</td>
-</tr>
-<tr>
-<td>While CF being deployed</td>
+</tr><tr>
+<th scope="row">While CF being deployed</th>
 <td>As above: enough capacity to allow some tenants to scale up to their full quota</td>
-</tr>
-<tr>
-<td>One availability zone failed/degraded</td>
+</tr><tr>
+<th scope="row">One availability zone failed/degraded</th>
 <td>Enough capacity to maintain steady state app usage. Not guaranteed to be able to scale apps up.</td>
-</tr>
-<tr>
-<td>More than one AZ failed</td>
+</tr><tr>
+<th scope="row">More than one AZ failed</th>
 <td>The system is not expected to have sufficient capacity to host all running apps.</td>
 </tr>
-
         </table>
       </div><p>To achieve this we need to start basing our capacity planning on current memory
 occupied by processes on cells, rather than the sum of all quotas given to

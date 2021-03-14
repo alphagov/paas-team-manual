@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -174,7 +174,7 @@ that and ask for things to improve.</p>
 <p>For our wider cultural practices, see the GDS
 <a href="https://gds.blog.gov.uk/2016/05/25/its-ok-to-say-whats-ok/">It&rsquo;s OK</a> poster. For
 instance it&rsquo;s okay to ask for help, it&rsquo;s okay to have quiet days, and many other things.</p>
-<h1 id="development-process">Development process</h1><p><a href="../../diagrams/development-process.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/development-process.svg" alt="Illustration of changes being promoted to prod" /></a></p>
+<h1 id="development-process">Development process</h1><p><a href="../../diagrams/development-process.svg" rel="noopener noreferrer"><img src="../../diagrams/development-process.svg" alt="Illustration of changes being promoted to prod" /></a></p>
 <p><a href="../../diagrams/development-process.svg">Full size version</a></p>
 <p>The development process consists of the following steps:</p>
 
@@ -187,7 +187,7 @@ instance it&rsquo;s okay to ask for help, it&rsquo;s okay to have quiet days, an
 <li><p>The changes are deployed to the production environment.</p></li>
 <li><p>The team move the card to the &lsquo;Done&rsquo; column of the Pivotal Tracker and a team member with appropriate access signs off the work.</p></li>
 </ol>
-<p><a href="../../diagrams/release-sequence.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/release-sequence.svg" alt="Sequence of events promoting a release" /></a></p>
+<p><a href="../../diagrams/release-sequence.svg" rel="noopener noreferrer"><img src="../../diagrams/release-sequence.svg" alt="Sequence of events promoting a release" /></a></p>
 <p><a href="../../diagrams/release-sequence.svg">Full size version</a></p>
 <p>The release process consists of the following steps:</p>
 
@@ -290,7 +290,7 @@ using the <code>merge_pr</code> make task in each repository.</p>
 <p>We only use signed revisions of <a href="https://github.com/alphagov/paas-cf">paas-cf</a> and <a href="https://github.com/alphagov/paas-bootstrap">paas-bootstrap</a> from our concourse pipelines.
 This is enforced by the gpg functionality in Concourse Git resource. We may require signing merges in other repositories in future.</p>
 <h3 id="managing-allowed-signers">Managing allowed signers</h3><p>For every repository we are forcing commit signing on there will be a file called &lsquo;.gpg-id&rsquo; in the root directory. It should contain the public key IDs of every key which is allowed to sign commits. There will also be a helper script for generating the necessary vars file for Concourse. For example:</p>
-<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd </span>paas-cf
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd </span>paas-cf
 make update_merge_keys
 </code></pre></div><p>Run the helper script and commit the changes every time you change the contents of &lsquo;.gpg-id&rsquo;.</p>
 <h3 id="initial-setup-for-signing-commits">Initial setup for signing commits</h3><p>Ensure you have gpg setup on your machine (see our <a href="/guides/GPG/">GPG guide</a> for
@@ -299,7 +299,7 @@ details).</p>
 matches your configured committer name and email address (such as
 <code>Testy McTest &lt;test@example.com&gt;</code>). If this is not sufficient, you can
 configure the signing key that git will use:</p>
-<div class="highlight"><pre class="highlight shell"><code><span class="c">## To apply to all git repos:</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="c">## To apply to all git repos:</span>
 git config <span class="nt">--global</span> user.signingkey &lt;key_id&gt;
 
 <span class="c">## ... or to apply to the current repo only:</span>
@@ -310,11 +310,11 @@ Github can verify commits that you sign as described
 <a href="https://github.com/blog/2144-gpg-signature-verification">here</a>.</p>
 <h3 id="merging-a-branch-into-master">Merging a branch into master</h3><p>We have implemented a helper script to handle merging and signing PRs for you.
 In repos where this is available (for example, paas-cf) PRs can be merged and signed by running:</p>
-<div class="highlight"><pre class="highlight shell"><code>make merge_pr <span class="nv">PR</span><span class="o">=</span>&lt;n&gt;
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>make merge_pr <span class="nv">PR</span><span class="o">=</span>&lt;n&gt;
 </code></pre></div><p>Where <code>n</code> is the PR number.</p>
 <h4 id="manually-merging-and-signing-a-pr">Manually merging and signing a PR</h4><p>PRs can also be be manually merged and signed.</p>
 <p>First check that your working directory is clean, then do the following:</p>
-<div class="highlight"><pre class="highlight shell"><code>git checkout master
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>git checkout master
 git pull <span class="nt">--ff-only</span> origin master
 git merge <span class="nt">--no-ff</span> <span class="nt">-S</span> <span class="nt">-m</span> <span class="s2">"Merge pull request #&lt;n&gt; from alphagov/repo-name</span><span class="se">\n\n</span><span class="s2">&lt;pr_title&gt;"</span> origin/&lt;branch_name&gt;
 git push origin master

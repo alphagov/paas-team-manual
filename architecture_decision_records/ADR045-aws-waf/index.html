@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -93,7 +93,7 @@
   <h1 id="adr045-aws-waf-and-waf-log-access-by-aws-ddos-response-team">ADR045: AWS WAF and WAF Log access by AWS DDoS Response Team</h1><h2 id="context">Context</h2><p>GOV.UK PaaS uses <a href="https://aws.amazon.com/shield/features/#AWS_Shield_Advanced">AWS Shield Advanced</a> as well as AWS WAF to protect from DDoS attacks.</p>
 <p>However the mitigations are not automatic and we have access to the AWS DDoS Response Team 
 (DRT) who are experts in mitigating these types of attack.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Shield Advanced detects web application layer vectors, like web request floods and 
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Shield Advanced detects web application layer vectors, like web request floods and 
 low-and-slow bad bots, but does not automatically mitigate them. To mitigate web 
 application layer vectors, you must employ AWS WAF rules or the DRT must employ the 
 rules on your behalf.

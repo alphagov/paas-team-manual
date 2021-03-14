@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -116,7 +116,7 @@ store and audit operator and platform events.</p>
 <p><code>index=paas sourcetype=&quot;bosh-audit-event&quot;</code></p></li>
 <li><p>An AWS CloudWatch logs agent on each instance ships events on disk to CloudWatch. CloudWatch then forwards logs to Cyber&rsquo;s Central Security Logging Service (<a href="https://github.com/alphagov/centralised-security-logging-service">CSLS</a>) and stores shipped events for 18 months.</p></li>
 </ol>
-<p><a href="../../diagrams/audit-bosh.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/audit-bosh.svg" alt="Diagram of BOSH events" /></a></p>
+<p><a href="../../diagrams/audit-bosh.svg" rel="noopener noreferrer"><img src="../../diagrams/audit-bosh.svg" alt="Diagram of BOSH events" /></a></p>
 <h2 id="cloud-foundry">Cloud Foundry</h2><p>In each environment, the following components generate events we should audit:</p>
 
 <ul>
@@ -132,7 +132,7 @@ store and audit operator and platform events.</p>
 <p><code>index=paas sourcetype=&quot;cf-audit-event&quot;</code></p></li>
 <li><p>An AWS CloudWatch logs agent on each instance ships events on disk to CloudWatch. CloudWatch then forwards logs to Cyber&rsquo;s Central Security Logging Service (<a href="https://github.com/alphagov/centralised-security-logging-service">CSLS</a>) and stores shipped events for 18 months.</p></li>
 </ol>
-<p><a href="../../diagrams/audit-cloudfoundry.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/audit-cloudfoundry.svg" alt="Diagram of Cloud Foundry events" /></a></p>
+<p><a href="../../diagrams/audit-cloudfoundry.svg" rel="noopener noreferrer"><img src="../../diagrams/audit-cloudfoundry.svg" alt="Diagram of Cloud Foundry events" /></a></p>
 
 
             

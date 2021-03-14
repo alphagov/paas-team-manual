@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -126,7 +126,7 @@
 <li><p>Update the submodule in <code>/manifests/cf-deployment</code> for <a href="https://github.com/alphagov/paas-cf/tree/master/manifests/cf-deployment">paas-cf</a> of cf-deployment to the picked version.</p></li>
 <li><p>Use <code>git diff</code> or GitHub compare in the <code>cf-deployment</code> submodule repo to see and review changes to the manifest. For example, to see differences between v1.0.0 and v1.14.0:</p></li>
 </ul>
-<div class="highlight"><pre class="highlight plaintext"><code>  git diff v1.0.0...v1.14.0 cf-deployment.yml
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  git diff v1.0.0...v1.14.0 cf-deployment.yml
 </code></pre></div><p>We also use a number of upstream ops files, so you will want to <code>diff</code> them too. See <a href="https://github.com/alphagov/paas-cf/blob/master/manifests/cf-manifest/scripts/generate-manifest.sh">the manifest generation script</a> for which ones get used.</p>
 <p>Special differences to take into account:</p>
 

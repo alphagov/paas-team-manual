@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -102,7 +102,7 @@
 <p>The current method will be replaced with SSO in order to obtain a UAA token. This token is then used to interact with the rest of the APIs on the BOSH instance.</p>
 <h2 id="implementation">Implementation</h2><p>In the initial implementation we will place UAA on the BOSH director on the internet using the IP allow list and using Google for SSO.</p>
 <p>Access to both BOSH and CredHub will continue to be through SSH Tunnels during this phase of implementation.</p>
-<p><a href="../images/adr451-bosh-access-without-socks.svg" target="_blank" rel="noopener noreferrer"><img src="../images/adr451-bosh-access-without-socks.svg" alt="architecture" /></a></p>
+<p><a href="../images/adr451-bosh-access-without-socks.svg" rel="noopener noreferrer"><img src="../images/adr451-bosh-access-without-socks.svg" alt="architecture" /></a></p>
 <p>By using this method we are retaining the benefit of using IP allow lists whilst removing the shared credential that is in use.</p>
 <h2 id="status">Status</h2><p>Accepted</p>
 <h2 id="consequences">Consequences</h2><p>We will no longer rely on IP allow lists or SSH tunnels and have individual credentials for accessing UAA on the BOSH Director.</p>

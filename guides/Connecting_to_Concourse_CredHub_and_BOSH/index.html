@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -108,24 +108,24 @@ to represent an audited identity instead of shared credentials.</p>
 <li>Uploading secrets to CredHub via the <code>upload-secrets</code> task</li>
 </ul>
 <h2 id="ssh-into-the-concourse-vm">SSH into the Concourse VM</h2><p>To SSH directly into the Concourse VM, use <code>make</code> in <code>paas-bootstrap</code>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>make ssh_concourse
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>make ssh_concourse
 </code></pre></div><h2 id="connecting-bosh-cli-to-bosh">Connecting bosh_cli to BOSH</h2><p><a id="connecting-bosh_cli-to-bosh"></a></p>
 <p>A Makefile task in <code>paas-bootstrap</code> pulls a Docker image,
 sets some environment variables to aid with signing in,
 and runs a container targeting BOSH:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>DEPLOY_ENV=foo make dev bosh-cli
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>DEPLOY_ENV=foo make dev bosh-cli
 </code></pre></div><p>The container will automatically target the CF deployment.
 To target the <code>concourse</code> deployment directly,
 you have to define it for your commands specifically, e.g.:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bosh -d concourse vms
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bosh -d concourse vms
 </code></pre></div><h3 id="bosh-ssh">Bosh SSH</h3><p>To SSH to Bosh-managed VMs you need to go via a gateway, as they aren&rsquo;t exposed publicly.
 We use the Bosh VM as the gateway - the task sets this up automatically.
 From inside the container you can run:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>bosh ssh router/bd695524-353e-43ef-84a6-4e256537bd95
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bosh ssh router/bd695524-353e-43ef-84a6-4e256537bd95
 </code></pre></div><h2 id="ssh-into-the-bosh-vm">SSH into the BOSH VM</h2><p>We use the Makefile task in <code>paas-bootstrap</code> to establish this SSH connection.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>make ssh_bosh
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>make ssh_bosh
 </code></pre></div><h2 id="interact-with-credhub">Interact with CredHub</h2><p>To interact with CredHub directly, use <code>make</code> in <code>paas-cf</code>.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>make dev credhub
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>make dev credhub
 </code></pre></div><p>and follow the instructions.</p>
 <p>To upload secrets:</p>
 

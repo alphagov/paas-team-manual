@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -93,7 +93,7 @@
 <li>incurs no costs to us</li>
 <li>exists as an empty shell in Cloud Foundry</li>
 </ul>
-<p><a href="../../diagrams/process-for-closing-old-trial-accounts.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/process-for-closing-old-trial-accounts.svg" alt="A state diagram showing the possible routes for tenants adopting the paas" /></a></p>
+<p><a href="../../diagrams/process-for-closing-old-trial-accounts.svg" rel="noopener noreferrer"><img src="../../diagrams/process-for-closing-old-trial-accounts.svg" alt="A state diagram showing the possible routes for tenants adopting the paas" /></a></p>
 <div class="table-container">
         <table>
           <tr>
@@ -101,46 +101,39 @@
 <th style="text-align: left">Title</th>
 <th style="text-align: left">Description</th>
 <th style="text-align: left">Max time</th>
-</tr>
-<tr>
-<td style="text-align: left">1</td>
+</tr><tr>
+<th style="text-align: left" scope="row">1</th>
 <td style="text-align: left">New tenant</td>
 <td style="text-align: left">A new tenant that does not have a PaaS account yet</td>
 <td style="text-align: left">Indefinitely</td>
-</tr>
-<tr>
-<td style="text-align: left">2</td>
+</tr><tr>
+<th style="text-align: left" scope="row">2</th>
 <td style="text-align: left">Trial</td>
 <td style="text-align: left">A tenant with a 90 day trial account with the ability to deploy apps and provision small backing services</td>
 <td style="text-align: left">90 days</td>
-</tr>
-<tr>
-<td style="text-align: left">3</td>
-<td style="text-align: left">Billable</td>
+</tr><tr>
+<th style="text-align: left" scope="row">3 Billable</th>
 <td style="text-align: left">A full tenant with a billing arrangement that is being recharged for the resource consumed</td>
 <td style="text-align: left">Indefinitely</td>
-</tr>
-<tr>
-<td style="text-align: left">4</td>
+<td style="text-align: left"></td>
+</tr><tr>
+<th style="text-align: left" scope="row">4</th>
 <td style="text-align: left">Suspended</td>
-<td style="text-align: left">The org is suspended and the tenant will not be able to perform any operations on apps or services.<br /><br />Users will be able to use the apps. Tenants will be able to log in to Cloud Foundry.</td>
+<td style="text-align: left">The org is suspended and the tenant will not be able to perform any operations on apps or services.<br><br>Users will be able to use the apps. Tenants will be able to log in to Cloud Foundry.</td>
 <td style="text-align: left">30 days</td>
-</tr>
-<tr>
-<td style="text-align: left">5</td>
+</tr><tr>
+<th style="text-align: left" scope="row">5</th>
 <td style="text-align: left">Halted</td>
-<td style="text-align: left">The apps are stopped and users will receive &lsquo;404&rsquo; error messages from the platform.<br /><br />The data is preserved and the account will still run up bills for the databases</td>
+<td style="text-align: left">The apps are stopped and users will receive &lsquo;404&rsquo; error messages from the platform.<br><br>The data is preserved and the account will still run up bills for the databases</td>
 <td style="text-align: left">30 days</td>
-</tr>
-<tr>
-<td style="text-align: left">6</td>
+</tr><tr>
+<th style="text-align: left" scope="row">6</th>
 <td style="text-align: left">Removed</td>
-<td style="text-align: left">The application instances and services are deleted by an operator.<br /><br />Users will see no difference compared to a halted/stopped app, but the tenant will have to re-push the app and re-create any backing services to restore their apps.<br /><br />At this point the account cannot incur any billable events and the bill goes to zero.<br /><br />All app, services and data are unavailable.</td>
+<td style="text-align: left">The application instances and services are deleted by an operator.<br><br>Users will see no difference compared to a halted/stopped app, but the tenant will have to re-push the app and re-create any backing services to restore their apps.<br><br>At this point the account cannot incur any billable events and the bill goes to zero.<br><br>All app, services and data are unavailable.</td>
 <td style="text-align: left">Indefinitely</td>
 </tr>
-
         </table>
-      </div><p><a href="../../diagrams/BAU-trial-account-expiry-process-map.svg" target="_blank" rel="noopener noreferrer"><img src="../../diagrams/BAU-trial-account-expiry-process-map.svg" alt="BAU trial account expiry process" /></a></p>
+      </div><p><a href="../../diagrams/BAU-trial-account-expiry-process-map.svg" rel="noopener noreferrer"><img src="../../diagrams/BAU-trial-account-expiry-process-map.svg" alt="BAU trial account expiry process" /></a></p>
 <h2 id="accounts-closure-process">Accounts closure process</h2>
 <ol>
 <li>Review trial organisations<br />

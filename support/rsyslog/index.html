@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -106,7 +106,7 @@ few things you should look into:</p>
 <p>In Kibana, search for <code>@source.component: &quot;rsyslogd-pstats&quot;</code> - this should show
 if rsyslog has full queues / is dropping messages. (See <a href="https://www.pivotaltracker.com/story/show/159559834/comments/193170947">#159559834</a> for more details)</p>
 <p>Use the bosh-cli to <code>ssh</code> onto a router, then:</p>
-<div class="highlight"><pre class="highlight plaintext"><code># May show rsyslog-pstats messages that didn't make it to Kibana
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># May show rsyslog-pstats messages that didn't make it to Kibana
 tail -20000 /var/log/syslog | grep rsyslog-pstats
 
 # How much CPU / memory are the rsyslog processes using?
@@ -118,7 +118,7 @@ df -h | grep ^/
 # How much overall memory usage is there?
 free -o -m
 </code></pre></div><p>It may also be useful to capture the traffic that rsyslog is sending to logit to investigate possible packet loss etc.</p>
-<div class="highlight"><pre class="highlight plaintext"><code>sudo tcpdump host "$(grep -o '[^@]*logit.io' /etc/rsyslog.d/35-syslog-release-forwarding-rules.conf)" -G 120 -W 1 -i eth0 -w logit-traffic.pcap
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo tcpdump host "$(grep -o '[^@]*logit.io' /etc/rsyslog.d/35-syslog-release-forwarding-rules.conf)" -G 120 -W 1 -i eth0 -w logit-traffic.pcap
 </code></pre></div>
 
             

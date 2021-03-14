@@ -48,16 +48,16 @@
       </div>
 
         <div id="toc-heading" class="toc-show fixedsticky">
-          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
             Table of contents <span class="toc-show__icon"></span>
-          </a>
+          </button>
         </div>
 
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
               
-              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
@@ -103,7 +103,7 @@
 <li>App instance memory limits are set as upper memory consumption limit. Because of that, they tend to be set larger for safety. Actual app memory consumption is always lower, many times considerably.</li>
 </ol>
 <p>Practical example - this is a snapsot of our prod deployment in Feb 2017:</p>
-<div class="highlight"><pre class="highlight plaintext"><code>Memory reserved by orgs: 368640 MB (360 GB)
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Memory reserved by orgs: 368640 MB (360 GB)
 Memory reserved by apps: 107108 MB (104 GB)
 Memory actually used by apps: 32868 (32 GB)
 </code></pre></div><p>This is not unusual and CF v1 had default overprovisioning factor of 2 (that is, it advertised 2 times more capacity than actual).</p>
