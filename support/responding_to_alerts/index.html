@@ -84,6 +84,9 @@
         </ul>
       </li>
       <li>
+        <a href="#ddos-mitigation"><span>DDoS mitigation</span></a>
+      </li>
+      <li>
         <a href="#api-latency"><span>API Latency</span></a>
       </li>
       <li>
@@ -183,7 +186,20 @@ to learn who to contact.</p>
 list of managers connected to the instance you&rsquo;re after.</p>
 <p>From <code>paas-cf</code> repository, run the following command:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>./scripts/get-instance-details.sh <span class="s2">"</span><span class="k">${</span><span class="nv">RDS_INSTANCE_ID</span><span class="k">}</span><span class="s2">"</span>
-</code></pre></div><h2 id="api-latency">API Latency</h2><p>Last time we received an alert for API latency, it was a UAA bug that caused
+</code></pre></div><h2 id="ddos-mitigation">DDoS mitigation</h2><p>When AWS detect a possible denial-of-service attack against PaaS, our in-hours
+support gets an email. If you receive such an email, log into AWS Shield and look
+at the details of what AWS have detected.</p>
+<p>AWS automatically mitigate layer 3 and 4 attacks (i.e., junk network traffic.) You
+should monitor PaaS&rsquo;s performance. Unless PaaS is degraded there is likely no need
+to do more than monitor this.</p>
+<p>AWS do not automatically mitigate layer 7 attacks (i.e., mass HTTP requests.) These
+are not always malicious: large submissions to GOV.UK Notify can run at 900rps, and
+AWS detects that as a request flood. Reviewing the details in AWS Shield can help
+identify whether there is a real attack. You can create new AWS WAF rules to combat
+this traffic.</p>
+<p>If facing a large, complex or uncertain attack, contact the AWS DDoS Response Team
+(DRT): https://docs.aws.amazon.com/waf/latest/developerguide/ddos-responding.html.</p>
+<h2 id="api-latency">API Latency</h2><p>Last time we received an alert for API latency, it was a UAA bug that caused
 instances to leak memory. It also resulted in high CPU usage and the quickest
 solution to restoring the platform was to restart both instances one after the
 other.</p>
