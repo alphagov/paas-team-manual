@@ -1,1 +1,48 @@
 @import "govuk_tech_docs";
+
+// override google search input styling
+.gsc-input-box {
+  border: 0 !important;
+}
+.gsib_a {
+  padding: 0 !important;
+}
+td.gsc-input {
+  padding-right: 0 !important;
+}
+input.gsc-input {
+  @include govuk-font($size: 19);
+  box-sizing: border-box;
+  width: 100%;
+  height: 2.5rem !important;
+  margin-top: 0;
+  padding: govuk-spacing(1) !important;
+  border: $govuk-border-width-form-element solid $govuk-input-border-colour !important;
+  border-radius: 0;
+  background-position: center center !important;
+  appearance: none;
+  &:focus {
+    outline: $govuk-focus-width solid $govuk-focus-colour !important;
+    outline-offset: 0;
+    box-shadow: inset 0 0 0 $govuk-border-width-form-element;
+
+    @include govuk-if-ie8 {
+      // IE8 doesn't support `box-shadow` so double the border with
+      // `border-width`.
+      border-width: $govuk-border-width-form-element * 2;
+    }
+  }
+}
+button.gsc-search-button {
+  background-color: govuk-colour('blue');
+  height: 2.5rem !important;
+  &:focus {
+    outline: $govuk-focus-width solid $govuk-focus-colour;
+    outline-offset: 0;
+    box-shadow: inset 0 0 0 $govuk-border-width-form-element * 2 govuk-colour("black");
+
+    @include govuk-if-ie8 {
+      border-width: $govuk-border-width-form-element * 2;
+    }
+  }
+}
