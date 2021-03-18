@@ -3354,5 +3354,58 @@ html.has-search-results-open {
 .fixedsticky-on + .fixedsticky-dummy {
   display: block; }
 
+.gsc-input-box {
+  border: 0 !important; }
+
+.gsib_a {
+  padding: 0 !important; }
+
+td.gsc-input {
+  padding-right: 0 !important; }
+
+input.gsc-input {
+  font-family: "GDS Transport", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.25;
+  box-sizing: border-box;
+  width: 100%;
+  height: 2.5rem !important;
+  margin-top: 0;
+  padding: 5px !important;
+  border: 2px solid #0b0c0c !important;
+  border-radius: 0;
+  background-position: center center !important;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none; }
+  @media print {
+    input.gsc-input {
+      font-family: sans-serif; } }
+  @media (min-width: 40.0625em) {
+    input.gsc-input {
+      font-size: 19px;
+      font-size: 1.1875rem;
+      line-height: 1.3157894737; } }
+  @media print {
+    input.gsc-input {
+      font-size: 14pt;
+      line-height: 1.15; } }
+  input.gsc-input:focus {
+    outline: 3px solid #ffdd00 !important;
+    outline-offset: 0;
+    box-shadow: inset 0 0 0 2px; }
+
+button.gsc-search-button {
+  background-color: #1d70b8;
+  height: 2.5rem !important; }
+  button.gsc-search-button:focus {
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+    box-shadow: inset 0 0 0 4px #0b0c0c; }
+
 
 
