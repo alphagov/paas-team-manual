@@ -1,3 +1,7 @@
+---
+title: ADR011 - Security group structure
+---
+
 # ADR011: Security group structure
 
 ## Context

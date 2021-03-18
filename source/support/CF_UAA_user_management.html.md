@@ -1,3 +1,7 @@
+---
+title: User management
+---
+
 # User management
 
 ## Creating new orgs and users

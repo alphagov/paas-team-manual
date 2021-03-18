@@ -1,3 +1,7 @@
+---
+title: Restoring Elasticsearch backups
+---
+
 # Restoring Elasticsearch backups
 
 There is no direct way for us to restore Elasticsearch backups either via the API or console.

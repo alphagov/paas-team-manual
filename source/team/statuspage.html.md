@@ -1,3 +1,7 @@
+---
+title: StatusPage
+---
+
 # StatusPage
 
 The team uses [StatusPage.io](https://www.statuspage.io/) to notify our users of platform issues and maintenance windows. As this provides simple, clear and concise information related to the health and status of the platform. It also enables webhook access for tenants to link to Slack / HipChat / Link.

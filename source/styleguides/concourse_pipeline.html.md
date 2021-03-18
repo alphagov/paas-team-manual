@@ -1,3 +1,7 @@
+---
+title: Concourse pipelines
+---
+
 # Concourse pipelines
 
 This documents some of the agreed styles we have to writing [Concourse][]

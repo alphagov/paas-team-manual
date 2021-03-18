@@ -1,3 +1,7 @@
+---
+title: Support manual
+---
+
 # Support manual
 
 ## What are we supporting

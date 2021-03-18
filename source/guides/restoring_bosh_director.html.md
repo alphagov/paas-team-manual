@@ -1,3 +1,7 @@
+---
+title: Restoring the Bosh Director
+---
+
 # Restoring the Bosh Director
 This guide will show you how to restore the bosh director and cells, in the event that it becomes unreachable or unresponsive.
 

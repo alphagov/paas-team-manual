@@ -1,3 +1,7 @@
+---
+title: Rotating Credentials
+---
+
 # Rotating Credentials
 
 ## Third-party services

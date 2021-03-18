@@ -1,3 +1,7 @@
+---
+title: Common support tasks
+---
+
 # Common support tasks
 
 This guide contains instructions for common support tasks.

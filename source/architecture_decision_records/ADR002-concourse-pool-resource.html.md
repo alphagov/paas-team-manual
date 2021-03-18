@@ -1,3 +1,7 @@
+---
+title: ADR002 - Concourse pool resource
+---
+
 # ADR002: Concourse pool resource
 
 ## Context

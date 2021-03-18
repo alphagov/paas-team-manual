@@ -1,3 +1,7 @@
+---
+title: ADR013 - Building BOSH releases
+---
+
 # ADR013: Building BOSH releases
 
 ## Context

@@ -1,3 +1,7 @@
+---
+title: Responding to security issues
+---
+
 # Responding to security issues
 
 Periodically we will learn of a security issue affecting CloudFoundry or our supporting systems we use, this is the process we follow in order to triage and mitigate the problem.

@@ -1,3 +1,7 @@
+---
+title: Documentation for tenants (`paas-tech-docs`)
+---
+
 # Documentation for tenants (`paas-tech-docs`)
 
 The PaaS tech docs content lives in [https://github.com/alphagov/paas-tech-docs](https://github.com/alphagov/paas-tech-docs) and is hosted on the PaaS as the `paas-tech-docs` app (org `govuk-paas`/space `docs`).

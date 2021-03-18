@@ -1,3 +1,7 @@
+---
+title: Upgrading CF, BOSH and stemcells
+---
+
 # Upgrading CF, BOSH and stemcells
 
 ## Before Upgrading

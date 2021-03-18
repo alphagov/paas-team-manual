@@ -1,3 +1,7 @@
+---
+title: ADR004 - Domain naming scheme
+---
+
 # ADR004: Domain naming scheme
 
 ## Context

@@ -1,3 +1,7 @@
+---
+title: Billing process for GOV.UK PaaS paid accounts
+---
+
 # Billing process for GOV.UK PaaS paid accounts
 
 ## Introduction

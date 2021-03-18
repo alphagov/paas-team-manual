@@ -1,3 +1,7 @@
+---
+title: Cloud Foundry debugging
+---
+
 # Cloud Foundry debugging
 
 This is a set of useful things that may help you debug CloudFoundry problems.

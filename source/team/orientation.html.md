@@ -1,3 +1,7 @@
+---
+title: Orientation
+---
+
 # Orientation
 
 Some key information to help new starters to find their way.

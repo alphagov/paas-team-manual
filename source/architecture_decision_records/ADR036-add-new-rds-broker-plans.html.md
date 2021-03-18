@@ -1,3 +1,7 @@
+---
+title: ADR036 - Recommended database plans
+---
+
 # ADR036: Recommended database plans
 ==========================
 

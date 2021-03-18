@@ -1,3 +1,7 @@
+---
+title: ADR029 - Aiven project structure
+---
+
 # ADR029: Aiven project structure
 
 ## Context

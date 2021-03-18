@@ -1,3 +1,7 @@
+---
+title: ADR043 - new product pages language and framework
+---
+
 # ADR043: new product pages language and framework
 
 ## Context

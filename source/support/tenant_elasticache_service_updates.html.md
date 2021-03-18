@@ -1,3 +1,7 @@
+---
+title: Applying tenant ElastiCache service updates
+---
+
 # Applying tenant ElastiCache service updates
 
 We provide [Redis](https://redis.io) to our users via

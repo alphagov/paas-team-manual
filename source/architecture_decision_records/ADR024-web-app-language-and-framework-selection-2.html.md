@@ -1,3 +1,7 @@
+---
+title: ADR024 - web app language and framework selection
+---
+
 # ADR024: web app language and framework selection
 
 ## Context

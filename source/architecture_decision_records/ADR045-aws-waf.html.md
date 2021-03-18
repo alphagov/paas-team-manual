@@ -1,3 +1,7 @@
+---
+title: ADR045 - AWS WAF and WAF Log access by AWS DDoS Response Team
+---
+
 # ADR045: AWS WAF and WAF Log access by AWS DDoS Response Team
 
 ## Context

@@ -1,3 +1,7 @@
+---
+title: ADR033 - Redirect HTTP for applications
+---
+
 # ADR033: Redirect HTTP for applications
 
 ## Context

@@ -1,3 +1,7 @@
+---
+title: Getting data about trial accounts
+---
+
 # Getting data about trial accounts
 
 This guide is for the technical work involved in managing trial and abandoned

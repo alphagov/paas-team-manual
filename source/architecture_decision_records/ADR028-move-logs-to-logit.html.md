@@ -1,3 +1,7 @@
+---
+title: ADR028 - Migrate CF platform logs to Logit
+---
+
 # ADR028: Migrate CF platform logs to Logit
 
 ## Context

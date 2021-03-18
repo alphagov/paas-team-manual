@@ -1,3 +1,7 @@
+---
+title: ADR031 - Separate PaaS services from the Platform core pipeline
+---
+
 # ADR031: Separate PaaS services from the Platform core pipeline
 
 

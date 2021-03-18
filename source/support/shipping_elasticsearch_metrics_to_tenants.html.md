@@ -1,3 +1,7 @@
+---
+title: Shipping Elasticsearch metrics to our tenants
+---
+
 # Shipping Elasticsearch metrics to our tenants
 
 As of July 2020 we provide Elasticsearch metrics to several tenant

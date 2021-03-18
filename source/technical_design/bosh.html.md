@@ -1,3 +1,7 @@
+---
+title: BOSH
+---
+
 # BOSH
 
 We use [BOSH](https://bosh.io/) for software packaging, release management, and

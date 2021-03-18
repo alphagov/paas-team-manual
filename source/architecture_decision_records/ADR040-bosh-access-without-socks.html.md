@@ -1,3 +1,7 @@
+---
+title: ADR040 - BOSH access without SOCKS5 or SSH
+---
+
 # ADR040: BOSH access without SOCKS5 or SSH
 
 ## Context

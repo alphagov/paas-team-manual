@@ -1,3 +1,7 @@
+---
+title: ADR001 - Manifest management
+---
+
 # ADR001: Manifest management
 
 ## Context

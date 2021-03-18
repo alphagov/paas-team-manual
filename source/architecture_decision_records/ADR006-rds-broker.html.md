@@ -1,3 +1,7 @@
+---
+title: ADR006 - RDS broker
+---
+
 # ADR006: RDS broker
 
 ## Context

@@ -1,3 +1,7 @@
+---
+title: Working practices
+---
+
 # Working practices
 
 ## These are guidelines, not rules

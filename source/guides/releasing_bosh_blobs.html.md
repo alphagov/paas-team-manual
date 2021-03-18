@@ -1,3 +1,7 @@
+---
+title: Releasing BOSH blobs
+---
+
 # Releasing BOSH blobs
 
 This is a guide to upload new BOSH blobs to our common blob store.

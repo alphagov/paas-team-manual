@@ -1,3 +1,7 @@
+---
+title: ADR009 - X-Forwarded- headers
+---
+
 # ADR009: X-Forwarded- headers
 
 This has been superceded: the first option is now used to encrypt traffic

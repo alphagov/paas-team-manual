@@ -1,3 +1,7 @@
+---
+title: ADR005 - Pingdom healthchecks
+---
+
 # ADR005: Pingdom healthchecks
 
 ## Context
