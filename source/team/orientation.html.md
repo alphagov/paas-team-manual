@@ -12,7 +12,7 @@ EL - Engineering Lead Support responsiblities
 CL - Comms Lead Support responsibilities
 
 ### Delivery Management
-- Jennifer Sleeman - Delivery Manager (CL)
+- Emma Pearce - Delivery Manager
 - Kam Nijjar - Associate Delivery Manager 
 
 ### Engineering
@@ -22,7 +22,7 @@ CL - Comms Lead Support responsibilities
 - Momhamed Deerow - Site Reliability Engineer (EL)
 - Sebastian Schmieschek - Site Reliability Engineer (EL/CL)
 - Miki Mokrysz - Senior Developer (EL)
-- Rafal Proszowski - Sneior Developer (EL)
+- Rafal Proszowski - Senior Developer (EL)
 - Tom Whitwell - Developer (EL)
 - Jani Kraner - Front End Developer (CL)
 
