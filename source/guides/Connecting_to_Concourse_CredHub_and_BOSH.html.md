@@ -1,3 +1,7 @@
+---
+title: Connecting to Concourse, CredHub, and BOSH
+---
+
 # Connecting to Concourse, CredHub, and BOSH
 
 ## Single sign-on

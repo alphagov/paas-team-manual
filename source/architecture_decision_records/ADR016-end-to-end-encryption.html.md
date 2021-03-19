@@ -1,3 +1,7 @@
+---
+title: ADR016 - End-to-end encryption
+---
+
 # ADR016: End-to-end encryption
 
 ## Context

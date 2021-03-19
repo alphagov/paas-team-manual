@@ -1,3 +1,7 @@
+---
+title: Responding to Platform Alerting
+---
+
 # Responding to Platform Alerting
 
 Prometheus is configured to send alerts to teams mailing lists.

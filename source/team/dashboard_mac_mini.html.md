@@ -1,3 +1,7 @@
+---
+title: Dashboard Mac Mini & Chromebox
+---
+
 # Dashboard Mac Mini & Chromebox
 
 There are two Mac Minis and a Chromebox attached to big screens in our team area. They can show the

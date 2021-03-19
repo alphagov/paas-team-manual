@@ -1,3 +1,7 @@
+---
+title: Testing Alertmanager
+---
+
 # Testing Alertmanager
 
 This is a guide to testing Alertmanager

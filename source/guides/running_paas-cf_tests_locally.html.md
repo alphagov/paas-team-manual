@@ -1,3 +1,7 @@
+---
+title: Running tests on `paas-cf` locally
+---
+
 # Running tests on `paas-cf` locally
 
 A number of packages need to be installed in order to run the tests of `paas-cf` locally. To run them, install the packages below then run 

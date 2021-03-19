@@ -1,3 +1,7 @@
+---
+title: Finding the activity for a given user
+---
+
 # Finding the activity for a given user
 
 In case of suspicion of compromised CF details, we can use Kibana to

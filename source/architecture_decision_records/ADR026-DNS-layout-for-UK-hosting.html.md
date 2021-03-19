@@ -1,3 +1,7 @@
+---
+title: ADR026 - DNS layout for UK hosting
+---
+
 # ADR026: DNS layout for UK hosting
 
 ## Context

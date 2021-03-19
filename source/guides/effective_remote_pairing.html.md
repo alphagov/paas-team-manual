@@ -1,3 +1,11 @@
+---
+title: Effective remote pairing
+---
+
+# Effective remote pairing
+title: Effective remote pairing
+---
+
 # Effective remote pairing
 
 Remote pairing can be more difficult than pairing in person, so we use tools to support us in it. However, those tools are subject to some pitfalls and easy-to-make mistakes. The rest of this document details the pairing tools we use, and how to avoid the most common problems.

@@ -1,3 +1,7 @@
+---
+title: Tenant Personal Data
+---
+
 # Tenant Personal Data
 
 We store a small amount of personal data belonging to people who have PaaS accounts.

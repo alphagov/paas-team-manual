@@ -1,3 +1,7 @@
+---
+title: Viewing our data in Splunk
+---
+
 # Viewing our data in Splunk
 
 We ship various audit logs into Splunk. This article collects assorted

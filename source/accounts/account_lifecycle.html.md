@@ -1,3 +1,7 @@
+---
+title: Account lifecycle
+---
+
 # Account lifecycle
 
 ## Handling requests for a new trial organisation (org)

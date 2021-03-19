@@ -1,3 +1,7 @@
+---
+title: Finding the owner of a route in cf
+---
+
 # Finding the owner of a route in cf
 
 1. Install cf lookup-route plugin  with `cf install-plugin -r CF-Community "route-lookup"`

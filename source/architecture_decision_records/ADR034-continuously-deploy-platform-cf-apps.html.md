@@ -1,3 +1,7 @@
+---
+title: ADR034 - Continuously deploy platform CF applications
+---
+
 # ADR034: Continuously deploy platform CF applications
 
 ## Context

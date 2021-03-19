@@ -1,3 +1,7 @@
+---
+title: ADR038 - Audit logs in Splunk
+---
+
 # ADR038: Audit logs in Splunk
 
 ## Context

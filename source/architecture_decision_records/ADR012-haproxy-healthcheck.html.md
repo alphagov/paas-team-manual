@@ -1,3 +1,7 @@
+---
+title: ADR012 - Haproxy healthcheck
+---
+
 # ADR012: Haproxy healthcheck
 
 ## Context

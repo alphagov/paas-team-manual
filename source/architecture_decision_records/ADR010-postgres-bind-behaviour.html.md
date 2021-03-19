@@ -1,3 +1,7 @@
+---
+title: ADR010 - Postgres bind behaviour
+---
+
 # ADR010: Postgres bind behaviour
 
 ## Context

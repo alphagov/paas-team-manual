@@ -1,3 +1,7 @@
+---
+title: Investigating `rsyslog` issues
+---
+
 # Investigating `rsyslog` issues
 
 `rsyslog` is ["the rocket-fast system for log

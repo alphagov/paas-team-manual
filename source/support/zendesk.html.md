@@ -1,3 +1,7 @@
+---
+title: Zendesk guide
+---
+
 # Zendesk guide
 
 Teaching the wider Zendesk interface is out-of-scope of this guide, but it records key things in our usage.

@@ -1,3 +1,7 @@
+---
+title: ADR044 - Remove IPSec
+---
+
 # ADR044: Remove IPSec
 
 ## Context

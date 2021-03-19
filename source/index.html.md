@@ -1,3 +1,7 @@
+---
+title: PaaS Team Manual
+---
+
 # PaaS Team Manual
 
 ## Incident and support model

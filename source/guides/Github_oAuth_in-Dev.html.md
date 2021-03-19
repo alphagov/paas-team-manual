@@ -1,3 +1,7 @@
+---
+title: How to enable Github oAuth for your dev environments
+---
+
 # How to enable Github oAuth for your dev environments
 
 This will enable anyone on the team to be able to log into your concourse

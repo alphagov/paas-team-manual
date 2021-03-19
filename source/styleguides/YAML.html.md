@@ -1,3 +1,7 @@
+---
+title: YAML
+---
+
 # YAML
 
 We produce lots of YAML. This sets out some guidelines for how this should be

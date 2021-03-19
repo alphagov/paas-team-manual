@@ -1,3 +1,7 @@
+---
+title: ADR027 - Pipeline locking
+---
+
 # ADR027: Pipeline locking
 
 ## Context

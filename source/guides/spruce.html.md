@@ -1,3 +1,7 @@
+---
+title: Spruce
+---
+
 # Spruce
 
 This is a guide to [spruce](https://github.com/geofffranks/spruce), our tool to merge YAML manifests. It contains very simple examples to explain each feature.

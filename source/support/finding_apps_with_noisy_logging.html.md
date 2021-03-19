@@ -1,3 +1,7 @@
+---
+title: Finding apps with noisy logging
+---
+
 # Finding apps with noisy logging
 
 You can use the `cf top` plugin to get a feel for which applications are

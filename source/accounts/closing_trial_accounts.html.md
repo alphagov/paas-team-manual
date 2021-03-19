@@ -1,3 +1,7 @@
+---
+title: Process for closing GOV.UK PaaS trial accounts
+---
+
 # Process for closing GOV.UK PaaS trial accounts
 
 This process describes how we close old trial accounts to retain historical billing data and prevent infrastructure bills running up.

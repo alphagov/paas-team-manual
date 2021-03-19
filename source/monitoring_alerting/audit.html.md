@@ -1,3 +1,7 @@
+---
+title: Auditing operator and platform events
+---
+
 # Auditing operator and platform events
 
 To hold operators and users to account, and to meet compliance requirements, we

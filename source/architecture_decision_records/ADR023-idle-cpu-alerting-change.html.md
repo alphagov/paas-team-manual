@@ -1,3 +1,7 @@
+---
+title: ADR023 - Idle CPU alerting change
+---
+
 # ADR023: Idle CPU alerting change
 
 ## Context

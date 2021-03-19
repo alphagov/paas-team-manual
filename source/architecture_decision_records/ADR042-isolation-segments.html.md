@@ -1,3 +1,7 @@
+---
+title: ADR042 - Isolation segments
+---
+
 # ADR042: Isolation segments
 
 ## Status

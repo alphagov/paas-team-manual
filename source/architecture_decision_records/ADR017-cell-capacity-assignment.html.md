@@ -1,3 +1,7 @@
+---
+title: ADR017 - cell capacity assignment
+---
+
 # ADR017: cell capacity assignment
 
 ## Superceded

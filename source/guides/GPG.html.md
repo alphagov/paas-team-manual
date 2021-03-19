@@ -1,3 +1,7 @@
+---
+title: How to use GPG
+---
+
 # How to use GPG
 
 Some of our projects use [GPG][] to encrypt secrets so that they can only be

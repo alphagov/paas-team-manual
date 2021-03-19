@@ -1,3 +1,7 @@
+---
+title: ADR032 - SSL-only for applications and cf endpoints
+---
+
 # ADR032: SSL-only for applications and cf endpoints
 
 ## Context

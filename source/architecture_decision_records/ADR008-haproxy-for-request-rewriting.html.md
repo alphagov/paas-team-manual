@@ -1,3 +1,7 @@
+---
+title: ADR008 - Haproxy for request rewriting
+---
+
 # ADR008: Haproxy for request rewriting
 
 ## Context

@@ -1,3 +1,7 @@
+---
+title: VPC Peering
+---
+
 # VPC Peering
 
 We use VPC peering to allow tenants to access resources they manage in another VPC somewhere on AWS. We grant access to the VPC on a per-space basis, although there is a shortcut to grant access to all existing spaces in an org.

@@ -1,3 +1,7 @@
+---
+title: Enhancing Kibana
+---
+
 # Enhancing Kibana
 
 We may find the need, to parse some more logs into Kibana for later use at convinient times.

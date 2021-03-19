@@ -1,3 +1,7 @@
+---
+title: Networking
+---
+
 # Networking
 
 This page describes the network layout in a single PaaS deployment on AWS.

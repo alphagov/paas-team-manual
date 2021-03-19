@@ -1,3 +1,7 @@
+---
+title: ADR025 - Service plan naming conventions
+---
+
 # ADR025: Service plan naming conventions
 
 ## Context

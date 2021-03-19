@@ -1,3 +1,7 @@
+---
+title: ADR037 - Automated certificate rotation
+---
+
 # ADR037: Automated certificate rotation
 
 ## Context

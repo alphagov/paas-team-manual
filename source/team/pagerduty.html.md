@@ -1,3 +1,7 @@
+---
+title: PagerDuty
+---
+
 # PagerDuty
 
 The team uses [PagerDuty](https://www.pagerduty.com/) to be notified of platform issues.

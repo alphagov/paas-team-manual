@@ -1,3 +1,7 @@
+---
+title: Notifying tenants
+---
+
 # Notifying tenants
 
 Every now and then, we need to let our tenants know that something has happened or will happen on the platform. For example, letting teams know about security fixes, CF/stemcell/buildpack upgrades, new features and incidents.
