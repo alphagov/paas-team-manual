@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>PaaS Team Manual</title>
+    <title>Finding the owner of a route in cf - PaaS Team Manual</title>
 
     <link href="../../stylesheets/manifest.css" rel="stylesheet" />
 
@@ -14,11 +14,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="PaaS Team Manual" />
+      <meta name="twitter:title" content="Finding the owner of a route in cf - PaaS Team Manual" />
       <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/finding_route_owners/" />
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:title" content="Finding the owner of a route in cf" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/support/finding_route_owners/" />
 
@@ -56,7 +57,29 @@
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
             <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
-              
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="govuk-button search__button">Search</button>
+  </form>
+  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
+    <div class="search-results__inner">
+      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
+      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
+      <div class="search-results__content"></div>
+    </div>
+  </div>
+</div>
+
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
