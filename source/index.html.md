@@ -41,6 +41,7 @@ title: PaaS Team Manual
  - [How to rotate credentials](team/rotating_credentials/)
  - [How to test Alertmanager](guides/test_alertmanager/)
  - [How to look up users by Google IDs](guides/looking_up_users_by_google_id/)
+ - [How to disable a single AZ on GOV.UK PaaS](guides/managing_azs_on_paas/)
 
 ### Other information
  - [Our orgs on the paas](team/our_orgs_on_the_paas/)
