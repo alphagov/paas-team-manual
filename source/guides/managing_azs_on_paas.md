@@ -26,4 +26,26 @@ meaning the re-enabling action will need to be done by hand from op's machine.
 This will involve, you having to download the Terraform state file, for that
 particular region. See pipeline for more details.
 
+## How to run
+
+This is accomplished with Terraform. It is designed, to interacively ask for the
+values it needs, so you don't have to remember to set them at all times.
+
+The values it is asking for are:
+- AZ - `eu-west-1a`, `eu-west-1b`, `eu-west-1c`
+- Region - `eu-west-1`
+- VPC ID - `vpc-1234567890`
+
+The following will disable an AZ:
+
+```sh
+terraform apply
+```
+
+The following will re-enable an AZ:
+
+```sh
+terraform destroy
+```
+
 [1]: https://github.com/alphagov/paas-cf/tree/main/terraform/az-management
