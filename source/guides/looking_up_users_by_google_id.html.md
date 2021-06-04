@@ -2,6 +2,8 @@
 title: Looking up users by Google IDs
 ---
 
+# Looking up users by Google IDs
+
 ## The BUG
 
 There is a general bug we have on the PaaS, where sometimes we list users in
