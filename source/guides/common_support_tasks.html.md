@@ -43,3 +43,29 @@ Factors in their decision:
 - if the email account belonging to the absent org manager can be made active again to send an email authorising the change.
 
 We will also email every user currently in the organisation to explain what has been done.
+
+
+# Common Support questions
+
+## Which Databases do you support?
+
+- Postgres
+- MySQL
+- Elasticsearch
+- Redis
+
+## Some plans in the marketplace are displaying as free, what does this mean?
+
+This is a horrible bit of CF UI: "free" really means "free for 3 months while you are in trial, paid after"
+
+
+## Can I get direct access to the RDS database instances?
+
+No, the high level abstraction of the GOV.UK PaaS hides the details of the database inside the PaaS service. 
+
+## What is your elasticsearch offering?
+We currently offer elasticsearch in private beta for v5 and v6
+
+## When will your elasticsearch reach public beta?
+We are currently in private beta and are currently testing the new service with tenants. We are confident that we have a reliable service and are working to solicit feedback from beta user before making the appliation more widely available.
+
