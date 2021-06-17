@@ -49,7 +49,7 @@ We will also email every user currently in the organisation to explain what has 
 
 ## Which databases do you support?
 
-- Postgres
+- Postgres (RDS)
 - MySQL
 - Elasticsearch
 - Redis
