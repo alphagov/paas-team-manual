@@ -56,7 +56,7 @@ We will also email every user currently in the organisation to explain what has 
 
 ## Some plans in the marketplace are displaying as free. What does this mean?
 
-This is a horrible bit of CF UI: "free" really means "free for 3 months while you are in trial, paid after"
+This is a horrible bit of Cloud Foundry UI: "free" really means "free for 3 months while you are in trial, and then you need to pay."
 
 
 ## Can I get direct access to the RDS database instances?
