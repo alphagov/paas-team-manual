@@ -64,7 +64,7 @@ This is a horrible bit of Cloud Foundry user interface: "free" really means "fre
 No – the high level abstraction of the GOV.UK PaaS hides the details of the database inside the PaaS service. 
 
 ## What is your Elasticsearch offering?
-We currently offer Elasticsearch 7 
+We currently offer [Elasticsearch 7](https://admin.cloud.service.gov.uk/marketplace/b98f53e7-85a7-4964-bace-9ce27fac142a)
 
 ## What is the status of the Elasticsearch backing service?
 GOV.UK PaaS is [live service](https://www.gov.uk/service-standard-reports/gov-dot-uk-platform-as-a-service-paas-live-assessment)
