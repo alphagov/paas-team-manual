@@ -53,6 +53,7 @@ We will also email every user currently in the organisation to explain what has 
 - [MySQL](https://admin.cloud.service.gov.uk/marketplace/8ffb13cb-705f-4cee-9ffd-5a950f9f3048) (RDS)
 - [Elasticsearch](https://admin.cloud.service.gov.uk/marketplace/b98f53e7-85a7-4964-bace-9ce27fac142a)
 - [Redis](https://admin.cloud.service.gov.uk/marketplace/0e4b6fb6-243c-4024-8604-41635d1233cc)
+- [Influxdb](https://admin.cloud.service.gov.uk/marketplace/0b7da7a9-2fd7-4dca-9e25-0cf8eddd0f88)
 
 ## Some plans in the marketplace are displaying as free. What does this mean?
 
