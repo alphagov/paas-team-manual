@@ -50,7 +50,7 @@ We will also email every user currently in the organisation to explain what has 
 ## Which databases do you support?
 
 - [Postgres](https://admin.cloud.service.gov.uk/marketplace/efadb775-58c4-4e17-8087-6d0f4febc489) (RDS)
-- MySQL (RDS)
+- [MySQL](https://admin.cloud.service.gov.uk/marketplace/8ffb13cb-705f-4cee-9ffd-5a950f9f3048) (RDS)
 - Elasticsearch
 - Redis
 
