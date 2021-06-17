@@ -67,4 +67,4 @@ No – the high level abstraction of the GOV.UK PaaS hides the details of the da
 We currently offer Elasticsearch 7 
 
 ## What is the status of the Elasticsearch backing service?
-We are currently in private beta and are currently testing the new service with tenants. We are confident that we have a reliable service and are working to solicit feedback from beta user before making the appliation more widely available.
+GOV.UK PaaS is [live service](https://www.gov.uk/service-standard-reports/gov-dot-uk-platform-as-a-service-paas-live-assessment)
