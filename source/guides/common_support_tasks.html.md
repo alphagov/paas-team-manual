@@ -47,7 +47,7 @@ We will also email every user currently in the organisation to explain what has 
 
 # Common Support questions
 
-## Which Databases do you support?
+## Which databases do you support?
 
 - Postgres
 - MySQL
