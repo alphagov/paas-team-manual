@@ -66,5 +66,5 @@ No – the high level abstraction of the GOV.UK PaaS hides the details of the da
 ## What is your Elasticsearch offering?
 We currently offer Elasticsearch in private beta for v5 and v6
 
-## When will your elasticsearch reach public beta?
+## When will your Elasticsearch reach public beta?
 We are currently in private beta and are currently testing the new service with tenants. We are confident that we have a reliable service and are working to solicit feedback from beta user before making the appliation more widely available.
