@@ -64,7 +64,7 @@ This is a horrible bit of Cloud Foundry UI: "free" really means "free for 3 mont
 No – the high level abstraction of the GOV.UK PaaS hides the details of the database inside the PaaS service. 
 
 ## What is your Elasticsearch offering?
-We currently offer elasticsearch in private beta for v5 and v6
+We currently offer Elasticsearch in private beta for v5 and v6
 
 ## When will your elasticsearch reach public beta?
 We are currently in private beta and are currently testing the new service with tenants. We are confident that we have a reliable service and are working to solicit feedback from beta user before making the appliation more widely available.
