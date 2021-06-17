@@ -54,7 +54,7 @@ We will also email every user currently in the organisation to explain what has 
 - Elasticsearch
 - Redis
 
-## Some plans in the marketplace are displaying as free, what does this mean?
+## Some plans in the marketplace are displaying as free. What does this mean?
 
 This is a horrible bit of CF UI: "free" really means "free for 3 months while you are in trial, paid after"
 
@@ -68,4 +68,3 @@ We currently offer elasticsearch in private beta for v5 and v6
 
 ## When will your elasticsearch reach public beta?
 We are currently in private beta and are currently testing the new service with tenants. We are confident that we have a reliable service and are working to solicit feedback from beta user before making the appliation more widely available.
-
