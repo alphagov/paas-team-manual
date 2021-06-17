@@ -43,3 +43,29 @@ Factors in their decision:
 - if the email account belonging to the absent org manager can be made active again to send an email authorising the change.
 
 We will also email every user currently in the organisation to explain what has been done.
+
+
+# Common Support questions
+
+## Which databases do you support?
+
+- [Postgres](https://admin.cloud.service.gov.uk/marketplace/efadb775-58c4-4e17-8087-6d0f4febc489) (RDS)
+- [MySQL](https://admin.cloud.service.gov.uk/marketplace/8ffb13cb-705f-4cee-9ffd-5a950f9f3048) (RDS)
+- [Elasticsearch](https://admin.cloud.service.gov.uk/marketplace/b98f53e7-85a7-4964-bace-9ce27fac142a)
+- [Redis](https://admin.cloud.service.gov.uk/marketplace/0e4b6fb6-243c-4024-8604-41635d1233cc)
+- [Influxdb](https://admin.cloud.service.gov.uk/marketplace/0b7da7a9-2fd7-4dca-9e25-0cf8eddd0f88)
+
+## Some plans in the marketplace are displaying as free. What does this mean?
+
+This is a horrible bit of Cloud Foundry user interface: "free" really means "free for 3 months while you are in trial, and then you need to pay."
+
+
+## Can I get direct access to the RDS database instances?
+
+No – the high level abstraction of the GOV.UK PaaS hides the details of the database inside the PaaS service. 
+
+## What is your Elasticsearch offering?
+We currently offer [Elasticsearch 7](https://admin.cloud.service.gov.uk/marketplace/b98f53e7-85a7-4964-bace-9ce27fac142a)
+
+## What is the status of the Elasticsearch backing service?
+GOV.UK PaaS is a [live service](https://www.gov.uk/service-standard-reports/gov-dot-uk-platform-as-a-service-paas-live-assessment)
