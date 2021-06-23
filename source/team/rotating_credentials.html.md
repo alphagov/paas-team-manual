@@ -117,20 +117,17 @@ Concourse pipeline. You can learn more about it by reading [ADR037 automated cer
 
 ### Rotating SSO IDP keys
 
-We use single sign-on using Google and Microsoft to allow our tenants to sign
+We use single sign-on using Google to allow our tenants to sign
 in, without using a username and password stored in UAA.
 
 Google has two credentials: `client_id` and `client_secret`
-
-Microsoft functionally has three credentials `client_id`, `client_secret`, and
-`tenant_id`, however `tenant_id` is not secret, we just store it as such.
 
 UAA is not capable of consuming multiple pairs of `client_id` and `client_secret`.
 Rotating these credentials will briefly prevent users from signing in to GOV.UK
 PaaS using single sign-on via the IDP with credentials currently being rotated.
 
 Rotating these credentials requires changing the values in `paas-credentials`
-and running the `upload-{google,microsoft}-oauth-secrets` Make tasks and then
+and running the `upload-google-oauth-secrets` Make tasks and then
 running `create-cloudfoundry`.
 
 ### AWS keys generated in the pipeline
