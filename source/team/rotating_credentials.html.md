@@ -51,16 +51,25 @@ $ credhub get -n /prod-lon/prod-lon/cf_admin_password --versions=10
   version_created_at: "2020-03-11T10:10:13Z"
 ```
 
-#### Rotating BOSH and Concourse credentials
+#### Rotating BOSH credentials and certificates
 
-In `create-bosh-concourse` there are two rotation jobs under the `credentials`
-tab: `rotate-bosh-passwords` for BOSH and `clear-concourse-credentials` for Concourse
+In the `create-bosh-concourse` pipeline there are two rotation jobs under the `credentials`
+tab: `rotate-bosh-credentials`  and `rotate-bosh-leaf-certs`.
 
 To perform the rotation:
+
 1. Pause the `create-bosh-concourse` pipeline, and ensure it isn't running
-1. Run the relevant rotation Concourse job (`rotate-bosh-passwords` and/or `clear-concourse-credentials`)
+1. Run the `check-certificates` job to see if any certificates need rotation. It will fail if any certificates have expired.
+1. Run the relevant rotation Concourse job (`rotate-bosh-credentials` and/or `rotate-bosh-leaf-certs`)
 1. Unpause the `create-bosh-concourse` pipeline
 1. Trigger the `create-bosh-concourse` pipeline and allow it to run all the way through
+
+If the BOSH TLS certificates have expired, pipeline self-updating will need to be disabled before running the `create-bosh-concourse` pipeline, and enabled afterwards:
+
+1. In `paas-bootstrap`
+1. Run `make ENV pipelines BRANCH=main SELF_UPDATE_PIPELINE=false`
+1. Trigger the pipeline
+1. Run `make ENV pipelines BRANCH=main SELF_UPDATE_PIPELINE=true`
 
 #### Rotating Cloud Foundry and Prometheus credentials
 
