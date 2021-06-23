@@ -82,6 +82,7 @@ tab:
 * `rotate-database-encryption-keys`
 
 To perform the rotation:
+
 1. Pause the `create-cloudfoundry` pipeline and ensure it isn't running
 1. Run one or more of the above rotation jobs as necessary
 1. Unpause the `create-cloudfoundry` pipeline
@@ -103,7 +104,7 @@ two step process:
 There will be downtime between when the pipeline redeploys the brokers and
 when it updates the broker credentials to be used by Cloud Controller. For
 information on what happened the first time, and how to communicate this to
-tenants, see https://status.cloud.service.gov.uk/incidents/3qll54zh55zk.
+tenants, see [https://status.cloud.service.gov.uk/incidents/3qll54zh55zk](https://status.cloud.service.gov.uk/incidents/3qll54zh55zk).
 
 At the time of writing this only rotates the basic auth used to talk to the
 brokers. It does not rotate other difficult secrets, such as those used to
