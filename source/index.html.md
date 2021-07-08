@@ -36,6 +36,7 @@ title: PaaS Team Manual
  - [How to apply tenant ElastiCache (redis) service updates ](support/tenant_elasticache_service_updates/)
  - [How to restore the CF databases](guides/Restoring_the_CF_databases/)
  - [How to restore the bosh director](guides/restoring_bosh_director/)
+ - [How to restore the bosh resurrector](guides/restoring_bosh_resurrector/)
  - [How to release bosh blobs](guides/releasing_bosh_blobs/)
  - [How to run `paas-cf` tests locally](guides/running_paas-cf_tests_locally/)
  - [How to rotate credentials](team/rotating_credentials/)
