@@ -238,6 +238,24 @@ git push origin master
 
 We use [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/1275640) to track stories and [Rubbernecker](https://rubbernecker.cloudapps.digital/) for an overview of stories currently being worked. Stories without a name assigned to them are available for you to work on. You should remove your name when moving a story to the next step (e.g. "doing" to "review").
 
+## Story states
+Within Pivotal Tracker there are a number of [story states](https://www.pivotaltracker.com/help/articles/terminology/#state) that let you know where in the cycle that piece of work is. When these stories are being worked, they appear in Rubbernecker. They appear under columns with different titles but when selecting a state in pivotal they move into the Rubbernecker columns like so:
+  -  started > doing
+  -  finished > reviewing
+  -  delivered > approving
+  -  accepted > done
+  -  rejected > rejected (column only appears in Rubbernecker if there is a rejected story)
+
+![Pivotal and Rubbernecker story states](https://user-images.githubusercontent.com/35229192/125968961-9d65291f-3308-4352-b8b3-317c50542fdf.png)
+
+## Assigning labels to stories
+Pivotal Tracker stories give the option to tag the story with labels. We use these labels to filter the stories in various different ways. You should apply a 'linked epic label' (a purple label that is assigned to a specific epic/mission) to any work that belongs to a mission e.g. the `core-work` label for the 'Securely running and supporting GOV.UK PaaS for our tenants' mission. 
+
+If the work belongs or is assigned to a particular squad then you should also assign one of the squad labels so that we can view these using the filters in Rubbernecker.
+### Squad labels
+`squad: paas`
+`squad: disco`
+
 ## Story kick-off
 
 Kick-offs are an opportunity to clarify the scope of a story and raise any
