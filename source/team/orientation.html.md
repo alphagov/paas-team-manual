@@ -10,6 +10,7 @@ Some key information to help new starters to find their way.
 We are a multidisciplinary team responsible for the developement and maintenance of GOV.UK PaaS. 
 EL - Engineering Lead Support responsiblities 
 CL - Comms Lead Support responsibilities
+M8 - Concourse and Observability Support Responsibilities 
 
 ### Delivery Management
 - Emma Pearce - Delivery Manager
@@ -20,13 +21,17 @@ CL - Comms Lead Support responsibilities
 - Andy Hunt - Site Reliability Engineer (EL)
 - Dave Povery - Site Reliability Engineer 
 - Momhamed Deerow - Site Reliability Engineer (EL)
-- Sebastian Schmieschek - Site Reliability Engineer (EL/CL)
-- Miki Mokrysz - Senior Developer (EL)
+- Sebastian Schmieschek - Site Reliability Engineer (EL)
+- Tom Whitwell - Site Reliability Engineer (EL)
+- Tom Rosier - Site Reliability Engineer (M8)
+- Robert Scott - Site Reliability Engineer (M8)
+- Alex Monk - Site Reliability Engineer (M8)
 - Rafal Proszowski - Senior Developer (EL)
-- Tom Whitwell - Developer (EL)
+- Tris Oaten - Senior Developer
 - Jani Kraner - Front End Developer (CL)
 
 ### Product Management
+- Federico Nardini - Senior Product Manager (CL)
 - Mark Buckley - Product Manager (CL)
 
 ### Technical Architecture
@@ -36,8 +41,15 @@ CL - Comms Lead Support responsibilities
 - Claire McNally - Technical Writer
 
 ### User Research
-- Clare Barnett - Senior User Researcher
-- Laura Young - User Researcher
+- Clare Barnett - Senior User Researcher (on loan)
+- Nadia Mugeni - User Researcher
+
+### User Centered Design
+- Thaís Tozatto Maio - Senior Service Designer
+
+### Performance Analysis
+- Sara Cox - Senior Performance Analyst
+- Anne Carr - Senior Performance Analyst
 
 ## Product
 
