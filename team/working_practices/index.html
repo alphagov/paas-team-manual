@@ -134,6 +134,17 @@
         <a href="#pivotal-tracker-and-rubbernecker"><span>Pivotal Tracker and Rubbernecker</span></a>
       </li>
       <li>
+        <a href="#story-states"><span>Story states</span></a>
+      </li>
+      <li>
+        <a href="#assigning-labels-to-stories"><span>Assigning labels to stories</span></a>
+        <ul>
+          <li>
+            <a href="#squad-labels"><span>Squad labels</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
         <a href="#story-kick-off"><span>Story kick-off</span></a>
       </li>
       <li>
@@ -342,6 +353,17 @@ git pull <span class="nt">--ff-only</span> origin master
 git merge <span class="nt">--no-ff</span> <span class="nt">-S</span> <span class="nt">-m</span> <span class="s2">"Merge pull request #&lt;n&gt; from alphagov/repo-name</span><span class="se">\n\n</span><span class="s2">&lt;pr_title&gt;"</span> origin/&lt;branch_name&gt;
 git push origin master
 </code></pre></div><h1 id="stories">Stories</h1><h2 id="pivotal-tracker-and-rubbernecker">Pivotal Tracker and Rubbernecker</h2><p>We use <a href="https://www.pivotaltracker.com/n/projects/1275640">Pivotal Tracker</a> to track stories and <a href="https://rubbernecker.cloudapps.digital/">Rubbernecker</a> for an overview of stories currently being worked. Stories without a name assigned to them are available for you to work on. You should remove your name when moving a story to the next step (e.g. &ldquo;doing&rdquo; to &ldquo;review&rdquo;).</p>
+<h2 id="story-states">Story states</h2><p>Within Pivotal Tracker there are a number of <a href="https://www.pivotaltracker.com/help/articles/terminology/#state">story states</a> that let you know where in the cycle that piece of work is. When these stories are being worked, they appear in Rubbernecker. They appear under columns with different titles but when selecting a state in pivotal they move into the Rubbernecker columns like so:
+  -  started &gt; doing
+  -  finished &gt; reviewing
+  -  delivered &gt; approving
+  -  accepted &gt; done
+  -  rejected &gt; rejected (column only appears in Rubbernecker if there is a rejected story)</p>
+<p><a href="https://user-images.githubusercontent.com/35229192/125968961-9d65291f-3308-4352-b8b3-317c50542fdf.png" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/35229192/125968961-9d65291f-3308-4352-b8b3-317c50542fdf.png" alt="Pivotal and Rubbernecker story states" /></a></p>
+<h2 id="assigning-labels-to-stories">Assigning labels to stories</h2><p>Pivotal Tracker stories give the option to tag the story with labels. We use these labels to filter the stories in various different ways. You should apply a &lsquo;linked epic label&rsquo; (a purple label that is assigned to a specific epic/mission) to any work that belongs to a mission e.g. the <code>core-work</code> label for the &lsquo;Securely running and supporting GOV.UK PaaS for our tenants&rsquo; mission.</p>
+<p>If the work belongs or is assigned to a particular squad then you should also assign one of the squad labels so that we can view these using the filters in Rubbernecker.</p>
+<h3 id="squad-labels">Squad labels</h3><p><code>squad: paas</code>
+<code>squad: disco</code></p>
 <h2 id="story-kick-off">Story kick-off</h2><p>Kick-offs are an opportunity to clarify the scope of a story and raise any
 technical suggestions or concerns before work starts. They should include a
 check if the story being kicked off will likely conflict with any of the
