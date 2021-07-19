@@ -240,6 +240,7 @@ We use [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/1275640) to t
 
 ## Story states
 Within Pivotal Tracker there are a number of [story states](https://www.pivotaltracker.com/help/articles/terminology/#state) that let you know where in the cycle that piece of work is. When these stories are being worked, they appear in Rubbernecker. They appear under columns with different titles but when selecting a state in pivotal they move into the Rubbernecker columns like so:
+
   -  started > doing
   -  finished > reviewing
   -  delivered > approving
