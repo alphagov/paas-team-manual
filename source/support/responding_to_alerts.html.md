@@ -245,8 +245,7 @@ As this is the first monitor of this type please investigate the gorouters to di
 
 ## Diego cell ephemeral disk usage near full
 
-In the short term, to prevent a tenant-visible issue, it's probably a good idea to recreate
-the cell in bosh:
+To prevent a tenant-visible issue in the short term, it's probably a good idea to recreate the cell in bosh:
 
 ```
 cd ${PAAS_BOOTSTRAP_DIR}
