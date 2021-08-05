@@ -175,7 +175,7 @@ We will take these actions:
 
 ## Status
 
-Pending discussion
+Accepted
 
 ## Consequences
 
