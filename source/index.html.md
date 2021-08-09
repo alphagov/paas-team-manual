@@ -150,3 +150,4 @@ This section contains Architecture Decision Records (ADR) as described in this b
  - [ADR-043 New product pages language and framework selection](architecture_decision_records/ADR043-new-product-pages-language-and-framework/)
  - [ADR-044 Remove IPSec](architecture_decision_records/ADR044-remove-ipsec/)
  - [ADR-045 AWS WAF and WAF Log access by AWS DDoS Response Team](architecture_decision_records/ADR045-aws-waf/)
+ - [ADR-046 Postgres Service Plans](architecture_decision_records/ADR046-postgres-plans/)
