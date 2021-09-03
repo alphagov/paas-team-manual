@@ -104,7 +104,7 @@
 <ul>
 <li>Create an <a href="https://github.com/settings/applications/new">oAuth application</a></li>
 <li>Set your homepage URL to <code>https://deployer.&lt;your env&gt;.dev.cloudpipeline.digital</code></li>
-<li>Authorization callback URL should be <code>https://deployer.&lt;your env&gt;.dev.cloudpipeline.digital/auth/github/callback</code></li>
+<li>Authorization callback URL should be <code>https://deployer.&lt;your env&gt;.dev.cloudpipeline.digital/sky/issuer/callback</code></li>
 <li>Store the client ID and Client secret in your personal pass store under the following locations <code>github.com/concourse/dev/client_id</code> and <code>github.com/concourse/dev/client_secret</code></li>
 <li>Run <code>make dev upload-github-oauth GITHUB_PASSWORD_STORE_DIR=&lt;your pass dir&gt; DEPLOY_ENV=&lt;your env&gt;</code></li>
 <li>Checkout Master and push the pipeline with the following command for deployer concourse
