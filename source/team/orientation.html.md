@@ -40,6 +40,9 @@ M8 - Concourse and Observability Support Responsibilities
 ### Technical Writing 
 - Claire McNally - Technical Writer
 
+### Content Design
+- Hannah Cooper - Senior Content Designer
+
 ### User Research
 - Clare Barnett - Senior User Researcher (on loan)
 - Nadia Mugeni - User Researcher
