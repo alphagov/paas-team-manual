@@ -17,21 +17,23 @@ M8 - Concourse and Observability Support Responsibilities
 - Kam Nijjar - Associate Delivery Manager 
 
 ### Engineering
-- Lee Porte - Tech Lead (EL/CL)
+- Lee Porte - Lead Site Reliability Engineer (EL/CL)
+- Rafal Proszowski - Tech Lead (EL)
 - Andy Hunt - Site Reliability Engineer (EL)
-- Dave Povery - Site Reliability Engineer 
+- Dave Povey - Site Reliability Engineer 
 - Momhamed Deerow - Site Reliability Engineer (EL)
 - Sebastian Schmieschek - Site Reliability Engineer (EL)
 - Tom Whitwell - Site Reliability Engineer (EL)
 - Tom Rosier - Site Reliability Engineer (M8)
 - Robert Scott - Site Reliability Engineer (M8)
-- Alex Monk - Site Reliability Engineer (M8)
-- Rafal Proszowski - Senior Developer (EL)
+- Will Pearson - Site Reliability Engineer
+- Cat Garcia - Site Reliability Engineer 
 - Tris Oaten - Senior Developer
 - Jani Kraner - Front End Developer (CL)
 
 ### Product Management
 - Federico Nardini - Senior Product Manager (CL)
+- Lisa Scott - Senior Product Manager
 - Mark Buckley - Product Manager (CL)
 
 ### Technical Architecture
@@ -44,7 +46,7 @@ M8 - Concourse and Observability Support Responsibilities
 - Hannah Cooper - Senior Content Designer
 
 ### User Research
-- Clare Barnett - Senior User Researcher (on loan)
+- Clare Barnett - Senior User Researcher
 - Nadia Mugeni - User Researcher
 
 ### User Centered Design
