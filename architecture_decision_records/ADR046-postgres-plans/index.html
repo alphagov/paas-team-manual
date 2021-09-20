@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>ADR046 - Postgres Service Plans - PaaS Team Manual</title>
+
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR046-postgres-plans/">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="ADR046 - Postgres Service Plans - PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR046-postgres-plans/" />
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:title" content="ADR046 - Postgres Service Plans" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR046-postgres-plans/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
+    <div class="search-results__inner">
+      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
+      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
+      <div class="search-results__content"></div>
+    </div>
+  </div>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#adr046-postgres-service-plans"><span>ADR046: Postgres Service Plans</span></a>
+    <ul>
+      <li>
+        <a href="#context"><span>Context</span></a>
+      </li>
+      <li>
+        <a href="#problems-and-potential-options"><span>Problems and potential options</span></a>
+        <ul>
+          <li>
+            <a href="#problem-1"><span>Problem 1</span></a>
+          </li>
+          <li>
+            <a href="#problem-2"><span>Problem 2</span></a>
+          </li>
+          <li>
+            <a href="#problem-3"><span>Problem 3</span></a>
+          </li>
+          <li>
+            <a href="#problem-4"><span>Problem 4</span></a>
+          </li>
+          <li>
+            <a href="#problem-5"><span>Problem 5</span></a>
+          </li>
+          <li>
+            <a href="#problem-6"><span>Problem 6</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#summary"><span>Summary</span></a>
+      </li>
+      <li>
+        <a href="#decision"><span>Decision</span></a>
+      </li>
+      <li>
+        <a href="#status"><span>Status</span></a>
+      </li>
+      <li>
+        <a href="#consequences"><span>Consequences</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr046-postgres-service-plans">ADR046: Postgres Service Plans</h1><h2 id="context">Context</h2><p>GOV.UK PaaS runs a fork of the <a href="https://github.com/alphagov/paas-rds-broker">RDS Service Broker</a> and uses it to provide Postgres database services
+to its tenants.</p>
+<p>As of writing, our service plan &lsquo;menu&rsquo; looks like this:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cf marketplace -e postgres
+Getting service plan information for service offering postgres in org gds-tech-ops / space sandbox as 117196824971928474330...
+
+broker: rds-broker
+   plan                            description                                                                                                                                                                          free or paid   costs   available
+   tiny-unencrypted-10             5GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.micro. Free for trial orgs. Costs for billable orgs.    free                   yes
+   small-10                        20GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.small.                                            paid                   yes
+   small-ha-10                     20GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t2.small.                          paid                   yes
+   medium-10                       100GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.large.                                           paid                   yes
+   medium-ha-10                    100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.large.                         paid                   yes
+   large-10                        512GB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.2xlarge.                                        paid                   yes
+   large-ha-10                     512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.2xlarge.                      paid                   yes
+   xlarge-10                       2TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.4xlarge.                                          paid                   yes
+   xlarge-ha-10                    2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m4.4xlarge.                        paid                   yes
+   tiny-unencrypted-11             5GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 11. DB Instance Class: db.t3.micro. Free for trial orgs. Costs for billable orgs.    free                   yes
+   small-11                        100GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 11. DB Instance Class: db.t3.small.                                           paid                   yes
+   small-ha-11                     100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 11. DB Instance Class: db.t3.small.                         paid                   yes
+   medium-11                       100GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 11. DB Instance Class: db.m5.large.                                           paid                   yes
+   medium-ha-11                    100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 11. DB Instance Class: db.m5.large.                         paid                   yes
+   large-11                        512GB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 11. DB Instance Class: db.m5.2xlarge.                                        paid                   yes
+   large-ha-11                     512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 11. DB Instance Class: db.m5.2xlarge.                      paid                   yes
+   xlarge-11                       2TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 11. DB Instance Class: db.m5.4xlarge.                                          paid                   yes
+   xlarge-ha-11                    2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 11. DB Instance Class: db.m5.4xlarge.                        paid                   yes
+   tiny-unencrypted-10-high-iops   25GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t3.micro. Free for trial orgs. Costs for billable orgs.   free                   yes
+   small-10-high-iops              100GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t3.small.                                           paid                   yes
+   small-ha-10-high-iops           100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 10. DB Instance Class: db.t3.small.                         paid                   yes
+   medium-ha-10-high-iops          500GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m5.large.                         paid                   yes
+   large-10-high-iops              2.5TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m5.2xlarge.                                        paid                   yes
+   large-ha-10-high-iops           2.5TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m5.2xlarge.                      paid                   yes
+   xlarge-10-high-iops             10TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m5.4xlarge.                                         paid                   yes
+   xlarge-ha-10-high-iops          10TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m5.4xlarge.                       paid                   yes
+   tiny-unencrypted-11-high-iops   25GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 11. DB Instance Class: db.t3.micro. Free for trial orgs. Costs for billable orgs.   free                   yes
+   small-11-high-iops              100GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 11. DB Instance Class: db.t3.small.                                           paid                   yes
+   small-ha-11-high-iops           100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 11. DB Instance Class: db.t3.small.                         paid                   yes
+   medium-11-high-iops             500GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 11. DB Instance Class: db.m5.large.                                           paid                   yes
+   medium-ha-11-high-iops          500GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 11. DB Instance Class: db.m5.large.                         paid                   yes
+   large-11-high-iops              2.5TB Storage Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 11. DB Instance Class: db.m5.2xlarge.                                paid                   yes
+   large-ha-11-high-iops           2.5TB Storage Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 11. DB Instance Class: db.m5.2xlarge.              paid                   yes
+   xlarge-11-high-iops             10TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 11. DB Instance Class: db.m5.4xlarge.                                         paid                   yes
+   xlarge-ha-11-high-iops          10TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 11. DB Instance Class: db.m5.4xlarge.                       paid                   yes
+   medium-10-high-iops             500GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 10. DB Instance Class: db.m5.large.                                           paid                   yes
+   tiny-unencrypted-12             5GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 12. DB Instance Class: db.t3.micro. Free for trial orgs. Costs for billable orgs.    free                   yes
+   small-12                        100GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 12. DB Instance Class: db.t3.small.                                           paid                   yes
+   small-ha-12                     100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 12. DB Instance Class: db.t3.small.                         paid                   yes
+   medium-12                       100GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 12. DB Instance Class: db.m5.large.                                           paid                   yes
+   medium-ha-12                    100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 12. DB Instance Class: db.m5.large.                         paid                   yes
+   large-12                        512GB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 12. DB Instance Class: db.m5.2xlarge.                                        paid                   yes
+   large-ha-12                     512GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 12. DB Instance Class: db.m5.2xlarge.                      paid                   yes
+   xlarge-12                       2TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 12. DB Instance Class: db.m5.4xlarge.                                          paid                   yes
+   xlarge-ha-12                    2TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 12. DB Instance Class: db.m5.4xlarge.                        paid                   yes
+   tiny-unencrypted-12-high-iops   25GB Storage, NOT BACKED UP, Dedicated Instance, Max 50 Concurrent Connections. Postgres Version 12. DB Instance Class: db.t3.micro. Free for trial orgs. Costs for billable orgs.   free                   yes
+   small-12-high-iops              100GB Storage, Dedicated Instance, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 12. DB Instance Class: db.t3.small.                                           paid                   yes
+   small-ha-12-high-iops           100GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 200 Concurrent Connections. Postgres Version 12. DB Instance Class: db.t3.small.                         paid                   yes
+   medium-12-high-iops             500GB Storage, Dedicated Instance, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 12. DB Instance Class: db.m5.large.                                           paid                   yes
+   medium-ha-12-high-iops          500GB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 500 Concurrent Connections. Postgres Version 12. DB Instance Class: db.m5.large.                         paid                   yes
+   large-12-high-iops              2.5TB Storage Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 12. DB Instance Class: db.m5.2xlarge.                                paid                   yes
+   large-ha-12-high-iops           2.5TB Storage Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 12. DB Instance Class: db.m5.2xlarge.              paid                   yes
+   xlarge-12-high-iops             10TB Storage, Dedicated Instance, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 12. DB Instance Class: db.m5.4xlarge.                                         paid                   yes
+   xlarge-ha-12-high-iops          10TB Storage, Dedicated Instance, Highly Available, Storage Encrypted, Max 5000 Concurrent Connections. Postgres Version 12. DB Instance Class: db.m5.4xlarge.                       paid                   yes
+</code></pre></div><p>There&rsquo;s some background information needed to understand some decisions made when setting up our plans:
+* <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html#EBSVolumeTypes_gp2">AWS&rsquo;s gp2 storage</a> scales at 3 IOPS per GB of volume size, between a base of 100 IOPS at 33.33GB
+  disk size up to 16kIOPS at 5,334GB disk size.
+* AWS does not provide gp3 storage for RDS.
+* <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html">RDS storage</a> does not allow you to decrease storage of a database instance, or increase storage of
+  a database instance without adding at least 10%.</p>
+<p>We have identified several inconsistencies and issues with the current plans when studying them in
+order of volume size.</p>
+<h2 id="problems-and-potential-options">Problems and potential options</h2><p>Replacing plans in this section refers to:
+* renaming the existing plan to have a <code>-deprecated</code> suffix
+* marking it private
+* scoping it down to only the existing spaces using it
+* creating a new one under its old name, with new configuration</p>
+<p>This way, we avoid problems with billing and existing service instances using these plans.</p>
+<h3 id="problem-1">Problem 1</h3><p>There is no upgrade path available from <code>medium</code> <code>high-iops</code> plans to <code>large</code> plans, because of the
+  RDS 10% storage increase rule - 500GB to 512GB would violate it.
+1. We could replace the <code>medium</code> <code>high-iops</code> plans with ones of smaller disk space, say 465GB (<code>⌊512/1.1⌋</code>).
+   * This would leave existing users of these plans (6 instances) unable to upgrade (both in terms
+     of plan size and database version) without going up to <code>large</code>.
+2. We could replace the <code>large</code> plans with ones of larger disk space, say 564GB (<code>⌈512*1.1⌉</code>).</p>
+<h3 id="problem-2">Problem 2</h3><p>The <code>small</code> plans are inconsistent - <code>small-10</code> (and <code>small-ha-10</code>) provide 20GB disk space, but
+  the Postgres 11 and 12 variants provide 100GB disk space.
+1. We could replace the <code>small-11</code>, <code>small-ha-11</code>, <code>small-12</code>, and <code>small-ha-12</code> plans with 20GB
+   editions.
+   * This would leave existing users of these plans (170 instances) unable to upgrade (both in
+     terms of plan size and database version) without going up to <code>small</code> <code>high-iops</code> or <code>medium</code>.
+2. We could replace the <code>small-10</code> and <code>small-ha-10</code> plans with 100GB editions.
+   * This would make approximately zero sense as they&rsquo;d be identical to the <code>small-10-high-iops</code>
+     and <code>small-ha-10-high-iops plans</code>.
+3. We could do nothing and leave it be. It&rsquo;s not technically breaking anything irght now.
+   * This might create a dilemma when we come to introduce <code>small-13</code> and <code>small-ha-13</code>. Should it
+     be 20GB or 100GB? <code>small-13-high-iops</code> and <code>small-ha-13-high-iops</code> will be 100GB so it would
+     be illogical, however if we went for 20GB, there would be no <code>small-12</code> -&gt; <code>small-13</code> upgrade path.</p>
+<h3 id="problem-3">Problem 3</h3><p>The Postgres engine version is part of the plans themselves. It is not relevant to billing or
+particularly how the underlying resource is structed on AWS.</p>
+
+<ol>
+<li>We could make it a config option.
+
+<ul>
+<li>This might make the broker more complex as we&rsquo;d have to handle existing instances.</li>
+</ul></li>
+<li>We could do nothing and leave it be.
+
+<ul>
+<li>This means a lot of duplication and potential for inconsistency (e.g., as we&rsquo;ve seen between
+small-10 and small-12).</li>
+</ul></li>
+</ol>
+<h3 id="problem-4">Problem 4</h3><p>The disk space is part of the plans but this leads to massive jumps in plan whenever you just want
+a bit more disk space.
+1. We could make it a config option.
+   * We&rsquo;d have to factor this into billing.
+   * This might make the broker more complex as we&rsquo;d have to handle existing instances.
+2. We could do nothing and leave it be.
+   * Problem to solve in a future PaaS? Would future PaaS even want to do service plans? Probably,
+     but we shouldn&rsquo;t pre-empt it.</p>
+<h3 id="problem-5">Problem 5</h3><p>It&rsquo;s not clear that users know there could be legitimate reasons to want to upgrade from
+  <code>medium</code> <code>high-iops</code> to <code>large</code> (non-<code>high-iops</code>). If a user doesn&rsquo;t understand the disk space
+  &lt;-&gt; IOPS link, they might have <code>medium</code> <code>high-iops</code>, need more RAM/a bigger CPU/more connections,
+  and decide straight to <code>large</code> <code>high-iops</code> instead of plain <code>large</code>.
+1. We could add IOPS information to each plan&rsquo;s description.
+   * These descriptions are already quite wordy and this would make things worse.
+2. We could do nothing and leave it be.</p>
+<h3 id="problem-6">Problem 6</h3><p>The <code>xlarge</code> <code>high-iops</code> plans provide a disk larger than that needed to achieve maximum
+ AWS gp2 IOPS.
+1. We could make future xlarge <code>high-iops</code> plans 5,334GB in disk size.
+   * However there would then be no upgrade path for the current user.
+2. We could do nothing and leave it be.</p>
+<h2 id="summary">Summary</h2><p>In conclusion, with the service plan system we&rsquo;ve backed ourselves into a corner with some not very
+good ways out.</p>
+<h2 id="decision">Decision</h2><p>We will take these actions:
+* Problem 1: Action 2 - replace the <code>large</code> plans with 564GB versions
+* Problem 2: Action 3 - do nothing for now
+* Problem 3: Action 2 - do nothing for now
+* Problem 4: Action 2 - do nothing for now
+* Problem 5: Action 2 - do nothing for now
+* Problem 6: Action 2 - do nothing for now</p>
+<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<ul>
+<li>Users on <code>medium</code> <code>high-iops</code> plans will be able to upgrade to <code>large</code>.</li>
+<li>Existing <code>large</code> users will be able to move to the new <code>large</code> plans at will through the usual
+service instance update mechanism.</li>
+<li>We will effectively introduce new <code>large</code> <code>-deprecated</code> plans which are private to the existing
+users.</li>
+<li>Various oddities will remain in our current plan &lsquo;menu&rsquo;.</li>
+</ul>
+
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="../../accessibility/">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../javascripts/application.js"></script>
+  </body>
+</html>
