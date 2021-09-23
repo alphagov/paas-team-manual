@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>ADR047 - Postgres allowed-extensions approach - PaaS Team Manual</title>
+
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR047-postgres-extensions-approach/">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="ADR047 - Postgres allowed-extensions approach - PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR047-postgres-extensions-approach/" />
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:title" content="ADR047 - Postgres allowed-extensions approach" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR047-postgres-extensions-approach/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
+    <div class="search-results__inner">
+      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
+      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
+      <div class="search-results__content"></div>
+    </div>
+  </div>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#adr047-postgres-allowed-extensions-approach"><span>ADR047: Postgres allowed-extensions approach</span></a>
+    <ul>
+      <li>
+        <a href="#context"><span>Context</span></a>
+      </li>
+      <li>
+        <a href="#decision"><span>Decision</span></a>
+      </li>
+      <li>
+        <a href="#status"><span>Status</span></a>
+      </li>
+      <li>
+        <a href="#consequences"><span>Consequences</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr047-postgres-allowed-extensions-approach">ADR047: Postgres allowed-extensions approach</h1><h2 id="context">Context</h2><p>Up to the release of postgres 13 plans to tenants, the policy for choosing
+the set of postgres extensions we allow for a certain major version was ad-hoc.
+A mixture of &ldquo;allow everything&rdquo;, simply copying the list from the previous
+postgres version and not actually trying any of these extensions had lead
+to an extensions list (published at https://docs.cloud.service.gov.uk/deploying_services/postgresql/#add-or-remove-extensions-for-a-postgresql-service-instance)
+with:</p>
+
+<ul>
+<li>misnamed entries</li>
+<li>entries removed from earlier postgres versions</li>
+<li>missing newly-offered extensions</li>
+<li>extensions that could never be used without superuser access</li>
+<li>extensions that could never be used with the VPC restrictions we have
+in place for our RDS instances.</li>
+</ul>
+<p>Some of these extensions had been omitted from the list in the documentation,
+but it was unclear how these decisions had been made and where we stood on
+each extension.</p>
+<p>This is confusing for tenants and could lead them down a path of trying to
+use an extension which will never work, or even start designing a system
+that relies on functionality in a listed extension only to find it unusable.</p>
+<h2 id="decision">Decision</h2><p>For postgres 13 onwards, offer a selection of extensions limited to those
+we know can be successfully enabled and think are feasible to use given
+the limitations of our platform.</p>
+<p>Maintain a document (initially a spreadsheet https://docs.google.com/spreadsheets/d/100qBo3Q2mfY70ek9fNWbpEsS4HzjOarF3q1a_hPR1uU/edit?usp=sharing)
+tracking our conclusions on each extension by postgres major version.</p>
+<p>When preparing to offer a new postgres major version to tenants, a new
+sheet should be copied from the previous release&rsquo;s sheet and adjusted
+according to the new list of extensions in the RDS documentation. New
+entries should be researched and decided upon whether they are feasible
+to use without superuser privileges and from within our VPC.</p>
+<p>Using a dev environment with the new postgres available and a script
+such as the one found in
+https://github.com/alphagov/paas-rds-broker/tree/main/scripts (or preferably
+an improved one), each extension remaining in the &ldquo;final list&rdquo; should be
+checked in turn to ensure it can be enabled and then disabled. This may
+involve discovering (through trial and error) which extensions have
+dependencies on others. It&rsquo;s likely to be the same as the previous release,
+so that&rsquo;s a good starting point. This is good information to maintain as it
+would come in useful if we ever decided to make the rdsbroker smarter and able
+to auto-load dependencies.</p>
+<p>This should also reveal whether any new extensions require
+<code>shared_preload_libraries</code>. Any that do should have appropriate additions
+made to https://github.com/alphagov/paas-rds-broker/blob/main/rdsbroker/supported_extensions.go .</p>
+<p>Beyond making sure an extension loads, actually trying out the functionality
+of each extension is beyond the time committment we&rsquo;re willing to give
+this for now. We may update the documentation to note the semi-supported
+nature of postgres extensions on our platform.</p>
+<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="consequences">Consequences</h2><p>Adding a new major postgres version will take a little more work than before.</p>
+<p>There&rsquo;s a possibility we&rsquo;ll mistakenly disable an extension that <em>would</em>
+prove useful to a tenant in some way. In this case they can always ask us
+about it and we may re-assess. It&rsquo;s not as though we&rsquo;re removing an
+extension from a current database.</p>
+
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="../../accessibility/">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../javascripts/application.js"></script>
+  </body>
+</html>
