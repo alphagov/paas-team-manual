@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -116,10 +109,13 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr017-cell-capacity-assignment">ADR017: cell capacity assignment</h1><h2 id="superceded">Superceded</h2><p>This has been superceded by <a href="/architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR021</a> since November 2017. It has been retained for historical purposes.</p>
+  <h1 id="adr017-cell-capacity-assignment">ADR017: cell capacity assignment</h1>
+<h2 id="superceded">Superceded</h2>
+<p>This has been superceded by <a href="/architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR021</a> since November 2017. It has been retained for historical purposes.</p>
 
 <hr>
-<h2 id="context">Context</h2><p>We want to ensure our platform remains available when a single AZ fails. This means that we need to have enough spare memory capacity left on cells to cover deploying apps from the failed zone. In case of 3 zones, that means each zone should be able to host 50% more apps (memory capacity wise). We can calculate maximum memory usable by all orgs by doing sum of their quotas. However, in practice much less memory is consumed. This is because</p>
+<h2 id="context">Context</h2>
+<p>We want to ensure our platform remains available when a single AZ fails. This means that we need to have enough spare memory capacity left on cells to cover deploying apps from the failed zone. In case of 3 zones, that means each zone should be able to host 50% more apps (memory capacity wise). We can calculate maximum memory usable by all orgs by doing sum of their quotas. However, in practice much less memory is consumed. This is because</p>
 
 <ol>
 <li>Org quotas come in T-shirt sizes and have considerable size jumps (e.g. 2, 10, 60 100G). You need to reserve next quota if previous one is too small for your needs, yet it doesn&rsquo;t mean you will be using all the capacity of the larger quota.</li>
@@ -130,9 +126,12 @@
 Memory reserved by apps: 107108 MB (104 GB)
 Memory actually used by apps: 32868 (32 GB)
 </code></pre></div><p>This is not unusual and CF v1 had default overprovisioning factor of 2 (that is, it advertised 2 times more capacity than actual).</p>
-<h2 id="decision">Decision</h2><p>We will maintain at least 50% of total org reserved capacity available when a zone fails. That is, remaining zones will have to be able to cover 50% of total reserved capacity.</p>
-<h2 id="status">Status</h2><p>Superceded by <a href="/architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR021</a>.</p>
+<h2 id="decision">Decision</h2>
+<p>We will maintain at least 50% of total org reserved capacity available when a zone fails. That is, remaining zones will have to be able to cover 50% of total reserved capacity.</p>
+<h2 id="status">Status</h2>
+<p>Superceded by <a href="/architecture_decision_records/ADR021-cell-capacity-assignment-2/">ADR021</a>.</p>
 <h2 id="consequences">Consequences</h2>
+
 <ul>
 <li>We will check if we have enough capacity available whenever we add a new organisation or increase quota of existing one. We will deploy more cells if we need more capacity.</li>
 <li>We have implemented <code>show-cf-memory-usage</code> makefile target to help us get current org and app reservation and real usage totals.</li>

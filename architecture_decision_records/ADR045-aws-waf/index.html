@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,7 +106,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr045-aws-waf-and-waf-log-access-by-aws-ddos-response-team">ADR045: AWS WAF and WAF Log access by AWS DDoS Response Team</h1><h2 id="context">Context</h2><p>GOV.UK PaaS uses <a href="https://aws.amazon.com/shield/features/#AWS_Shield_Advanced">AWS Shield Advanced</a> as well as AWS WAF to protect from DDoS attacks.</p>
+  <h1 id="adr045-aws-waf-and-waf-log-access-by-aws-ddos-response-team">ADR045: AWS WAF and WAF Log access by AWS DDoS Response Team</h1>
+<h2 id="context">Context</h2>
+<p>GOV.UK PaaS uses <a href="https://aws.amazon.com/shield/features/#AWS_Shield_Advanced">AWS Shield Advanced</a> as well as AWS WAF to protect from DDoS attacks.</p>
 <p>However the mitigations are not automatic and we have access to the AWS DDoS Response Team 
 (DRT) who are experts in mitigating these types of attack.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Shield Advanced detects web application layer vectors, like web request floods and 
@@ -125,9 +120,12 @@ the attack is and where is is coming from, and API access to the WAF in order to
 mitigating rules.</p>
 <p>To enagage the AWS DRT team we will set up CloudWatch alarms on our WAF rules in order to trigger 
 the <a href="https://s3.amazonaws.com/aws-shield-lambda/ShieldEngagementLambda.pdf">emergency engagement Lambda</a></p>
-<h2 id="decision">Decision</h2><p>We will grant access to the AWS DRT to read from restricted S3 buckets</p>
-<h2 id="status">Status</h2><p>Accepted.</p>
-<h2 id="consequences">Consequences</h2><p>End-to-end encryption between gorouter and apps will done solely by mTLS.</p>
+<h2 id="decision">Decision</h2>
+<p>We will grant access to the AWS DRT to read from restricted S3 buckets</p>
+<h2 id="status">Status</h2>
+<p>Accepted.</p>
+<h2 id="consequences">Consequences</h2>
+<p>End-to-end encryption between gorouter and apps will done solely by mTLS.</p>
 
 
             

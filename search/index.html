@@ -5,23 +5,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Restoring Elasticsearch backups - PaaS Team Manual</title>
+    <title>Search - PaaS Team Manual</title>
 
-    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+    <link href="../stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/support/restoring_elasticsearch_backups/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/search/">
 
+      <meta name="robots" content="noindex" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Restoring Elasticsearch backups - PaaS Team Manual" />
-      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/restoring_elasticsearch_backups/" />
+      <meta name="twitter:title" content="Search - PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/search/" />
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
-      <meta property="og:title" content="Restoring Elasticsearch backups" />
+      <meta property="og:title" content="Search" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/support/restoring_elasticsearch_backups/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/search/" />
 
     
   </head>
@@ -77,7 +78,10 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#restoring-elasticsearch-backups"><span>Restoring Elasticsearch backups</span></a>
+    <a href="#how-to-search"><span>Search</span></a>
+  </li>
+  <li>
+    <a href="#search-results-title"><span>Results</span></a>
   </li>
 </ul>
 
@@ -92,16 +96,29 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="restoring-elasticsearch-backups">Restoring Elasticsearch backups</h1>
-<p>There is no direct way for us to restore Elasticsearch backups either via the API or console.</p>
-<p>In order to have a bakup restored you will need to open a support ticket with Aiven via <a href="mailto:support@aiven.io">support@aiven.io</a> requesting a restoration of a backup they will need to know the instance ID <code>prod-$(cf service &lt;servicename&gt; --guid)</code> and the time of the backup you would like restored.</p>
-<p>The Web interface only shows the latest backup, they are taken on a 2 hourly basis and retained as follows;</p>
+  <div id="search-help" class="search-help">
+  <h1 id="how-to-search">Search</h1>
 
-<ul>
-<li>Startup (our tiny plan): 2 days</li>
-<li>Business (our small plan): 14 days</li>
-</ul>
-<p>If you are not sure which time, ask for a list of the available backups for the instance ID in question.</p>
+  <p class="govuk-body search-help__no-js">
+    You need to turn on JavaScript in your browser to search this site. You can either:
+
+    <ul>
+      <li>turn on JavaScript in your browser</li>
+      <li>search this site using Google</li>
+    </ul>
+  </p>
+
+  <p class="govuk-body">
+    Enter a search term in the search box, then select the search button.
+  </p>
+</div>
+
+<div id="search-results" class="search-results" hidden aria-labelledby="search-results-title">
+  <div class="search-results__inner">
+    <h1 id="search-results-title" class="search-results__title" aria-live="assertive">Results</h1>
+    <div class="search-results__content"></div>
+  </div>
+</div>
 
 
             
@@ -116,7 +133,7 @@
 
         <ul class="govuk-footer__inline-list">
             <li class="govuk-footer__inline-list-item">
-              <a class="govuk-footer__link" href="../../accessibility/">Accessibility</a>
+              <a class="govuk-footer__link" href="../accessibility/">Accessibility</a>
             </li>
         </ul>
 
@@ -157,6 +174,6 @@
     </div>
 
     
-    <script src="../../javascripts/application.js"></script>
+    <script src="../javascripts/application.js"></script>
   </body>
 </html>

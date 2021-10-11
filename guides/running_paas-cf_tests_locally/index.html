@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -110,10 +103,13 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="running-tests-on-paas-cf-locally">Running tests on <code>paas-cf</code> locally</h1><p>A number of packages need to be installed in order to run the tests of <code>paas-cf</code> locally. To run them, install the packages below then run</p>
+  <h1 id="running-tests-on-paas-cf-locally">Running tests on <code>paas-cf</code> locally</h1>
+<p>A number of packages need to be installed in order to run the tests of <code>paas-cf</code> locally. To run them, install the packages below then run</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>make <span class="nb">test</span>
-</code></pre></div><h2 id="pre-requisites">Pre-requisites</h2><p><code>paas-cf</code> needs to be checked out in the correct location in your Go path: <code>$GOPATH/src/github.com/alphagov/paas-cf</code></p>
+</code></pre></div><h2 id="pre-requisites">Pre-requisites</h2>
+<p><code>paas-cf</code> needs to be checked out in the correct location in your Go path: <code>$GOPATH/src/github.com/alphagov/paas-cf</code></p>
 <h2 id="install-required-packages">Install required packages</h2>
+
 <ul>
 <li><a href="https://brew.sh/">Homebrew</a></li>
 <li>Golang &gt;=1.11.4</li>
@@ -187,6 +183,7 @@ bundle <span class="nb">install</span>
 </ul>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>  brew <span class="nb">install </span>jq
 </code></pre></div><h2 id="install-optional-packages">Install optional packages</h2>
+
 <ul>
 <li>CloudFoundry cf-uaac</li>
 </ul>

@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,7 +106,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr024-web-app-language-and-framework-selection">ADR024: web app language and framework selection</h1><h2 id="context">Context</h2><p>We are starting to develop a number of user-facing applications with web
+  <h1 id="adr024-web-app-language-and-framework-selection">ADR024: web app language and framework selection</h1>
+<h2 id="context">Context</h2>
+<p>We are starting to develop a number of user-facing applications with web
 interfaces that need to be GOV.UK branded. In order to keep things consistent
 we want to pick a single programming language to write these in.</p>
 <p>We&rsquo;ve previously chosen Ruby on Rails as our desired framework in the previous
@@ -139,11 +134,14 @@ HTML parsing)</li>
 <li>It&rsquo;s light and essentially is JavaScript</li>
 <li>It supports <a href="https://mozilla.github.io/nunjucks/">nunjucks</a> which will help us in maintenance</li>
 </ul>
-<h2 id="decision">Decision</h2><p>We will use Node to create new user-facing applications that render a web
+<h2 id="decision">Decision</h2>
+<p>We will use Node to create new user-facing applications that render a web
 interface for our service but will not be used to implement any significant
 ‘application logic’.</p>
-<h2 id="status">Status</h2><p>Accepted.</p>
-<h2 id="consequences">Consequences</h2><p>We should consider porting some of our existing applications over to Node.</p>
+<h2 id="status">Status</h2>
+<p>Accepted.</p>
+<h2 id="consequences">Consequences</h2>
+<p>We should consider porting some of our existing applications over to Node.</p>
 
 
             

@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -109,14 +102,16 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="investigating-rsyslog-issues">Investigating <code>rsyslog</code> issues</h1><p><code>rsyslog</code> is <a href="https://www.rsyslog.com/">&ldquo;the rocket-fast system for log
+  <h1 id="investigating-rsyslog-issues">Investigating <code>rsyslog</code> issues</h1>
+<p><code>rsyslog</code> is <a href="https://www.rsyslog.com/">&ldquo;the rocket-fast system for log
 processing&rdquo;</a>. It&rsquo;s an application that runs on all of
 our VMs that receives log messages, performs some processing, and forwards the
 messages to our logging system (currently logit).</p>
 <p>We have occasionally suspected rsyslog (or other parts of our logging pipeline)
 of causing reliability issues. This documentation is intended to help operators
 diagnose issues with rsyslog more quickly.</p>
-<h2 id="suspected-memory-usage-issues">Suspected memory usage issues</h2><p>On 2018-07-31 the production <code>router</code> virtual machines exhausted their
+<h2 id="suspected-memory-usage-issues">Suspected memory usage issues</h2>
+<p>On 2018-07-31 the production <code>router</code> virtual machines exhausted their
 available memory and swap. Initial investigation suggested that the <code>rsyslogd</code>
 process on these machines was using far more than the expected amount of
 memory.</p>
@@ -124,7 +119,8 @@ memory.</p>
 its destination in <a href="https://www.pivotaltracker.com/story/show/159559834">#159559834</a>,
 but weren&rsquo;t able to reproduce the issue. There&rsquo;s extensive documentation of our
 investigation on that ticket.</p>
-<h3 id="investigating-memory-usage-issues">Investigating memory usage issues</h3><p>If there are suspected issues with rsyslog&rsquo;s memory usage in future there are a
+<h3 id="investigating-memory-usage-issues">Investigating memory usage issues</h3>
+<p>If there are suspected issues with rsyslog&rsquo;s memory usage in future there are a
 few things you should look into:</p>
 <p>In Kibana, search for <code>@source.component: &quot;rsyslogd-pstats&quot;</code> - this should show
 if rsyslog has full queues / is dropping messages. (See <a href="https://www.pivotaltracker.com/story/show/159559834/comments/193170947">#159559834</a> for more details)</p>

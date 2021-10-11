@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,12 +106,15 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr028-migrate-cf-platform-logs-to-logit">ADR028: Migrate CF platform logs to Logit</h1><h2 id="context">Context</h2><p>The work to ship cloud foundry platform logs to Logit was started in 2018 Q1.
+  <h1 id="adr028-migrate-cf-platform-logs-to-logit">ADR028: Migrate CF platform logs to Logit</h1>
+<h2 id="context">Context</h2>
+<p>The work to ship cloud foundry platform logs to Logit was started in 2018 Q1.
 It was paused because some IA issues with Logit were not resolved. At one point
 RE recommended that PaaS should host our own logstash as this part of the
 service was not widely available by market Elastic SaaS providers. The PaaS
 team was also considering to use Elasticsearch on AWS with our accounts.</p>
-<h2 id="decision">Decision</h2><p>An updated conversation with the RE tool team has confirmed that the IA issues
+<h2 id="decision">Decision</h2>
+<p>An updated conversation with the RE tool team has confirmed that the IA issues
 had been resolved, and that GDS can continue to use Logit for now.</p>
 <p>It is a GDS strategy to use a consistent logging solution. Hence, we should
 continue our migration of platform logs to logit, including our logstash
@@ -127,8 +123,10 @@ filters.</p>
 filter rather than hosting the bosh release one. In the future if GDS choose to
 use another vendor that do not have a hosted logstash solution, they would need
 to provide a migration strategy for all the current logstash users.</p>
-<h2 id="status">Status</h2><p>Approved</p>
-<h2 id="consequences">Consequences</h2><p>We will continue the migration of platform logs to logit including logstash,
+<h2 id="status">Status</h2>
+<p>Approved</p>
+<h2 id="consequences">Consequences</h2>
+<p>We will continue the migration of platform logs to logit including logstash,
 and take a risk that we may need to spin up our logstash in the future if GDS
 choose a different platform logs provider.</p>
 

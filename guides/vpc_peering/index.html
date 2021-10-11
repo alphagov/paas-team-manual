@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -107,8 +100,10 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="vpc-peering">VPC Peering</h1><p>We use VPC peering to allow tenants to access resources they manage in another VPC somewhere on AWS. We grant access to the VPC on a per-space basis, although there is a shortcut to grant access to all existing spaces in an org.</p>
+  <h1 id="vpc-peering">VPC Peering</h1>
+<p>We use VPC peering to allow tenants to access resources they manage in another VPC somewhere on AWS. We grant access to the VPC on a per-space basis, although there is a shortcut to grant access to all existing spaces in an org.</p>
 <h2 id="how-to-set-it-up">How to set it up</h2>
+
 <ol>
 <li>Choose a subnet CIDR that we&rsquo;ll ask the tenant to use. Look in <code>paas-cf/terraform/prod{-lon}.vpc_peering.json</code> for a list of current peerings, then choose the next highest subnet. The size should be <code>/22</code>. For example, if the highest subnet is <code>172.16.4.0/22</code>, ask the tenant to use <code>172.16.8.0/22</code>.</li>
 <li>Tell the tenant to create a new VPC with the subnet you have given them, and ask them to give you both the VPC ID, and the AWS account ID the VPC resides in.</li>
@@ -118,6 +113,7 @@
 <li>🎉</li>
 </ol>
 <h2 id="things-to-note">Things to note</h2>
+
 <ul>
 <li>There is a hard limit of 125 VPC peerings per VPC, and the default limit is 50.</li>
 <li>There is a performance penalty to having many VPC peerings due to the performance of large route tables.</li>

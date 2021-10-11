@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,7 +106,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr043-new-product-pages-language-and-framework">ADR043: new product pages language and framework</h1><h2 id="context">Context</h2><p><a href="https://www.cloud.service.gov.uk/">PaaS product pages</a> have been reviewed and a number of accessibility issues
+  <h1 id="adr043-new-product-pages-language-and-framework">ADR043: new product pages language and framework</h1>
+<h2 id="context">Context</h2>
+<p><a href="https://www.cloud.service.gov.uk/">PaaS product pages</a> have been reviewed and a number of accessibility issues
 have been identified. To resolve those we, would need to make an upgrade and
 and review if any additional changes are needed to align with the GOV.UK Design System.</p>
 <p>As those pages are built in Ruby and in <a href="/architecture_decision_records/ADR024-web-app-language-and-framework-selection-2">ADR024</a> we&rsquo;ve made the decision
@@ -141,10 +136,13 @@ performance differences between them.</p>
 <p>Our use case for now is narrow enough, and with the primary need of anyone in the team
 being able to update pages, <a href="https://nextjs.org/">NextJS</a> marginally gets more votes as Gatsby cannot be installed and run on
 non-developer machines.</p>
-<h2 id="decision">Decision</h2><p>We will use <a href="https://nextjs.org/">NextJS</a> together with <a href="https://mdxjs.com/">MDX</a> to author PaaS product pages content in 
+<h2 id="decision">Decision</h2>
+<p>We will use <a href="https://nextjs.org/">NextJS</a> together with <a href="https://mdxjs.com/">MDX</a> to author PaaS product pages content in 
 <a href="https://www.markdownguide.org/getting-started/">Markdown</a> and deliver them to users as static pages.</p>
-<h2 id="status">Status</h2><p>Accepted.</p>
-<h2 id="consequences">Consequences</h2><p>This implementation will allow us to:</p>
+<h2 id="status">Status</h2>
+<p>Accepted.</p>
+<h2 id="consequences">Consequences</h2>
+<p>This implementation will allow us to:</p>
 
 <ul>
 <li>iterate our content more quickly as non-developers will be able to make changes easily</li>

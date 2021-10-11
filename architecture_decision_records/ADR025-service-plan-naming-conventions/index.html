@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -124,14 +117,17 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr025-service-plan-naming-conventions">ADR025: Service plan naming conventions</h1><h2 id="context">Context</h2><p>Our service plans have evolved incrementally over the last few years and are in
+  <h1 id="adr025-service-plan-naming-conventions">ADR025: Service plan naming conventions</h1>
+<h2 id="context">Context</h2>
+<p>Our service plans have evolved incrementally over the last few years and are in
 need of some attention. Names are inconsistent, potentially confusing and
 in many cases contain irrelevant redundant information that is of no practical
 use to the platform operators or to tenants consuming the service.</p>
 <p>Adding additional versions of services has the potential to compound the
 problem by multiplying plans of different characteristics with different
 versions.</p>
-<h2 id="decision">Decision</h2><p>We have decided to use the following naming convention for naming plans going forward:</p>
+<h2 id="decision">Decision</h2>
+<p>We have decided to use the following naming convention for naming plans going forward:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>SIZE[-HA][-LABEL,-LABEL,...]-VERSION
 </code></pre></div><p>Where:</p>
 
@@ -141,13 +137,16 @@ versions.</p>
 <li><code>LABEL</code> is a string describing some specific variant of the service if relvent.</li>
 <li><code>VERSION</code> is the version number of the service plan.</li>
 </ul>
-<h3 id="for-example">For example:</h3><p>A large multi-az postgres plan for version 9.6 would be <code>large-ha-9.6</code>.</p>
+<h3 id="for-example">For example:</h3>
+<p>A large multi-az postgres plan for version 9.6 would be <code>large-ha-9.6</code>.</p>
 <p>A small not multi-az, unclustered, redis 3.2 plan would be <code>redis-unclustered-3.2</code>.</p>
-<h3 id="example-migrations-of-some-existing-plans">Example migrations of some existing plans:</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>L-HA-enc-dedicated-9.5 =&gt; large-ha-9.5
+<h3 id="example-migrations-of-some-existing-plans">Example migrations of some existing plans:</h3>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>L-HA-enc-dedicated-9.5 =&gt; large-ha-9.5
 M-HA-enc-dedicated-9.5 =&gt; medium-ha-9.5
 tiny-clustered =&gt; tiny-clustered-3.2
 tiny-unclustered =&gt; tiny-unclustered-3.2
 </code></pre></div><h3 id="additionally">Additionally:</h3>
+
 <ul>
 <li>We will avoid use of the word &ldquo;free&rdquo; in names.</li>
 <li>We will avoid using redundent words (like &lsquo;dedicated&rsquo;) in names to reduce noise.</li>
@@ -155,8 +154,10 @@ tiny-unclustered =&gt; tiny-unclustered-3.2
 <li>We will avoid abbriviations where possible (&ldquo;medium&rdquo; instead of &ldquo;M&rdquo;, &ldquo;large&rdquo; instead of &ldquo;L&rdquo;).</li>
 <li>We will avoid offering unencrypted plans where an encrypted version is available (legacy unencrypted plans will be explicitly labelled with <code>-unencrypted</code> and hidden from the marketplace).</li>
 </ul>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>Renaming exisiting plans to conform to this format may be disruptive to tenants who may rely on the old names in scripted deployements.</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>Renaming exisiting plans to conform to this format may be disruptive to tenants who may rely on the old names in scripted deployements.</p>
 
 
             

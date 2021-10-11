@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -149,20 +142,25 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="paas-team-manual">PaaS Team Manual</h1><h2 id="incident-and-support-model">Incident and support model</h2>
+  <h1 id="paas-team-manual">PaaS Team Manual</h1>
+<h2 id="incident-and-support-model">Incident and support model</h2>
+
 <ul>
 <li><a href="incident_management/incident_process/">Incident process</a></li>
 <li><a href="incident_management/support_manual/">Support manual</a></li>
 <li><a href="incident_management/roles_and_responsibilities/">Support roles and responsibilities</a></li>
 <li><a href="team/service_targets/">Service Targets</a></li>
 </ul>
-<h2 id="support-runbook">Support Runbook</h2><h3 id="response">Response</h3>
+<h2 id="support-runbook">Support Runbook</h2>
+<h3 id="response">Response</h3>
+
 <ul>
 <li><a href="support/responding_to_alerts/">Responding to alerts</a></li>
 <li><a href="support/responding_to_security_issues/">Responding to security issues</a></li>
 <li><a href="team/responding_to_aws_alert/">Responding to AWS alerts</a></li>
 </ul>
 <h3 id="how-to">How-to</h3>
+
 <ul>
 <li><a href="guides/common_support_tasks/">How to do common support tasks</a></li>
 <li><a href="support/CF_UAA_user_management/">How to do user and organisation management</a></li>
@@ -192,6 +190,7 @@
 <li><a href="guides/reducing_logit_volume/">How to reduce Logit volume</a></li>
 </ul>
 <h3 id="other-information">Other information</h3>
+
 <ul>
 <li><a href="team/our_orgs_on_the_paas/">Our orgs on the paas</a></li>
 <li><a href="guides/enhancing_kibana/">Enhancing Kibana</a></li>
@@ -203,6 +202,7 @@
 <li><a href="team/platform_alerting/">Platform alerting</a></li>
 </ul>
 <h2 id="tenant-account-management">Tenant Account Management</h2>
+
 <ul>
 <li><a href="accounts/account_lifecycle/">Account lifecycle</a></li>
 <li><a href="accounts/closing_trial_accounts/">Closing GOV.UK PaaS trial accounts</a></li>
@@ -210,10 +210,12 @@
 <li><a href="accounts/tenant_personal_data/">Tenant personal data</a></li>
 </ul>
 <h2 id="tenant-billing">Tenant Billing</h2>
+
 <ul>
 <li><a href="accounts/billing_info/">Billing process for GOV.UK PaaS paid accounts</a></li>
 </ul>
 <h2 id="team-accounts-and-software">Team Accounts and Software</h2>
+
 <ul>
 <li><a href="support/zendesk/">Zendesk</a></li>
 <li><a href="team/statuspage/">Statuspage</a></li>
@@ -221,7 +223,9 @@
 <li><a href="guides/Documentation_system/">Documentation for tenants (<code>paas-tech-docs</code>)</a></li>
 <li><a href="team/managing_access_to_cloud_services/">Third parties cloud accounts</a></li>
 </ul>
-<h2 id="policies-and-procedures">Policies and Procedures</h2><h3 id="team-process">Team process</h3>
+<h2 id="policies-and-procedures">Policies and Procedures</h2>
+<h3 id="team-process">Team process</h3>
+
 <ul>
 <li><a href="team/orientation/">Orientation</a></li>
 <li><a href="team/dashboard_mac_mini/">Dashboard mac mini</a></li>
@@ -230,12 +234,14 @@
 <li><a href="team/roadmap/">Roadmap</a></li>
 </ul>
 <h3 id="working-practices">Working practices</h3>
+
 <ul>
 <li><a href="team/working_practices/#development-process">Development process</a></li>
 <li><a href="team/working_practices/#stories">Development Stories</a></li>
 <li><a href="team/working_practices/#stories">Tech doc changes</a></li>
 </ul>
 <h2 id="technical-design">Technical Design</h2>
+
 <ul>
 <li><a href="monitoring_alerting/audit/">Audit</a></li>
 <li><a href="technical_design/bosh/">BOSH</a></li>
@@ -243,14 +249,16 @@
 <li><a href="technical_design/prometheus/">Prometheus</a></li>
 <li><a href="technical_design/networking_in_aws/">Networking in AWS</a></li>
 </ul>
-<h3 id="styleguides">Styleguides</h3><p>This section contains some team-specific styleguides. These should be used in
+<h3 id="styleguides">Styleguides</h3>
+<p>This section contains some team-specific styleguides. These should be used in
   addition to the <a href="https://github.com/alphagov/styleguides/">GDS styleguides</a>.</p>
 
 <ul>
 <li><a href="styleguides/YAML/">YAML</a></li>
 <li><a href="styleguides/concourse_pipeline/">Concourse pipelines</a></li>
 </ul>
-<h2 id="architecture-decision-records">Architecture decision records</h2><p>This section contains Architecture Decision Records (ADR) as described in this blog post <a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions</a>.</p>
+<h2 id="architecture-decision-records">Architecture decision records</h2>
+<p>This section contains Architecture Decision Records (ADR) as described in this blog post <a href="http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions">http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions</a>.</p>
 
 <ul>
 <li><a href="architecture_decision_records/ADR001-manifest-management/">ADR-001 Manifest management</a></li>

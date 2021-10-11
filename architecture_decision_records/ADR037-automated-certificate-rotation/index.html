@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,10 +106,13 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr037-automated-certificate-rotation">ADR037: Automated certificate rotation</h1><h2 id="context">Context</h2><p>Our certificate rotation was a largely manual process, involving an operator triggering a series of Concourse pipeline jobs in a particular sequence. We did not have a routine for doing rotations, and would typically only do them as part of a CF upgrade.</p>
+  <h1 id="adr037-automated-certificate-rotation">ADR037: Automated certificate rotation</h1>
+<h2 id="context">Context</h2>
+<p>Our certificate rotation was a largely manual process, involving an operator triggering a series of Concourse pipeline jobs in a particular sequence. We did not have a routine for doing rotations, and would typically only do them as part of a CF upgrade.</p>
 <p>The only means we had for knowing if a cert rotation was necessary was the <code>check-certificates</code> job, in the <code>create-cloudfoundry</code> Concourse pipeline, which would fail if any certificate had less than 30 days until it expired.</p>
 <p>In Q2 2019 (August/September) we moved all of our platform secrets from AWS S3 to <a href="https://docs.cloudfoundry.org/credhub/">Credhub</a>. This covered third-party service credentials, platform passwords, and certificates. Since Credhub supports <a href="https://github.com/pivotal-cf/credhub-release/blob/master/docs/ca-rotation.md">certificate rotation</a>, we chose to implement automatic certificate rotation. This ADR contains details of how we did it.</p>
-<h2 id="decision">Decision</h2><p>Credhub has the notion of a transitional certificate. As written in <a href="https://github.com/pivotal-cf/credhub-release/blob/master/docs/ca-rotation.md">their documentation</a>, a transitional certificate is</p>
+<h2 id="decision">Decision</h2>
+<p>Credhub has the notion of a transitional certificate. As written in <a href="https://github.com/pivotal-cf/credhub-release/blob/master/docs/ca-rotation.md">their documentation</a>, a transitional certificate is</p>
 
 <blockquote>
 <p>a new version that will not be used for signing yet, but can be added to your servers trusted certificate lists.</p>
@@ -140,8 +136,10 @@
 </ol>
 <p><code>remove-transitional-flag-for-ca</code> is the third and final step in the process. It iterates through all of the CA certificates in Credhub, looking for any with 2 values, where the older certificate is marked as <code>transitional</code> and the newer certificate is not. It then removes the <code>transitional</code> flag from the older certificate, which has the effect of dropping the certificate.</p>
 <p>The existing <code>check-certificates</code> job has also been modified to check for certificates that are expiring in less than 15 days. If a certificate fails this check, that should suggest to us that something has gone wrong in our certificate rotation process.</p>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>Certificate rotations will happen more frequently, and we&rsquo;ll need to update our documentation surrounding certificate rotation and any documentation that references it.</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>Certificate rotations will happen more frequently, and we&rsquo;ll need to update our documentation surrounding certificate rotation and any documentation that references it.</p>
 
 
             

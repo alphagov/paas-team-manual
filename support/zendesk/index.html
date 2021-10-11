@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -107,17 +100,20 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="zendesk-guide">Zendesk guide</h1><p>Teaching the wider Zendesk interface is out-of-scope of this guide, but it records key things in our usage.</p>
+  <h1 id="zendesk-guide">Zendesk guide</h1>
+<p>Teaching the wider Zendesk interface is out-of-scope of this guide, but it records key things in our usage.</p>
 <p>We use the <a href="https://govuk.Zendesk.com/agent/filters">GOV.UK Zendesk</a> for managing support tickets and some automated notifications.</p>
 <p>We have two sorts of tickets: ordinary support dealt with in-hours, and P1 incidents dealt with out-of-hours. We have an extra view for ordinary tickets requiring attention from the product people.</p>
 <p>There are multiple inputs for ordinary support tickets: forms on the product page, emails to the <code>gov-uk-paas-support@digital.cabinet-office.gov.uk</code> address, automated CVE alerts, etc.</p>
 <p>To bring tickets to the attention of PaaS product people, add the <code>paas_product_support</code> tag.</p>
 <p>A few people in the team have edit permissions over our own views, but for most changes we need to talk to the GDS support team within TechOps. Open a Zendesk ticket assigned to <code>2nd/3rd Line--Zendesk Administration</code>.</p>
 <p>Email notifications of incoming tickets are administered manually. This needs doing when someone is added or removed from Zendesk. Contact the support team.</p>
-<h2 id="routing">Routing</h2><p>The in-hours email address <code>gov-uk-paas-support@digital.cabinet-office.gov.uk</code> is given in numerous places, for instance our <a href="https://admin.london.cloud.service.gov.uk/support">Support</a> page. The out-of-hours email address is deliberately not written down in public, to avoid spam waking people up at night.</p>
+<h2 id="routing">Routing</h2>
+<p>The in-hours email address <code>gov-uk-paas-support@digital.cabinet-office.gov.uk</code> is given in numerous places, for instance our <a href="https://admin.london.cloud.service.gov.uk/support">Support</a> page. The out-of-hours email address is deliberately not written down in public, to avoid spam waking people up at night.</p>
 <p>Both email addresses are Google Groups. Originally we used Gmail Aliases but they did not support prepending to email subjects for Zendesk. These groups forward emails elsewhere and are not intended for use by themselves. Their spam protection is disabled to avoid emails being silently discarded.</p>
 <p>The in-hours email address prepends <code>[PaaS Support]</code> to email subjects, and forwards it to a Zendesk email address. The out-of-hours email address prepends <code>[PaaS Emergency Support]</code> and also forwards to a PagerDuty email address.</p>
-<h2 id="tagging">Tagging</h2><p>In hours support is responsible for tagging incoming tickets to enable analysis.</p>
+<h2 id="tagging">Tagging</h2>
+<p>In hours support is responsible for tagging incoming tickets to enable analysis.</p>
 <p>We use the following tags to categorise support tickets:</p>
 
 <div style="height:1px;font-size:1px;">&nbsp;</div>

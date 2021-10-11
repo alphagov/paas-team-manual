@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -99,7 +92,8 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="documentation-for-tenants-paas-tech-docs">Documentation for tenants (<code>paas-tech-docs</code>)</h1><p>The PaaS tech docs content lives in <a href="https://github.com/alphagov/paas-tech-docs">https://github.com/alphagov/paas-tech-docs</a> and is hosted on the PaaS as the <code>paas-tech-docs</code> app (org <code>govuk-paas</code>/space <code>docs</code>).</p>
+  <h1 id="documentation-for-tenants-paas-tech-docs">Documentation for tenants (<code>paas-tech-docs</code>)</h1>
+<p>The PaaS tech docs content lives in <a href="https://github.com/alphagov/paas-tech-docs">https://github.com/alphagov/paas-tech-docs</a> and is hosted on the PaaS as the <code>paas-tech-docs</code> app (org <code>govuk-paas</code>/space <code>docs</code>).</p>
 <p>A CDN has been used to serve the content of this site at https://docs.cloud.service.gov.uk which is the URL you should use.</p>
 <p>See the README at <a href="https://github.com/alphagov/paas-tech-docs">https://github.com/alphagov/paas-tech-docs</a> for details of how to use the new docs system.</p>
 <p>Updates to the git master branch should be deployed automatically by <a href="https://concourse.build.ci.cloudpipeline.digital/teams/main/pipelines/paas-tech-docs">this concourse pipeline</a>.</p>

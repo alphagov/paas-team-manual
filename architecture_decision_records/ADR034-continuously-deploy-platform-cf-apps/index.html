@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,7 +106,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr034-continuously-deploy-platform-cf-applications">ADR034: Continuously deploy platform CF applications</h1><h2 id="context">Context</h2><p>As part of GOV.UK PaaS we have a number of applications that we consider to be
+  <h1 id="adr034-continuously-deploy-platform-cf-applications">ADR034: Continuously deploy platform CF applications</h1>
+<h2 id="context">Context</h2>
+<p>As part of GOV.UK PaaS we have a number of applications that we consider to be
 an essential part of the platform deployed as cloud foundry apps. These include:</p>
 
 <ul>
@@ -142,7 +137,8 @@ versions of the platform.</li>
 <li>Merges to paas-cf require a signed merge commit to be deployed, so we can be
 explicit about the set of people who are allowed to deploy changes</li>
 </ul>
-<h2 id="decision">Decision</h2><p>We will update the pipeline to:</p>
+<h2 id="decision">Decision</h2>
+<p>We will update the pipeline to:</p>
 
 <ul>
 <li>Require GPG signatures on git commits before deploying applications in staging and production</li>
@@ -150,8 +146,10 @@ explicit about the set of people who are allowed to deploy changes</li>
 <li>In staging: tag the application repo when a deployment passes its acceptance tests</li>
 <li>In production: automatically deploy any build which has been tagged by staging</li>
 </ul>
-<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
+
 <ul>
 <li>Deployments to paas-admin, paas-billing and paas-accounts will take minutes instead of hours</li>
 <li>We will continue to enforce that all production code requires a signed commit to deploy</li>

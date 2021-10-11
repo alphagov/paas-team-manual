@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,7 +106,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr012-haproxy-healthcheck">ADR012: Haproxy healthcheck</h1><h2 id="context">Context</h2><p>Stories: <a href="https://www.pivotaltracker.com/story/show/123490171">#123490171</a> &amp; <a href="https://www.pivotaltracker.com/story/show/121933113">#121933113</a></p>
+  <h1 id="adr012-haproxy-healthcheck">ADR012: Haproxy healthcheck</h1>
+<h2 id="context">Context</h2>
+<p>Stories: <a href="https://www.pivotaltracker.com/story/show/123490171">#123490171</a> &amp; <a href="https://www.pivotaltracker.com/story/show/121933113">#121933113</a></p>
 <p>We were investigating how to avoid downtime to deployed applications when we
 made changes to the platform. We had discovered that short outages occurred
 when the gorouter was taken out of service.</p>
@@ -134,7 +129,8 @@ draining gorouter out of service.</li>
 </ul>
 <p>The result was a very small amount of downtime for deployed apps that received
 requests during a short window of &lt; 1 second.</p>
-<h2 id="decision">Decision</h2><p>We decided to:</p>
+<h2 id="decision">Decision</h2>
+<p>We decided to:</p>
 
 <ul>
 <li>submit a change upstream to <a href="https://github.com/cloudfoundry/gorouter/pull/138">allow the gorouter to recognise ELB
@@ -143,8 +139,10 @@ healthchecks</a></li>
 which appends the <code>User-Agent: HTTP-Monitor/1.1</code> that gorouter expects</li>
 <li>enable HTTP healthchecks on the ELB</li>
 </ul>
-<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
+
 <ul>
 <li>There was less downtime for deployed applications during a deploy.</li>
 <li>We have an additional reason to keep the intermediate HAProxy we introduced as a temporary measure.</li>

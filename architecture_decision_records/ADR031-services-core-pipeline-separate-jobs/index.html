@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -111,7 +104,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr031-separate-paas-services-from-the-platform-core-pipeline">ADR031: Separate PaaS services from the Platform core pipeline</h1><h1 id="context">Context</h1><p>We have a single pipeline <code>create-cloudfoundry</code> which creates a Cloud Foundry
+  <h1 id="adr031-separate-paas-services-from-the-platform-core-pipeline">ADR031: Separate PaaS services from the Platform core pipeline</h1>
+<h1 id="context">Context</h1>
+<p>We have a single pipeline <code>create-cloudfoundry</code> which creates a Cloud Foundry
 deployment, and also deploys additional services to the platform.</p>
 <p>These services include:</p>
 
@@ -130,11 +125,14 @@ deployment, and also deploys additional services to the platform.</p>
 </ul>
 <p>Unnecessarily coupling has resulted in flakey app tests blocking CVE
 remediation from reaching production.</p>
-<h1 id="decision">Decision</h1><p>Move, where possible, PaaS services into their own jobs (within the same
+<h1 id="decision">Decision</h1>
+<p>Move, where possible, PaaS services into their own jobs (within the same
 <code>create-cloudfoundry</code> pipeline) such that they do not impede progress of
 deployment to the core platform.</p>
-<h1 id="status">Status</h1><p>Accepted</p>
-<h1 id="consequences">Consequences</h1><p>The pipeline will no longer be fully controlled by the <code>pipeline-lock</code> pool.</p>
+<h1 id="status">Status</h1>
+<p>Accepted</p>
+<h1 id="consequences">Consequences</h1>
+<p>The pipeline will no longer be fully controlled by the <code>pipeline-lock</code> pool.</p>
 <p>The individual jobs in the pipeline will be less mysterious.</p>
 
 

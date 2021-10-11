@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,7 +106,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr021-cell-capacity-assignment-2">ADR021: Cell capacity assignment 2</h1><h2 id="context">Context</h2><p>We&rsquo;ve been running with the cell provisioning policy in ADR017 since February.
+  <h1 id="adr021-cell-capacity-assignment-2">ADR021: Cell capacity assignment 2</h1>
+<h2 id="context">Context</h2>
+<p>We&rsquo;ve been running with the cell provisioning policy in ADR017 since February.
 We haven&rsquo;t ever run out of cell capacity, but we&rsquo;ve observed that there&rsquo;s
 excess capacity that we&rsquo;re paying for.</p>
 <p>At the time that we wrote ADR017 we had fewer tenants and an individual
@@ -136,7 +131,8 @@ contention and not all the cell memory is being used.</p>
 <li>reps think that about 50% of the capacity of cells is used</li>
 <li>the largest amount that rep&rsquo;s allocated memory increased week on week was 55%</li>
 </ul>
-<h2 id="decision">Decision</h2><p>Our objectives are:</p>
+<h2 id="decision">Decision</h2>
+<p>Our objectives are:</p>
 <div class="table-container">
         <table>
           <tr>
@@ -192,8 +188,10 @@ our reps&rsquo; container capacity. Again, this should be smoothed to ensure tha
 short lived fluctuations in usage don&rsquo;t cause unnecessary alerts.</p>
 <p>It is likely that patterns such as the fluctuation in memory use over a week
 may change over time. We should review this decision after 6 months.</p>
-<h2 id="status">Status</h2><p>Proposed</p>
-<h2 id="consequences">Consequences</h2><p>We will alert on the following metrics:</p>
+<h2 id="status">Status</h2>
+<p>Proposed</p>
+<h2 id="consequences">Consequences</h2>
+<p>We will alert on the following metrics:</p>
 
 <ul>
 <li>exponentially weighted moving average of used memory (not including cache) averaged over cells &gt; 50%</li>

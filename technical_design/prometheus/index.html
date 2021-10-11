@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -118,14 +111,19 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="prometheus">Prometheus</h1><h2 id="high-availability">High availability</h2><p>All components run at least on two different VMs in different availability zones.</p>
+  <h1 id="prometheus">Prometheus</h1>
+<h2 id="high-availability">High availability</h2>
+<p>All components run at least on two different VMs in different availability zones.</p>
 <p>All Prometheus instances are independent and scrape the metrics endpoints separately. This means the Prometheus instances will have slightly different data (because of different scraping times). For various reasons (downtime, restart, etc.) one Prometheus instance might also have some data missing compared to the others.</p>
 <p>All Prometheus instances will send alerts to all alertmanagers. The alertmanagers form a separate cluster and will deduplicate any identical alerts.</p>
 <p>The Grafana instances will connect only to the Prometheus instance which is in the same availability zone.</p>
 <p>All instances have a unique url, so in case of an AZ failure you can use the monitoring urls from the working AZ.</p>
-<h2 id="alerting">Alerting</h2><p>Prometheus is configured to send alerts to teams mailing lists.</p>
+<h2 id="alerting">Alerting</h2>
+<p>Prometheus is configured to send alerts to teams mailing lists.</p>
 <p>You can find these mailing lists <a href="/team/platform_alerting/">here</a>.</p>
-<h2 id="urls">URLs</h2><h3 id="primary">Primary</h3><div class="table-container">
+<h2 id="urls">URLs</h2>
+<h3 id="primary">Primary</h3>
+<div class="table-container">
         <table>
           <tr>
 <th>Ireland</th>
@@ -144,7 +142,8 @@
 <td><a href="https://grafana-1.london.cloud.service.gov.uk">grafana-1.london.cloud.service.gov.uk</a></td>
 </tr>
         </table>
-      </div><h3 id="secondary">Secondary</h3><div class="table-container">
+      </div><h3 id="secondary">Secondary</h3>
+<div class="table-container">
         <table>
           <tr>
 <th>Ireland</th>

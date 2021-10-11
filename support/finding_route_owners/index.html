@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -100,6 +93,7 @@
   </div>
 
   <h1 id="finding-the-owner-of-a-route-in-cf">Finding the owner of a route in cf</h1>
+
 <ol>
 <li>Install cf lookup-route plugin  with <code>cf install-plugin -r CF-Community &quot;route-lookup&quot;</code></li>
 <li>Log into the cf instance where you suspect the route is</li>

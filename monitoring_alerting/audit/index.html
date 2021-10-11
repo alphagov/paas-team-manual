@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -107,9 +100,11 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="auditing-operator-and-platform-events">Auditing operator and platform events</h1><p>To hold operators and users to account, and to meet compliance requirements, we
+  <h1 id="auditing-operator-and-platform-events">Auditing operator and platform events</h1>
+<p>To hold operators and users to account, and to meet compliance requirements, we
 store and audit operator and platform events.</p>
-<h2 id="bosh">BOSH</h2><p>In each environment, we have a virtual machine (VM) which runs <a href="https://bosh.io/docs/">BOSH</a> and has the following components:</p>
+<h2 id="bosh">BOSH</h2>
+<p>In each environment, we have a virtual machine (VM) which runs <a href="https://bosh.io/docs/">BOSH</a> and has the following components:</p>
 
 <ul>
 <li>BOSH Director</li>
@@ -140,7 +135,8 @@ store and audit operator and platform events.</p>
 <li><p>An AWS CloudWatch logs agent on each instance ships events on disk to CloudWatch. CloudWatch then forwards logs to Cyber&rsquo;s Central Security Logging Service (<a href="https://github.com/alphagov/centralised-security-logging-service">CSLS</a>) and stores shipped events for 18 months.</p></li>
 </ol>
 <p><a href="../../diagrams/audit-bosh.svg" rel="noopener noreferrer"><img src="../../diagrams/audit-bosh.svg" alt="Diagram of BOSH events" /></a></p>
-<h2 id="cloud-foundry">Cloud Foundry</h2><p>In each environment, the following components generate events we should audit:</p>
+<h2 id="cloud-foundry">Cloud Foundry</h2>
+<p>In each environment, the following components generate events we should audit:</p>
 
 <ul>
 <li>Cloud Controller API</li>

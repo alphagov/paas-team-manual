@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,7 +106,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr014-hsts-preload-using-api-gateway">ADR014: HSTS preload using api gateway</h1><h2 id="context">Context</h2><p>We will only <a href="../ADR032-ssl-only-for-applications-and-cf-endpoints">serve HTTPS traffic, keeping TCP port 80 (HTTP) closed and use HSTS preload lists</a>.</p>
+  <h1 id="adr014-hsts-preload-using-api-gateway">ADR014: HSTS preload using api gateway</h1>
+<h2 id="context">Context</h2>
+<p>We will only <a href="../ADR032-ssl-only-for-applications-and-cf-endpoints">serve HTTPS traffic, keeping TCP port 80 (HTTP) closed and use HSTS preload lists</a>.</p>
 <p>To add our domains to <a href="https://hstspreload.appspot.com/">HSTS preload lists</a>, there are these requirements:</p>
 
 <ol>
@@ -134,6 +129,7 @@ But this increases our dependency on the HAProxy service.</p>
 serve <a href="http://serverfault.com/questions/613829/why-cant-a-cname-record-be-used-at-the-apex-aka-root-of-a-domain">CNAME records in the root/apex domain</a>. We must configure A records in this domain. This can be
 an issue when serving the service using ELB or CloudFront.</p>
 <h2 id="decision">Decision</h2>
+
 <ul>
 <li><p>We will implement a basic <a href="https://aws.amazon.com/api-gateway/">AWS API Gateway</a>
 with a default <a href="https://aws.amazon.com/about-aws/whats-new/2015/09/introducing-mock-integration-generate-api-responses-from-api-gateway-directly/">MOCK response</a>
@@ -145,8 +141,10 @@ will provide public access to this API.</p></li>
 <li><p>We will use <a href="http://docs.aws.amazon.com/Route53/latest/APIReference/CreateAliasRRSAPI.html">AWS Route 53 <code>ALIAS</code> resource record</a>
 to <a href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html">serve the IPs of the AWS Cloud Front distribution as A records</a>.</p></li>
 </ul>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>To setup AWS API Gateway Domain Names, it is required access to the SSL certificates. There is the option of uploading the certificates in a different step and create the AWS Cloud Front distribution manually.</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>To setup AWS API Gateway Domain Names, it is required access to the SSL certificates. There is the option of uploading the certificates in a different step and create the AWS Cloud Front distribution manually.</p>
 
 
             

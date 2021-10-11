@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -132,10 +125,14 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="aws">AWS</h1><h2 id="iam">IAM</h2><p>Each AWS account has <a href="http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html">root account</a> credentials, which we don&rsquo;t use.</p>
+  <h1 id="aws">AWS</h1>
+<h2 id="iam">IAM</h2>
+<p>Each AWS account has <a href="http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html">root account</a> credentials, which we don&rsquo;t use.</p>
 <p>Instead we access AWS resources using <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">IAM</a>.</p>
-<h3 id="iam-roles-for-vms">IAM Roles for VMs</h3><p>We use <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</a> via <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">intance profiles</a> on our EC2 instances to delegate particular restricted permissions to processes running on those instances.</p>
-<h3 id="iam-roles-for-humans">IAM Roles for Humans</h3><p>See <a href="https://reliability-engineering.cloudapps.digital/iaas.html#access-aws-accounts">the reliability engineering documentation on how to access AWS accounts</a>.</p>
+<h3 id="iam-roles-for-vms">IAM Roles for VMs</h3>
+<p>We use <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM roles</a> via <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">intance profiles</a> on our EC2 instances to delegate particular restricted permissions to processes running on those instances.</p>
+<h3 id="iam-roles-for-humans">IAM Roles for Humans</h3>
+<p>See <a href="https://reliability-engineering.cloudapps.digital/iaas.html#access-aws-accounts">the reliability engineering documentation on how to access AWS accounts</a>.</p>
 <p>We have a number of IAM roles intended for operators of the platform to use.</p>
 <p>You should always try to use the least privileged role possible. This helps mitigate several risks, such as:</p>
 
@@ -143,7 +140,8 @@
 <li>accidentally performing a destructive action due to a typo (e.g. running <code>terraform destroy -auto-approve</code> against the wrong account)</li>
 <li>compromise of a privileged token leading to a serious security incident</li>
 </ul>
-<h4 id="operator">Operator</h4><p>The <code>Operator</code> role grants a minimal set of mostly read-only permissions.</p>
+<h4 id="operator">Operator</h4>
+<p>The <code>Operator</code> role grants a minimal set of mostly read-only permissions.</p>
 <p>Wherever possible this should be the only role we use to interact with
 non-dev environments. Actions which require higher privileges should usually
 be done through version controlled changes deployed through our pipelines.</p>
@@ -155,15 +153,18 @@ the operator role is insufficient. For example:</p>
 <li>performing maintenance on tenant databases (requires Admin)</li>
 </ul>
 <p>In these situations it is acceptable to use an Admin role.</p>
-<h4 id="admin">Admin</h4><p>The <code>Admin</code> role grants full IAM access to an account. It should only be used
+<h4 id="admin">Admin</h4>
+<p>The <code>Admin</code> role grants full IAM access to an account. It should only be used
 in production when the operator role is not sufficient.</p>
 <p>Before using the Admin role in a production environment you should think
 carefully about whether you could make a version controlled change deployed
 through our pipelines instead of using an ad hoc AWS session.</p>
-<h3 id="role-configuration">Role configuration</h3><p>We manage all these IAM roles, and the corresponding policies using Terraform.
+<h3 id="role-configuration">Role configuration</h3>
+<p>We manage all these IAM roles, and the corresponding policies using Terraform.
 The config is in the <a href="https://github.com/alphagov/paas-aws-account-wide-terraform">account-wide-terraform</a>
 repo. This includes defining who is allowed to assume the above roles.</p>
-<h1 id="aiven">Aiven</h1><p>We use Aiven for our Elasticsearch backing service.  We log in to Aiven using
+<h1 id="aiven">Aiven</h1>
+<p>We use Aiven for our Elasticsearch backing service.  We log in to Aiven using
 the <a href="https://console.aiven.io/">Aiven Console</a>.</p>
 <p>We have 4 separate projects:</p>
 
@@ -173,7 +174,8 @@ the <a href="https://console.aiven.io/">Aiven Console</a>.</p>
 <li>Staging</li>
 <li>Prod</li>
 </ul>
-<h1 id="microsoft-azure">Microsoft Azure</h1><p>We use Microsoft Azure to provide single sign-on for some tenants. We log into Azure using the <a href="https://portal.azure.com">Azure
+<h1 id="microsoft-azure">Microsoft Azure</h1>
+<p>We use Microsoft Azure to provide single sign-on for some tenants. We log into Azure using the <a href="https://portal.azure.com">Azure
 Portal</a>.</p>
 <p>We have 4 separate Active Directory apps under the
 digital.cabinet-office.gov.uk Azure account:</p>
@@ -184,7 +186,8 @@ digital.cabinet-office.gov.uk Azure account:</p>
 <li>Prod London</li>
 <li>Prod</li>
 </ul>
-<h1 id="google-cloud">Google Cloud</h1><p>We use Google Cloud for single sign-on. We log into Google using the <a href="https://console.cloud.google.com/">Google
+<h1 id="google-cloud">Google Cloud</h1>
+<p>We use Google Cloud for single sign-on. We log into Google using the <a href="https://console.cloud.google.com/">Google
 Cloud Console</a>.</p>
 <p>We have 2 separate projects under the digital.cabinet-office.gov.uk Azure
 account:</p>

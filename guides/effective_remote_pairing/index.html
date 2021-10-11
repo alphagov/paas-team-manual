@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -160,26 +153,44 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="effective-remote-pairing">Effective remote pairing</h1><h2 id="title-effective-remote-pairing">title: Effective remote pairing</h2><h1 id="effective-remote-pairing-2">Effective remote pairing</h1><p>Remote pairing can be more difficult than pairing in person, so we use tools to support us in it. However, those tools are subject to some pitfalls and easy-to-make mistakes. The rest of this document details the pairing tools we use, and how to avoid the most common problems.</p>
-<h2 id="the-tools">The tools</h2><p>The tools we use for remote pairing are ..</p>
-<h3 id="floobits"><a href="https://floobits.com">Floobits</a></h3><p>Floobits is a tool which synchronises the contents of a workspace between 2 or more connected users. It has a number of IDE integrations available, and can even share shell sessions through <a href="https://floobits.com/help/flootty">flootty</a> (although we&rsquo;ve found that to be a bit unreliable).</p>
-<h3 id="an-ide">An IDE</h3><p>Pick a <a href="https://floobits.com/help/plugins">supported IDE</a>, configure it however you want, and install the Floobits plugin. It shouldn&rsquo;t matter if two people are using different IDEs, since only the source code is synchronised.</p>
+  <h1 id="effective-remote-pairing">Effective remote pairing</h1>
+<h2 id="title-effective-remote-pairing">title: Effective remote pairing</h2>
+<h1 id="effective-remote-pairing-2">Effective remote pairing</h1>
+<p>Remote pairing can be more difficult than pairing in person, so we use tools to support us in it. However, those tools are subject to some pitfalls and easy-to-make mistakes. The rest of this document details the pairing tools we use, and how to avoid the most common problems.</p>
+<h2 id="the-tools">The tools</h2>
+<p>The tools we use for remote pairing are ..</p>
+<h3 id="floobits"><a href="https://floobits.com">Floobits</a></h3>
+<p>Floobits is a tool which synchronises the contents of a workspace between 2 or more connected users. It has a number of IDE integrations available, and can even share shell sessions through <a href="https://floobits.com/help/flootty">flootty</a> (although we&rsquo;ve found that to be a bit unreliable).</p>
+<h3 id="an-ide">An IDE</h3>
+<p>Pick a <a href="https://floobits.com/help/plugins">supported IDE</a>, configure it however you want, and install the Floobits plugin. It shouldn&rsquo;t matter if two people are using different IDEs, since only the source code is synchronised.</p>
 <p>The Floobits website only lists integration for JetBrains IntelliJ, but the plugin is available for every JetBrains IDE.</p>
-<h3 id="slack-voice-and-video">Slack voice and video</h3><p>We typically don&rsquo;t use the video for anything but screen sharing, but the voice communications are essential.</p>
-<h2 id="setup">Setup</h2><p>Getting a smooth setup is important for remote pairing, so we don&rsquo;t get distracted by problems in the tools, or otherwise [caused by the tools]. This is the setup we&rsquo;ve been using, and has been effective for us.</p>
-<h3 id="1-pick-a-host">1. Pick a host</h3><p>The other person will be the guest.</p>
+<h3 id="slack-voice-and-video">Slack voice and video</h3>
+<p>We typically don&rsquo;t use the video for anything but screen sharing, but the voice communications are essential.</p>
+<h2 id="setup">Setup</h2>
+<p>Getting a smooth setup is important for remote pairing, so we don&rsquo;t get distracted by problems in the tools, or otherwise [caused by the tools]. This is the setup we&rsquo;ve been using, and has been effective for us.</p>
+<h3 id="1-pick-a-host">1. Pick a host</h3>
+<p>The other person will be the guest.</p>
 <p>The host should get a clean slate in git, create a new branch to work on. They then open the project in their IDE, and connect to their own workspace. When prompted, the host will overwrite the workspace&rsquo;s files with their own. This makes the workspace look the same as the on the host&rsquo;s machine.</p>
-<h3 id="2-configure-flooignore">2. Configure <code>.flooignore</code></h3><p>If it doesn&rsquo;t already exist, create the <code>.flooignore</code> file in the root of the project. Add to it the <code>.git</code> directory, any git submodule directories, and any third-party package directories like <code>node_modules</code>. We&rsquo;ve found that, in a Go project, when the <code>vendor</code> directory is included in version control, that it should not be ignored by Floobits.</p>
+<h3 id="2-configure-flooignore">2. Configure <code>.flooignore</code></h3>
+<p>If it doesn&rsquo;t already exist, create the <code>.flooignore</code> file in the root of the project. Add to it the <code>.git</code> directory, any git submodule directories, and any third-party package directories like <code>node_modules</code>. We&rsquo;ve found that, in a Go project, when the <code>vendor</code> directory is included in version control, that it should not be ignored by Floobits.</p>
 <p>It&rsquo;s also worth adding any folders maintained by the IDE (such as <code>.idea</code>), so that settings and state don&rsquo;t bleed between participants using the same IDE.</p>
 <p><strong>Note:</strong> We ignore the <code>.git</code> directory so that any git actions taken by either party don&rsquo;t affect the other.</p>
-<h3 id="3-the-guest-connects">3. The guest connects</h3><p>The guest uses their IDE to connect to the host&rsquo;s workspace. They should open the workspace at the same path as they have their version-controlled copy of the project locally. When prompted, the guest overwrites their local files with those from the remote workspace.</p>
+<h3 id="3-the-guest-connects">3. The guest connects</h3>
+<p>The guest uses their IDE to connect to the host&rsquo;s workspace. They should open the workspace at the same path as they have their version-controlled copy of the project locally. When prompted, the guest overwrites their local files with those from the remote workspace.</p>
 <p>Important: Opening the workspace on top of a local project gives the guest the full support of their IDE. This is particularly important in Go projects, where the path matters.</p>
-<h3 id="4-run-the-tests">4. Run the tests</h3><p>Both parties should run the tests locally, to verify that they have all the files and working versions thereof.</p>
-<h3 id="5-do-the-work">5. Do the work</h3><p>All parties work together however they see fit</p>
-<h3 id="6-the-host-makes-git-commits">6. The host makes git commits</h3><p>The host should be the one to make changes in git, because the <code>.git</code> directory should have been ignored in <code>.flooignore</code>.</p>
-<h2 id="tasks-considerations-and-tips">Tasks, considerations, and tips</h2><h3 id="switching-branches">Switching branches</h3><p>If the pair need to switch branches, the guest should disconnect from the workspace, and the host should switch branch then go through the setup steps again.</p>
-<h3 id="terminal-sessions">Terminal sessions</h3><p>We have found that <a href="https://floobits.com/help/flootty">flootty</a> isn&rsquo;t the best experience, and doesn&rsquo;t really add much value. If the pair need to see a terminal session together, we suggest screen sharing on Slack.</p>
-<h3 id="use-follow-and-summon-in-floobits">Use follow and summon in Floobits</h3><p>Floobits has a built-in mechanism for one of the pair to show something in code to the other, called summon. When used, the other person&rsquo;s IDE immediately opens the right file at the right line.</p>
+<h3 id="4-run-the-tests">4. Run the tests</h3>
+<p>Both parties should run the tests locally, to verify that they have all the files and working versions thereof.</p>
+<h3 id="5-do-the-work">5. Do the work</h3>
+<p>All parties work together however they see fit</p>
+<h3 id="6-the-host-makes-git-commits">6. The host makes git commits</h3>
+<p>The host should be the one to make changes in git, because the <code>.git</code> directory should have been ignored in <code>.flooignore</code>.</p>
+<h2 id="tasks-considerations-and-tips">Tasks, considerations, and tips</h2>
+<h3 id="switching-branches">Switching branches</h3>
+<p>If the pair need to switch branches, the guest should disconnect from the workspace, and the host should switch branch then go through the setup steps again.</p>
+<h3 id="terminal-sessions">Terminal sessions</h3>
+<p>We have found that <a href="https://floobits.com/help/flootty">flootty</a> isn&rsquo;t the best experience, and doesn&rsquo;t really add much value. If the pair need to see a terminal session together, we suggest screen sharing on Slack.</p>
+<h3 id="use-follow-and-summon-in-floobits">Use follow and summon in Floobits</h3>
+<p>Floobits has a built-in mechanism for one of the pair to show something in code to the other, called summon. When used, the other person&rsquo;s IDE immediately opens the right file at the right line.</p>
 <p>The opposite function also exists: follow. This allows one person to follow along as the other navigates through files and makes changes.</p>
 <p>These two features make it very easy to replicate the &ldquo;look at this&rdquo; and navigator/driver type behaviour of pairing in person.</p>
 

@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -110,13 +103,16 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="restoring-the-bosh-director">Restoring the Bosh Director</h1><p>This guide will show you how to restore the bosh director and cells, in the event that it becomes unreachable or unresponsive.</p>
+  <h1 id="restoring-the-bosh-director">Restoring the Bosh Director</h1>
+<p>This guide will show you how to restore the bosh director and cells, in the event that it becomes unreachable or unresponsive.</p>
 <h2 id="contents">Contents</h2>
+
 <ol>
 <li><a href="#bootstrapping-the-director-in-another-az">Bootstrapping the director in another AZ</a></li>
 <li><a href="#the-director-39-s-database-is-gone">The director&rsquo;s database is gone</a></li>
 </ol>
 <h2 id="bootstrapping-the-director-in-another-az">Bootstrapping the director in another AZ</h2>
+
 <ol>
 <li>Using <code>paas-bootstrap</code>, bootstrap a new deployer-concourse instance using the <code>BOSH_AZ</code> env var to specify the target AZ. <code>$ENV</code> is the environment you&rsquo;re targetting (e.g. dev or prod-lon).</li>
 </ol>
@@ -126,7 +122,8 @@
 <li>Wait for the bootstrapper VM to come online, and access it at <code>localhost:8080</code></li>
 <li>Run the <code>create-bosh-concourse</code> pipeline from the left-hand edge</li>
 </ol>
-<h2 id="the-director-39-s-database-is-gone">The director&rsquo;s database is gone</h2><p>In the event that the director&rsquo;s database is gone, it can be restored from the latest snapshot to get to back to a state from which the rest of the deployment can be fixed.</p>
+<h2 id="the-director-39-s-database-is-gone">The director&rsquo;s database is gone</h2>
+<p>In the event that the director&rsquo;s database is gone, it can be restored from the latest snapshot to get to back to a state from which the rest of the deployment can be fixed.</p>
 
 <ol>
 <li>Find the latest snapshot of the director&rsquo;s database in the RDS console</li>

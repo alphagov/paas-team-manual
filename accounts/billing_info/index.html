@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -122,10 +115,13 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="billing-process-for-gov-uk-paas-paid-accounts">Billing process for GOV.UK PaaS paid accounts</h1><h2 id="introduction">Introduction</h2><p>New organisations on GOV.UK PaaS have the option to use a free trial account for a period of 3 months.</p>
+  <h1 id="billing-process-for-gov-uk-paas-paid-accounts">Billing process for GOV.UK PaaS paid accounts</h1>
+<h2 id="introduction">Introduction</h2>
+<p>New organisations on GOV.UK PaaS have the option to use a free trial account for a period of 3 months.</p>
 <p>After this period we should move that organisation onto a paid account and start billing them. Refer to the team manual for more information on how to move from a trial to paid organisation.</p>
 <p>This document outlines how to identify who should be paying, how to kick off billing with a new user and how to track billing.</p>
-<h2 id="who-to-bill">Who to bill</h2><p>There are different quotas for PaaS accounts which allow organisations different levels or memory and space. The available tiers are:</p>
+<h2 id="who-to-bill">Who to bill</h2>
+<p>There are different quotas for PaaS accounts which allow organisations different levels or memory and space. The available tiers are:</p>
 
 <ul>
 <li>Default - this is the quota given to trial accounts.</li>
@@ -139,12 +135,14 @@
 - <a href="https://admin.cloud.service.gov.uk/reports/cost/2019-07-01">Ireland</a>
 - <a href="https://admin.london.cloud.service.gov.uk/reports/cost/2019-07-01">London</a></p>
 <p>This view allows you to quickly pick out which orgs are eligible for billing. In general, all tiers other than ‘default’ or ‘GDS non chargeable’ should be billed. There may be some exceptions to this. For example, if a service has agreed with the Product Manager that they need a larger database than ‘default’ for testing, and we have granted that service access to a larger account while they test the platform. Orgs on billable quotas should be tracked in the billable org accounts spreadsheet. Add any useful notes to the comments column.</p>
-<h2 id="tracking-billing">Tracking billing</h2><p>We provide bills with a monthly breakdown. Each month you will need to complete the billing summary for the previous month. Billing summaries are provided per billing manager - some departments have just one person responsible for billing, others may split the billing by org depending on how their internal budget is allocated. You can see the billing manager in the PaaS admin interface by going into the org then selecting ‘members’. Keep the list of billing managers up to date in the Billable Org Accounts spreadsheet.</p>
+<h2 id="tracking-billing">Tracking billing</h2>
+<p>We provide bills with a monthly breakdown. Each month you will need to complete the billing summary for the previous month. Billing summaries are provided per billing manager - some departments have just one person responsible for billing, others may split the billing by org depending on how their internal budget is allocated. You can see the billing manager in the PaaS admin interface by going into the org then selecting ‘members’. Keep the list of billing managers up to date in the Billable Org Accounts spreadsheet.</p>
 <p>Find the billing summaries in <a href="https://drive.google.com/drive/u/0/folders/1PhFbgFGZWuFkw8D9v-WBYgDdnBEXO9k_">Team drive &gt; GOV.UK PaaS &gt; Billing and Pricing PII &gt; Billing record</a></p>
 <p>Complete the record by visiting the organisation billing page on the PaaS admin interface.</p>
 <p>To note - we include a 10% admin fee on this page. You can also see monthly bills in the reporting view but the 10% isn’t included in that view so bills would be inaccurate.</p>
 <p>Add the monthly total for each department to the Monthly Billing Tracker. This allows us to see a monthly total across all our paying accounts.</p>
-<h2 id="how-to-bill-non-gds-orgs">How to bill non GDS orgs</h2><p>We are trialling a new process for billing, with the PMO team taking more responsibility. This means that we are now only responsible for the initial outreach to departments and collating bills. PMO will be responsible for chasing departments and requesting finance raise invoices.</p>
+<h2 id="how-to-bill-non-gds-orgs">How to bill non GDS orgs</h2>
+<p>We are trialling a new process for billing, with the PMO team taking more responsibility. This means that we are now only responsible for the initial outreach to departments and collating bills. PMO will be responsible for chasing departments and requesting finance raise invoices.</p>
 <p>Before you are able to bill, you will need to have access to send emails from <code>gov-uk-paas-tenant-billing@digital.cabinet-office.gov.uk</code>.</p>
 <p>We use this address for all billing correspondence so that things won’t get lost in inboxes or held up by annual leave/sickness.</p>
 <p>At the start of a financial year or for new organisations who qualify for billing during the financial year and do not fall under an existing purchase order, the following needs to be completed:</p>
@@ -184,16 +182,19 @@
 <td>Quarterly</td>
 </tr>
         </table>
-      </div><h2 id="next-steps">Next steps</h2><p>Our responsibility ends here. However, it is useful to regularly keep in touch with the PMO team to check on billing progress.</p>
+      </div><h2 id="next-steps">Next steps</h2>
+<p>Our responsibility ends here. However, it is useful to regularly keep in touch with the PMO team to check on billing progress.</p>
 <p>We are often asked to report on billing at programme check-ins so it is useful to have up to date knowledge of the billing status of each department.</p>
-<h2 id="process-for-cross-charging-gds-paas-tenants">Process for cross-charging GDS PaaS tenants</h2><p>We should cross charge GDS tenants outside of the PaaS team.</p>
+<h2 id="process-for-cross-charging-gds-paas-tenants">Process for cross-charging GDS PaaS tenants</h2>
+<p>We should cross charge GDS tenants outside of the PaaS team.</p>
 <p>The process for charging eligible teams is as follows:
 - Track their organisation billing as outlined above
   - Ensure they are noted on the Billable Org Accounts spreadsheet and have billing summaries completed
 - Send the billing sheets to pmodelivery@digital.cabinet-office.gov.uk on a quarterly basis
 - The PMO team will then arrange cross charging within GDS</p>
 <p>You do not need to request a PO or follow up billing in any other way.</p>
-<h2 id="how-paas-sets-the-exchange-rate">How PaaS sets the exchange rate</h2><p>GOV.UK PaaS bases its prices on the cost of its infrastructure. Some of this
+<h2 id="how-paas-sets-the-exchange-rate">How PaaS sets the exchange rate</h2>
+<p>GOV.UK PaaS bases its prices on the cost of its infrastructure. Some of this
 infrastructure is paid for in dollars. This means there needs to be a record of
 the exchange rate between pounds (which tenants are billed in) and dollars
 (which some costs are paid in).</p>

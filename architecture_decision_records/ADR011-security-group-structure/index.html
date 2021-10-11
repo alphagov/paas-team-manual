@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,7 +106,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr011-security-group-structure">ADR011: Security group structure</h1><h2 id="context">Context</h2><p>In https://www.pivotaltracker.com/story/show/115252309 we described a pattern
+  <h1 id="adr011-security-group-structure">ADR011: Security group structure</h1>
+<h2 id="context">Context</h2>
+<p>In https://www.pivotaltracker.com/story/show/115252309 we described a pattern
 for defining security groups between services and the VMs that connect to
 them. This involved creating a client security group for each service that
 the service allowed connections from. This client security group was then
@@ -121,7 +116,8 @@ applied to the VMs that needed to be able to connect.</p>
 <p>This has the problem that in some cases we would need to add several client
 security groups to a given VM, and we are at risk of running into the AWS
 limits (by default it&rsquo;s a max of 5 groups per interface).</p>
-<h2 id="decision">Decision</h2><p>We will use an alternative approach where a security group is defined for each
+<h2 id="decision">Decision</h2>
+<p>We will use an alternative approach where a security group is defined for each
 component (or component group) in the system. Services then define rules
 allowing connections from the components that need access. There are some
 instances where a component will be both a client of other services and a
@@ -139,8 +135,10 @@ the rules for that service&rsquo;s security group.</li>
 <li>When moving a component between VMs it&rsquo;s much clearer which security groups
 need to move with it.</li>
 </ul>
-<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
+
 <ul>
 <li>This will enable us to avoid hitting the AWS limits for the number of
 security groups applied to a given interface.</li>

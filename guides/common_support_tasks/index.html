@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -133,8 +126,10 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="common-support-tasks">Common support tasks</h1><p>This guide contains instructions for common support tasks.</p>
+  <h1 id="common-support-tasks">Common support tasks</h1>
+<p>This guide contains instructions for common support tasks.</p>
 <h2 id="changing-a-user-39-s-password">Changing a user&rsquo;s password</h2>
+
 <ol>
 <li>Set your AWS environment variables to the production environment
 (assuming this is a production user)</li>
@@ -144,10 +139,13 @@
 </ol>
 <p>The script will mark the user as &ldquo;unverified&rdquo; and send a new invite
 link, which essentially will be a new password.</p>
-<h2 id="subscribe-and-check-the-aws-notifications">Subscribe and check the AWS notifications</h2><p>AWS <a href="/team/responding_to_aws_alert/">sends notifications to our maillists</a>. You should subscribe to these groups to get any notification.</p>
-<h2 id="notifying-all-users">Notifying all users</h2><p>Occasionally you may need to notify all users of an event on the platform, perhaps during an incident in progress or to send an incident report.</p>
+<h2 id="subscribe-and-check-the-aws-notifications">Subscribe and check the AWS notifications</h2>
+<p>AWS <a href="/team/responding_to_aws_alert/">sends notifications to our maillists</a>. You should subscribe to these groups to get any notification.</p>
+<h2 id="notifying-all-users">Notifying all users</h2>
+<p>Occasionally you may need to notify all users of an event on the platform, perhaps during an incident in progress or to send an incident report.</p>
 <p>To do this, follow the instructions on <a href="/team/notifying_tenants/">notifying tenants</a>.</p>
-<h2 id="uncontactable-org-managers">Uncontactable Org Managers</h2><p>If none of the org managers for a specific org are contactable (for example if they&rsquo;ve all left) then the following people within the team are permitted to approve the nomination of another person to be org manager:</p>
+<h2 id="uncontactable-org-managers">Uncontactable Org Managers</h2>
+<p>If none of the org managers for a specific org are contactable (for example if they&rsquo;ve all left) then the following people within the team are permitted to approve the nomination of another person to be org manager:</p>
 
 <ul>
 <li>Product Manager</li>
@@ -162,7 +160,9 @@ link, which essentially will be a new password.</p>
 <li>if the email account belonging to the absent org manager can be made active again to send an email authorising the change.</li>
 </ul>
 <p>We will also email every user currently in the organisation to explain what has been done.</p>
-<h1 id="common-support-questions">Common Support questions</h1><h2 id="which-databases-do-you-support">Which databases do you support?</h2>
+<h1 id="common-support-questions">Common Support questions</h1>
+<h2 id="which-databases-do-you-support">Which databases do you support?</h2>
+
 <ul>
 <li><a href="https://admin.cloud.service.gov.uk/marketplace/efadb775-58c4-4e17-8087-6d0f4febc489">Postgres</a> (RDS)</li>
 <li><a href="https://admin.cloud.service.gov.uk/marketplace/8ffb13cb-705f-4cee-9ffd-5a950f9f3048">MySQL</a> (RDS)</li>
@@ -170,10 +170,14 @@ link, which essentially will be a new password.</p>
 <li><a href="https://admin.cloud.service.gov.uk/marketplace/0e4b6fb6-243c-4024-8604-41635d1233cc">Redis</a></li>
 <li><a href="https://admin.cloud.service.gov.uk/marketplace/0b7da7a9-2fd7-4dca-9e25-0cf8eddd0f88">Influxdb</a></li>
 </ul>
-<h2 id="some-plans-in-the-marketplace-are-displaying-as-free-what-does-this-mean">Some plans in the marketplace are displaying as free. What does this mean?</h2><p>This is a horrible bit of Cloud Foundry user interface: &ldquo;free&rdquo; really means &ldquo;free for 3 months while you are in trial, and then you need to pay.&rdquo;</p>
-<h2 id="can-i-get-direct-access-to-the-rds-database-instances">Can I get direct access to the RDS database instances?</h2><p>No – the high level abstraction of the GOV.UK PaaS hides the details of the database inside the PaaS service.</p>
-<h2 id="what-is-your-elasticsearch-offering">What is your Elasticsearch offering?</h2><p>We currently offer <a href="https://admin.cloud.service.gov.uk/marketplace/b98f53e7-85a7-4964-bace-9ce27fac142a">Elasticsearch 7</a></p>
-<h2 id="what-is-the-status-of-the-elasticsearch-backing-service">What is the status of the Elasticsearch backing service?</h2><p>GOV.UK PaaS is a <a href="https://www.gov.uk/service-standard-reports/gov-dot-uk-platform-as-a-service-paas-live-assessment">live service</a></p>
+<h2 id="some-plans-in-the-marketplace-are-displaying-as-free-what-does-this-mean">Some plans in the marketplace are displaying as free. What does this mean?</h2>
+<p>This is a horrible bit of Cloud Foundry user interface: &ldquo;free&rdquo; really means &ldquo;free for 3 months while you are in trial, and then you need to pay.&rdquo;</p>
+<h2 id="can-i-get-direct-access-to-the-rds-database-instances">Can I get direct access to the RDS database instances?</h2>
+<p>No – the high level abstraction of the GOV.UK PaaS hides the details of the database inside the PaaS service.</p>
+<h2 id="what-is-your-elasticsearch-offering">What is your Elasticsearch offering?</h2>
+<p>We currently offer <a href="https://admin.cloud.service.gov.uk/marketplace/b98f53e7-85a7-4964-bace-9ce27fac142a">Elasticsearch 7</a></p>
+<h2 id="what-is-the-status-of-the-elasticsearch-backing-service">What is the status of the Elasticsearch backing service?</h2>
+<p>GOV.UK PaaS is a <a href="https://www.gov.uk/service-standard-reports/gov-dot-uk-platform-as-a-service-paas-live-assessment">live service</a></p>
 
 
             

@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -135,14 +128,17 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="networking">Networking</h1><p>This page describes the network layout in a single PaaS deployment on AWS.</p>
-<h2 id="vpc">VPC</h2><p>We use a single <a href="https://aws.amazon.com/documentation/vpc/">virtual private cloud</a> (VPC), with IP range <code>10.0.0.0/16</code>.</p>
+  <h1 id="networking">Networking</h1>
+<p>This page describes the network layout in a single PaaS deployment on AWS.</p>
+<h2 id="vpc">VPC</h2>
+<p>We use a single <a href="https://aws.amazon.com/documentation/vpc/">virtual private cloud</a> (VPC), with IP range <code>10.0.0.0/16</code>.</p>
 <p>Our VPC is in the <code>eu-west-1</code> region, in Ireland, and includes <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html">subnets</a>
 in each of the <code>eu-west-1a</code>, <code>eu-west-1b</code>, and <code>eu-west-1c</code> <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html">availability zones</a> (AZs).</p>
 <p>Since we run a VPC for each of our CI, Staging and Production environments, and for each developer&rsquo;s environment, we sometimes run into <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html">limits</a> on the resources we are allowed to use.
 We&rsquo;ve raised various limits by submitting requests to Amazon.
 The result (sometimes out of date) is recorded in a <a href="https://docs.google.com/spreadsheets/d/1ZkHASsyROKiixrvpV-ecePMqAj9zPAjQENQlsOh6QBc/edit#gid=0">spreadsheet</a>.</p>
-<h2 id="subnets">Subnets</h2><p>We have 5 subnets in each AZ.</p>
+<h2 id="subnets">Subnets</h2>
+<p>We have 5 subnets in each AZ.</p>
 <p><code>infra</code> handles outbound internet traffic.
 It also contains Bosh, Concourse, and the bosh and cf RDS instances.</p>
 <p><code>cf</code> contains most Cloud Foundry components.</p>
@@ -154,26 +150,32 @@ Really, each instance has an <a href="http://docs.aws.amazon.com/AmazonVPC/lates
 Instances can have more than one ENI, and ENIs can be moved between instances, although an instance&rsquo;s primary ENI can&rsquo;t be removed.</p>
 <p>We use a single ENI per instance, each with a single private IP.
 So each of our instances will only be in a single subnet.</p>
-<h2 id="internet-access">Internet Access</h2><h3 id="gateways">Gateways</h3><p>There is a single <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html">Internet Gateway</a> for the entire VPC - it is an abstract service available anywhere that scales automatically.</p>
+<h2 id="internet-access">Internet Access</h2>
+<h3 id="gateways">Gateways</h3>
+<p>There is a single <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Internet_Gateway.html">Internet Gateway</a> for the entire VPC - it is an abstract service available anywhere that scales automatically.</p>
 <p>We deploy a single <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html">NAT Gateway</a> in each AZ.</p>
 <p>An Internet Gateway allows outbound and inbound traffic.
 NAT Gateways only allow outbound traffic (but permit inbound traffic for outbound connections).</p>
 <p>Gateways have to appear in the route table for a subnet for instances to use them.</p>
-<h3 id="elastic-ips">Elastic IPs</h3><p>We allocate an <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-ip-addressing.html#vpc-eips">Elastic IP</a> address (EIP) to each NAT Gateway, and to each of the bosh and concourse EC2 instances.</p>
+<h3 id="elastic-ips">Elastic IPs</h3>
+<p>We allocate an <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-ip-addressing.html#vpc-eips">Elastic IP</a> address (EIP) to each NAT Gateway, and to each of the bosh and concourse EC2 instances.</p>
 <p>The NAT Gateways each need an EIP to function.</p>
 <p>The bosh and concourse VMs each need an EIP to allow making outbound connections to the internet to download dependencies.
 They can&rsquo;t use the NAT Gateways for this because the NAT Gateways don&rsquo;t exist when concourse and bosh are first deployed and may be torn down afterwards in dev environments.</p>
-<h3 id="albs">ALBs</h3><p>We allocate several <a href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html">Application Load Balancers</a> (ALBs) to provide load-balanced SSL access to Concourse, logs and metrics, and some CF components.</p>
+<h3 id="albs">ALBs</h3>
+<p>We allocate several <a href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html">Application Load Balancers</a> (ALBs) to provide load-balanced SSL access to Concourse, logs and metrics, and some CF components.</p>
 <p>An ALB has a presence in each AZ, and scales automatically with the traffic volume being balanced.</p>
 <p>The scaling is transparent to the external user because each ALB provides a DNS name - IP addresses of additional ALB components are added automatically when the ALB scales.</p>
 <p>ALBs also handle TLS termination. See <a href="/architecture_decision_records/ADR007-terminating-tls-at-elbs">ADR 007</a>.</p>
 <p>We replaced the ELBs with ALBs. See <a href="/architecture_decision_records/ADR035-do-not-use-haproxy-use-aws-alb">ADR 037</a>.</p>
-<h2 id="subnet-routing">Subnet Routing</h2><p>A subnet is called &lsquo;public&rsquo; if the route table associated with it has a route to an internet gateway.</p>
+<h2 id="subnet-routing">Subnet Routing</h2>
+<p>A subnet is called &lsquo;public&rsquo; if the route table associated with it has a route to an internet gateway.</p>
 <p>An instance in a public subnet can talk to the internet if it has a public or elastic IP address.</p>
 <p>An instance in a private subnet can talk to the internet if it has a route to a NAT Gateway.
 The NAT Gateway would be in a different subnet, since it needs to be in a public subnet to work.</p>
 <p>Each subnet has an IP range to determine private IPs for instances within the subnet.</p>
-<h3 id="route-tables">Route tables</h3><p><a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html">Route tables</a> consist of a list of rules, each specifying a destination and an IP range.
+<h3 id="route-tables">Route tables</h3>
+<p><a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html">Route tables</a> consist of a list of rules, each specifying a destination and an IP range.
 For traffic to a given IP address, the most specific rule is chosen to determine the destination.</p>
 <p>The special destination <code>local</code> routes traffic to any subnets in the VPC.</p>
 <p>There is a main route table, which is default for any subnet without its own.
@@ -182,12 +184,14 @@ Our main route table only specifies a <code>local</code> route.</p>
 <p>The route table for the <code>infra</code> subnets route internet traffic to the Internet Gateway.
 The <code>infra</code> subnets are public, and are where the NAT Gateways are located.</p>
 <p>Because the NAT Gateways are in the <code>infra</code> subnets, it isn&rsquo;t possible for VMs in <code>infra</code> to route via the NAT Gateways. A route targeting the NAT Gateway would preclude the NAT Gateway routing that traffic to the Internet Gateway.</p>
-<h3 id="routing-on-the-instance">Routing on the instance</h3><p>The OS running on a given instance has its own routing table.</p>
+<h3 id="routing-on-the-instance">Routing on the instance</h3>
+<p>The OS running on a given instance has its own routing table.</p>
 <p>This will route all traffic destined for the subnet of the instance via the appropriate interface.</p>
 <p>It will also route all traffic that needs to leave the subnet via the reserved IP address of the <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html#VPC_Sizing">VPC Router</a> in that subnet.
 The route table of the subnet determines where it goes from there.</p>
 <p>On <code>cell</code> and <code>councourse</code> instances, the presence of lightweight containers means that the OS route table will contain additional routes for directing tenant traffic.</p>
-<h2 id="firewalls">Firewalls</h2><p>There are two kinds of virtual firewall provided by AWS: <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security Groups</a> and <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html">Network ACLs</a>.</p>
+<h2 id="firewalls">Firewalls</h2>
+<p>There are two kinds of virtual firewall provided by AWS: <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html">Security Groups</a> and <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html">Network ACLs</a>.</p>
 <p>There is a <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Security.html#VPC_Security_Comparison">comparison document</a> if you want more details.</p>
 <p>We chose to use Security Groups instead of Network ACLs to control traffic.</p>
 <p>Security Groups operate at the instance level, while Network ACLs operate at the subnet level.</p>

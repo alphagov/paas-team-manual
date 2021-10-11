@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,14 +106,17 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr029-aiven-project-structure">ADR029: Aiven project structure</h1><h2 id="context">Context</h2><p>Aiven provides hosted Elasticsearch for the Elasticsearch backing service.</p>
+  <h1 id="adr029-aiven-project-structure">ADR029: Aiven project structure</h1>
+<h2 id="context">Context</h2>
+<p>Aiven provides hosted Elasticsearch for the Elasticsearch backing service.</p>
 <p>The PaaS has several environments which will need to use Aiven. These
 environments should be isolated from each other so that changes made in testing
 and development environments do do not affect production users.</p>
 <p>Aiven provide a &ldquo;Project&rdquo; abstraction where a user can be a member of several
 projects. API tokens are user specific. By creating one user per project it&rsquo;s
 possible to scope API tokens to a project.</p>
-<h2 id="decision">Decision</h2><p>We&rsquo;ll use separate projects for separate environments, initially using the
+<h2 id="decision">Decision</h2>
+<p>We&rsquo;ll use separate projects for separate environments, initially using the
 following Aiven projects:</p>
 
 <ul>
@@ -141,8 +137,10 @@ the-multi-cloud-paas-team+aiven-prod@digital.cabinet-office.gov.uk</p>
 <code>paas-credentials-high</code>.</p>
 <p>Members of the PaaS team will each have their own user which will have access
 all of the projects for management purposes.</p>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>Members of the PaaS team will need their own Aiven accounts.</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>Members of the PaaS team will need their own Aiven accounts.</p>
 <p>The Aiven credentials of the four service users will be managed in the PaaS
 team&rsquo;s passwordstores.</p>
 <p>We will be able to interact with elasticsearch on a given environment without

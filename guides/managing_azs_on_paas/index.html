@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -104,7 +97,8 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="how-to-disable-a-single-az-on-gov-uk-paas">How to disable a single AZ on GOV.UK PaaS</h1><p>There are scenarios, where we will need to manually disable a single AZ on AWS,
+  <h1 id="how-to-disable-a-single-az-on-gov-uk-paas">How to disable a single AZ on GOV.UK PaaS</h1>
+<p>There are scenarios, where we will need to manually disable a single AZ on AWS,
 prompting the cells, traffic, scheduler and auctioneer to redistribute the
 applications across the remaining AZs.</p>
 <p>Scenario like this may be when we see an AZ being flappy in network connectivity
@@ -119,7 +113,8 @@ traffic, to subnets in one particular AZ.</p>
 meaning the re-enabling action will need to be done by hand from op&rsquo;s machine.</p>
 <p>This will involve, you having to download the Terraform state file, for that
 particular region. See pipeline for more details.</p>
-<h2 id="how-to-run">How to run</h2><p>This is accomplished with Terraform. It is designed, to interacively ask for the
+<h2 id="how-to-run">How to run</h2>
+<p>This is accomplished with Terraform. It is designed, to interacively ask for the
 values it needs, so you don&rsquo;t have to remember to set them at all times.</p>
 <p>The values it is asking for are:
 - AZ - <code>eu-west-1a</code>, <code>eu-west-1b</code>, <code>eu-west-1c</code>

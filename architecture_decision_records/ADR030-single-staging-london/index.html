@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -111,13 +104,18 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr030-single-staging-environment-in-london">ADR030: Single staging environment in London</h1><h1 id="context">Context</h1><p>We run a Cloud Foundry platform in London (AWS eu-west-2 region) to allow GOV.UK PaaS tenants to host their applications and services in the UK. This is driven by the hosting needs of some of the existing GOV.UK PaaS tenants.</p>
+  <h1 id="adr030-single-staging-environment-in-london">ADR030: Single staging environment in London</h1>
+<h1 id="context">Context</h1>
+<p>We run a Cloud Foundry platform in London (AWS eu-west-2 region) to allow GOV.UK PaaS tenants to host their applications and services in the UK. This is driven by the hosting needs of some of the existing GOV.UK PaaS tenants.</p>
 <p>In addition we need to manage the use of Amazon Web Service resources to reduce our running costs. Having staging environments in both Ireland and the UK increases the total infrastructural costs, which is not justified by the benefit of the additional tested cases.</p>
 <p>The London region is newer than the Ireland and currently offers a subset of services compared to the Ireland region. Hence, having the staging environment in London should allow us to capture the cases that may cause failure due to the unavailability of services.</p>
 <p>Therefore, the risks of running a single staging environment are offset by the cost savings and simplification of deployment pipelines.</p>
-<h1 id="decision">Decision</h1><p>We will remove the Ireland (eu-west-1) staging environment resulting in a single staging environment in AWS London (eu-west-2).</p>
-<h1 id="status">Status</h1><p>Accepted</p>
-<h1 id="consequences">Consequences</h1><p>We will have one staging environment for testing both London and Ireland production environment. This ADR does not affect the setup of the dev or production environment.</p>
+<h1 id="decision">Decision</h1>
+<p>We will remove the Ireland (eu-west-1) staging environment resulting in a single staging environment in AWS London (eu-west-2).</p>
+<h1 id="status">Status</h1>
+<p>Accepted</p>
+<h1 id="consequences">Consequences</h1>
+<p>We will have one staging environment for testing both London and Ireland production environment. This ADR does not affect the setup of the dev or production environment.</p>
 
 
             

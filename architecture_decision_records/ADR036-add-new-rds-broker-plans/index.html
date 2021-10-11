@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -143,12 +136,16 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr036-recommended-database-plans">ADR036: Recommended database plans</h1><p>==========================</p>
+  <h1 id="adr036-recommended-database-plans">ADR036: Recommended database plans</h1>
+<p>==========================</p>
 
 <!-- vim: set tw=100: -->
-<h2 id="context">Context</h2><h3 id="current-plans">Current plans</h3><p>As of 2019-09-03 <a href="https://cloud.service.gov.uk">GOV.UK PaaS</a> offers the following postgres and mysql
+<h2 id="context">Context</h2>
+<h3 id="current-plans">Current plans</h3>
+<p>As of 2019-09-03 <a href="https://cloud.service.gov.uk">GOV.UK PaaS</a> offers the following postgres and mysql
 plans to everyone:</p>
-<h4 id="mysql">MySql</h4><div class="table-container">
+<h4 id="mysql">MySql</h4>
+<div class="table-container">
         <table>
           <tr>
 <th>service plan</th>
@@ -192,7 +189,8 @@ plans to everyone:</p>
 <td>paid</td>
 </tr>
         </table>
-      </div><h4 id="postgres">Postgres</h4><div class="table-container">
+      </div><h4 id="postgres">Postgres</h4>
+<div class="table-container">
         <table>
           <tr>
 <th>service plan</th>
@@ -272,7 +270,8 @@ plans to everyone:</p>
 <td>paid</td>
 </tr>
         </table>
-      </div><h3 id="current-analysis">Current analysis</h3><p>In <a href="https://www.pivotaltracker.com/n/projects/1275640/stories/167839682">#167839682</a> we had a look
+      </div><h3 id="current-analysis">Current analysis</h3>
+<p>In <a href="https://www.pivotaltracker.com/n/projects/1275640/stories/167839682">#167839682</a> we had a look
 at the usage on our existing databases and concluded that, for the most part, the existing plans are
 appropriate for current usage. We didn&rsquo;t identify any databases that could easily have been on a
 smaller instance size if only it had higher IOPS (which was one hypothesis).</p>
@@ -336,7 +335,9 @@ This would allow an upgrade path of <code>small -&gt; small-high-iops -&gt; medi
 <p>Separately, we should add support for postgres 11 and mysql 8, which are both supported by RDS now.
 For these new plans we should use the newest available instance types (so t3 / m5 instead of t2 /
 m4).</p>
-<h2 id="decision">Decision</h2><h3 id="create-new-plans-for-postgres-11">Create new plans for postgres 11</h3><p>We should play <a href="https://www.pivotaltracker.com/story/show/168322288">a story to add the following new plans</a>:</p>
+<h2 id="decision">Decision</h2>
+<h3 id="create-new-plans-for-postgres-11">Create new plans for postgres 11</h3>
+<p>We should play <a href="https://www.pivotaltracker.com/story/show/168322288">a story to add the following new plans</a>:</p>
 <div class="table-container">
         <table>
           <tr>
@@ -372,7 +373,8 @@ m4).</p>
 </tr>
         </table>
       </div><p>(note: t3 / m5 instances, small plans have 100G storage instead of 20G)</p>
-<h3 id="create-new-plans-for-mysql-8">Create new plans for mysql 8</h3><p>We should play <a href="https://www.pivotaltracker.com/story/show/168322475">a story to add the following new plans</a>:</p>
+<h3 id="create-new-plans-for-mysql-8">Create new plans for mysql 8</h3>
+<p>We should play <a href="https://www.pivotaltracker.com/story/show/168322475">a story to add the following new plans</a>:</p>
 <div class="table-container">
         <table>
           <tr>
@@ -408,17 +410,21 @@ m4).</p>
 </tr>
         </table>
       </div><p>(note: t3 / m5 instances, small plans have 100G storage instead of 20G)</p>
-<h3 id="create-new-quot-small-high-iops-quot-and-quot-small-ha-high-iops-quot-plans-for-mysql-5-7-postgres-9-5-and-10">Create new &ldquo;small-high-iops&rdquo; and &ldquo;small-ha-high-iops&rdquo; plans, for mysql 5.7, postgres 9.5 and 10</h3><p>We should play <a href="https://www.pivotaltracker.com/story/show/168322617">a story to add &ldquo;High IOPS&rdquo; plans for the existing postgres / mysql versions</a>.</p>
+<h3 id="create-new-quot-small-high-iops-quot-and-quot-small-ha-high-iops-quot-plans-for-mysql-5-7-postgres-9-5-and-10">Create new &ldquo;small-high-iops&rdquo; and &ldquo;small-ha-high-iops&rdquo; plans, for mysql 5.7, postgres 9.5 and 10</h3>
+<p>We should play <a href="https://www.pivotaltracker.com/story/show/168322617">a story to add &ldquo;High IOPS&rdquo; plans for the existing postgres / mysql versions</a>.</p>
 <p>These should have 100G of storage and be on the <code>t3.small</code> instance type (since there&rsquo;s no reason to
 be adding new plans on old instance types).</p>
 <p>This story may turn out not to be a priority.</p>
-<h3 id="do-not-change-the-instance-types-for-the-existing-plans">Do not change the instance types for the existing plans</h3><p>We considered whether to upgrade existing databases to new m5 / t3 instances, or to make it so that
+<h3 id="do-not-change-the-instance-types-for-the-existing-plans">Do not change the instance types for the existing plans</h3>
+<p>We considered whether to upgrade existing databases to new m5 / t3 instances, or to make it so that
 new databases on old versions (i.e. postgres 9.5 / 10, mysql 5.7) get latest-generation instance
 types.</p>
 <p>We decided not to do this because it would be tricky to administer the change, and it&rsquo;s nice to have
 the new instance types as an incentive for people to upgrade.</p>
-<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
+
 <ul>
 <li>Small databases for the newer engine versions (postgres 11 / mysql 8) will be more expensive and
 have more disk.</li>

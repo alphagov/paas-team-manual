@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -107,15 +100,18 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="releasing-bosh-blobs">Releasing BOSH blobs</h1><p>This is a guide to upload new BOSH blobs to our common blob store.</p>
+  <h1 id="releasing-bosh-blobs">Releasing BOSH blobs</h1>
+<p>This is a guide to upload new BOSH blobs to our common blob store.</p>
 <p>Our blobs are stored in the <strong>gds-paas-build-releases-blobs</strong> S3 bucket which belongs to the CI AWS account.</p>
 <p>You can read about adding and uploading blobs <a href="https://bosh.io/docs/release-blobs.html">here</a>.</p>
 <h2 id="requirements">Requirements</h2>
+
 <ul>
 <li>You&rsquo;ll need access to the CI AWS account (write access to the blob store S3 bucket)</li>
 <li>BOSH cli</li>
 </ul>
-<h2 id="steps">Steps</h2><p>In this example we&rsquo;re going to upload Go 1.9 to the blob store.</p>
+<h2 id="steps">Steps</h2>
+<p>In this example we&rsquo;re going to upload Go 1.9 to the blob store.</p>
 <p>You have to run the following commands from a BOSH release.</p>
 <p><strong>1.</strong> First download the blob:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>curl -L https://redirector.gvt1.com/edgedl/go/go1.9.linux-amd64.tar.gz -O

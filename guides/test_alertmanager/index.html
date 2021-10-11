@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,16 +106,19 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="testing-alertmanager">Testing Alertmanager</h1><p>This is a guide to testing Alertmanager</p>
+  <h1 id="testing-alertmanager">Testing Alertmanager</h1>
+<p>This is a guide to testing Alertmanager</p>
 <p>We use Alertmanager for broadcasting and silencing our Prometheus alerts.</p>
 <h2 id="requirements">Requirements</h2>
+
 <ul>
 <li>AWS access</li>
 <li>CredHub CLI</li>
 <li><code>amtool</code> - the Alertmanager CLI</li>
 </ul>
 <p>Install <code>amtool</code> with <code>go get github.com/prometheus/alertmanager/cmd/amtool</code></p>
-<h2 id="before-you-start">Before you start</h2><p><strong>1.</strong> <a href="/guides/Connecting_to_Concourse_CredHub_and_BOSH/">Get credentials</a> to
+<h2 id="before-you-start">Before you start</h2>
+<p><strong>1.</strong> <a href="/guides/Connecting_to_Concourse_CredHub_and_BOSH/">Get credentials</a> to
 talk to Alertmanager</p>
 <p><strong>2.</strong> Navigate to Alertmanager&rsquo;s web UI</p>
 <p>For example:</p>
@@ -151,7 +147,8 @@ talk to Alertmanager</p>
   config show
 </code></pre></div><p>where <code>&lt;PASSWORD&gt;</code> is the Alertmanager password from CredHub</p>
 <p><em>The following <code>amtool</code> commands assume that you specify <code>--alertmanager.url</code></em></p>
-<h2 id="checking-where-alerts-go"> Checking where alerts go</h2><p>Alertmanager has a concept of &ldquo;routes&rdquo;, which dictate where alerts are routed</p>
+<h2 id="checking-where-alerts-go"> Checking where alerts go</h2>
+<p>Alertmanager has a concept of &ldquo;routes&rdquo;, which dictate where alerts are routed</p>
 <p>You can list routes:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>amtool config routes show
 </code></pre></div><p>which will print:</p>
@@ -170,7 +167,8 @@ talk to Alertmanager</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>amtool config routes test notify=pagerduty-24-7 otherlabel=foo
 </code></pre></div><p>prints</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>pagerduty-24-7-receiver
-</code></pre></div><h2 id="simulating-an-alert">Simulating an alert</h2><p><strong>1.</strong> Notify your colleagues that you are going to be testing alerts</p>
+</code></pre></div><h2 id="simulating-an-alert">Simulating an alert</h2>
+<p><strong>1.</strong> Notify your colleagues that you are going to be testing alerts</p>
 <p><strong>2.</strong> Add an override in PagerDuty</p>
 <p><em>You may wish to override both the engineer and the comms schedules, so that
 only you are called</em></p>

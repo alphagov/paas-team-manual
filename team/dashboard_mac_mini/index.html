@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,7 +106,8 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="dashboard-mac-mini-amp-chromebox">Dashboard Mac Mini &amp; Chromebox</h1><p>There are two Mac Minis and a Chromebox attached to big screens in our team area. They can show the
+  <h1 id="dashboard-mac-mini-amp-chromebox">Dashboard Mac Mini &amp; Chromebox</h1>
+<p>There are two Mac Minis and a Chromebox attached to big screens in our team area. They can show the
 following:</p>
 
 <ul>
@@ -128,14 +122,16 @@ If we want to display multiple different views on a single screen, we use
 <p>If you need access, you can walk up and use the mouse and keyboard.</p>
 <p>The credentials for these machines and for the chromebox are in the <code>paas-pass</code> password store.</p>
 <p>In case of an AZ failure you can switch to a Grafana instance in a different AZ by replacing the number in the URL. The available URLs are listed <a href="/technical_design/prometheus/#urls">here</a>.</p>
-<h2 id="outstanding-pull-requests">Outstanding pull requests</h2><p>These are shown by <a href="https://github.com/alphagov/fourth-wall">Fourth Wall</a>.</p>
+<h2 id="outstanding-pull-requests">Outstanding pull requests</h2>
+<p>These are shown by <a href="https://github.com/alphagov/fourth-wall">Fourth Wall</a>.</p>
 <p>To get the URL for our dashboard, you can use these commands:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>export GITHUB_API_TOKEN=&lt;your github access token&gt;
 
 echo "https://alphagov.github.io/fourth-wall/?token=${GITHUB_API_TOKEN}&amp;team=alphagov/team-government-paas-readonly"
 </code></pre></div><p>Replace the placeholders with read-only <a href="https://github.com/blog/1509-personal-api-tokens">access tokens</a> from GitHub.</p>
 <p>You can store those variables in a <a href="https://www.passwordstore.org/">password manager like <code>paas</code></a> and load then as needed.</p>
-<h2 id="concourse-pipelines">Concourse pipelines</h2><p>This shows the pipelines for staging and production on a single screen. The URLs for the pipelines are:</p>
+<h2 id="concourse-pipelines">Concourse pipelines</h2>
+<p>This shows the pipelines for staging and production on a single screen. The URLs for the pipelines are:</p>
 
 <ul>
 <li><code>https://deployer.london.staging.cloudpipeline.digital/teams/main/pipelines/create-cloudfoundry</code></li>
@@ -146,9 +142,11 @@ echo "https://alphagov.github.io/fourth-wall/?token=${GITHUB_API_TOKEN}&amp;team
 <a href="https://framesplits.cloudapps.digital/index.html?title=&amp;layout=3row&amp;url%5B%5D=https%3A%2F%2Fdeployer.london.staging.cloudpipeline.digital%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&amp;url%5B%5D=https%3A%2F%2Fdeployer.cloud.service.gov.uk%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&amp;url%5B%5D=https%3A%2F%2Fdeployer.london.cloud.service.gov.uk%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry&amp;url%5B%5D=https%3A%2F%2Fdeployer.london.cloud.service.gov.uk%2Fteams%2Fmain%2Fpipelines%2Fcreate-cloudfoundry">combined dashboard</a>.</p>
 <p>We&rsquo;re using a <a href="https://github.com/alphagov/paas-cf/tree/master/misc/chrome_plugins/clean_concourse_pipeline">custom Chrome plugin</a> to hide some of the Concourse page furniture
 on the Dashboard.</p>
-<h2 id="pingdom">Pingdom</h2><p>You can use the <a href="http://stats.pingdom.com/ejtodj13fqqx">Pingdom public status page</a> (<a href="https://help.pingdom.com/hc/en-us/articles/205386171-Public-Status-Page">and Pingdom public status page documentation</a>) to display the uptime and current status of our healthcheck application. It is not currently presented on the monitors, as we did not find it useful enough. The Pingdom account is shared with other Government-as-a-Platform services, such as Notify, and there is only one shared dashboard for the entire account.</p>
+<h2 id="pingdom">Pingdom</h2>
+<p>You can use the <a href="http://stats.pingdom.com/ejtodj13fqqx">Pingdom public status page</a> (<a href="https://help.pingdom.com/hc/en-us/articles/205386171-Public-Status-Page">and Pingdom public status page documentation</a>) to display the uptime and current status of our healthcheck application. It is not currently presented on the monitors, as we did not find it useful enough. The Pingdom account is shared with other Government-as-a-Platform services, such as Notify, and there is only one shared dashboard for the entire account.</p>
 <p>We use the <a href="https://chrome.google.com/webstore/detail/super-easy-auto-refresh/globgafddkdlnalejlkcpaefakkhkdoa?hl=en">Super Easy Auto Refresh Chrome extension</a> to refresh the page.</p>
-<h2 id="prometheus-triggered-monitors">Prometheus Triggered Monitors</h2><p>We have created a <a href="https://grafana-1.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod?refresh=5s&amp;orgId=1">dashboard in Grafana, called &lsquo;User Impact - prod&rsquo;</a> and <a href="https://grafana-1.london.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod-lon?refresh=5s&amp;orgId=1">dashboard in Grafana, called &lsquo;User Impact - prod-lon&rsquo;</a>, which displays a count of monitors by trigger status (healthy, warning, critical, or unknown) for each production environment.</p>
+<h2 id="prometheus-triggered-monitors">Prometheus Triggered Monitors</h2>
+<p>We have created a <a href="https://grafana-1.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod?refresh=5s&amp;orgId=1">dashboard in Grafana, called &lsquo;User Impact - prod&rsquo;</a> and <a href="https://grafana-1.london.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod-lon?refresh=5s&amp;orgId=1">dashboard in Grafana, called &lsquo;User Impact - prod-lon&rsquo;</a>, which displays a count of monitors by trigger status (healthy, warning, critical, or unknown) for each production environment.</p>
 <p>The credentials for the Grafana mon users can be found by running <code>make &lt;env&gt; credhub</code> from paas-cf.</p>
 
 

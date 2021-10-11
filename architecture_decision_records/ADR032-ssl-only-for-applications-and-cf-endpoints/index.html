@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,7 +106,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr032-ssl-only-for-applications-and-cf-endpoints">ADR032: SSL-only for applications and cf endpoints</h1><h2 id="context">Context</h2><p>Note: This has been superceeded. See <a href="#status">Status</a> below.</p>
+  <h1 id="adr032-ssl-only-for-applications-and-cf-endpoints">ADR032: SSL-only for applications and cf endpoints</h1>
+<h2 id="context">Context</h2>
+<p>Note: This has been superceeded. See <a href="#status">Status</a> below.</p>
 <p>It is expected for the government websites to be secure and keep the user
 interactions private. Because that we want to enforce all communications to
 any application and to the platform endpoints to use only and always HTTPS,
@@ -138,10 +133,13 @@ dropping any attempt to connect to the port 80 at TCP level.</p>
 <p>Although not all application deployed on the PaaS will be &ldquo;services&rdquo;
 as in the service manual meaning, we must not allow HTTP to make
 it easier to service owners to comply with this requirements.</p>
-<h2 id="decision">Decision</h2><p>We will only open port 443 (HTTPS) and drop/reject any TCP connection to TCP port 80 (HTTP).</p>
+<h2 id="decision">Decision</h2>
+<p>We will only open port 443 (HTTPS) and drop/reject any TCP connection to TCP port 80 (HTTP).</p>
 <p>We will implement and maintain HSTS preload lists for our production domains.</p>
-<h2 id="status">Status</h2><p>Superceeded by <a href="../ADR033-redirect-http-for-applications">ADR033</a></p>
-<h2 id="consequences">Consequences</h2><p>We must configure and maintain our domain in the HSTS preload lists.</p>
+<h2 id="status">Status</h2>
+<p>Superceeded by <a href="../ADR033-redirect-http-for-applications">ADR033</a></p>
+<h2 id="consequences">Consequences</h2>
+<p>We must configure and maintain our domain in the HSTS preload lists.</p>
 <p>Users of browsers which do not support HSTS, or HSTS preload lists, will not
 be able to connect to the sites without specify the protocol <code>https://</code> in
 the URL. This only happens when the user manually inputs the URL in the

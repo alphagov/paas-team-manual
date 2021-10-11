@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -133,20 +126,25 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="support-manual">Support manual</h1><h2 id="what-are-we-supporting">What are we supporting</h2><p>We are supporting the GOV.UK PaaS platform; we’re not providing user support for users of the apps hosted on it.
+  <h1 id="support-manual">Support manual</h1>
+<h2 id="what-are-we-supporting">What are we supporting</h2>
+<p>We are supporting the GOV.UK PaaS platform; we’re not providing user support for users of the apps hosted on it.
 However, in some cases service teams can’t self diagnose or fix problems (yet) so we need to be flexible about what we support.</p>
 <p>We’re supporting live services, teams who are using PaaS for prototyping and individuals within teams who are trying it out.</p>
 <h2 id="support-hours">Support hours</h2>
+
 <ul>
 <li>In hours: Monday to Friday 9am to 5pm</li>
 <li>Out of hours - waking hours   : 9am to 5pm each non-working day including weekends and bank holidays</li>
 <li>Out of hours - overnight: 5pm to 9am each day</li>
 </ul>
 <h2 id="service-targets">Service Targets</h2>
+
 <ul>
 <li>First Response: Within 2 working days</li>
 </ul>
-<h2 id="alerting-out-of-hours">Alerting out of hours</h2><p>These are the things we support out of hours:</p>
+<h2 id="alerting-out-of-hours">Alerting out of hours</h2>
+<p>These are the things we support out of hours:</p>
 
 <ul>
 <li>Apps no longer being served due to an issue with our platform</li>
@@ -156,7 +154,8 @@ However, in some cases service teams can’t self diagnose or fix problems (yet)
 </ul>
 <p>We expect to hear about the first two via the alerts on Smoke Test Fails and Pingdom which are sent to Pagerduty.</p>
 <p>The second two, at the moment, are the things that a tenant may contact us about as we don’t cover all situations in which these could occur with our own alerting. They would contact us via our emergency email. Our emergency email is a Google Group which is not published publicly. It has ZenDesk and PagerDuty as its members, and therefore tickets and incidents are triggered automatically when an email is sent to it.</p>
-<h2 id="triaging-issues">Triaging issues</h2><p>An issue could be something which is raised through our monitoring, alerting, ZenDesk or slack.</p>
+<h2 id="triaging-issues">Triaging issues</h2>
+<p>An issue could be something which is raised through our monitoring, alerting, ZenDesk or slack.</p>
 <p>Triaging an issue is higher priority than other work. Once the issue has been triaged, it will be categorised (P1, P2 etc) and prioritised.</p>
 <p>The following questions should be answered when triaging/prioritising:</p>
 
@@ -168,7 +167,8 @@ However, in some cases service teams can’t self diagnose or fix problems (yet)
 <li>If there is uncertainty about which classification an issue should be given, the PaaS Product manager, PaaS Technical Architect or Tech Lead will be responsible for making a final call.</li>
 <li>In the event that none of the above people are available, you should use the triage questions to make a decision based on the information you have at the time.</li>
 </ul>
-<h2 id="severity-levels">Severity Levels</h2><p>We classify issues by their impact to users (tenants and their users, and the PaaS team) and react accordingly. This allows us to set expectations about how we will work, and what other teams should expect.</p>
+<h2 id="severity-levels">Severity Levels</h2>
+<p>We classify issues by their impact to users (tenants and their users, and the PaaS team) and react accordingly. This allows us to set expectations about how we will work, and what other teams should expect.</p>
 <p>For most types of issue, our priority is to ensure high availability of the service.</p>
 <p>An incident is any issue which causes significant problems for many platform users. This will include all P1 issues, and some P2 issues.</p>
 <p>The exceptions to this are for some categories of security breach or vulnerability, and for some incidents where there is a risk of data corruption.</p>
@@ -218,9 +218,11 @@ However, in some cases service teams can’t self diagnose or fix problems (yet)
 <td>n/a</td>
 </tr>
         </table>
-      </div><h2 id="support-tickets">Support tickets</h2><p>You can access our <a href="https://govuk.zendesk.com/agent/dashboard">support ticketing tool ZenDesk here</a></p>
+      </div><h2 id="support-tickets">Support tickets</h2>
+<p>You can access our <a href="https://govuk.zendesk.com/agent/dashboard">support ticketing tool ZenDesk here</a></p>
 <p>If you don’t have an account ask the PaaS delivery manager to add you. You can adjust your notifications yourself.</p>
 <h3 id="tips-and-good-practice">Tips and good practice</h3>
+
 <ul>
 <li>Try to keep a descriptive name in the ZenDesk tickets. If the user added a not very descriptive name (e.g failure pushing app), change it to something that uniquely identifies the story (e.g failure pushing app: invalid mode 0444).
 Always notify the tenant about this change and why it is done.</li>
@@ -229,8 +231,10 @@ Always notify the tenant about this change and why it is done.</li>
 <li>Always notify the user that we are closing it, why we are closing it and why the issue is resolved or it does not require more work from us.</li>
 <li>Let the user know that they can always reopen the ticket if required.</li>
 </ul>
-<h2 id="incident-process">Incident Process</h2><p>This is now in its <a href="/incident_management/incident_process/">own section</a>.</p>
+<h2 id="incident-process">Incident Process</h2>
+<p>This is now in its <a href="/incident_management/incident_process/">own section</a>.</p>
 <h2 id="useful-links">Useful links</h2>
+
 <ul>
 <li><a href="https://govuk.zendesk.com/agent/dashboard">ZenDesk</a></li>
 <li><a href="https://governmentdigitalservice.pagerduty.com/">Pagerduty</a></li>

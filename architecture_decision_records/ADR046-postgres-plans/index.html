@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -139,7 +132,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr046-postgres-service-plans">ADR046: Postgres Service Plans</h1><h2 id="context">Context</h2><p>GOV.UK PaaS runs a fork of the <a href="https://github.com/alphagov/paas-rds-broker">RDS Service Broker</a> and uses it to provide Postgres database services
+  <h1 id="adr046-postgres-service-plans">ADR046: Postgres Service Plans</h1>
+<h2 id="context">Context</h2>
+<p>GOV.UK PaaS runs a fork of the <a href="https://github.com/alphagov/paas-rds-broker">RDS Service Broker</a> and uses it to provide Postgres database services
 to its tenants.</p>
 <p>As of writing, our service plan &lsquo;menu&rsquo; looks like this:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ cf marketplace -e postgres
@@ -209,19 +204,22 @@ broker: rds-broker
   a database instance without adding at least 10%.</p>
 <p>We have identified several inconsistencies and issues with the current plans when studying them in
 order of volume size.</p>
-<h2 id="problems-and-potential-options">Problems and potential options</h2><p>Replacing plans in this section refers to:
+<h2 id="problems-and-potential-options">Problems and potential options</h2>
+<p>Replacing plans in this section refers to:
 * renaming the existing plan to have a <code>-deprecated</code> suffix
 * marking it private
 * scoping it down to only the existing spaces using it
 * creating a new one under its old name, with new configuration</p>
 <p>This way, we avoid problems with billing and existing service instances using these plans.</p>
-<h3 id="problem-1">Problem 1</h3><p>There is no upgrade path available from <code>medium</code> <code>high-iops</code> plans to <code>large</code> plans, because of the
+<h3 id="problem-1">Problem 1</h3>
+<p>There is no upgrade path available from <code>medium</code> <code>high-iops</code> plans to <code>large</code> plans, because of the
   RDS 10% storage increase rule - 500GB to 512GB would violate it.
 1. We could replace the <code>medium</code> <code>high-iops</code> plans with ones of smaller disk space, say 465GB (<code>⌊512/1.1⌋</code>).
    * This would leave existing users of these plans (6 instances) unable to upgrade (both in terms
      of plan size and database version) without going up to <code>large</code>.
 2. We could replace the <code>large</code> plans with ones of larger disk space, say 564GB (<code>⌈512*1.1⌉</code>).</p>
-<h3 id="problem-2">Problem 2</h3><p>The <code>small</code> plans are inconsistent - <code>small-10</code> (and <code>small-ha-10</code>) provide 20GB disk space, but
+<h3 id="problem-2">Problem 2</h3>
+<p>The <code>small</code> plans are inconsistent - <code>small-10</code> (and <code>small-ha-10</code>) provide 20GB disk space, but
   the Postgres 11 and 12 variants provide 100GB disk space.
 1. We could replace the <code>small-11</code>, <code>small-ha-11</code>, <code>small-12</code>, and <code>small-ha-12</code> plans with 20GB
    editions.
@@ -234,7 +232,8 @@ order of volume size.</p>
    * This might create a dilemma when we come to introduce <code>small-13</code> and <code>small-ha-13</code>. Should it
      be 20GB or 100GB? <code>small-13-high-iops</code> and <code>small-ha-13-high-iops</code> will be 100GB so it would
      be illogical, however if we went for 20GB, there would be no <code>small-12</code> -&gt; <code>small-13</code> upgrade path.</p>
-<h3 id="problem-3">Problem 3</h3><p>The Postgres engine version is part of the plans themselves. It is not relevant to billing or
+<h3 id="problem-3">Problem 3</h3>
+<p>The Postgres engine version is part of the plans themselves. It is not relevant to billing or
 particularly how the underlying resource is structed on AWS.</p>
 
 <ol>
@@ -250,7 +249,8 @@ particularly how the underlying resource is structed on AWS.</p>
 small-10 and small-12).</li>
 </ul></li>
 </ol>
-<h3 id="problem-4">Problem 4</h3><p>The disk space is part of the plans but this leads to massive jumps in plan whenever you just want
+<h3 id="problem-4">Problem 4</h3>
+<p>The disk space is part of the plans but this leads to massive jumps in plan whenever you just want
 a bit more disk space.
 1. We could make it a config option.
    * We&rsquo;d have to factor this into billing.
@@ -258,29 +258,35 @@ a bit more disk space.
 2. We could do nothing and leave it be.
    * Problem to solve in a future PaaS? Would future PaaS even want to do service plans? Probably,
      but we shouldn&rsquo;t pre-empt it.</p>
-<h3 id="problem-5">Problem 5</h3><p>It&rsquo;s not clear that users know there could be legitimate reasons to want to upgrade from
+<h3 id="problem-5">Problem 5</h3>
+<p>It&rsquo;s not clear that users know there could be legitimate reasons to want to upgrade from
   <code>medium</code> <code>high-iops</code> to <code>large</code> (non-<code>high-iops</code>). If a user doesn&rsquo;t understand the disk space
   &lt;-&gt; IOPS link, they might have <code>medium</code> <code>high-iops</code>, need more RAM/a bigger CPU/more connections,
   and decide straight to <code>large</code> <code>high-iops</code> instead of plain <code>large</code>.
 1. We could add IOPS information to each plan&rsquo;s description.
    * These descriptions are already quite wordy and this would make things worse.
 2. We could do nothing and leave it be.</p>
-<h3 id="problem-6">Problem 6</h3><p>The <code>xlarge</code> <code>high-iops</code> plans provide a disk larger than that needed to achieve maximum
+<h3 id="problem-6">Problem 6</h3>
+<p>The <code>xlarge</code> <code>high-iops</code> plans provide a disk larger than that needed to achieve maximum
  AWS gp2 IOPS.
 1. We could make future xlarge <code>high-iops</code> plans 5,334GB in disk size.
    * However there would then be no upgrade path for the current user.
 2. We could do nothing and leave it be.</p>
-<h2 id="summary">Summary</h2><p>In conclusion, with the service plan system we&rsquo;ve backed ourselves into a corner with some not very
+<h2 id="summary">Summary</h2>
+<p>In conclusion, with the service plan system we&rsquo;ve backed ourselves into a corner with some not very
 good ways out.</p>
-<h2 id="decision">Decision</h2><p>We will take these actions:
+<h2 id="decision">Decision</h2>
+<p>We will take these actions:
 * Problem 1: Action 2 - replace the <code>large</code> plans with 564GB versions
 * Problem 2: Action 3 - do nothing for now
 * Problem 3: Action 2 - do nothing for now
 * Problem 4: Action 2 - do nothing for now
 * Problem 5: Action 2 - do nothing for now
 * Problem 6: Action 2 - do nothing for now</p>
-<h2 id="status">Status</h2><p>Accepted</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
 <h2 id="consequences">Consequences</h2>
+
 <ul>
 <li>Users on <code>medium</code> <code>high-iops</code> plans will be able to upgrade to <code>large</code>.</li>
 <li>Existing <code>large</code> users will be able to move to the new <code>large</code> plans at will through the usual

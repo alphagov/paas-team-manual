@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -109,10 +102,13 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="yaml">YAML</h1><p>We produce lots of YAML. This sets out some guidelines for how this should be
+  <h1 id="yaml">YAML</h1>
+<p>We produce lots of YAML. This sets out some guidelines for how this should be
 formatted.</p>
 <p>In general, follow the same formatting style as examples in the <a href="#">YAML spec</a>.</p>
-<h2 id="indentation">Indentation</h2><h3 id="lists">Lists</h3><p>Lists should be indented 2 spaces beyond the parent key. For example:</p>
+<h2 id="indentation">Indentation</h2>
+<h3 id="lists">Lists</h3>
+<p>Lists should be indented 2 spaces beyond the parent key. For example:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>foo:
   - one
   - two

@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -130,10 +123,14 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="user-management">User management</h1><h2 id="creating-new-orgs-and-users">Creating new orgs and users</h2><p>We encourage tenants to invite and manage their own users via the paas-admin interface.</p>
+  <h1 id="user-management">User management</h1>
+<h2 id="creating-new-orgs-and-users">Creating new orgs and users</h2>
+<p>We encourage tenants to invite and manage their own users via the paas-admin interface.</p>
 <p>If you need to create a new org and invite the initial org manager(s) you can do so using the <code>GOV.UK PaaS Admin &gt; Platform Admin &gt; Create new organisation</code> page. You should be creating new orgs in the London region by default.</p>
-<h2 id="interacting-with-uaa">Interacting with UAA</h2><p>Cloud Foundry&rsquo;s account management is mostly controlled by <a href="https://github.com/cloudfoundry/uaa">UAA</a></p>
-<h3 id="install">Install</h3><p>You can access the <a href="https://github.com/cloudfoundry/cf-uaac">uaac</a> command line utility from
+<h2 id="interacting-with-uaa">Interacting with UAA</h2>
+<p>Cloud Foundry&rsquo;s account management is mostly controlled by <a href="https://github.com/cloudfoundry/uaa">UAA</a></p>
+<h3 id="install">Install</h3>
+<p>You can access the <a href="https://github.com/cloudfoundry/cf-uaac">uaac</a> command line utility from
 <a href="https://github.com/alphagov/paas-cf">alphagov/paas-cf</a>. Using <a href="http://bundler.io/">Bundler</a> will ensure that you have the
 appropriate version.</p>
 <p>To install:</p>
@@ -144,7 +141,8 @@ appropriate version.</p>
 
 UAA Command Line Interface
 …
-</code></pre></div><h3 id="log-in">Log in</h3><p>To target an environment:</p>
+</code></pre></div><h3 id="log-in">Log in</h3>
+<p>To target an environment:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle exec uaac target https://login.&lt;SYSTEM_DOMAIN&gt;
 </code></pre></div><p>You can log in with a normal CF account. You should use either:</p>
 
@@ -162,7 +160,8 @@ track activity in persistent environments.</p>
 <p>There is a command to refresh your access token when it expires, but it is
 worth re-authenticating instead to ensure that you are still targeting the
 environment that you expect.</p>
-<h2 id="finding-a-user-account">Finding a user account</h2><p>If you know the exact username of the account:</p>
+<h2 id="finding-a-user-account">Finding a user account</h2>
+<p>If you know the exact username of the account:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle exec uaac user get &lt;EMAIL&gt;
 </code></pre></div><p>If you only know part of the username:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle exec uaac users 'username co "&lt;NAME&gt;"'
@@ -180,7 +179,8 @@ Navigate to one of the following, depending on the region:</p>
 <li><a href="https://admin.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333">https://admin.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333</a></li>
 <li><a href="https://admin.london.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333">https://admin.london.cloud.service.gov.uk/users/aaaaaaaa-bbbb-cccc-dddd-111122223333</a></li>
 </ul>
-<h2 id="locking-a-user-account">Locking a user account</h2><p>Sometimes it might be necessary to lock certain user accounts. For example, when we find out they have left GDS or are no longer working on the PaaS team.</p>
+<h2 id="locking-a-user-account">Locking a user account</h2>
+<p>Sometimes it might be necessary to lock certain user accounts. For example, when we find out they have left GDS or are no longer working on the PaaS team.</p>
 <p>Cloud Foundry has a facility to prevent users from logging in while still preserving the user account with all their access rights and org membership. We use this facility as a first step in removing the user account and then:</p>
 
 <ul>
@@ -193,9 +193,11 @@ cd scripts
 TARGET=$(cf curl /v2/info | jq -r .token_endpoint) \
   TOKEN=$(cf oauth-token) \
   bundle exec ./uaa_lock_user.rb &lt;USERNAME&gt;
-</code></pre></div><h2 id="finding-out-org-membership">Finding out org membership</h2><p>In order to notify the org manager of a given user, we need to find out who that would be. UAA does not know which org/space user belongs to. This information is only available to cloud controller: <code>cf curl /v2/users/&lt;uaa_user_id&gt;/summary</code></p>
+</code></pre></div><h2 id="finding-out-org-membership">Finding out org membership</h2>
+<p>In order to notify the org manager of a given user, we need to find out who that would be. UAA does not know which org/space user belongs to. This information is only available to cloud controller: <code>cf curl /v2/users/&lt;uaa_user_id&gt;/summary</code></p>
 <p>The user summary contains all orgs and spaces they are member of. It also contains the UAA ID of managers of these. To get user name from UAA id, enter: <code>bundle exec uaac curl /Users/&lt;uaa_user_id&gt; | grep userName</code></p>
-<h2 id="notifying-the-org-manager">Notifying the org manager</h2><p>Send an email from support email address: <code>gov-uk-paas-support@digital.cabinet-office.gov.uk</code>. Example email:</p>
+<h2 id="notifying-the-org-manager">Notifying the org manager</h2>
+<p>Send an email from support email address: <code>gov-uk-paas-support@digital.cabinet-office.gov.uk</code>. Example email:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Hi &lt;org manager 1st name&gt;,
 
 We have noticed that &lt;user name of disabled account&gt; was inactive &lt;describe how we found out, e.g. when we tried to send him email and it got bounced&gt;. We wondered if perhaps this person has left GDS. We have noticed this user still has an account in `&lt;org name&gt;` organization and `&lt;space name(s)&gt;` space. We have disabled this user for now.
@@ -206,7 +208,8 @@ Can you please confirm if we can remove the user entirely, or instead if the use
 Thanks,
 PaaS for Government
 </code></pre></div><p>When they respond support can follow up with user deletion, or instead enable the user account again if it is to be actively used.</p>
-<h2 id="global-auditor-role">Global Auditor role</h2><p>We use the <a href="https://docs.cloudfoundry.org/concepts/roles.html#roles-and-permissions">Global Auditor role</a> for team members of our team that need to
+<h2 id="global-auditor-role">Global Auditor role</h2>
+<p>We use the <a href="https://docs.cloudfoundry.org/concepts/roles.html#roles-and-permissions">Global Auditor role</a> for team members of our team that need to
 query or report on usage but don&rsquo;t have production access.</p>
 <p>To add someone:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle exec uaac member add cloud_controller.global_auditor &lt;EMAIL&gt;

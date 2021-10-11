@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -119,13 +112,16 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="support-roles-and-responsibilities">Support roles and responsibilities</h1><p>What each role does on support and when it&rsquo;s needed.</p>
+  <h1 id="support-roles-and-responsibilities">Support roles and responsibilities</h1>
+<p>What each role does on support and when it&rsquo;s needed.</p>
 <p>You can refer to <a href="/incident_management/incident_process/">Incident Process</a> for information on How to manage incidents and incident communication.</p>
-<h2 id="rota">Rota</h2><p>The support rota is on <a href="https://governmentdigitalservice.pagerduty.com/schedules">Pagerduty</a>.</p>
+<h2 id="rota">Rota</h2>
+<p>The support rota is on <a href="https://governmentdigitalservice.pagerduty.com/schedules">Pagerduty</a>.</p>
 <p>We have four rotas; in hours engineering, in hours comms, out of hours engineering and out of hours comms.</p>
 <p>Our escalation rota is <a href="https://governmentdigitalservice.pagerduty.com/schedules#PE6NQ9Z">GaaP SCS Escalation</a>.</p>
 <p>If you are the engineer on support, add your shift onto the #paas slack channel description so your colleagues can see who is on support and that you are currently looking at the issue. If you need to swap shifts, ask your colleagues if they can swap or cover, then <a href="https://support.pagerduty.com/hc/en-us/articles/202830170-Creating-and-Deleting-Overrides">update Pagerduty using an override</a>.</p>
-<h2 id="in-hours-engineering-support-role-and-responsibility">In hours engineering support role and responsibility</h2><p>The in hours support lead is responsible for:</p>
+<h2 id="in-hours-engineering-support-role-and-responsibility">In hours engineering support role and responsibility</h2>
+<p>The in hours support lead is responsible for:</p>
 
 <ul>
 <li>monitoring system alerts and system health</li>
@@ -138,7 +134,8 @@
 <li>having a support handover meeting at the beginning and end of the support week</li>
 </ul>
 <p>When you need to take a break for lunch or essential meetings etc, make sure you tell people ahead of time, and arrange for a colleague to cover for you. All other members of the team are responsible for providing assistance to the support person as needed. If you don’t feel comfortable asking your colleagues, talk to the delivery manager or team lead who can help.</p>
-<h2 id="out-of-hours-engineering-support-role-and-responsibility">Out of hours engineering support role and responsibility</h2><p>The out of hours support engineer is responsible for:</p>
+<h2 id="out-of-hours-engineering-support-role-and-responsibility">Out of hours engineering support role and responsibility</h2>
+<p>The out of hours support engineer is responsible for:</p>
 
 <ul>
 <li>Responding to system alerts which will be sent to you via pagerduty. These will only be things which seriously impact the availability of live services due to a problem with our platform.</li>
@@ -151,6 +148,7 @@
 <p>For out of hours similar guidelines apply, if you need cover for an hour or two or an evening (e.g. for an appointment, or a family dinner), you need to agree this in advance with a colleague who can cover for you, and <a href="https://support.pagerduty.com/hc/en-us/articles/202830170-Creating-and-Deleting-Overrides">update Pagerduty using an override</a>.</p>
 <p>On a Bank Holiday, we create a daytime override on the out-of-hours schedule so there is someone on the rota during Bank Holiday daytime. This person is usually the current out-of-hours person. We also create an override on the in-hours schedule to ensure that any alerts go to PaaS team email rather than the in-hours person.</p>
 <h2 id="in-hours-comms-lead-role-and-responsibility">In hours comms lead role and responsibility</h2>
+
 <ul>
 <li>Checks the on call engineer is ok and finds out if they need any additional support.</li>
 <li>Responsible for any communications (internal or external) required throughout the duration of the incident.</li>
@@ -160,6 +158,7 @@
 <li>Drafts and sends regular updates to tenants via Statuspage.</li>
 </ul>
 <h2 id="out-of-hours-comms-lead-role-and-responsibility">Out of hours comms lead role and responsibility</h2>
+
 <ul>
 <li>Checks the on call engineer is ok and finds out if they need any additional support.</li>
 <li>If more support is required, attempt to contact others from team (or GDS). Get help from the GaaP SCS Escalation person with this if needed.</li>
@@ -170,7 +169,8 @@
 <li>Records a timeline of events through the incident.</li>
 <li>Drafts and sends regular updates to tenants via Statuspage.</li>
 </ul>
-<h2 id="gaap-scs-escalation-role-and-responsibility">GaaP SCS Escalation role and responsibility</h2><p>If the out of hours 1st line support has decided that they need help with tenant communications so they can focus on fixing the issue, you should contact the person on the <a href="https://governmentdigitalservice.pagerduty.com/schedules#PE6NQ9Z">GaaP SCS Escalation rota</a>. They will then be responsible for:</p>
+<h2 id="gaap-scs-escalation-role-and-responsibility">GaaP SCS Escalation role and responsibility</h2>
+<p>If the out of hours 1st line support has decided that they need help with tenant communications so they can focus on fixing the issue, you should contact the person on the <a href="https://governmentdigitalservice.pagerduty.com/schedules#PE6NQ9Z">GaaP SCS Escalation rota</a>. They will then be responsible for:</p>
 
 <ul>
 <li>Making decisions and assisting with tenant communications (if appropriate). This includes Slack <a href="https://gds.slack.com/messages/CAD4W35KK">#paas-incident</a> channel, and <a href="/team/statuspage/">Statuspage</a>.</li>

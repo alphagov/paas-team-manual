@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -137,16 +130,20 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="finding-the-activity-for-a-given-user">Finding the activity for a given user</h1><p>In case of suspicion of compromised CF details, we can use Kibana to
+  <h1 id="finding-the-activity-for-a-given-user">Finding the activity for a given user</h1>
+<p>In case of suspicion of compromised CF details, we can use Kibana to
 obtain some information about the API use.</p>
-<h2 id="finding-user-guid">Finding user GUID</h2><p>To find the user ID of a particular user see <a href="/support/CF_UAA_user_management/#finding-a-user-account">finding a user account</a></p>
-<h3 id="finding-deleted-user-guid">Finding deleted user GUID</h3><p>There may be a need to find a GUID for already deleted user. There is a
+<h2 id="finding-user-guid">Finding user GUID</h2>
+<p>To find the user ID of a particular user see <a href="/support/CF_UAA_user_management/#finding-a-user-account">finding a user account</a></p>
+<h3 id="finding-deleted-user-guid">Finding deleted user GUID</h3>
+<p>There may be a need to find a GUID for already deleted user. There is a
 way to do that, but it&rsquo;s a little inconvenient&hellip;</p>
 <p>If you go to Kibana, you can use the <code>&quot;DELETE \&quot;/v2/users&quot;</code> phrase in
 your search. This will print out the logs that were taken on user
 removal. This does not however, give you an indication of who the user
 was.</p>
-<h2 id="kibana-finding-api-usage">Kibana: Finding API usage</h2><p>We can make the investigation easier for ourselves by considering the
+<h2 id="kibana-finding-api-usage">Kibana: Finding API usage</h2>
+<p>We can make the investigation easier for ourselves by considering the
 following criteria:</p>
 
 <ul>
@@ -168,7 +165,8 @@ with <code>&amp;&amp;</code>, like so:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>"for user: {GUID}" &amp;&amp; "ip: {IP_ADDRESS}" &amp;&amp; "GET \"/v2/jobs"
 </code></pre></div><p>It probably won&rsquo;t end here, but it should provide a start for an
 individual to go further.</p>
-<h2 id="getting-further">Getting further</h2><p>Once you found something interesting above, you could use it to refine
+<h2 id="getting-further">Getting further</h2>
+<p>Once you found something interesting above, you could use it to refine
 your search to get deeper. For instance, one of the logs above, would have:</p>
 
 <ul>
@@ -199,8 +197,10 @@ data. For example, with a <code>PUT</code> request, you could find a
     "method": "create_and_stage"
 }
 </code></pre></div><p>It would imply that a new app has been created and staged.</p>
-<h1 id="finding-the-access-logs">Finding the access logs</h1><p>There may be times, where we&rsquo;d need to be troubleshooting or reviewing an API Access logs. Here is a list, of more relevant and interesting points to be concerned about:</p>
-<h2 id="gorouter">Gorouter</h2><p>In kibana, filtering the <code>@source.component</code> to <code>gorouter</code> will show the access logs, error logs, and route registration events.</p>
+<h1 id="finding-the-access-logs">Finding the access logs</h1>
+<p>There may be times, where we&rsquo;d need to be troubleshooting or reviewing an API Access logs. Here is a list, of more relevant and interesting points to be concerned about:</p>
+<h2 id="gorouter">Gorouter</h2>
+<p>In kibana, filtering the <code>@source.component</code> to <code>gorouter</code> will show the access logs, error logs, and route registration events.</p>
 <p>You can filter access logs only with:</p>
 
 <ul>
@@ -212,7 +212,8 @@ data. For example, with a <code>PUT</code> request, you could find a
 <li><code>NOT gorouter.status: 200</code></li>
 <li><code>gorouter.method: POST</code></li>
 </ul>
-<h2 id="router-haproxy">Router HAProxy</h2><p>In Kibana, you can look for the following phrases, to filter the access logs.</p>
+<h2 id="router-haproxy">Router HAProxy</h2>
+<p>In Kibana, you can look for the following phrases, to filter the access logs.</p>
 
 <ul>
 <li><code>haproxy.http_status_code: 200</code></li>
@@ -220,12 +221,14 @@ data. For example, with a <code>PUT</code> request, you could find a
 <li><code>haproxy.http_request_verb: POST</code></li>
 <li><code>haproxy.time_backend_response: &gt;7</code></li>
 </ul>
-<h2 id="cloud-controller">Cloud Controller</h2><p>Nginx runs on the same VM as Cloud Controller, so you can filter with:</p>
+<h2 id="cloud-controller">Cloud Controller</h2>
+<p>Nginx runs on the same VM as Cloud Controller, so you can filter with:</p>
 
 <ul>
 <li><code>@source.component:vcap_nginx_access</code></li>
 </ul>
-<h3 id="uaa-audit-log-in-detail">UAA audit log in detail</h3><p>You may find it necessary, to go deeper into the audit logs:</p>
+<h3 id="uaa-audit-log-in-detail">UAA audit log in detail</h3>
+<p>You may find it necessary, to go deeper into the audit logs:</p>
 
 <ul>
 <li>Token issued for a user: <code>uaa.audit.origin: &quot;test@example.com&quot;</code></li>
@@ -240,7 +243,8 @@ data. For example, with a <code>PUT</code> request, you could find a
 <li>Authentication failure for a user: <code>uaa.audit.type: PrincipalAuthenticationFailure AND uaa.audit.principal: admin</code></li>
 <li>SSO authentication failure doesn&rsquo;t show specific logs, only <code>uaa.audit.type: ClientAuthenticationSuccess</code> from the cf client.</li>
 </ul>
-<h1 id="finding-paas-internal-application-logs">Finding PaaS internal application logs</h1><p>For certain applications we forward the logs to Logit using a syslog drain. In Kibana you can use the following filters to search for such logs:</p>
+<h1 id="finding-paas-internal-application-logs">Finding PaaS internal application logs</h1>
+<p>For certain applications we forward the logs to Logit using a syslog drain. In Kibana you can use the following filters to search for such logs:</p>
 <p>To list all application logs:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>tags: logmessage
 </code></pre></div><p>To list all application routing logs:</p>

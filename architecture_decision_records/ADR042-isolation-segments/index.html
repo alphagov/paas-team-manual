@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -121,8 +114,11 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr042-isolation-segments">ADR042: Isolation segments</h1><h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="context">Context</h2><p>GOV.UK PaaS would like to be able to isolate specific tenant apps and tasks to
+  <h1 id="adr042-isolation-segments">ADR042: Isolation segments</h1>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="context">Context</h2>
+<p>GOV.UK PaaS would like to be able to isolate specific tenant apps and tasks to
 different pools of virtual machines (VMs).</p>
 <p>GOV.UK PaaS would like to be able to prevent specific tenant apps and tasks
 from egressing to the internet.</p>
@@ -132,7 +128,8 @@ Foundry Network Policies have been created.</p>
 <p>Apps running in the shared pools of VMs should be able to discover and access
 apps running inside an isolation segment, providing that the correct Cloud
 Foundry Network Policies have been created.</p>
-<h2 id="decision">Decision</h2><p>GOV.UK PaaS will implement egress-restricted isolation segments.</p>
+<h2 id="decision">Decision</h2>
+<p>GOV.UK PaaS will implement egress-restricted isolation segments.</p>
 <p>Isolation segments will be configured by a GOV.UK PaaS developer, in a similar
 manner to VPC peering connections.</p>
 <p>Isolation segments will have the following variable properties:</p>
@@ -143,7 +140,8 @@ manner to VPC peering connections.</p>
 <li>Whether egress to the internet is restricted</li>
 </ul>
 <p>We will use IPTables rules to achieve egress restriction.</p>
-<h3 id="isolation-segments">Isolation segments</h3><p>Cloud Foundry supports separating apps and tasks for specific Organizations
+<h3 id="isolation-segments">Isolation segments</h3>
+<p>Cloud Foundry supports separating apps and tasks for specific Organizations
 and Spaces via a feature called
 <a href="https://docs.cloudfoundry.org/adminguide/isolation-segments.html">Isolation Segments</a>.</p>
 <p>An Isolation Segment is a group of Diego cells with separate placement tags,
@@ -170,7 +168,8 @@ corresponds to an isolation group name.</p>
 <li>used by only a single organization or space</li>
 <li>shared by multiple organizations and spaces</li>
 </ul>
-<h3 id="egress-restrictions">Egress restrictions</h3><p>Container-to-container networking within Cloud Foundry is implemented via a
+<h3 id="egress-restrictions">Egress restrictions</h3>
+<p>Container-to-container networking within Cloud Foundry is implemented via a
 Virtual Extensible Local Area Network
 (<a href="https://tools.ietf.org/html/rfc7348">VXLAN</a>).</p>
 <p>Each container is assigned a virtual IP address inside the subnet 10.255/16</p>
@@ -198,7 +197,8 @@ platform.</p>
 <p>We would apply these IPTables rules to running apps and tasks, but not staging
 apps.  This will allow staging apps to communicate with the outside world (e.g.
 for downloading dependencies).</p>
-<h2 id="consequences">Consequences</h2><p>The implementation of isolation segments:</p>
+<h2 id="consequences">Consequences</h2>
+<p>The implementation of isolation segments:</p>
 
 <ul>
 <li>will enable us to host apps which should not have access to the internet</li>

@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -135,17 +128,21 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="rotating-credentials">Rotating Credentials</h1><h2 id="third-party-services">Third-party services</h2><p>We store credentials for third-party services in <a href="https://www.passwordstore.org/"><code>pass</code></a> stores which have some documentation about rotating the secrets held in them:</p>
+  <h1 id="rotating-credentials">Rotating Credentials</h1>
+<h2 id="third-party-services">Third-party services</h2>
+<p>We store credentials for third-party services in <a href="https://www.passwordstore.org/"><code>pass</code></a> stores which have some documentation about rotating the secrets held in them:</p>
 
 <ul>
 <li>https://github.com/alphagov/paas-credentials/blob/master/SECRET_ROTATION.md</li>
 <li>https://github.com/alphagov/paas-credentials-high/blob/master/SECRET_ROTATION.md</li>
 </ul>
-<h2 id="platform">Platform</h2><p>From time to time, it might be necessary to rotate our platform credentials. We
+<h2 id="platform">Platform</h2>
+<p>From time to time, it might be necessary to rotate our platform credentials. We
 have created helper tasks in the deployer and bootstrap pipelines to regenerate
 passwords that we know are safe to be rotated. This can be found under the
 <code>credentials</code> tab of each Concourse pipeline.</p>
-<h3 id="rotating-platform-credentials">Rotating platform credentials</h3><p>We have Concourse jobs for rotating credentials that can be rotated without
+<h3 id="rotating-platform-credentials">Rotating platform credentials</h3>
+<p>We have Concourse jobs for rotating credentials that can be rotated without
 downtime. These might not include everything. If you are responding to a
 security incident then it is worth checking whether the credentials you
 care about are included.</p>
@@ -171,14 +168,16 @@ the <code>--versions</code> flag of <code>credhub get</code>:</p>
   type: password
   value: [redacted previous password]
   version_created_at: "2020-03-11T10:10:13Z"
-</code></pre></div><h4 id="rotating-bosh-and-concourse-credentials">Rotating BOSH and Concourse credentials</h4><p>In <code>create-bosh-concourse</code> there are two rotation jobs under the <code>credentials</code>
+</code></pre></div><h4 id="rotating-bosh-and-concourse-credentials">Rotating BOSH and Concourse credentials</h4>
+<p>In <code>create-bosh-concourse</code> there are two rotation jobs under the <code>credentials</code>
 tab: <code>rotate-bosh-passwords</code> for BOSH and <code>clear-concourse-credentials</code> for Concourse</p>
 <p>To perform the rotation:
 1. Pause the <code>create-bosh-concourse</code> pipeline, and ensure it isn&rsquo;t running
 1. Run the relevant rotation Concourse job (<code>rotate-bosh-passwords</code> and/or <code>clear-concourse-credentials</code>)
 1. Unpause the <code>create-bosh-concourse</code> pipeline
 1. Trigger the <code>create-bosh-concourse</code> pipeline and allow it to run all the way through</p>
-<h4 id="rotating-cloud-foundry-and-prometheus-credentials">Rotating Cloud Foundry and Prometheus credentials</h4><p>In <code>create-cloudfoundry</code> there are four rotation jobs under the <code>credentials</code>
+<h4 id="rotating-cloud-foundry-and-prometheus-credentials">Rotating Cloud Foundry and Prometheus credentials</h4>
+<p>In <code>create-cloudfoundry</code> there are four rotation jobs under the <code>credentials</code>
 tab:</p>
 
 <ul>
@@ -192,7 +191,8 @@ tab:</p>
 1. Run one or more of the above rotation jobs as necessary
 1. Unpause the <code>create-cloudfoundry</code> pipeline
 1. Trugger the <code>create-cloudfoundry</code> pipeline and allow it to run to completion</p>
-<h3 id="rotating-broker-credentials">Rotating broker credentials</h3><p>Our service brokers have basic auth in front of them to ensure that only we
+<h3 id="rotating-broker-credentials">Rotating broker credentials</h3>
+<p>Our service brokers have basic auth in front of them to ensure that only we
 can communicate with them. Unfortunately our brokers do not support swapping
 credentials without downtime.</p>
 <p>In the <code>create-cloudfoundry</code> pipeline, under the <code>credentials</code> tab, there
@@ -210,9 +210,11 @@ tenants, see https://status.cloud.service.gov.uk/incidents/3qll54zh55zk.</p>
 <p>At the time of writing this only rotates the basic auth used to talk to the
 brokers. It does not rotate other difficult secrets, such as those used to
 generate passwords for service instances.</p>
-<h3 id="rotating-ca-and-leaf-certificates">Rotating CA and leaf certificates</h3><p>We rotate CA and leaf certificates automatically as part of the <code>create-cloudfoundry</code>
+<h3 id="rotating-ca-and-leaf-certificates">Rotating CA and leaf certificates</h3>
+<p>We rotate CA and leaf certificates automatically as part of the <code>create-cloudfoundry</code>
 Concourse pipeline. You can learn more about it by reading <a href="/architecture_decision_records/ADR037-automated-certificate-rotation/">ADR037 automated certificate rotation</a></p>
-<h3 id="rotating-sso-idp-keys">Rotating SSO IDP keys</h3><p>We use single sign-on using Google and Microsoft to allow our tenants to sign
+<h3 id="rotating-sso-idp-keys">Rotating SSO IDP keys</h3>
+<p>We use single sign-on using Google and Microsoft to allow our tenants to sign
 in, without using a username and password stored in UAA.</p>
 <p>Google has two credentials: <code>client_id</code> and <code>client_secret</code></p>
 <p>Microsoft functionally has three credentials <code>client_id</code>, <code>client_secret</code>, and
@@ -223,14 +225,16 @@ PaaS using single sign-on via the IDP with credentials currently being rotated.<
 <p>Rotating these credentials requires changing the values in <code>paas-credentials</code>
 and running the <code>upload-{google,microsoft}-oauth-secrets</code> Make tasks and then
 running <code>create-cloudfoundry</code>.</p>
-<h3 id="aws-keys-generated-in-the-pipeline">AWS keys generated in the pipeline</h3><p>The deployer Concourse has a job for triggering the rotation of AWS keys generated in the pipeline. These keys currently include:</p>
+<h3 id="aws-keys-generated-in-the-pipeline">AWS keys generated in the pipeline</h3>
+<p>The deployer Concourse has a job for triggering the rotation of AWS keys generated in the pipeline. These keys currently include:</p>
 
 <ul>
 <li>Those used for generating SES SMTP credentials used by UAA for sending account management emails.</li>
 <li>Those used by the metrics tool to check the validity of CloudFront certificates.</li>
 </ul>
 <p>The job works by removing the resources from the Terraform state file (without touching the keys themselves). This causes new access keys to be generated on the next pipeline run. Unused keys are deleted in a post-deploy job after every pipeline run. This operation is safe to do at any time, so it triggers automatically every 30 days. It is also included as a step in the manual credential rotation job.</p>
-<h3 id="limited-functionality-during-rotation">Limited functionality during rotation</h3><p>We have lot of functionality that requires credentials outside of the pipeline. These are mainly our scripts that are orchestrated via Makefile. Most of the tasks (like <code>bosh-cli</code> or any ssh tasks) will not work during rotation, as they need credentials (concourse password, ssh keys) that have been deleted and are either not available or not applied yet.</p>
+<h3 id="limited-functionality-during-rotation">Limited functionality during rotation</h3>
+<p>We have lot of functionality that requires credentials outside of the pipeline. These are mainly our scripts that are orchestrated via Makefile. Most of the tasks (like <code>bosh-cli</code> or any ssh tasks) will not work during rotation, as they need credentials (concourse password, ssh keys) that have been deleted and are either not available or not applied yet.</p>
 <p>In case you need to run any of these tasks in the middle of the rotation, but before the new credentials have been applied, we suggest that you pause the pipeline first. You can download previous versions of the keys and secret files to recover needed credentials and either use them locally, or re-upload these files as latest version to the bucket. Note that if your pipeline will get into credential applying stage after you unpause, it will apply the latest uploaded credentials. If these are previous version, this means no actual credential rotation will happen and pipeline should finish without needing to apply any changes. If you still want to rotate credentials afterwards, repeat the rotation procedure again.</p>
 
 

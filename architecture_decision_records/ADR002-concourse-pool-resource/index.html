@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,7 +106,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr002-concourse-pool-resource">ADR002: Concourse pool resource</h1><h2 id="context">Context</h2><p>When building pipelines using concourse, we investigated using the <a href="https://github.com/concourse/pool-resource">pool
+  <h1 id="adr002-concourse-pool-resource">ADR002: Concourse pool resource</h1>
+<h2 id="context">Context</h2>
+<p>When building pipelines using concourse, we investigated using the <a href="https://github.com/concourse/pool-resource">pool
 resource</a> in order to control flow
 through jobs. This was an alternative to the use of the
 <a href="https://github.com/concourse/semver-resource">semver resource</a>.</p>
@@ -124,10 +119,13 @@ which means we must pass public keys that allow this access into the pipeline
 and deployed concourse instance - we want to minimise the number of credentials
 we pass, and the semver resource relies on AWS credentials that are already
 passed.</p>
-<h2 id="decision">Decision</h2><p>We will not use the pool resource for flow between jobs - instead we will use
+<h2 id="decision">Decision</h2>
+<p>We will not use the pool resource for flow between jobs - instead we will use
 the semver resource</p>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>This was an investigation into a different approach, so no consequences</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>This was an investigation into a different approach, so no consequences</p>
 
 
             

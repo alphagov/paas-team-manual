@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -110,23 +103,27 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="applying-tenant-elasticache-service-updates">Applying tenant ElastiCache service updates</h1><p>We provide <a href="https://redis.io">Redis</a> to our users via
+  <h1 id="applying-tenant-elasticache-service-updates">Applying tenant ElastiCache service updates</h1>
+<p>We provide <a href="https://redis.io">Redis</a> to our users via
 <a href="https://aws.amazon.com/elasticache/">AWS ElastiCache</a>.</p>
 <p>Periodically there are
 <a href="https://aws.amazon.com/elasticache/elasticache-maintenance/#:~:text=Service%20updates%20is%20a%20feature,operational%20performance%20of%20your%20clusters.">service updates</a>
 which need to be applied to tenant ElastiCache service instances.</p>
 <p>For highly available service instances, downtime will be limited, but for
 non-highly available instances, there may be some downtime (up to 30 minutes).</p>
-<h2 id="when-should-we-upgrade">When should we upgrade</h2><p>Depending on the update, it might be more or less important to upgrade.
+<h2 id="when-should-we-upgrade">When should we upgrade</h2>
+<p>Depending on the update, it might be more or less important to upgrade.
 AWS emails PaaS Support when updates are available.</p>
 <p>We may also wish to schedule an update when many instances have an update
 available. You can determine this percentage with the Prometheus query:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>count(paas_aws_elasticache_cluster_update_required)
 /
 count(paas_aws_elasticache_replication_group_nodes_count)
-</code></pre></div><h2 id="caveats">Caveats</h2><p>Updates are currently still applied manually (via the Console or the API) and
+</code></pre></div><h2 id="caveats">Caveats</h2>
+<p>Updates are currently still applied manually (via the Console or the API) and
 we do not have a process in place for applying the updates automatically.</p>
 <h2 id="process-outline">Process outline</h2>
+
 <ol>
 <li><p>Create a Pivotal story to track the lifecycle of the upgrade</p></li>
 <li><p>Pick maintenance windows, one earlier, one later</p>

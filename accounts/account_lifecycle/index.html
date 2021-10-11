@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -143,16 +136,22 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="account-lifecycle">Account lifecycle</h1><h2 id="handling-requests-for-a-new-trial-organisation-org">Handling requests for a new trial organisation (org)</h2><p>Requests to create a new trial org are always handled via Zendesk by the support agent. A range of Zendesk macros are available to speed up the completion of this task.</p>
+  <h1 id="account-lifecycle">Account lifecycle</h1>
+<h2 id="handling-requests-for-a-new-trial-organisation-org">Handling requests for a new trial organisation (org)</h2>
+<p>Requests to create a new trial org are always handled via Zendesk by the support agent. A range of Zendesk macros are available to speed up the completion of this task.</p>
 <p>In most cases, a user will request a trial org by using the form at <a href="https://admin.london.cloud.service.gov.uk/support/sign-up">https://admin.london.cloud.service.gov.uk/support/sign-up</a>, which triggers an automated Zendesk ticket. Users should be encouraged to use this route.</p>
-<h3 id="when-the-request-doesn-39-t-come-through-the-signup-form">When the request doesn&rsquo;t come through the signup form</h3><p>In some cases a user might send their request directly to <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
+<h3 id="when-the-request-doesn-39-t-come-through-the-signup-form">When the request doesn&rsquo;t come through the signup form</h3>
+<p>In some cases a user might send their request directly to <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
 <p>In these cases, use the Zendesk macro <code>GOVUK PaaS::Account lifecycle::2b. User has bypassed form</code>, which will request the required information from the user.</p>
 <p>If the request comes through any other channel, then it should always be routed into Zendesk by emailing it to <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>. Use the macro appropriately to collect the required information.</p>
-<h3 id="when-requests-come-from-beis">When requests come from BEIS</h3><p>Currently we have a special arrangment with the department BEIS. Before granting requests for trial accounts from users at BEIS, use the Zendesk macro <code>GOVUK PaaS::Account lifecycle::2c. Trial creation BEIS</code> and wait for a response.</p>
+<h3 id="when-requests-come-from-beis">When requests come from BEIS</h3>
+<p>Currently we have a special arrangment with the department BEIS. Before granting requests for trial accounts from users at BEIS, use the Zendesk macro <code>GOVUK PaaS::Account lifecycle::2c. Trial creation BEIS</code> and wait for a response.</p>
 <p>When creating the org, ensure you add the people named in the macro as billing managers.</p>
-<h3 id="when-requests-come-from-dfe">When requests come from DfE</h3><p>Department for Education (DfE) is centrally managing its GOV.UK PaaS usage by having one Org with many Spaces. As such, the DfE digital tools team needs to be notified so they can set up the Spaces and user permissions accordingly.</p>
+<h3 id="when-requests-come-from-dfe">When requests come from DfE</h3>
+<p>Department for Education (DfE) is centrally managing its GOV.UK PaaS usage by having one Org with many Spaces. As such, the DfE digital tools team needs to be notified so they can set up the Spaces and user permissions accordingly.</p>
 <p>There is a macro for this outlining the process <code>GOVUK PaaS::Account lifecycle::2d. Org creation request DfE</code> so that we don&rsquo;t proliferate DfE Orgs.</p>
 <h3 id="who-can-request-a-trial-org">Who can request a trial org?</h3>
+
 <ul>
 <li>  Anyone working for a government or public sector organisation </li>
 <li>  Contractors or third party suppliers working on behalf of the government or public sector</li>
@@ -160,6 +159,7 @@
 <li>  No Memorandum of Understanding (MOU) is required at this stage</li>
 </ul>
 <h3 id="how-to-set-up-a-trial-org">How to set up a trial org</h3>
+
 <ol>
 <li><p>Check you have the information you need to set up the trial org:</p>
 
@@ -176,7 +176,8 @@ When creating an org, at least one person with an email address belonging to the
 <li><p>Confirm the trial org creation with the user</p>
 <p>Use Zendesk macro <code>GOVUK PaaS::Account lifecycle::2a. Trial creation confirm</code></p></li>
 </ol>
-<h2 id="upgrading-trial-orgs-to-paid-orgs">Upgrading trial orgs to paid orgs</h2><p>Currently there is no form for requesting an upgrade to a paid account. Users need to email <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
+<h2 id="upgrading-trial-orgs-to-paid-orgs">Upgrading trial orgs to paid orgs</h2>
+<p>Currently there is no form for requesting an upgrade to a paid account. Users need to email <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
 <p>It may sometimes be unclear to a tenant that they need to upgrade their org to the paid service, and they might not always explicitly request this. As a support agent, it might sometimes be necessary to infer this need. For example when:</p>
 
 <ul>
@@ -184,10 +185,12 @@ When creating an org, at least one person with an email address belonging to the
 <li><p>the tenant asks about &ldquo;going live&rdquo; with their service</p></li>
 <li><p>the tenant&rsquo;s other orgs are on paid quotas, they might assume that a new org is automatically going to be created on a paid quota.</p></li>
 </ul>
-<h3 id="before-you-upgrade">Before you upgrade</h3><p>Check the <a href="https://trello.com/b/SFyQGwfH/govuk-paas-tracker">Engagement Tracker</a> to see if that department has signed a Memorandum of Understanding with GDS. Note that Ministry of Defence currently require a separate MOU per service.</p>
+<h3 id="before-you-upgrade">Before you upgrade</h3>
+<p>Check the <a href="https://trello.com/b/SFyQGwfH/govuk-paas-tracker">Engagement Tracker</a> to see if that department has signed a Memorandum of Understanding with GDS. Note that Ministry of Defence currently require a separate MOU per service.</p>
 <p>If yes, continue to the next step.</p>
 <p>If no, escalate to the Delivery Manager, who will need to use the Zendesk macro <code>Upgrade request &gt; Info capture - No MOU</code> and support the department to sign an MOU.</p>
 <h3 id="what-to-do-when-a-user-requests-an-upgrade">What to do when a user requests an upgrade</h3>
+
 <ol>
 <li><p>Collect the necessary information from the tenant:</p>
 
@@ -208,10 +211,12 @@ When creating an org, at least one person with an email address belonging to the
 <li><p>After upgrading the org, send a confirmation message using the Zendesk macro <code>GOVUK PaaS::Account lifecycle::3c. Billing confirm</code></p></li>
 <li><p>CC the Delivery Manager on the Zendesk ticket, so they can proceed with payment and support onboarding.</p></li>
 </ol>
-<h3 id="how-to-upgrade-an-org">How to upgrade an org</h3><p>To upgrade an org from a trial to paid, alter the orgs quota using the CF CLI.</p>
+<h3 id="how-to-upgrade-an-org">How to upgrade an org</h3>
+<p>To upgrade an org from a trial to paid, alter the orgs quota using the CF CLI.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf set-quota ORG QUOTA
 </code></pre></div><p>Upgrade a trial org to the <code>small</code> quota. The Zendesk macro tells tenants how to request a larger quota.</p>
 <h2 id="delivery-manager-payment-and-support-onboarding">Delivery Manager payment and support onboarding </h2>
+
 <ol>
 <li><p>Send an &ldquo;Please arrange payment for your GOV.UK PaaS account&rdquo; email </p>
 <p>Send the email from gov-uk-paas-tenant-billing@digital.cabinet-office.gov.uk </p>
@@ -228,7 +233,8 @@ When creating an org, at least one person with an email address belonging to the
 <p>Send the email to all Org Managers and Billing Managers for the org</p></li>
 </ol>
 <p><a href="https://docs.google.com/document/d/12ak2BP39ElqpSfYp9zudllet-sRe2F9qdZwfv-707jo/edit">Send this information as a PDF or in email copy</a></p>
-<h3 id="delivery-manager-updates-list-of-billable-organisations-and-closes-ticket">Delivery Manager updates list of Billable Organisations and closes ticket</h3><p>Update the <a href="https://drive.google.com/drive/folders/1yYV8X7Rzj4BlAbuFPjsfupouy_1v95eG">list of Trial and Billable Accounts</a> - use the most recent version of GOV.UK PaaS usage and adoption tracker in this folder. This is used as a rough count of the number of live services using GOV.UK PaaS - which we sometimes need to report on.</p>
+<h3 id="delivery-manager-updates-list-of-billable-organisations-and-closes-ticket">Delivery Manager updates list of Billable Organisations and closes ticket</h3>
+<p>Update the <a href="https://drive.google.com/drive/folders/1yYV8X7Rzj4BlAbuFPjsfupouy_1v95eG">list of Trial and Billable Accounts</a> - use the most recent version of GOV.UK PaaS usage and adoption tracker in this folder. This is used as a rough count of the number of live services using GOV.UK PaaS - which we sometimes need to report on.</p>
 <p>In these cases the org/service should be marked as &ldquo;early stage&rdquo; - until there is a clear indication that the service is going into production soon.</p>
 <p>Finally, close the ticket.</p>
 

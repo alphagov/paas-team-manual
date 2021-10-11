@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -116,19 +109,25 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr040-bosh-access-without-socks5-or-ssh">ADR040: BOSH access without SOCKS5 or SSH</h1><h2 id="context">Context</h2><p>To comply with <a href="https://www.pcisecuritystandards.org/pci_security/maintaining_payment_security">Payment Card Industry (PCI) Requirements</a> we will remove the use of shared credentials anywhere in the platform.</p>
+  <h1 id="adr040-bosh-access-without-socks5-or-ssh">ADR040: BOSH access without SOCKS5 or SSH</h1>
+<h2 id="context">Context</h2>
+<p>To comply with <a href="https://www.pcisecuritystandards.org/pci_security/maintaining_payment_security">Payment Card Industry (PCI) Requirements</a> we will remove the use of shared credentials anywhere in the platform.</p>
 <p>We will use Google Single Sign On (SSO) to avoid credential sharing.</p>
 <p>To enable SSO we will expose some of the APIs on the BOSH instance without using a SOCKS5 proxy. This is due to the SOCKS5 proxy not being compatible with our VPN, which in turn creates a support risk.</p>
 <p>We discussed proposed methods with IA and Cyber after reviewing the <a href="https://docs.google.com/document/d/1XZsrNp88tOSyC_bjy1mg3Yyv2TkpKgYSjoYResGAbps/edit#heading=h.xscqoqxlc072">RFC created as part of #169915408</a></p>
-<h2 id="decision">Decision</h2><p>We will remove the reliance on SOCKS5 or SSH tunnels for the User Account and Authentication Service (UAA) API endpoint so that we can remove the use of shared credentials.</p>
+<h2 id="decision">Decision</h2>
+<p>We will remove the reliance on SOCKS5 or SSH tunnels for the User Account and Authentication Service (UAA) API endpoint so that we can remove the use of shared credentials.</p>
 <p>With these in place we are unable to complete an SSO journey from one of our existing IDPs as the BOSH instance is not browser accessible.</p>
 <p>The current method will be replaced with SSO in order to obtain a UAA token. This token is then used to interact with the rest of the APIs on the BOSH instance.</p>
-<h2 id="implementation">Implementation</h2><p>In the initial implementation we will place UAA on the BOSH director on the internet using the IP allow list and using Google for SSO.</p>
+<h2 id="implementation">Implementation</h2>
+<p>In the initial implementation we will place UAA on the BOSH director on the internet using the IP allow list and using Google for SSO.</p>
 <p>Access to both BOSH and CredHub will continue to be through SSH Tunnels during this phase of implementation.</p>
 <p><a href="../images/adr451-bosh-access-without-socks.svg" rel="noopener noreferrer"><img src="../images/adr451-bosh-access-without-socks.svg" alt="architecture" /></a></p>
 <p>By using this method we are retaining the benefit of using IP allow lists whilst removing the shared credential that is in use.</p>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>We will no longer rely on IP allow lists or SSH tunnels and have individual credentials for accessing UAA on the BOSH Director.</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>We will no longer rely on IP allow lists or SSH tunnels and have individual credentials for accessing UAA on the BOSH Director.</p>
 <p>Cyber can set up full alerting for this component.</p>
 <p>We will not be using SSH tunnels to obtain UAA tokens.</p>
 

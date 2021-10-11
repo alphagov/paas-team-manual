@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,7 +106,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr027-pipeline-locking">ADR027: Pipeline locking</h1><h2 id="context">Context</h2><p>In our Concourse pipelines a locking mechanism was required to prevent concurrent deploys. Concurrent deploys cause
+  <h1 id="adr027-pipeline-locking">ADR027: Pipeline locking</h1>
+<h2 id="context">Context</h2>
+<p>In our Concourse pipelines a locking mechanism was required to prevent concurrent deploys. Concurrent deploys cause
 problems because:</p>
 
 <ul>
@@ -122,7 +117,8 @@ problems because:</p>
 <li>Bosh has its own locking mechanisms, which mean concurrent deploys will fail.</li>
 <li>concurrent testing puts extra load on the platform and Concourse</li>
 </ul>
-<h2 id="decision">Decision</h2><p>We decided to implement locking using the Concourse pool resource, AWS CodeCommit, and Terraform.</p>
+<h2 id="decision">Decision</h2>
+<p>We decided to implement locking using the Concourse pool resource, AWS CodeCommit, and Terraform.</p>
 <p>The Concourse pool resource was chosen because it is the Concourse-native solution for locking. This created a
 dependency on having a Git repository for the lock, as this is how the pool resource is implemented. AWS CodeCommit was
 chosen over Github for several reasons:</p>
@@ -138,8 +134,10 @@ Concourse VM.</li>
 pattern whereby we allow the creation of IAM users under a specific name prefix, and allow adding these users to a
 predefined IAM group. The permissions of said group are defined in a private repository in Terraform configuration
 which is ran manually. This limits the permissions the Concourse instance profile can grant to users.</p>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>We have to store an SSH private key for Git in an environment&rsquo;s S3 state bucket. This key has to be created in the
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>We have to store an SSH private key for Git in an environment&rsquo;s S3 state bucket. This key has to be created in the
 pipeline and used as an input to Terraform configuration which generates the CodeCommit repository.</p>
 
 

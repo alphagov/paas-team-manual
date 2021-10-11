@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -113,18 +106,23 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr023-idle-cpu-alerting-change">ADR023: Idle CPU alerting change</h1><h2 id="context">Context</h2><p>With the implementation of ADR021 we have reduced the number of cells in
+  <h1 id="adr023-idle-cpu-alerting-change">ADR023: Idle CPU alerting change</h1>
+<h2 id="context">Context</h2>
+<p>With the implementation of ADR021 we have reduced the number of cells in
 production in order to make more efficent use of our budget. This in turn means
 that we have increased the load on the individual cells. Originally the idle CPU
 monitor was set in line with the free memory on cells monitor (for alerting on
 a need to scale the cell pool), however CPU usage does not appear to grow
 linearly with allocated memory for tenant applications.</p>
-<h2 id="decision">Decision</h2><p>In order to avoid false positives from triggering due to CPU load spiking rather
+<h2 id="decision">Decision</h2>
+<p>In order to avoid false positives from triggering due to CPU load spiking rather
 than being a constant level we will increase the monitoring window to 24 hours.
 Based upon examining our CPU idle load in ADR021, we will reduce the CPU idle
 thresholds to warn at 37% and become critical at 33%.</p>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>We will alert on the following metrics:</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>We will alert on the following metrics:</p>
 
 <ul>
 <li>idle CPU averaged across 1 day of cells &lt; 33%</li>

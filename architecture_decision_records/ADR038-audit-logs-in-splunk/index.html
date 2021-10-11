@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -121,7 +114,10 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr038-audit-logs-in-splunk">ADR038: Audit logs in Splunk</h1><h2 id="context">Context</h2><h3 id="audit-events">Audit events</h3><p>The GOV.UK PaaS has components which expose events which can be used for
+  <h1 id="adr038-audit-logs-in-splunk">ADR038: Audit logs in Splunk</h1>
+<h2 id="context">Context</h2>
+<h3 id="audit-events">Audit events</h3>
+<p>The GOV.UK PaaS has components which expose events which can be used for
 auditing. For example:</p>
 
 <ul>
@@ -133,12 +129,14 @@ auditing. For example:</p>
 </ul>
 <p>The BOSH director and BOSH managed instances store these logs in
 <code>/var/vcap/sys/log/</code>.</p>
-<h3 id="logging-service">Logging service</h3><p>The Cyber Security team run a centralised log ingestion system called the
+<h3 id="logging-service">Logging service</h3>
+<p>The Cyber Security team run a centralised log ingestion system called the
 Central Security Logging Service (CSLS).</p>
 <p>This service runs in AWS and uses <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html">CloudWatch log group subscription
 filters</a>
 to ingest logs, which are then sent to Splunk for indexing.</p>
-<h2 id="decision">Decision</h2><p>We will use Terraform to create log groups in our existing pipelines:</p>
+<h2 id="decision">Decision</h2>
+<p>We will use Terraform to create log groups in our existing pipelines:</p>
 
 <ul>
 <li><code>create-bosh-concourse</code></li>
@@ -155,8 +153,10 @@ on all instances that have relevant audit and security event logs, to send logs
 from the instances to CloudWatch.</p>
 <p>The CloudWatch log groups will have subscription filters that will send logs
 to CSLS so that logs are indexed in Splunk.</p>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>We will store audit and security events for 18 months.</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>We will store audit and security events for 18 months.</p>
 <p>We will share audit and security events with Cyber Security using CSLS.</p>
 
 

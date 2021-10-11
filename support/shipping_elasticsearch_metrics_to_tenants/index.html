@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -121,12 +114,15 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="shipping-elasticsearch-metrics-to-our-tenants">Shipping Elasticsearch metrics to our tenants</h1><p>As of July 2020 we provide Elasticsearch metrics to several tenant
+  <h1 id="shipping-elasticsearch-metrics-to-our-tenants">Shipping Elasticsearch metrics to our tenants</h1>
+<p>As of July 2020 we provide Elasticsearch metrics to several tenant
 Prometheuses. This is an informal &ldquo;alpha&rdquo; and only on an in-hours,
 best-effort basis.</p>
-<h2 id="how-it-works">How it works</h2><p><a href="../../diagrams/elasticsearch-metric-exporter-alpha.jpg" rel="noopener noreferrer"><img src="../../diagrams/elasticsearch-metric-exporter-alpha.jpg" alt="Diagram of the alpha Elasticsearch Prometheus exporter" /></a>
+<h2 id="how-it-works">How it works</h2>
+<p><a href="../../diagrams/elasticsearch-metric-exporter-alpha.jpg" rel="noopener noreferrer"><img src="../../diagrams/elasticsearch-metric-exporter-alpha.jpg" alt="Diagram of the alpha Elasticsearch Prometheus exporter" /></a>
 <a href="../../diagrams/elasticsearch-metric-exporter-alpha.svg">Link to SVG version of the diagram</a></p>
-<h1 id="elasticsearch-metric-exporter-alpha">Elasticsearch Metric Exporter alpha</h1><p><a href="https://www.elastic.co/elasticsearch/">Elasticsearch</a> is an open source full-text RESTful search and analytics engine that allows you to store and search data.</p>
+<h1 id="elasticsearch-metric-exporter-alpha">Elasticsearch Metric Exporter alpha</h1>
+<p><a href="https://www.elastic.co/elasticsearch/">Elasticsearch</a> is an open source full-text RESTful search and analytics engine that allows you to store and search data.</p>
 <p>GOV.UK Platform as a Service (PaaS) offer Elasticsearch as a service to our tenants. We procure Elasticsearch from <a href="https://aiven.io/">Aiven</a>, who offer fully managed open source data infrastructure running in public cloud environments. The GOV.UK PaaS Elasticsearch services are hosted on AWS EC2 instances in Ireland or London, depending on your choice of GOV.UK PaaS region.</p>
 <p>In addition to the core data infrastructure services, Aiven offer a HTTP REST API (<a href="https://api.aiven.io/doc/">Aiven API</a>) which allows automated access to and control of account and service configuration. Aiven also provide access to Elasticsearch metrics through <a href="https://prometheus.io/docs/concepts/jobs_instances/">Prometheus endpoints</a>.</p>
 <p>However, GOV.UK PaaS tenants are not able to access the Aiven API directly for security reasons. This is because:</p>
@@ -137,7 +133,8 @@ best-effort basis.</p>
 </ul>
 <p>To make Elasticsearch metrics provided by the Aiven Prometheus endpoints available to our tenants, GOV.UK PaaS are developing the Elasticsearch Metric Exporter app, which is currently in alpha.</p>
 <p>The code and manifests are in a <a href="https://github.com/alphagov/paas-observability-release/pull/5"><code>pull request</code></a> on <a href="https://github.com/alphagov/paas-observability-release"><code>paas-observability-release</code></a>.</p>
-<h2 id="elasticsearch-metric-exporter-alpha-how-it-works">How it works</h2><p>The Elasticsearch Metric Exporter app runs two components, a <a href="https://prometheus.io/">Prometheus server</a> and the <code>aiven-service-discovery</code> process as a <a href="https://docs.cloudfoundry.org/devguide/sidecars.html">sidecar</a>.</p>
+<h2 id="elasticsearch-metric-exporter-alpha-how-it-works">How it works</h2>
+<p>The Elasticsearch Metric Exporter app runs two components, a <a href="https://prometheus.io/">Prometheus server</a> and the <code>aiven-service-discovery</code> process as a <a href="https://docs.cloudfoundry.org/devguide/sidecars.html">sidecar</a>.</p>
 <p>The <code>aiven-service-discovery</code> process is configured by providing a JSON file that lists the services to collect metrics for. It then:</p>
 
 <ul>
@@ -147,8 +144,10 @@ best-effort basis.</p>
 <p>Once configured, the Elasticsearch Metric Exporter Prometheus server reads metrics from the Aiven Prometheus endpoints and stores them in an InfluxDB instance. Access to the server is provided by a <a href="https://docs.cloud.service.gov.uk/deploying_services/route_services/#example-route-service-to-add-username-and-password-authentication">basic auth route service</a>.</p>
 <p>We are operating one Elasticsearch Metric Exporter instance and one basic auth route service per tenant participating in the alpha. The apps and services are deployed in the <code>monitoring</code> space of the <code>admin</code> organisation in Ireland and London, respectively.</p>
 <p>Tenants are able to access their Elasticsearch metrics by providing basic authentication credentials when accessing their Elasticsearch Metric Exporter instance. They can <a href="https://prometheus.io/docs/prometheus/latest/federation/">federate</a> the metrics to a Prometheus server operated outside of GOV.UK PaaS by scraping the <code>/federate</code> endpoint of the Elasticsearch Metric Exporter instance.</p>
-<h2 id="limitations-of-the-alpha">Limitations of the alpha</h2><p>The service list configuration of the <code>aiven-service-discovery</code> process is static. This means that if a tenant creates a new Elasticsearch service, they will not receive its metrics until the configuration is manually updated and the Elasticsearch Metric Exporter redeployed.</p>
-<h2 id="if-something-goes-wrong">If something goes wrong</h2><p>Don&rsquo;t worry. This is an informal &ldquo;alpha&rdquo; and only on an in-hours,
+<h2 id="limitations-of-the-alpha">Limitations of the alpha</h2>
+<p>The service list configuration of the <code>aiven-service-discovery</code> process is static. This means that if a tenant creates a new Elasticsearch service, they will not receive its metrics until the configuration is manually updated and the Elasticsearch Metric Exporter redeployed.</p>
+<h2 id="if-something-goes-wrong">If something goes wrong</h2>
+<p>Don&rsquo;t worry. This is an informal &ldquo;alpha&rdquo; and only on an in-hours,
 best-effort basis.</p>
 <p>Ideas for debugging:</p>
 
@@ -167,7 +166,8 @@ from the PaaS IP ranges)</li>
 <li>Talk to Aiven support</li>
 <li>Ask Miki or Andy for help (we worked on it originally)</li>
 </ul>
-<h2 id="how-to-set-it-up-for-a-new-tenant">How to set it up for a new tenant</h2><p>Checkout the code from <a href="https://github.com/alphagov/paas-observability-release/pull/5">github.com/alphagov/paas-observability-release/pull/5</a> and make a copy of one of
+<h2 id="how-to-set-it-up-for-a-new-tenant">How to set it up for a new tenant</h2>
+<p>Checkout the code from <a href="https://github.com/alphagov/paas-observability-release/pull/5">github.com/alphagov/paas-observability-release/pull/5</a> and make a copy of one of
 the existing manifests.</p>
 <p>Next you need to make a JSON file listing all their service instances
 and some metadata that will be turned into Prometheus metric labels.

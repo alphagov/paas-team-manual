@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -124,7 +117,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr008-haproxy-for-request-rewriting">ADR008: Haproxy for request rewriting</h1><h2 id="context">Context</h2><p>We want to serve <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HSTS
+  <h1 id="adr008-haproxy-for-request-rewriting">ADR008: Haproxy for request rewriting</h1>
+<h2 id="context">Context</h2>
+<p>We want to serve <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HSTS
 headers</a> for all
 HTTPS requests to the apps domains, but it will safeguard existing users from
 being MITMed over insecure connections and it will improve the user experience
@@ -158,7 +153,8 @@ conditionally.</p></li>
 <li><p>AWS ELB: They do not support this logic and will not in the short term.
 In consequence they cannot be used to solve this problem.</p></li>
 </ol>
-<h2 id="decision">Decision</h2><p>We do not want to add any additional logic in the CDN, as they will
+<h2 id="decision">Decision</h2>
+<p>We do not want to add any additional logic in the CDN, as they will
 be an optional part of the platform and we will try to keep as simple
 as possible.</p>
 <p>We consider that the optional solution would be implement this logic in
@@ -189,8 +185,11 @@ haproxy configuration.</p></li>
 <li>We will implement and propose a PR to add logic in go-router to allow
 define additional headers.</li>
 </ul>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><h3 id="positive">Positive</h3>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<h3 id="positive">Positive</h3>
+
 <ul>
 <li><p>We will be able to easily add more logic to rewrite the HTTP communication
 to the applications using HAProxy.</p></li>
@@ -201,12 +200,14 @@ and using keep alive connections to the gorouter/haproxy.</p></li>
 <li><p>We can implement HTTP =&gt; HTTPS redirect in HAProxy.</p></li>
 </ul>
 <h3 id="negative">Negative</h3>
+
 <ul>
 <li><p>Adds some additional latency to every request.</p></li>
 <li><p>We have to maintain our custom haproxy release.</p></li>
 <li><p>Another moving part to monitor and take into account.</p></li>
 </ul>
-<h3 id="see-also">See Also</h3><p><a href="../ADR012-haproxy-healthcheck">ADR012</a></p>
+<h3 id="see-also">See Also</h3>
+<p><a href="../ADR012-haproxy-healthcheck">ADR012</a></p>
 
 
             

@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -118,13 +111,16 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="restoring-the-cf-databases">Restoring the CF databases</h1><p>Currently the Cloud Controller database (api), UAA, BBS, and Locket are all colocated on a single RDS Postgres instance. Below is guidance on how the backups work and how you can restore from them.</p>
+  <h1 id="restoring-the-cf-databases">Restoring the CF databases</h1>
+<p>Currently the Cloud Controller database (api), UAA, BBS, and Locket are all colocated on a single RDS Postgres instance. Below is guidance on how the backups work and how you can restore from them.</p>
 <p>Before embarking on any restoration make sure to follow the <a href="/team/notifying_tenants/">Notifying tenants guidance</a> to communicate any downtime or disruption. Also, make sure to pause any Concourse pipelines.</p>
-<h2 id="how-backups-are-taken">How backups are taken</h2><p>We take near-real-time backups of our platform&rsquo;s RDS instances (such as <code>prod-cf</code>.) This is done with the point-in-time backup feature of AWS RDS. The Cloud Foundry databases are all in the <code>${DEPLOY_ENV}-cf</code> instance.</p>
+<h2 id="how-backups-are-taken">How backups are taken</h2>
+<p>We take near-real-time backups of our platform&rsquo;s RDS instances (such as <code>prod-cf</code>.) This is done with the point-in-time backup feature of AWS RDS. The Cloud Foundry databases are all in the <code>${DEPLOY_ENV}-cf</code> instance.</p>
 <p>With point-in-time backups you can create a new RDS instance matching the state your original instance had at a time of your choice. For instance, you could create a new instance whose contents are identical to what <code>prod-cf</code> had at 7:22:15pm last Friday.</p>
 <p>In production and staging we retain 35 days of point-in-time backups (the maximum possible.) They are not enabled in dev. Point-in-time backups enabled in the AWS Console will be disabled by the next pipeline run, but you can take snapshots in the AWS Console or edit the Terraform manifest.</p>
 <p><a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html">Amazon&rsquo;s documentation</a> is confusing. Daily snapshots of the RDS instances are taken, and discussion elsewhere [<a href="http://www.iheavy.com/2011/07/15/point-in-time-recovery-what-is-it-and-why-is-it-important/">1</a>, <a href="https://stackoverflow.com/a/36205893">2</a>] indicates that transaction logs are used to advance these to the exact time chosen to restore.</p>
-<h2 id="restoring-an-entire-rds-instance">Restoring an entire RDS instance</h2><p>You should not restore the entire RDS instance for the following reasons:</p>
+<h2 id="restoring-an-entire-rds-instance">Restoring an entire RDS instance</h2>
+<p>You should not restore the entire RDS instance for the following reasons:</p>
 
 <ul>
 <li>RDS can only restore to new instances, it will not overwrite the existing instance. To configure CloudFoundry to use the restored instance we would have to manually run Terraform changes to track the new state. See the <a href="https://www.pivotaltracker.com/n/projects/1275640/stories/149929492">Pivotal story</a> for further details.</li>
@@ -141,15 +137,18 @@
 <li><code>uaa</code> and <code>api</code> can be restored individually using the instructions below.</li>
 <li><code>locket</code> and <code>bbs</code> must exist but their contents may not want restoring. See the notes above.</li>
 </ul>
-<h2 id="how-to-create-an-instance-from-a-backup">How to create an instance from a backup</h2><p>AWS cannot restore a point-in-time backup or a snapshot to an existing RDS instance. Instead you must create a new one.</p>
+<h2 id="how-to-create-an-instance-from-a-backup">How to create an instance from a backup</h2>
+<p>AWS cannot restore a point-in-time backup or a snapshot to an existing RDS instance. Instead you must create a new one.</p>
 <p>To create an instance using a point-in-time backup:</p>
 
 <ol>
 <li>Follow the AWS documentation on <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIT.html">restoring from a point in time</a> to create a new RDS instance. This is best done in the AWS Console. You cannot restore the backup directly over the top of the currently running instance, despite the use of the word restore. Make a note of the database endpoint (hostname) while you are in the console, you will need that later to set up an SSH tunnel.</li>
 <li>The new instance will be created with the default security group. Use the console to modify the instance to use the <code>${DEPLOY_ENV}-cf-rds</code> security group. This will allow you to access the instance by tunneling via Concourse.</li>
 </ol>
-<h3 id="dev-environments">Dev environments</h3><p>If you want to practice in a dev environment you can enable point-in-time recovery by increasing the <a href="https://github.com/alphagov/paas-cf/blob/d83c3384f57fdf6b29cdaad2117dc47dc0da669d/terraform/dev.tfvars#L5">backup retention period in our terraform configuration</a>. You will have to wait for snapshots to be generated though, so if it is time-sensitive the quickest method is triggering a snapshot manually in the AWS console and <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html">restoring from the snapshot</a>.</p>
-<h2 id="restoring-an-individual-table-or-database">Restoring an individual table or database</h2><p>Below are some generic instructions on restoring the CF RDS instance databases or tables. They are generic as we did not agree on specific situations we are guarding against. For example, restoring to fix corrupted data would be very different to fixing accidental deletion of a table/database.</p>
+<h3 id="dev-environments">Dev environments</h3>
+<p>If you want to practice in a dev environment you can enable point-in-time recovery by increasing the <a href="https://github.com/alphagov/paas-cf/blob/d83c3384f57fdf6b29cdaad2117dc47dc0da669d/terraform/dev.tfvars#L5">backup retention period in our terraform configuration</a>. You will have to wait for snapshots to be generated though, so if it is time-sensitive the quickest method is triggering a snapshot manually in the AWS console and <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html">restoring from the snapshot</a>.</p>
+<h2 id="restoring-an-individual-table-or-database">Restoring an individual table or database</h2>
+<p>Below are some generic instructions on restoring the CF RDS instance databases or tables. They are generic as we did not agree on specific situations we are guarding against. For example, restoring to fix corrupted data would be very different to fixing accidental deletion of a table/database.</p>
 <p><strong>1.</strong> First, follow the instructions above on creating an RDS instance from a backup. This instance will provide the data for the restoration.</p>
 <p><strong>2.</strong> Create a tunnel to the backup via Concourse:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># CHANGEME to your paas-bootstrap directory

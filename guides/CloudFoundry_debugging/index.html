@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -107,8 +100,10 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="cloud-foundry-debugging">Cloud Foundry debugging</h1><p>This is a set of useful things that may help you debug CloudFoundry problems.</p>
-<h2 id="finding-which-cell-an-app-instance-is-running-on">Finding which cell an app instance is running on</h2><p>First, get the GUID of the app you want to investigate:
+  <h1 id="cloud-foundry-debugging">Cloud Foundry debugging</h1>
+<p>This is a set of useful things that may help you debug CloudFoundry problems.</p>
+<h2 id="finding-which-cell-an-app-instance-is-running-on">Finding which cell an app instance is running on</h2>
+<p>First, get the GUID of the app you want to investigate:
 <code>
 $ cf app APPNAME --guid
 c6d1259c-8057-489e-9ac2-beaa896c2bf3
@@ -122,7 +117,8 @@ $ cf curl /v2/apps/c6d1259c-8057-489e-9ac2-beaa896c2bf3/stats | jq &#39;with_ent
 }
 </code></p>
 <p>You can use <code>bosh vms</code> to correlate the IPs to BOSH job indexes or VM UUIDs.</p>
-<h2 id="downloading-an-app-container">Downloading an app container</h2><p>If there are problems running an app then <code>cf files</code> will not function as the container must be running. An alternative is to grab the droplet image directly from CloudFoundry and unpack it locally. This can also be useful when you need to obtain a copy of a deployed app if you don&rsquo;t have the source.</p>
+<h2 id="downloading-an-app-container">Downloading an app container</h2>
+<p>If there are problems running an app then <code>cf files</code> will not function as the container must be running. An alternative is to grab the droplet image directly from CloudFoundry and unpack it locally. This can also be useful when you need to obtain a copy of a deployed app if you don&rsquo;t have the source.</p>
 <p>First, get the GUID of the app you want to investigate:
 <code>
 $ cf app APPNAME --guid

@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -116,7 +109,9 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="adr039-aiven-metrics-for-users">ADR039: Aiven metrics for users</h1><h2 id="context">Context</h2><p>We offer our users the following backing services through <a href="https://aiven.io">Aiven</a>:</p>
+  <h1 id="adr039-aiven-metrics-for-users">ADR039: Aiven metrics for users</h1>
+<h2 id="context">Context</h2>
+<p>We offer our users the following backing services through <a href="https://aiven.io">Aiven</a>:</p>
 
 <ul>
 <li>Elasticsearch</li>
@@ -139,7 +134,8 @@
 </ul>
 <p>We currently run Prometheus for monitoring the platform, using the <a href="https://github.com/bosh-prometheus/prometheus-boshrelease">Prometheus BOSH release</a> and have confidence and experience using it.</p>
 <p>We will need to think about Prometheus failover. If we load balance Prometheus without sticky sessions, the metrics Prometheus reports will be erratic, as different instances report different metrics.</p>
-<h2 id="decision">Decision</h2><p>We will use Prometheus to scrape Aiven-provided services.</p>
+<h2 id="decision">Decision</h2>
+<p>We will use Prometheus to scrape Aiven-provided services.</p>
 <p>We will deploy new Prometheus in the Cloud Foundry BOSH deployment using the Prometheus BOSH release. This will reduce blast radius - tenant usage of metrics will not affect our ability to operate and monitor the platform using Prometheus.</p>
 <p>We will need to automate the following tasks:</p>
 
@@ -147,7 +143,8 @@
 <li>Service discovery: make sure Prometheus has an updated list of Aiven services to scrape. We must colocate this automation with the Prometheus instance.</li>
 <li>Service integration: make sure every eligible Aiven-provided service uses the Aiven service integration for Prometheus.</li>
 </ol>
-<h2 id="initial-implementation">Initial implementation</h2><p>In the initial implementation we deploy multiple instances of Prometheus for high availability.</p>
+<h2 id="initial-implementation">Initial implementation</h2>
+<p>In the initial implementation we deploy multiple instances of Prometheus for high availability.</p>
 <p><a href="../images/adr450-prometheus-aiven-architecture.svg" rel="noopener noreferrer"><img src="../images/adr450-prometheus-aiven-architecture.svg" alt="architecture" /></a></p>
 <p>There will be three services on the instance:</p>
 
@@ -164,8 +161,10 @@ an updated list of Aiven Elasticsearch services for which we want to receive met
 <p>The Prometheus server instances will be configured with this list and retrieve
 metrics from the respective Aiven Elasticsearch service instances.</p>
 <p>This architecture is temporary and we will review it when we look at how to expose the Prometheus API to all users.</p>
-<h2 id="status">Status</h2><p>Accepted</p>
-<h2 id="consequences">Consequences</h2><p>We will provide Prometheus as the datastore and interface for (a subset of) tenant metrics.</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>We will provide Prometheus as the datastore and interface for (a subset of) tenant metrics.</p>
 <p>We will deploy additional stateful instances to our Cloud Foundry BOSH deployment.</p>
 <p>We will maintain software to automate the integration of Aiven services and Prometheus.</p>
 

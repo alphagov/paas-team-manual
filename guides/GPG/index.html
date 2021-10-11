@@ -71,13 +71,6 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
-    <div class="search-results__inner">
-      <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
-      <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
-      <div class="search-results__content"></div>
-    </div>
-  </div>
 </div>
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
@@ -116,19 +109,23 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="how-to-use-gpg">How to use GPG</h1><p>Some of our projects use <a href="https://www.gnupg.org/">GPG</a> to encrypt secrets so that they can only be
+  <h1 id="how-to-use-gpg">How to use GPG</h1>
+<p>Some of our projects use <a href="https://www.gnupg.org/">GPG</a> to encrypt secrets so that they can only be
 decrypted by members of the team. These instructions may be useful if you
 haven&rsquo;t used GPG recently or ever at all.</p>
-<h2 id="install">Install</h2><p>On Mac OS X:</p>
+<h2 id="install">Install</h2>
+<p>On Mac OS X:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>brew install gpg gpg-agent
 </code></pre></div><p>On Ubuntu:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo apt-get update
 sudo apt-get install gnupg2 gnupg-agent pinentry-curses
-</code></pre></div><h2 id="generate-keypair">Generate keypair</h2><p>To generate a new public and private keypair:</p>
+</code></pre></div><h2 id="generate-keypair">Generate keypair</h2>
+<p>To generate a new public and private keypair:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --gen-key
 </code></pre></div><p>You should choose a key size of 4096 bits. The other defaults are OK to
 accept.</p>
-<h2 id="publish-key">Publish key</h2><p>Public keyservers are a simple way of distributing your public key so that
+<h2 id="publish-key">Publish key</h2>
+<p>Public keyservers are a simple way of distributing your public key so that
 other people can download it and encrypt content for you.</p>
 <p>Note: the following commands use the full fingerprint ID because there is a
 risk of clashes when using the shortened last 8 digits (which is the
@@ -144,7 +141,8 @@ ssb   4096R/233AD793 2013-02-06
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --keyserver keyserver.ubuntu.com --send-keys 'YOUR ID HERE …'
 </code></pre></div><p>You will need to provide the same ID to an existing member of the team so
 that they can add you to any secret stores that you need access to.</p>
-<h2 id="setup-agent">Setup agent</h2><p>If you&rsquo;re accessing several secrets in quick succession then it can be
+<h2 id="setup-agent">Setup agent</h2>
+<p>If you&rsquo;re accessing several secrets in quick succession then it can be
 frustrating to be prompted for your password multiple times. You can
 configure <code>gpg-agent</code>, which is similar in concept to <code>ssh-agent</code>, to cache
 your password for a short period of time.</p>
@@ -162,7 +160,8 @@ your password for a short period of time.</p>
 fi
 </code></pre></div><p>Configure gpg to use the agent automatically by uncommenting the <code>use-agent</code>
 line in your <code>~/.gnupg/gpg.conf</code>.</p>
-<h2 id="aborting-pinentry">Aborting pinentry</h2><p>If you abort out of the <code>pinentry</code> password prompt by using <code>^C</code> then it can
+<h2 id="aborting-pinentry">Aborting pinentry</h2>
+<p>If you abort out of the <code>pinentry</code> password prompt by using <code>^C</code> then it can
 leave your shell and GPG in an unusable state. Symptoms include:</p>
 
 <ul>
