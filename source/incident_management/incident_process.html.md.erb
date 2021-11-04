@@ -31,6 +31,8 @@ Your responsibility depends on your role within the ‘incident team’:
 5. Discuss the incident with the incident comms lead to decide when the incident is resolved or can be downgraded as it is no longer impacting the service.
 
 #### Incident comms lead
+
+##### PaaS Support
 1. Let the PaaS team know about the incident on #paas-incident Slack channel.
 2. Open a hangout for you and the support engineer (share a link in the #paas-incident Slack channel, but suggest that only PaaS team members working on the incident join to avoid distractions).
 3. Set up a new incident report document (make a copy of the [blank incident report template] (https://docs.google.com/document/d/1U2F6TLrrKTuDkYCtkW4DXryiaPoGDPmrZ-b2Teibjvo/copy)). Record a timeline of events. Make sure the incident report can be viewed by anyone in GDS, and share a link in the #paas-incident Slack channel.
@@ -38,6 +40,12 @@ Your responsibility depends on your role within the ‘incident team’:
 Important: when creating or updating an incident you must tick the boxes to say which components are affected, otherwise notifications will not be sent.
 5. Update tenants in the #govuk-paas cross-government Slack channel.
 6. Update tenants regularly using the [saved templates](https://manage.statuspage.io/login?redirect=%2Fpages%2Fh4wt7brwsqr0) in our [Statuspage](https://team-manual.cloud.service.gov.uk/team/statuspage/) account. The severity level page shows how frequently you should update tenants.
+
+##### Shared Tooling (ex-autom8 estate) Support
+1. Let the PaaS team know about the incident on #paas-incident Slack channel.
+2. Open a hangout for you and the support engineer (share a link in the #paas-incident Slack channel, but suggest that only PaaS team members working on the incident join to avoid distractions).
+3. Set up a new incident report document (make a copy of the [blank incident report template] (https://docs.google.com/document/d/1U2F6TLrrKTuDkYCtkW4DXryiaPoGDPmrZ-b2Teibjvo/copy)). Record a timeline of events. Make sure the incident report can be viewed by anyone in GDS, and share a link in the #paas-incident Slack channel.
+4. Update tenants in the #reliability-eng GDS Slack channel.
 
 Between them, the incident lead and comms lead should make a decision as to whether the incident needs to be escalated further.
 
@@ -78,7 +86,8 @@ By default we publish Incident Reports on [Statuspage](/team/statuspage/) unless
 The only incidents for which this is not automatically true are for security incidents which need to be carefully considered to ensure that no further harm could be caused by publishing these.
 
 
-## Out of hours incident process
+## Out of hours incident process - PaaS
+
 ### Step one - Preliminary investigation (max. 15 minutes)
 
 #### Incident lead (on-call engineer)
@@ -130,6 +139,10 @@ Pagerduty will attempt to alert both support engineer and comms lead again, 15 m
 In the event that you are contacted but aren’t scheduled to be on the rota, your first point of call should be to check the #paas-incident Slack channel to see if another engineer has already picked it up. If no one has, leave a message to state that you are beginning to investigate.
 
 
+## Out of hours incident process - Shared tooling (ex-autom8 estate)
+Neither Big Concourse, nor Observe are supported out of hours by the PaaS team.
+
+Shared concourse will be deprecated in December 2021.
 
 ## Suppliers
 
