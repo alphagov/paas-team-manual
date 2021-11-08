@@ -90,6 +90,14 @@
               </li>
               <li>
                 <a href="#incident-comms-lead"><span>Incident comms lead</span></a>
+                <ul>
+                  <li>
+                    <a href="#paas-support"><span>PaaS Support</span></a>
+                  </li>
+                  <li>
+                    <a href="#shared-tooling-ex-autom8-estate-support"><span>Shared Tooling (ex-autom8 estate) Support</span></a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
@@ -110,7 +118,7 @@
         <a href="#publish-the-incident-report"><span>Publish the incident report</span></a>
       </li>
       <li>
-        <a href="#out-of-hours-incident-process"><span>Out of hours incident process</span></a>
+        <a href="#out-of-hours-incident-process-paas"><span>Out of hours incident process - PaaS</span></a>
         <ul>
           <li>
             <a href="#step-one-preliminary-investigation-max-15-minutes"><span>Step one - Preliminary investigation (max. 15 minutes)</span></a>
@@ -144,6 +152,9 @@
             <a href="#if-neither-the-out-of-hours-support-engineer-nor-out-of-hours-comms-lead-respond-first-time"><span>If neither the out of hours support engineer nor out of hours comms lead respond first time</span></a>
           </li>
         </ul>
+      </li>
+      <li>
+        <a href="#out-of-hours-incident-process-shared-tooling-ex-autom8-estate"><span>Out of hours incident process - Shared tooling (ex-autom8 estate)</span></a>
       </li>
       <li>
         <a href="#suppliers"><span>Suppliers</span></a>
@@ -207,6 +218,7 @@
 <li>Discuss the incident with the incident comms lead to decide when the incident is resolved or can be downgraded as it is no longer impacting the service.</li>
 </ol>
 <h4 id="incident-comms-lead">Incident comms lead</h4>
+<h5 id="paas-support">PaaS Support</h5>
 
 <ol>
 <li>Let the PaaS team know about the incident on #paas-incident Slack channel.</li>
@@ -216,6 +228,14 @@
 Important: when creating or updating an incident you must tick the boxes to say which components are affected, otherwise notifications will not be sent.</li>
 <li>Update tenants in the #govuk-paas cross-government Slack channel.</li>
 <li>Update tenants regularly using the <a href="https://manage.statuspage.io/login?redirect=%2Fpages%2Fh4wt7brwsqr0">saved templates</a> in our <a href="https://team-manual.cloud.service.gov.uk/team/statuspage/">Statuspage</a> account. The severity level page shows how frequently you should update tenants.</li>
+</ol>
+<h5 id="shared-tooling-ex-autom8-estate-support">Shared Tooling (ex-autom8 estate) Support</h5>
+
+<ol>
+<li>Let the PaaS team know about the incident on #paas-incident Slack channel.</li>
+<li>Open a hangout for you and the support engineer (share a link in the #paas-incident Slack channel, but suggest that only PaaS team members working on the incident join to avoid distractions).</li>
+<li>Set up a new incident report document (make a copy of the <a href="https://docs.google.com/document/d/1U2F6TLrrKTuDkYCtkW4DXryiaPoGDPmrZ-b2Teibjvo/copy">blank incident report template</a>). Record a timeline of events. Make sure the incident report can be viewed by anyone in GDS, and share a link in the #paas-incident Slack channel.</li>
+<li>Update tenants in the #reliability-eng GDS Slack channel.</li>
 </ol>
 <p>Between them, the incident lead and comms lead should make a decision as to whether the incident needs to be escalated further.</p>
 <h3 id="when-the-incident-is-over">When the incident is over</h3>
@@ -246,7 +266,7 @@ Important: when creating or updating an incident you must tick the boxes to say 
 <p>The incident comms lead should create a version of the incident report for publication. Refer to the <a href="https://docs.google.com/document/d/1g2_KVXfZnBDVFFlxyModAi8YSbF0uun32Z1Pe5TYBc8/edit">template</a> for guidance, and also see previous examples.</p>
 <p>By default we publish Incident Reports on <a href="/team/statuspage/">Statuspage</a> unless there is a good reason not to. It sets a good example and demonstrates openness.</p>
 <p>The only incidents for which this is not automatically true are for security incidents which need to be carefully considered to ensure that no further harm could be caused by publishing these.</p>
-<h2 id="out-of-hours-incident-process">Out of hours incident process</h2>
+<h2 id="out-of-hours-incident-process-paas">Out of hours incident process - PaaS</h2>
 <h3 id="step-one-preliminary-investigation-max-15-minutes">Step one - Preliminary investigation (max. 15 minutes)</h3>
 <h4 id="incident-lead-on-call-engineer">Incident lead (on-call engineer)</h4>
 
@@ -293,6 +313,9 @@ Important: when creating or updating an incident you must tick the boxes to say 
 <h3 id="if-neither-the-out-of-hours-support-engineer-nor-out-of-hours-comms-lead-respond-first-time">If neither the out of hours support engineer nor out of hours comms lead respond first time</h3>
 <p>Pagerduty will attempt to alert both support engineer and comms lead again, 15 minutes after the first alert.</p>
 <p>In the event that you are contacted but aren’t scheduled to be on the rota, your first point of call should be to check the #paas-incident Slack channel to see if another engineer has already picked it up. If no one has, leave a message to state that you are beginning to investigate.</p>
+<h2 id="out-of-hours-incident-process-shared-tooling-ex-autom8-estate">Out of hours incident process - Shared tooling (ex-autom8 estate)</h2>
+<p>Neither Big Concourse, nor Observe are supported out of hours by the PaaS team.</p>
+<p>Shared concourse will be deprecated in December 2021.</p>
 <h2 id="suppliers">Suppliers</h2>
 <h3 id="aws">AWS</h3>
 <p>We have a full support contract with AWS. Open a support case through the AWS console or at https://aws.amazon.com/support. If the incident is ‘critical’ or &lsquo;urgent’ severity, use <strong>click to chat</strong> or <strong>click to call</strong> for immediate contact.</p>
