@@ -44,6 +44,7 @@ title: PaaS Team Manual
  - [How to disable a single AZ on GOV.UK PaaS](guides/managing_azs_on_paas/)
  - [How to contact cyber](guides/contacting_cyber/)
  - [How to reduce Logit volume](guides/reducing_logit_volume/)
+ - [How to resolve Kibana indexing errors](guides/resolving_Kibana_indexing_errors/)
 
 ### Other information
  - [Our orgs on the paas](team/our_orgs_on_the_paas/)
