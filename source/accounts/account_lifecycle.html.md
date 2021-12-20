@@ -21,13 +21,13 @@ If the request comes through any other channel, then it should always be routed 
 
 ### When requests come from BEIS
 
-Currently we have a special arrangment with the department BEIS. Before granting requests for trial accounts from users at BEIS, use the Zendesk macro `GOVUK PaaS::Account lifecycle::2c. Trial creation BEIS` and wait for a response.
+Currently, we have a special arrangement with the department BEIS. Before granting requests for trial accounts from users at BEIS, use the Zendesk macro `GOVUK PaaS::Account lifecycle::2c. Trial creation BEIS` and wait for a response.
 
 When creating the org, ensure you add the people named in the macro as billing managers.
 
 ### When requests come from DfE
 
-Department for Education (DfE) is centrally managing its GOV.UK PaaS usage by having one Org with many Spaces. As such, the DfE digital tools team needs to be notified so they can set up the Spaces and user permissions accordingly. 
+Department for Education (DfE) is centrally managing its GOV.UK PaaS usage by having one Org with many Spaces. As such, the DfE digital tools team needs to be notified, so they can set up the Spaces and user permissions accordingly.
 
 There is a macro for this outlining the process `GOVUK PaaS::Account lifecycle::2d. Org creation request DfE` so that we don't proliferate DfE Orgs. 
 
@@ -52,7 +52,7 @@ There is a macro for this outlining the process `GOVUK PaaS::Account lifecycle::
 
 2. Use `GOV.UK PaaS Admin > Platform Admin > Create new organisation` functionality.
 
-    When identifying the department, use the names listed in the [Government organisations Register](https://www.registers.service.gov.uk/registers/government-organisation) if possible.
+    When identifying the organisation, use the names listed in the [Departments, agencies and public bodies from GOV.UK](https://www.gov.uk/government/organisations) if possible.
 
 3. Confirm the trial org creation with the user
 
@@ -60,7 +60,7 @@ There is a macro for this outlining the process `GOVUK PaaS::Account lifecycle::
 
 ## Upgrading trial orgs to paid orgs
 
-Currently there is no form for requesting an upgrade to a paid account. Users need to email <gov-uk-paas-support@digital.cabinet-office.gov.uk>.
+Currently, there is no form for requesting an upgrade to a paid account. Users need to email <gov-uk-paas-support@digital.cabinet-office.gov.uk>.
 
 It may sometimes be unclear to a tenant that they need to upgrade their org to the paid service, and they might not always explicitly request this. As a support agent, it might sometimes be necessary to infer this need. For example when:
 
