@@ -1,0 +1,15 @@
+<h1 id="adr0048-include-record-for-services-resources-provisioned-for-tenants">ADR0048: Include record for services/resources provisioned for tenants</h1>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="context">Context</h2>
+<p>The GOV.UK PaaS billing system receives a series of events from Cloud Foundry notifying, for each tenant, whether services or resources have been created, renamed, or deleted.</p>
+<p>The original GOV.UK PaaS billing system translated the Cloud Foundry events into records of services/resources by calendar month before calculating the final monthly bill for each tenant. This process, called billing consolidation, was done at the start of every month and there was no persistent record of the results of each stage of processing, including what services or resources tenants had provisioned. After each stage of processing database tables were populated but the contents of these tables were impermanent, being refreshed the next time billing consolidation was run.</p>
+<p>If there is a problem with a tenant&rsquo;s bill it was very difficult to find the source of the problem.</p>
+<h2 id="decision">Decision</h2>
+<p>We need to have a persistent record of the services or resources each tenant has provisioned with a dates indicating when the service or resource was/is being used. This persistent record is in the new <code>resources</code> table.</p>
+<p>The reason for this is that there is no need to regenerate historical records of services or resources provisioned for tenants each time billing is run each month since this information does not change. Furthermore, recording this information for each month makes it difficult for us to calculate bills between any two dates and times.</p>
+<p>The <code>resources</code> table also acts as an audit point within GOV.UK PaaS billing. It makes investigation of discrepancies in tenant bills easier to investigate. Anyone supporting GOV.UK PaaS billing can first look at the contents of <code>resources</code> and see whether the discrepancy arose in the population of <code>resources</code> or afterwards in the actual calculation of the bill.</p>
+<h2 id="consequences">Consequences</h2>
+<p>This makes billing easier to support. It also makes billing run much more quickly since we do not need to go through all the Cloud Foundry events whenever we need to calculate tenant bills. With this method we can calculate tenants&rsquo; bills on-demand, rather than calculating all bills in advance as original GOV.UK PaaS billing system did, so it opens up the possibility of the following:
+    - Calculating bills between any 2 dates and times quickly
+    - It is easier to break down bills by org, space, etc., or, later on, by annotation</p>
