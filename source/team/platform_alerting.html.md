@@ -13,3 +13,10 @@ You can check and subscribe to these alerts in each corresponding mailing list p
 - [Group for govpaas-alerting-staging@digital.cabinet-office.gov.uk](https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/govpaas-alerting-staging)
 - [Group for govpaas-alerting-prod@digital.cabinet-office.gov.uk](https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/govpaas-alerting-prod)
 
+## BOSHJobEphemeralDiskPredictWillFill Diego Cell Alert
+
+This alert may not require any action as it evaluates changes over a 30 minute period and then extrapolates it over 4 hours.
+
+Action is required if we receive a `BOSHJobEphemeralDiskFull` alert. You can resolve this alert by recreating the instance.
+
+For diego cells, GrootFS is allowed to fill 88% of the disk while the rest is reserved for other jobs. Garbage collection occurs when a container is created so disk full alerts are likely to be triggered by other jobs on the cell.
