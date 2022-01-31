@@ -14,7 +14,7 @@ M8 - Concourse and Observability Support Responsibilities
 
 ### Delivery Management
 - Emma Pearce - Delivery Manager
-- Kam Nijjar - Associate Delivery Manager 
+- Kam Nijjar - Associate Delivery Manager
 
 ### Engineering
 - Lee Porte - Lead Site Reliability Engineer (EL/CL)
@@ -24,15 +24,12 @@ M8 - Concourse and Observability Support Responsibilities
 - Momhamed Deerow - Site Reliability Engineer (EL)
 - Sebastian Schmieschek - Site Reliability Engineer (EL)
 - Tom Whitwell - Site Reliability Engineer (EL)
-- Tom Rosier - Site Reliability Engineer (M8)
 - Robert Scott - Site Reliability Engineer (M8)
 - Will Pearson - Site Reliability Engineer
 - Cat Garcia - Site Reliability Engineer 
-- Tris Oaten - Senior Developer
 - Jani Kraner - Front End Developer (CL)
 
 ### Product Management
-- Federico Nardini - Senior Product Manager (CL)
 - Lisa Scott - Senior Product Manager
 - Mark Buckley - Product Manager (CL)
 
