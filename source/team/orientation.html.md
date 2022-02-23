@@ -8,9 +8,9 @@ Some key information to help new starters to find their way.
 
 ## Team members
 We are a multidisciplinary team responsible for the developement and maintenance of GOV.UK PaaS. 
-EL - Engineering Lead Support responsiblities 
-CL - Comms Lead Support responsibilities
-M8 - Concourse and Observability Support Responsibilities 
+- EL - Engineering Lead Support responsiblities 
+- CL - Comms Lead Support responsibilities
+- M8 - Concourse and Observability Support Responsibilities 
 
 ### Delivery Management
 - Emma Pearce - Delivery Manager
