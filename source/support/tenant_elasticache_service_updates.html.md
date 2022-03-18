@@ -37,10 +37,7 @@ we do not have a process in place for applying the updates automatically.
 
 1. Create a Pivotal story to track the lifecycle of the upgrade
 
-1. Pick maintenance windows, one earlier, one later
-  * Eg Tuesday 16 June 2020 between 0600-0800
-  * Eg Thursday 18 June 2020 between 1800-2000
-  * These were picked before and after working hours arbitrarily
+1. Pick a maintenance window within working hours (the updates are applied manually, and we do not expect anyone to do them outside working hours), e.g. Tuesday 16th June 2020 between 09:00-11:00
 
 1. For each production region, repeat the following steps:
 
@@ -62,9 +59,7 @@ we do not have a process in place for applying the updates automatically.
             --action preview \
             --notify-api-key "$( echo make a key or get from credhub ; exit 1)" \
             --maintenance-window-date 'Tuesday 16 June 2020' \
-            --maintenance-window-time-range '0600-0800' \
-            --alt-maintenance-window-date 'Thursday 18 June' \
-            --alt-maintenance-window-time-range '1800-2000' \
+            --maintenance-window-time-range '0900-1100' \
             --region Ireland \
             --preview-email 'your@email.here'
 
@@ -72,15 +67,13 @@ we do not have a process in place for applying the updates automatically.
 
             AWS_REGION=eu-west-1 gds aws paas-prod -- \
             ./tools/aws_redis_update_manager/aws_redis_update_manager \
-            --action preview \
+            --action email \
             --paas-accounts-url https://accounts.cloud.service.gov.uk \
             --paas-accounts-username admin \
             --paas-accounts-password "$( echo get this from credhub ; exit 1 )" \
             --notify-api-key "$( echo make a key or get from credhub ; exit 1)" \
             --maintenance-window-date 'Tuesday 16 June 2020' \
-            --maintenance-window-time-range '0600-0800' \
-            --alt-maintenance-window-date 'Thursday 18 June' \
-            --alt-maintenance-window-time-range '1800-2000' \
+            --maintenance-window-time-range '0900-1100' \
             --region Ireland \
             --preview-email 'your@email.here'
 
@@ -88,15 +81,7 @@ we do not have a process in place for applying the updates automatically.
    [GOV.UK PaaS status page](https://status.cloud.service.gov.uk)
    for the two maintenance windows, without sending notifications.
 
-1. If a tenant replies to the email, their maintenance window preference will
-   end up as a new ticket in Zendesk. Record their maintenance window
-   preference in the story and mark the ticket as solved.
+1. If a tenant replies to the email asking to delay/skip the update, record their preference in the story.
 
-1. During the first maintenance window (the default), follow
-   [the AWS guidance on applying service updates](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/applying-updates.html)
-   for all service instances who have not opted for the alternative maintenance
-   window. You will have to do this in both regions.
-
-1. During the second maintenance window (the alternative), follow
-   [the AWS guidance on applying service updates](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/applying-updates.html)
-   window. You will have to do this in both regions.
+1. During the maintenance window, follow
+   [the AWS guidance on applying service updates](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/applying-updates.html), skipping any instances recorded in the previous step. You will have to do this in both regions.
