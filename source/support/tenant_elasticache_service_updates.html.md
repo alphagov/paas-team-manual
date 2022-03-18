@@ -37,9 +37,7 @@ we do not have a process in place for applying the updates automatically.
 
 1. Create a Pivotal story to track the lifecycle of the upgrade
 
-1. Pick a maintenance window before or after working hours
-  * Eg Tuesday 16th June 2020 between 06:00-08:00
-  * Eg Thursday 18th June 2020 between 18:00-20:00
+1. Pick a maintenance window within working hours (the updates are applied manually, and we do not expect anyone to do them outside working hours), e.g. Tuesday 16th June 2020 between 09:00-11:00
 
 1. For each production region, repeat the following steps:
 
@@ -61,7 +59,7 @@ we do not have a process in place for applying the updates automatically.
             --action preview \
             --notify-api-key "$( echo make a key or get from credhub ; exit 1)" \
             --maintenance-window-date 'Tuesday 16 June 2020' \
-            --maintenance-window-time-range '0600-0800' \
+            --maintenance-window-time-range '0900-1100' \
             --region Ireland \
             --preview-email 'your@email.here'
 
@@ -75,7 +73,7 @@ we do not have a process in place for applying the updates automatically.
             --paas-accounts-password "$( echo get this from credhub ; exit 1 )" \
             --notify-api-key "$( echo make a key or get from credhub ; exit 1)" \
             --maintenance-window-date 'Tuesday 16 June 2020' \
-            --maintenance-window-time-range '0600-0800' \
+            --maintenance-window-time-range '0900-1100' \
             --region Ireland \
             --preview-email 'your@email.here'
 
