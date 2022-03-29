@@ -19,10 +19,9 @@ We are a multidisciplinary team responsible for the developement and maintenance
 
 ### Engineering
 - Lee Porte - Lead Site Reliability Engineer (EL/CL)
-- Rafal Proszowski - Tech Lead (EL)
-- Andy Hunt - Site Reliability Engineer (EL)
+- Andy Hunt - Tech Lead (EL)
+- Sebastian Schmieschek - Tech Lead (EL)
 - Momhamed Deerow - Site Reliability Engineer (EL)
-- Sebastian Schmieschek - Site Reliability Engineer (EL)
 - Tom Whitwell - Site Reliability Engineer (EL)
 - Robert Scott - Site Reliability Engineer (EL)
 - Will Pearson - Site Reliability Engineer (EL)
@@ -44,9 +43,6 @@ We are a multidisciplinary team responsible for the developement and maintenance
 
 ### User Research
 - Nadia Mugeni - User Researcher
-
-### Performance Analysis
-- Sara Cox - Senior Performance Analyst
 
 ## Product
 
