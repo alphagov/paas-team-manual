@@ -1,0 +1,10 @@
+<p>To maintain access to the <a href="https://search.google.com/search-console/welcome">Google Search Console</a>, we require at least one verified site owner for the domain.</p>
+<p>An individual can verify ownership by adding a <code>google-site-verification</code> token as a <code>TXT</code> record in our DNS service (<a href="https://aws.amazon.com/route53/">Route53</a>)</p>
+<p>In the following example, we will verify site ownership for <code>cloud.service.gov.uk</code>:</p>
+
+<ol>
+<li>Go to the <a href="https://search.google.com/search-console/welcome">Google Search Console</a> and select/type in the domain <code>cloud.service.gov.uk</code>. </li>
+<li>Follow the instructions. If you are not a verified owner, you will be given a <code>google-site-verification</code> token. Copy the value.</li>
+<li>Update the DNS records in the paas-aws-account-wide-terraform by <a href="https://github.com/alphagov/paas-aws-account-wide-terraform/pull/295">adding the token as shown in this pull request</a>. If you are adding multiple owners, you will have to add multiple tokens to the records (one per person).</li>
+</ol>
+<p>A verified owner can <a href="https://support.google.com/webmasters/answer/7687615?hl=en">grant access to other users</a> from the console.</p>
