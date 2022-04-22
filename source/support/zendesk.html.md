@@ -38,7 +38,7 @@ We use the following tags to categorise support tickets:
 |:---|:---|:---|
 |# Activity update|paas_activity_update|The tenant is providing the GOV.UK PaaS team with information about their activity, this could be load testing, penetration testing, moving the service to live|
 |# Account lifecycle|paas_account_lifecycle|Topic category for support requests relating to creating, maintaining and deleting organisations|
-|# Backing service|paas_backing_service|The tenant has a question about backing services: mysql, postgres, redis, elasticsearch, influxdb, cdn, autoscaling|
+|# Backing service|paas_backing_service|The tenant has a question about backing services: mysql, postgres, redis, opensearch, influxdb, cdn, autoscaling|
 |# Bug|paas_bug|The tenant has encountered a bug, error or fault in GOV.UK PaaS that we need to fix.|
 |# Buildpacks|paas_buildpacks|The tenant has a question about buildpacks|
 |# CC|paas_cc|Non actionable items, information from upstream and others|

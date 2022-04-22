@@ -1,10 +1,10 @@
 ---
-title: Restoring Elasticsearch backups
+title: Restoring Opensearch backups
 ---
 
-# Restoring Elasticsearch backups
+# Restoring Opensearch backups
 
-There is no direct way for us to restore Elasticsearch backups either via the API or console.
+There is no direct way for us to restore Opensearch backups either via the API or console.
 
 In order to have a bakup restored you will need to open a support ticket with Aiven via [support@aiven.io](mailto:support@aiven.io) requesting a restoration of a backup they will need to know the instance ID `prod-$(cf service <servicename> --guid)` and the time of the backup you would like restored.
 

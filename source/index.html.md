@@ -31,7 +31,7 @@ title: PaaS Team Manual
  - [How to find route owners](support/finding_route_owners)
  - [How to find apps with noisy logging](support/finding_apps_with_noisy_logging)
  - [How to find activity](support/finding_activity/)
- - [How to restore Elasticsearch backups](support/restoring_elasticsearch_backups/)
+ - [How to restore Opensearch backups](support/restoring_opensearch_backups/)
  - [Shipping Elasticsearch metrics to our tenants](support/shipping_elasticsearch_metrics_to_tenants/)
  - [How to apply tenant ElastiCache (redis) service updates ](support/tenant_elasticache_service_updates/)
  - [How to restore the CF databases](guides/Restoring_the_CF_databases/)
