@@ -4,6 +4,8 @@ title: Shipping Elasticsearch metrics to our tenants
 
 # Shipping Elasticsearch metrics to our tenants
 
+**As of April 2022, Elasticsearch has been migrated to Opensearch. This guide may still work but there's no guarantee**
+
 As of July 2020 we provide Elasticsearch metrics to several tenant
 Prometheuses. This is an informal "alpha" and only on an in-hours,
 best-effort basis.

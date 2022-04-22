@@ -57,7 +57,7 @@ repo. This includes defining who is allowed to assume the above roles.
 
 # Aiven
 
-We use Aiven for our Elasticsearch backing service.  We log in to Aiven using
+We use Aiven for our Opensearch backing service.  We log in to Aiven using
 the [Aiven Console](https://console.aiven.io/).
 
 We have 4 separate projects:
