@@ -286,9 +286,9 @@ exposes two metrics relating to certificate validity:</p>
 </ul>
 <p>If the endpoints are misconfigured or the certificate is considered invalid for
 some other reason the value will fall to <code>0</code> and alert as expired/invalid.</p>
-<p>If the certificates are due to expire, check AWS Certificate Manager for the validation settings, as they should
-validate automatically via DNS. For CDN certificates start with the CDN Broker&rsquo;s logs to investigate why
-they failed to renew via Let&rsquo;s Encrypt.</p>
+<p>If the platform certificates are due to expire, check AWS Certificate Manager for the validation settings, as they should
+validate automatically via DNS.</p>
+<p>For CDN certificates start with AWS Certificate Manager in the <code>us-east-1</code> region to see why the certificate didn&rsquo;t get renewed. The most common cause is tenants removing the DNS records required for valdiation. Use <code>dig -t CNAME</code> to check if they&rsquo;re still set.</p>
 <p>If you are seeing <code>NO_DATA</code> errors for this monitor then there may be a more
 fundimental connectivity issue to the reported endpoint.</p>
 <p>The <code>cf logs</code> output of the paas-metrics app may contain additional
