@@ -198,9 +198,10 @@ exposes two metrics relating to certificate validity:
 If the endpoints are misconfigured or the certificate is considered invalid for
 some other reason the value will fall to `0` and alert as expired/invalid.
 
-If the certificates are due to expire, check AWS Certificate Manager for the validation settings, as they should
-validate automatically via DNS. For CDN certificates start with the CDN Broker's logs to investigate why
-they failed to renew via Let's Encrypt.
+If the platform certificates are due to expire, check AWS Certificate Manager for the validation settings, as they should
+validate automatically via DNS. 
+
+For CDN certificates start with AWS Certificate Manager in the `us-east-1` region to see why the certificate didn't get renewed. The most common cause is tenants removing the DNS records required for valdiation. Use `dig -t CNAME` to check if they're still set.
 
 If you are seeing `NO_DATA` errors for this monitor then there may be a more
 fundimental connectivity issue to the reported endpoint.
