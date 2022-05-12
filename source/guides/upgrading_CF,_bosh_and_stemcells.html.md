@@ -76,24 +76,31 @@ You should test the upgrade changeset:
 
 ### Buildpacks
 
-Buildpack upgrades are typically done as a separate story. You should upgrade the buildpacks to at least the versions included in the cf-deployment version currently deployed.
+Buildpack upgrades are done separately from platform upgrades because they can impact directly on tenant apps. They are also done on a regular cadence.  
 
-We have to a give at least a week's notice to tenants about the buildpack upgrades, so prepare the version changes separately from the CF component upgrades.
+If you are doing a platform upgrade, you should upgrade the buildpacks to at least the versions included in the cf-deployment version being deployed.
 
-There is a (semi-)automated process for upgrading buildpacks, which includes generating the email:
+We give at least a week's notice to tenants about buildpack upgrades. If the new version of any buildpack will remove an important version of a language, 
+such as a long term support version, we should give a minimum of two weeks notice.
+
+There is a (semi-)automated process for upgrading buildpacks, which includes generating the email.
 
 The developer does the following:
 
-* In paas-cf run `scripts/update_buildpacks.sh` to update our cache of buildpack dependencies
+* In paas-cf run `make buildpack-upgrade` to update our cache of buildpack dependencies, and generate the tenant comms copy.
 * Commit the changes to a branch
+* Release changes to a dev environment and check it seems ok
 * Raise a PR for the changes and move the story into review
+* Add the email copy to the story in Pivotal
 
 The reviewer does the following:
 
-* Run `scripts/create_buildpacks_email.sh` to create the email
-* Send the email using the [google group interface] with the subject "GOV.UK PaaS - Upcoming buildpack upgrades - $DATE", where $DATE is in the format "11th September 2019"
+* Review the email copy
 * Mark the story as blocked with a blocker in the form `until 2019/09/11`
 * Wait until the given date, then merge the PR to upgrade the buildpacks
+
+Either the developer or the reviewer will send out the tenant comms copy via the [google group interface] and our Slack support channels. Emails
+should have the subject "GOV.UK PaaS - Upcoming buildpack upgrades - $DATE", where $DATE is in the format "11th September 2019"
 
 
 ## Notify the tenants
