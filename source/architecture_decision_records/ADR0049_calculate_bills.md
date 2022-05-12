@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted.
+Deprecated.
 
 ## Context
 
@@ -31,3 +31,8 @@ All we need for this is to have different code entry points into billing. We can
 - Display bills for RDS for all tenants, for example.
 
 We can also easily tailor the billing reports in step 1 by different output fields, and enable reports to be filtered by input field (e.g. get bills just for RDS Postgres for a tenant, for example).
+
+## Deprecation
+
+In the first quarter of 2022 we chose to suspend work on the new billing system, and revert to the old one. The decision
+was prompted by a mix of performance issues in the new code base, and team capacity and prioritisation concerns. 
