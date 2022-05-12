@@ -120,6 +120,9 @@
       <li>
         <a href="#gorouter-high-latency-alerts"><span>Gorouter high latency alerts</span></a>
       </li>
+      <li>
+        <a href="#diego-cell-ephemeral-disk-usage-near-full"><span>Diego cell ephemeral disk usage near full</span></a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -324,6 +327,17 @@ to help with rotating keys.</li>
 <li>Contact the team who own the service to see if they are aware of anything happening</li>
 </ul>
 <p>As this is the first monitor of this type please investigate the gorouters to discover the issue they are encountering. We have previously seen high resource usage (CPU and Memory) these should be checked in the first case.</p>
+<h2 id="diego-cell-ephemeral-disk-usage-near-full">Diego cell ephemeral disk usage near full</h2>
+<p>To prevent a tenant-visible issue in the short term, it&rsquo;s probably a good idea to recreate the cell in bosh:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cd ${PAAS_BOOTSTRAP_DIR}
+DEPLOY_ENV=prod make prod bosh-cli
+bosh restart diego-cell/123
+</code></pre></div><p>In the long term, this should be investigated because it Shouldn&rsquo;t Happen. The grootfs
+garbage collector should keep disk space under control, so perhaps this is a sign that
+it isn&rsquo;t working properly.</p>
+<p>The <a href="https://docs.google.com/document/d/1727mhApwfZdDafc0qPzPaJg_000JvzqfPCfFCKhLPqY/edit?ts=60f0422c#">last time this happened</a>
+we weren&rsquo;t quick enough investigating it and the logs fell out of logit, preventing us
+from diagnosing the true cause. So don&rsquo;t make the same mistake.</p>
 
 
             
