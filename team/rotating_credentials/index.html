@@ -89,7 +89,7 @@
             <a href="#rotating-platform-credentials"><span>Rotating platform credentials</span></a>
             <ul>
               <li>
-                <a href="#rotating-bosh-and-concourse-credentials"><span>Rotating BOSH and Concourse credentials</span></a>
+                <a href="#rotating-bosh-credentials-and-certificates"><span>Rotating BOSH credentials and certificates</span></a>
               </li>
               <li>
                 <a href="#rotating-cloud-foundry-and-prometheus-credentials"><span>Rotating Cloud Foundry and Prometheus credentials</span></a>
@@ -168,14 +168,26 @@ the <code>--versions</code> flag of <code>credhub get</code>:</p>
   type: password
   value: [redacted previous password]
   version_created_at: "2020-03-11T10:10:13Z"
-</code></pre></div><h4 id="rotating-bosh-and-concourse-credentials">Rotating BOSH and Concourse credentials</h4>
-<p>In <code>create-bosh-concourse</code> there are two rotation jobs under the <code>credentials</code>
-tab: <code>rotate-bosh-passwords</code> for BOSH and <code>clear-concourse-credentials</code> for Concourse</p>
-<p>To perform the rotation:
-1. Pause the <code>create-bosh-concourse</code> pipeline, and ensure it isn&rsquo;t running
-1. Run the relevant rotation Concourse job (<code>rotate-bosh-passwords</code> and/or <code>clear-concourse-credentials</code>)
-1. Unpause the <code>create-bosh-concourse</code> pipeline
-1. Trigger the <code>create-bosh-concourse</code> pipeline and allow it to run all the way through</p>
+</code></pre></div><h4 id="rotating-bosh-credentials-and-certificates">Rotating BOSH credentials and certificates</h4>
+<p>In the <code>create-bosh-concourse</code> pipeline there are two rotation jobs under the <code>credentials</code>
+tab: <code>rotate-bosh-credentials</code>  and <code>rotate-bosh-leaf-certs</code>.</p>
+<p>To perform the rotation:</p>
+
+<ol>
+<li>Pause the <code>create-bosh-concourse</code> pipeline, and ensure it isn&rsquo;t running</li>
+<li>Run the <code>check-certificates</code> job to see if any certificates need rotation. It will fail if any certificates have expired.</li>
+<li>Run the relevant rotation Concourse job (<code>rotate-bosh-credentials</code> and/or <code>rotate-bosh-leaf-certs</code>)</li>
+<li>Unpause the <code>create-bosh-concourse</code> pipeline</li>
+<li>Trigger the <code>create-bosh-concourse</code> pipeline and allow it to run all the way through</li>
+</ol>
+<p>If the BOSH TLS certificates have expired, pipeline self-updating will need to be disabled before running the <code>create-bosh-concourse</code> pipeline, and enabled afterwards:</p>
+
+<ol>
+<li>In <code>paas-bootstrap</code></li>
+<li>Run <code>make ENV pipelines BRANCH=main SELF_UPDATE_PIPELINE=false</code></li>
+<li>Trigger the pipeline</li>
+<li>Run <code>make ENV pipelines BRANCH=main SELF_UPDATE_PIPELINE=true</code></li>
+</ol>
 <h4 id="rotating-cloud-foundry-and-prometheus-credentials">Rotating Cloud Foundry and Prometheus credentials</h4>
 <p>In <code>create-cloudfoundry</code> there are four rotation jobs under the <code>credentials</code>
 tab:</p>
@@ -186,11 +198,14 @@ tab:</p>
 <li><code>rotate-prometheus-credentials</code></li>
 <li><code>rotate-database-encryption-keys</code></li>
 </ul>
-<p>To perform the rotation:
-1. Pause the <code>create-cloudfoundry</code> pipeline and ensure it isn&rsquo;t running
-1. Run one or more of the above rotation jobs as necessary
-1. Unpause the <code>create-cloudfoundry</code> pipeline
-1. Trugger the <code>create-cloudfoundry</code> pipeline and allow it to run to completion</p>
+<p>To perform the rotation:</p>
+
+<ol>
+<li>Pause the <code>create-cloudfoundry</code> pipeline and ensure it isn&rsquo;t running</li>
+<li>Run one or more of the above rotation jobs as necessary</li>
+<li>Unpause the <code>create-cloudfoundry</code> pipeline</li>
+<li>Trugger the <code>create-cloudfoundry</code> pipeline and allow it to run to completion</li>
+</ol>
 <h3 id="rotating-broker-credentials">Rotating broker credentials</h3>
 <p>Our service brokers have basic auth in front of them to ensure that only we
 can communicate with them. Unfortunately our brokers do not support swapping
@@ -206,7 +221,7 @@ two step process:</p>
 <p>There will be downtime between when the pipeline redeploys the brokers and
 when it updates the broker credentials to be used by Cloud Controller. For
 information on what happened the first time, and how to communicate this to
-tenants, see https://status.cloud.service.gov.uk/incidents/3qll54zh55zk.</p>
+tenants, see <a href="https://status.cloud.service.gov.uk/incidents/3qll54zh55zk">https://status.cloud.service.gov.uk/incidents/3qll54zh55zk</a>.</p>
 <p>At the time of writing this only rotates the basic auth used to talk to the
 brokers. It does not rotate other difficult secrets, such as those used to
 generate passwords for service instances.</p>
@@ -214,16 +229,14 @@ generate passwords for service instances.</p>
 <p>We rotate CA and leaf certificates automatically as part of the <code>create-cloudfoundry</code>
 Concourse pipeline. You can learn more about it by reading <a href="/architecture_decision_records/ADR037-automated-certificate-rotation/">ADR037 automated certificate rotation</a></p>
 <h3 id="rotating-sso-idp-keys">Rotating SSO IDP keys</h3>
-<p>We use single sign-on using Google and Microsoft to allow our tenants to sign
+<p>We use single sign-on using Google to allow our tenants to sign
 in, without using a username and password stored in UAA.</p>
 <p>Google has two credentials: <code>client_id</code> and <code>client_secret</code></p>
-<p>Microsoft functionally has three credentials <code>client_id</code>, <code>client_secret</code>, and
-<code>tenant_id</code>, however <code>tenant_id</code> is not secret, we just store it as such.</p>
 <p>UAA is not capable of consuming multiple pairs of <code>client_id</code> and <code>client_secret</code>.
 Rotating these credentials will briefly prevent users from signing in to GOV.UK
 PaaS using single sign-on via the IDP with credentials currently being rotated.</p>
 <p>Rotating these credentials requires changing the values in <code>paas-credentials</code>
-and running the <code>upload-{google,microsoft}-oauth-secrets</code> Make tasks and then
+and running the <code>upload-google-oauth-secrets</code> Make tasks and then
 running <code>create-cloudfoundry</code>.</p>
 <h3 id="aws-keys-generated-in-the-pipeline">AWS keys generated in the pipeline</h3>
 <p>The deployer Concourse has a job for triggering the rotation of AWS keys generated in the pipeline. These keys currently include:</p>
