@@ -1,0 +1,25 @@
+<h1 id="restoring-the-bosh-resurrector">Restoring the BOSH Resurrector</h1>
+<p>This guide will show you how to restore the BOSH resurrector, in the event that it has been disabled in an AZ outage.</p>
+<h2 id="what-if-the-resurrector-isn-39-t-running">What if the resurrector isn&rsquo;t running?</h2>
+<p>Its main responsibility, is taking care of the VMs and re-creating them when they become inaccessible.</p>
+<p>BOSH is doing a lot of work for us and we should trust its judgement, to provide stable platform to our tenants.</p>
+<p>In addition, our <a href="https://github.com/alphagov/paas-cf/blob/b91dd05607b239150fa2e37180ad1de60c398410/concourse/pipelines/create-cloudfoundry.yml#L1970-L2007">Concourse pipelines</a> will be checking up on the resurrector, and if that isn&rsquo;t enabled, the pipelines will fire <a href="https://github.com/alphagov/paas-cf/blob/b91dd05607b239150fa2e37180ad1de60c398410/concourse/scripts/nagging_email.sh#L15-L32">nagging emails</a> as a reminder.</p>
+<h2 id="what-do-i-do">What do I do?</h2>
+
+<ol>
+<li>Using <code>paas-bootstrap</code>, you will need to gain access to BOSH&rsquo;s CLI. This can be achieved by running the following command:</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>make $ENV bosh-cli
+</code></pre></div><p>This action requires you to be in a range of approved IPs - like a VPN.</p>
+
+<ol>
+<li>When your environment is ready, you will need to log into BOSH. Follow the instructions in your terminal, to obtain one time password.</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bosh login
+</code></pre></div><p>This action, will be recorded!</p>
+
+<ol>
+<li>Enable the resurrector manually with the follwing command:</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bosh update-resurrection on
+</code></pre></div><p>The next time, the job checking for resurrector being enabled, should succeed and not send out an email.</p>
