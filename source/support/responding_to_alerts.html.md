@@ -243,3 +243,21 @@ If you see an alert for gorouter latency being high;
 * Contact the team who own the service to see if they are aware of anything happening
 
 As this is the first monitor of this type please investigate the gorouters to discover the issue they are encountering. We have previously seen high resource usage (CPU and Memory) these should be checked in the first case.
+
+## Diego cell ephemeral disk usage near full
+
+To prevent a tenant-visible issue in the short term, it's probably a good idea to recreate the cell in bosh:
+
+```
+cd ${PAAS_BOOTSTRAP_DIR}
+DEPLOY_ENV=prod make prod bosh-cli
+bosh restart diego-cell/123
+```
+
+In the long term, this should be investigated because it Shouldn't Happen. The grootfs
+garbage collector should keep disk space under control, so perhaps this is a sign that
+it isn't working properly.
+
+The [last time this happened](https://docs.google.com/document/d/1727mhApwfZdDafc0qPzPaJg_000JvzqfPCfFCKhLPqY/edit?ts=60f0422c#)
+we weren't quick enough investigating it and the logs fell out of logit, preventing us
+from diagnosing the true cause. So don't make the same mistake.
