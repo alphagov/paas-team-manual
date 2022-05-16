@@ -198,24 +198,21 @@ works and doesn&rsquo;t cause additional downtime during deployments.</li>
 <p>We give at least a week&rsquo;s notice to tenants about buildpack upgrades. If the new version of any buildpack will remove an important version of a language, 
 such as a long term support version, we should give a minimum of two weeks notice.</p>
 <p>There is a (semi-)automated process for upgrading buildpacks, which includes generating the email.</p>
-<p>The developer does the following:</p>
+<p>Once the buildpack-upgrading PR has been created in the paas-cf repo (usually done
+automatically by the &ldquo;generate buildpack bump PR&rdquo; github workflow), the engineer on 
+support should do the following:</p>
 
 <ul>
-<li>In paas-cf run <code>make buildpack-upgrade</code> to update our cache of buildpack dependencies, and generate the tenant comms copy.</li>
-<li>Commit the changes to a branch</li>
-<li>Release changes to a dev environment and check it seems ok</li>
-<li>Raise a PR for the changes and move the story into review</li>
-<li>Add the email copy to the story in Pivotal</li>
-</ul>
-<p>The reviewer does the following:</p>
-
-<ul>
-<li>Review the email copy</li>
+<li>Create a Pivotal story to track the progress of this update.</li>
+<li>Checkout the PR branch locally and run <code>scripts/create_buildpack_email.sh</code>,
+supplying highlights section by section when prompted by the script.</li>
+<li>Either the developer or the reviewer will send out the tenant comms copy via
+the [google group interface] and our Slack support channels. Emails
+should have the subject &ldquo;GOV.UK PaaS - Upcoming buildpack upgrades - $DATE&rdquo;,
+where $DATE is in the format &ldquo;11th September 2019&rdquo;</li>
 <li>Mark the story as blocked with a blocker in the form <code>until 2019/09/11</code></li>
 <li>Wait until the given date, then merge the PR to upgrade the buildpacks</li>
 </ul>
-<p>Either the developer or the reviewer will send out the tenant comms copy via the [google group interface] and our Slack support channels. Emails
-should have the subject &ldquo;GOV.UK PaaS - Upcoming buildpack upgrades - $DATE&rdquo;, where $DATE is in the format &ldquo;11th September 2019&rdquo;</p>
 <h2 id="notify-the-tenants">Notify the tenants</h2>
 <p>Send an email to users following <a href="/team/notifying_tenants/#cf-upgrade">the upgrade template</a>.</p>
 <h2 id="problems-encountered-previously">Problems encountered previously</h2>
