@@ -85,23 +85,19 @@ such as a long term support version, we should give a minimum of two weeks notic
 
 There is a (semi-)automated process for upgrading buildpacks, which includes generating the email.
 
-The developer does the following:
+Once the buildpack-upgrading PR has been created in the paas-cf repo (usually done
+automatically by the "generate buildpack bump PR" github workflow), the engineer on 
+support should do the following:
 
-* In paas-cf run `make buildpack-upgrade` to update our cache of buildpack dependencies, and generate the tenant comms copy.
-* Commit the changes to a branch
-* Release changes to a dev environment and check it seems ok
-* Raise a PR for the changes and move the story into review
-* Add the email copy to the story in Pivotal
-
-The reviewer does the following:
-
-* Review the email copy
+* Create a Pivotal story to track the progress of this update.
+* Checkout the PR branch locally and run `scripts/create_buildpack_email.sh`,
+  supplying highlights section by section when prompted by the script.
+* Either the developer or the reviewer will send out the tenant comms copy via
+  the [google group interface] and our Slack support channels. Emails
+  should have the subject "GOV.UK PaaS - Upcoming buildpack upgrades - $DATE",
+  where $DATE is in the format "11th September 2019"
 * Mark the story as blocked with a blocker in the form `until 2019/09/11`
 * Wait until the given date, then merge the PR to upgrade the buildpacks
-
-Either the developer or the reviewer will send out the tenant comms copy via the [google group interface] and our Slack support channels. Emails
-should have the subject "GOV.UK PaaS - Upcoming buildpack upgrades - $DATE", where $DATE is in the format "11th September 2019"
-
 
 ## Notify the tenants
 
