@@ -68,6 +68,7 @@ title: PaaS Team Manual
  - [Billing process for GOV.UK PaaS paid accounts](accounts/billing_info)
 
 ## Team Accounts and Software
+ - [So you're the person on support for GOV.UK PaaS](support/so_you_are_on_support.html.md)
  - [Zendesk](support/zendesk/)
  - [Statuspage](team/statuspage/)
  - [Pagerduty](team/pagerduty/)
