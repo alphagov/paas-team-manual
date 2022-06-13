@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>PaaS Team Manual</title>
+
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/support/so_you_are_on_support/">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/support/so_you_are_on_support/" />
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/support/so_you_are_on_support/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="../">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#so-you-39-re-on-support-for-gov-uk-platform-as-a-service-paas"><span>So you’re on support for GOV.UK Platform as a Service (PaaS)</span></a>
+    <ul>
+      <li>
+        <a href="#before-you-go-on-support"><span>Before you go on support</span></a>
+        <ul>
+          <li>
+            <a href="#make-sure-you-can-connect-to-our-environments-and-access-the-relevant-secrets"><span>Make sure you can connect to our environments and access the relevant secrets</span></a>
+          </li>
+          <li>
+            <a href="#make-sure-you-have-access-to-our-zendesk-views"><span>Make sure you have access to our Zendesk views</span></a>
+          </li>
+          <li>
+            <a href="#make-sure-pagerduty-is-set-up-correctly"><span>Make sure PagerDuty is set up correctly</span></a>
+          </li>
+          <li>
+            <a href="#make-sure-you-have-access-to-our-alerts-mailing-lists"><span>Make sure you have access to our alerts mailing lists</span></a>
+          </li>
+          <li>
+            <a href="#make-sure-you-have-access-to-slack"><span>Make sure you have access to Slack</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#do-some-shadowing"><span>Do some shadowing</span></a>
+      </li>
+      <li>
+        <a href="#going-on-support"><span>Going on support</span></a>
+        <ul>
+          <li>
+            <a href="#update-the-slack-channel-topics-with-your-username"><span>Update the Slack channel topics with your username</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#after-going-on-support"><span>After going on support</span></a>
+      </li>
+      <li>
+        <a href="#support-times"><span>Support times</span></a>
+      </li>
+      <li>
+        <a href="#communication-channels-and-dashboards-to-be-aware-of"><span>Communication channels and dashboards to be aware of</span></a>
+        <ul>
+          <li>
+            <a href="#zendesk"><span>Zendesk</span></a>
+          </li>
+          <li>
+            <a href="#slack"><span>Slack</span></a>
+          </li>
+          <li>
+            <a href="#grafana-dashboards"><span>Grafana dashboards</span></a>
+          </li>
+          <li>
+            <a href="#deployment-pipelines-for-staging-and-production"><span>Deployment pipelines for staging and production</span></a>
+          </li>
+          <li>
+            <a href="#mailing-lists"><span>Mailing lists</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="so-you-39-re-on-support-for-gov-uk-platform-as-a-service-paas">So you&rsquo;re on support for GOV.UK Platform as a Service (PaaS)</h1>
+<p>Welcome to the GOV.UK PaaS support rota!</p>
+<p>Do not panic.
+Your task is to monitor platform health and support channels, not to solve everything yourself!
+Always feel free to involve the team if you get stuck at any point.</p>
+<h2 id="before-you-go-on-support">Before you go on support</h2>
+<h3 id="make-sure-you-can-connect-to-our-environments-and-access-the-relevant-secrets">Make sure you can connect to our environments and access the relevant secrets</h3>
+<p>If you’re in the office and have a GDS-issued Mac, you must connect to the Brattain WiFi endpoint. This should happen automatically. If you have any issues with connecting, visit the IT Helpdesk. If you are using a bring-your-own device (BYOD), you must  <a href="https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit">connect to the VPN</a>.</p>
+<p>If you’re outside the office, you must <a href="https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit">connect to the VPN</a>.</p>
+<p>If you have a private static IP, you can ask the tech leads to add it to an allow list that allows access to GOV.UK PaaS production resources (but not other GDS AWS accounts, such as the billing account).</p>
+<p>During the onboarding process, you should have been given full access as defined in the <a href="https://github.com/alphagov/paas-trusted-people/blob/main/users.yml">paas-trusted-people repository</a>. If you find any access missing, contact your onboarding buddy or the person who worked on the story, and ask them to grant you access.</p>
+<p>The paas-trusted-people repository should also contain:</p>
+
+<ul>
+<li>a <a href="https://team-manual.cloud.service.gov.uk/guides/GPG/#install">GNU Privacy Guard (GPG)</a> public key with signature and encryption functionality </li>
+<li>an SSH public key</li>
+<li>your Google ID for OAuth</li>
+</ul>
+<p>Your onboarding buddy should have added your GPG key to the paas-credentials repository and added also it for <a href="https://team-manual.cloud.service.gov.uk/team/working_practices/#manually-merging-and-signing-a-pr">merge signing</a> of pull requests in these repositories:</p>
+
+<ul>
+<li><a href="https://github.com/alphagov/paas-admin">paas-admin</a></li>
+<li><a href="https://github.com/alphagov/paas-bootstrap">paas-bootstrap</a></li>
+<li><a href="https://github.com/alphagov/paas-cf">paas-cf</a></li>
+</ul>
+<p>If you find any access missing or have any questions or concerns, contact your onboarding buddy or the person who worked on the story, and ask them to grant you production access.</p>
+<h3 id="make-sure-you-have-access-to-our-zendesk-views">Make sure you have access to our Zendesk views</h3>
+<p>To reply to support tickets on <a href="https://govuk.zendesk.com/">Zendesk</a>, you will need:</p>
+
+<ul>
+<li>your role to be ‘GDS Resolver’</li>
+<li>to be a member of the ‘3rd-line&ndash; PaaS Support’ Zendesk team<br></li>
+</ul>
+<p>Someone else with access should request these permissions for you by raising a Zendesk ticket assigned to the 2nd/3rd Line Zendesk Administration group.</p>
+<h3 id="make-sure-pagerduty-is-set-up-correctly">Make sure PagerDuty is set up correctly</h3>
+<p>GDS should have issued you a work phone when you joined. Speak to your line manager if you do not have one. You should install the PagerDuty app on your work phone to allow you to resolve incidents through the app.</p>
+<p>You will need a PagerDuty account and to be a member of the /tech-ops/GOV.UK PaaS Team - a tech lead or Delivery Manager can organise this for you.</p>
+<p>You will need to add in your contact information and edit your notification rules in your PagerDuty profile (reached through the avatar on the top right on the PagerDuty app or through <strong>My Profile</strong> on the web UI).</p>
+<p>If you use Do Not Disturb mode on your phone, make sure PagerDuty is able to ring through it (check your phone OS docs to set this up). You can also set up the PagerDuty app to override Do Not Disturb mode.</p>
+<h3 id="make-sure-you-have-access-to-our-alerts-mailing-lists">Make sure you have access to our alerts mailing lists</h3>
+<p>You need to join these <a href="https://groups.google.com">Google Groups</a>:</p>
+
+<ul>
+<li>GOV.UK PaaS Support</li>
+<li>GOV.UK PaaS Emergency Support</li>
+<li>govpaas-alerting-prod</li>
+</ul>
+<h3 id="make-sure-you-have-access-to-slack">Make sure you have access to Slack</h3>
+<p>You need to join the following Slack channels on gds.com:</p>
+
+<ul>
+<li><a href="https://gds.slack.com/archives/CAEHMHGJ2">#paas-internal</a></li>
+<li><a href="https://gds.slack.com/archives/CAD4W35KK">#paas-incident</a></li>
+<li><a href="https://gds.slack.com/archives/CADHV9267">#paas</a> </li>
+</ul>
+<p>You also need to join the following Slack channels on  ukgovernmentdigital.slack.com:</p>
+
+<ul>
+<li> <a href="https://ukgovernmentdigital.slack.com/archives/C33SAH4GJ">#govuk-paas</a></li>
+<li><a href="https://ukgovernmentdigital.slack.com/archives/CN26120NR">#govuk-paas-dit-users</a><br></li>
+</ul>
+<h2 id="do-some-shadowing">Do some shadowing</h2>
+<p>When you join the team, the DM or tech lead should arrange the following:</p>
+
+<ul>
+<li>shadowing support shifts 8 weeks after joining the team</li>
+<li>2 weeks shadowing the person on support</li>
+</ul>
+<p>They should also arrange reverse shadowing for your first 2 weeks on support, with a more experienced engineer helping and supporting you.</p>
+<p>Speak to your line manager or the tech lead if you have any questions or concerns about your shadowing experience.</p>
+<h2 id="going-on-support">Going on support</h2>
+<h3 id="update-the-slack-channel-topics-with-your-username">Update the Slack channel topics with your username</h3>
+<p>You should set the Slack channel topic to “[@your_slack_username] is on support” on the following channels:</p>
+
+<ul>
+<li><a href="https://gds.slack.com/archives/CADHV9267">#paas</a> on GDS Slack</li>
+<li><a href="https://ukgovernmentdigital.slack.com/?redir=%2Farchives%2FC33SAH4GJ">#govuk-paas</a> on cross-government Slack </li>
+</ul>
+<h2 id="after-going-on-support">After going on support</h2>
+<p>At the end of your support shift, you need to:</p>
+
+<ul>
+<li>make sure all ongoing support tasks are sufficiently documented in Zendesk and/or hand over work to the person coming onto the support rota</li>
+<li>claim for your on-call shift using the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfpMK85F2CxBFo_uubO2HHintc3Gx6jbifeUhnAm0g6GfoDEA/viewform?vc=0&amp;c=0&amp;w=1&amp;flr=0">GaaP and CEVPS on-call pay submission form</a></li>
+</ul>
+<h2 id="support-times">Support times</h2>
+
+<ul>
+<li>in-hours: Weekdays 9:00 - 17:00</li>
+<li>out-of hours: Weekdays 17:00 - 9:00, weekends 24/7</li>
+</ul>
+<p>You should regularly check the <a href="https://calendar.google.com/calendar/ical/8nvffdghj1kfrfgmji0ottc8nnh52t37%40import.calendar.google.com/public/basic.ics">dynamic calendar showing your in-hours support shifts as defined in PagerDuty</a>.</p>
+<h2 id="communication-channels-and-dashboards-to-be-aware-of">Communication channels and dashboards to be aware of</h2>
+<h3 id="zendesk">Zendesk</h3>
+<p>We’re working off the ‘PaaS Support’ view. To reach this, select <strong>Views</strong> in the menu bar on the left hand side of the Zendesk web UI.</p>
+<h3 id="slack">Slack</h3>
+<p>We receive tenant communications through:</p>
+
+<ul>
+<li><a href="https://gds.slack.com/archives/CADHV9267">#paas</a> on GDS Slack</li>
+<li><a href="https://ukgovernmentdigital.slack.com/archives/C33SAH4GJ">#govuk-paas</a> and <a href="https://ukgovernmentdigital.slack.com/archives/CN26120NR">#govuk-paas-dit-users</a> on cross-government Slack</li>
+</ul>
+<p>You should also keep an eye on the following channels in case any incidents come through:</p>
+
+<ul>
+<li><a href="https://gds.slack.com/archives/CAEHMHGJ2">#paas-internal</a></li>
+<li><a href="https://gds.slack.com/archives/CAD4W35KK">#paas-incident</a></li>
+</ul>
+<p>You should also monitor your direct messages. If a tenant DMs you when you’re not on the rota, it’s up to you if you want to help them. It’s perfectly fine to point them in the direction of the current support person.</p>
+<h3 id="grafana-dashboards">Grafana dashboards</h3>
+<p>We use <a href="https://grafana.com/oss/grafana/">Grafana</a> to monitor platform metrics. We use a mixture of dashboards shipped with Cloud Foundry and dashboards developed by the GOV.UK PaaS team. On support, a good starting point is to monitor:</p>
+
+<ul>
+<li><a href="https://grafana-1.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod?orgId=1&amp;refresh=5s">User impact dashboard for Ireland</a></li>
+<li><a href="https://grafana-1.london.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod-lon?orgId=1&amp;refresh=5s">User impact dashboard for London</a></li>
+</ul>
+<h3 id="deployment-pipelines-for-staging-and-production">Deployment pipelines for staging and production</h3>
+<p>We use <a href="https://concourse-ci.org/">Concourse</a> for our continuous integration and continuous deployment (CI/CD) pipelines. The Concourse instances important for GOV.UK PaaS production are:</p>
+
+<ul>
+<li><a href="https://deployer.london.staging.cloudpipeline.digital/">Deployer Concourse for our staging environment</a></li>
+<li><a href="https://deployer.cloud.service.gov.uk/">Deployer Concourse for our Ireland production environment</a></li>
+<li><a href="https://deployer.london.cloud.service.gov.uk/">Deployer Concourse for our London production environment</a></li>
+<li><a href="https://concourse.build.ci.cloudpipeline.digital/">Continuous integration Concourse for our production environments</a></li>
+</ul>
+<h3 id="mailing-lists">Mailing lists</h3>
+<p>We receive a number of platform alerts as well as tickets submitted through the Zendesk CRM as emails as well. To keep up-to-date during your in-hours support shift, you should regularly check your inbox for messages from:</p>
+
+<ul>
+<li><a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govpaas-alerting-prod">govpaas-alerting-prod@digital.cabinet-office.gov.uk</a></li>
+<li><a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/gov-uk-paas-support">gov-uk-paas-support@digital.cabinet-office.gov.uk</a></li>
+</ul>
+
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="../../accessibility/">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../javascripts/application.js"></script>
+  </body>
+</html>
