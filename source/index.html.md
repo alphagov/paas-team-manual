@@ -155,5 +155,5 @@ This section contains Architecture Decision Records (ADR) as described in this b
  - [ADR-045 AWS WAF and WAF Log access by AWS DDoS Response Team](architecture_decision_records/ADR045-aws-waf/)
  - [ADR-046 Postgres Service Plans](architecture_decision_records/ADR046-postgres-plans/)
  - [ADR-047 Postgres allowed-extensions approach](architecture_decision_records/ADR047-postgres-extensions-approach/)
- - [~ADR-048 Billing: Include record for services/resources provisioned for tenants~](architecture_decision_records/ADR0048_add_resources_table/)
- - [~ADR-049 Billing: Decouple what we're calculating bills for from how the bills are calculated~](architecture_decision_records/Decouple what we're calculating bills for from how the bills are calculated/)
+ - [~ADR-048 Billing: Include record for services/resources provisioned for tenants~](architecture_decision_records/ADR048-add-resources-table/)
+ - [~ADR-049 Billing: Decouple what we're calculating bills for from how the bills are calculated~](architecture_decision_records/ADR049-calculate-bills/)
