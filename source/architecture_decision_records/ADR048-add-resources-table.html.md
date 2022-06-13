@@ -1,3 +1,7 @@
+---
+title: ADR048 - Include record for services/resources provisioned for tenants
+---
+
 # ADR0048: Include record for services/resources provisioned for tenants
 
 ## Status

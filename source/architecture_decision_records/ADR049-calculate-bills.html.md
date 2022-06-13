@@ -1,3 +1,7 @@
+---
+title: ADR049 - Decouple what we're calculating bills for from how the bills are calculated
+---
+
 # ADR0049: Decouple what we're calculating bills for from how the bills are calculated
 
 ## Status
