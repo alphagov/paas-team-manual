@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted
+Deprecated
 
 ## Context
 
@@ -25,3 +25,8 @@ The `resources` table also acts as an audit point within GOV.UK PaaS billing. It
 This makes billing easier to support. It also makes billing run much more quickly since we do not need to go through all the Cloud Foundry events whenever we need to calculate tenant bills. With this method we can calculate tenants' bills on-demand, rather than calculating all bills in advance as original GOV.UK PaaS billing system did, so it opens up the possibility of the following:
     - Calculating bills between any 2 dates and times quickly
     - It is easier to break down bills by org, space, etc., or, later on, by annotation
+
+## Deprecation
+
+In the first quarter of 2022 we chose to suspend work on the new billing system, and revert to the old one. The decision 
+was prompted by a mix of performance issues in the new code base, and team capacity and prioritisation concerns. 
