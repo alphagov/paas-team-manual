@@ -137,6 +137,8 @@ We use [Grafana](https://grafana.com/oss/grafana/) to monitor platform metrics. 
 * [User impact dashboard for Ireland](https://grafana-1.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod?orgId=1&refresh=5s)
 * [User impact dashboard for London](https://grafana-1.london.cloud.service.gov.uk/d/paas-user-impact/user-impact-prod-lon?orgId=1&refresh=5s)
 
+If the AZ hosting `grafana-1` is affected by an incident or the prometheus in that AZ is non-functional or missing data, you can use [`grafana-2`](/technical_design/prometheus#high-availability) and its fully-redundant monitoring stack instead.
+
 ### Deployment pipelines for staging and production
 
 We use [Concourse](https://concourse-ci.org/) for our continuous integration and continuous deployment (CI/CD) pipelines. The Concourse instances important for GOV.UK PaaS production are:

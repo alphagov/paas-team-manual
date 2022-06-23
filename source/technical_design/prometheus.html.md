@@ -16,6 +16,10 @@ The Grafana instances will connect only to the Prometheus instance which is in t
 
 All instances have a unique url, so in case of an AZ failure you can use the monitoring urls from the working AZ.
 
+### Logging in to `grafana-2`
+
+Due to a quirk in how the Grafanas are provisioned, they both share the same Google auth client id, and so attempting to log in to `grafana-2` will cause the auth flow to be redirected back to `grafana-1` which will show an error. Simply changing URL in the address bar at this point back to the `grafana-2` equivalent address should allow authentication to succeed.
+
 ## Alerting
 
 Prometheus is configured to send alerts to teams mailing lists.
