@@ -47,6 +47,7 @@ title: PaaS Team Manual
  - [How to reduce Logit volume](guides/reducing_logit_volume/)
  - [How to resolve Kibana indexing errors](guides/resolving_Kibana_indexing_errors/)
  - [How to get the Google Search Console back](guides/gain_access_to_google_search_console/)
+ - [How to manage frontend dependencies](guides/manage_frontend_dependencies/)
 
 ### Other information
  - [Our orgs on the paas](team/our_orgs_on_the_paas/)
