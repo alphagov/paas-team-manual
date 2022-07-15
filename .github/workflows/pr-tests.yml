@@ -31,5 +31,7 @@ jobs:
 
       - run: pip install --user -r requirements.txt
 
+      - run: sudo apt install git
+
       - name: Build
         run: bundle exec middleman build
