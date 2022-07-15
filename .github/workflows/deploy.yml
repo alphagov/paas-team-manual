@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency: production
+
+jobs:
+  deploy:
+    name: Deploy Team Manual
+    environment: production
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b #v3.0.2
+
+      - uses: actions/setup-node@2fddd8803e2f5c9604345a0b591c3020ee971a93 #v3.4.1
+        with:
+          node-version: '14'
+
+      - uses: ruby/setup-ruby@08245253a76fa4d1e459b7809579c62bd9eb718a #v1.111.0
+        with:
+          bundler-cache: true
+
+      - name: Build
+        run: bundle exec middleman build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@e6d003d0839927f5a4b998bfd92ed8e448fde37a #v4.3.4
+        with:
+          folder: build
+          branch: gh-pages

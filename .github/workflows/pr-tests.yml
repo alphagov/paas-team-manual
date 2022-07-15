@@ -1,0 +1,35 @@
+---
+name: pr-tests
+on: pull_request
+
+env:
+  NODE_VERSION: "14.x"
+  RUBY_VERSION: "2.7.2"
+  PYTHON_VERSION: "3.x"
+  NODE_ENV: development
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b #v3.0.2
+
+      - uses: actions/setup-node@2fddd8803e2f5c9604345a0b591c3020ee971a93 #v3.4.1
+        with:
+          node-version: "${{env.NODE_VERSION}}"
+
+      - uses: ruby/setup-ruby@08245253a76fa4d1e459b7809579c62bd9eb718a #v1.111.0
+        with:
+          ruby-version: "${{env.RUBY_VERSION}}"
+          bundler-cache: true
+
+      - uses: actions/setup-python@c4e89fac7e8767b327bbad6cb4d859eda999cf08 #v4.1.0
+        with:
+          python-version: "${{env.PYTHON_VERSION}}"
+
+      - run: pip install --user -r requirements.txt
+
+      - name: Build
+        run: bundle exec middleman build
