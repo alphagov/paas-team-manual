@@ -25,6 +25,8 @@ jobs:
         with:
           bundler-cache: true
 
+      - run: sudo apt install git
+
       - name: Build
         run: bundle exec middleman build
 
