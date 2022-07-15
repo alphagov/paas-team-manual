@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Manage frontend dependencies - PaaS Team Manual</title>
+
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/manage_frontend_dependencies/">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Manage frontend dependencies - PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/manage_frontend_dependencies/" />
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:title" content="Manage frontend dependencies" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/manage_frontend_dependencies/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="../">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#manage-frontend-dependencies"><span>Manage frontend dependencies</span></a>
+    <ul>
+      <li>
+        <a href="#paas-admin"><span>PaaS admin</span></a>
+      </li>
+      <li>
+        <a href="#product-pages"><span>Product Pages</span></a>
+      </li>
+      <li>
+        <a href="#tenant-facing-tech-docs-and-team-manual"><span>Tenant-facing tech docs and team manual</span></a>
+      </li>
+      <li>
+        <a href="#management-strategies"><span>Management strategies</span></a>
+        <ul>
+          <li>
+            <a href="#audit-installed-npm-dependecies"><span>Audit installed NPM dependecies</span></a>
+          </li>
+          <li>
+            <a href="#audit-and-update-npm-sub-dependecies"><span>Audit and update NPM sub-dependecies</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="manage-frontend-dependencies">Manage frontend dependencies</h1>
+<p>GOV.UK Platform as a Service team has four major web apps that require regular maintenance:</p>
+
+<ul>
+<li><a href="https://github.com/alphagov/paas-admin">paas admin</a></li>
+<li><a href="https://github.com/alphagov/paas-product-pages">product pages</a></li>
+<li><a href="https://github.com/alphagov/paas-tech-docs">tech docs</a></li>
+<li><a href="https://github.com/alphagov/paas-team-manual">team manual</a></li>
+</ul>
+<h2 id="paas-admin">PaaS admin</h2>
+<p>PaaS admin is a server-side rendered React web app. It utilises NPM dependencies and it will have by far the most dependency updates.
+Dependabot is set up to raise dependecy update pull requests and security audits. Tests are set up and demand 100% code coverage.</p>
+<p>On merge to <code>main</code>:</p>
+
+<ul>
+<li>tests run and if sucessful, a <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">git tag</a> with a version number is <a href="https://concourse.build.ci.cloudpipeline.digital/teams/main/pipelines/paas-admin/jobs/tag-releases">created</a>, and updated in the <a href="https://github.com/alphagov/paas-admin/blob/main/version">paas-admin version file</a></li>
+<li>once the tag is created, staging tests and deployment commence; if sucessful, a new git tag is created (<code>stg-lon-&lt;datetime&gt;</code>)</li>
+<li>if staging deployment is sucessful, production deployment goes ahead</li>
+</ul>
+<p>Pull request merge commits must be signed with a <a href="https://github.com/alphagov/paas-cf/blob/main/concourse/vars-files/gpg-keys.yml">team member&rsquo;s GPG key</a>, which can be done using the GDS CLI tool (<code>gds git merge-sign alphagov/paas-admin PR_NUMBER</code>).</p>
+<p>Do not merge through the GitHub UI.</p>
+<h2 id="product-pages">Product Pages</h2>
+<p>Product pages are a set of static pages built by <a href="https://nextjs.org/">NextJS</a>. It utilises NPM dependencies and will have many fewer dependency updates than PaaS admin
+Dependabot is set up to raise dependecy update pull requests and security audits.</p>
+<p>There are some tests set up but it&rsquo;s recomended to run a local static build for bigger updates,
+which is documented in the <a href="https://github.com/alphagov/paas-product-pages#review-static-build-production-build"><code>paas-product-pages</code> README</a></p>
+<p>Dependabot pull requests need to be approved and can be merged in the Github web UI.</p>
+<h2 id="tenant-facing-tech-docs-and-team-manual">Tenant-facing tech docs and team manual</h2>
+<p>Tech docs and team manual are implementations of the <a href="https://github.com/alphagov/tech-docs-gem"><code>tech-docs-gem</code></a>, a Ruby gem that distributes the <a href="https://github.com/alphagov/tech-docs-template">Tech Docs Template</a>. The Tech Docs Template is a <a href="https://middlemanapp.com/advanced/project_templates/">middleman template</a> that you can use to build technical documentation using a GOV.UK style.</p>
+<p>In addition to the upstream tech-docs-gem dependency there are some local Ruby dependencies. Dependabot will raise update pull request against all dependencies, but it&rsquo;s always best to check if a new version of the gem has been released. Follow the project READMEs to get started.</p>
+<p>Dependabot pull requests can be merged in the Github web UI.</p>
+<h2 id="management-strategies">Management strategies</h2>
+<p>Some of the strategies to use when managing updates</p>
+
+<ul>
+<li>read release notes</li>
+</ul>
+<p>Most packages will have some release notes. Even though they might use <a href="https://semver.org/">semantic versioning (semver)</a>, it doesn&rsquo;t mean a fix/patch update doesn&rsquo;t contain major changes.</p>
+<p>Most packages below version 1, don&rsquo;t necessarily use semVer. When in doubt, check usage in our codebase.</p>
+
+<ul>
+<li>run locally to check the build (if needed)</li>
+</ul>
+<p>If you&rsquo;re unsure about package changes, need to run tests (locally or against staging, etc) or wish to manually check everything is OK, all of these have the ability to run locally.</p>
+
+<ul>
+<li>merge and deploy one dependency at a time</li>
+</ul>
+<p>Sometimes there are unexpected staging or production build or test failures, so a good strategy is to merge and deploy one at a time. That way you can easily roll back the commit and continue with other dependencies.</p>
+<p>In case of <code>paas-admin</code>, if a staging tag is created, all is ok. All others are deployed straight to production.</p>
+<h3 id="audit-installed-npm-dependecies">Audit installed NPM dependecies</h3>
+
+<ul>
+<li><a href="https://docs.npmjs.com/cli/v7/commands/npm-ls"><code>npm ls &lt;package name&gt;</code></a>
+This will list all the versions of packages that are installed. </li>
+</ul>
+<p>Example output for <code>npm ls got</code></p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>├─┬ nodemon-webpack-plugin@4.8.0
+│ └─┬ nodemon@2.0.16
+│   └─┬ update-notifier@5.1.0
+│     └─┬ latest-version@5.1.0
+│       └─┬ package-json@6.5.0
+│         └── got@9.6.0
+└─┬ openid-client@4.9.1
+  └── got@11.8.1
+</code></pre></div>
+<ul>
+<li><a href="https://docs.npmjs.com/cli/v8/commands/npm-explain"><code>npm explain &lt;package name&gt;</code></a>
+This will list the chain of dependencies causing a given package to be installed in the current project, a &ldquo;bottoms up&rdquo; view of why a given package is included in the tree at all.</li>
+</ul>
+<p>Example output for <code>npm explain got</code></p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>got@9.6.0 dev
+node_modules/got
+  got@"^9.6.0" from package-json@6.5.0
+  node_modules/package-json
+    package-json@"^6.3.0" from latest-version@5.1.0
+    node_modules/latest-version
+      latest-version@"^5.1.0" from update-notifier@5.1.0
+      node_modules/update-notifier
+        update-notifier@"^5.1.0" from nodemon@2.0.16
+        node_modules/nodemon
+          nodemon@"2.0.16" from nodemon-webpack-plugin@4.8.0
+          node_modules/nodemon-webpack-plugin
+            dev nodemon-webpack-plugin@"^4.8.0" from the root project
+
+got@11.8.1
+node_modules/openid-client/node_modules/got
+  got@"^11.8.0" from openid-client@4.9.1
+  node_modules/openid-client
+    openid-client@"^4.9.1" from the root project
+</code></pre></div><h3 id="audit-and-update-npm-sub-dependecies">Audit and update NPM sub-dependecies</h3>
+<p><a href="https://docs.npmjs.com/cli/v8/commands/npm-audit"><code>npm audit [fix]</code></a></p>
+<p>Submits a description of the dependencies configured in the project to the default registry and asks for a report of known vulnerabilities. 
+If any vulnerabilities are found, then the impact and appropriate remediation will be calculated. 
+If the <code>fix</code> argument is provided, then remediations will be applied to the package tree.</p>
+<p>If dependabot has raised an alert about a potential security vulnerabilities in project dependencies, you can use <code>npm audit</code> to check for any packages that can be updated.</p>
+<p>Example output of <code>npm audit</code></p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>No fix available
+node_modules/got
+node_modules/openid-client/node_modules/got
+  package-json  &lt;=6.5.0
+  Depends on vulnerable versions of got
+  node_modules/package-json
+    latest-version  0.2.0 - 5.1.0
+    Depends on vulnerable versions of package-json
+    node_modules/latest-version
+      update-notifier  0.2.0 - 5.1.0
+      Depends on vulnerable versions of latest-version
+      node_modules/update-notifier
+        nodemon  &gt;=1.3.5
+        Depends on vulnerable versions of update-notifier
+        node_modules/nodemon
+          nodemon-webpack-plugin  *
+          Depends on vulnerable versions of nodemon
+          node_modules/nodemon-webpack-plugin
+
+6 moderate severity vulnerabilities
+
+Some issues need review, and may require choosing
+a different dependency.
+</code></pre></div>
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="../../accessibility/">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../javascripts/application.js"></script>
+  </body>
+</html>
