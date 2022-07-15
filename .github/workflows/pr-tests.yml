@@ -29,11 +29,7 @@ jobs:
         with:
           python-version: "${{env.PYTHON_VERSION}}"
 
-      - run: npm ci
       - run: pip install --user -r requirements.txt
 
-      - name: Node tests
-        run: npm test
-
-      - name: Python tests
-        run: make test
+      - name: Build
+        run: bundle exec middleman build
