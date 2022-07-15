@@ -11,9 +11,9 @@ We are a multidisciplinary team responsible for the developement and maintenance
 
 - EL - Engineering Lead Support responsiblities 
 - CL - Comms Lead Support responsibilities
-- M8 - Concourse and Observability Support Responsibilities 
 
 ### Delivery Management
+- Ceri Payne - Senior Delivery Manager
 - Emma Pearce - Delivery Manager
 - Kam Nijjar - Associate Delivery Manager 
 
@@ -21,7 +21,6 @@ We are a multidisciplinary team responsible for the developement and maintenance
 - Lee Porte - Lead Site Reliability Engineer (EL/CL)
 - Andy Hunt - Tech Lead (EL)
 - Sebastian Schmieschek - Tech Lead (EL)
-- Momhamed Deerow - Site Reliability Engineer (EL)
 - Tom Whitwell - Site Reliability Engineer (EL)
 - Robert Scott - Site Reliability Engineer (EL)
 - Will Pearson - Site Reliability Engineer (EL)
@@ -40,9 +39,6 @@ We are a multidisciplinary team responsible for the developement and maintenance
 
 ### Content Design
 - Hannah Cooper - Senior Content Designer
-
-### User Research
-- Nadia Mugeni - User Researcher
 
 ## Product
 
