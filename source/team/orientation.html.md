@@ -13,18 +13,19 @@ We are a multidisciplinary team responsible for the developement and maintenance
 - CL - Comms Lead Support responsibilities
 
 ### Delivery Management
-- Ceri Payne - Senior Delivery Manager
-- Emma Pearce - Delivery Manager
-- Kam Nijjar - Associate Delivery Manager 
+- Ceri Payne - Senior Delivery Manager (contractor)
+- Emma Pearce - Delivery Manager (CL)
+- Kam Nijjar - Associate Delivery Manager (CL)
 
 ### Engineering
-- Lee Porte - Lead Site Reliability Engineer (EL/CL)
+- Lee Porte - Lead Site Reliability Engineer
 - Andy Hunt - Tech Lead (EL)
 - Sebastian Schmieschek - Tech Lead (EL)
 - Tom Whitwell - Site Reliability Engineer (EL)
 - Robert Scott - Site Reliability Engineer (EL)
 - Will Pearson - Site Reliability Engineer (EL)
 - Cat Garcia - Site Reliability Engineer (EL)
+- Malcolm Saunders - Site Reliability Engineer (contractor)
 - Nimalan Kirubakaran - Developer
 - Jani Kraner - Front End Developer (CL)
 
@@ -36,9 +37,6 @@ We are a multidisciplinary team responsible for the developement and maintenance
 
 ### Technical Writing 
 - Claire McNally - Technical Writer
-
-### Content Design
-- Hannah Cooper - Senior Content Designer
 
 ## Product
 
