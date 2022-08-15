@@ -89,15 +89,16 @@ Once the buildpack-upgrading PR has been created in the paas-cf repo (usually do
 automatically by the "generate buildpack bump PR" github workflow), the engineer on 
 support should do the following:
 
-* Create a Pivotal story to track the progress of this update.
-* Checkout the PR branch locally and run `scripts/create_buildpack_email.sh`,
-  supplying highlights section by section when prompted by the script.
-* Either the developer or the reviewer will send out the tenant comms copy via
-  the [google group interface] and our Slack support channels. Emails
-  should have the subject "GOV.UK PaaS - Upcoming buildpack upgrades - $DATE",
-  where $DATE is in the format "11th September 2019"
-* Mark the story as blocked with a blocker in the form `until 2019/09/11`
-* Wait until the given date, then merge the PR to upgrade the buildpacks
+1. Create a Pivotal story to track the progress of this update.
+1. Checkout the PR branch locally and run `scripts/create_buildpack_email.sh`,
+   supplying highlights section by section when prompted by the script.
+1. Either the developer or the reviewer will send out the tenant comms copy via
+   the [Google Groups interface](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/gov-uk-paas-announce). 
+   Emails should have the subject "GOV.UK PaaS - Upcoming buildpack upgrades - $DATE",
+   where $DATE is in the format "11th September 2019"
+1. The same person should send the email copy in our Slack channels: #paas in GDS Slack, #govuk-paas in x-gov Slack
+1. Mark the story as blocked with a blocker in the form `until 2019/09/11`
+1. Wait until the given date, then merge the PR to upgrade the buildpacks
 
 ## Notify the tenants
 
