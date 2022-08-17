@@ -202,17 +202,18 @@ such as a long term support version, we should give a minimum of two weeks notic
 automatically by the &ldquo;generate buildpack bump PR&rdquo; github workflow), the engineer on 
 support should do the following:</p>
 
-<ul>
+<ol>
 <li>Create a Pivotal story to track the progress of this update.</li>
 <li>Checkout the PR branch locally and run <code>scripts/create_buildpack_email.sh</code>,
 supplying highlights section by section when prompted by the script.</li>
 <li>Either the developer or the reviewer will send out the tenant comms copy via
-the [google group interface] and our Slack support channels. Emails
-should have the subject &ldquo;GOV.UK PaaS - Upcoming buildpack upgrades - $DATE&rdquo;,
+the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/gov-uk-paas-announce">Google Groups interface</a>. 
+Emails should have the subject &ldquo;GOV.UK PaaS - Upcoming buildpack upgrades - $DATE&rdquo;,
 where $DATE is in the format &ldquo;11th September 2019&rdquo;</li>
+<li>The same person should send the email copy in our Slack channels: #paas in GDS Slack, #govuk-paas in x-gov Slack</li>
 <li>Mark the story as blocked with a blocker in the form <code>until 2019/09/11</code></li>
 <li>Wait until the given date, then merge the PR to upgrade the buildpacks</li>
-</ul>
+</ol>
 <h2 id="notify-the-tenants">Notify the tenants</h2>
 <p>Send an email to users following <a href="/team/notifying_tenants/#cf-upgrade">the upgrade template</a>.</p>
 <h2 id="problems-encountered-previously">Problems encountered previously</h2>
