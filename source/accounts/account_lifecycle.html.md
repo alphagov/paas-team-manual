@@ -2,7 +2,9 @@
 title: Account lifecycle
 ---
 
-# Account lifecycle
+# Account lifecycle (DEPRECATED)
+
+>As of the [decommissioning anouncement of GOV.UK PaaS]( https://gds.blog.gov.uk/2022/07/12/why-weve-decided-to-decommission-gov-uk-paas-platform-as-a-service/), we are no longer accepting new trial account requests or new upgrades to paid accounts.
 
 ## Handling requests for a new trial organisation (org)
 
