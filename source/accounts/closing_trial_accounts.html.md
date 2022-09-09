@@ -2,7 +2,11 @@
 title: Process for closing GOV.UK PaaS trial accounts
 ---
 
-# Process for closing GOV.UK PaaS trial accounts
+# Process for closing GOV.UK PaaS trial accounts (DEPRECATED)
+
+>Parts of the below process no longer apply as we're no longer offering the option to upgrade to paid accounts.
+
+>The remaining trial accounts have been informed and will be closed once their trial period ends.
 
 This process describes how we close old trial accounts to retain historical billing data and prevent infrastructure bills running up.
 
