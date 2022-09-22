@@ -117,7 +117,7 @@ The body should contain:
 
 We generate our buildpack notification emails using the (semi-)automated
 process described in [the documentation about upgrading
-buildpacks](/guides/upgrading_CF,_bosh_and_stemcells/#buildpacks).
+buildpacks](/guides/upgrade_buildpacks/).
 
 NB Incident comms email templates are saved in Statuspage.
 
