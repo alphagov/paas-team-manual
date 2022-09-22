@@ -41,7 +41,9 @@ gds aws paas-dev-admin -- make dev01 deployer-concourse pipelines BRANCH=UPGRADE
     ```
 where `UPGRADE_BRANCH_NAME` is the name of the branch you created for the upgrade.
 
-1. When the `paas-bootstrap` pipeline finishes, run the `create-cloudfoundry` pipeline. Make sure you use the `main` branch of `paas-cf`.
+1. The `concourse-deploy` job may fail because Concourse rolls itself. If this happens, you will need to trigger a new build for the `concourse-deploy` job.
+
+1. When the `create-bosh-concourse` pipeline finishes, run the `create-cloudfoundry` pipeline. Make sure you use the `main` branch of `paas-cf`.
 
 ## Checking credential rotation
 
