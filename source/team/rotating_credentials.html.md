@@ -53,23 +53,28 @@ $ credhub get -n /prod-lon/prod-lon/cf_admin_password --versions=10
 
 #### Rotating BOSH credentials and certificates
 
-In the `create-bosh-concourse` pipeline there are two rotation jobs under the `credentials`
-tab: `rotate-bosh-credentials`  and `rotate-bosh-leaf-certs`.
 
-To perform the rotation:
+In the `create-bosh-concourse` pipeline, there are 2 rotation jobs under the `credentials`
+tab:
 
-1. Pause the `create-bosh-concourse` pipeline, and ensure it isn't running
-1. Run the `check-certificates` job to see if any certificates need rotation. It will fail if any certificates have expired.
-1. Run the relevant rotation Concourse job (`rotate-bosh-credentials` and/or `rotate-bosh-leaf-certs`)
-1. Unpause the `create-bosh-concourse` pipeline
-1. Trigger the `create-bosh-concourse` pipeline and allow it to run all the way through
+- `drop-bosh-credentials-for-rotation`
+- `drop-bosh-leaf-certs-for-rotation`
 
-If the BOSH TLS certificates have expired, pipeline self-updating will need to be disabled before running the `create-bosh-concourse` pipeline, and enabled afterwards:
+To rotate credentials and certificates:
 
-1. In `paas-bootstrap`
-1. Run `make ENV pipelines BRANCH=main SELF_UPDATE_PIPELINE=false`
-1. Trigger the pipeline
-1. Run `make ENV pipelines BRANCH=main SELF_UPDATE_PIPELINE=true`
+1. Pause the `create-bosh-concourse` pipeline, and make sure it is not running.
+1. Run the `check-certificates` job to see if any certificates need rotation. It will fail if any certificates have expired. If the task succeeds because no certificates have expired and you need to force it to fail because you are testing in a dev environment, add a `-min-remaining-days 400` flag into the `check-certificates.rb` call in the `check-certificates` Concourse task.
+1. Run the relevant rotation Concourse job (`drop-bosh-credentials-for-rotation` and/or `drop-bosh-leaf-certs-for-rotation`).
+1. Unpause the `create-bosh-concourse` pipeline.
+1. Trigger the `create-bosh-concourse` pipeline and allow it to run all the way through.
+
+
+If the BOSH TLS certificates have expired, you will need to disable pipeline self-updating before running the pipeline, and enable pipeline self-updating again afterwards:
+
+1. In `paas-bootstrap`, run `make ENV pipelines BRANCH=main SELF_UPDATE_PIPELINE=false`.
+1. Trigger the pipeline.
+1. Run `make ENV pipelines BRANCH=main SELF_UPDATE_PIPELINE=true`.
+
 
 #### Rotating Cloud Foundry and Prometheus credentials
 
