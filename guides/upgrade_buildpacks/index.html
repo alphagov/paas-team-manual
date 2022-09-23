@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Upgrading Buildpacks - PaaS Team Manual</title>
+
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/upgrade_buildpacks/">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Upgrading Buildpacks - PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/upgrade_buildpacks/" />
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:title" content="Upgrading Buildpacks" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/upgrade_buildpacks/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="../">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#upgrading-buildpacks"><span>Upgrading Buildpacks</span></a>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="upgrading-buildpacks">Upgrading Buildpacks</h1>
+<p>Buildpack upgrades are done separately from platform upgrades because they can impact directly on tenant apps. They are also done on a regular cadence.</p>
+<p>We give at least a week&rsquo;s notice to tenants about buildpack upgrades. If the new version of any buildpack will remove an important version of a language,
+such as a long term support version, we should give a minimum of two weeks notice.</p>
+<p>A PR for the upgrade is automatically created on the first of the month at 9:00 a.m. UTC. There will also be a Slack notification about this.</p>
+<p>Once the buildpack-upgrading PR has been created in the paas-cf repo, the engineer on support should do the following:</p>
+
+<ol>
+<li>Create a Pivotal story to track the progress of this update.</li>
+<li>Checkout the PR branch locally and run <code>scripts/create_buildpack_email.sh</code>,
+supplying highlights section by section when prompted by the script. Highlights are e.g. breaking changes, version deprecations, new versions etc.
+Please note that the changelog generated by the script is reflecting the most recent buildpack upgrades available, so the script should be run close in
+time to the generation of the PR. If it was delayed, adjusting the email for the changes included in the PR may be necessary.</li>
+<li>Ensure the date quoted in the email gives at least 1 weeks notice from the day the email goes out, or 2 weeks for major language changes.</li>
+<li>Get someone to review the email draft you generated.</li>
+<li>Send out the tenant comms copy via
+the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/gov-uk-paas-announce">Google Groups interface</a>.
+Emails should have the subject &ldquo;GOV.UK PaaS - Upcoming buildpack upgrades - $DATE&rdquo;,
+where $DATE is in the format &ldquo;11th September 2019&rdquo;</li>
+<li>Send the email copy in our Slack channels: #paas in GDS Slack, #govuk-paas in x-gov Slack</li>
+<li>Mark the story as blocked with a blocker in the form <code>until 2019/09/11</code>.</li>
+<li>Progress the story so that the PR can be reviewed by an engineer.</li>
+<li>Wait until the given date, then merge the PR to upgrade the buildpacks</li>
+</ol>
+
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="../../accessibility/">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../javascripts/application.js"></script>
+  </body>
+</html>

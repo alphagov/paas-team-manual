@@ -169,24 +169,28 @@ the <code>--versions</code> flag of <code>credhub get</code>:</p>
   value: [redacted previous password]
   version_created_at: "2020-03-11T10:10:13Z"
 </code></pre></div><h4 id="rotating-bosh-credentials-and-certificates">Rotating BOSH credentials and certificates</h4>
-<p>In the <code>create-bosh-concourse</code> pipeline there are two rotation jobs under the <code>credentials</code>
-tab: <code>rotate-bosh-credentials</code>  and <code>rotate-bosh-leaf-certs</code>.</p>
-<p>To perform the rotation:</p>
+<p>In the <code>create-bosh-concourse</code> pipeline, there are 2 rotation jobs under the <code>credentials</code>
+tab:</p>
+
+<ul>
+<li><code>drop-bosh-credentials-for-rotation</code></li>
+<li><code>drop-bosh-leaf-certs-for-rotation</code></li>
+</ul>
+<p>To rotate credentials and certificates:</p>
 
 <ol>
-<li>Pause the <code>create-bosh-concourse</code> pipeline, and ensure it isn&rsquo;t running</li>
-<li>Run the <code>check-certificates</code> job to see if any certificates need rotation. It will fail if any certificates have expired.</li>
-<li>Run the relevant rotation Concourse job (<code>rotate-bosh-credentials</code> and/or <code>rotate-bosh-leaf-certs</code>)</li>
-<li>Unpause the <code>create-bosh-concourse</code> pipeline</li>
-<li>Trigger the <code>create-bosh-concourse</code> pipeline and allow it to run all the way through</li>
+<li>Pause the <code>create-bosh-concourse</code> pipeline, and make sure it is not running.</li>
+<li>Run the <code>check-certificates</code> job to see if any certificates need rotation. It will fail if any certificates have expired. If the task succeeds because no certificates have expired and you need to force it to fail because you are testing in a dev environment, add a <code>-min-remaining-days 400</code> flag into the <code>check-certificates.rb</code> call in the <code>check-certificates</code> Concourse task.</li>
+<li>Run the relevant rotation Concourse job (<code>drop-bosh-credentials-for-rotation</code> and/or <code>drop-bosh-leaf-certs-for-rotation</code>).</li>
+<li>Unpause the <code>create-bosh-concourse</code> pipeline.</li>
+<li>Trigger the <code>create-bosh-concourse</code> pipeline and allow it to run all the way through.</li>
 </ol>
-<p>If the BOSH TLS certificates have expired, pipeline self-updating will need to be disabled before running the <code>create-bosh-concourse</code> pipeline, and enabled afterwards:</p>
+<p>If the BOSH TLS certificates have expired, you will need to disable pipeline self-updating before running the pipeline, and enable pipeline self-updating again afterwards:</p>
 
 <ol>
-<li>In <code>paas-bootstrap</code></li>
-<li>Run <code>make ENV pipelines BRANCH=main SELF_UPDATE_PIPELINE=false</code></li>
-<li>Trigger the pipeline</li>
-<li>Run <code>make ENV pipelines BRANCH=main SELF_UPDATE_PIPELINE=true</code></li>
+<li>In <code>paas-bootstrap</code>, run <code>make ENV pipelines BRANCH=main SELF_UPDATE_PIPELINE=false</code>.</li>
+<li>Trigger the pipeline.</li>
+<li>Run <code>make ENV pipelines BRANCH=main SELF_UPDATE_PIPELINE=true</code>.</li>
 </ol>
 <h4 id="rotating-cloud-foundry-and-prometheus-credentials">Rotating Cloud Foundry and Prometheus credentials</h4>
 <p>In <code>create-cloudfoundry</code> there are four rotation jobs under the <code>credentials</code>
