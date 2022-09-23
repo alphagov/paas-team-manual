@@ -7,7 +7,7 @@
 
     <title>ADR004 - Domain naming scheme - PaaS Team Manual</title>
 
-    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR004-domain-naming-scheme/">
 
@@ -57,7 +57,7 @@
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
             <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
-              <div class="search" data-module="search" data-path-to-site-root="../">
+              <div class="search" data-module="search" data-path-to-site-root="/">
   <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
     <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
     <label class="govuk-label search__label" for="search" aria-hidden="true">
@@ -131,7 +131,7 @@
   <h1 id="adr004-domain-naming-scheme">ADR004: Domain naming scheme</h1>
 <h2 id="context">Context</h2>
 <p>As part of our deployment we have a pipeline, where changes that are made can move from a development environment through to production illustrated thusly:</p>
-<p><a href="../images/pipeline.jpg" rel="noopener noreferrer"><img src="../images/pipeline.jpg" alt="pipeline image" /></a></p>
+<p><a href="../images/pipeline.jpg" rel="noopener noreferrer"><img src="/architecture_decision_records/images/pipeline.jpg" alt="pipeline image" /></a></p>
 <p>There are a number of externally available endpoints that are accessed to manage and view information about the platform, as well as issue commands via the Cloud Foundry API. In addition to this, a URL also needs to be available to access Apps hosted on the platform. These need to be accessed via some sort of sensible URL.</p>
 <p>The reason for splitting system domains from app domains was to prevent applications from stealing traffic to CF components (for example, api.<domain>) or masquerading as official things of the platform (for example, signup.<domain>).</p>
 <h3 id="naming-considerations">Naming considerations</h3>
@@ -256,7 +256,7 @@
 
         <ul class="govuk-footer__inline-list">
             <li class="govuk-footer__inline-list-item">
-              <a class="govuk-footer__link" href="../../accessibility/">Accessibility</a>
+              <a class="govuk-footer__link" href="/accessibility/">Accessibility</a>
             </li>
         </ul>
 
@@ -297,6 +297,6 @@
     </div>
 
     
-    <script src="../../javascripts/application.js"></script>
+    <script src="/javascripts/application.js"></script>
   </body>
 </html>

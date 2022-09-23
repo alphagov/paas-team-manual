@@ -7,7 +7,7 @@
 
     <title>Tenant Application Penetration and Load Testing - PaaS Team Manual</title>
 
-    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/Tenant_Application_Penetration_Testing/">
 
@@ -57,7 +57,7 @@
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
             <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
-              <div class="search" data-module="search" data-path-to-site-root="../">
+              <div class="search" data-module="search" data-path-to-site-root="/">
   <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
     <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
     <label class="govuk-label search__label" for="search" aria-hidden="true">
@@ -302,7 +302,7 @@ cf curl /v2/service_instances?q=organization_guid:$(cf org --guid $ORG) | \
 
         <ul class="govuk-footer__inline-list">
             <li class="govuk-footer__inline-list-item">
-              <a class="govuk-footer__link" href="../../accessibility/">Accessibility</a>
+              <a class="govuk-footer__link" href="/accessibility/">Accessibility</a>
             </li>
         </ul>
 
@@ -343,6 +343,6 @@ cf curl /v2/service_instances?q=organization_guid:$(cf org --guid $ORG) | \
     </div>
 
     
-    <script src="../../javascripts/application.js"></script>
+    <script src="/javascripts/application.js"></script>
   </body>
 </html>

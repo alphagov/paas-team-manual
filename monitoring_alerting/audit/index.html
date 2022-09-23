@@ -7,7 +7,7 @@
 
     <title>Auditing operator and platform events - PaaS Team Manual</title>
 
-    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/monitoring_alerting/audit/">
 
@@ -57,7 +57,7 @@
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
             <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
-              <div class="search" data-module="search" data-path-to-site-root="../">
+              <div class="search" data-module="search" data-path-to-site-root="/">
   <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
     <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
     <label class="govuk-label search__label" for="search" aria-hidden="true">
@@ -134,7 +134,7 @@ store and audit operator and platform events.</p>
 <p><code>index=paas sourcetype=&quot;bosh-audit-event&quot;</code></p></li>
 <li><p>An AWS CloudWatch logs agent on each instance ships events on disk to CloudWatch. CloudWatch then forwards logs to Cyber&rsquo;s Central Security Logging Service (<a href="https://github.com/alphagov/centralised-security-logging-service">CSLS</a>) and stores shipped events for 18 months.</p></li>
 </ol>
-<p><a href="../../diagrams/audit-bosh.svg" rel="noopener noreferrer"><img src="../../diagrams/audit-bosh.svg" alt="Diagram of BOSH events" /></a></p>
+<p><a href="/diagrams/audit-bosh.svg" rel="noopener noreferrer"><img src="/diagrams/audit-bosh.svg" alt="Diagram of BOSH events" /></a></p>
 <h2 id="cloud-foundry">Cloud Foundry</h2>
 <p>In each environment, the following components generate events we should audit:</p>
 
@@ -151,7 +151,7 @@ store and audit operator and platform events.</p>
 <p><code>index=paas sourcetype=&quot;cf-audit-event&quot;</code></p></li>
 <li><p>An AWS CloudWatch logs agent on each instance ships events on disk to CloudWatch. CloudWatch then forwards logs to Cyber&rsquo;s Central Security Logging Service (<a href="https://github.com/alphagov/centralised-security-logging-service">CSLS</a>) and stores shipped events for 18 months.</p></li>
 </ol>
-<p><a href="../../diagrams/audit-cloudfoundry.svg" rel="noopener noreferrer"><img src="../../diagrams/audit-cloudfoundry.svg" alt="Diagram of Cloud Foundry events" /></a></p>
+<p><a href="/diagrams/audit-cloudfoundry.svg" rel="noopener noreferrer"><img src="/diagrams/audit-cloudfoundry.svg" alt="Diagram of Cloud Foundry events" /></a></p>
 
 
             
@@ -166,7 +166,7 @@ store and audit operator and platform events.</p>
 
         <ul class="govuk-footer__inline-list">
             <li class="govuk-footer__inline-list-item">
-              <a class="govuk-footer__link" href="../../accessibility/">Accessibility</a>
+              <a class="govuk-footer__link" href="/accessibility/">Accessibility</a>
             </li>
         </ul>
 
@@ -207,6 +207,6 @@ store and audit operator and platform events.</p>
     </div>
 
     
-    <script src="../../javascripts/application.js"></script>
+    <script src="/javascripts/application.js"></script>
   </body>
 </html>

@@ -7,7 +7,7 @@
 
     <title>ADR040 - BOSH access without SOCKS5 or SSH - PaaS Team Manual</title>
 
-    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR040-bosh-access-without-socks/">
 
@@ -57,7 +57,7 @@
       <div class="app-pane__body" data-module="in-page-navigation">
           <div class="app-pane__toc">
             <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
-              <div class="search" data-module="search" data-path-to-site-root="../">
+              <div class="search" data-module="search" data-path-to-site-root="/">
   <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
     <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
     <label class="govuk-label search__label" for="search" aria-hidden="true">
@@ -122,7 +122,7 @@
 <h2 id="implementation">Implementation</h2>
 <p>In the initial implementation we will place UAA on the BOSH director on the internet using the IP allow list and using Google for SSO.</p>
 <p>Access to both BOSH and CredHub will continue to be through SSH Tunnels during this phase of implementation.</p>
-<p><a href="../images/adr451-bosh-access-without-socks.svg" rel="noopener noreferrer"><img src="../images/adr451-bosh-access-without-socks.svg" alt="architecture" /></a></p>
+<p><a href="../images/adr451-bosh-access-without-socks.svg" rel="noopener noreferrer"><img src="/architecture_decision_records/images/adr451-bosh-access-without-socks.svg" alt="architecture" /></a></p>
 <p>By using this method we are retaining the benefit of using IP allow lists whilst removing the shared credential that is in use.</p>
 <h2 id="status">Status</h2>
 <p>Accepted</p>
@@ -144,7 +144,7 @@
 
         <ul class="govuk-footer__inline-list">
             <li class="govuk-footer__inline-list-item">
-              <a class="govuk-footer__link" href="../../accessibility/">Accessibility</a>
+              <a class="govuk-footer__link" href="/accessibility/">Accessibility</a>
             </li>
         </ul>
 
@@ -185,6 +185,6 @@
     </div>
 
     
-    <script src="../../javascripts/application.js"></script>
+    <script src="/javascripts/application.js"></script>
   </body>
 </html>
