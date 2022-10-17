@@ -12,22 +12,26 @@ We are a multidisciplinary team responsible for the developement and maintenance
 - EL - Engineering Lead Support responsiblities 
 - CL - Comms Lead Support responsibilities
 
+<!-- List is alphabetised -->
 ### Delivery Management
-- Ceri Payne - Senior Delivery Manager (contractor)
 - Emma Pearce - Delivery Manager (CL)
 - Kam Nijjar - Associate Delivery Manager (CL)
 
+<!-- List is alphabetised -->
 ### Engineering
-- Lee Porte - Lead Site Reliability Engineer
 - Andy Hunt - Tech Lead (EL)
-- Sebastian Schmieschek - Tech Lead (EL)
-- Tom Whitwell - Site Reliability Engineer (EL)
-- Robert Scott - Site Reliability Engineer (EL)
-- Will Pearson - Site Reliability Engineer (EL)
+- Ben Corlett - Site Reliability Engineer (contractor)
 - Cat Garcia - Site Reliability Engineer (EL)
+- Jack Joy - Site Reliability Engineer (contractor)
+- Jani Kraner - Front End Developer (CL)
+- Lee Porte - Lead Site Reliability Engineer
 - Malcolm Saunders - Site Reliability Engineer (contractor)
 - Nimalan Kirubakaran - Developer
-- Jani Kraner - Front End Developer (CL)
+- Panos Xynos - Site Reliability Engineer (contractor)
+- Robert Scott - Site Reliability Engineer (EL)
+- Sebastian Schmieschek - Tech Lead (EL)
+- Tom Whitwell - Site Reliability Engineer (EL)
+- Will Pearson - Site Reliability Engineer (EL)
 
 ### Product Management
 - Lisa Scott - Senior Product Manager (CL)
