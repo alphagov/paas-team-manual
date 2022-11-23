@@ -18,6 +18,7 @@ title: PaaS Team Manual
  - [Responding to AWS alerts](team/responding_to_aws_alert/)
 
 ### How-to
+ - [How to close billable accounts](accounts/close_billable_accounts/)
  - [How to do common support tasks](guides/common_support_tasks/)
  - [How to do user and organisation management](support/CF_UAA_user_management/)
  - [How to use GPG](guides/GPG/)
