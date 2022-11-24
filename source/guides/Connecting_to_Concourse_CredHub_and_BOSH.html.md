@@ -25,8 +25,6 @@ make ssh_concourse
 
 ## Connecting bosh_cli to BOSH
 
-<a id="connecting-bosh_cli-to-bosh"></a>
-
 A Makefile task in `paas-bootstrap` pulls a Docker image,
 sets some environment variables to aid with signing in,
 and runs a container targeting BOSH:
