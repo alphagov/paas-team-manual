@@ -11,7 +11,7 @@ gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby]
 # Include the tech docs gem
 gem 'govuk_tech_docs', '~> 3.2'
 
-gem 'html-proofer', '~> 4.0'
+gem 'html-proofer', '~> 5.0'
 
 gem 'middleman-gh-pages', '~> 0.4'
 
