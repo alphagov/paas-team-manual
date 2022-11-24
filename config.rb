@@ -10,7 +10,7 @@ after_build do |builder|
         :assume_extension => true,
         :allow_hash_href => true,
         :disable_external => true,
-        :url_swap => { config[:tech_docs]['host'] => '' },
+        :swap_urls => { config[:tech_docs]['host'] => '' },
     }).run
   rescue RuntimeError => e
     raise e unless e.to_s =~ /HTML-Proofer found .* failure/
