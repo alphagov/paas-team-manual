@@ -22,3 +22,6 @@ ga_tracking_id:
 max_toc_heading_level: 6
 
 enable_search: true
+
+# Prevent robots from indexing
+prevent_indexing: true
