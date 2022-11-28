@@ -103,8 +103,6 @@ Essential information and actions tenants need to carry out in order to ensure t
 
 ### CF upgrade email template
 
-<a id="cf-upgrade"></a>
-
 Subject (ex): GOV.UK PaaS - Cloud Foundry changes - 17th March 2017
 
 The body should contain:

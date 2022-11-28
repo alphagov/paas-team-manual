@@ -7,10 +7,10 @@ page '/google*.html', directory_index: false
 after_build do |builder|
   begin
     HTMLProofer.check_directory(config[:build_dir], {
-        :assume_extension => true,
         :allow_hash_href => true,
         :disable_external => true,
-        :url_swap => { config[:tech_docs]['host'] => '' },
+        :enforce_https => false,
+        :swap_urls => { config[:tech_docs]['host'] => '' },
     }).run
   rescue RuntimeError => e
     raise e unless e.to_s =~ /HTML-Proofer found .* failure/
