@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Close billable accounts - PaaS Team Manual</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/accounts/close_billable_accounts/">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Close billable accounts - PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/accounts/close_billable_accounts/" />
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:title" content="Close billable accounts" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/accounts/close_billable_accounts/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#close-billable-accounts"><span>Close billable accounts</span></a>
+    <ul>
+      <li>
+        <a href="#accounts-closure-process"><span>Accounts closure process</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="close-billable-accounts">Close billable accounts</h1>
+<p>This process describes how we close accounts as tenants migrate off the GOV.UK PaaS platform.</p>
+<p>A closed account:</p>
+
+<ul>
+<li>is unusable by the tenant (no cf push, cf start, cf stop or cf scale)</li>
+<li>has no services or data</li>
+<li>has no applications</li>
+<li>is flagged as suspended</li>
+<li>has no users associated with the Cloud Foundry org</li>
+<li>incurs no costs to us</li>
+<li>exists as an empty shell in Cloud Foundry</li>
+</ul>
+<h2 id="accounts-closure-process">Accounts closure process</h2>
+
+<ol>
+<li>Tenant (an org manager or billing manager) confirms that they are ready to close their org account with us.</li>
+<li>Support engineer performs all technical decommissioning tasks.
+
+<ul>
+<li>Suspend org</li>
+<li>Remove all users from the org</li>
+<li>Delete all backing services</li>
+<li>Delete all apps</li>
+<li>Spaces can be left alone, because they don’t incur a cost</li>
+</ul></li>
+<li>Support engineer confirms the date when tasks in step 2 were completed, e.g. <em>“emptied and suspended <date>”</em> in column E of the Trial and billable accounts tab in <a href="https://docs.google.com/spreadsheets/d/1bZP7W-5nJxDicJ2lc_eT873zXXjXnHh-qGYJobHUIv8/edit#gid=40753783">GOV.UK PaaS usage and adoption tracker - 2020-07-06</a> </li>
+<li>Support engineer replies to the tenant confirming the date of “closure”. <strong>For external tenants</strong>: Inform GDS Business Operations (PMO) of the tenant&rsquo;s closure date by CC-ing them into the ticket (GDS Business Operations or PMO).</li>
+<li>Mark the ticket as SOLVED.</li>
+</ol>
+
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility/">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
