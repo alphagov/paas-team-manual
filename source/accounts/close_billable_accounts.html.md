@@ -20,7 +20,7 @@ A closed account:
 
 1. Tenant (an org manager or billing manager) confirms that they are ready to close their org account with us.
 2. Support engineer performs all technical decommissioning tasks.
- - Suspend org
+ - Suspend org (`scripts/suspend-org.sh ${ORG_NAME}` in `paas-cf`)
  - Remove all users from the org
  - Delete all backing services
  - Delete all apps
