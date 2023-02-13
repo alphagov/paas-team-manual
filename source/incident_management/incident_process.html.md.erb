@@ -24,7 +24,7 @@ If you’ve been involved in an out-of-hours incident, you are not required to w
 
 ### Starting an incident
 
-1. Acknowledge the incident on PagerDuty and decide if the alerts you have received and their impact constitute an incident or not. Incidents generally have a negative impact on the availability of tenant services in some way or constitute a [cyber security incident](#what qualifies as a cyber security incident). Problems such as our billing smoke tests failing may indicate a tenant-impacting problem but do not in themselves constitute an incident.
+1. Acknowledge the incident on PagerDuty and decide if the alerts you have received and their impact constitute an incident or not. Incidents generally have a negative impact on the availability of tenant services in some way or constitute a [cyber security incident](#what-qualifies-as-a-cyber-security-incident). Problems such as our billing smoke tests failing may indicate a tenant-impacting problem but do not in themselves constitute an incident.
 2. Document briefly which steps you are taking to resolve the incident in the #paas-incident Slack channel. If the situation impacts tenants, [escalate to the person on communication](https://support.pagerduty.com/docs/response-plays#run-a-response-play-on-an-incident) (comms) support using PagerDuty so they can communicate with tenants. 
 3. The #paas-incident channel has a bookmarked hangout link. Join this video call to communicate with the comms lead and talk through what you’re doing and what’s happening.  
 4. If you decide it’s not an incident after investigating further, you must resolve the incident in PagerDuty. If you’re working out of hours, decide whether the issue needs a resolution immediately or whether an engineer can resolve it in hours. If you are sure it is an incident, [agree on a priority](https://www.cloud.service.gov.uk/support-and-response-times/#response-times-for-services-in-production) for the incident with the comms lead. You can change this priority level later as more information emerges.
@@ -57,7 +57,7 @@ Examples of cyber security incidents include:
 - unauthorised access to platform infrastructure
 - exploitation of vulnerabilities in platform APIs
 
-See the appendix on what qualifies as a [cyber security incident](#what qualifies as a cyber security incident) for more information.
+See the appendix on what qualifies as a [cyber security incident](#what-qualifies-as-a-cyber-security-incident) for more information.
 
 As per [our shared responsibility model](https://www.cloud.service.gov.uk/security/), we are not responsible for the code tenants deploy. As a result, we are not responsible for spotting, preventing, or mitigating cyber security incidents within their services. However, we may spot exploitation of a vulnerability in a tenant service in our logs, at which point we should inform the tenant and give them the information we have. 
 
@@ -130,7 +130,7 @@ We follow the [NCSC’s definition of what constitutes a cyber incident](https:/
 
 For an incident to be considered a cyber security incident, it should be an active breach and/or involve exposure of data rather than these issues just being a hypothetical possibility. For example, if we discover that some GOV.UK PaaS software has a vulnerability with a low likelihood of exploitation, we would not consider it a cyber security incident. However, if we learned that an attacker had access to GOV.UK PaaS tenant data, we would consider it a cyber security incident.
 
-If you’re in doubt about whether to declare a cyber security incident, you can [seek help by escalating](#escalation paths).
+If you’re in doubt about whether to declare a cyber security incident, you can [seek help by escalating](#escalation-paths).
 
 ### Defining an incident priority
 
