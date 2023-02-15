@@ -77,4 +77,4 @@ If the out of hours 1st line support has decided that they need help with tenant
 * To provide leadership-level backup for engineers if an incident requires leadership decision making or a broader response involving updating comms or activating other engineers.
 
 
-You can find more information on the PaaS [incident Process](/incident_management/incident_process/#incident-process).
+You can find more information on the PaaS [incident Process](/incident_management/incident_process/).
