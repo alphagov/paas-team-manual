@@ -14,7 +14,7 @@ Depending on what it is we want to tell users, we have three different channels 
 
 ## Sending incident alerts and updates
 
-Follow the guidance in [this section](/incident_management/incident_process/#incident-comms-lead) of the team manual if you're managing incident comms and you need to send alerts and updates to tenants.
+Follow the guidance in the [incident management process section](/incident_management/incident_process/) of the team manual if you're managing incident comms and you need to send alerts and updates to tenants.
 
 ## Sending platform change and new feature announcements
 
