@@ -162,3 +162,4 @@ This section contains Architecture Decision Records (ADR) as described in this b
  - [ADR-048 Billing: Include record for services/resources provisioned for tenants](architecture_decision_records/ADR048-add-resources-table/)
  - [ADR-049 Billing: Decouple what we're calculating bills for from how the bills are calculated](architecture_decision_records/ADR049-calculate-bills/)
  - [ADR-050 Plans for the cloudapps.digital domain post platform retirement](architecture_decision_records/ADR050-cloudapps-digital-domain)
+ - [ADR051 - How we plan to migrate from cflinuxfs3 to cflinuxfs4](architecture_decision_records/ADR051-cflinuxfs3-to-cflinuxfs4-migration)
