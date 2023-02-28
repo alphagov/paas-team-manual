@@ -22,6 +22,7 @@ title: PaaS Team Manual
  - [How to do common support tasks](guides/common_support_tasks/)
  - [How to do user and organisation management](support/CF_UAA_user_management/)
  - [How to use GPG](guides/GPG/)
+ - [How to respond to CVEs and upgrade stemcells and cflinuxfs](guides/cve_stemcell_cflinuxfs/)
  - [How to enable Github OAuth for your dev environment](guides/Github_oAuth_in-Dev/)
  - [How to sign into your CF admin account](guides/cf_admin_users/)
  - [How to connect to Concourse, Credhub, and BOSH](guides/Connecting_to_Concourse_CredHub_and_BOSH/)
