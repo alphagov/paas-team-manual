@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Responding to CVEs, upgrading stemcells and cflinuxfs - PaaS Team Manual</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/cve_stemcell_cflinuxfs/">
+
+      <meta name="robots" content="noindex" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Responding to CVEs, upgrading stemcells and cflinuxfs - PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/cve_stemcell_cflinuxfs/" />
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:title" content="Responding to CVEs, upgrading stemcells and cflinuxfs" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/cve_stemcell_cflinuxfs/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#responding-to-cves-upgrading-stemcells-and-cflinuxfs"><span>Responding to CVEs, upgrading stemcells and cflinuxfs</span></a>
+    <ul>
+      <li>
+        <a href="#how-we-learn-about-cves"><span>How we learn about CVEs</span></a>
+      </li>
+      <li>
+        <a href="#how-to-triage-cves"><span>How to triage CVEs</span></a>
+      </li>
+      <li>
+        <a href="#how-to-address-the-cve"><span>How to address the CVE</span></a>
+      </li>
+      <li>
+        <a href="#upgrading-stemcells-and-cflinuxfs"><span>Upgrading stemcells and cflinuxfs</span></a>
+        <ul>
+          <li>
+            <a href="#obtaining-latest-bionic-stemcell-and-cflinuxfs-releases"><span>Obtaining latest bionic stemcell and cflinuxfs releases</span></a>
+          </li>
+          <li>
+            <a href="#testing-and-deploying"><span>Testing and deploying</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="responding-to-cves-upgrading-stemcells-and-cflinuxfs">Responding to CVEs, upgrading stemcells and cflinuxfs</h1>
+<p>The team must be prepared to triage and address common vulnerabilities and exposures (CVEs).
+Most CVEs also require upgrading the <a href="https://bosh.io/docs/stemcell/">stemcells</a> and <a href="https://github.com/cloudfoundry/cflinuxfs3">cflinuxfs</a>.</p>
+<h2 id="how-we-learn-about-cves">How we learn about CVEs</h2>
+<p>We learn about CVEs through:</p>
+
+<ul>
+<li>automated CVE notifications through <a href="https://govuk.zendesk.com/auth/v2/login/signin?return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fagent%2Ffilters%2F360001049225&amp;theme=hc&amp;locale=1176&amp;brand_id=3194076&amp;auth_origin=3194076%2Cfalse%2Ctrue&amp;role=agent">Zendesk</a> from the <a href="https://www.cloudfoundry.org/foundryblog/security-advisory/">CloudFoundry security RSS feed</a> – the feed is converted to Zendesk tickets using <a href="https://ifttt.com/">IFTTT</a></li>
+<li>notifications from <a href="https://lists.cloudfoundry.org/g/cf-dev">cf-dev mailing list</a> from CloudFoundry</li>
+<li>notifications in Slack (for example, the <a href="https://cloudfoundry.slack.com/">Cloud Foundry Slack channel</a>)
+<a href="https://github.com/alphagov/paas-admin/pulls?q=is%3Apr+author%3Aapp%2Fdependabot">Dependabot</a> (for frontend vulnerabilities)</li>
+</ul>
+<h2 id="how-to-triage-cves">How to triage CVEs</h2>
+<p>To triage CVEs, you should consider:</p>
+
+<ul>
+<li>which libraries or tools are affected</li>
+<li>how severely the libraries or tools are affected</li>
+<li>how the vulnerability affects us or tenants</li>
+<li>the likelihood of the vulnerability being exploited – for example, what kind of library or program is it? Would it be public facing in some way? Is it likely to be fed user input in a tenant application? What would an attacker need to do to get into a position where they could exploit it on PaaS?</li>
+</ul>
+<p>You should then record the priority decision (high, low) in the ticket.</p>
+<h2 id="how-to-address-the-cve">How to address the CVE</h2>
+<p>If the CVE is high priority, you should:</p>
+
+<ul>
+<li>immediately create a story in Pivotal Tracker with all known information about the CVE (if there are multiple CVEs, merge them into one Pivotal story)</li>
+<li>link to the original CVE report</li>
+<li>identify which components are affected</li>
+<li>identify what needs to be done to mitigate the issue (for example, upgrading to a newer version)</li>
+</ul>
+<p>If the CVE is low priority or there is a low likelihood of exploitation, you should:</p>
+
+<ul>
+<li>put a ticket at the top of the icebox section in Pivotal Tracker and prioritise it at the next session</li>
+<li>check if you can address the CVE by upgrading to a newer stemcell and cflinuxfs3 or cflinuxfs4 version during the regular platform upgrade process</li>
+</ul>
+<p>For both high and low priority CVEs, you should:</p>
+
+<ul>
+<li>use instructions from the CVE report to mitigate the issue (for example, upgrading to a newer version of the affected component) or find other practical ways to mitigate the issue (for example, disabling features or altering configurations)</li>
+<li>record the previous and new version of the affected component if upgrading</li>
+<li>decide if the comms person needs to contact tenants with information about vulnerabilities, changes or new implementations (for example, if tenants need a buildpack upgrade)</li>
+<li>record the result on the Pivotal story associated with the issue</li>
+</ul>
+<h2 id="upgrading-stemcells-and-cflinuxfs">Upgrading stemcells and cflinuxfs</h2>
+<h3 id="obtaining-latest-bionic-stemcell-and-cflinuxfs-releases">Obtaining latest bionic stemcell and cflinuxfs releases</h3>
+<p>You can find the <a href="https://bosh.io/stemcells/bosh-aws-xen-hvm-ubuntu-jammy-go_agent">latest version of Ubuntu stemcells (Ubuntu Jammy)</a> 
+on the Cloud Foundry BOSH website, along with the <a href="https://bosh.io/releases/github.com/cloudfoundry/cflinuxfs3-release?all=1#latest">latest version of cflinuxfs3</a> and <a href="https://bosh.io/releases/github.com/cloudfoundry/cflinuxfs4-release?all=1#latest">cflinuxfs4</a>.</p>
+<h3 id="testing-and-deploying">Testing and deploying</h3>
+<p>In GitHub, create a pull request in the <code>paas-cf</code> and <code>paas-bootstrap</code> repositories (see sample pull requests for <a href="https://github.com/alphagov/paas-cf/pull/2946/files">updating <code>paas-cf</code></a> and <a href="https://github.com/alphagov/paas-bootstrap/pull/509/files">updating <code>paas-bootstrap</code></a>), then deploy to a dev environment. 
+If the deployment is successful, merge the pull request and deploy to both staging and production.</p>
+
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility/">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
