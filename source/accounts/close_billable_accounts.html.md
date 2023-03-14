@@ -25,6 +25,9 @@ A closed account:
  - Delete all backing services
  - Delete all apps
  - Spaces can be left alone, because they don’t incur a cost
-3. Support engineer confirms the date when tasks in step 2 were completed, e.g. *“emptied and suspended <date>”* in column E of the Trial and billable accounts tab in [GOV.UK PaaS usage and adoption tracker - 2020-07-06](https://docs.google.com/spreadsheets/d/1bZP7W-5nJxDicJ2lc_eT873zXXjXnHh-qGYJobHUIv8/edit#gid=40753783) 
-4. Support engineer replies to the tenant confirming the date of “closure”. **For external tenants**: Inform GDS Business Operations (PMO) of the tenant's closure date by CC-ing them into the ticket (GDS Business Operations or PMO).
+3. In [GOV.UK PaaS - Tenant migration tracker](https://docs.google.com/spreadsheets/d/1LFxVqSfZ7fH7PDF-mh57M-X1fLUdmR770a-JfPCp9k8/edit#gid=1195828254) find the organisation name in "Service Status Summary" tab and 
+ - Add link to the Zendesk account closure request ticket to column M
+ - Update the column O (service_count) number to 0
+ - Update column P with the decomission date
+4. Reply to the tenant confirming the date of “closure”. **For external tenants**: Inform GDS Business Operations (PMO) of the tenant's closure date by CC-ing them into the ticket (GDS Business Operations or PMO).
 5. Mark the ticket as SOLVED.
