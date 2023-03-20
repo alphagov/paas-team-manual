@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>ADR051 - How we plan to migrate from cflinuxfs3 to cflinuxfs4 - PaaS Team Manual</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR051-cflinuxfs3-to-cflinuxfs4-migration/">
+
+      <meta name="robots" content="noindex" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="ADR051 - How we plan to migrate from cflinuxfs3 to cflinuxfs4 - PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR051-cflinuxfs3-to-cflinuxfs4-migration/" />
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:title" content="ADR051 - How we plan to migrate from cflinuxfs3 to cflinuxfs4" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/architecture_decision_records/ADR051-cflinuxfs3-to-cflinuxfs4-migration/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#adr0051-how-we-plan-to-migrate-from-cflinuxfs3-to-cflinuxfs4"><span>ADR0051: How we plan to migrate from cflinuxfs3 to cflinuxfs4</span></a>
+    <ul>
+      <li>
+        <a href="#context"><span>Context</span></a>
+        <ul>
+          <li>
+            <a href="#complicating-factors"><span>Complicating factors</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#decision"><span>Decision</span></a>
+        <ul>
+          <li>
+            <a href="#risk-mitigations-controls"><span>Risk mitigations/controls</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#status"><span>Status</span></a>
+      </li>
+      <li>
+        <a href="#consequences"><span>Consequences</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="adr0051-how-we-plan-to-migrate-from-cflinuxfs3-to-cflinuxfs4">ADR0051: How we plan to migrate from cflinuxfs3 to cflinuxfs4</h1>
+<h2 id="context">Context</h2>
+<p><a href="https://github.com/cloudfoundry/cflinuxfs3"><code>cflinuxfs3</code></a> is a configured and packaged
+deployment of <a href="https://releases.ubuntu.com/18.04/">Ubuntu Bionic</a> which we use as the
+base layer (stack) for the containers we build from tenant source code. It is maintained 
+by the CloudFoundry Foundation, who ensure that new releases of it contain fixes and
+mitigations for relevant CVEs.</p>
+<p>In April 2023, Ubuntu Bionic (18.04) will reach <a href="https://wiki.ubuntu.com/Releases">the end of its standard support period</a>.
+and will no longer receive security updates. The CloudFoundry Foundation also will cease 
+support for <code>cflinuxfs3</code> at the same time, with the same effect. Relying on it once
+it is out of support presents a greater risk to us, because any subsequently discovered 
+exploitable vulnerability will not be mitigated or patched.</p>
+<p><a href="https://releases.ubuntu.com/22.04/">Ubuntu Jammy (22.04)</a> is the successor to Ubuntu Bionic, 
+and <code>cflinuxfs4</code> succeeds <code>cflinuxfs3</code>.</p>
+<p>Before April 2023, the CloudFoundry Foundation will <a href="https://github.com/cloudfoundry/cf-deployment/issues/1047">introduce <code>cflinuxfs4</code> to <code>cf-deployment</code>
+and make it the default stack</a>, and 
+after April it will <a href="https://github.com/cloudfoundry/cf-deployment/issues/1048">remove <code>cflinuxfs3</code> from <code>cf-deployment</code> by default</a>
+but provide an ops file to reintroduce it optionally.</p>
+<h3 id="complicating-factors">Complicating factors</h3>
+<p>Reaching the end of a support period for a piece of software is common, and upgrading to 
+the next version isn&rsquo;t typically a big deal. However, in the case of <code>cflinuxfs3</code> to 
+<code>cflinuxfs4</code> there are some complicating factors:</p>
+
+<ul>
+<li><p>Tenant applications implicitly depend on the operating system and the exact collection
+of libraries (and versions) supplied. Library major versions often change between OS
+releases (for example <a href="https://packages.ubuntu.com/bionic/openssl">Bionic has <code>openssl</code> 1.1.1</a> 
+while <a href="https://packages.ubuntu.com/jammy/openssl">Jammy has <code>openssl</code> 3.0.2</a>) and we
+cannot assume that changing the base layer of the container images won&rsquo;t break 
+applications.
+<br /><br />
+Tenants must test their applications against <code>cflinuxfs4</code> and resolve any problems for 
+themselves. We cannot provide much support in this, given the number of applications 
+on the platform and the variety of technologies in use.
+<br /><br /></p></li>
+<li><p>Tenants are often slow to respond to communications and calls to action. This is a 
+problem we have faced through the lifetime of the platform, and we usually build this 
+into our plans by providing a long window (for example 9 months for Postgres 10 deprecation)
+in which to act and issuing regular reminders. Unfortunately in this case we have not 
+given ourselves a long lead time, and as of 14th Feb 2023 the CloudFoundry Foundation 
+still has 3 buildpacks missing support for <code>cflinuxfs4</code>.
+<br /><br />
+Regardless, we must provide an adequate timeframe for tenants to act in.
+<br /><br /></p></li>
+<li><p>GOV.UK PaaS is in the middle of being decommissioned, and every tenant is being asked
+to migrate away from the platform. For many of them this is consuming a significant
+proportion of their development capacity, and in most cases they will have to work out
+how to prioritize migration activities against the work to swap to <code>cflinuxfs4</code>.
+<br /><br />
+We must set our expectations of how quickly tenants will act accordingly. 
+Some may choose not to transition to <code>cflinuxfs4</code>, in favour of trying to migrate away 
+from the platform before any <code>cflinuxfs3</code> deadline.</p></li>
+</ul>
+<h2 id="decision">Decision</h2>
+<p>Given the complicating factors, and the risks associated with running an unsupported base 
+operating system version, we will do the following</p>
+
+<ol>
+<li>Offer <code>cflinuxfs4</code> on GOV.UK PaaS as soon as it is available, but keep <code>cflinuxfs3</code> 
+as the default</li>
+<li>Communicate the upcoming change to tenants</li>
+<li>Provide monthly reminders alongside decommissioning news</li>
+<li>Provide a 4-month window in which to make the change</li>
+<li>Make <code>cflinuxfs4</code> the default at the end of the 4-month period</li>
+<li>Offer <code>cflinuxfs3</code> until the platform is fully decommissioned to support those tenants 
+who cannot, or choose not to, make the switch. Tenants who do this will be doing so
+at their own risk, and must clear it with their own Information Assurance teams, 
+risk management processes etc.</li>
+</ol>
+<h3 id="risk-mitigations-controls">Risk mitigations/controls</h3>
+<p>Basing tenant applications on an unsupported OS version presents us a medium level risk, due
+to the opportunity for vulnerabilities of varying severity to go un-patched, and exploitation to go
+unnoticed. To account for this we will monitor <a href="https://ubuntu.com/security/notices?order=newest&amp;release=bionic&amp;details=">the Ubuntu Security Notices for Bionic</a>
+so that we have continued visibility of any vulnerabilities. The Cloud Foundry Foundation Vulnerability Management 
+Working Group will also continue to publish Ubuntu Security Notices for Bionic for as long as it is supported in any 
+way in <a href="https://github.com/cloudfoundry/cf-deployment"><code>cf-deployment</code></a>. On notification of a CVE the team will be 
+responsible for understanding its scope and severity. We will inform tenants as necessary, and  point them to mitigations 
+they can put in place.</p>
+<p>We mitigate the risk somewhat by reducing the number of instances in which a container is running
+with <code>cflinuxfs3</code> as the base. We can do this by encouraging tenants to move to <code>cflinuxfs4</code>, and 
+making it clear to them that if, at the end of the 4-month period, they are still using <code>cflinuxfs3</code>
+then they are responsible for the risk to their own applications.</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<p>As a consequence of the above decision, we will continue to base tenant applications on Ubuntu Bionic (<code>cflinuxfs3</code>), 
+by default, for 4 months (April - July 2023). For 3 of those months (May - July 2023), Ubuntu Bionic will 
+be an unsupported operating system version. This is an elevated risk that we accept,
+and which tenants can mitigate for themselves by moving to <code>cflinuxfs4</code>.</p>
+<p>We are also choosing to offer the unsupported operating system for the rest of the lifetime of 
+the platform, but not as the default after a 4-month period. This will allow us to support tenants 
+who either cannot or will not switch to <code>cflinuxfs4</code>, and allows the risk to be assumed by the 
+tenant selectively.</p>
+<p>We think our existing application isolation and security controls are sufficient 
+to protect the platform and tenants in the event of a serious, exploitable vulnerability being
+discovered in Ubuntu Bionic after it leaves its standard support period.</p>
+
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility/">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
