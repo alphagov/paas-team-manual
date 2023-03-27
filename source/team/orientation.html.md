@@ -21,8 +21,8 @@ We are a multidisciplinary team responsible for the developement and maintenance
 ### Engineering
 - Andy Hunt - Tech Lead (EL)
 - Ben Corlett - Site Reliability Engineer (contractor)
-- Cat Garcia - Site Reliability Engineer (EL)
 - Jack Joy - Site Reliability Engineer (contractor)
+- Jamie Van Dyke - Site Reliability Engineer (contractor)
 - Jani Kraner - Front End Developer (CL)
 - Lee Porte - Lead Site Reliability Engineer
 - Malcolm Saunders - Site Reliability Engineer (contractor)
@@ -35,6 +35,9 @@ We are a multidisciplinary team responsible for the developement and maintenance
 
 ### Product Management
 - Lisa Scott - Senior Product Manager (CL)
+
+### Programme Management
+- Chris Wells - Programme Manager
 
 ### Technical Architecture
 - Paul Dougan - Technical Architect (CL)
