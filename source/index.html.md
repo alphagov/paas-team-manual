@@ -52,6 +52,7 @@ title: PaaS Team Manual
  - [How to resolve Kibana indexing errors](guides/resolving_Kibana_indexing_errors/)
  - [How to get the Google Search Console back](guides/gain_access_to_google_search_console/)
  - [How to manage frontend dependencies](guides/manage_frontend_dependencies/)
+ - [How to use the fast-startup-and-shutdown pipelines](guides/fast-startup-and-shutdown/)
 
 ### Other information
  - [Our orgs on the paas](team/our_orgs_on_the_paas/)
