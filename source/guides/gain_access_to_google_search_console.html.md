@@ -2,6 +2,8 @@
 title: How to get Google Search Console Back
 ---
 
+# How to get Google Search Console Back
+
 To maintain access to the [Google Search Console](https://search.google.com/search-console/welcome), we require at least one verified site owner for the domain.
 
 An individual can verify ownership by adding a `google-site-verification` token as a `TXT` record in our DNS service ([Route53](https://aws.amazon.com/route53/))
