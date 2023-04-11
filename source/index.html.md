@@ -28,6 +28,7 @@ title: PaaS Team Manual
  - [How to connect to Concourse, Credhub, and BOSH](guides/Connecting_to_Concourse_CredHub_and_BOSH/)
  - [How to set up VPC Peering](guides/vpc_peering/)
  - [How to upgrade BOSH](guides/upgrade_bosh/)
+ - [How to upgrade Concourse](guides/upgrade_concourse/)
  - [How to upgrade cf-deployment](guides/upgrade_cf-deployment/)
  - [How to upgrade buildpacks](guides/upgrade_buildpacks/)
  - [How to update Logstash filters in Logit](guides/editing_logstash_filters/)
