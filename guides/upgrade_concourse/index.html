@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>PaaS Team Manual</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/upgrade_concourse/">
+
+      <meta name="robots" content="noindex" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
+      <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/upgrade_concourse/" />
+
+      <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="PaaS Team Manual" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/upgrade_concourse/" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="https://team-manual.cloud.service.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          PaaS Team Manual
+        </span>
+      </a>
+        <strong class="govuk-tag">Internal</strong>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://team-manual.cloud.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#upgrading-concourse"><span>Upgrading Concourse</span></a>
+    <ul>
+      <li>
+        <a href="#preparing-the-pull-requests"><span>Preparing the pull requests</span></a>
+        <ul>
+          <li>
+            <a href="#testing-the-upgrade-in-a-dev-environment"><span>Testing the upgrade in a dev environment</span></a>
+          </li>
+          <li>
+            <a href="#testing-the-upgrade-for-concourse-lite"><span>Testing the upgrade for Concourse Lite</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#merging-the-upgrade"><span>Merging the upgrade</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              <div class="page-banner">
+    <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
+  </div>
+
+  <h1 id="upgrading-concourse">Upgrading Concourse</h1>
+<p>This document explains how to upgrade Concourse to a newer version.</p>
+<h2 id="preparing-the-pull-requests">Preparing the pull requests</h2>
+<p>You can find new releases of Concourse in the <a href="https://bosh.io/releases/github.com/concourse/concourse-bosh-release?all=1">documentation for the Cloud Foundry BOSH releases</a>. Find the version you want to upgrade to and carry out the following steps:</p>
+
+<ol>
+<li><p>Update the Concourse release in the <a href="https://github.com/alphagov/paas-bootstrap/blob/main/vagrant/docker-compose.yml">concourse manifest</a> with the new <code>version</code>, <code>url</code> and <code>sha</code>. For example:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>version: "7.8.3"
+url:"https://bosh.io/d/github.com/concourse/concourse-bosh-release?v=7.8.3"
+sha1: "5d80eb00215b59b4c93f0938cb465fd28036b04d"
+</code></pre></div></li>
+<li><p>Update the version for the <a href="https://github.com/alphagov/paas-bootstrap/blob/main/vagrant/docker-compose.yml">vagrant image</a>. For example:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>concourse-web:
+image: concourse/concourse:7.8.3
+...
+concourse-worker-colocated:
+image: concourse/concourse:7.8.3
+...
+concourse-worker-normal:
+image: concourse/concourse:7.8.3
+</code></pre></div></li>
+<li><p>Create a pull request in <a href="https://github.com/alphagov/paas-bootstrap"><code>paas-bootstrap</code></a>.</p></li>
+</ol>
+<h3 id="testing-the-upgrade-in-a-dev-environment">Testing the upgrade in a dev environment</h3>
+
+<ol>
+<li>Claim one of the dev environments by sending a message to the <a href="https://gds.slack.com/archives/CAEHMHGJ2">#paas-internal</a> channel on GDS Slack, tagging @paas-devs.</li>
+<li><p>Make sure the current branch of <code>paas-bootstrap</code> deployed by the <strong>create-bosh-concourse</strong> pipeline to the environment is <code>main</code> and has been run with the latest commit. If not, run the following command, where <code>$ENV</code> is the name of the environment (for example “dev01”), and where <code>$ACCOUNT</code> is the name of the AWS account targeted (for example “dev”):</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws paas-$ACCOUNT-admin -- make $ENV deployer-concourse pipelines BRANCH=main
+</code></pre></div><p>After this, re-run the pipeline.</p></li>
+<li><p>Pause the <strong>create-cloudfoundry</strong> pipeline in the dev environment so a Cloud Foundry deployment cannot happen at the same time.</p></li>
+<li><p>Update the <strong>create-bosh-concourse</strong> pipeline to deploy your <code>paas-bootstrap</code> branch to the dev environment. You can update it by running:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws paas-dev-admin -- make $ENV deployer-concourse PIPELINES branch=YOUR_BRANCH_NAME
+</code></pre></div></li>
+<li><p>The <strong>concourse-deploy</strong> job might fail because the BOSH Director destroys the Concourse worker. This is expected behaviour, as the destruction of the Concourse worker has no impact on BOSH’s ability to continue its work. If this happens, you will need to trigger a new build for the <strong>concourse-deploy</strong> job.</p></li>
+<li><p>When the <strong>create-bosh-concourse</strong> pipeline finishes, run the <strong>create-cloudfoundry</strong> pipeline using the <code>main</code> branch of <code>paas-cf</code>.</p></li>
+</ol>
+<h3 id="testing-the-upgrade-for-concourse-lite">Testing the upgrade for Concourse Lite</h3>
+
+<ol>
+<li>Claim one of the dev environments by sending a message to the <a href="https://gds.slack.com/archives/CAEHMHGJ2">#paas-internal</a> channel on GDS Slack, tagging @paas-devs..</li>
+<li><p>Launch Concourse Lite.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws paas-$ACCOUNT-admin -- make $ENV deployer-concourse bootstrap
+</code></pre></div></li>
+<li><p><a href="http://127.0.0.1:8080/login">Log into Concourse Lite</a> using the credentials shown in the output from Step 2.</p></li>
+<li><p>If Step 3 is successful, shut down Concourse Lite by running the <strong>self-terminate</strong> pipeline.</p>
+<h2 id="merging-the-upgrade">Merging the upgrade</h2></li>
+</ol>
+<p>If the previous steps succeed, you can open a pull request in <code>paas-bootstrap</code>. After an engineer approves the pull request, do the following:</p>
+
+<ol>
+<li><p>Merge-sign the pull request using the following command in the <a href="https://github.com/alphagov/gds-cli">gds-cli</a>:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds git merge-sign alphagov/paas-bootstrap &lt;PR_NUMBER&gt;
+</code></pre></div></li>
+<li><p>Check there are no active deployments, then send a message to the <a href="https://gds.slack.com/?redir=%2Farchives%2FCAEHMHGJ2">#paas-internal</a> channel on GDS Slack, informing @paas-devs you will be upgrading Concourse and pausing the <strong>create-cloudfoundry</strong> pipelines.</p></li>
+<li><p>To deploy to the dev environments, make sure nothing is being deployed and pause the <strong>pipeline-lock</strong> job in the <strong>create-cloudfoundry</strong> pipeline.</p></li>
+<li><p>Trigger the <strong>create-bosh-concourse</strong> pipeline in the dev environments. You can do this by triggering a new build of the <strong>init-bucket</strong> job in Concourse.</p></li>
+<li><p>To deploy to <code>ci</code>, make sure nothing is in active deployment and trigger the <strong>create-bosh-concourse</strong> pipeline. You can do this by triggering a new build of the <strong>init-bucket</strong> job in Concourse.</p></li>
+<li><p>To deploy to <code>staging</code>, make sure nothing is being deployed and pause the <strong>pipeline-lock</strong> job in the <strong>create-cloudfoundry</strong> pipeline.</p></li>
+<li><p>Trigger the <strong>create-bosh-concourse</strong> pipeline in <code>staging</code>. You can do this by triggering a new build of the <strong>init-bucket</strong> job in Concourse.</p></li>
+<li><p>Once this is finished, unpause the <strong>create-cloudfoundry</strong> pipeline by pausing the <strong>pipeline-lock</strong> job in <code>staging</code>.</p></li>
+<li><p>Before deploying to production, notify the <a href="https://gds.slack.com/?redir=%2Farchives%2FCCMPJKFDK">#cyber-security-help</a> channel, informing them that you are pausing the <strong>create-cloudfoundry</strong> pipelines in both <code>prod</code> and <code>prod-lon</code>, which means they won’t see any logs for 1-2 hours and they may receive an alert.</p></li>
+<li><p>Follow steps 5 to 7 for <code>prod</code> and <code>prod-lon</code> to pause and trigger the pipelines.</p></li>
+<li><p>Once this is finished, unpause the pipelines and notify the <a href="https://gds.slack.com/?redir=%2Farchives%2FCCMPJKFDK">#cyber-security-help</a> channel, informing them that you have unpaused the pipelines, so they should start receiving logs again.</p></li>
+</ol>
+
+
+            
+          </main>
+
+          <aside>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility/">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
