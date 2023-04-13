@@ -29,7 +29,6 @@ We are a multidisciplinary team responsible for the developement and maintenance
 - Nimalan Kirubakaran - Developer
 - Panos Xynos - Site Reliability Engineer (contractor)
 - Robert Scott - Site Reliability Engineer (EL)
-- Sebastian Schmieschek - Tech Lead (EL)
 - Tom Whitwell - Site Reliability Engineer (EL)
 
 ### Product Management
