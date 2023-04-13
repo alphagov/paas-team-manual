@@ -31,7 +31,6 @@ We are a multidisciplinary team responsible for the developement and maintenance
 - Robert Scott - Site Reliability Engineer (EL)
 - Sebastian Schmieschek - Tech Lead (EL)
 - Tom Whitwell - Site Reliability Engineer (EL)
-- Will Pearson - Site Reliability Engineer (EL)
 
 ### Product Management
 - Lisa Scott - Senior Product Manager (CL)
