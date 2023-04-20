@@ -15,7 +15,7 @@ We are a multidisciplinary team responsible for the developement and maintenance
 <!-- List is alphabetised -->
 ### Delivery Management
 - Emma Pearce - Delivery Manager (CL)
-- Kam Nijjar - Associate Delivery Manager (CL)
+- Kam Nijjar - Associate Delivery Manager
 
 <!-- List is alphabetised -->
 ### Engineering
