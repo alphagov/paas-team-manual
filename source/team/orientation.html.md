@@ -20,13 +20,13 @@ We are a multidisciplinary team responsible for the developement and maintenance
 <!-- List is alphabetised -->
 ### Engineering
 - Andy Hunt - Tech Lead (EL)
-- Ben Corlett - Site Reliability Engineer (contractor)
-- Jack Joy - Site Reliability Engineer (contractor)
+- Ben Corlett - Site Reliability Engineer (EL, contractor)
+- Jack Joy - Site Reliability Engineer (EL, contractor)
 - Jamie Van Dyke - Site Reliability Engineer (contractor)
 - Jani Kraner - Front End Developer (CL)
-- Malcolm Saunders - Site Reliability Engineer (contractor)
-- Nimalan Kirubakaran - Developer
-- Panos Xynos - Site Reliability Engineer (contractor)
+- Malcolm Saunders - Site Reliability Engineer (EL, contractor)
+- Nimalan Kirubakaran - Developer (EL)
+- Panos Xynos - Site Reliability Engineer (EL, contractor)
 - Robert Scott - Site Reliability Engineer (EL)
 - Tom Whitwell - Site Reliability Engineer (EL)
 
