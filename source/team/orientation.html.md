@@ -24,7 +24,6 @@ We are a multidisciplinary team responsible for the developement and maintenance
 - Jack Joy - Site Reliability Engineer (contractor)
 - Jamie Van Dyke - Site Reliability Engineer (contractor)
 - Jani Kraner - Front End Developer (CL)
-- Lee Porte - Lead Site Reliability Engineer
 - Malcolm Saunders - Site Reliability Engineer (contractor)
 - Nimalan Kirubakaran - Developer
 - Panos Xynos - Site Reliability Engineer (contractor)
@@ -39,9 +38,6 @@ We are a multidisciplinary team responsible for the developement and maintenance
 
 ### Technical Architecture
 - Paul Dougan - Technical Architect (CL)
-
-### Technical Writing 
-- Claire McNally - Technical Writer
 
 ## Product
 
