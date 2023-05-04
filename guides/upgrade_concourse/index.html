@@ -129,7 +129,19 @@ image: concourse/concourse:7.8.3
 concourse-worker-normal:
 image: concourse/concourse:7.8.3
 </code></pre></div></li>
-<li><p>Create a pull request in <a href="https://github.com/alphagov/paas-bootstrap"><code>paas-bootstrap</code></a>.</p></li>
+<li><p>Update the version for the <a href="https://github.com/alphagov/paas-bootstrap/blob/main/vagrant/post-deploy.d/00-run-docker.sh">vagrant docker post deploy</a>. For example:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo docker run --rm -v /tmp/keys:/keys concourse/concourse:7.8.3 \
+generate-key -t rsa -f /keys/session_signing_key
+</code></pre></div></li>
+</ol>
+<p>sudo docker run &ndash;rm -v /tmp/keys:/keys concourse/concourse:7.8.3 \
+  generate-key -t ssh -f /keys/tsa_host_key</p>
+<p>sudo docker run &ndash;rm -v /tmp/keys:/keys concourse/concourse:7.8.3 \
+  generate-key -t ssh -f /keys/worker_key
+    &ldquo;`</p>
+
+<ol>
+<li>Create a pull request in <a href="https://github.com/alphagov/paas-bootstrap"><code>paas-bootstrap</code></a>.</li>
 </ol>
 <h3 id="testing-the-upgrade-in-a-dev-environment">Testing the upgrade in a dev environment</h3>
 
