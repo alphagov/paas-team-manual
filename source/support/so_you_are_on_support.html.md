@@ -24,7 +24,7 @@ The paas-trusted-people repository should also contain:
 * an SSH public key
 * your Google ID for OAuth
 
-Your onboarding buddy should have added your GPG key to the paas-credentials repository and added also it for [merge signing](https://team-manual.cloud.service.gov.uk/team/working_practices/#manually-merging-and-signing-a-pr) of pull requests in these repositories:
+Your onboarding buddy should have added your GPG key to the paas-credentials repository and added also it for [merge signing](https://team-manual.cloud.service.gov.uk/team/working_practices/#merging-a-branch-into-main) of pull requests in these repositories:
 
 * [paas-admin](https://github.com/alphagov/paas-admin)
 * [paas-bootstrap](https://github.com/alphagov/paas-bootstrap)
