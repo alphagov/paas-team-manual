@@ -110,12 +110,7 @@
             <a href="#initial-setup-for-signing-commits"><span>Initial setup for signing commits</span></a>
           </li>
           <li>
-            <a href="#merging-a-branch-into-master"><span>Merging a branch into master</span></a>
-            <ul>
-              <li>
-                <a href="#manually-merging-and-signing-a-pr"><span>Manually merging and signing a PR</span></a>
-              </li>
-            </ul>
+            <a href="#merging-a-branch-into-main"><span>Merging a branch into main</span></a>
           </li>
         </ul>
       </li>
@@ -318,18 +313,19 @@ request. Pull requests should be reviewed by somebody that hasn&rsquo;t already
 worked on the story. When reviewing a pull request please &ldquo;assign&rdquo; yourself
 on GitHub, so that someone else doesn&rsquo;t duplicate effort.</p>
 <h2 id="merging-pull-requests">Merging Pull requests</h2>
-<p>Once review is complete, and all status checks have passed (Travis etc),
+<p>Once review is complete, and all status checks have passed (GitHub Actions etc),
 a pull request can be merged.</p>
 <p>PRs to the <a href="https://github.com/alphagov/paas-cf">paas-cf</a> and <a href="https://github.com/alphagov/paas-bootstrap">paas-bootstrap</a> repositories should be merged using a GPG signed commit.
-This means that merges can&rsquo;t be done in the Github UI - they have to be done locally,
-using the <code>merge_pr</code> make task in each repository.</p>
+This means that merges can&rsquo;t be done in the Github UI. They have to be done locally.</p>
 <p>We only use signed revisions of <a href="https://github.com/alphagov/paas-cf">paas-cf</a> and <a href="https://github.com/alphagov/paas-bootstrap">paas-bootstrap</a> from our concourse pipelines.
 This is enforced by the gpg functionality in Concourse Git resource. We may require signing merges in other repositories in future.</p>
 <h3 id="managing-allowed-signers">Managing allowed signers</h3>
-<p>For every repository we are forcing commit signing on there will be a file called &lsquo;.gpg-id&rsquo; in the root directory. It should contain the public key IDs of every key which is allowed to sign commits. There will also be a helper script for generating the necessary vars file for Concourse. For example:</p>
+<p>For every repository we are forcing commit signing on there will be a file called <code>.gpg-id</code> in the root directory. It should contain
+the public key IDs of every key which is allowed to sign commits. There will also be a helper script for generating the necessary
+vars file for Concourse. For example:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd </span>paas-cf
 make update_merge_keys
-</code></pre></div><p>Run the helper script and commit the changes every time you change the contents of &lsquo;.gpg-id&rsquo;.</p>
+</code></pre></div><p>Run the helper script and commit the changes every time you change the contents of <code>.gpg-id</code>.</p>
 <h3 id="initial-setup-for-signing-commits">Initial setup for signing commits</h3>
 <p>Ensure you have gpg setup on your machine (see our <a href="/guides/GPG/">GPG guide</a> for
 details).</p>
@@ -346,19 +342,19 @@ git config user.signingkey &lt;key_id&gt;
 (<a href="https://github.com/settings/keys">https://github.com/settings/keys</a>) so that
 Github can verify commits that you sign as described
 <a href="https://github.com/blog/2144-gpg-signature-verification">here</a>.</p>
-<h3 id="merging-a-branch-into-master">Merging a branch into master</h3>
-<p>We have implemented a helper script to handle merging and signing PRs for you.
-In repos where this is available (for example, paas-cf) PRs can be merged and signed by running:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>make merge_pr <span class="nv">PR</span><span class="o">=</span>&lt;n&gt;
-</code></pre></div><p>Where <code>n</code> is the PR number.</p>
-<h4 id="manually-merging-and-signing-a-pr">Manually merging and signing a PR</h4>
-<p>PRs can also be be manually merged and signed.</p>
-<p>First check that your working directory is clean, then do the following:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>git checkout master
-git pull <span class="nt">--ff-only</span> origin master
-git merge <span class="nt">--no-ff</span> <span class="nt">-S</span> <span class="nt">-m</span> <span class="s2">"Merge pull request #&lt;n&gt; from alphagov/repo-name</span><span class="se">\n\n</span><span class="s2">&lt;pr_title&gt;"</span> origin/&lt;branch_name&gt;
-git push origin master
-</code></pre></div><h1 id="stories">Stories</h1>
+<p>You must also upload your key to the <code>keys.openpgp.org</code> key server and validate the email
+address associated with it, so that others can automatically retrieve your key.</p>
+<h3 id="merging-a-branch-into-main">Merging a branch into <code>main</code></h3>
+<p>The <a href="https://github.com/alphagov/gds-cli">GDS CLI</a> has a utility for merging and signing PRs for you. If
+you have a GDS managed machine, <code>gds</code> will already be installed. You should read <a href="https://github.com/alphagov/gds-cli">the GDS CLI documentation</a>
+for a guide on configuring it with the correct credentials. Merging with GDS CLI requires a GitHub API token,
+which you must provide in the <code>GITHUB_API_TOKEN</code> environment variable.</p>
+<p>PRs can be merged and signed by running:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds git merge-sign ORG/REPO PR_NUMBER
+</code></pre></div><p>Where <code>ORG</code> is the name of the GitHub organisation, <code>REPO</code> is the name of the repository, and <code>PR_NUMBER</code> is the
+number of the pull request.</p>
+<p><code>gds</code> will checkout and merge the PR in a clean, temporary directory and leave your working directory untouched.</p>
+<h1 id="stories">Stories</h1>
 <h2 id="pivotal-tracker-and-rubbernecker">Pivotal Tracker and Rubbernecker</h2>
 <p>We use <a href="https://www.pivotaltracker.com/n/projects/1275640">Pivotal Tracker</a> to track stories and <a href="https://rubbernecker.cloudapps.digital/">Rubbernecker</a> for an overview of stories currently being worked. Stories without a name assigned to them are available for you to work on. You should remove your name when moving a story to the next step (e.g. &ldquo;doing&rdquo; to &ldquo;review&rdquo;).</p>
 <h2 id="story-states">Story states</h2>
