@@ -161,12 +161,11 @@ on GitHub, so that someone else doesn't duplicate effort.
 
 ## Merging Pull requests
 
-Once review is complete, and all status checks have passed (Travis etc),
+Once review is complete, and all status checks have passed (GitHub Actions etc),
 a pull request can be merged.
 
 PRs to the [paas-cf][] and [paas-bootstrap][] repositories should be merged using a GPG signed commit.
-This means that merges can't be done in the Github UI - they have to be done locally,
-using the `merge_pr` make task in each repository.
+This means that merges can't be done in the Github UI. They have to be done locally.
 
 We only use signed revisions of [paas-cf][] and [paas-bootstrap][] from our concourse pipelines.
 This is enforced by the gpg functionality in Concourse Git resource. We may require signing merges in other repositories in future.
@@ -176,14 +175,16 @@ This is enforced by the gpg functionality in Concourse Git resource. We may requ
 
 ### Managing allowed signers
 
-For every repository we are forcing commit signing on there will be a file called '.gpg-id' in the root directory. It should contain the public key IDs of every key which is allowed to sign commits. There will also be a helper script for generating the necessary vars file for Concourse. For example:
+For every repository we are forcing commit signing on there will be a file called `.gpg-id` in the root directory. It should contain
+the public key IDs of every key which is allowed to sign commits. There will also be a helper script for generating the necessary
+vars file for Concourse. For example:
 
 ```bash
 cd paas-cf
 make update_merge_keys
 ```
 
-Run the helper script and commit the changes every time you change the contents of '.gpg-id'.
+Run the helper script and commit the changes every time you change the contents of `.gpg-id`.
 
 ### Initial setup for signing commits
 
@@ -208,29 +209,26 @@ Add your public key to your Github account
 Github can verify commits that you sign as described
 [here](https://github.com/blog/2144-gpg-signature-verification).
 
-### Merging a branch into master
+You must also upload your key to the `keys.openpgp.org` key server and validate the email
+address associated with it, so that others can automatically retrieve your key.
 
-We have implemented a helper script to handle merging and signing PRs for you.
-In repos where this is available (for example, paas-cf) PRs can be merged and signed by running:
+### Merging a branch into `main`
 
-```sh
-make merge_pr PR=<n>
-```
+The [GDS CLI](https://github.com/alphagov/gds-cli) has a utility for merging and signing PRs for you. If
+you have a GDS managed machine, `gds` will already be installed. You should read [the GDS CLI documentation](https://github.com/alphagov/gds-cli)
+for a guide on configuring it with the correct credentials. Merging with GDS CLI requires a GitHub API token,
+which you must provide in the `GITHUB_API_TOKEN` environment variable.
 
-Where `n` is the PR number.
-
-#### Manually merging and signing a PR
-
-PRs can also be be manually merged and signed.
-
-First check that your working directory is clean, then do the following:
+PRs can be merged and signed by running:
 
 ```sh
-git checkout master
-git pull --ff-only origin master
-git merge --no-ff -S -m "Merge pull request #<n> from alphagov/repo-name\n\n<pr_title>" origin/<branch_name>
-git push origin master
+gds git merge-sign ORG/REPO PR_NUMBER
 ```
+
+Where `ORG` is the name of the GitHub organisation, `REPO` is the name of the repository, and `PR_NUMBER` is the
+number of the pull request.
+
+`gds` will checkout and merge the PR in a clean, temporary directory and leave your working directory untouched.
 
 # Stories
 
