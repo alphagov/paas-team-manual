@@ -5,24 +5,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>VPC Peering - PaaS Team Manual</title>
+    <title>VPC Peer Backing Service Accesss - PaaS Team Manual</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/vpc_peering/">
+    <link rel="canonical" href="https://team-manual.cloud.service.gov.uk/guides/vpc_peer_backing_service_access/">
 
       <meta name="robots" content="noindex" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="team-manual.cloud.service.gov.uk" />
       <meta name="twitter:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="VPC Peering - PaaS Team Manual" />
-      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/vpc_peering/" />
+      <meta name="twitter:title" content="VPC Peer Backing Service Accesss - PaaS Team Manual" />
+      <meta name="twitter:url" content="https://team-manual.cloud.service.gov.uk/guides/vpc_peer_backing_service_access/" />
 
       <meta property="og:image" content="https://team-manual.cloud.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="PaaS Team Manual" />
-      <meta property="og:title" content="VPC Peering" />
+      <meta property="og:title" content="VPC Peer Backing Service Accesss" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/vpc_peering/" />
+      <meta property="og:url" content="https://team-manual.cloud.service.gov.uk/guides/vpc_peer_backing_service_access/" />
 
     
   </head>
@@ -78,13 +78,16 @@
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
                       <ul>
   <li>
-    <a href="#vpc-peering"><span>VPC Peering</span></a>
+    <a href="#enable-access-to-backing-services-via-vpc-peering"><span>Enable access to backing services via VPC peering</span></a>
     <ul>
       <li>
-        <a href="#how-to-set-it-up"><span>How to set it up</span></a>
+        <a href="#who-can-use-this"><span>Who can use this</span></a>
       </li>
       <li>
-        <a href="#things-to-note"><span>Things to note</span></a>
+        <a href="#pre-requisites"><span>Pre-requisites</span></a>
+      </li>
+      <li>
+        <a href="#configuring-and-deploying-private-backing-service-access"><span>Configuring and deploying private backing service access</span></a>
       </li>
     </ul>
   </li>
@@ -101,24 +104,58 @@
     <p>This is for internal use by the PaaS team. Public-facing documentation is located at <a href="https://docs.cloud.service.gov.uk">docs.cloud.service.gov.uk</a>.</p>
   </div>
 
-  <h1 id="vpc-peering">VPC Peering</h1>
-<p>We use VPC peering to allow tenants to access resources they manage in another VPC somewhere on AWS. We grant access to the VPC on a per-space basis, although there is a shortcut to grant access to all existing spaces in an org.</p>
-<h2 id="how-to-set-it-up">How to set it up</h2>
-
-<ol>
-<li>Choose a subnet CIDR that we&rsquo;ll ask the tenant to use. Look in <code>paas-cf/terraform/prod{-lon}.vpc_peering.json</code> for a list of current peerings, then choose the next highest subnet. The size should be <code>/22</code>. For example, if the highest subnet is <code>172.16.4.0/22</code>, ask the tenant to use <code>172.16.8.0/22</code>.</li>
-<li>Tell the tenant to create a new VPC with the subnet you have given them, and ask them to give you both the VPC ID, and the AWS account ID the VPC resides in.</li>
-<li>Create a new entry in <code>paas-cf/terraform/prod{-lon}.vpc_peering.json</code>. Set <code>backing_service_routing</code> to <code>false</code>. Deploy this to production.</li>
-<li>A CF security group will have been automatically created that gives access to the peered VPC, the name of the group will be <code>vpc_peer_$PEER_NAME</code>. <code>cf bind-security-group</code> this to the spaces that the tenant needs access from.</li>
-<li>Make sure the tenant knows that they need to allow <code>10.0.0.0/16</code> in any security groups attached to resources in their VPC, and that they need to raise a support request to have VPC access granted to any new spaces they create.</li>
-<li>🎉</li>
-</ol>
-<h2 id="things-to-note">Things to note</h2>
+  <h1 id="enable-access-to-backing-services-via-vpc-peering">Enable access to backing services via VPC peering</h1>
+<p>To assist tenants in migrating large databases away from GOV.UK PaaS, we allow private access to backing services over a VPC peering.</p>
+<p>This is similar to <a href="/guides/vpc_peering/">how we can allow tenant applications to reach services inside a VPC peer</a>. If that is your use case
+you should reach that guide instead. If your use case is two way communication, follow both guides.</p>
+<h2 id="who-can-use-this">Who can use this</h2>
+<p>Opening up VPC peering arrangements with access to backing services has some risk for the platform, so we do not offer it to everyone. We will have a
+short chat with the tenant about their needs to work out if we can or should help them, and we think that the rough eligibility criteria are one or more of</p>
 
 <ul>
-<li>There is a hard limit of 125 VPC peerings per VPC, and the default limit is 50.</li>
-<li>There is a performance penalty to having many VPC peerings due to the performance of large route tables.</li>
+<li>a database in excess of 100gb</li>
+<li>a service with small downtime tolerances</li>
+<li>to migrating, or though, AWS</li>
 </ul>
+<p>We cannot support private access directly to Azure, GCP, or a tenant&rsquo;s private data centre because of the burden it places on the team.</p>
+<h2 id="pre-requisites">Pre-requisites</h2>
+<p>Before you can set up private access to backing services, the tenant needs to have provided</p>
+
+<ul>
+<li>one or more VPC IDs to which we will peer, and the name of the environment it corresponds to on their side (e.g. dev, staging)</li>
+<li>thr AWS account ID for each VPC ID</li>
+<li>the CloudFoundry service GUIDs for each database they want private access to, and which of their VPCs should be able to access it</li>
+</ul>
+<p>You should tell the tenant</p>
+
+<ul>
+<li>we will provide them a <code>/22</code> CIDR block in the <code>172.16.0.0/16</code> range on which to peer</li>
+<li>the CIDR ranges for all of our backing service subnets</li>
+</ul>
+<p>Tenants are responsible for configuring their networks in such a way as to allow traffic to flow between their VPC and ours. We cannot provide
+them with any formal support in doing so.</p>
+<p>This information must be given in a support ticket. If the tenant is emailing the support address directly, the email must come from an
+address associated with their CloudFoundry org. If they raise the ticket via our support form, they must be logged in first so that we can
+see who raised it.</p>
+<h2 id="configuring-and-deploying-private-backing-service-access">Configuring and deploying private backing service access</h2>
+
+<ol>
+<li>Choose a subnet CIDR on which to peer. Look in <code>paas-cf/terraform/prod{-lon}.vpc_peering.json</code> for a list of current peerings, then choose the next highest subnet. The size should be <code>/22</code>. For example, if the highest subnet is <code>172.16.4.0/22</code>, choose <code>172.16.8.0/22</code>.</li>
+<li>Create a new entry in <code>paas-cf/terraform/prod{-lon}.vpc_peering.json</code>. Set <code>backing_service_routing</code> to <code>true</code>. Deploy this to production.</li>
+<li><p>Once it is in production, run</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>PEER_NAME=VPC_PEER_NAME DB_INSTANCE_ID=RDS_INSTANCE_IDENTIFIER \
+gds aws AWS_ACCOUNT_ROLE -- make ENV enable_vpc_peer_db_access
+</code></pre></div></li>
+</ol>
+<p>to add an extra security group to the database which allows ingress from the CIDR block, where</p>
+
+<ul>
+<li><code>VPC_PEER_NAME</code> is the name of a VPC peering configuration in the environment&rsquo;s VPC peering config file (e.g. <a href="https://github.com/alphagov/paas-cf/blob/main/terraform/prod-lon.vpc_peering.json"><code>prod-lon.vpc_peering.json</code></a>)</li>
+<li><code>RDS_INSTANCE_IDENTIFIER</code> is the instance identifier of the database you are modifying. You can find this by entering the service instance guid into the AWS RDS console</li>
+<li><code>AWS_ACCOUNT_ROLE</code> is the name of the AWS account and the role you are assuming via the GDS CLI</li>
+<li><code>ENV</code> is the name of the GOV.UK PaaS environment (e.g. <code>dev01</code>, <code>prod</code>)</li>
+</ul>
+<p>If the tenant also requires their GOV.UK PaaS apps to be able to communicate with services in their VPC, follow <a href="/guides/vpc_peering/">the guide on regular VPC peering</a>.</p>
 
 
             
