@@ -59,3 +59,5 @@ see who raised it.
    * `ENV` is the name of the GOV.UK PaaS environment (e.g. `dev01`, `prod`)
    
 If the tenant also requires their GOV.UK PaaS apps to be able to communicate with services in their VPC, follow [the guide on regular VPC peering](/guides/vpc_peering/).
+
+It is possible to perform a dry run of the script by setting the `DRY` environment variable to `true`. In a dry run, the script will print what it is going to do, but carry out no other actions.
