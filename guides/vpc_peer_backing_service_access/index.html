@@ -156,6 +156,7 @@ gds aws AWS_ACCOUNT_ROLE -- make ENV enable_vpc_peer_db_access
 <li><code>ENV</code> is the name of the GOV.UK PaaS environment (e.g. <code>dev01</code>, <code>prod</code>)</li>
 </ul>
 <p>If the tenant also requires their GOV.UK PaaS apps to be able to communicate with services in their VPC, follow <a href="/guides/vpc_peering/">the guide on regular VPC peering</a>.</p>
+<p>It is possible to perform a dry run of the script by setting the <code>DRY</code> environment variable to <code>true</code>. In a dry run, the script will print what it is going to do, but carry out no other actions.</p>
 
 
             
