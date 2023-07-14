@@ -23,7 +23,7 @@ jobs:
         with:
           bundler-cache: true
 
-      - uses: actions/setup-python@c4e89fac7e8767b327bbad6cb4d859eda999cf08 #v4.1.0
+      - uses: actions/setup-python@61a6322f88396a6271a6ee3565807d608ecaddd1 #v4.7.0
         with:
           python-version: "${{env.PYTHON_VERSION}}"
 
