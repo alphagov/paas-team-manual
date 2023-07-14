@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: "14"
 
-      - uses: ruby/setup-ruby@08245253a76fa4d1e459b7809579c62bd9eb718a #v1.111.0
+      - uses: ruby/setup-ruby@250fcd6a742febb1123a77a841497ccaa8b9e939 #v1.152.0
         with:
           bundler-cache: true
 
