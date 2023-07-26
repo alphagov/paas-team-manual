@@ -167,3 +167,4 @@ This section contains Architecture Decision Records (ADR) as described in this b
  - [ADR-049 Billing: Decouple what we're calculating bills for from how the bills are calculated](architecture_decision_records/ADR049-calculate-bills/)
  - [ADR-050 Plans for the cloudapps.digital domain post platform retirement](architecture_decision_records/ADR050-cloudapps-digital-domain)
  - [ADR-051 How we plan to migrate from cflinuxfs3 to cflinuxfs4](architecture_decision_records/ADR051-cflinuxfs3-to-cflinuxfs4-migration)
+ - [ADR-052 Automating buildpack upgrade pull requests](architecture_decision_records/ADR052-buildpack-upgrade-prs)
