@@ -67,7 +67,7 @@ If all goes well something like the following output will be displayed:
 
 You should now be able to view a live preview at http://localhost:4567.
 
-## Build
+## Build and deploy
 
 If you want to publish the website without using a build script you may need to
 build the static HTML files.
@@ -83,3 +83,9 @@ the HTML and asset files ready to be published.
 
 [rvm]: https://www.ruby-lang.org/en/documentation/installation/#managers
 [bundler]: http://bundler.io/
+
+The team manual is hosted on GitHub Pages which is deployed using GitHub actions. GitHub pages is configured with a custom sub-domain of [team-manual.cloud.service.gov.uk](team-manual.cloud.service.gov.uk/).
+
+The deploy process first runs `bundle exec middleman build` which generates a `build` directory consisting of static files for our site. 
+
+Next the [upload-pages-artifact](https://github.com/actions/upload-pages-artifact) action takes the `build` directory and turns it into a [gzip archive](https://en.wikipedia.org/wiki/Gzip) called `github-pages` which the [deploy-pages](https://github.com/actions/deploy-pages) action uses to deploy to GitHub pages.
