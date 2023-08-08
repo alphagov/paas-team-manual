@@ -7,14 +7,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  pages: write
+  id-token: write
 
-concurrency: production
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   deploy:
     name: Deploy Team Manual
-    environment: production
     runs-on: ubuntu-latest
 
     steps:
@@ -28,18 +30,18 @@ jobs:
         with:
           bundler-cache: true
 
-      - run: sudo apt install git
-
-      - name: Build
+      - name: Build middleman site
         id: build
         run: bundle exec middleman build
 
-      - name: Deploy 🚀
-        id: deploy
-        uses: JamesIves/github-pages-deploy-action@a1ea191d508feb8485aceba848389d49f80ca2dc #v4.4.3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@253fd476ed429e83b7aae64a92a75b4ceb1a17cf
         with:
-          folder: build
-          branch: gh-pages
+          path: 'build'
+
+      - name: Deploy to GitHub pages
+        id: deployment
+        uses: actions/deploy-pages@73e62e651178eeba977de2dc9f4c7645b3d01015
 
       - name: Slack notify on failure
         if: failure()
