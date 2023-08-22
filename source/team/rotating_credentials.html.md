@@ -63,7 +63,7 @@ tab:
 To rotate credentials and certificates:
 
 1. Pause the `create-bosh-concourse` pipeline, and make sure it is not running.
-1. Run the `check-certificates` job to see if any certificates need rotation. It will fail if any certificates have expired. If the task succeeds because no certificates have expired and you need to force it to fail because you are testing in a dev environment, add a `-min-remaining-days 400` flag into the `check-certificates.rb` call in the `check-certificates` Concourse task.
+1. Run the `check-certificates` job to see if any certificates need rotation. It will fail if any certificates have expired. If the task succeeds because no certificates have expired and you need to force it to fail because you are testing in a dev environment, add a `--min-remaining-days 400` flag into the `check-certificates.rb` call in the `check-certificates` and `drop-bosh-leaf-certs-for-rotation` Concourse tasks.
 1. Run the relevant rotation Concourse job (`drop-bosh-credentials-for-rotation` and/or `drop-bosh-leaf-certs-for-rotation`).
 1. Unpause the `create-bosh-concourse` pipeline.
 1. Trigger the `create-bosh-concourse` pipeline and allow it to run all the way through.
