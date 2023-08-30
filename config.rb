@@ -3,6 +3,7 @@ require 'html-proofer'
 
 activate :directory_indexes
 page '/google*.html', directory_index: false
+page '/404*.html', directory_index: false
 
 after_build do |builder|
   begin
