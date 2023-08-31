@@ -84,7 +84,7 @@ the HTML and asset files ready to be published.
 [rvm]: https://www.ruby-lang.org/en/documentation/installation/#managers
 [bundler]: http://bundler.io/
 
-The team manual is hosted on GitHub Pages which is deployed using GitHub actions. GitHub pages is configured with a custom sub-domain of [team-manual.cloud.service.gov.uk](team-manual.cloud.service.gov.uk/).
+The team manual is hosted on GitHub Pages which is deployed using GitHub actions. GitHub pages is configured with a custom sub-domain of [team-manual.cloud.service.gov.uk](https://team-manual.cloud.service.gov.uk/).
 
 The deploy process first runs `bundle exec middleman build` which generates a `build` directory consisting of static files for our site. 
 
