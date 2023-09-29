@@ -31,3 +31,4 @@ A closed account:
  - Update `column Q`  with the decomission date
 4. Reply to the tenant confirming the date of “closure”. **For external tenants**: Inform GDS Business Operations (PMO) of the tenant's closure date by CC-ing them into the ticket (GDS Business Operations or PMO).
 5. Mark the ticket as SOLVED.
+6. PMO team will pursue outstanding bills and if not paid by the tenant after 5 attempts, where it is deemed all avenues have been exhausted, they will escalate for a final decision to the PaaS Service Owner via the Delivery Manager.
