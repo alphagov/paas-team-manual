@@ -248,12 +248,23 @@ Within Pivotal Tracker there are a number of [story states](https://www.pivotalt
 ![Pivotal and Rubbernecker story states](https://user-images.githubusercontent.com/35229192/125968961-9d65291f-3308-4352-b8b3-317c50542fdf.png)
 
 ## Assigning labels to stories
-Pivotal Tracker stories give the option to tag the story with labels. We use these labels to filter the stories in various different ways. You should apply a 'linked epic label' (a purple label that is assigned to a specific epic/mission) to any work that belongs to a mission e.g. the `core-work` label for the 'Securely running and supporting GOV.UK PaaS for our tenants' mission. 
+Pivotal Tracker stories give the option to tag the story with labels. We use these labels to filter the stories to understand the work being done, help with planning sessions and to feed into relevant governance reports (PaaS Operational Dashboard).
 
-If the work belongs or is assigned to a particular squad then you should also assign one of the squad labels so that we can view these using the filters in Rubbernecker.
-### Squad labels
-`squad: paas`
-`squad: disco`
+The labels being used by the team are as follows :
+
+- `2024-update`: Routine upgrades of core components
+- `2024-security-update`: Reactive upgrades of core components
+- `2024-scale`: Scaling operations
+- `2024-correct`: Corrective/remedial changes to infrastructure
+- `2024-optimise`: Making improvements to existing systems
+- `2024-deprecate`: Service deprecations
+- `2024-comms`: Tenant comms
+- `2024-investigate`: Investigative/exploratory changes
+- `2024-features`: Feature work
+- `2024-decomm`: Decommissioning Work
+- `2024-governance`: All of the non-engineering work needed to keep GOV.UK PaaS running
+
+These may be updated periodically as the team identify new and appropriate labels. You should apply appropriate epics using the 'linked epic label' (a purple label that is assigned to a specific epic/mission) where appropriate.
 
 ## Story kick-off
 
