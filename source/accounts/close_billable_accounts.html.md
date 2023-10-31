@@ -33,7 +33,7 @@ A closed account:
 4. Reply to the tenant confirming the date of “closure”.
 5. Mark the ticket as SOLVED.
 6. **For external tenants**: send an email to the GDS Business Operations PMO team inbox: <pmo@digital.cabinet-office.gov.uk>, Craig Goodwin: <craig.goodwin@digital.cabinet-office.gov.uk> and Humira Akuji: <humira.akuji@digital.cabinet-office.gov.uk>, with the following details:
-   
+
 ```
 Email subject: GOV.UK PaaS tenant account closed: [insert org name]
 Email text:
@@ -41,4 +41,5 @@ Email text:
 Org name:
 Date org closed:"
 ```
-7. PMO team will pursue outstanding bills and if not paid by the tenant after 5 attempts, where it is deemed all avenues have been exhausted, they will escalate for a final decision to the PaaS Service Owner via the Delivery Manager.
+
+>PMO team will pursue outstanding bills and if not paid by the tenant after 5 attempts, where it is deemed all avenues have been exhausted, they will escalate for a final decision to the PaaS Service Owner via the Delivery Manager.
