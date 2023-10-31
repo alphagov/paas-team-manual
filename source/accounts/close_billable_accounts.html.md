@@ -30,6 +30,14 @@ A closed account:
  - Add link to the Zendesk account closure request ticket to column M
  - Update the `column P` (service_count) number to 0
  - Update `column Q`  with the decomission date
-4. Reply to the tenant confirming the date of “closure”. **For external tenants**: Inform GDS Business Operations (PMO) of the tenant's closure date by CC-ing them into the ticket (GDS Business Operations or PMO).
+4. Reply to the tenant confirming the date of “closure”.
 5. Mark the ticket as SOLVED.
-6. PMO team will pursue outstanding bills and if not paid by the tenant after 5 attempts, where it is deemed all avenues have been exhausted, they will escalate for a final decision to the PaaS Service Owner via the Delivery Manager.
+6. **For external tenants**: send an email to the GDS Business Operations PMO team inbox: <pmo@digital.cabinet-office.gov.uk>, Craig Goodwin: <craig.goodwin@digital.cabinet-office.gov.uk> and Humira Akuji: <humira.akuji@digital.cabinet-office.gov.uk>, with the following details:
+```
+Email subject: GOV.UK PaaS tenant account closed: [insert org name]
+Email text:
+"The PaaS team have closed the above tenant's account. Please arrange for the final invoice to be sent to them:
+Org name:
+Date org closed:"
+```
+7. PMO team will pursue outstanding bills and if not paid by the tenant after 5 attempts, where it is deemed all avenues have been exhausted, they will escalate for a final decision to the PaaS Service Owner via the Delivery Manager.
