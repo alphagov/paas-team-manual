@@ -41,5 +41,4 @@ Email text:
 Org name:
 Date org closed:"
 ```
-
 7. PMO team will pursue outstanding bills and if not paid by the tenant after 5 attempts, where it is deemed all avenues have been exhausted, they will escalate for a final decision to the PaaS Service Owner via the Delivery Manager.
