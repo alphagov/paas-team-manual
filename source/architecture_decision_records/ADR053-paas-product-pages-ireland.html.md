@@ -58,18 +58,12 @@ Since both the `wwww` and apex domains resolve to GitHub's servers the redirect 
 
 ## Decision
 
-The preference is for Option 4 as it involves only a DNS change. Since there are other DNS records (e.g. DMARC, etc...) 
+Consensus team decision is Option 4 as it involves only a DNS change. Since there are other DNS records (e.g. DMARC, etc...) 
 for the `cloud.service.gov.uk` domain that need to be kept it makes sense to just make DNS changes in the Terraform.
-
-Option 1 requires writing new Terraform to configure the CDN instance as well as maintaining the redirect app.
-
-Option 2 involves both a DNS change and an ALB change
-
-Option 3 requires adding a new private domain to the London Cloud Foundry as well as maintaining the redirect app.
 
 ## Status
 
-DRAFT
+Accepted
 
 ## Consequences
 
