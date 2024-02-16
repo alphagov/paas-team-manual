@@ -3,10 +3,6 @@ title: Updating logstash filters
 ---
 
 # Updating logstash filters
-title: Updating logstash filters
----
-
-# Updating logstash filters
 
 Sadly, there is no programmatic access to Logit's logstash filters.
 
