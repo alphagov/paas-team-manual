@@ -7,6 +7,8 @@ title: Finding apps with noisy logging
 You can use the `cf top` plugin to get a feel for which applications are
 logging more than they should be.
 
+>To install cf plugins on M1 based chips, you need to compile the binary manually and install it
+
 [ECSTeam/cloudfoundry-top-plugin](https://github.com/ECSTeam/cloudfoundry-top-plugin)
 
 Install the plugin with `cf install-plugin -r CF-Community "top"`, then (while
