@@ -11,7 +11,7 @@ phase: Internal
 header_links:
 
 footer_links: 
-  Accessibility: /accessibility.html
+  Accessibility: /accessibility/
 
 # Tracking ID from Google Analytics (e.g. UA-XXXX-Y)
 ga_tracking_id:
