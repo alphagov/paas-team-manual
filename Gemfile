@@ -9,7 +9,7 @@ gem 'wdm', '~> 0.1', platforms: [:mswin, :mingw]
 gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby]
 
 # Include the tech docs gem
-gem 'govuk_tech_docs', '~> 3.3'
+gem 'govuk_tech_docs', '~> 3.5'
 
 gem 'html-proofer', '~> 5.0'
 
