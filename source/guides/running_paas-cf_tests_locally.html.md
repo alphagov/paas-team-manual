@@ -4,7 +4,10 @@ title: Running tests on `paas-cf` locally
 
 # Running tests on `paas-cf` locally
 
-A number of packages need to be installed in order to run the tests of `paas-cf` locally. To run them, install the packages below then run 
+> **Note**: This requires an intel chip, as the terraform tests download
+providers for x86 chips.
+
+A number of packages need to be installed in order to run the tests of `paas-cf` locally. To run them, install the packages below then run
 
 ```sh
 make test
@@ -37,7 +40,7 @@ make test
   ```
 
 * Shellcheck
-  
+
   ```sh
   curl -L -o /usr/local/bin/shellcheck https://github.com/alphagov/paas-cf/releases/download/shellcheck_binary_0.4.6/shellcheck_darwin_amd64
   chmod +x /usr/local/bin/shellcheck
@@ -70,7 +73,7 @@ make test
   ```
 
 * YAML Lint
-  
+
   ```
   brew install yamllint
   ```

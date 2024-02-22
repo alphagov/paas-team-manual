@@ -17,14 +17,14 @@ Terraform, or simply running the appropriate Concourse job.
 [The `paas-cf` repository][1] contains a terraform module, which will deny all
 traffic, to subnets in one particular AZ.
 
-It also has a Concourse jobs, in `create-cloudfoundry` pipeline, and the
-`operator` groups, to bot disable and enable particular AZs.
+It also has a Concourse job, in `create-cloudfoundry` pipeline, and the
+`operator` groups, to disable and enable particular AZs.
 
 _Please note_: Disabling the AZ `a`, will likely bring the Concourse down,
 meaning the re-enabling action will need to be done by hand from op's machine.
 
-This will involve, you having to download the Terraform state file, for that
-particular region. See pipeline for more details.
+This will involve you having to download the Terraform state file for that
+particular region. See the pipeline for more details.
 
 ## How to run
 

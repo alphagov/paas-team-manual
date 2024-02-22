@@ -4,6 +4,8 @@ title: Finding the owner of a route in cf
 
 # Finding the owner of a route in cf
 
+>To install cf plugins on M1 based chips, you need to compile the binary manually and install it
+
 1. Install cf lookup-route plugin  with `cf install-plugin -r CF-Community "route-lookup"`
 1. Log into the cf instance where you suspect the route is
 1. Run `cf lookup-route DOMAINNAME` where DOMAINNAME is the one you are looking for
