@@ -54,6 +54,7 @@ title: PaaS Team Manual
  - [How to use the fast-startup-and-shutdown pipelines](guides/fast-startup-and-shutdown/)
  - [How to enable private access to backing services](guides/vpc_peer_backing_service_access)
  - [How to update Docker images](guides/updating_docker_images)
+ - [How to horizontally scale routers](guides/scaling_routers_horizontally)
 
 ### Other information
  - [Our orgs on the paas](team/our_orgs_on_the_paas/)
