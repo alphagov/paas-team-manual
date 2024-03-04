@@ -15,6 +15,8 @@ GOV.UK Platform as a Service team has four major web apps that require regular m
 PaaS admin is a server-side rendered React web app. It utilises NPM dependencies and it will have by far the most dependency updates.
 Dependabot is set up to raise dependecy update pull requests and security audits. Tests are set up and demand 100% code coverage.
 
+Dependecies are somewhat grouped and dependabot pull requests are raised weekly on a Monday.
+
 On merge to `main`:
 
  - tests run and if sucessful, a [git tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) with a version number is [created](https://concourse.build.ci.cloudpipeline.digital/teams/main/pipelines/paas-admin/jobs/tag-releases), and updated in the [paas-admin version file](https://github.com/alphagov/paas-admin/blob/main/version)
