@@ -65,7 +65,7 @@ Before decommissioning the environment, ensure that the following steps have bee
 
 ## Post Decommissioning Checks
 
-- [ ] Click around AWS console in Ireland looking for orphaned items. Check:
+- [ ] Click around AWS console and enable the resource explorer in Ireland to look for orphaned items. Check:
     - [ ] ec2
     - [ ] ebs
     - [ ] ebs snapshots
@@ -94,3 +94,4 @@ Before decommissioning the environment, ensure that the following steps have bee
     - [ ] [paas-tech-docs](https://github.com/alphagov/paas-tech-docs)
 - [ ] Remove environment config in [paas-credentials](https://github.com/alphagov/paas-credentials).
 - [ ] Remove references to prod environment (not the prod account) in [paas-cf](https://github.com/alphagov/paas-cf) and [paas-bootstrap](https://github.com/alphagov/paas-bootstrap). We have a 'prod' and 'prod-lon' environment that both use the 'prod' aws account.
+- [ ] Remove alerting for ireland in Pagerduty
