@@ -37,6 +37,8 @@ which is documented in the [`paas-product-pages` README](https://github.com/alph
 
 Dependabot pull requests need to be approved and can be merged in the Github web UI.
 
+Dependecies are somewhat grouped and dependabot pull requests are raised weekly on a Monday.
+
 ## Tenant-facing tech docs and team manual
 
 Tech docs and team manual are implementations of the [`tech-docs-gem`](https://github.com/alphagov/tech-docs-gem), a Ruby gem that distributes the [Tech Docs Template](https://github.com/alphagov/tech-docs-template). The Tech Docs Template is a [middleman template](https://middlemanapp.com/advanced/project_templates/) that you can use to build technical documentation using a GOV.UK style.
