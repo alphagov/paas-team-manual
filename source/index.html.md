@@ -111,6 +111,10 @@ title: PaaS Team Manual
    - [YAML](styleguides/YAML/)
    - [Concourse pipelines](styleguides/concourse_pipeline/)
 
+### Upcoming Plans
+
+- [Decomissioning of Production Ireland](upcoming_plans/ireland_decomissioning/)
+
 ## Architecture decision records
 
 This section contains Architecture Decision Records (ADR) as described in this blog post <http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions>.
