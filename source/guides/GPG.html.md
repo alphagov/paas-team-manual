@@ -12,9 +12,9 @@ haven't used GPG recently or ever at all.
 
 ## Install
 
-On Mac OS X:
+On MacOS:
 
-    brew install gpg gpg-agent
+    brew install gpg
 
 On Ubuntu:
 
