@@ -4,6 +4,17 @@ title: Incident Process
 
 # So, you’re having an incident
 
+## Team roles
+**PaaS SREs:** Full time SREs who work on the service day to day. Absences should be staggered to reduce the amount of time where neither PaaS SREs are available.
+**Managed Service SREs:** Wider pool of SREs supplied via a managed service contract. Respond to incidents when neither PaaS SRE is available. Manage P1-P3 incidents only, using Team Manual runbook. Escalate to GDS backstop engineers if unable to mitigate the incident using the runbooks.
+**GDS Backstop Engineers:** GDS Civil Servants who previously worked on GOV.UK PaaS. These can be escalated to as a last resort, if an incident has not been resolved using runbooks or investigation. Contactable via slack channel #paas-escalation.
+
+## Incident process
+### P1-P3 Process
+### P4 Process
+We do not have an SLA for P4s, as P4s are outside of scope for the Managed Service SREs.  If the engineer on support is from the wider Managed Service Pool (and no PaaS SREs are available) then P4s will be paused until a PaaS SRE is available to investigate and remediate.
+
+
 This document is the GOV.UK PaaS team playbook for managing a technical incident. It covers tasks for the engineering lead and the communications (comms) lead.
 
 ## Engineering lead tasks
@@ -14,20 +25,18 @@ As the engineering lead:
 
 - you are responsible for investigating and resolving the issue, and reporting to the comms lead so they can communicate severity and timelines to stakeholders
 - you are not expected to fix any underlying problems with our technology or processes – these will be discussed and addressed in an incident review
-- you should be cautious if you’re unsure about what to do or what the impact of any action would be – the goal is to get the platform stable enough to be fixed properly during office hours
+- you should be cautious if you’re unsure about what to do or what the impact of any action would be – the goal is to get the platform stable enough to be fixed by the PaaS SRE team
 
-If you need help during office hours, other engineers can help you as needed. Out of hours, you can [escalate to the rest of the team](https://support.pagerduty.com/docs/response-plays#run-a-response-play-on-an-incident) using PagerDuty if you consider the incident high priority. There is no guarantee that anyone will answer.
+If you need help, other engineers can help you as needed. If you are unable to address the problem (even with the help of other engineers if available), you can raise a request for additional support in #paas-escalation. This should be used as a last resort only.
 
-If an incident is ongoing across the boundary between in and out of office hours (for example, an in-hours incident continuing past 5pm or an out-of-hours incident continuing past 9am), you should perform a handover with the incoming engineering lead.
-
-If you’ve been involved in an out-of-hours incident, you are not required to work again until 11 hours after the end of the incident.
+If an incident is ongoing outside of office hours (i.e. an in-hours incident continuing past 5pm), you should document progress on the ticket to ensure wider team context, and update tenants on progress and next steps.
 
 ### Starting an incident
 
-1. Acknowledge the incident on PagerDuty and decide if the alerts you have received and their impact constitute an incident or not. Incidents generally have a negative impact on the availability of tenant services in some way or constitute a [cyber security incident](#what-qualifies-as-a-cyber-security-incident). Problems such as our billing smoke tests failing may indicate a tenant-impacting problem but do not in themselves constitute an incident.
+1. Acknowledge the incident on PagerDuty or Slack and decide if the alerts you have received and their impact constitute an incident or not. Incidents generally have a negative impact on the availability of tenant services in some way or constitute a [cyber security incident](#what-qualifies-as-a-cyber-security-incident). Problems such as our billing smoke tests failing may indicate a tenant-impacting problem but do not in themselves constitute an incident.
 2. Document briefly which steps you are taking to resolve the incident in the #paas-incident Slack channel. If the situation impacts tenants, [escalate to the person on communication](https://support.pagerduty.com/docs/response-plays#run-a-response-play-on-an-incident) (comms) support using PagerDuty so they can communicate with tenants. 
 3. The #paas-incident channel has a bookmarked hangout link. Join this video call to communicate with the comms lead and talk through what you’re doing and what’s happening.  
-4. If you decide it’s not an incident after investigating further, you must resolve the incident in PagerDuty. If you’re working out of hours, decide whether the issue needs a resolution immediately or whether an engineer can resolve it in hours. If you are sure it is an incident, [agree on a priority](https://www.cloud.service.gov.uk/support-and-response-times/#response-times-for-services-in-production) for the incident with the comms lead. You can change this priority level later as more information emerges.
+4. If you decide it’s not an incident after investigating further, you must resolve the incident in PagerDuty. If you are sure it is an incident, [agree on a priority](https://www.cloud.service.gov.uk/support-and-response-times/#response-times-for-services-in-production) for the incident with the comms lead. You can change this priority level later as more information emerges.
 
 ## Communication lead tasks
 
@@ -43,7 +52,7 @@ As the comms lead, you communicate the status and impact of an incident to tenan
 
 You should write incident comms in plain English and focus on what impact tenants can expect rather than what is wrong. For example, choose “end users are likely to experience intermittent interruption” rather than “one of the availability zones is down”.
 
-If an incident is ongoing across the boundary between in and out of office hours (for example, an in-hours incident continuing past 5pm or an out-of-hours incident continuing past 9am), you should perform a handover with the incoming comms lead.
+If an incident is ongoing outside of office hours across the boundary between in and out of office hours (i.e.for example, an in-hours incident continuing past 5pm or an out-of-hours incident continuing past 9am), you should update StatusPage with progress and next steps.
 
 If you have been involved in an out-of-hours incident, you are not required to work until 11 hours after the end of the incident.
 
@@ -72,26 +81,20 @@ Once an incident is resolved:
 
 ## Long-running incidents
 
-It is possible that an incident will run across office hours – for example, an in-hours incident might not be resolved before the end of the working day or an out-of-hours incident might run for a long time. In these cases, you may need to hand over an incident to fresh engineering and comms leads.
+It is possible that an incident will run across multiple days – for example, an incident might not be resolved before the end of the working day. In this case, you need to ensure progress on the incident is documented to allow fresh engineering and comms leads to commence work the following day, mitigating the risk that you are out of office and work cannot proceed.
 
-### When to consider a handover
+### When to consider pausing and documenting
 
-You should start the process to hand over an incident if:
+You should start the process to document an incident if:
 
-- you are working on an incident in office hours and the time has reached 5pm (based on the priority of the incident, decide whether the incident is sufficiently high priority to be worked on out-of-hours. If the incident is low priority, you or another engineer may resume the incident work at the start of the next working day.)
-- you are working on an incident out-of-hours and office hours have begun (9am on working days)
-- you have been working on an incident for a long stretch of time in or out of hours (6 hours should be the maximum)
+- you are working on an incident in office hours and the time has reached 5pm
+- you have been working on an incident for a long stretch of time (6 hours should be the maximum)
 
-If you cannot find someone to hand over to after 6 hours of working on an incident out of hours, you should take a break and return either:
-
-- during office hours to hand over to the in-hours support people, or
-- after you have rested for an hour or two, and then attempt to reach other people again
-
-### How to hand over
+### How to pause and document
 
 1. The comms lead should check the incident report has a summary of the incident and is up-to-date.
-2. The comms lead should share the incident report with the new engineering and comms leads so they can gain context.
-3. The comms lead should set up a short meeting to talk through:
+2. The comms lead should share the incident report with the PaaS SREs and wider managed service pool for visibility.
+3. An incident continuation meeting to talk through:
 
 - the current incident status
 - any useful contextual information
@@ -103,11 +106,11 @@ If you cannot find someone to hand over to after 6 hours of working on an incide
 
 Use the [#paas-internal Slack channel](https://gds.slack.com/?redir=%2Farchives%2FCAEHMHGJ2) to contact other team members.
 
+If you need to contact SMT, talk to the person on the Product and Technology (P&T) SMT escalation rota in PagerDuty.
+
 ### Out of hours
 
-You can use [PagerDuty](https://governmentdigitalservice.pagerduty.com/sign_in) to escalate an issue, create a new issue for people on call, or look up the phone numbers of people on call.
-
-There is no response play or out-of-hours support to escalate an incident to the Senior Management Team (SMT). If you need to contact SMT, wait until in hours and talk to the person on the Product and Technology (P&T) SMT escalation rota in PagerDuty.
+There is no out of hours provision for this service.
 
 ## Service provider support details
 
