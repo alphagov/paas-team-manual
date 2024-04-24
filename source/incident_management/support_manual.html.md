@@ -12,26 +12,12 @@ However, in some cases service teams can’t self diagnose or fix problems (yet)
 We’re supporting live services, teams who are using PaaS for prototyping and individuals within teams who are trying it out.
 
 ## Support hours
-* In hours: Monday to Friday 9am to 5pm
-* Out of hours - waking hours	: 9am to 5pm each non-working day including weekends and bank holidays
-* Out of hours - overnight: 5pm to 9am each day
+* In hours: Monday to Friday 9am to 5pm, excluding bank holidays
+* Out of hours: no longer offered
 
 ## Service Targets
 
 * First Response: Within 2 working days
-
-## Alerting out of hours
-
-These are the things we support out of hours:
-
-* Apps no longer being served due to an issue with our platform
-* Serious security breach on the platform
-* Tenants are unable to push an emergency fix to an app due to the PaaS API not being available
-* A Tenant’s live production app has a P1 issue which cannot be resolved without us
-
-We expect to hear about the first two via the alerts on Smoke Test Fails and Pingdom which are sent to Pagerduty.
-
-The second two, at the moment, are the things that a tenant may contact us about as we don’t cover all situations in which these could occur with our own alerting. They would contact us via our emergency email. Our emergency email is a Google Group which is not published publicly. It has ZenDesk and PagerDuty as its members, and therefore tickets and incidents are triggered automatically when an email is sent to it.
 
 ## Triaging issues
 
@@ -45,8 +31,8 @@ The following questions should be answered when triaging/prioritising:
 * What’s the impact to our users, systems and reputation?
 * What’s the extent of the issue, how many systems and users are affected?
 * Is it a known issue - is there a workaround?
-* If there is uncertainty about which classification an issue should be given, the PaaS Product manager, PaaS Technical Architect or Tech Lead will be responsible for making a final call.
-* In the event that none of the above people are available, you should use the triage questions to make a decision based on the information you have at the time.
+* If there is uncertainty about which classification an issue should be given, the Tech Lead will be responsible for making a final call.
+* If the Tech Lead is not available, you should use the triage questions to make a decision based on the information you have at the time.
 
 ## Severity Levels
 
@@ -60,12 +46,12 @@ The exceptions to this are for some categories of security breach or vulnerabili
 
 (Note this table is copied from overview doc - keep in sync. More detail may be needed later)
 
-| Classification | AKA | Example | In hours| Out of hours |
-| --- | --- | --- | --- | --- |
-|# P1 | Critical Incident | <ul><li>Apps no longer being served due to an issue with our platform</li><li>serious security breach on the platform</li><li>You are unable to push an emergency fix to an app due to the PaaS API not being available</li><li>your live production app has a P1 issue which cannot be resolved without us</li></ul> | Start work & respond: 20 min<br/><br/> Update time: 1 hr | 40 mins |
-|# P2 | Major Incident |<ul><li>Can’t update/push apps due to platform issue</li><li>Upstream vulnerabilities</li><li>elevated error rates</li><li>Complete component failure</li><li>substantial degradation of service</li></ul>| Start work & respond: 30 min<br/><br/>Update time: 2 hr  | n/a |
-|# P3 | Significant | Users (tenants or end users) experiencing intermittent or degraded service due to platform issue.| Start work & respond: 2 hr<br/><br/> Update time: 4 hr  n/a |
-|# P4 | Minor | Component failure that is not immediately service impacting | Start work & respond: 1 business day <br/><br/> Update time: 2 business days | n/a |
+| Classification | AKA | Example | In hours                                                                       | Out of hours |
+| --- | --- | --- |--------------------------------------------------------------------------------|--------------|
+|# P1 | Critical Incident | <ul><li>Apps no longer being served due to an issue with our platform</li><li>serious security breach on the platform</li><li>You are unable to push an emergency fix to an app due to the PaaS API not being available</li><li>your live production app has a P1 issue which cannot be resolved without us</li></ul> | Start work & respond: 20 min<br/><br/> Update time: 1 hr                       | n/a          |
+|# P2 | Major Incident |<ul><li>Can’t update/push apps due to platform issue</li><li>Upstream vulnerabilities</li><li>elevated error rates</li><li>Complete component failure</li><li>substantial degradation of service</li></ul>| Start work & respond: 30 min<br/><br/>Update time: 2 hr                        | n/a          |
+|# P3 | Significant | Users (tenants or end users) experiencing intermittent or degraded service due to platform issue.| Start work & respond: 2 hr<br/><br/> Update time: 4 hr  n/a                    |
+|# P4 | Minor | Component failure that is not immediately service impacting | Respond: 1 business day <br/><br/> Update time: 2 business days | n/a          |
 
 ## Support tickets
 
@@ -78,8 +64,8 @@ If you don’t have an account ask the PaaS delivery manager to add you. You can
 * Try to keep a descriptive name in the ZenDesk tickets. If the user added a not very descriptive name (e.g failure pushing app), change it to something that uniquely identifies the story (e.g failure pushing app: invalid mode 0444).
 Always notify the tenant about this change and why it is done.
 * Try to close the tickets if there is no action required from us.
-* If we are waiting for a card in the backlog, add add note in the card to saying that we need to inform the user once is done and accepted.
-* Always notify the user that we are closing it, why we are closing it and why the issue is resolved or it does not require more work from us.
+* If we are waiting for a ticket in the backlog, add note in the ticket saying that we need to inform the user once this is done and accepted.
+* Always notify the user that we are closing the ticket, why we are closing it and why the issue is resolved or it does not require more work from us.
 * Let the user know that they can always reopen the ticket if required.
 
 ## Incident Process
