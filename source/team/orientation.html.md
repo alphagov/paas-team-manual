@@ -6,48 +6,22 @@ title: Orientation
 
 Some key information to help new starters to find their way.
 
-## Team members
-We are a multidisciplinary team responsible for the developement and maintenance of GOV.UK PaaS. 
-
-- EL - Engineering Lead Support responsiblities 
-- CL - Comms Lead Support responsibilities
-
-<!-- List is alphabetised -->
-### Delivery Management
-- Emma Pearce - Delivery Manager (CL)
-- Kam Nijjar - Associate Delivery Manager
-
-<!-- List is alphabetised -->
-### Engineering
-- Andy Hunt - Tech Lead (EL)
-- Ben Corlett - Site Reliability Engineer (EL, contractor)
-- Jack Joy - Site Reliability Engineer (EL, contractor)
-- Jamie Van Dyke - Site Reliability Engineer (contractor)
-- Jani Kraner - Front End Developer (CL)
-- Malcolm Saunders - Site Reliability Engineer (EL, contractor)
-- Nimalan Kirubakaran - Developer (EL)
-- Panos Xynos - Site Reliability Engineer (EL, contractor)
-- Robert Scott - Site Reliability Engineer (EL)
-- Tom Whitwell - Site Reliability Engineer (EL)
-
-### Product Management
-- Lisa Scott - Senior Product Manager (CL)
-
-### Programme Management
-- Chris Wells - Programme Manager
-
-### Technical Architecture
-- Paul Dougan - Technical Architect (CL)
-
 ## Product
 
-The following blog posts and videos give an overview of why we're here and
-what we've been doing so far:
+The following blog posts and videos give an overview of why PaaS was built and what it was used for:
 
 - [A PaaS for Government - Anna at Velocity Europe (video)](https://www.youtube.com/watch?v=OLOaq-Xf5zU)
 - [Building a platform to host digital services - Anna & Carl on the GDS blog](https://gds.blog.gov.uk/2015/09/08/building-a-platform-to-host-digital-services/)
 - [Looking at open source PaaS technologies - Anna on the GDS Technology blog](https://gdstechnology.blog.gov.uk/2015/10/27/looking-at-open-source-paas-technologies/)
 - [Choosing Cloud Foundry - Anna on the GaaP blog](https://governmentasaplatform.blog.gov.uk/2015/12/17/choosing-cloudfoundry/)
+
+## Decomission Decision
+
+The Government Digital Service (GDS) provided GOV.UK PaaS since 2015, supporting and providing a public cloud platform for departments using a shared hosting and responsibility model.
+Following an extensive analysis period, GDS has concluded that, while the platform has been successful in its aims, the underlying technology would now require investment before it could meet its goals in the long term.
+Faced with this need for re-investment GDS has decided to decommission the platform, in order to focus its budget and energy on other GDS products for common use by Government.
+GDS will not be providing a replacement hosting service.
+
 
 ## Repos
 
@@ -105,6 +79,25 @@ Missing standup, or being late, means you will miss out on updates on:
 
 The last one is especially important, as the standup is a valuable way to crowdsource ideas on problems that people may be having with a story, and if you are not there, you can't help.
 
+### Absences
+
+It’s important that we have cover within the team to mitigate issues during work hours within the agreed SLAs (20 minutes response time for P1s; which means any new alert must be acknowledged and ideally triaged within 20 minutes. Therefore, there must always be someone covering support.
+Due to the size of the team, this needs active coordination from the team. To ensure this, the team have adopted the following team norms:
+
+* Only one PaaS SRE can be on annual leave at a time
+* Another PaaS SRE can be on learning time, but must still be available for support (so self-learning is fine, but a conference would not be)
+* Lunch breaks should be staggered
+
+The managed service pool provide additional capacity for support cover when the PaaS SREs are unavailable, for example due to an unplanned absence coinciding with some annual leave. The Managed Service Delivery Manager is responsible for ensuring there is appropriate cover in place at all times, and so all Leave requests must be approved by them.
+
+* This is the level of notice we expect when you take leave:
+* For 1 day – you must give at least 3 days notice
+* For 2 days – you must give at least 1 week notice
+* For between 3 days - 4 days – you must give at least 2 weeks notice
+* For between 1 week - 2 weeks – you must give at least 4 weeks notice
+* For greater than 2 weeks – you must give 3 months notice
+
+
 ## Learning our technologies
 
 We use a number of technologies and you may find it easier to learn about each
@@ -121,12 +114,6 @@ familiar with each one.
 # [BOSH](http://bosh.io/). It deploys Cloud Foundry and other things. | [A guide to using BOSH](http://mariash.github.io/learn-bosh/)  | [What problems does BOSH solve?](http://bosh.io/docs/problems.html)
 # Cloud Foundry, for those managing it | | [Cloud Foundry presentation, written by the team](https://docs.google.com/presentation/d/1LkR4Y3jLBQ8uskKeLIyKtSKDoutnAvty-vSSGfVNXZU/view), an [older presentation from before the move to Diego archecture](https://docs.google.com/presentation/d/1sZH1Nn_GiYfpBtT6br_AnZn_dynLzvYizJ9aQ4Zc1Ww/view)
 # Terraform | The terraform [intro](https://www.terraform.io/intro/index.html) | The intro also covers key concepts.
-
-## Communicating with Hand Signals
-
-We use hand signals at our meetings to help make them more productive and
-accessible for every person on the team. You can find out more about how this
-works in practice by reading [our blog post][].
 
 [our blog post]: https://gds.blog.gov.uk/2016/10/07/platform-as-a-service-team-takes-even-handed-approach-to-meetings/
 

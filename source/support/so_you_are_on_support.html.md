@@ -69,6 +69,7 @@ You need to join the following Slack channels on gds.com:
 * [#paas-internal](https://gds.slack.com/archives/CAEHMHGJ2)
 * [#paas-incident](https://gds.slack.com/archives/CAD4W35KK)
 * [#paas](https://gds.slack.com/archives/CADHV9267) 
+* [#paas-escalation](https://gds.slack.com/archives/C06LSLE77LJ) 
 
 You also need to join the following Slack channels on  ukgovernmentdigital.slack.com:
 
@@ -79,10 +80,9 @@ You also need to join the following Slack channels on  ukgovernmentdigital.slack
 
 When you join the team, the DM or tech lead should arrange the following: 
 
-* shadowing support shifts 8 weeks after joining the team
+* Knowledge transfer sessions using [this document](https://drive.google.com/drive/folders/1_yCutf5ybmNmwz1jKtqRqeyuzz4pw3I7?role=writer)
 * 2 weeks shadowing the person on support
-
-They should also arrange reverse shadowing for your first 2 weeks on support, with a more experienced engineer helping and supporting you. 
+* 2 weeks reverse shadowing for your first 2 weeks on support
 
 Speak to your line manager or the tech lead if you have any questions or concerns about your shadowing experience. 
 
@@ -101,12 +101,11 @@ You should set the Slack channel topic to “[@your_slack_username] is on suppor
 At the end of your support shift, you need to:
 
 * make sure all ongoing support tasks are sufficiently documented in Zendesk and/or hand over work to the person coming onto the support rota
-* claim for your on-call shift using the [GaaP and CEVPS on-call pay submission form](https://docs.google.com/forms/d/e/1FAIpQLSfpMK85F2CxBFo_uubO2HHintc3Gx6jbifeUhnAm0g6GfoDEA/viewform?vc=0&c=0&w=1&flr=0)
 
 ## Support times
 
 * in-hours: Weekdays 9:00 - 17:00
-* out-of hours: Weekdays 17:00 - 9:00, weekends 24/7
+* out-of hours: Not provided
 
 You should regularly check the [dynamic calendar showing your in-hours support shifts as defined in PagerDuty](https://calendar.google.com/calendar/ical/8nvffdghj1kfrfgmji0ottc8nnh52t37%40import.calendar.google.com/public/basic.ics).
 

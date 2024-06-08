@@ -25,11 +25,7 @@ Learn about [Statuspage](/team/statuspage/)
 1. The subscribers on statuspage will get the notifications
 
 ## If you need to escalate to SMT on call:
-1. If you need to escalate to SMT (for example, if its affecting coronavirus services) - go to [rotas app](https://rotas.cloudapps.digital/teams/techops-management-escalations) and select the current on call individual to get their contact info 
-
-## Don’t forget:
-1. Your aim is to do just enough support out of hours to get through to working hours :)
-1. You can update the x-gov slack paas channel if relevant
+1. If you need to escalate to SMT (for example, if its affecting coronavirus services) - go to [rotas app](https://rotas.cloudapps.digital/teams/techops-management-escalations) and select the current on call individual to get their contact info. Only in hours. 
 
 ## Response times for P1 incidents
 
@@ -40,5 +36,4 @@ Tenant updated: 1hr
 
 ### Outside working hours
 
-Start work and respond: 40 minutes
-Tenant updated: 1hr
+No out of hours support provision.

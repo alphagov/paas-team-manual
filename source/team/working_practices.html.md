@@ -23,7 +23,7 @@ instance it's okay to ask for help, it's okay to have quiet days, and many other
 
 The development process consists of the following steps:
 
-1. The Product Manager makes decisions on which work (for example, features or bugs) to prioritise.
+1. The Tech Lead makes decisions on which work (for example, features or bugs) to prioritise.
 
 2. The team make the necessary changes in their own development environments on feature branches.
 
@@ -48,7 +48,7 @@ The release process consists of the following steps:
 
 2. When the development is complete, a developer raises a pull request against the main branch of the git repository for review.
 
-3. Another team member reviews the pull request and if there are no problems, merges the changes into the main branch. Alternatively, they may provide feedback to the developers and request corrections and/or additional work.
+3. Another team member reviews the pull request and if there are no problems, merges the changes into the main branch. Alternatively, they may provide feedback to the developers and request corrections and/or additional work. When one of the PaaS SREs is unavailable (e.g. due to planned or unplanned leave), the Managed Service SRE Pool will be responsible for reviewing pull requests.
 
 4. A new commit to the main branch triggers a Concourse git_resource that performs an automated deployment to the staging environment.
 
@@ -64,14 +64,9 @@ repositories.
 
 ## Pairing
 
-We pair on all stories to ensure that people don't get stuck on the same
+We aim to pair on all stories to ensure that people don't get stuck on the same
 types of work and that there is a good distribution of knowledge across the
-team. We aim to rotate pairs regularly by:
-
-- changing pairs when you've been on a story for more than 2 days
-
-- joining someone on an existing story that doesn't have a pair instead of
-  picking up new work
+team. However, due to the size of the team, this is not always possible.
 
 We don't insist on a particular method of pairing. We're keen to have two people
 making decisions and aware of the story, but there are lots of ways those two
@@ -299,7 +294,7 @@ should be noted. Doing this allows the Product Manager prioritise the follow up 
 ## Review
 
 Review is the step in our process where the pull requests relating to a story
-are code-reviewed, and merged. This is typically done by somone who hasn't
+are code-reviewed, and merged. This is typically done by someone who hasn't
 worked on the story, however if a story has been paired on throughout, the pair
 can merge their own PRs, and push the story straight through to approval.
 
@@ -333,22 +328,11 @@ If it changes behaviour or makes new features available to users:
 
 Technical Documentation changes follow the same overall process as code changes, but with several documentation-specific amends. This section summarises the tech docs change process.
 
-### Pre kick-off
-
-- Required: technical writer
-
-Before the formal story kick-off, the technical writer reviews the story and drafts changes if possible.
-
 ### Kick-off
 
-- Required: technical writer, technical lead
-- Optional: product representative, developer
-
-At this step, decide on what changes to the tech docs are required to complete this story. You must also agree on who needs to review and approve this story. Make sure that you decide whether the story needs product as well as technical review. If no specific technical reviewers are named, any developer can serve as the technical reviewer. You should also analyse if any other further changes or stories will result from this story.
+At this step, decide on what changes to the tech docs are required to complete this story. You must also agree on who needs to review and approve this story. Make sure that you decide whether the story needs Service Owner review as well as technical review. If no specific technical reviewers are named, any developer can serve as the technical reviewer. You should also analyse if any other further changes or stories will result from this story.
 
 ### Doing
-
-- Required: technical writer, developer
 
 Draft the content changes in markdown, ensuring that it is technically correct and in line with the GDS style guide. You must preview changes in tech doc format so that the new or amended content is smoothly integrated into the exsting documentation structure. Evaluate if story needs to change, and if so, whether this can be included in the scope of the original story or should be part of a new story. Once you have agreed that the content is ready for further review, raise a pull request to the paas-tech-docs repo.
 
@@ -356,19 +340,14 @@ Note that if the change requires product review, you must push the tech doc chan
 
 ### Reviewing
 
-- Required: technical writer, developer, technical writer 2i
-- Optional: product representative, tech lead
+Three reviews should happen:
 
-Three reviews should happen at the same time:
-
-- The developer reviews the content in both GitHub and in the tech doc preview, checking if it addresses the issues in the story.
-- The tech writer conducting the 2i review checks the style and content.
-- The product rep or tech lead reviews content if required; the product rep will look at the temporary Cloud Foundry version of the tech docs.
+- Review the content in both GitHub and in the tech doc preview, checking if it addresses the issues in the story.
+- Conduct the 2i review checks the style and content.
+- Review content if required; using the temporary Cloud Foundry version of the tech docs.
 
 Implement any changes as required, and then get sign-off from reviewers. The reviewers then merge the changes once they have been signed off.
 
 ### Approving
-
-- Required: tech writer, approver
 
 The approver checks if the change deployed correctly, and whether it addresses the story. If it does so, they approve the story.
