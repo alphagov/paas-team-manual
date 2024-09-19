@@ -113,7 +113,8 @@ title: PaaS Team Manual
 
 ### Upcoming Plans
 
-- [Decomissioning of Production Ireland](upcoming_plans/ireland_decomissioning/)
+- [Decommissioning of Production Ireland](upcoming_plans/ireland_decomissioning/)
+- [Decommissioning of Production London](upcoming_plans/london_decomissioning/)
 
 ## Architecture decision records
 
