@@ -4,22 +4,13 @@ title: Incident Process
 
 # So, you’re having an incident
 
+This document is the GOV.UK PaaS team playbook for managing a technical incident. It covers tasks for the engineering lead and the communications (comms) lead.
+
 ## Team roles
 **PaaS SREs:** Full time SREs who work on the service day to day. Absences should be staggered to reduce the amount of time where neither PaaS SREs are available.
 **Managed Service SREs:** Wider pool of SREs supplied via a managed service contract. Respond to incidents when neither PaaS SRE is available. Manage P1-P3 incidents only, using Team Manual runbook. Escalate to GDS backstop engineers if unable to mitigate the incident using the runbooks.
 **GDS Backstop Engineers:** GDS Civil Servants who previously worked on GOV.UK PaaS. These can be escalated to as a last resort, if an incident has not been resolved using runbooks or investigation. Contactable via slack channel #paas-escalation.
 ![Diagram of SRE capacity plan](/diagrams/sre-escalation-service-capacity.png)
-
-## Incident process
-### P1-P3 Process
-![Diagram of escalation procedure for p1-p3 incidents](/diagrams/escalation-process-p1-p3.jpeg)
-
-### P4 Process
-We do not have an SLA for P4s, as P4s are outside of scope for the Managed Service SREs.  If the engineer on support is from the wider Managed Service Pool (and no PaaS SREs are available) then P4s will be paused until a PaaS SRE is available to investigate and remediate.
-
-![Diagram of escalation procedure for p1-p3 incidents](/diagrams/escalation-process-p4.jpeg)
-
-This document is the GOV.UK PaaS team playbook for managing a technical incident. It covers tasks for the engineering lead and the communications (comms) lead.
 
 ## Engineering lead tasks
 
@@ -41,6 +32,9 @@ If an incident is ongoing outside of office hours (i.e. an in-hours incident con
 2. Document briefly which steps you are taking to resolve the incident in the #paas-incident Slack channel. If the situation impacts tenants, [escalate to the person on communication](https://support.pagerduty.com/docs/response-plays#run-a-response-play-on-an-incident) (comms) support using PagerDuty or Slack so they can communicate with tenants.
 3. The #paas-incident channel has a bookmarked hangout link. Join this video call to communicate with the comms lead and talk through what you’re doing and what’s happening.  
 4. If you decide it’s not an incident after investigating further, you must resolve the incident in PagerDuty. If you are sure it is an incident, [agree on a priority](https://www.cloud.service.gov.uk/support-and-response-times/#response-times-for-services-in-production) for the incident with the comms lead. You can change this priority level later as more information emerges.
+
+### P4 Process
+We do not have an SLA for P4s, as P4s are outside of scope for the Managed Service SREs.  If the engineer on support is from the wider Managed Service Pool (and no PaaS SREs are available) then P4s will be paused until a PaaS SRE is available to investigate and remediate.
 
 ## Communication lead tasks
 
