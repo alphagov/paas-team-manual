@@ -8,8 +8,9 @@ This document is the GOV.UK PaaS team playbook for managing a technical incident
 
 ## Team roles
 **PaaS SREs:** Full time SREs who work on the service day to day. Absences should be staggered to reduce the amount of time where neither PaaS SREs are available.
+
 **Managed Service SREs:** Wider pool of SREs supplied via a managed service contract. Respond to incidents when neither PaaS SRE is available. Manage P1-P3 incidents only, using Team Manual runbook. Escalate to GDS backstop engineers if unable to mitigate the incident using the runbooks.
-**GDS Backstop Engineers:** GDS Civil Servants who previously worked on GOV.UK PaaS. These can be escalated to as a last resort, if an incident has not been resolved using runbooks or investigation. Contactable via slack channel #paas-escalation.
+
 ![Diagram of SRE capacity plan](/diagrams/sre-escalation-service-capacity.png)
 
 ## Engineering lead tasks
@@ -31,7 +32,7 @@ If an incident is ongoing outside of office hours (i.e. an in-hours incident con
 1. Acknowledge the incident on PagerDuty or Slack and decide if the alerts you have received and their impact constitute an incident or not. Incidents generally have a negative impact on the availability of tenant services in some way or constitute a [cyber security incident](#what-qualifies-as-a-cyber-security-incident). Problems such as our billing smoke tests failing may indicate a tenant-impacting problem but do not in themselves constitute an incident.
 2. Document briefly which steps you are taking to resolve the incident in the #paas-incident Slack channel. If the situation impacts tenants, [escalate to the person on communication](https://support.pagerduty.com/docs/response-plays#run-a-response-play-on-an-incident) (comms) support using PagerDuty or Slack so they can communicate with tenants.
 3. The #paas-incident channel has a bookmarked hangout link. Join this video call to communicate with the comms lead and talk through what you’re doing and what’s happening.  
-4. If you decide it’s not an incident after investigating further, you must resolve the incident in PagerDuty. If you are sure it is an incident, [agree on a priority](https://www.cloud.service.gov.uk/support-and-response-times/#response-times-for-services-in-production) for the incident with the comms lead. You can change this priority level later as more information emerges.
+4. If you decide it’s not an incident after investigating further, you must resolve the incident in PagerDuty. If you are sure it is an incident, [agree on a priority](https://www.cloud.service.gov.uk/support-and-response-times/#response-times-for-services-in-production) for the incident with the comms lead. You can change this priority level later as more information emerges. [Some upstream dependency links](#upstream-status-pages-and-channels)
 
 ### P4 Process
 We do not have an SLA for P4s, as P4s are outside of scope for the Managed Service SREs.  If the engineer on support is from the wider Managed Service Pool (and no PaaS SREs are available) then P4s will be paused until a PaaS SRE is available to investigate and remediate.
@@ -136,6 +137,14 @@ For an incident to be considered a cyber security incident, it should be an acti
 
 If you’re in doubt about whether to declare a cyber security incident, you can [seek help by escalating](#escalation-paths).
 
+### Upstream Status Pages and Channels
+Here are a few places to check for potential upstream failures.
+
+[AWS Service Health Dashboard](https://health.aws.amazon.com/)
+
+[Cloud Foundry Slack](https://slack.cloudfoundry.org/) (Join the #general for discussions on outages or incidents.)
+
+[Github Status](https://www.githubstatus.com/)
 ### Defining an incident priority
 
 Our incident priorities are publicly documented on our [product pages](https://www.cloud.service.gov.uk/support-and-response-times/#response-times-for-services-in-production). 
