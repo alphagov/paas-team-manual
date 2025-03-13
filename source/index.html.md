@@ -47,6 +47,7 @@ title: PaaS Team Manual
  - [How to look up users by Google IDs](guides/looking_up_users_by_google_id/)
  - [How to disable a single AZ on GOV.UK PaaS](guides/managing_azs_on_paas/)
  - [How to contact cyber](guides/contacting_cyber/)
+ - [How to teardown and create a dev environment](guides/create_dev_env/)
  - [How to reduce Logit volume](guides/reducing_logit_volume/)
  - [How to resolve Kibana indexing errors](guides/resolving_Kibana_indexing_errors/)
  - [How to get the Google Search Console back](guides/gain_access_to_google_search_console/)
