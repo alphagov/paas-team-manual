@@ -27,6 +27,8 @@ title: Create a dev environment
 
 # Create new environment
 
+## Create bosh and concourse
+
 1. Start interactive shell with paas-dev-admin role: ```gds aws paas-dev-admin -- bash```
 2. Set env vars that are set from the appropriate environment, bootstrap, globals and deployer-concourse make target: 
 ```
@@ -121,6 +123,10 @@ export CONCOURSE_WORKER_INSTANCES=1
  11. Head to deployer.{deploy_env}.dev.cloudpipeline.digital
      1. run the pipeline
 
-Create Cloud Foundry
+## Create Cloud Foundry
+
 1. Head to paas-cf
-2. Run gds aws paas-dev-admin -- make dev02 pipelines BRANCH=main SLIM_DEV_DEPLOYMENT=false
+2. Upload cloudfoundry pipelines with `gds aws paas-dev-admin -- make dev02 pipelines`
+3. Connect to credhub with `gds aws paas-dev-admin -- make dev02 credhub`. Then follow the instructions to login to credhub, getting the passcode from the external hostname given when you first connect to credhub, e.g. https://bosh-uaa-external.dev02.dev.cloudpipeline.digital/passcode
+4. Upload cloudfoundry secrets to credhub with `gds aws paas-dev-admin -- make dev02 upload-all-secrets`
+5. Run the `generate-paas-admin-git-keys`, `generate-paas-billing-git-keys`, `generate-paas-aiven-broker-git-keys` and `generate-git-keys` jobs from the "operator" tab of the create-cloudfoundry pipeline
