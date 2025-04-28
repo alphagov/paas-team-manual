@@ -11,12 +11,12 @@ title: Create a dev environment
    4. {dev_env}-cf-resources
 2. Head to RDS, delete the rds broker dbs associated with the environment by searching for the deploy env
 3. Iam: Remove all users associated with the deploy_env
-4. In paas-boostrap run the teardown command e.g ```gds aws paas-dev-admin -- make dev02 teardown```
+4. In paas-boostrap run the teardown command e.g `gds aws paas-dev-admin -- make dev02 teardown`
    1. run it a few times in case of dependency errors(e.g security groups)
 5. Remove NAT gateways associated with the dev env VPC
-6. Run the teardown command again e.g ```gds aws paas-dev-admin -- make dev02 teardown```
+6. Run the teardown command again e.g `gds aws paas-dev-admin -- make dev02 teardown`
 7. Remove the network interfaces associated with the dev env VPC
-6. Run the teardown command again, you should see the VPC deleted e.g ```gds aws paas-dev-admin -- make dev02 teardown```
+6. Run the teardown command again, you should see the VPC deleted e.g `gds aws paas-dev-admin -- make dev02 teardown`
 7. Navigate to codecommit in AWS console, us-east-1 and delete concourse-pool-{deploy_env}, remember to switch back to eu-west-1
 8. Navigate to CloudWatch, delete all log groups associated with the deploy_env
 9. Navigate to EC2, target groups, delete all target groups associated with the deploy_env
@@ -29,7 +29,7 @@ title: Create a dev environment
 
 ## Create bosh and concourse
 
-1. Start interactive shell with paas-dev-admin role: ```gds aws paas-dev-admin -- bash```
+1. Start interactive shell with paas-dev-admin role: ```gds aws paas-dev-admin -- zsh```
 2. Set env vars that are set from the appropriate environment, bootstrap, globals and deployer-concourse make target. Please note that you need to change the `DEPLOY_ENV` being targeted on the first line: 
 
       ```
@@ -69,10 +69,12 @@ title: Create a dev environment
    ```
 3. Run vagrant environment script: 
    1. Navigate to paas-bootstrap
-   2. ```vagrant/environment.sh > environment```
-   3. put the above exports into environment
-   4. put the output from ``echo $CONCOURSE_WEB_PASSWORD`` into environment
-   5. source environment
+   2. `cd vagrant`
+   3. `environment.sh > ../environment`
+   4. `cd ..`
+   5. put the above exports into environment
+   6. put the output from ``echo $CONCOURSE_WEB_PASSWORD`` into environment
+   7. `source environment`
 4. Create key pair:
    1. Make sure you don't have a duplicate key. Typically, in the parent folder to paas-bootstrap
    2. ```aws ec2 create-key-pair --key-name "${VAGRANT_SSH_KEY_NAME}" | jq -r ".KeyMaterial" > "${VAGRANT_SSH_KEY}"```
@@ -82,45 +84,44 @@ title: Create a dev environment
       ```
    Name: “<deploy-env> concourse”, e.g. “dev02 concourse”
    Tags:
-   instance_group: concourse-lite
-   deploy_env: <deploy_env>
+      instance_group: concourse-lite
+      deploy_env: <deploy_env>
    AMI: Ubuntu 24.04 LTS x86
    Instance type: m7a.large
    Key pair: <deploy-env>-vagrant-bootstrap-concourse, e.g. dev02-vagrant-bootstrap-concourse
    Network settings:
    VPC: default
-   Subnet: subnet-56a69a33 (for eu-west-1)
    Security group: select existing > create-dev
    Auto-assign public IP: true
    Storage:
    1 x 50GiB gp3
    Advanced details:
-   IAM instance profile: arn:aws:iam::595665891067:instance-profile/concourse-lite (concourse-lite)
-   Metadata version: V1 or V2 (token optional)
+   IAM instance profile: concourse-lite
+   Metadata version: V1 and V2 (token optional)
    Metadata response hop limit: 3
    ```
 6. Find instance public IP, test SSH into instance:
-   1. ```export CONCOURSE_LITE_INSTANCE_IP=<instance IP>```
-   2. ```ssh -i ${VAGRANT_SSH_KEY} ubuntu@${CONCOURSE_LITE_INSTANCE_IP}```
-   3. <ctrl+d> to terminate SSH connection
+   1. `export CONCOURSE_LITE_INSTANCE_IP=<instance IP>`
+   2. `ssh -i ${VAGRANT_SSH_KEY} ubuntu@${CONCOURSE_LITE_INSTANCE_IP}`
+   3. \<ctrl+d\> to terminate SSH connection
 7. Copy relevant files:
-   1. ```rsync -e "ssh -i ${VAGRANT_SSH_KEY}" environment ubuntu@${CONCOURSE_LITE_INSTANCE_IP}:```
-   2. ```cd vagrant```
-   2. ```rsync -e "ssh -i ${VAGRANT_SSH_KEY}" post-deploy.d/00-run-docker.sh ubuntu@${CONCOURSE_LITE_INSTANCE_IP}:```
-   3. ```rsync -e "ssh -i ${VAGRANT_SSH_KEY}" docker-compose.yml ubuntu@${CONCOURSE_LITE_INSTANCE_IP}:```
+   1. `rsync -e "ssh -i ${VAGRANT_SSH_KEY}" environment ubuntu@${CONCOURSE_LITE_INSTANCE_IP}:`
+   2. `cd vagrant`
+   2. `rsync -e "ssh -i ${VAGRANT_SSH_KEY}" post-deploy.d/00-run-docker.sh ubuntu@${CONCOURSE_LITE_INSTANCE_IP}:`
+   3. `rsync -e "ssh -i ${VAGRANT_SSH_KEY}" docker-compose.yml ubuntu@${CONCOURSE_LITE_INSTANCE_IP}:`
 8. Run concourse via docker on concourse lite instance:
-   1. ``ssh -i ${VAGRANT_SSH_KEY} ubuntu@${CONCOURSE_LITE_INSTANCE_IP}``
-   2. ``source environment``
-   3. ``./00-run-docker.sh``
-   4. <ctrl+d> to terminate SSH connection
+   1. `ssh -i ${VAGRANT_SSH_KEY} ubuntu@${CONCOURSE_LITE_INSTANCE_IP}`
+   2. `source environment`
+   3. `./00-run-docker.sh`
+   4. \<ctrl+d\> to terminate SSH connection
 9. Set up SSH tunnel to concourse lite instance:
-    1. ``ssh -i ${VAGRANT_SSH_KEY} -L 8080:127.0.0.1:8080 -fN ubuntu@${CONCOURSE_LITE_INSTANCE_IP}``
-    2. ``../concourse/scripts/pipelines.sh``
-    3. ``../concourse/scripts/concourse-lite-self-terminate.sh``
+    1. `ssh -i ${VAGRANT_SSH_KEY} -L 8080:127.0.0.1:8080 -fN ubuntu@${CONCOURSE_LITE_INSTANCE_IP}`
+    2. `../concourse/scripts/pipelines.sh`. If you get a `no secret key` error, make sure your `paas-pass` alias is correctly set up in your current shell.
+    3. `../concourse/scripts/concourse-lite-self-terminate.sh`
 10. Run the create-bosh-concourse pipeline
     1. Head to ``localhost:8080`` and trigger the update-pipeline job (Use the concourse creds from environment)
-    2. ``cd ..``
-    3. ``make ${DEPLOY_ENV} upload-all-secrets``
+    2. `cd ..`
+    3. `make ${DEPLOY_ENV} upload-all-secrets`
  11. Head to deployer.{deploy_env}.dev.cloudpipeline.digital
      1. run the pipeline
 
