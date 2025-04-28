@@ -30,43 +30,43 @@ title: Create a dev environment
 ## Create bosh and concourse
 
 1. Start interactive shell with paas-dev-admin role: ```gds aws paas-dev-admin -- bash```
-2. Set env vars that are set from the appropriate environment, bootstrap, globals and deployer-concourse make target: 
-```
-export PASSWORD_STORE_DIR=$HOME}/.paas-pass
-export GITHUB_PASSWORD_STORE_DIR=${HOME}/.paas-pass
-export GOOGLE_PASSWORD_STORE_DIR=${HOME}/.paas-pass
-export DEPLOY_ENV=dev02
-export SYSTEM_DNS_ZONE_NAME=${DEPLOY_ENV}.dev.cloudpipeline.digital
-export SYSTEM_DNS_ZONE_ID=Z1QGLFML8EG6G7
-export APPS_DNS_ZONE_NAME=${DEPLOY_ENV}.dev.cloudpipelineapps.digital
-export APPS_DNS_ZONE_ID=Z3R6XFWUT4YZHB
-export AWS_ACCOUNT=dev
-export MAKEFILE_ENV_TARGET=dev
-export ENABLE_DESTROY=true
-export ENABLE_GITHUB=true
-export CONCOURSE_AUTH_DURATION=48h
-export SKIP_COMMIT_VERIFICATION=true
-export AWS_DEFAULT_REGION=eu-west-1
-export CYBER_PASSWORD_STORE_DIR=${HOME}/.paas-pass
-export CONCOURSE_INSTANCE_TYPE=c7a.xlarge
-export VAGRANT_SSH_KEY_NAME=${DEPLOY_ENV}-vagrant-bootstrap-concourse
-export TARGET_CONCOURSE=bootstrap
-export CONCOURSE_WEB_USER="admin"
-export CONCOURSE_WEB_PASSWORD="$(
-  aws sts get-caller-identity \
-  | awk '$1 ~ /UserId/ {sub(/:.*$/, "", $2); print $2}' \
-  | shasum -a 256 \
-  | base64 \
-  | head -c 32
-)"
-export BOSH_INSTANCE_PROFILE=bosh-director-cf
-export CONCOURSE_TYPE=deployer-concourse
-export CONCOURSE_HOSTNAME=deployer
-export CONCOURSE_INSTANCE_TYPE=m7i.xlarge
-export CONCOURSE_INSTANCE_PROFILE=deployer-concourse
-export CONCOURSE_WORKER_INSTANCES=1
-```
-   1. Note to change the 'dev02'
+2. Set env vars that are set from the appropriate environment, bootstrap, globals and deployer-concourse make target. Please note that you need to change the `DEPLOY_ENV` being targeted on the first line: 
+
+      ```
+   export DEPLOY_ENV=devXX
+   export PASSWORD_STORE_DIR=$HOME}/.paas-pass
+   export GITHUB_PASSWORD_STORE_DIR=${HOME}/.paas-pass
+   export GOOGLE_PASSWORD_STORE_DIR=${HOME}/.paas-pass
+   export SYSTEM_DNS_ZONE_NAME=${DEPLOY_ENV}.dev.cloudpipeline.digital
+   export SYSTEM_DNS_ZONE_ID=Z1QGLFML8EG6G7
+   export APPS_DNS_ZONE_NAME=${DEPLOY_ENV}.dev.cloudpipelineapps.digital
+   export APPS_DNS_ZONE_ID=Z3R6XFWUT4YZHB
+   export AWS_ACCOUNT=dev
+   export MAKEFILE_ENV_TARGET=dev
+   export ENABLE_DESTROY=true
+   export ENABLE_GITHUB=true
+   export CONCOURSE_AUTH_DURATION=48h
+   export SKIP_COMMIT_VERIFICATION=true
+   export AWS_DEFAULT_REGION=eu-west-1
+   export CYBER_PASSWORD_STORE_DIR=${HOME}/.paas-pass
+   export CONCOURSE_INSTANCE_TYPE=c7a.xlarge
+   export VAGRANT_SSH_KEY_NAME=${DEPLOY_ENV}-vagrant-bootstrap-concourse
+   export TARGET_CONCOURSE=bootstrap
+   export CONCOURSE_WEB_USER="admin"
+   export CONCOURSE_WEB_PASSWORD="$(
+   aws sts get-caller-identity \
+   | awk '$1 ~ /UserId/ {sub(/:.*$/, "", $2); print $2}' \
+   | shasum -a 256 \
+   | base64 \
+   | head -c 32
+   )"
+   export BOSH_INSTANCE_PROFILE=bosh-director-cf
+   export CONCOURSE_TYPE=deployer-concourse
+   export CONCOURSE_HOSTNAME=deployer
+   export CONCOURSE_INSTANCE_TYPE=m7i.xlarge
+   export CONCOURSE_INSTANCE_PROFILE=deployer-concourse
+   export CONCOURSE_WORKER_INSTANCES=1
+   ```
 3. Run vagrant environment script: 
    1. Navigate to paas-bootstrap
    2. ```vagrant/environment.sh > environment```
@@ -77,8 +77,9 @@ export CONCOURSE_WORKER_INSTANCES=1
    1. Make sure you don't have a duplicate key. Typically, in the parent folder to paas-bootstrap
    2. ```aws ec2 create-key-pair --key-name "${VAGRANT_SSH_KEY_NAME}" | jq -r ".KeyMaterial" > "${VAGRANT_SSH_KEY}"```
    3. ```chmod 600 "${VAGRANT_SSH_KEY}"```
-6. Launch EC2 instance from AWS console in eu-west-1 with the following settings
-   ```
+5. Launch EC2 instance from AWS console in eu-west-1 with the following settings
+
+      ```
    Name: “<deploy-env> concourse”, e.g. “dev02 concourse”
    Tags:
    instance_group: concourse-lite
