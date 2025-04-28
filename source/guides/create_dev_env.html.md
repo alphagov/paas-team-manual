@@ -84,7 +84,7 @@ title: Create a dev environment
    Tags:
    instance_group: concourse-lite
    deploy_env: <deploy_env>
-   AMI: ami-0d64bb532e0502c46 (Ubuntu 24.04 LTS x86)
+   AMI: Ubuntu 24.04 LTS x86
    Instance type: m7a.large
    Key pair: <deploy-env>-vagrant-bootstrap-concourse, e.g. dev02-vagrant-bootstrap-concourse
    Network settings:
