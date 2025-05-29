@@ -50,7 +50,7 @@ we do not have a process in place for applying the updates automatically.
             --action print \
             --paas-accounts-url https://accounts.cloud.service.gov.uk \
             --paas-accounts-username admin \
-            --paas-accounts-password "$( echo get this from credhub ; exit 1 )"
+            --paas-accounts-password "$( echo get this from credhub under /prod-lon/prod-lon/secrets_paas_accounts_admin_password ; exit 1 )"
 
   1. Send a preview email to yourself:
 
@@ -70,7 +70,7 @@ we do not have a process in place for applying the updates automatically.
             --action email \
             --paas-accounts-url https://accounts.cloud.service.gov.uk \
             --paas-accounts-username admin \
-            --paas-accounts-password "$( echo get this from credhub ; exit 1 )" \
+            --paas-accounts-password "$( echo get this from credhub under /prod-lon/prod-lon/secrets_paas_accounts_admin_password ; exit 1 )" \
             --notify-api-key "$( echo make a key or get from credhub ; exit 1)" \
             --maintenance-window-date 'Tuesday 16 June 2020' \
             --maintenance-window-time-range '0900-1100' \
